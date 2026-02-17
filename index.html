@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数理统计 · Interactive Course</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <button id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button>
+        <aside id="sidebar">
+            <div id="sidebar-header">
+                <h1>数理统计</h1>
+                <p class="author">Casella & Berger · 陈希孺 · Hogg, McKean & Craig</p>
+                <div id="progress-container">
+                    <div id="progress-bar"><div id="progress-fill"></div></div>
+                    <span id="progress-text">0%</span>
+                </div>
+            </div>
+            <div id="search-container">
+                <input type="text" id="search-input" placeholder="Search topics...">
+            </div>
+            <nav id="chapter-nav"></nav>
+            <div id="sidebar-footer">
+                <button id="reset-progress">Reset Progress</button>
+            </div>
+        </aside>
+        <main id="main-content">
+            <div id="welcome-screen">
+                <div class="welcome-hero">
+                    <h1>数理统计</h1>
+                    <h2>Mathematical Statistics — An Interactive Journey</h2>
+                    <p class="welcome-description">
+                        A rigorous, visualization-driven course through mathematical statistics,
+                        from probability foundations to asymptotic theory and modern resampling methods.
+                        Based on Casella & Berger, 陈希孺, and Hogg, McKean & Craig.
+                    </p>
+                </div>
+                <div class="roadmap">
+                    <h3>Course Roadmap</h3>
+                    <div class="roadmap-parts">
+                        <div class="roadmap-part">
+                            <h4>Part A: 概率论回顾</h4>
+                            <ul>
+                                <li>Ch 0: 概率空间与随机变量</li>
+                                <li>Ch 1: 常见分布族</li>
+                                <li>Ch 2: 多维随机变量</li>
+                                <li>Ch 3: 大数定律与中心极限定理</li>
+                            </ul>
+                        </div>
+                        <div class="roadmap-part">
+                            <h4>Part B: 统计推断基础</h4>
+                            <ul>
+                                <li>Ch 4: 随机样本与统计量</li>
+                                <li>Ch 5: 充分统计量与完备性</li>
+                                <li>Ch 6: 点估计</li>
+                                <li>Ch 7: 评估准则</li>
+                            </ul>
+                        </div>
+                        <div class="roadmap-part">
+                            <h4>Part C: 区间估计与假设检验</h4>
+                            <ul>
+                                <li>Ch 8: 置信区间</li>
+                                <li>Ch 9: 假设检验基础</li>
+                                <li>Ch 10: 似然比检验</li>
+                                <li>Ch 11: 常用检验</li>
+                            </ul>
+                        </div>
+                        <div class="roadmap-part">
+                            <h4>Part D: 回归与高级主题</h4>
+                            <ul>
+                                <li>Ch 12: 线性回归</li>
+                                <li>Ch 13: 多元回归与模型选择</li>
+                                <li>Ch 14: 非参数方法</li>
+                                <li>Ch 15: Bayesian 统计入门</li>
+                            </ul>
+                        </div>
+                        <div class="roadmap-part">
+                            <h4>Part E: 渐近理论与现代方法</h4>
+                            <ul>
+                                <li>Ch 16: 渐近理论</li>
+                                <li>Ch 17: Bootstrap 与重抽样</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <p class="welcome-start">Select a chapter from the sidebar to begin.</p>
+            </div>
+            <div id="chapter-content" style="display:none;">
+                <div id="chapter-header">
+                    <div id="chapter-number-badge"></div>
+                    <h1 id="chapter-title"></h1>
+                    <p id="chapter-subtitle"></p>
+                </div>
+                <div id="section-tabs"></div>
+                <article id="section-content"></article>
+                <div id="exercises-panel" style="display:none;">
+                    <h3>Exercises</h3>
+                    <div id="exercises-list"></div>
+                </div>
+                <div id="chapter-nav-buttons">
+                    <button id="prev-btn" disabled>&larr; Previous</button>
+                    <span id="section-indicator"></span>
+                    <button id="next-btn">Next &rarr;</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="viz-engine.js"></script>
+
+    <!-- Chapter manifest for lazy loading -->
+    <script>
+    window.CHAPTER_MANIFEST = [
+        {number:0,  id:'ch00', title:'概率空间与随机变量',           file:'ch00-probability-spaces'},
+        {number:1,  id:'ch01', title:'常见分布族',                  file:'ch01-distribution-families'},
+        {number:2,  id:'ch02', title:'多维随机变量',                file:'ch02-multivariate-rv'},
+        {number:3,  id:'ch03', title:'大数定律与中心极限定理',       file:'ch03-lln-clt'},
+        {number:4,  id:'ch04', title:'随机样本与统计量',            file:'ch04-samples-statistics'},
+        {number:5,  id:'ch05', title:'充分统计量与完备性',           file:'ch05-sufficiency'},
+        {number:6,  id:'ch06', title:'点估计',                     file:'ch06-point-estimation'},
+        {number:7,  id:'ch07', title:'评估准则',                    file:'ch07-evaluation-criteria'},
+        {number:8,  id:'ch08', title:'置信区间',                    file:'ch08-confidence-intervals'},
+        {number:9,  id:'ch09', title:'假设检验基础',                file:'ch09-hypothesis-testing'},
+        {number:10, id:'ch10', title:'似然比检验',                  file:'ch10-likelihood-ratio-tests'},
+        {number:11, id:'ch11', title:'常用检验',                    file:'ch11-common-tests'},
+        {number:12, id:'ch12', title:'线性回归',                    file:'ch12-linear-regression'},
+        {number:13, id:'ch13', title:'多元回归与模型选择',           file:'ch13-multiple-regression'},
+        {number:14, id:'ch14', title:'非参数方法',                  file:'ch14-nonparametric'},
+        {number:15, id:'ch15', title:'Bayesian 统计入门',           file:'ch15-bayesian'},
+        {number:16, id:'ch16', title:'渐近理论',                    file:'ch16-asymptotic-theory'},
+        {number:17, id:'ch17', title:'Bootstrap 与重抽样',          file:'ch17-bootstrap'}
+    ];
+    </script>
+
+    <script src="app.js"></script>
+</body>
+</html>
