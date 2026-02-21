@@ -23,7 +23,8 @@ window.CHAPTERS.push({
                         <p>设 \\\\(X_1, \\\\ldots, X_n\\\\) 是来自参数族 \\\\(\\\\{f(x; \\\\theta) : \\\\theta \\\\in \\\\Theta\\\\}\\\\) 的随机样本。
                         统计量 \\\\(T = T(X_1, \\\\ldots, X_n)\\\\) 称为 \\\\(\\\\theta\\\\) 的<strong>充分统计量</strong>，
                         如果给定 \\\\(T = t\\\\) 后，样本 \\\\((X_1, \\\\ldots, X_n)\\\\) 的条件分布不依赖于 \\\\(\\\\theta\\\\)：</p>
-                        \\\\[P(X_1 \\\\in A_1, \\\\ldots, X_n \\\\in A_n \\\\mid T = t) \\\\text{ 与 } \\\\theta \\\\text{ 无关}, \\\\quad \\\\forall t, \\\\forall A_i.\\\\]
+                        \\\\[P(X_1 \\\\in A_1, \\\\ldots, X_n \\\\in A_n \\\\mid T = t) \\\\perp \\\\theta, \\\\quad \\\\forall t, \\\\forall A_i.\\\\]
+                        <p>即条件分布与 \\\\(\\\\theta\\\\) 无关。</p>
                     </div>
                 </div>
 
@@ -395,7 +396,7 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>设总体密度为 \\\\(f(x; \\\\theta)\\\\)。统计量 \\\\(T(\\\\mathbf{X})\\\\) 是最小充分统计量，
                         如果且仅如果对任意两个样本点 \\\\(\\\\mathbf{x}\\\\) 和 \\\\(\\\\mathbf{y}\\\\)，</p>
-                        \\\\[\\\\frac{f(\\\\mathbf{x}; \\\\theta)}{f(\\\\mathbf{y}; \\\\theta)} \\\\text{ 不依赖 } \\\\theta \\\\quad \\\\Longleftrightarrow \\\\quad T(\\\\mathbf{x}) = T(\\\\mathbf{y}).\\\\]
+                        \\\\[\\\\frac{f(\\\\mathbf{x}; \\\\theta)}{f(\\\\mathbf{y}; \\\\theta)} \\\\text{ does not depend on } \\\\theta \\\\quad \\\\Longleftrightarrow \\\\quad T(\\\\mathbf{x}) = T(\\\\mathbf{y}).\\\\]
                     </div>
                 </div>
 

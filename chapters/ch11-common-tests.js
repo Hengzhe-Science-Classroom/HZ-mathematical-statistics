@@ -1104,7 +1104,7 @@ window.CHAPTERS.push({
                     <div class="env-title">Definition 11.22 (ANOVA的假设检验)</div>
                     <div class="env-body">
                         <p>检验问题为</p>
-                        \\\\[H_0: \\\\mu_1 = \\\\mu_2 = \\\\cdots = \\\\mu_k \\\\quad \\\\text{vs} \\\\quad H_1: \\\\text{至少有两个} \\\\; \\\\mu_i \\\\; \\\\text{不等}\\\\]
+                        \\\\[H_0: \\\\mu_1 = \\\\mu_2 = \\\\cdots = \\\\mu_k \\\\quad \\\\text{vs} \\\\quad H_1: \\\\exists\\\\, i \\\\ne j,\\\\; \\\\mu_i \\\\ne \\\\mu_j\\\\]
                     </div>
                 </div>
 

@@ -327,7 +327,7 @@ window.CHAPTERS.push({
                     <div class="env-title">Theorem 3.10 (强大数定律 / Strong Law of Large Numbers — Kolmogorov)</div>
                     <div class="env-body">
                         <p>设 \\\\(X_1, X_2, \\\\ldots\\\\) 为 i.i.d. 随机变量。则</p>
-                        \\\\[\\\\bar{X}_n \\\\xrightarrow{a.s.} \\\\mu \\\\quad \\\\Longleftrightarrow \\\\quad \\\\mathbb{E}[|X_1|] < \\\\infty \\\\text{ (此时 } \\\\mu = \\\\mathbb{E}[X_1]\\text{)}.\\\\]
+                        \\\\[\\\\bar{X}_n \\\\xrightarrow{a.s.} \\\\mu \\\\quad \\\\Longleftrightarrow \\\\quad \\\\mathbb{E}[|X_1|] < \\\\infty \\\\;\\;(\\\\mu = \\\\mathbb{E}[X_1]).\\\\]
                     </div>
                 </div>
 

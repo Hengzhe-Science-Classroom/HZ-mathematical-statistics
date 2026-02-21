@@ -36,7 +36,7 @@ window.CHAPTERS.push({
                     <div class="env-title">Definition 10.2 (最大功效检验 Most Powerful Test)</div>
                     <div class="env-body">
                         <p>设 \\\\(\\\\mathcal{C}\\\\) 是所有显著性水平为 \\\\(\\\\alpha\\\\) 的检验的集合。检验 \\\\(\\\\varphi^*\\\\) 称为水平 \\\\(\\\\alpha\\\\) 的<strong>最大功效检验</strong>（MP test），如果</p>
-                        \\\\[E_{\\\\theta_0}[\\\\varphi^*] \\\\le \\\\alpha \\\\quad \\\\text{且} \\\\quad E_{\\\\theta_1}[\\\\varphi^*] \\\\ge E_{\\\\theta_1}[\\\\varphi] \\\\quad \\\\forall \\\\varphi \\\\in \\\\mathcal{C}\\\\]
+                        \\\\[E_{\\\\theta_0}[\\\\varphi^*] \\\\le \\\\alpha \\\\quad \\\\text{and} \\\\quad E_{\\\\theta_1}[\\\\varphi^*] \\\\ge E_{\\\\theta_1}[\\\\varphi] \\\\quad \\\\forall \\\\varphi \\\\in \\\\mathcal{C}\\\\]
                         <p>其中 \\\\(\\\\varphi(\\\\mathbf{x}) \\\\in [0,1]\\\\) 是随机化检验函数，表示拒绝 \\\\(H_0\\\\) 的概率。</p>
                     </div>
                 </div>

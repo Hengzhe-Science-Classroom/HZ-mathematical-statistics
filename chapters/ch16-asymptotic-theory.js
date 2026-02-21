@@ -22,7 +22,7 @@ window.CHAPTERS.push({
                     <div class="env-title">Definition 16.1 (相合估计量 · Consistent Estimator)</div>
                     <div class="env-body">
                         <p>设 \\\\(X_1, X_2, \\\\ldots\\\\) 是来自分布 \\\\(P_\\\\theta\\\\) 的随机样本，\\\\(\\\\hat{\\\\theta}_n = \\\\hat{\\\\theta}_n(X_1, \\\\ldots, X_n)\\\\) 是参数 \\\\(\\\\theta\\\\) 的一个估计量序列。若对所有 \\\\(\\\\theta \\\\in \\\\Theta\\\\)，</p>
-                        \\\\[\\\\hat{\\\\theta}_n \\\\xrightarrow{P} \\\\theta, \\\\quad \\\\text{即} \\\\quad \\\\forall \\\\varepsilon > 0, \\\\quad \\\\lim_{n \\\\to \\\\infty} P_\\\\theta\\\\bigl(|\\\\hat{\\\\theta}_n - \\\\theta| > \\\\varepsilon\\\\bigr) = 0,\\\\]
+                        \\\\[\\\\hat{\\\\theta}_n \\\\xrightarrow{P} \\\\theta, \\\\quad \\\\text{i.e.} \\\\quad \\\\forall \\\\varepsilon > 0, \\\\quad \\\\lim_{n \\\\to \\\\infty} P_\\\\theta\\\\bigl(|\\\\hat{\\\\theta}_n - \\\\theta| > \\\\varepsilon\\\\bigr) = 0,\\\\]
                         <p>则称 \\\\(\\\\hat{\\\\theta}_n\\\\) 是 \\\\(\\\\theta\\\\) 的<strong>相合估计量</strong> (consistent estimator)。</p>
                     </div>
                 </div>

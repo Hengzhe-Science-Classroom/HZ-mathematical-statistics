@@ -276,7 +276,8 @@ window.CHAPTERS.push({
                     <div class="env-title">Example 0.8 (疾病检测)</div>
                     <div class="env-body">
                         <p>某种罕见疾病的发病率为 \\\\(p = 0.001\\\\)。检测方法的灵敏度（sensitivity，真阳性率）为 0.99，特异度（specificity，真阴性率）为 0.95。某人检测呈阳性，其实际患病的概率为：</p>
-                        \\\\[P(\\\\text{患病} \\\\mid +) = \\\\frac{0.99 \\\\times 0.001}{0.99 \\\\times 0.001 + 0.05 \\\\times 0.999} \\\\approx 0.0194.\\\\]
+                        \\\\[P(D \\\\mid +) = \\\\frac{0.99 \\\\times 0.001}{0.99 \\\\times 0.001 + 0.05 \\\\times 0.999} \\\\approx 0.0194\\\\]
+                        <p>其中 \\\\(D\\\\) 表示"患病"。</p>
                         <p>尽管检测看起来"很准"，但由于先验概率极低，阳性预测值（PPV）只有约 1.94%。这就是<strong>基础率谬误</strong>（base rate fallacy）的经典体现。</p>
                     </div>
                 </div>
