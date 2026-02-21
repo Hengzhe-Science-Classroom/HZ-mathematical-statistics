@@ -14,41 +14,41 @@ window.CHAPTERS.push({
             content: `
                 <h2>多元线性模型</h2>
 
-                <p>在简单线性回归中我们研究了单个自变量与因变量的关系。实际问题中，响应变量往往受到多个解释变量的共同影响。<strong>多元线性回归 (multiple linear regression)</strong> 将模型推广到 \\\\(p\\\\) 个自变量的情形，并借助矩阵语言获得优雅的理论表述。</p>
+                <p>在简单线性回归中我们研究了单个自变量与因变量的关系。实际问题中，响应变量往往受到多个解释变量的共同影响。<strong>多元线性回归 (multiple linear regression)</strong> 将模型推广到 \\(p\\) 个自变量的情形，并借助矩阵语言获得优雅的理论表述。</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.1 (多元线性模型)</div>
                     <div class="env-body">
-                        <p>设观测数据 \\\\((y_i, x_{i1}, \\\\ldots, x_{ip})\\\\)，\\\\(i = 1, \\\\ldots, n\\\\)。<strong>多元线性模型</strong>为</p>
-                        \\\\[y_i = \\\\beta_0 + \\\\beta_1 x_{i1} + \\\\cdots + \\\\beta_p x_{ip} + \\\\varepsilon_i, \\\\quad i = 1, \\\\ldots, n,\\\\]
-                        <p>其中 \\\\(\\\\varepsilon_1, \\\\ldots, \\\\varepsilon_n\\\\) 独立同分布，\\\\(\\\\mathbb{E}[\\\\varepsilon_i] = 0\\\\)，\\\\(\\\\operatorname{Var}(\\\\varepsilon_i) = \\\\sigma^2\\\\)。</p>
+                        <p>设观测数据 \\((y_i, x_{i1}, \\ldots, x_{ip})\\)，\\(i = 1, \\ldots, n\\)。<strong>多元线性模型</strong>为</p>
+                        \\[y_i = \\beta_0 + \\beta_1 x_{i1} + \\cdots + \\beta_p x_{ip} + \\varepsilon_i, \\quad i = 1, \\ldots, n,\\]
+                        <p>其中 \\(\\varepsilon_1, \\ldots, \\varepsilon_n\\) 独立同分布，\\(\\mathbb{E}[\\varepsilon_i] = 0\\)，\\(\\operatorname{Var}(\\varepsilon_i) = \\sigma^2\\)。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.2 (矩阵形式)</div>
                     <div class="env-body">
-                        <p>定义 \\\\(n \\\\times (p+1)\\\\) 设计矩阵 \\\\(\\\\mathbf{X}\\\\)，响应向量 \\\\(\\\\mathbf{y}\\\\) 和参数向量 \\\\(\\\\boldsymbol{\\\\beta}\\\\)：</p>
-                        \\\\[\\\\mathbf{X} = \\\\begin{pmatrix} 1 & x_{11} & \\\\cdots & x_{1p} \\\\\\\\ 1 & x_{21} & \\\\cdots & x_{2p} \\\\\\\\ \\\\vdots & \\\\vdots & \\\\ddots & \\\\vdots \\\\\\\\ 1 & x_{n1} & \\\\cdots & x_{np} \\\\end{pmatrix}, \\\\quad \\\\mathbf{y} = \\\\begin{pmatrix} y_1 \\\\\\\\ y_2 \\\\\\\\ \\\\vdots \\\\\\\\ y_n \\\\end{pmatrix}, \\\\quad \\\\boldsymbol{\\\\beta} = \\\\begin{pmatrix} \\\\beta_0 \\\\\\\\ \\\\beta_1 \\\\\\\\ \\\\vdots \\\\\\\\ \\\\beta_p \\\\end{pmatrix}.\\\\]
-                        <p>模型简写为 \\\\(\\\\mathbf{y} = \\\\mathbf{X}\\\\boldsymbol{\\\\beta} + \\\\boldsymbol{\\\\varepsilon}\\\\)，其中 \\\\(\\\\boldsymbol{\\\\varepsilon} \\\\sim (\\\\mathbf{0}, \\\\sigma^2 \\\\mathbf{I}_n)\\\\)。</p>
+                        <p>定义 \\(n \\times (p+1)\\) 设计矩阵 \\(\\mathbf{X}\\)，响应向量 \\(\\mathbf{y}\\) 和参数向量 \\(\\boldsymbol{\\beta}\\)：</p>
+                        \\[\\mathbf{X} = \\begin{pmatrix} 1 & x_{11} & \\cdots & x_{1p} \\\\ 1 & x_{21} & \\cdots & x_{2p} \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ 1 & x_{n1} & \\cdots & x_{np} \\end{pmatrix}, \\quad \\mathbf{y} = \\begin{pmatrix} y_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n \\end{pmatrix}, \\quad \\boldsymbol{\\beta} = \\begin{pmatrix} \\beta_0 \\\\ \\beta_1 \\\\ \\vdots \\\\ \\beta_p \\end{pmatrix}.\\]
+                        <p>模型简写为 \\(\\mathbf{y} = \\mathbf{X}\\boldsymbol{\\beta} + \\boldsymbol{\\varepsilon}\\)，其中 \\(\\boldsymbol{\\varepsilon} \\sim (\\mathbf{0}, \\sigma^2 \\mathbf{I}_n)\\)。</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 13.3 (OLS 估计量)</div>
                     <div class="env-body">
-                        <p>若 \\\\(\\\\mathbf{X}^\\\\top \\\\mathbf{X}\\\\) 可逆，则最小二乘估计量为</p>
-                        \\\\[\\\\hat{\\\\boldsymbol{\\\\beta}} = (\\\\mathbf{X}^\\\\top \\\\mathbf{X})^{-1} \\\\mathbf{X}^\\\\top \\\\mathbf{y}.\\\\]
-                        <p>预测值 \\\\(\\\\hat{\\\\mathbf{y}} = \\\\mathbf{H} \\\\mathbf{y}\\\\)，其中 \\\\(\\\\mathbf{H} = \\\\mathbf{X}(\\\\mathbf{X}^\\\\top \\\\mathbf{X})^{-1}\\\\mathbf{X}^\\\\top\\\\) 为<strong>帽子矩阵 (hat matrix)</strong>。</p>
+                        <p>若 \\(\\mathbf{X}^\\top \\mathbf{X}\\) 可逆，则最小二乘估计量为</p>
+                        \\[\\hat{\\boldsymbol{\\beta}} = (\\mathbf{X}^\\top \\mathbf{X})^{-1} \\mathbf{X}^\\top \\mathbf{y}.\\]
+                        <p>预测值 \\(\\hat{\\mathbf{y}} = \\mathbf{H} \\mathbf{y}\\)，其中 \\(\\mathbf{H} = \\mathbf{X}(\\mathbf{X}^\\top \\mathbf{X})^{-1}\\mathbf{X}^\\top\\) 为<strong>帽子矩阵 (hat matrix)</strong>。</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>最小化残差平方和 \\\\(S(\\\\boldsymbol{\\\\beta}) = (\\\\mathbf{y} - \\\\mathbf{X}\\\\boldsymbol{\\\\beta})^\\\\top(\\\\mathbf{y} - \\\\mathbf{X}\\\\boldsymbol{\\\\beta})\\\\)。对 \\\\(\\\\boldsymbol{\\\\beta}\\\\) 求导：</p>
-                        \\\\[\\\\frac{\\\\partial S}{\\\\partial \\\\boldsymbol{\\\\beta}} = -2\\\\mathbf{X}^\\\\top(\\\\mathbf{y} - \\\\mathbf{X}\\\\boldsymbol{\\\\beta}) = \\\\mathbf{0}\\\\]
-                        <p>即正规方程 \\\\(\\\\mathbf{X}^\\\\top \\\\mathbf{X} \\\\boldsymbol{\\\\beta} = \\\\mathbf{X}^\\\\top \\\\mathbf{y}\\\\)。由 \\\\(\\\\mathbf{X}^\\\\top \\\\mathbf{X}\\\\) 可逆性立得 \\\\(\\\\hat{\\\\boldsymbol{\\\\beta}} = (\\\\mathbf{X}^\\\\top \\\\mathbf{X})^{-1}\\\\mathbf{X}^\\\\top \\\\mathbf{y}\\\\)。Hessian \\\\(2\\\\mathbf{X}^\\\\top \\\\mathbf{X}\\\\) 正定，故为最小值点。</p>
+                        <p>最小化残差平方和 \\(S(\\boldsymbol{\\beta}) = (\\mathbf{y} - \\mathbf{X}\\boldsymbol{\\beta})^\\top(\\mathbf{y} - \\mathbf{X}\\boldsymbol{\\beta})\\)。对 \\(\\boldsymbol{\\beta}\\) 求导：</p>
+                        \\[\\frac{\\partial S}{\\partial \\boldsymbol{\\beta}} = -2\\mathbf{X}^\\top(\\mathbf{y} - \\mathbf{X}\\boldsymbol{\\beta}) = \\mathbf{0}\\]
+                        <p>即正规方程 \\(\\mathbf{X}^\\top \\mathbf{X} \\boldsymbol{\\beta} = \\mathbf{X}^\\top \\mathbf{y}\\)。由 \\(\\mathbf{X}^\\top \\mathbf{X}\\) 可逆性立得 \\(\\hat{\\boldsymbol{\\beta}} = (\\mathbf{X}^\\top \\mathbf{X})^{-1}\\mathbf{X}^\\top \\mathbf{y}\\)。Hessian \\(2\\mathbf{X}^\\top \\mathbf{X}\\) 正定，故为最小值点。</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
@@ -56,23 +56,23 @@ window.CHAPTERS.push({
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 13.4 (Hat Matrix 性质)</div>
                     <div class="env-body">
-                        <p>帽子矩阵 \\\\(\\\\mathbf{H}\\\\) 满足：(i) \\\\(\\\\mathbf{H}^2 = \\\\mathbf{H}\\\\)（幂等）；(ii) \\\\(\\\\mathbf{H}^\\\\top = \\\\mathbf{H}\\\\)（对称）；(iii) \\\\(\\\\operatorname{tr}(\\\\mathbf{H}) = p + 1\\\\)；(iv) 对角元素 \\\\(0 \\\\leq h_{ii} \\\\leq 1\\\\)，称为第 \\\\(i\\\\) 个观测的<strong>杠杆值 (leverage)</strong>。</p>
+                        <p>帽子矩阵 \\(\\mathbf{H}\\) 满足：(i) \\(\\mathbf{H}^2 = \\mathbf{H}\\)（幂等）；(ii) \\(\\mathbf{H}^\\top = \\mathbf{H}\\)（对称）；(iii) \\(\\operatorname{tr}(\\mathbf{H}) = p + 1\\)；(iv) 对角元素 \\(0 \\leq h_{ii} \\leq 1\\)，称为第 \\(i\\) 个观测的<strong>杠杆值 (leverage)</strong>。</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>帽子矩阵 \\\\(\\\\mathbf{H}\\\\) 将观测向量 \\\\(\\\\mathbf{y}\\\\) 正交投影到 \\\\(\\\\mathbf{X}\\\\) 的列空间 \\\\(\\\\mathcal{C}(\\\\mathbf{X})\\\\)。杠杆值 \\\\(h_{ii}\\\\) 度量第 \\\\(i\\\\) 个观测在自变量空间中的"极端程度"——越远离中心的点对拟合的影响越大。残差 \\\\(\\\\mathbf{e} = (\\\\mathbf{I} - \\\\mathbf{H})\\\\mathbf{y}\\\\) 是 \\\\(\\\\mathbf{y}\\\\) 在列空间正交补上的投影。</p>
+                        <p>帽子矩阵 \\(\\mathbf{H}\\) 将观测向量 \\(\\mathbf{y}\\) 正交投影到 \\(\\mathbf{X}\\) 的列空间 \\(\\mathcal{C}(\\mathbf{X})\\)。杠杆值 \\(h_{ii}\\) 度量第 \\(i\\) 个观测在自变量空间中的"极端程度"——越远离中心的点对拟合的影响越大。残差 \\(\\mathbf{e} = (\\mathbf{I} - \\mathbf{H})\\mathbf{y}\\) 是 \\(\\mathbf{y}\\) 在列空间正交补上的投影。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 13.5 (无偏估计 \\\\(\\\\sigma^2\\\\))</div>
+                    <div class="env-title">Definition 13.5 (无偏估计 \\(\\sigma^2\\))</div>
                     <div class="env-body">
-                        <p>\\\\(\\\\sigma^2\\\\) 的无偏估计为</p>
-                        \\\\[s^2 = \\\\frac{\\\\text{RSS}}{n - p - 1} = \\\\frac{\\\\mathbf{e}^\\\\top \\\\mathbf{e}}{n - p - 1},\\\\]
-                        <p>其中 \\\\(\\\\text{RSS} = \\\\sum_{i=1}^n (y_i - \\\\hat{y}_i)^2\\\\) 为残差平方和，\\\\(n - p - 1\\\\) 为自由度。</p>
+                        <p>\\(\\sigma^2\\) 的无偏估计为</p>
+                        \\[s^2 = \\frac{\\text{RSS}}{n - p - 1} = \\frac{\\mathbf{e}^\\top \\mathbf{e}}{n - p - 1},\\]
+                        <p>其中 \\(\\text{RSS} = \\sum_{i=1}^n (y_i - \\hat{y}_i)^2\\) 为残差平方和，\\(n - p - 1\\) 为自由度。</p>
                     </div>
                 </div>
 
@@ -202,19 +202,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '证明帽子矩阵 \\\\(\\\\mathbf{H} = \\\\mathbf{X}(\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\mathbf{X}^\\\\top\\\\) 是对称幂等矩阵，即 \\\\(\\\\mathbf{H}^\\\\top = \\\\mathbf{H}\\\\) 且 \\\\(\\\\mathbf{H}^2 = \\\\mathbf{H}\\\\)。',
-                    hint: '直接利用矩阵乘法展开 \\\\(\\\\mathbf{H}^2\\\\)，并利用 \\\\((\\\\mathbf{AB})^\\\\top = \\\\mathbf{B}^\\\\top \\\\mathbf{A}^\\\\top\\\\) 证明对称性。',
-                    solution: '对称性：\\\\(\\\\mathbf{H}^\\\\top = (\\\\mathbf{X}(\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\mathbf{X}^\\\\top)^\\\\top = \\\\mathbf{X}((\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1})^\\\\top\\\\mathbf{X}^\\\\top = \\\\mathbf{X}(\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\mathbf{X}^\\\\top = \\\\mathbf{H}\\\\)，因为 \\\\((\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\) 对称。幂等性：\\\\(\\\\mathbf{H}^2 = \\\\mathbf{X}(\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\mathbf{X}^\\\\top \\\\mathbf{X}(\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\mathbf{X}^\\\\top = \\\\mathbf{X}(\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\mathbf{X}^\\\\top = \\\\mathbf{H}\\\\)。'
+                    question: '证明帽子矩阵 \\(\\mathbf{H} = \\mathbf{X}(\\mathbf{X}^\\top\\mathbf{X})^{-1}\\mathbf{X}^\\top\\) 是对称幂等矩阵，即 \\(\\mathbf{H}^\\top = \\mathbf{H}\\) 且 \\(\\mathbf{H}^2 = \\mathbf{H}\\)。',
+                    hint: '直接利用矩阵乘法展开 \\(\\mathbf{H}^2\\)，并利用 \\((\\mathbf{AB})^\\top = \\mathbf{B}^\\top \\mathbf{A}^\\top\\) 证明对称性。',
+                    solution: '对称性：\\(\\mathbf{H}^\\top = (\\mathbf{X}(\\mathbf{X}^\\top\\mathbf{X})^{-1}\\mathbf{X}^\\top)^\\top = \\mathbf{X}((\\mathbf{X}^\\top\\mathbf{X})^{-1})^\\top\\mathbf{X}^\\top = \\mathbf{X}(\\mathbf{X}^\\top\\mathbf{X})^{-1}\\mathbf{X}^\\top = \\mathbf{H}\\)，因为 \\((\\mathbf{X}^\\top\\mathbf{X})^{-1}\\) 对称。幂等性：\\(\\mathbf{H}^2 = \\mathbf{X}(\\mathbf{X}^\\top\\mathbf{X})^{-1}\\mathbf{X}^\\top \\mathbf{X}(\\mathbf{X}^\\top\\mathbf{X})^{-1}\\mathbf{X}^\\top = \\mathbf{X}(\\mathbf{X}^\\top\\mathbf{X})^{-1}\\mathbf{X}^\\top = \\mathbf{H}\\)。'
                 },
                 {
-                    question: '证明 \\\\(\\\\operatorname{tr}(\\\\mathbf{H}) = p + 1\\\\)。',
-                    hint: '利用迹的循环性质 \\\\(\\\\operatorname{tr}(\\\\mathbf{ABC}) = \\\\operatorname{tr}(\\\\mathbf{CAB})\\\\)。',
-                    solution: '\\\\(\\\\operatorname{tr}(\\\\mathbf{H}) = \\\\operatorname{tr}(\\\\mathbf{X}(\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\mathbf{X}^\\\\top) = \\\\operatorname{tr}((\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\mathbf{X}^\\\\top\\\\mathbf{X}) = \\\\operatorname{tr}(\\\\mathbf{I}_{p+1}) = p + 1\\\\)。'
+                    question: '证明 \\(\\operatorname{tr}(\\mathbf{H}) = p + 1\\)。',
+                    hint: '利用迹的循环性质 \\(\\operatorname{tr}(\\mathbf{ABC}) = \\operatorname{tr}(\\mathbf{CAB})\\)。',
+                    solution: '\\(\\operatorname{tr}(\\mathbf{H}) = \\operatorname{tr}(\\mathbf{X}(\\mathbf{X}^\\top\\mathbf{X})^{-1}\\mathbf{X}^\\top) = \\operatorname{tr}((\\mathbf{X}^\\top\\mathbf{X})^{-1}\\mathbf{X}^\\top\\mathbf{X}) = \\operatorname{tr}(\\mathbf{I}_{p+1}) = p + 1\\)。'
                 },
                 {
-                    question: '在模型 \\\\(\\\\mathbf{y} = \\\\mathbf{X}\\\\boldsymbol{\\\\beta} + \\\\boldsymbol{\\\\varepsilon}\\\\) 下，证明 \\\\(\\\\hat{\\\\boldsymbol{\\\\beta}}\\\\) 的协方差矩阵为 \\\\(\\\\operatorname{Cov}(\\\\hat{\\\\boldsymbol{\\\\beta}}) = \\\\sigma^2 (\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\)。',
-                    hint: '将 \\\\(\\\\hat{\\\\boldsymbol{\\\\beta}} = (\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\mathbf{X}^\\\\top\\\\mathbf{y}\\\\) 看作 \\\\(\\\\mathbf{y}\\\\) 的线性变换。',
-                    solution: '\\\\(\\\\operatorname{Cov}(\\\\hat{\\\\boldsymbol{\\\\beta}}) = (\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\mathbf{X}^\\\\top \\\\operatorname{Cov}(\\\\mathbf{y}) \\\\mathbf{X}(\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1} = (\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\mathbf{X}^\\\\top (\\\\sigma^2\\\\mathbf{I}) \\\\mathbf{X}(\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1} = \\\\sigma^2(\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\)。'
+                    question: '在模型 \\(\\mathbf{y} = \\mathbf{X}\\boldsymbol{\\beta} + \\boldsymbol{\\varepsilon}\\) 下，证明 \\(\\hat{\\boldsymbol{\\beta}}\\) 的协方差矩阵为 \\(\\operatorname{Cov}(\\hat{\\boldsymbol{\\beta}}) = \\sigma^2 (\\mathbf{X}^\\top\\mathbf{X})^{-1}\\)。',
+                    hint: '将 \\(\\hat{\\boldsymbol{\\beta}} = (\\mathbf{X}^\\top\\mathbf{X})^{-1}\\mathbf{X}^\\top\\mathbf{y}\\) 看作 \\(\\mathbf{y}\\) 的线性变换。',
+                    solution: '\\(\\operatorname{Cov}(\\hat{\\boldsymbol{\\beta}}) = (\\mathbf{X}^\\top\\mathbf{X})^{-1}\\mathbf{X}^\\top \\operatorname{Cov}(\\mathbf{y}) \\mathbf{X}(\\mathbf{X}^\\top\\mathbf{X})^{-1} = (\\mathbf{X}^\\top\\mathbf{X})^{-1}\\mathbf{X}^\\top (\\sigma^2\\mathbf{I}) \\mathbf{X}(\\mathbf{X}^\\top\\mathbf{X})^{-1} = \\sigma^2(\\mathbf{X}^\\top\\mathbf{X})^{-1}\\)。'
                 }
             ]
         },
@@ -232,42 +232,42 @@ window.CHAPTERS.push({
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 13.6 (正态假设下的分布)</div>
                     <div class="env-body">
-                        <p>若进一步假设 \\\\(\\\\boldsymbol{\\\\varepsilon} \\\\sim N(\\\\mathbf{0}, \\\\sigma^2\\\\mathbf{I}_n)\\\\)，则：</p>
-                        <p>(a) \\\\(\\\\hat{\\\\boldsymbol{\\\\beta}} \\\\sim N(\\\\boldsymbol{\\\\beta}, \\\\sigma^2(\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1})\\\\)；</p>
-                        <p>(b) \\\\(\\\\text{RSS}/\\\\sigma^2 \\\\sim \\\\chi^2_{n-p-1}\\\\)；</p>
-                        <p>(c) \\\\(\\\\hat{\\\\boldsymbol{\\\\beta}}\\\\) 与 \\\\(s^2\\\\) 独立。</p>
+                        <p>若进一步假设 \\(\\boldsymbol{\\varepsilon} \\sim N(\\mathbf{0}, \\sigma^2\\mathbf{I}_n)\\)，则：</p>
+                        <p>(a) \\(\\hat{\\boldsymbol{\\beta}} \\sim N(\\boldsymbol{\\beta}, \\sigma^2(\\mathbf{X}^\\top\\mathbf{X})^{-1})\\)；</p>
+                        <p>(b) \\(\\text{RSS}/\\sigma^2 \\sim \\chi^2_{n-p-1}\\)；</p>
+                        <p>(c) \\(\\hat{\\boldsymbol{\\beta}}\\) 与 \\(s^2\\) 独立。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.7 (单系数 t 检验)</div>
                     <div class="env-body">
-                        <p>检验 \\\\(H_0: \\\\beta_j = 0\\\\) vs \\\\(H_1: \\\\beta_j \\\\neq 0\\\\)。检验统计量为</p>
-                        \\\\[t_j = \\\\frac{\\\\hat{\\\\beta}_j}{\\\\operatorname{se}(\\\\hat{\\\\beta}_j)} = \\\\frac{\\\\hat{\\\\beta}_j}{s \\\\sqrt{c_{jj}}},\\\\]
-                        <p>其中 \\\\(c_{jj}\\\\) 是 \\\\((\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\) 的第 \\\\(j\\\\) 个对角元素。在 \\\\(H_0\\\\) 下 \\\\(t_j \\\\sim t_{n-p-1}\\\\)。</p>
+                        <p>检验 \\(H_0: \\beta_j = 0\\) vs \\(H_1: \\beta_j \\neq 0\\)。检验统计量为</p>
+                        \\[t_j = \\frac{\\hat{\\beta}_j}{\\operatorname{se}(\\hat{\\beta}_j)} = \\frac{\\hat{\\beta}_j}{s \\sqrt{c_{jj}}},\\]
+                        <p>其中 \\(c_{jj}\\) 是 \\((\\mathbf{X}^\\top\\mathbf{X})^{-1}\\) 的第 \\(j\\) 个对角元素。在 \\(H_0\\) 下 \\(t_j \\sim t_{n-p-1}\\)。</p>
                     </div>
                 </div>
 
                 <div class="env-block warning">
                     <div class="env-title">Warning: t 检验的条件性</div>
                     <div class="env-body">
-                        <p>t 检验的结论是<strong>条件于其他变量都在模型中</strong>的。当 \\\\(x_j\\\\) 和 \\\\(x_k\\\\) 高度相关时，两者的 t 检验可能都不显著，但联合 F 检验却高度显著——这就是<strong>多重共线性 (multicollinearity)</strong> 的效应。</p>
+                        <p>t 检验的结论是<strong>条件于其他变量都在模型中</strong>的。当 \\(x_j\\) 和 \\(x_k\\) 高度相关时，两者的 t 检验可能都不显著，但联合 F 检验却高度显著——这就是<strong>多重共线性 (multicollinearity)</strong> 的效应。</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 13.8 (Overall F-test)</div>
                     <div class="env-body">
-                        <p>检验 \\\\(H_0: \\\\beta_1 = \\\\cdots = \\\\beta_p = 0\\\\)（即模型中所有变量都无效）的统计量为</p>
-                        \\\\[F = \\\\frac{(\\\\text{TSS} - \\\\text{RSS})/p}{\\\\text{RSS}/(n - p - 1)} = \\\\frac{\\\\text{RegSS}/p}{\\\\text{RSS}/(n-p-1)} \\\\sim F_{p, n-p-1}.\\\\]
+                        <p>检验 \\(H_0: \\beta_1 = \\cdots = \\beta_p = 0\\)（即模型中所有变量都无效）的统计量为</p>
+                        \\[F = \\frac{(\\text{TSS} - \\text{RSS})/p}{\\text{RSS}/(n - p - 1)} = \\frac{\\text{RegSS}/p}{\\text{RSS}/(n-p-1)} \\sim F_{p, n-p-1}.\\]
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.9 (Partial F-test)</div>
                     <div class="env-body">
-                        <p>比较完整模型 (full, \\\\(p\\\\) 个变量) 和缩减模型 (reduced, \\\\(q\\\\) 个变量, \\\\(q < p\\\\))：</p>
-                        \\\\[F = \\\\frac{(\\\\text{RSS}_{\\\\text{reduced}} - \\\\text{RSS}_{\\\\text{full}})/(p - q)}{\\\\text{RSS}_{\\\\text{full}}/(n - p - 1)} \\\\sim F_{p-q, \\\\, n-p-1}.\\\\]
+                        <p>比较完整模型 (full, \\(p\\) 个变量) 和缩减模型 (reduced, \\(q\\) 个变量, \\(q < p\\))：</p>
+                        \\[F = \\frac{(\\text{RSS}_{\\text{reduced}} - \\text{RSS}_{\\text{full}})/(p - q)}{\\text{RSS}_{\\text{full}}/(n - p - 1)} \\sim F_{p-q, \\, n-p-1}.\\]
                         <p>这检验了被剔除变量<strong>联合</strong>对模型的贡献。</p>
                     </div>
                 </div>
@@ -275,18 +275,18 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.10 (决定系数)</div>
                     <div class="env-body">
-                        <p>\\\\(R^2 = 1 - \\\\frac{\\\\text{RSS}}{\\\\text{TSS}}\\\\) 度量模型解释的变异比例。调整 \\\\(R^2\\\\) 为</p>
-                        \\\\[R^2_{\\\\text{adj}} = 1 - \\\\frac{\\\\text{RSS}/(n-p-1)}{\\\\text{TSS}/(n-1)}.\\\\]
-                        <p>\\\\(R^2\\\\) 随变量增加单调不减，而 \\\\(R^2_{\\\\text{adj}}\\\\) 对模型复杂度有惩罚。</p>
+                        <p>\\(R^2 = 1 - \\frac{\\text{RSS}}{\\text{TSS}}\\) 度量模型解释的变异比例。调整 \\(R^2\\) 为</p>
+                        \\[R^2_{\\text{adj}} = 1 - \\frac{\\text{RSS}/(n-p-1)}{\\text{TSS}/(n-1)}.\\]
+                        <p>\\(R^2\\) 随变量增加单调不减，而 \\(R^2_{\\text{adj}}\\) 对模型复杂度有惩罚。</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
                     <div class="env-title">Example 13.11</div>
                     <div class="env-body">
-                        <p>考虑 \\\\(n = 50\\\\)，\\\\(p = 3\\\\) 的回归。若 \\\\(\\\\text{TSS} = 200\\\\)，\\\\(\\\\text{RSS} = 80\\\\)，则 \\\\(R^2 = 0.6\\\\)。Overall F 统计量为</p>
-                        \\\\[F = \\\\frac{120/3}{80/46} = \\\\frac{40}{1.739} \\\\approx 23.0,\\\\]
-                        <p>在 \\\\(F_{3,46}\\\\) 下 p-value 极小，模型整体高度显著。</p>
+                        <p>考虑 \\(n = 50\\)，\\(p = 3\\) 的回归。若 \\(\\text{TSS} = 200\\)，\\(\\text{RSS} = 80\\)，则 \\(R^2 = 0.6\\)。Overall F 统计量为</p>
+                        \\[F = \\frac{120/3}{80/46} = \\frac{40}{1.739} \\approx 23.0,\\]
+                        <p>在 \\(F_{3,46}\\) 下 p-value 极小，模型整体高度显著。</p>
                     </div>
                 </div>
 
@@ -420,19 +420,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '证明 \\\\(R^2 = 1 - \\\\text{RSS}/\\\\text{TSS}\\\\) 可以等价地写成 \\\\(R^2 = \\\\hat{\\\\mathbf{y}}^\\\\top \\\\hat{\\\\mathbf{y}} / \\\\mathbf{y}_c^\\\\top \\\\mathbf{y}_c\\\\)，其中 \\\\(\\\\mathbf{y}_c = \\\\mathbf{y} - \\\\bar{y}\\\\mathbf{1}\\\\) 是中心化后的响应向量（假设模型含截距）。',
-                    hint: '利用 \\\\(\\\\text{TSS} = \\\\text{RegSS} + \\\\text{RSS}\\\\) 以及 \\\\(\\\\hat{\\\\mathbf{y}}\\\\) 与 \\\\(\\\\mathbf{e}\\\\) 正交。',
-                    solution: '当模型含截距时，\\\\(\\\\hat{\\\\mathbf{y}}^\\\\top \\\\mathbf{e} = 0\\\\) 且 \\\\(\\\\mathbf{1}^\\\\top \\\\mathbf{e} = 0\\\\)。因此 \\\\(\\\\|\\\\mathbf{y}_c\\\\|^2 = \\\\|\\\\hat{\\\\mathbf{y}}_c\\\\|^2 + \\\\|\\\\mathbf{e}\\\\|^2\\\\)，即 \\\\(\\\\text{TSS} = \\\\text{RegSS} + \\\\text{RSS}\\\\)。故 \\\\(R^2 = \\\\text{RegSS}/\\\\text{TSS}\\\\)。由于 \\\\(\\\\hat{\\\\mathbf{y}}_c = \\\\hat{\\\\mathbf{y}} - \\\\bar{y}\\\\mathbf{1}\\\\)，\\\\(\\\\text{RegSS} = \\\\|\\\\hat{\\\\mathbf{y}}_c\\\\|^2\\\\)。'
+                    question: '证明 \\(R^2 = 1 - \\text{RSS}/\\text{TSS}\\) 可以等价地写成 \\(R^2 = \\hat{\\mathbf{y}}^\\top \\hat{\\mathbf{y}} / \\mathbf{y}_c^\\top \\mathbf{y}_c\\)，其中 \\(\\mathbf{y}_c = \\mathbf{y} - \\bar{y}\\mathbf{1}\\) 是中心化后的响应向量（假设模型含截距）。',
+                    hint: '利用 \\(\\text{TSS} = \\text{RegSS} + \\text{RSS}\\) 以及 \\(\\hat{\\mathbf{y}}\\) 与 \\(\\mathbf{e}\\) 正交。',
+                    solution: '当模型含截距时，\\(\\hat{\\mathbf{y}}^\\top \\mathbf{e} = 0\\) 且 \\(\\mathbf{1}^\\top \\mathbf{e} = 0\\)。因此 \\(\\|\\mathbf{y}_c\\|^2 = \\|\\hat{\\mathbf{y}}_c\\|^2 + \\|\\mathbf{e}\\|^2\\)，即 \\(\\text{TSS} = \\text{RegSS} + \\text{RSS}\\)。故 \\(R^2 = \\text{RegSS}/\\text{TSS}\\)。由于 \\(\\hat{\\mathbf{y}}_c = \\hat{\\mathbf{y}} - \\bar{y}\\mathbf{1}\\)，\\(\\text{RegSS} = \\|\\hat{\\mathbf{y}}_c\\|^2\\)。'
                 },
                 {
-                    question: '设 full model 有 \\\\(p = 5\\\\) 个变量，\\\\(\\\\text{RSS}_{\\\\text{full}} = 40\\\\)。reduced model 去掉 2 个变量后 \\\\(\\\\text{RSS}_{\\\\text{red}} = 52\\\\)，\\\\(n = 60\\\\)。计算 partial F 统计量并判断是否在 5% 水平显著（\\\\(F_{2,54}\\\\) 的 5% 临界值约 3.17）。',
+                    question: '设 full model 有 \\(p = 5\\) 个变量，\\(\\text{RSS}_{\\text{full}} = 40\\)。reduced model 去掉 2 个变量后 \\(\\text{RSS}_{\\text{red}} = 52\\)，\\(n = 60\\)。计算 partial F 统计量并判断是否在 5% 水平显著（\\(F_{2,54}\\) 的 5% 临界值约 3.17）。',
                     hint: '代入 partial F 公式，注意分子自由度为被剔除的变量数。',
-                    solution: '\\\\(F = \\\\frac{(52 - 40)/2}{40/54} = \\\\frac{6}{0.741} \\\\approx 8.10\\\\)。由于 \\\\(8.10 > 3.17\\\\)，在 5% 水平拒绝 \\\\(H_0\\\\)，被剔除的两个变量对模型有显著贡献。'
+                    solution: '\\(F = \\frac{(52 - 40)/2}{40/54} = \\frac{6}{0.741} \\approx 8.10\\)。由于 \\(8.10 > 3.17\\)，在 5% 水平拒绝 \\(H_0\\)，被剔除的两个变量对模型有显著贡献。'
                 },
                 {
                     question: '解释为什么高度共线的两个变量可能各自的 t 检验不显著，但联合 F 检验显著。',
-                    hint: '考虑 \\\\((\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\) 对角元素在共线时的行为。',
-                    solution: '当 \\\\(x_j\\\\) 和 \\\\(x_k\\\\) 高度相关时，\\\\((\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\) 的对应对角元素 \\\\(c_{jj}\\\\) 和 \\\\(c_{kk}\\\\) 变得很大（因为矩阵接近奇异），导致标准误膨胀，t 统计量缩小。但 partial F 检验同时考虑两个变量的联合贡献，不受这种"方差膨胀"影响——去掉两个变量后 RSS 显著增大，F 值仍然大。'
+                    hint: '考虑 \\((\\mathbf{X}^\\top\\mathbf{X})^{-1}\\) 对角元素在共线时的行为。',
+                    solution: '当 \\(x_j\\) 和 \\(x_k\\) 高度相关时，\\((\\mathbf{X}^\\top\\mathbf{X})^{-1}\\) 的对应对角元素 \\(c_{jj}\\) 和 \\(c_{kk}\\) 变得很大（因为矩阵接近奇异），导致标准误膨胀，t 统计量缩小。但 partial F 检验同时考虑两个变量的联合贡献，不受这种"方差膨胀"影响——去掉两个变量后 RSS 显著增大，F 值仍然大。'
                 }
             ]
         },
@@ -450,52 +450,52 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.12 (标准化残差与学生化残差)</div>
                     <div class="env-body">
-                        <p>第 \\\\(i\\\\) 个观测的<strong>标准化残差</strong>为</p>
-                        \\\\[r_i = \\\\frac{e_i}{s\\\\sqrt{1 - h_{ii}}},\\\\]
-                        <p>其中 \\\\(h_{ii}\\\\) 为杠杆值。<strong>外学生化残差 (externally studentized residual)</strong> 为</p>
-                        \\\\[t_i = \\\\frac{e_i}{s_{(i)}\\\\sqrt{1 - h_{ii}}},\\\\]
-                        <p>其中 \\\\(s_{(i)}^2\\\\) 是删去第 \\\\(i\\\\) 个观测后的残差方差估计。在正态假设下 \\\\(t_i \\\\sim t_{n-p-2}\\\\)。</p>
+                        <p>第 \\(i\\) 个观测的<strong>标准化残差</strong>为</p>
+                        \\[r_i = \\frac{e_i}{s\\sqrt{1 - h_{ii}}},\\]
+                        <p>其中 \\(h_{ii}\\) 为杠杆值。<strong>外学生化残差 (externally studentized residual)</strong> 为</p>
+                        \\[t_i = \\frac{e_i}{s_{(i)}\\sqrt{1 - h_{ii}}},\\]
+                        <p>其中 \\(s_{(i)}^2\\) 是删去第 \\(i\\) 个观测后的残差方差估计。在正态假设下 \\(t_i \\sim t_{n-p-2}\\)。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.13 (方差膨胀因子 VIF)</div>
                     <div class="env-body">
-                        <p>第 \\\\(j\\\\) 个变量的<strong>方差膨胀因子</strong>为</p>
-                        \\\\[\\\\text{VIF}_j = \\\\frac{1}{1 - R_j^2},\\\\]
-                        <p>其中 \\\\(R_j^2\\\\) 是以 \\\\(x_j\\\\) 为因变量、其余自变量为解释变量的回归 \\\\(R^2\\\\)。\\\\(\\\\text{VIF}_j\\\\) 衡量共线性对 \\\\(\\\\hat{\\\\beta}_j\\\\) 方差的放大倍数。</p>
+                        <p>第 \\(j\\) 个变量的<strong>方差膨胀因子</strong>为</p>
+                        \\[\\text{VIF}_j = \\frac{1}{1 - R_j^2},\\]
+                        <p>其中 \\(R_j^2\\) 是以 \\(x_j\\) 为因变量、其余自变量为解释变量的回归 \\(R^2\\)。\\(\\text{VIF}_j\\) 衡量共线性对 \\(\\hat{\\beta}_j\\) 方差的放大倍数。</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark (VIF 判断标准)</div>
                     <div class="env-body">
-                        <p>实务中常用准则：\\\\(\\\\text{VIF} > 10\\\\)（即 \\\\(R_j^2 > 0.9\\\\)）提示严重共线性；\\\\(\\\\text{VIF} > 5\\\\) 值得关注。但这些阈值并非绝对——应结合 condition number \\\\(\\\\kappa(\\\\mathbf{X}^\\\\top\\\\mathbf{X})\\\\) 综合判断。</p>
+                        <p>实务中常用准则：\\(\\text{VIF} > 10\\)（即 \\(R_j^2 > 0.9\\)）提示严重共线性；\\(\\text{VIF} > 5\\) 值得关注。但这些阈值并非绝对——应结合 condition number \\(\\kappa(\\mathbf{X}^\\top\\mathbf{X})\\) 综合判断。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.14 (Cook's Distance)</div>
                     <div class="env-body">
-                        <p>第 \\\\(i\\\\) 个观测的<strong>Cook's distance</strong> 综合了杠杆值和残差大小：</p>
-                        \\\\[D_i = \\\\frac{r_i^2}{p + 1} \\\\cdot \\\\frac{h_{ii}}{1 - h_{ii}}.\\\\]
-                        <p>等价地，\\\\(D_i = \\\\frac{(\\\\hat{\\\\boldsymbol{\\\\beta}} - \\\\hat{\\\\boldsymbol{\\\\beta}}_{(i)})^\\\\top (\\\\mathbf{X}^\\\\top\\\\mathbf{X}) (\\\\hat{\\\\boldsymbol{\\\\beta}} - \\\\hat{\\\\boldsymbol{\\\\beta}}_{(i)})}{(p+1)s^2}\\\\)，度量删去第 \\\\(i\\\\) 个观测后系数的变化。</p>
+                        <p>第 \\(i\\) 个观测的<strong>Cook's distance</strong> 综合了杠杆值和残差大小：</p>
+                        \\[D_i = \\frac{r_i^2}{p + 1} \\cdot \\frac{h_{ii}}{1 - h_{ii}}.\\]
+                        <p>等价地，\\(D_i = \\frac{(\\hat{\\boldsymbol{\\beta}} - \\hat{\\boldsymbol{\\beta}}_{(i)})^\\top (\\mathbf{X}^\\top\\mathbf{X}) (\\hat{\\boldsymbol{\\beta}} - \\hat{\\boldsymbol{\\beta}}_{(i)})}{(p+1)s^2}\\)，度量删去第 \\(i\\) 个观测后系数的变化。</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>Cook's distance 可以分解为"离群程度" \\\\(\\\\times\\\\) "杠杆效应"。高杠杆点（在自变量空间的边缘）如果同时有大残差，就是<strong>影响点 (influential point)</strong>。经验法则：\\\\(D_i > 4/n\\\\) 或 \\\\(D_i > 1\\\\) 表示该点有显著影响。</p>
+                        <p>Cook's distance 可以分解为"离群程度" \\(\\times\\) "杠杆效应"。高杠杆点（在自变量空间的边缘）如果同时有大残差，就是<strong>影响点 (influential point)</strong>。经验法则：\\(D_i > 4/n\\) 或 \\(D_i > 1\\) 表示该点有显著影响。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.15 (DFFITS 与 DFBETAS)</div>
                     <div class="env-body">
-                        <p><strong>DFFITS</strong> 度量删去第 \\\\(i\\\\) 个观测后拟合值的变化：</p>
-                        \\\\[\\\\text{DFFITS}_i = t_i \\\\sqrt{\\\\frac{h_{ii}}{1 - h_{ii}}}.\\\\]
-                        <p><strong>DFBETAS</strong> 度量对单个系数的影响：\\\\(\\\\text{DFBETAS}_{j,i} = \\\\frac{\\\\hat{\\\\beta}_j - \\\\hat{\\\\beta}_{j(i)}}{s_{(i)}\\\\sqrt{c_{jj}}}\\\\)。判断标准：\\\\(|\\\\text{DFFITS}| > 2\\\\sqrt{(p+1)/n}\\\\)，\\\\(|\\\\text{DFBETAS}| > 2/\\\\sqrt{n}\\\\)。</p>
+                        <p><strong>DFFITS</strong> 度量删去第 \\(i\\) 个观测后拟合值的变化：</p>
+                        \\[\\text{DFFITS}_i = t_i \\sqrt{\\frac{h_{ii}}{1 - h_{ii}}}.\\]
+                        <p><strong>DFBETAS</strong> 度量对单个系数的影响：\\(\\text{DFBETAS}_{j,i} = \\frac{\\hat{\\beta}_j - \\hat{\\beta}_{j(i)}}{s_{(i)}\\sqrt{c_{jj}}}\\)。判断标准：\\(|\\text{DFFITS}| > 2\\sqrt{(p+1)/n}\\)，\\(|\\text{DFBETAS}| > 2/\\sqrt{n}\\)。</p>
                     </div>
                 </div>
 
@@ -698,14 +698,14 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '证明 Cook\'s distance 可以写成 \\\\(D_i = \\\\frac{r_i^2}{p+1} \\\\cdot \\\\frac{h_{ii}}{1 - h_{ii}}\\\\)，其中 \\\\(r_i\\\\) 是标准化残差。',
-                    hint: '利用 Sherman-Morrison-Woodbury 公式或直接展开删一观测后的 \\\\(\\\\hat{\\\\boldsymbol{\\\\beta}}_{(i)}\\\\) 表达式。',
-                    solution: '由 \\\\(\\\\hat{\\\\boldsymbol{\\\\beta}} - \\\\hat{\\\\boldsymbol{\\\\beta}}_{(i)} = (\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\mathbf{x}_i e_i/(1 - h_{ii})\\\\)（删一公式），代入 Cook\'s distance 原始定义 \\\\(D_i = \\\\frac{(\\\\hat{\\\\boldsymbol{\\\\beta}} - \\\\hat{\\\\boldsymbol{\\\\beta}}_{(i)})^\\\\top(\\\\mathbf{X}^\\\\top\\\\mathbf{X})(\\\\hat{\\\\boldsymbol{\\\\beta}} - \\\\hat{\\\\boldsymbol{\\\\beta}}_{(i)})}{(p+1)s^2}\\\\)，展开得 \\\\(D_i = \\\\frac{e_i^2 \\\\mathbf{x}_i^\\\\top(\\\\mathbf{X}^\\\\top\\\\mathbf{X})^{-1}\\\\mathbf{x}_i}{(p+1)s^2(1-h_{ii})^2} = \\\\frac{e_i^2 h_{ii}}{(p+1)s^2(1-h_{ii})^2} = \\\\frac{r_i^2}{p+1}\\\\frac{h_{ii}}{1-h_{ii}}\\\\)。'
+                    question: '证明 Cook\'s distance 可以写成 \\(D_i = \\frac{r_i^2}{p+1} \\cdot \\frac{h_{ii}}{1 - h_{ii}}\\)，其中 \\(r_i\\) 是标准化残差。',
+                    hint: '利用 Sherman-Morrison-Woodbury 公式或直接展开删一观测后的 \\(\\hat{\\boldsymbol{\\beta}}_{(i)}\\) 表达式。',
+                    solution: '由 \\(\\hat{\\boldsymbol{\\beta}} - \\hat{\\boldsymbol{\\beta}}_{(i)} = (\\mathbf{X}^\\top\\mathbf{X})^{-1}\\mathbf{x}_i e_i/(1 - h_{ii})\\)（删一公式），代入 Cook\'s distance 原始定义 \\(D_i = \\frac{(\\hat{\\boldsymbol{\\beta}} - \\hat{\\boldsymbol{\\beta}}_{(i)})^\\top(\\mathbf{X}^\\top\\mathbf{X})(\\hat{\\boldsymbol{\\beta}} - \\hat{\\boldsymbol{\\beta}}_{(i)})}{(p+1)s^2}\\)，展开得 \\(D_i = \\frac{e_i^2 \\mathbf{x}_i^\\top(\\mathbf{X}^\\top\\mathbf{X})^{-1}\\mathbf{x}_i}{(p+1)s^2(1-h_{ii})^2} = \\frac{e_i^2 h_{ii}}{(p+1)s^2(1-h_{ii})^2} = \\frac{r_i^2}{p+1}\\frac{h_{ii}}{1-h_{ii}}\\)。'
                 },
                 {
-                    question: '一个有 \\\\(n = 100\\\\), \\\\(p = 4\\\\) 的回归中，某观测的杠杆值 \\\\(h_{ii} = 0.15\\\\)，标准化残差 \\\\(r_i = 3.2\\\\)。计算其 Cook\'s distance 并判断是否为影响点。',
-                    hint: '直接代入公式并与阈值 \\\\(4/n\\\\) 比较。',
-                    solution: '\\\\(D_i = \\\\frac{3.2^2}{5} \\\\cdot \\\\frac{0.15}{0.85} = \\\\frac{10.24}{5} \\\\cdot 0.176 = 2.048 \\\\times 0.176 \\\\approx 0.361\\\\)。阈值 \\\\(4/100 = 0.04\\\\)。由于 \\\\(0.361 \\\\gg 0.04\\\\)，该点是强影响点，应检查是否为异常值或数据录入错误。'
+                    question: '一个有 \\(n = 100\\), \\(p = 4\\) 的回归中，某观测的杠杆值 \\(h_{ii} = 0.15\\)，标准化残差 \\(r_i = 3.2\\)。计算其 Cook\'s distance 并判断是否为影响点。',
+                    hint: '直接代入公式并与阈值 \\(4/n\\) 比较。',
+                    solution: '\\(D_i = \\frac{3.2^2}{5} \\cdot \\frac{0.15}{0.85} = \\frac{10.24}{5} \\cdot 0.176 = 2.048 \\times 0.176 \\approx 0.361\\)。阈值 \\(4/100 = 0.04\\)。由于 \\(0.361 \\gg 0.04\\)，该点是强影响点，应检查是否为异常值或数据录入错误。'
                 }
             ]
         },
@@ -723,10 +723,10 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.16 (AIC — Akaike 信息准则)</div>
                     <div class="env-body">
-                        <p>对含 \\\\(k\\\\) 个参数的模型，AIC 定义为</p>
-                        \\\\[\\\\text{AIC} = -2 \\\\ln \\\\hat{L} + 2k,\\\\]
-                        <p>其中 \\\\(\\\\hat{L}\\\\) 是最大似然值。在正态线性模型下等价为</p>
-                        \\\\[\\\\text{AIC} = n \\\\ln(\\\\text{RSS}/n) + 2(p + 2).\\\\]
+                        <p>对含 \\(k\\) 个参数的模型，AIC 定义为</p>
+                        \\[\\text{AIC} = -2 \\ln \\hat{L} + 2k,\\]
+                        <p>其中 \\(\\hat{L}\\) 是最大似然值。在正态线性模型下等价为</p>
+                        \\[\\text{AIC} = n \\ln(\\text{RSS}/n) + 2(p + 2).\\]
                         <p>AIC 越小越好。第一项衡量拟合，第二项惩罚复杂度。</p>
                     </div>
                 </div>
@@ -735,38 +735,38 @@ window.CHAPTERS.push({
                     <div class="env-title">Definition 13.17 (BIC — Bayesian 信息准则)</div>
                     <div class="env-body">
                         <p>BIC 使用更重的惩罚：</p>
-                        \\\\[\\\\text{BIC} = -2 \\\\ln \\\\hat{L} + k \\\\ln n.\\\\]
-                        <p>当 \\\\(n \\\\geq 8\\\\) 时 \\\\(\\\\ln n > 2\\\\)，BIC 倾向选择更简洁的模型。</p>
+                        \\[\\text{BIC} = -2 \\ln \\hat{L} + k \\ln n.\\]
+                        <p>当 \\(n \\geq 8\\) 时 \\(\\ln n > 2\\)，BIC 倾向选择更简洁的模型。</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 13.18 (AIC 与 KL 散度)</div>
                     <div class="env-body">
-                        <p>设真实分布为 \\\\(f\\\\)，候选模型族 \\\\(g(\\\\cdot | \\\\theta)\\\\)。AIC 是 Kullback-Leibler 散度 \\\\(\\\\text{KL}(f \\\\| g_{\\\\hat{\\\\theta}})\\\\) 的渐近无偏估计（差一个与模型无关的常数）。即 AIC 近似衡量模型对真实分布的逼近程度。</p>
+                        <p>设真实分布为 \\(f\\)，候选模型族 \\(g(\\cdot | \\theta)\\)。AIC 是 Kullback-Leibler 散度 \\(\\text{KL}(f \\| g_{\\hat{\\theta}})\\) 的渐近无偏估计（差一个与模型无关的常数）。即 AIC 近似衡量模型对真实分布的逼近程度。</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 13.19 (BIC 的一致性)</div>
                     <div class="env-body">
-                        <p>若真实模型在候选集中，则 BIC 在 \\\\(n \\\\to \\\\infty\\\\) 时以概率 1 选到真实模型（<strong>选择一致性</strong>）。AIC 不具有此性质——它渐近地倾向于过度选择。</p>
+                        <p>若真实模型在候选集中，则 BIC 在 \\(n \\to \\infty\\) 时以概率 1 选到真实模型（<strong>选择一致性</strong>）。AIC 不具有此性质——它渐近地倾向于过度选择。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.20 (Mallow's Cp)</div>
                     <div class="env-body">
-                        <p>对含 \\\\(k\\\\) 个变量的子模型，Mallow's \\\\(C_p\\\\) 为</p>
-                        \\\\[C_p = \\\\frac{\\\\text{RSS}_k}{s^2_{\\\\text{full}}} - n + 2(k + 1),\\\\]
-                        <p>其中 \\\\(s^2_{\\\\text{full}}\\\\) 是全模型的 \\\\(\\\\sigma^2\\\\) 估计。好模型的 \\\\(C_p \\\\approx k + 1\\\\)。</p>
+                        <p>对含 \\(k\\) 个变量的子模型，Mallow's \\(C_p\\) 为</p>
+                        \\[C_p = \\frac{\\text{RSS}_k}{s^2_{\\text{full}}} - n + 2(k + 1),\\]
+                        <p>其中 \\(s^2_{\\text{full}}\\) 是全模型的 \\(\\sigma^2\\) 估计。好模型的 \\(C_p \\approx k + 1\\)。</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark (逐步回归)</div>
                     <div class="env-body">
-                        <p><strong>前向选择 (forward selection)</strong>：从空模型出发，每步加入使某准则改善最大的变量。<strong>后向消除 (backward elimination)</strong>：从全模型出发，每步剔除最不显著的变量。<strong>逐步法 (stepwise)</strong>：前向+后向结合。这些贪心策略计算快但不保证全局最优；当 \\\\(p\\\\) 不大时，<strong>最优子集选择 (best subset selection)</strong> 枚举所有 \\\\(2^p\\\\) 个子集更为可靠。</p>
+                        <p><strong>前向选择 (forward selection)</strong>：从空模型出发，每步加入使某准则改善最大的变量。<strong>后向消除 (backward elimination)</strong>：从全模型出发，每步剔除最不显著的变量。<strong>逐步法 (stepwise)</strong>：前向+后向结合。这些贪心策略计算快但不保证全局最优；当 \\(p\\) 不大时，<strong>最优子集选择 (best subset selection)</strong> 枚举所有 \\(2^p\\) 个子集更为可靠。</p>
                     </div>
                 </div>
 
@@ -972,19 +972,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '证明在正态线性模型下，AIC 可以写成 \\\\(\\\\text{AIC} = n \\\\ln(\\\\text{RSS}/n) + 2(p + 2)\\\\)（不计常数项）。',
-                    hint: '写出正态对数似然函数 \\\\(\\\\ell(\\\\boldsymbol{\\\\beta}, \\\\sigma^2) = -\\\\frac{n}{2}\\\\ln(2\\\\pi) - \\\\frac{n}{2}\\\\ln\\\\sigma^2 - \\\\frac{1}{2\\\\sigma^2}\\\\text{RSS}\\\\)，然后代入 MLE \\\\(\\\\hat{\\\\sigma}^2 = \\\\text{RSS}/n\\\\)。',
-                    solution: '正态对数似然在 MLE 处为 \\\\(\\\\hat{\\\\ell} = -\\\\frac{n}{2}\\\\ln(2\\\\pi) - \\\\frac{n}{2}\\\\ln(\\\\text{RSS}/n) - \\\\frac{n}{2}\\\\)。AIC = \\\\(-2\\\\hat{\\\\ell} + 2k = n\\\\ln(2\\\\pi) + n\\\\ln(\\\\text{RSS}/n) + n + 2(p+2)\\\\)。由于 \\\\(n\\\\ln(2\\\\pi) + n\\\\) 对所有模型相同，在比较时可省略，得 \\\\(\\\\text{AIC} = n\\\\ln(\\\\text{RSS}/n) + 2(p+2)\\\\)（其中参数数为 \\\\(p+1\\\\) 个回归系数加 1 个 \\\\(\\\\sigma^2\\\\)）。'
+                    question: '证明在正态线性模型下，AIC 可以写成 \\(\\text{AIC} = n \\ln(\\text{RSS}/n) + 2(p + 2)\\)（不计常数项）。',
+                    hint: '写出正态对数似然函数 \\(\\ell(\\boldsymbol{\\beta}, \\sigma^2) = -\\frac{n}{2}\\ln(2\\pi) - \\frac{n}{2}\\ln\\sigma^2 - \\frac{1}{2\\sigma^2}\\text{RSS}\\)，然后代入 MLE \\(\\hat{\\sigma}^2 = \\text{RSS}/n\\)。',
+                    solution: '正态对数似然在 MLE 处为 \\(\\hat{\\ell} = -\\frac{n}{2}\\ln(2\\pi) - \\frac{n}{2}\\ln(\\text{RSS}/n) - \\frac{n}{2}\\)。AIC = \\(-2\\hat{\\ell} + 2k = n\\ln(2\\pi) + n\\ln(\\text{RSS}/n) + n + 2(p+2)\\)。由于 \\(n\\ln(2\\pi) + n\\) 对所有模型相同，在比较时可省略，得 \\(\\text{AIC} = n\\ln(\\text{RSS}/n) + 2(p+2)\\)（其中参数数为 \\(p+1\\) 个回归系数加 1 个 \\(\\sigma^2\\)）。'
                 },
                 {
                     question: '为什么 BIC 具有选择一致性而 AIC 不具有？从惩罚项的增长速率给出直观解释。',
-                    hint: '比较 AIC 惩罚 \\\\(2k\\\\) 和 BIC 惩罚 \\\\(k \\\\ln n\\\\) 相对于 \\\\(-2\\\\hat{\\\\ell}\\\\) 的变化。',
-                    solution: 'AIC 的惩罚 \\\\(2k\\\\) 不随 \\\\(n\\\\) 增长。当 \\\\(n \\\\to \\\\infty\\\\) 时，加入一个无关变量导致 RSS 减少的量渐近为 \\\\(\\\\sigma^2 \\\\chi^2_1\\\\)，其对 \\\\(-2\\\\hat{\\\\ell}\\\\) 的减少量期望约为 1，恰好被 AIC 的惩罚 2 抵消不足——AIC 以正概率选择过大的模型。而 BIC 惩罚 \\\\(k\\\\ln n \\\\to \\\\infty\\\\)，随样本增大对复杂模型的惩罚不断加强，最终能区分出真实变量与噪声变量。'
+                    hint: '比较 AIC 惩罚 \\(2k\\) 和 BIC 惩罚 \\(k \\ln n\\) 相对于 \\(-2\\hat{\\ell}\\) 的变化。',
+                    solution: 'AIC 的惩罚 \\(2k\\) 不随 \\(n\\) 增长。当 \\(n \\to \\infty\\) 时，加入一个无关变量导致 RSS 减少的量渐近为 \\(\\sigma^2 \\chi^2_1\\)，其对 \\(-2\\hat{\\ell}\\) 的减少量期望约为 1，恰好被 AIC 的惩罚 2 抵消不足——AIC 以正概率选择过大的模型。而 BIC 惩罚 \\(k\\ln n \\to \\infty\\)，随样本增大对复杂模型的惩罚不断加强，最终能区分出真实变量与噪声变量。'
                 },
                 {
-                    question: '设有 \\\\(p = 8\\\\) 个候选变量，讨论最优子集选择、前向选择和 Lasso 三种方法在计算复杂度和统计性质上的优劣。',
-                    hint: '考虑子集总数 \\\\(2^8 = 256\\\\)、贪心搜索路径数、以及连续松弛的优点。',
-                    solution: '最优子集：枚举 \\\\(2^8 = 256\\\\) 个模型，对此 \\\\(p\\\\) 完全可行，保证全局最优；但 \\\\(p > 25\\\\) 时计算量爆炸。前向选择：最多拟合 \\\\(O(p^2)\\\\) 个模型，快速但可能错过好的变量组合（因为贪心）。Lasso：求解凸优化，通过连续正则化路径隐式搜索所有模型，可处理 \\\\(p \\\\gg n\\\\)，且具有变量选择一致性（在 irrepresentable condition 下）；但估计有偏。综合来看，\\\\(p = 8\\\\) 时三者都可用，最优子集最直接。'
+                    question: '设有 \\(p = 8\\) 个候选变量，讨论最优子集选择、前向选择和 Lasso 三种方法在计算复杂度和统计性质上的优劣。',
+                    hint: '考虑子集总数 \\(2^8 = 256\\)、贪心搜索路径数、以及连续松弛的优点。',
+                    solution: '最优子集：枚举 \\(2^8 = 256\\) 个模型，对此 \\(p\\) 完全可行，保证全局最优；但 \\(p > 25\\) 时计算量爆炸。前向选择：最多拟合 \\(O(p^2)\\) 个模型，快速但可能错过好的变量组合（因为贪心）。Lasso：求解凸优化，通过连续正则化路径隐式搜索所有模型，可处理 \\(p \\gg n\\)，且具有变量选择一致性（在 irrepresentable condition 下）；但估计有偏。综合来看，\\(p = 8\\) 时三者都可用，最优子集最直接。'
                 }
             ]
         },
@@ -997,13 +997,13 @@ window.CHAPTERS.push({
             content: `
                 <h2>正则化方法</h2>
 
-                <p>当 \\\\(p\\\\) 较大或变量间存在强共线性时，OLS 的方差会非常大。<strong>正则化 (regularization)</strong> 通过对系数施加约束或惩罚，以偏差换方差，获得更好的预测性能。</p>
+                <p>当 \\(p\\) 较大或变量间存在强共线性时，OLS 的方差会非常大。<strong>正则化 (regularization)</strong> 通过对系数施加约束或惩罚，以偏差换方差，获得更好的预测性能。</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.21 (Ridge 回归)</div>
                     <div class="env-body">
-                        <p><strong>Ridge 回归</strong>在 OLS 目标中加入 \\\\(L_2\\\\) 惩罚：</p>
-                        \\\\[\\\\hat{\\\\boldsymbol{\\\\beta}}^{\\\\text{ridge}} = \\\\arg\\\\min_{\\\\boldsymbol{\\\\beta}} \\\\left\\\\{ \\\\|\\\\mathbf{y} - \\\\mathbf{X}\\\\boldsymbol{\\\\beta}\\\\|^2 + \\\\lambda \\\\|\\\\boldsymbol{\\\\beta}\\\\|^2 \\\\right\\\\} = (\\\\mathbf{X}^\\\\top\\\\mathbf{X} + \\\\lambda\\\\mathbf{I})^{-1}\\\\mathbf{X}^\\\\top\\\\mathbf{y}.\\\\]
+                        <p><strong>Ridge 回归</strong>在 OLS 目标中加入 \\(L_2\\) 惩罚：</p>
+                        \\[\\hat{\\boldsymbol{\\beta}}^{\\text{ridge}} = \\arg\\min_{\\boldsymbol{\\beta}} \\left\\{ \\|\\mathbf{y} - \\mathbf{X}\\boldsymbol{\\beta}\\|^2 + \\lambda \\|\\boldsymbol{\\beta}\\|^2 \\right\\} = (\\mathbf{X}^\\top\\mathbf{X} + \\lambda\\mathbf{I})^{-1}\\mathbf{X}^\\top\\mathbf{y}.\\]
                         <p>Ridge 对所有系数做均匀收缩 (shrinkage)，但不产生稀疏解。</p>
                     </div>
                 </div>
@@ -1011,50 +1011,50 @@ window.CHAPTERS.push({
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 13.22 (Ridge 的 SVD 表示)</div>
                     <div class="env-body">
-                        <p>设 \\\\(\\\\mathbf{X} = \\\\mathbf{U}\\\\mathbf{D}\\\\mathbf{V}^\\\\top\\\\) 为 SVD，其中 \\\\(d_1 \\\\geq \\\\cdots \\\\geq d_p > 0\\\\) 为奇异值。则</p>
-                        \\\\[\\\\hat{\\\\mathbf{y}}^{\\\\text{ridge}} = \\\\sum_{j=1}^{p} \\\\frac{d_j^2}{d_j^2 + \\\\lambda} \\\\mathbf{u}_j \\\\mathbf{u}_j^\\\\top \\\\mathbf{y}.\\\\]
-                        <p>因子 \\\\(d_j^2/(d_j^2 + \\\\lambda)\\\\) 对小奇异值方向的系数收缩更强。</p>
+                        <p>设 \\(\\mathbf{X} = \\mathbf{U}\\mathbf{D}\\mathbf{V}^\\top\\) 为 SVD，其中 \\(d_1 \\geq \\cdots \\geq d_p > 0\\) 为奇异值。则</p>
+                        \\[\\hat{\\mathbf{y}}^{\\text{ridge}} = \\sum_{j=1}^{p} \\frac{d_j^2}{d_j^2 + \\lambda} \\mathbf{u}_j \\mathbf{u}_j^\\top \\mathbf{y}.\\]
+                        <p>因子 \\(d_j^2/(d_j^2 + \\lambda)\\) 对小奇异值方向的系数收缩更强。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.23 (Lasso 回归)</div>
                     <div class="env-body">
-                        <p><strong>Lasso</strong> (Least Absolute Shrinkage and Selection Operator) 使用 \\\\(L_1\\\\) 惩罚：</p>
-                        \\\\[\\\\hat{\\\\boldsymbol{\\\\beta}}^{\\\\text{lasso}} = \\\\arg\\\\min_{\\\\boldsymbol{\\\\beta}} \\\\left\\\\{ \\\\frac{1}{2n}\\\\|\\\\mathbf{y} - \\\\mathbf{X}\\\\boldsymbol{\\\\beta}\\\\|^2 + \\\\lambda \\\\|\\\\boldsymbol{\\\\beta}\\\\|_1 \\\\right\\\\}.\\\\]
-                        <p>\\\\(L_1\\\\) 惩罚的几何特性使得 Lasso 产生<strong>稀疏解</strong>——部分系数恰好为零，实现自动变量选择。</p>
+                        <p><strong>Lasso</strong> (Least Absolute Shrinkage and Selection Operator) 使用 \\(L_1\\) 惩罚：</p>
+                        \\[\\hat{\\boldsymbol{\\beta}}^{\\text{lasso}} = \\arg\\min_{\\boldsymbol{\\beta}} \\left\\{ \\frac{1}{2n}\\|\\mathbf{y} - \\mathbf{X}\\boldsymbol{\\beta}\\|^2 + \\lambda \\|\\boldsymbol{\\beta}\\|_1 \\right\\}.\\]
+                        <p>\\(L_1\\) 惩罚的几何特性使得 Lasso 产生<strong>稀疏解</strong>——部分系数恰好为零，实现自动变量选择。</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
-                    <div class="env-title">Intuition (\\\\(L_1\\\\) vs \\\\(L_2\\\\) 的几何)</div>
+                    <div class="env-title">Intuition (\\(L_1\\) vs \\(L_2\\) 的几何)</div>
                     <div class="env-body">
-                        <p>OLS 的等高线是椭圆。\\\\(L_2\\\\) 约束域是球（光滑），切点一般不在坐标轴上——系数被收缩但不为零。\\\\(L_1\\\\) 约束域是菱形（有角），等高线往往在角点相切——角点对应某些坐标为零的解，产生稀疏性。</p>
+                        <p>OLS 的等高线是椭圆。\\(L_2\\) 约束域是球（光滑），切点一般不在坐标轴上——系数被收缩但不为零。\\(L_1\\) 约束域是菱形（有角），等高线往往在角点相切——角点对应某些坐标为零的解，产生稀疏性。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.24 (Elastic Net)</div>
                     <div class="env-body">
-                        <p><strong>Elastic Net</strong> 结合 \\\\(L_1\\\\) 和 \\\\(L_2\\\\) 惩罚：</p>
-                        \\\\[\\\\hat{\\\\boldsymbol{\\\\beta}}^{\\\\text{EN}} = \\\\arg\\\\min_{\\\\boldsymbol{\\\\beta}} \\\\left\\\\{ \\\\frac{1}{2n}\\\\|\\\\mathbf{y} - \\\\mathbf{X}\\\\boldsymbol{\\\\beta}\\\\|^2 + \\\\lambda\\\\left(\\\\alpha\\\\|\\\\boldsymbol{\\\\beta}\\\\|_1 + \\\\frac{1-\\\\alpha}{2}\\\\|\\\\boldsymbol{\\\\beta}\\\\|^2\\\\right) \\\\right\\\\},\\\\]
-                        <p>其中 \\\\(\\\\alpha \\\\in [0, 1]\\\\) 控制混合比例。\\\\(\\\\alpha = 1\\\\) 为 Lasso，\\\\(\\\\alpha = 0\\\\) 为 Ridge。Elastic Net 在高度相关变量组中倾向于同时选入或排除——具有 grouping 效应。</p>
+                        <p><strong>Elastic Net</strong> 结合 \\(L_1\\) 和 \\(L_2\\) 惩罚：</p>
+                        \\[\\hat{\\boldsymbol{\\beta}}^{\\text{EN}} = \\arg\\min_{\\boldsymbol{\\beta}} \\left\\{ \\frac{1}{2n}\\|\\mathbf{y} - \\mathbf{X}\\boldsymbol{\\beta}\\|^2 + \\lambda\\left(\\alpha\\|\\boldsymbol{\\beta}\\|_1 + \\frac{1-\\alpha}{2}\\|\\boldsymbol{\\beta}\\|^2\\right) \\right\\},\\]
+                        <p>其中 \\(\\alpha \\in [0, 1]\\) 控制混合比例。\\(\\alpha = 1\\) 为 Lasso，\\(\\alpha = 0\\) 为 Ridge。Elastic Net 在高度相关变量组中倾向于同时选入或排除——具有 grouping 效应。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 13.25 (K-fold 交叉验证选 \\\\(\\\\lambda\\\\))</div>
+                    <div class="env-title">Definition 13.25 (K-fold 交叉验证选 \\(\\lambda\\))</div>
                     <div class="env-body">
-                        <p>将数据随机分为 \\\\(K\\\\) 折。对每个候选 \\\\(\\\\lambda\\\\)，轮流用 \\\\(K-1\\\\) 折训练、1 折验证，计算平均预测误差：</p>
-                        \\\\[\\\\text{CV}(\\\\lambda) = \\\\frac{1}{K} \\\\sum_{k=1}^{K} \\\\frac{1}{|\\\\mathcal{V}_k|} \\\\sum_{i \\\\in \\\\mathcal{V}_k} (y_i - \\\\hat{y}_i^{(-k)})^2.\\\\]
-                        <p>选取使 \\\\(\\\\text{CV}(\\\\lambda)\\\\) 最小的 \\\\(\\\\lambda_{\\\\min}\\\\)，或更保守地选 "one-SE rule"：最简模型中 CV 误差在 \\\\(\\\\lambda_{\\\\min}\\\\) 的一个标准误之内的最大 \\\\(\\\\lambda\\\\)。</p>
+                        <p>将数据随机分为 \\(K\\) 折。对每个候选 \\(\\lambda\\)，轮流用 \\(K-1\\) 折训练、1 折验证，计算平均预测误差：</p>
+                        \\[\\text{CV}(\\lambda) = \\frac{1}{K} \\sum_{k=1}^{K} \\frac{1}{|\\mathcal{V}_k|} \\sum_{i \\in \\mathcal{V}_k} (y_i - \\hat{y}_i^{(-k)})^2.\\]
+                        <p>选取使 \\(\\text{CV}(\\lambda)\\) 最小的 \\(\\lambda_{\\min}\\)，或更保守地选 "one-SE rule"：最简模型中 CV 误差在 \\(\\lambda_{\\min}\\) 的一个标准误之内的最大 \\(\\lambda\\)。</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 13.26 (Lasso 的变量选择一致性)</div>
                     <div class="env-body">
-                        <p>设 \\\\(\\\\mathcal{S} = \\\\{j : \\\\beta_j \\\\neq 0\\\\}\\\\) 为真实支撑集。在<strong>irrepresentable condition</strong>（即 \\\\(\\\\|\\\\mathbf{X}_{\\\\mathcal{S}^c}^\\\\top \\\\mathbf{X}_{\\\\mathcal{S}} (\\\\mathbf{X}_{\\\\mathcal{S}}^\\\\top \\\\mathbf{X}_{\\\\mathcal{S}})^{-1} \\\\operatorname{sign}(\\\\boldsymbol{\\\\beta}_{\\\\mathcal{S}})\\\\|_\\\\infty < 1\\\\)）下，适当选取 \\\\(\\\\lambda\\\\) 时，Lasso 以概率趋于 1 恢复真实支撑 \\\\(\\\\mathcal{S}\\\\)（sign consistency）。</p>
+                        <p>设 \\(\\mathcal{S} = \\{j : \\beta_j \\neq 0\\}\\) 为真实支撑集。在<strong>irrepresentable condition</strong>（即 \\(\\|\\mathbf{X}_{\\mathcal{S}^c}^\\top \\mathbf{X}_{\\mathcal{S}} (\\mathbf{X}_{\\mathcal{S}}^\\top \\mathbf{X}_{\\mathcal{S}})^{-1} \\operatorname{sign}(\\boldsymbol{\\beta}_{\\mathcal{S}})\\|_\\infty < 1\\)）下，适当选取 \\(\\lambda\\) 时，Lasso 以概率趋于 1 恢复真实支撑 \\(\\mathcal{S}\\)（sign consistency）。</p>
                     </div>
                 </div>
 
@@ -1247,19 +1247,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '证明 Ridge 回归的解为 \\\\(\\\\hat{\\\\boldsymbol{\\\\beta}}^{\\\\text{ridge}} = (\\\\mathbf{X}^\\\\top\\\\mathbf{X} + \\\\lambda\\\\mathbf{I})^{-1}\\\\mathbf{X}^\\\\top\\\\mathbf{y}\\\\)，并说明为什么 \\\\(\\\\lambda > 0\\\\) 保证了可逆性。',
-                    hint: '对 Ridge 目标函数求导，利用 \\\\(\\\\mathbf{X}^\\\\top\\\\mathbf{X}\\\\) 半正定和 \\\\(\\\\lambda\\\\mathbf{I}\\\\) 正定的事实。',
-                    solution: '目标为 \\\\(L = (\\\\mathbf{y} - \\\\mathbf{X}\\\\boldsymbol{\\\\beta})^\\\\top(\\\\mathbf{y} - \\\\mathbf{X}\\\\boldsymbol{\\\\beta}) + \\\\lambda\\\\boldsymbol{\\\\beta}^\\\\top\\\\boldsymbol{\\\\beta}\\\\)。对 \\\\(\\\\boldsymbol{\\\\beta}\\\\) 求导：\\\\(-2\\\\mathbf{X}^\\\\top(\\\\mathbf{y} - \\\\mathbf{X}\\\\boldsymbol{\\\\beta}) + 2\\\\lambda\\\\boldsymbol{\\\\beta} = 0\\\\)，即 \\\\((\\\\mathbf{X}^\\\\top\\\\mathbf{X} + \\\\lambda\\\\mathbf{I})\\\\boldsymbol{\\\\beta} = \\\\mathbf{X}^\\\\top\\\\mathbf{y}\\\\)。由于 \\\\(\\\\mathbf{X}^\\\\top\\\\mathbf{X}\\\\) 半正定，\\\\(\\\\mathbf{X}^\\\\top\\\\mathbf{X} + \\\\lambda\\\\mathbf{I}\\\\) 的最小特征值 \\\\(\\\\geq \\\\lambda > 0\\\\)，故矩阵正定可逆。'
+                    question: '证明 Ridge 回归的解为 \\(\\hat{\\boldsymbol{\\beta}}^{\\text{ridge}} = (\\mathbf{X}^\\top\\mathbf{X} + \\lambda\\mathbf{I})^{-1}\\mathbf{X}^\\top\\mathbf{y}\\)，并说明为什么 \\(\\lambda > 0\\) 保证了可逆性。',
+                    hint: '对 Ridge 目标函数求导，利用 \\(\\mathbf{X}^\\top\\mathbf{X}\\) 半正定和 \\(\\lambda\\mathbf{I}\\) 正定的事实。',
+                    solution: '目标为 \\(L = (\\mathbf{y} - \\mathbf{X}\\boldsymbol{\\beta})^\\top(\\mathbf{y} - \\mathbf{X}\\boldsymbol{\\beta}) + \\lambda\\boldsymbol{\\beta}^\\top\\boldsymbol{\\beta}\\)。对 \\(\\boldsymbol{\\beta}\\) 求导：\\(-2\\mathbf{X}^\\top(\\mathbf{y} - \\mathbf{X}\\boldsymbol{\\beta}) + 2\\lambda\\boldsymbol{\\beta} = 0\\)，即 \\((\\mathbf{X}^\\top\\mathbf{X} + \\lambda\\mathbf{I})\\boldsymbol{\\beta} = \\mathbf{X}^\\top\\mathbf{y}\\)。由于 \\(\\mathbf{X}^\\top\\mathbf{X}\\) 半正定，\\(\\mathbf{X}^\\top\\mathbf{X} + \\lambda\\mathbf{I}\\) 的最小特征值 \\(\\geq \\lambda > 0\\)，故矩阵正定可逆。'
                 },
                 {
-                    question: '在正交设计 \\\\(\\\\mathbf{X}^\\\\top\\\\mathbf{X} = n\\\\mathbf{I}\\\\) 下，分别写出 Ridge 和 Lasso 对 OLS 估计 \\\\(\\\\hat{\\\\beta}_j^{\\\\text{OLS}}\\\\) 的收缩公式。',
+                    question: '在正交设计 \\(\\mathbf{X}^\\top\\mathbf{X} = n\\mathbf{I}\\) 下，分别写出 Ridge 和 Lasso 对 OLS 估计 \\(\\hat{\\beta}_j^{\\text{OLS}}\\) 的收缩公式。',
                     hint: 'Ridge 对角化后每个分量独立。Lasso 在正交情形下有 soft-thresholding 闭式解。',
-                    solution: 'Ridge: \\\\(\\\\hat{\\\\beta}_j^{\\\\text{ridge}} = \\\\frac{n}{n + \\\\lambda} \\\\hat{\\\\beta}_j^{\\\\text{OLS}}\\\\)（比例收缩）。Lasso: \\\\(\\\\hat{\\\\beta}_j^{\\\\text{lasso}} = \\\\text{sign}(\\\\hat{\\\\beta}_j^{\\\\text{OLS}}) \\\\max(|\\\\hat{\\\\beta}_j^{\\\\text{OLS}}| - \\\\lambda/n, 0)\\\\)（soft thresholding，小系数直接变为零）。'
+                    solution: 'Ridge: \\(\\hat{\\beta}_j^{\\text{ridge}} = \\frac{n}{n + \\lambda} \\hat{\\beta}_j^{\\text{OLS}}\\)（比例收缩）。Lasso: \\(\\hat{\\beta}_j^{\\text{lasso}} = \\text{sign}(\\hat{\\beta}_j^{\\text{OLS}}) \\max(|\\hat{\\beta}_j^{\\text{OLS}}| - \\lambda/n, 0)\\)（soft thresholding，小系数直接变为零）。'
                 },
                 {
                     question: '解释 Elastic Net 为什么在高度共线变量组的处理上优于 Lasso。',
-                    hint: '考虑一组几乎相同的变量，Lasso 会如何选择？Elastic Net 的 \\\\(L_2\\\\) 部分起什么作用？',
-                    solution: '当一组变量高度相关时，Lasso 的 \\\\(L_1\\\\) 惩罚在解路径上趋向于只选其中一个（因为 \\\\(L_1\\\\) 球的角点偏好坐标轴方向），导致选择不稳定——微小的数据扰动可能切换被选中的变量。Elastic Net 的 \\\\(L_2\\\\) 惩罚项为目标函数引入严格凸性，使得相关变量的系数估计趋于相近（grouping effect）。Zou and Hastie (2005) 证明：若 \\\\(|\\\\rho(x_i, x_j)| \\\\to 1\\\\)，则 \\\\(|\\\\hat{\\\\beta}_i^{\\\\text{EN}} - \\\\hat{\\\\beta}_j^{\\\\text{EN}}| \\\\to 0\\\\)。'
+                    hint: '考虑一组几乎相同的变量，Lasso 会如何选择？Elastic Net 的 \\(L_2\\) 部分起什么作用？',
+                    solution: '当一组变量高度相关时，Lasso 的 \\(L_1\\) 惩罚在解路径上趋向于只选其中一个（因为 \\(L_1\\) 球的角点偏好坐标轴方向），导致选择不稳定——微小的数据扰动可能切换被选中的变量。Elastic Net 的 \\(L_2\\) 惩罚项为目标函数引入严格凸性，使得相关变量的系数估计趋于相近（grouping effect）。Zou and Hastie (2005) 证明：若 \\(|\\rho(x_i, x_j)| \\to 1\\)，则 \\(|\\hat{\\beta}_i^{\\text{EN}} - \\hat{\\beta}_j^{\\text{EN}}| \\to 0\\)。'
                 }
             ]
         }

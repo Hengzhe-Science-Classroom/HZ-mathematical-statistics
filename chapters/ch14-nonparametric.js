@@ -12,17 +12,17 @@ window.CHAPTERS.push({
             content: `
                 <h2>秩检验 Rank-Based Tests</h2>
 
-                <p>参数检验（如 \\\\(t\\\\) 检验、\\\\(F\\\\) 检验）依赖于对总体分布的假设，通常要求正态性。
+                <p>参数检验（如 \\(t\\) 检验、\\(F\\) 检验）依赖于对总体分布的假设，通常要求正态性。
                 当这些假设不成立时，<strong>非参数方法</strong>提供了一类不依赖分布形式的替代方案。
                 非参数检验的核心思想是用数据的<strong>秩 (rank)</strong>代替原始观测值，从而消除分布假设。</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 14.1 (秩 Rank)</div>
                     <div class="env-body">
-                        <p>设 \\\\(X_1, \\\\ldots, X_n\\\\) 为一组样本。将其从小到大排列为
-                        \\\\(X_{(1)} \\\\leq X_{(2)} \\\\leq \\\\cdots \\\\leq X_{(n)}\\\\)。
-                        样本 \\\\(X_i\\\\) 的<strong>秩</strong> \\\\(R_i\\\\) 定义为 \\\\(X_i\\\\) 在排列中的位置：</p>
-                        \\\\[R_i = \\\\#\\\\{j : X_j \\\\leq X_i\\\\}\\\\]
+                        <p>设 \\(X_1, \\ldots, X_n\\) 为一组样本。将其从小到大排列为
+                        \\(X_{(1)} \\leq X_{(2)} \\leq \\cdots \\leq X_{(n)}\\)。
+                        样本 \\(X_i\\) 的<strong>秩</strong> \\(R_i\\) 定义为 \\(X_i\\) 在排列中的位置：</p>
+                        \\[R_i = \\#\\{j : X_j \\leq X_i\\}\\]
                         <p>当存在<strong>结 (ties)</strong>（即相同值）时，通常取<strong>平均秩</strong>。</p>
                     </div>
                 </div>
@@ -42,10 +42,10 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 14.2 (符号检验)</div>
                     <div class="env-body">
-                        <p>设 \\\\(X_1, \\\\ldots, X_n \\\\sim F\\\\)，检验 \\\\(H_0: \\\\operatorname{median}(F) = m_0\\\\)。
-                        令 \\\\(S^+ = \\\\#\\\\{i : X_i > m_0\\\\}\\\\)。在 \\\\(H_0\\\\) 下（假设 \\\\(F\\\\) 在 \\\\(m_0\\\\) 处连续），</p>
-                        \\\\[S^+ \\\\sim \\\\operatorname{Binomial}(n, 1/2)\\\\]
-                        <p>拒绝域根据备择假设确定：双侧时拒绝当 \\\\(S^+\\\\) 太大或太小。</p>
+                        <p>设 \\(X_1, \\ldots, X_n \\sim F\\)，检验 \\(H_0: \\operatorname{median}(F) = m_0\\)。
+                        令 \\(S^+ = \\#\\{i : X_i > m_0\\}\\)。在 \\(H_0\\) 下（假设 \\(F\\) 在 \\(m_0\\) 处连续），</p>
+                        \\[S^+ \\sim \\operatorname{Binomial}(n, 1/2)\\]
+                        <p>拒绝域根据备择假设确定：双侧时拒绝当 \\(S^+\\) 太大或太小。</p>
                     </div>
                 </div>
 
@@ -53,10 +53,10 @@ window.CHAPTERS.push({
                     <div class="env-title">Example 14.3</div>
                     <div class="env-body">
                         <p>10 名学生的考试成绩为 72, 85, 63, 91, 78, 55, 88, 79, 82, 70。
-                        检验中位数是否为 75。正号个数 \\\\(S^+ = \\\\#\\\\{85, 91, 78, 88, 79, 82\\\\} = 6\\\\)。
-                        在 \\\\(H_0\\\\) 下 \\\\(S^+ \\\\sim \\\\operatorname{Bin}(10, 0.5)\\\\)，
-                        \\\\(P(S^+ \\\\geq 6) = \\\\sum_{k=6}^{10} \\\\binom{10}{k} 0.5^{10} \\\\approx 0.377\\\\)，
-                        双侧 \\\\(p\\\\)-值约 0.754，不拒绝 \\\\(H_0\\\\)。</p>
+                        检验中位数是否为 75。正号个数 \\(S^+ = \\#\\{85, 91, 78, 88, 79, 82\\} = 6\\)。
+                        在 \\(H_0\\) 下 \\(S^+ \\sim \\operatorname{Bin}(10, 0.5)\\)，
+                        \\(P(S^+ \\geq 6) = \\sum_{k=6}^{10} \\binom{10}{k} 0.5^{10} \\approx 0.377\\)，
+                        双侧 \\(p\\)-值约 0.754，不拒绝 \\(H_0\\)。</p>
                     </div>
                 </div>
 
@@ -65,32 +65,32 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 14.4 (Wilcoxon 符号秩检验)</div>
                     <div class="env-body">
-                        <p>设 \\\\(X_1, \\\\ldots, X_n\\\\) 来自关于 \\\\(m_0\\\\) 对称的连续分布 \\\\(F\\\\)。
-                        检验 \\\\(H_0: m_0 = 0\\\\)（即 \\\\(F\\\\) 关于 0 对称）。</p>
+                        <p>设 \\(X_1, \\ldots, X_n\\) 来自关于 \\(m_0\\) 对称的连续分布 \\(F\\)。
+                        检验 \\(H_0: m_0 = 0\\)（即 \\(F\\) 关于 0 对称）。</p>
                         <ol>
-                            <li>计算 \\\\(|X_i|\\\\) 并对其排秩，得到秩 \\\\(R_i^*\\\\)。</li>
+                            <li>计算 \\(|X_i|\\) 并对其排秩，得到秩 \\(R_i^*\\)。</li>
                             <li>Wilcoxon 符号秩统计量为
-                            \\\\[W^+ = \\\\sum_{i: X_i > 0} R_i^*\\\\]
+                            \\[W^+ = \\sum_{i: X_i > 0} R_i^*\\]
                             即正值样本的秩之和。</li>
                         </ol>
-                        <p>在 \\\\(H_0\\\\) 下，\\\\(\\\\mathbb{E}[W^+] = n(n+1)/4\\\\)，\\\\(\\\\operatorname{Var}(W^+) = n(n+1)(2n+1)/24\\\\)。
-                        当 \\\\(n\\\\) 较大时，\\\\(W^+\\\\) 近似正态。</p>
+                        <p>在 \\(H_0\\) 下，\\(\\mathbb{E}[W^+] = n(n+1)/4\\)，\\(\\operatorname{Var}(W^+) = n(n+1)(2n+1)/24\\)。
+                        当 \\(n\\) 较大时，\\(W^+\\) 近似正态。</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 14.5 (Wilcoxon 符号秩检验的渐近正态性)</div>
                     <div class="env-body">
-                        <p>在 \\\\(H_0\\\\) 下，当 \\\\(n \\\\to \\\\infty\\\\) 时，</p>
-                        \\\\[Z = \\\\frac{W^+ - n(n+1)/4}{\\\\sqrt{n(n+1)(2n+1)/24}} \\\\xrightarrow{d} N(0, 1)\\\\]
+                        <p>在 \\(H_0\\) 下，当 \\(n \\to \\infty\\) 时，</p>
+                        \\[Z = \\frac{W^+ - n(n+1)/4}{\\sqrt{n(n+1)(2n+1)/24}} \\xrightarrow{d} N(0, 1)\\]
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof (sketch)</div>
                     <div class="env-body">
-                        <p>在 \\\\(H_0\\\\) 下，每个 \\\\(X_i\\\\) 为正或为负的概率各为 \\\\(1/2\\\\)，且符号相互独立。
-                        \\\\(W^+ = \\\\sum_{i=1}^n R_i^* \\\\cdot \\\\mathbf{1}(X_i > 0)\\\\) 是独立随机变量之和。
+                        <p>在 \\(H_0\\) 下，每个 \\(X_i\\) 为正或为负的概率各为 \\(1/2\\)，且符号相互独立。
+                        \\(W^+ = \\sum_{i=1}^n R_i^* \\cdot \\mathbf{1}(X_i > 0)\\) 是独立随机变量之和。
                         由 Lindeberg CLT，标准化后趋于标准正态分布。</p>
                         <div class="qed">∎</div>
                     </div>
@@ -101,33 +101,33 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 14.6 (Wilcoxon 秩和检验)</div>
                     <div class="env-body">
-                        <p>设 \\\\(X_1, \\\\ldots, X_m \\\\sim F\\\\) 和 \\\\(Y_1, \\\\ldots, Y_n \\\\sim G\\\\) 为两个独立样本。
-                        检验 \\\\(H_0: F = G\\\\)。</p>
+                        <p>设 \\(X_1, \\ldots, X_m \\sim F\\) 和 \\(Y_1, \\ldots, Y_n \\sim G\\) 为两个独立样本。
+                        检验 \\(H_0: F = G\\)。</p>
                         <ol>
-                            <li>合并两组数据共 \\\\(N = m + n\\\\) 个，对全体排秩。</li>
+                            <li>合并两组数据共 \\(N = m + n\\) 个，对全体排秩。</li>
                             <li>Wilcoxon 秩和统计量为第一组样本秩的总和：
-                            \\\\[W = \\\\sum_{i=1}^m R_i\\\\]
-                            其中 \\\\(R_i\\\\) 是 \\\\(X_i\\\\) 在合并样本中的秩。</li>
+                            \\[W = \\sum_{i=1}^m R_i\\]
+                            其中 \\(R_i\\) 是 \\(X_i\\) 在合并样本中的秩。</li>
                         </ol>
-                        <p>在 \\\\(H_0\\\\) 下，\\\\(\\\\mathbb{E}[W] = m(N+1)/2\\\\)，\\\\(\\\\operatorname{Var}(W) = mn(N+1)/12\\\\)。</p>
+                        <p>在 \\(H_0\\) 下，\\(\\mathbb{E}[W] = m(N+1)/2\\)，\\(\\operatorname{Var}(W) = mn(N+1)/12\\)。</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark (Mann-Whitney U 统计量)</div>
                     <div class="env-body">
-                        <p>Mann-Whitney \\\\(U\\\\) 统计量与 Wilcoxon 秩和统计量的关系为：</p>
-                        \\\\[U = W - \\\\frac{m(m+1)}{2}\\\\]
-                        <p>\\\\(U\\\\) 等于"第一组的值大于第二组的值"的配对数。两者是等价的检验。</p>
+                        <p>Mann-Whitney \\(U\\) 统计量与 Wilcoxon 秩和统计量的关系为：</p>
+                        \\[U = W - \\frac{m(m+1)}{2}\\]
+                        <p>\\(U\\) 等于"第一组的值大于第二组的值"的配对数。两者是等价的检验。</p>
                     </div>
                 </div>
 
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>Wilcoxon 秩和检验严格来说检验的是 \\\\(F = G\\\\)，而非仅仅"位置相同"。
-                        若两分布有不同的形状或方差，拒绝 \\\\(H_0\\\\) 不一定意味着均值（或中位数）不同。
-                        在位置偏移模型 \\\\(G(x) = F(x - \\\\Delta)\\\\) 下，才可解读为 \\\\(\\\\Delta \\\\neq 0\\\\) 的检验。</p>
+                        <p>Wilcoxon 秩和检验严格来说检验的是 \\(F = G\\)，而非仅仅"位置相同"。
+                        若两分布有不同的形状或方差，拒绝 \\(H_0\\) 不一定意味着均值（或中位数）不同。
+                        在位置偏移模型 \\(G(x) = F(x - \\Delta)\\) 下，才可解读为 \\(\\Delta \\neq 0\\) 的检验。</p>
                     </div>
                 </div>
 
@@ -266,19 +266,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设有样本 3, 7, 2, 9, 5。用符号检验检验 \\\\(H_0: \\\\text{median} = 4\\\\) 对 \\\\(H_1: \\\\text{median} > 4\\\\)。计算 \\\\(S^+\\\\) 和 \\\\(p\\\\)-值。',
+                    question: '设有样本 3, 7, 2, 9, 5。用符号检验检验 \\(H_0: \\text{median} = 4\\) 对 \\(H_1: \\text{median} > 4\\)。计算 \\(S^+\\) 和 \\(p\\)-值。',
                     hint: '计算大于 4 的样本个数，然后用 Binomial(5, 0.5) 分布求概率。',
-                    solution: '大于 4 的有 7, 9, 5，故 \\\\(S^+ = 3\\\\)。在 \\\\(H_0\\\\) 下 \\\\(S^+ \\\\sim \\\\text{Bin}(5, 0.5)\\\\)。\\\\(p = P(S^+ \\\\geq 3) = \\\\binom{5}{3}(0.5)^5 + \\\\binom{5}{4}(0.5)^5 + \\\\binom{5}{5}(0.5)^5 = (10 + 5 + 1)/32 = 0.5\\\\)。不拒绝 \\\\(H_0\\\\)。'
+                    solution: '大于 4 的有 7, 9, 5，故 \\(S^+ = 3\\)。在 \\(H_0\\) 下 \\(S^+ \\sim \\text{Bin}(5, 0.5)\\)。\\(p = P(S^+ \\geq 3) = \\binom{5}{3}(0.5)^5 + \\binom{5}{4}(0.5)^5 + \\binom{5}{5}(0.5)^5 = (10 + 5 + 1)/32 = 0.5\\)。不拒绝 \\(H_0\\)。'
                 },
                 {
                     question: '解释为什么 Wilcoxon 符号秩检验比符号检验更有效率（power 更高）。',
                     hint: '考虑两种检验分别使用了数据的哪些信息。',
-                    solution: '符号检验只利用了 \\\\(X_i - m_0\\\\) 的正负号（二值信息），而 Wilcoxon 符号秩检验还利用了 \\\\(|X_i - m_0|\\\\) 的相对大小（秩信息）。秩信息捕捉了偏离零的程度，因此在对称分布假设下检验功效更高。对于正态分布，Wilcoxon 的渐近相对效率 (ARE) 约为 \\\\(3/\\\\pi \\\\approx 0.955\\\\)。'
+                    solution: '符号检验只利用了 \\(X_i - m_0\\) 的正负号（二值信息），而 Wilcoxon 符号秩检验还利用了 \\(|X_i - m_0|\\) 的相对大小（秩信息）。秩信息捕捉了偏离零的程度，因此在对称分布假设下检验功效更高。对于正态分布，Wilcoxon 的渐近相对效率 (ARE) 约为 \\(3/\\pi \\approx 0.955\\)。'
                 },
                 {
-                    question: '两组独立样本 \\\\(X: 1.2, 3.4, 2.7\\\\) 和 \\\\(Y: 4.1, 5.3, 3.8\\\\)。计算 Wilcoxon 秩和统计量 \\\\(W\\\\) 和 Mann-Whitney \\\\(U\\\\) 统计量。',
+                    question: '两组独立样本 \\(X: 1.2, 3.4, 2.7\\) 和 \\(Y: 4.1, 5.3, 3.8\\)。计算 Wilcoxon 秩和统计量 \\(W\\) 和 Mann-Whitney \\(U\\) 统计量。',
                     hint: '先合并排秩：1.2, 2.7, 3.4, 3.8, 4.1, 5.3。然后求 X 组的秩之和。',
-                    solution: '合并排序：1.2(X), 2.7(X), 3.4(X), 3.8(Y), 4.1(Y), 5.3(Y)。X 组秩为 1, 2, 3，故 \\\\(W = 1 + 2 + 3 = 6\\\\)。Mann-Whitney \\\\(U = W - m(m+1)/2 = 6 - 3 \\\\cdot 4/2 = 0\\\\)。\\\\(U = 0\\\\) 意味着 X 的每个值都小于 Y 的每个值，暗示强烈的位置差异。'
+                    solution: '合并排序：1.2(X), 2.7(X), 3.4(X), 3.8(Y), 4.1(Y), 5.3(Y)。X 组秩为 1, 2, 3，故 \\(W = 1 + 2 + 3 = 6\\)。Mann-Whitney \\(U = W - m(m+1)/2 = 6 - 3 \\cdot 4/2 = 0\\)。\\(U = 0\\) 意味着 X 的每个值都小于 Y 的每个值，暗示强烈的位置差异。'
                 }
             ]
         },
@@ -298,14 +298,14 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 14.7 (Kruskal-Wallis 检验)</div>
                     <div class="env-body">
-                        <p>设有 \\\\(k\\\\) 组独立样本，第 \\\\(j\\\\) 组样本量为 \\\\(n_j\\\\)，总量 \\\\(N = \\\\sum_{j=1}^k n_j\\\\)。
-                        合并全部数据排秩，设第 \\\\(j\\\\) 组的秩和为 \\\\(R_j = \\\\sum_{i=1}^{n_j} R_{ji}\\\\)，
-                        平均秩为 \\\\(\\\\bar{R}_j = R_j / n_j\\\\)。Kruskal-Wallis 统计量为：</p>
-                        \\\\[H = \\\\frac{12}{N(N+1)} \\\\sum_{j=1}^{k} n_j \\\\left(\\\\bar{R}_j - \\\\frac{N+1}{2}\\\\right)^2\\\\]
+                        <p>设有 \\(k\\) 组独立样本，第 \\(j\\) 组样本量为 \\(n_j\\)，总量 \\(N = \\sum_{j=1}^k n_j\\)。
+                        合并全部数据排秩，设第 \\(j\\) 组的秩和为 \\(R_j = \\sum_{i=1}^{n_j} R_{ji}\\)，
+                        平均秩为 \\(\\bar{R}_j = R_j / n_j\\)。Kruskal-Wallis 统计量为：</p>
+                        \\[H = \\frac{12}{N(N+1)} \\sum_{j=1}^{k} n_j \\left(\\bar{R}_j - \\frac{N+1}{2}\\right)^2\\]
                         <p>等价形式：</p>
-                        \\\\[H = \\\\frac{12}{N(N+1)} \\\\sum_{j=1}^{k} \\\\frac{R_j^2}{n_j} - 3(N+1)\\\\]
-                        <p>在 \\\\(H_0: F_1 = F_2 = \\\\cdots = F_k\\\\) 下，当各 \\\\(n_j\\\\) 充分大时，</p>
-                        \\\\[H \\\\xrightarrow{d} \\\\chi^2_{k-1}\\\\]
+                        \\[H = \\frac{12}{N(N+1)} \\sum_{j=1}^{k} \\frac{R_j^2}{n_j} - 3(N+1)\\]
+                        <p>在 \\(H_0: F_1 = F_2 = \\cdots = F_k\\) 下，当各 \\(n_j\\) 充分大时，</p>
+                        \\[H \\xrightarrow{d} \\chi^2_{k-1}\\]
                     </div>
                 </div>
 
@@ -314,17 +314,17 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>Kruskal-Wallis 检验本质上是对秩做单因素 ANOVA。
                         如果各组的分布相同，那么秩在各组中应该均匀分布，
-                        每组的平均秩应接近总体平均秩 \\\\((N+1)/2\\\\)。
-                        \\\\(H\\\\) 统计量衡量各组平均秩偏离总平均秩的程度。</p>
+                        每组的平均秩应接近总体平均秩 \\((N+1)/2\\)。
+                        \\(H\\) 统计量衡量各组平均秩偏离总平均秩的程度。</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 14.8 (Kruskal-Wallis 与 ANOVA 的关系)</div>
                     <div class="env-body">
-                        <p>Kruskal-Wallis 统计量 \\\\(H\\\\) 等价于对秩数据进行单因素 ANOVA 得到的 \\\\(F\\\\) 统计量的单调变换。
-                        具体地，若对秩 \\\\(R_1, \\\\ldots, R_N\\\\) 按组做 ANOVA 得到 \\\\(F\\\\) 值，则</p>
-                        \\\\[H = \\\\frac{(N-1) \\\\cdot F}{F \\\\cdot (k-1)/(N-k) + (N-k)/(k-1)}\\\\]
+                        <p>Kruskal-Wallis 统计量 \\(H\\) 等价于对秩数据进行单因素 ANOVA 得到的 \\(F\\) 统计量的单调变换。
+                        具体地，若对秩 \\(R_1, \\ldots, R_N\\) 按组做 ANOVA 得到 \\(F\\) 值，则</p>
+                        \\[H = \\frac{(N-1) \\cdot F}{F \\cdot (k-1)/(N-k) + (N-k)/(k-1)}\\]
                         <p>（精确关系取决于具体参数化形式，但核心思想成立）。</p>
                     </div>
                 </div>
@@ -334,9 +334,9 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>三组数据：A = {2.1, 3.4, 1.8}，B = {5.2, 4.7, 6.1}，C = {3.9, 4.0, 3.5}。</p>
                         <p>合并排序：1.8(A), 2.1(A), 3.4(A), 3.5(C), 3.9(C), 4.0(C), 4.7(B), 5.2(B), 6.1(B)。</p>
-                        <p>秩和：\\\\(R_A = 1+2+3 = 6\\\\)，\\\\(R_B = 7+8+9 = 24\\\\)，\\\\(R_C = 4+5+6 = 15\\\\)。</p>
-                        <p>\\\\(H = \\\\frac{12}{9 \\\\cdot 10}\\\\left(\\\\frac{36}{3} + \\\\frac{576}{3} + \\\\frac{225}{3}\\\\right) - 30 = \\\\frac{12}{90} \\\\cdot 279 - 30 = 37.2 - 30 = 7.2\\\\)</p>
-                        <p>在 \\\\(\\\\chi^2_2\\\\) 下，\\\\(P(\\\\chi^2_2 > 7.2) \\\\approx 0.027\\\\)，在 \\\\(\\\\alpha = 0.05\\\\) 下拒绝 \\\\(H_0\\\\)。</p>
+                        <p>秩和：\\(R_A = 1+2+3 = 6\\)，\\(R_B = 7+8+9 = 24\\)，\\(R_C = 4+5+6 = 15\\)。</p>
+                        <p>\\(H = \\frac{12}{9 \\cdot 10}\\left(\\frac{36}{3} + \\frac{576}{3} + \\frac{225}{3}\\right) - 30 = \\frac{12}{90} \\cdot 279 - 30 = 37.2 - 30 = 7.2\\)</p>
+                        <p>在 \\(\\chi^2_2\\) 下，\\(P(\\chi^2_2 > 7.2) \\approx 0.027\\)，在 \\(\\alpha = 0.05\\) 下拒绝 \\(H_0\\)。</p>
                     </div>
                 </div>
 
@@ -345,12 +345,12 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 14.10 (Friedman 检验)</div>
                     <div class="env-body">
-                        <p>设有 \\\\(n\\\\) 个区组 (blocks)，每个区组内有 \\\\(k\\\\) 个处理。
-                        <strong>在每个区组内</strong>对 \\\\(k\\\\) 个观测排秩（秩为 1 到 \\\\(k\\\\)）。
-                        设第 \\\\(j\\\\) 个处理的秩和为 \\\\(R_j = \\\\sum_{i=1}^n R_{ij}\\\\)。
+                        <p>设有 \\(n\\) 个区组 (blocks)，每个区组内有 \\(k\\) 个处理。
+                        <strong>在每个区组内</strong>对 \\(k\\) 个观测排秩（秩为 1 到 \\(k\\)）。
+                        设第 \\(j\\) 个处理的秩和为 \\(R_j = \\sum_{i=1}^n R_{ij}\\)。
                         Friedman 统计量为：</p>
-                        \\\\[Q = \\\\frac{12}{nk(k+1)} \\\\sum_{j=1}^{k} R_j^2 - 3n(k+1)\\\\]
-                        <p>在 \\\\(H_0\\\\) 下（各处理效果相同），当 \\\\(n\\\\) 充分大时，\\\\(Q \\\\xrightarrow{d} \\\\chi^2_{k-1}\\\\)。</p>
+                        \\[Q = \\frac{12}{nk(k+1)} \\sum_{j=1}^{k} R_j^2 - 3n(k+1)\\]
+                        <p>在 \\(H_0\\) 下（各处理效果相同），当 \\(n\\) 充分大时，\\(Q \\xrightarrow{d} \\chi^2_{k-1}\\)。</p>
                     </div>
                 </div>
 
@@ -589,9 +589,9 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '证明 Kruskal-Wallis 统计量 \\\\(H\\\\) 在只有 \\\\(k=2\\\\) 组时与 Wilcoxon 秩和检验等价。',
-                    hint: '当 \\\\(k=2\\\\) 时，\\\\(R_2 = N(N+1)/2 - R_1\\\\)。将此代入 \\\\(H\\\\) 的公式并化简。',
-                    solution: '当 \\\\(k = 2\\\\) 时，\\\\(R_1 + R_2 = N(N+1)/2\\\\)，所以 \\\\(R_2\\\\) 由 \\\\(R_1\\\\) 决定。代入 \\\\(H\\\\) 的公式后，\\\\(H\\\\) 是 \\\\(R_1\\\\)（即 Wilcoxon 秩和 \\\\(W\\\\)）的单调递增函数。具体地，\\\\(H = Z^2\\\\)，其中 \\\\(Z\\\\) 是 Wilcoxon 秩和统计量的标准化版本。因此 \\\\(H \\\\sim \\\\chi^2_1\\\\) 与 \\\\(Z \\\\sim N(0,1)\\\\) 给出的 \\\\(p\\\\)-值相同，两检验等价。'
+                    question: '证明 Kruskal-Wallis 统计量 \\(H\\) 在只有 \\(k=2\\) 组时与 Wilcoxon 秩和检验等价。',
+                    hint: '当 \\(k=2\\) 时，\\(R_2 = N(N+1)/2 - R_1\\)。将此代入 \\(H\\) 的公式并化简。',
+                    solution: '当 \\(k = 2\\) 时，\\(R_1 + R_2 = N(N+1)/2\\)，所以 \\(R_2\\) 由 \\(R_1\\) 决定。代入 \\(H\\) 的公式后，\\(H\\) 是 \\(R_1\\)（即 Wilcoxon 秩和 \\(W\\)）的单调递增函数。具体地，\\(H = Z^2\\)，其中 \\(Z\\) 是 Wilcoxon 秩和统计量的标准化版本。因此 \\(H \\sim \\chi^2_1\\) 与 \\(Z \\sim N(0,1)\\) 给出的 \\(p\\)-值相同，两检验等价。'
                 },
                 {
                     question: '为什么 Friedman 检验要在区组内排秩而不是对全体数据排秩？',
@@ -599,9 +599,9 @@ window.CHAPTERS.push({
                     solution: '如果直接对全体数据排秩，则区组间的系统差异会混入秩中，使得处理效应难以识别。在区组内排秩相当于消除了区组效应，只比较同一区组内不同处理的相对表现。这与参数方法中用区组因子消除区组变异的逻辑一致。'
                 },
                 {
-                    question: '三个处理在 4 个区组中的观测值如下：区组 1: (5.2, 4.8, 6.1), 区组 2: (3.1, 2.7, 3.5), 区组 3: (7.0, 6.2, 7.3), 区组 4: (4.5, 4.1, 5.0)。计算 Friedman 统计量 \\\\(Q\\\\)。',
+                    question: '三个处理在 4 个区组中的观测值如下：区组 1: (5.2, 4.8, 6.1), 区组 2: (3.1, 2.7, 3.5), 区组 3: (7.0, 6.2, 7.3), 区组 4: (4.5, 4.1, 5.0)。计算 Friedman 统计量 \\(Q\\)。',
                     hint: '先在每个区组内排秩（1, 2, 3），然后对每个处理的秩求和，代入公式。',
-                    solution: '区组内排秩：区组 1: (2, 1, 3)，区组 2: (2, 1, 3)，区组 3: (2, 1, 3)，区组 4: (2, 1, 3)。处理秩和：\\\\(R_1 = 8, R_2 = 4, R_3 = 12\\\\)。\\\\(Q = \\\\frac{12}{4 \\\\cdot 3 \\\\cdot 4}(64 + 16 + 144) - 3 \\\\cdot 4 \\\\cdot 4 = \\\\frac{12}{48} \\\\cdot 224 - 48 = 56 - 48 = 8\\\\)。在 \\\\(\\\\chi^2_2\\\\) 下 \\\\(P > 8\\\\) 约 0.018，拒绝 \\\\(H_0\\\\)。'
+                    solution: '区组内排秩：区组 1: (2, 1, 3)，区组 2: (2, 1, 3)，区组 3: (2, 1, 3)，区组 4: (2, 1, 3)。处理秩和：\\(R_1 = 8, R_2 = 4, R_3 = 12\\)。\\(Q = \\frac{12}{4 \\cdot 3 \\cdot 4}(64 + 16 + 144) - 3 \\cdot 4 \\cdot 4 = \\frac{12}{48} \\cdot 224 - 48 = 56 - 48 = 8\\)。在 \\(\\chi^2_2\\) 下 \\(P > 8\\) 约 0.018，拒绝 \\(H_0\\)。'
                 }
             ]
         },
@@ -624,30 +624,30 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 14.11 (核密度估计)</div>
                     <div class="env-body">
-                        <p>设 \\\\(X_1, \\\\ldots, X_n\\\\) 为来自未知密度 \\\\(f\\\\) 的 i.i.d. 样本。
+                        <p>设 \\(X_1, \\ldots, X_n\\) 为来自未知密度 \\(f\\) 的 i.i.d. 样本。
                         <strong>核密度估计</strong>定义为：</p>
-                        \\\\[\\\\hat{f}_h(x) = \\\\frac{1}{nh} \\\\sum_{i=1}^{n} K\\\\left(\\\\frac{x - X_i}{h}\\\\right)\\\\]
-                        <p>其中 \\\\(K\\\\) 为<strong>核函数 (kernel)</strong>，满足 \\\\(\\\\int K(u)\\\\,du = 1\\\\)、\\\\(K(u) \\\\geq 0\\\\)，
-                        \\\\(h > 0\\\\) 为<strong>带宽 (bandwidth)</strong>。</p>
+                        \\[\\hat{f}_h(x) = \\frac{1}{nh} \\sum_{i=1}^{n} K\\left(\\frac{x - X_i}{h}\\right)\\]
+                        <p>其中 \\(K\\) 为<strong>核函数 (kernel)</strong>，满足 \\(\\int K(u)\\,du = 1\\)、\\(K(u) \\geq 0\\)，
+                        \\(h > 0\\) 为<strong>带宽 (bandwidth)</strong>。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 14.12 (常用核函数)</div>
                     <div class="env-body">
-                        <p><strong>Gaussian 核</strong>：\\\\(K(u) = \\\\frac{1}{\\\\sqrt{2\\\\pi}} e^{-u^2/2}\\\\)</p>
-                        <p><strong>Epanechnikov 核</strong>：\\\\(K(u) = \\\\frac{3}{4}(1-u^2) \\\\cdot \\\\mathbf{1}(|u| \\\\leq 1)\\\\)</p>
-                        <p><strong>Uniform 核</strong>（矩形核）：\\\\(K(u) = \\\\frac{1}{2} \\\\cdot \\\\mathbf{1}(|u| \\\\leq 1)\\\\)</p>
+                        <p><strong>Gaussian 核</strong>：\\(K(u) = \\frac{1}{\\sqrt{2\\pi}} e^{-u^2/2}\\)</p>
+                        <p><strong>Epanechnikov 核</strong>：\\(K(u) = \\frac{3}{4}(1-u^2) \\cdot \\mathbf{1}(|u| \\leq 1)\\)</p>
+                        <p><strong>Uniform 核</strong>（矩形核）：\\(K(u) = \\frac{1}{2} \\cdot \\mathbf{1}(|u| \\leq 1)\\)</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>想象在每个数据点处放一个"小山丘"（核函数），高度为 \\\\(1/(nh)\\\\)，宽度由 \\\\(h\\\\) 控制。
-                        KDE 就是所有小山丘叠加的结果。带宽 \\\\(h\\\\) 控制平滑程度：
-                        \\\\(h\\\\) 太小时每个数据点产生一个尖峰（<strong>欠平滑 undersmoothing</strong>），
-                        \\\\(h\\\\) 太大时所有细节被模糊掉（<strong>过平滑 oversmoothing</strong>）。</p>
+                        <p>想象在每个数据点处放一个"小山丘"（核函数），高度为 \\(1/(nh)\\)，宽度由 \\(h\\) 控制。
+                        KDE 就是所有小山丘叠加的结果。带宽 \\(h\\) 控制平滑程度：
+                        \\(h\\) 太小时每个数据点产生一个尖峰（<strong>欠平滑 undersmoothing</strong>），
+                        \\(h\\) 太大时所有细节被模糊掉（<strong>过平滑 oversmoothing</strong>）。</p>
                     </div>
                 </div>
 
@@ -656,21 +656,21 @@ window.CHAPTERS.push({
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 14.13 (KDE 的 MSE 分解)</div>
                     <div class="env-body">
-                        <p>设 \\\\(f\\\\) 二阶可导，\\\\(K\\\\) 为对称核且 \\\\(\\\\int u^2 K(u)\\\\,du = \\\\kappa_2 < \\\\infty\\\\)，
-                        \\\\(\\\\int K^2(u)\\\\,du = R(K) < \\\\infty\\\\)。则 KDE 在点 \\\\(x\\\\) 处的均方误差为：</p>
-                        \\\\[\\\\operatorname{MSE}(\\\\hat{f}_h(x)) = \\\\frac{1}{4}\\\\kappa_2^2 h^4 [f''(x)]^2 + \\\\frac{R(K)}{nh} f(x) + o(h^4 + (nh)^{-1})\\\\]
-                        <p>其中第一项是<strong>偏差的平方</strong>（与 \\\\(h^4\\\\) 成正比），第二项是<strong>方差</strong>（与 \\\\((nh)^{-1}\\\\) 成正比）。</p>
+                        <p>设 \\(f\\) 二阶可导，\\(K\\) 为对称核且 \\(\\int u^2 K(u)\\,du = \\kappa_2 < \\infty\\)，
+                        \\(\\int K^2(u)\\,du = R(K) < \\infty\\)。则 KDE 在点 \\(x\\) 处的均方误差为：</p>
+                        \\[\\operatorname{MSE}(\\hat{f}_h(x)) = \\frac{1}{4}\\kappa_2^2 h^4 [f''(x)]^2 + \\frac{R(K)}{nh} f(x) + o(h^4 + (nh)^{-1})\\]
+                        <p>其中第一项是<strong>偏差的平方</strong>（与 \\(h^4\\) 成正比），第二项是<strong>方差</strong>（与 \\((nh)^{-1}\\) 成正比）。</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof (sketch)</div>
                     <div class="env-body">
-                        <p><strong>偏差</strong>：\\\\(\\\\mathbb{E}[\\\\hat{f}_h(x)] = \\\\int \\\\frac{1}{h} K\\\\left(\\\\frac{x-t}{h}\\\\right) f(t)\\\\,dt\\\\)。
-                        令 \\\\(u = (x-t)/h\\\\)，Taylor 展开 \\\\(f(x - uh)\\\\) 到二阶：</p>
-                        \\\\[\\\\mathbb{E}[\\\\hat{f}_h(x)] \\\\approx f(x) + \\\\frac{1}{2}h^2 \\\\kappa_2 f''(x)\\\\]
-                        <p>故 \\\\(\\\\operatorname{Bias} \\\\approx \\\\frac{1}{2} h^2 \\\\kappa_2 f''(x)\\\\)。</p>
-                        <p><strong>方差</strong>：\\\\(\\\\operatorname{Var}(\\\\hat{f}_h(x)) = \\\\frac{1}{n}\\\\operatorname{Var}\\\\left(\\\\frac{1}{h}K\\\\left(\\\\frac{x-X_1}{h}\\\\right)\\\\right) \\\\approx \\\\frac{R(K)}{nh} f(x)\\\\)。</p>
+                        <p><strong>偏差</strong>：\\(\\mathbb{E}[\\hat{f}_h(x)] = \\int \\frac{1}{h} K\\left(\\frac{x-t}{h}\\right) f(t)\\,dt\\)。
+                        令 \\(u = (x-t)/h\\)，Taylor 展开 \\(f(x - uh)\\) 到二阶：</p>
+                        \\[\\mathbb{E}[\\hat{f}_h(x)] \\approx f(x) + \\frac{1}{2}h^2 \\kappa_2 f''(x)\\]
+                        <p>故 \\(\\operatorname{Bias} \\approx \\frac{1}{2} h^2 \\kappa_2 f''(x)\\)。</p>
+                        <p><strong>方差</strong>：\\(\\operatorname{Var}(\\hat{f}_h(x)) = \\frac{1}{n}\\operatorname{Var}\\left(\\frac{1}{h}K\\left(\\frac{x-X_1}{h}\\right)\\right) \\approx \\frac{R(K)}{nh} f(x)\\)。</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
@@ -680,20 +680,20 @@ window.CHAPTERS.push({
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 14.14 (MISE 最优带宽)</div>
                     <div class="env-body">
-                        <p>最小化积分均方误差 \\\\(\\\\operatorname{MISE} = \\\\int \\\\operatorname{MSE}(\\\\hat{f}_h(x))\\\\,dx\\\\)，
+                        <p>最小化积分均方误差 \\(\\operatorname{MISE} = \\int \\operatorname{MSE}(\\hat{f}_h(x))\\,dx\\)，
                         最优带宽为：</p>
-                        \\\\[h^* = \\\\left(\\\\frac{R(K)}{\\\\kappa_2^2 R(f'')}\\\\right)^{1/5} n^{-1/5}\\\\]
-                        <p>其中 \\\\(R(f'') = \\\\int [f''(x)]^2\\\\,dx\\\\)。对应的最优 MISE 收敛速率为 \\\\(O(n^{-4/5})\\\\)。</p>
+                        \\[h^* = \\left(\\frac{R(K)}{\\kappa_2^2 R(f'')}\\right)^{1/5} n^{-1/5}\\]
+                        <p>其中 \\(R(f'') = \\int [f''(x)]^2\\,dx\\)。对应的最优 MISE 收敛速率为 \\(O(n^{-4/5})\\)。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 14.15 (Silverman 经验法则)</div>
                     <div class="env-body">
-                        <p>对 Gaussian 核，假设真实分布为 \\\\(N(\\\\mu, \\\\sigma^2)\\\\)，Silverman 建议：</p>
-                        \\\\[h_{\\\\text{Silverman}} = 1.06 \\\\cdot \\\\hat{\\\\sigma} \\\\cdot n^{-1/5}\\\\]
-                        <p>其中 \\\\(\\\\hat{\\\\sigma}\\\\) 为样本标准差。更稳健的版本使用
-                        \\\\(\\\\hat{\\\\sigma} = \\\\min(\\\\text{sd}, \\\\text{IQR}/1.34)\\\\)。</p>
+                        <p>对 Gaussian 核，假设真实分布为 \\(N(\\mu, \\sigma^2)\\)，Silverman 建议：</p>
+                        \\[h_{\\text{Silverman}} = 1.06 \\cdot \\hat{\\sigma} \\cdot n^{-1/5}\\]
+                        <p>其中 \\(\\hat{\\sigma}\\) 为样本标准差。更稳健的版本使用
+                        \\(\\hat{\\sigma} = \\min(\\text{sd}, \\text{IQR}/1.34)\\)。</p>
                     </div>
                 </div>
 
@@ -703,8 +703,8 @@ window.CHAPTERS.push({
                         <p>Silverman 法则基于正态参考分布，对多峰分布会过度平滑。
                         对于复杂分布，应使用交叉验证 (cross-validation) 选择带宽。
                         留一交叉验证 (LOOCV) 最小化
-                        \\\\(\\\\operatorname{CV}(h) = \\\\int \\\\hat{f}_h^2 - \\\\frac{2}{n}\\\\sum_i \\\\hat{f}_{h,-i}(X_i)\\\\)，
-                        其中 \\\\(\\\\hat{f}_{h,-i}\\\\) 是去掉第 \\\\(i\\\\) 个点后的 KDE。</p>
+                        \\(\\operatorname{CV}(h) = \\int \\hat{f}_h^2 - \\frac{2}{n}\\sum_i \\hat{f}_{h,-i}(X_i)\\)，
+                        其中 \\(\\hat{f}_{h,-i}\\) 是去掉第 \\(i\\) 个点后的 KDE。</p>
                     </div>
                 </div>
 
@@ -946,19 +946,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '证明 KDE 是一个合法的概率密度函数，即 \\\\(\\\\hat{f}_h(x) \\\\geq 0\\\\) 且 \\\\(\\\\int \\\\hat{f}_h(x)\\\\,dx = 1\\\\)。',
-                    hint: '利用核函数 \\\\(K\\\\) 的性质和积分的线性性。',
-                    solution: '由于 \\\\(K(u) \\\\geq 0\\\\)，每个 \\\\(\\\\frac{1}{nh} K\\\\left(\\\\frac{x - X_i}{h}\\\\right) \\\\geq 0\\\\)，所以 \\\\(\\\\hat{f}_h(x) \\\\geq 0\\\\)。积分：\\\\(\\\\int \\\\hat{f}_h(x)\\\\,dx = \\\\frac{1}{n} \\\\sum_{i=1}^n \\\\int \\\\frac{1}{h} K\\\\left(\\\\frac{x - X_i}{h}\\\\right) dx\\\\)。令 \\\\(u = (x - X_i)/h\\\\)，\\\\(dx = h\\\\,du\\\\)，每项变为 \\\\(\\\\int K(u)\\\\,du = 1\\\\)。所以 \\\\(\\\\int \\\\hat{f}_h = \\\\frac{1}{n} \\\\cdot n = 1\\\\)。'
+                    question: '证明 KDE 是一个合法的概率密度函数，即 \\(\\hat{f}_h(x) \\geq 0\\) 且 \\(\\int \\hat{f}_h(x)\\,dx = 1\\)。',
+                    hint: '利用核函数 \\(K\\) 的性质和积分的线性性。',
+                    solution: '由于 \\(K(u) \\geq 0\\)，每个 \\(\\frac{1}{nh} K\\left(\\frac{x - X_i}{h}\\right) \\geq 0\\)，所以 \\(\\hat{f}_h(x) \\geq 0\\)。积分：\\(\\int \\hat{f}_h(x)\\,dx = \\frac{1}{n} \\sum_{i=1}^n \\int \\frac{1}{h} K\\left(\\frac{x - X_i}{h}\\right) dx\\)。令 \\(u = (x - X_i)/h\\)，\\(dx = h\\,du\\)，每项变为 \\(\\int K(u)\\,du = 1\\)。所以 \\(\\int \\hat{f}_h = \\frac{1}{n} \\cdot n = 1\\)。'
                 },
                 {
-                    question: '对于带宽 \\\\(h\\\\) 和样本量 \\\\(n\\\\)，KDE 的偏差和方差分别如何随 \\\\(h\\\\) 变化？由此解释偏差-方差权衡。',
+                    question: '对于带宽 \\(h\\) 和样本量 \\(n\\)，KDE 的偏差和方差分别如何随 \\(h\\) 变化？由此解释偏差-方差权衡。',
                     hint: '回顾 Theorem 14.13 中 MSE 的两个组成部分。',
-                    solution: '偏差 \\\\(\\\\approx \\\\frac{1}{2} h^2 \\\\kappa_2 f\'\'(x)\\\\)，随 \\\\(h\\\\) 增大而增大（过度平滑导致高偏差）。方差 \\\\(\\\\approx \\\\frac{R(K)}{nh} f(x)\\\\)，随 \\\\(h\\\\) 增大而减小（平滑降低了波动）。这构成经典的偏差-方差权衡。MSE 最优带宽 \\\\(h^* \\\\propto n^{-1/5}\\\\) 平衡两者，使 MISE 以 \\\\(O(n^{-4/5})\\\\) 的速率收敛。'
+                    solution: '偏差 \\(\\approx \\frac{1}{2} h^2 \\kappa_2 f\'\'(x)\\)，随 \\(h\\) 增大而增大（过度平滑导致高偏差）。方差 \\(\\approx \\frac{R(K)}{nh} f(x)\\)，随 \\(h\\) 增大而减小（平滑降低了波动）。这构成经典的偏差-方差权衡。MSE 最优带宽 \\(h^* \\propto n^{-1/5}\\) 平衡两者，使 MISE 以 \\(O(n^{-4/5})\\) 的速率收敛。'
                 },
                 {
-                    question: '对 \\\\(n = 100\\\\) 个标准正态样本，计算 Silverman 经验法则给出的带宽，并与 MISE 最优带宽比较。',
-                    hint: '标准正态的标准差为 1，且 \\\\(R(\\\\phi\'\') = \\\\frac{3}{8\\\\sqrt{\\\\pi}}\\\\)（其中 \\\\(\\\\phi\\\\) 是标准正态密度）。',
-                    solution: 'Silverman: \\\\(h = 1.06 \\\\cdot 1 \\\\cdot 100^{-1/5} = 1.06 \\\\cdot 0.3981 \\\\approx 0.422\\\\)。MISE 最优带宽（Gaussian 核估计标准正态）：\\\\(h^* = \\\\left(\\\\frac{R(K)}{\\\\kappa_2^2 R(f\'\')}\\\\right)^{1/5} n^{-1/5}\\\\)。对 Gaussian 核 \\\\(R(K) = 1/(2\\\\sqrt{\\\\pi})\\\\)，\\\\(\\\\kappa_2 = 1\\\\)，\\\\(R(f\'\') = 3/(8\\\\sqrt{\\\\pi})\\\\)，代入得 \\\\(h^* = (4/3)^{1/5} \\\\cdot 100^{-1/5} \\\\approx 1.06 \\\\cdot 0.398 \\\\approx 0.422\\\\)。两者一致，因为 Silverman 法则正是基于正态参考分布推导的。'
+                    question: '对 \\(n = 100\\) 个标准正态样本，计算 Silverman 经验法则给出的带宽，并与 MISE 最优带宽比较。',
+                    hint: '标准正态的标准差为 1，且 \\(R(\\phi\'\') = \\frac{3}{8\\sqrt{\\pi}}\\)（其中 \\(\\phi\\) 是标准正态密度）。',
+                    solution: 'Silverman: \\(h = 1.06 \\cdot 1 \\cdot 100^{-1/5} = 1.06 \\cdot 0.3981 \\approx 0.422\\)。MISE 最优带宽（Gaussian 核估计标准正态）：\\(h^* = \\left(\\frac{R(K)}{\\kappa_2^2 R(f\'\')}\\right)^{1/5} n^{-1/5}\\)。对 Gaussian 核 \\(R(K) = 1/(2\\sqrt{\\pi})\\)，\\(\\kappa_2 = 1\\)，\\(R(f\'\') = 3/(8\\sqrt{\\pi})\\)，代入得 \\(h^* = (4/3)^{1/5} \\cdot 100^{-1/5} \\approx 1.06 \\cdot 0.398 \\approx 0.422\\)。两者一致，因为 Silverman 法则正是基于正态参考分布推导的。'
                 }
             ]
         },
@@ -978,14 +978,14 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 14.16 (排列检验)</div>
                     <div class="env-body">
-                        <p>设两组样本 \\\\(\\\\mathbf{X} = (X_1, \\\\ldots, X_m)\\\\) 和 \\\\(\\\\mathbf{Y} = (Y_1, \\\\ldots, Y_n)\\\\)，
-                        检验 \\\\(H_0: F_X = F_Y\\\\)。选择检验统计量 \\\\(T\\\\)（如两组均值之差 \\\\(\\\\bar{X} - \\\\bar{Y}\\\\)）。</p>
+                        <p>设两组样本 \\(\\mathbf{X} = (X_1, \\ldots, X_m)\\) 和 \\(\\mathbf{Y} = (Y_1, \\ldots, Y_n)\\)，
+                        检验 \\(H_0: F_X = F_Y\\)。选择检验统计量 \\(T\\)（如两组均值之差 \\(\\bar{X} - \\bar{Y}\\)）。</p>
                         <p><strong>排列检验</strong>的步骤：</p>
                         <ol>
-                            <li>计算观测统计量 \\\\(T_{\\\\text{obs}}\\\\)。</li>
-                            <li>在 \\\\(H_0\\\\) 下，组标签是可交换的。将 \\\\(N = m + n\\\\) 个观测随机分配为大小 \\\\(m\\\\) 和 \\\\(n\\\\) 的两组。</li>
-                            <li>对每种排列计算 \\\\(T\\\\)，得到<strong>排列零分布 (permutation null distribution)</strong>。</li>
-                            <li>\\\\(p\\\\)-值 = 排列中 \\\\(|T| \\\\geq |T_{\\\\text{obs}}|\\\\) 的比例。</li>
+                            <li>计算观测统计量 \\(T_{\\text{obs}}\\)。</li>
+                            <li>在 \\(H_0\\) 下，组标签是可交换的。将 \\(N = m + n\\) 个观测随机分配为大小 \\(m\\) 和 \\(n\\) 的两组。</li>
+                            <li>对每种排列计算 \\(T\\)，得到<strong>排列零分布 (permutation null distribution)</strong>。</li>
+                            <li>\\(p\\)-值 = 排列中 \\(|T| \\geq |T_{\\text{obs}}|\\) 的比例。</li>
                         </ol>
                     </div>
                 </div>
@@ -993,8 +993,8 @@ window.CHAPTERS.push({
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 14.17 (排列检验的精确性)</div>
                     <div class="env-body">
-                        <p>在 \\\\(H_0: F_X = F_Y\\\\) 下，排列检验的 \\\\(p\\\\)-值是<strong>精确的</strong>（exact），即对任意 \\\\(\\\\alpha \\\\in (0, 1)\\\\)，</p>
-                        \\\\[P_{H_0}(p\\\\text{-value} \\\\leq \\\\alpha) \\\\leq \\\\alpha\\\\]
+                        <p>在 \\(H_0: F_X = F_Y\\) 下，排列检验的 \\(p\\)-值是<strong>精确的</strong>（exact），即对任意 \\(\\alpha \\in (0, 1)\\)，</p>
+                        \\[P_{H_0}(p\\text{-value} \\leq \\alpha) \\leq \\alpha\\]
                         <p>这一性质不依赖任何分布假设，也不依赖渐近近似。</p>
                     </div>
                 </div>
@@ -1002,11 +1002,11 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>在 \\\\(H_0\\\\) 下，所有 \\\\(N\\\\) 个观测是 i.i.d. 的，因此
-                        \\\\((X_1, \\\\ldots, X_m, Y_1, \\\\ldots, Y_n)\\\\) 的联合分布关于任意置换不变。
-                        观测到的分组只是 \\\\(\\\\binom{N}{m}\\\\) 种等概率排列之一，
-                        因此 \\\\(T_{\\\\text{obs}}\\\\) 在排列分布中的位置是均匀随机的，
-                        \\\\(p\\\\)-值在 \\\\([0,1]\\\\) 上（离散地）均匀分布，从而保证了 Type I 错误率的精确控制。</p>
+                        <p>在 \\(H_0\\) 下，所有 \\(N\\) 个观测是 i.i.d. 的，因此
+                        \\((X_1, \\ldots, X_m, Y_1, \\ldots, Y_n)\\) 的联合分布关于任意置换不变。
+                        观测到的分组只是 \\(\\binom{N}{m}\\) 种等概率排列之一，
+                        因此 \\(T_{\\text{obs}}\\) 在排列分布中的位置是均匀随机的，
+                        \\(p\\)-值在 \\([0,1]\\) 上（离散地）均匀分布，从而保证了 Type I 错误率的精确控制。</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
@@ -1016,12 +1016,12 @@ window.CHAPTERS.push({
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p><strong>精确排列检验</strong>：枚举所有 \\\\(\\\\binom{N}{m}\\\\) 种排列，计算每种排列下的统计量。
-                        当 \\\\(N\\\\) 小时可行，但组合数增长极快（如 \\\\(N = 20, m = 10\\\\) 时有 184,756 种排列）。</p>
-                        <p><strong>Monte Carlo 排列检验</strong>：随机抽取 \\\\(B\\\\) 次排列（通常 \\\\(B = 10000\\\\)），
-                        用蒙特卡洛比例近似 \\\\(p\\\\)-值：</p>
-                        \\\\[\\\\hat{p} = \\\\frac{\\\\#\\\\{b : |T^{(b)}| \\\\geq |T_{\\\\text{obs}}|\\\\} + 1}{B + 1}\\\\]
-                        <p>分子和分母加 1 是为了避免 \\\\(p = 0\\\\) 并保证保守性。</p>
+                        <p><strong>精确排列检验</strong>：枚举所有 \\(\\binom{N}{m}\\) 种排列，计算每种排列下的统计量。
+                        当 \\(N\\) 小时可行，但组合数增长极快（如 \\(N = 20, m = 10\\) 时有 184,756 种排列）。</p>
+                        <p><strong>Monte Carlo 排列检验</strong>：随机抽取 \\(B\\) 次排列（通常 \\(B = 10000\\)），
+                        用蒙特卡洛比例近似 \\(p\\)-值：</p>
+                        \\[\\hat{p} = \\frac{\\#\\{b : |T^{(b)}| \\geq |T_{\\text{obs}}|\\} + 1}{B + 1}\\]
+                        <p>分子和分母加 1 是为了避免 \\(p = 0\\) 并保证保守性。</p>
                     </div>
                 </div>
 
@@ -1031,10 +1031,10 @@ window.CHAPTERS.push({
                         <p>治疗组（5 人）和对照组（5 人）的恢复时间如下：</p>
                         <p>治疗组：3.2, 2.8, 4.1, 3.0, 2.5</p>
                         <p>对照组：5.1, 4.8, 6.2, 5.5, 4.3</p>
-                        <p>\\\\(T_{\\\\text{obs}} = \\\\bar{X} - \\\\bar{Y} = 3.12 - 5.18 = -2.06\\\\)。</p>
-                        <p>共有 \\\\(\\\\binom{10}{5} = 252\\\\) 种排列。通过枚举，仅 1 种排列的
-                        \\\\(|T| \\\\geq 2.06\\\\)（即当前观测本身），故 \\\\(p \\\\approx 1/252 \\\\approx 0.004\\\\)。
-                        强烈拒绝 \\\\(H_0\\\\)。</p>
+                        <p>\\(T_{\\text{obs}} = \\bar{X} - \\bar{Y} = 3.12 - 5.18 = -2.06\\)。</p>
+                        <p>共有 \\(\\binom{10}{5} = 252\\) 种排列。通过枚举，仅 1 种排列的
+                        \\(|T| \\geq 2.06\\)（即当前观测本身），故 \\(p \\approx 1/252 \\approx 0.004\\)。
+                        强烈拒绝 \\(H_0\\)。</p>
                     </div>
                 </div>
 
@@ -1046,7 +1046,7 @@ window.CHAPTERS.push({
                         <p><strong>Bootstrap</strong>（第 17 章详述）是另一种基于重抽样的方法：</p>
                         <ul>
                             <li><strong>排列检验</strong>：在零假设下，对标签进行<strong>无放回</strong>重排列。</li>
-                            <li><strong>Bootstrap</strong>：从经验分布 \\\\(\\\\hat{F}_n\\\\) 中<strong>有放回</strong>重抽样，用于估计统计量的分布。</li>
+                            <li><strong>Bootstrap</strong>：从经验分布 \\(\\hat{F}_n\\) 中<strong>有放回</strong>重抽样，用于估计统计量的分布。</li>
                         </ul>
                         <p>排列检验用于<strong>假设检验</strong>（生成零分布），而 Bootstrap 更多用于<strong>区间估计</strong>（构造置信区间）和<strong>标准误估计</strong>。</p>
                     </div>
@@ -1065,8 +1065,8 @@ window.CHAPTERS.push({
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>排列检验虽然"精确"，但它检验的 \\\\(H_0\\\\) 是<strong>所有分布特征完全相同</strong>，
-                        不仅是均值或中位数。拒绝 \\\\(H_0\\\\) 可能是因为均值不同、方差不同或分布形状不同。
+                        <p>排列检验虽然"精确"，但它检验的 \\(H_0\\) 是<strong>所有分布特征完全相同</strong>，
+                        不仅是均值或中位数。拒绝 \\(H_0\\) 可能是因为均值不同、方差不同或分布形状不同。
                         解释结果时需谨慎。</p>
                     </div>
                 </div>
@@ -1438,19 +1438,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '说明排列检验与参数 \\\\(t\\\\) 检验的主要区别。在什么情况下你会优先选择排列检验？',
+                    question: '说明排列检验与参数 \\(t\\) 检验的主要区别。在什么情况下你会优先选择排列检验？',
                     hint: '考虑分布假设、样本量和精确性。',
-                    solution: '\\\\(t\\\\) 检验假设数据来自正态分布（或依赖大样本 CLT 近似），而排列检验无需任何分布假设，其 \\\\(p\\\\)-值是精确的。优先选择排列检验的情况：(1) 样本量很小，CLT 近似不可靠；(2) 数据明显偏离正态；(3) 需要精确的 \\\\(p\\\\)-值控制。但当正态假设成立且样本量较大时，\\\\(t\\\\) 检验更高效（power 更高）。'
+                    solution: '\\(t\\) 检验假设数据来自正态分布（或依赖大样本 CLT 近似），而排列检验无需任何分布假设，其 \\(p\\)-值是精确的。优先选择排列检验的情况：(1) 样本量很小，CLT 近似不可靠；(2) 数据明显偏离正态；(3) 需要精确的 \\(p\\)-值控制。但当正态假设成立且样本量较大时，\\(t\\) 检验更高效（power 更高）。'
                 },
                 {
-                    question: '在 Monte Carlo 排列检验中，为什么 \\\\(p\\\\)-值公式用 \\\\((\\\\#\\\\{|T^{(b)}| \\\\geq |T_{\\\\text{obs}}|\\\\} + 1)/(B + 1)\\\\) 而非 \\\\(\\\\#/B\\\\)？',
+                    question: '在 Monte Carlo 排列检验中，为什么 \\(p\\)-值公式用 \\((\\#\\{|T^{(b)}| \\geq |T_{\\text{obs}}|\\} + 1)/(B + 1)\\) 而非 \\(\\#/B\\)？',
                     hint: '考虑观测数据本身也是排列分布的一部分。',
-                    solution: '观测到的数据排列本身就是 \\\\(H_0\\\\) 下所有可能排列之一。将其计入分子（+1）和分母（+1）保证了：(1) \\\\(p\\\\)-值永远不为 0，这是合理的——即使所有模拟排列的统计量都更小，也不能完全排除 \\\\(H_0\\\\)；(2) 保证了保守性，即实际 Type I 错误率不超过名义水平 \\\\(\\\\alpha\\\\)。这相当于把观测本身看作"第 0 次"排列。'
+                    solution: '观测到的数据排列本身就是 \\(H_0\\) 下所有可能排列之一。将其计入分子（+1）和分母（+1）保证了：(1) \\(p\\)-值永远不为 0，这是合理的——即使所有模拟排列的统计量都更小，也不能完全排除 \\(H_0\\)；(2) 保证了保守性，即实际 Type I 错误率不超过名义水平 \\(\\alpha\\)。这相当于把观测本身看作"第 0 次"排列。'
                 },
                 {
                     question: '排列检验和 Bootstrap 检验的核心区别是什么？各自的重抽样策略是什么？',
                     hint: '关键区别在于"有放回"与"无放回"以及各自的目标。',
-                    solution: '排列检验：对标签进行<strong>无放回</strong>排列（保持组大小不变），目的是在 \\\\(H_0\\\\) 下生成零分布，用于假设检验。Bootstrap：从经验分布中<strong>有放回</strong>重抽样，目的是估计统计量的抽样分布，主要用于标准误估计和置信区间构造。排列检验利用 \\\\(H_0\\\\) 下的对称性/可交换性，Bootstrap 则直接模拟抽样过程而不需要 \\\\(H_0\\\\) 的结构。'
+                    solution: '排列检验：对标签进行<strong>无放回</strong>排列（保持组大小不变），目的是在 \\(H_0\\) 下生成零分布，用于假设检验。Bootstrap：从经验分布中<strong>有放回</strong>重抽样，目的是估计统计量的抽样分布，主要用于标准误估计和置信区间构造。排列检验利用 \\(H_0\\) 下的对称性/可交换性，Bootstrap 则直接模拟抽样过程而不需要 \\(H_0\\) 的结构。'
                 }
             ]
         }

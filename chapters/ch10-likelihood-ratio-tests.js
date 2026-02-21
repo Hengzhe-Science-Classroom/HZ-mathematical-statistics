@@ -18,26 +18,26 @@ window.CHAPTERS.push({
 
                 <h3>问题设定</h3>
 
-                <p>考虑一个参数空间 \\\\(\\\\Theta = \\\\{\\\\theta_0, \\\\theta_1\\\\}\\\\) 只有两个元素的检验问题：</p>
-                \\\\[H_0: \\\\theta = \\\\theta_0 \\\\quad \\\\text{vs} \\\\quad H_1: \\\\theta = \\\\theta_1\\\\]
+                <p>考虑一个参数空间 \\(\\Theta = \\{\\theta_0, \\theta_1\\}\\) 只有两个元素的检验问题：</p>
+                \\[H_0: \\theta = \\theta_0 \\quad \\text{vs} \\quad H_1: \\theta = \\theta_1\\]
 
-                <p>这里 \\\\(H_0\\\\) 和 \\\\(H_1\\\\) 都是<strong>简单假设</strong>（simple hypothesis），即参数值完全确定。设观测数据 \\\\(X = (X_1, \\\\ldots, X_n)\\\\) 的联合密度（或概率质量函数）在 \\\\(\\\\theta_0\\\\) 下为 \\\\(f(\\\\mathbf{x} \\\\mid \\\\theta_0)\\\\)，在 \\\\(\\\\theta_1\\\\) 下为 \\\\(f(\\\\mathbf{x} \\\\mid \\\\theta_1)\\\\)。</p>
+                <p>这里 \\(H_0\\) 和 \\(H_1\\) 都是<strong>简单假设</strong>（simple hypothesis），即参数值完全确定。设观测数据 \\(X = (X_1, \\ldots, X_n)\\) 的联合密度（或概率质量函数）在 \\(\\theta_0\\) 下为 \\(f(\\mathbf{x} \\mid \\theta_0)\\)，在 \\(\\theta_1\\) 下为 \\(f(\\mathbf{x} \\mid \\theta_1)\\)。</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 10.1 (似然比 Likelihood Ratio)</div>
                     <div class="env-body">
-                        <p>给定观测 \\\\(\\\\mathbf{x}\\\\)，<strong>似然比</strong>定义为</p>
-                        \\\\[\\\\Lambda(\\\\mathbf{x}) = \\\\frac{L(\\\\theta_1 \\\\mid \\\\mathbf{x})}{L(\\\\theta_0 \\\\mid \\\\mathbf{x})} = \\\\frac{f(\\\\mathbf{x} \\\\mid \\\\theta_1)}{f(\\\\mathbf{x} \\\\mid \\\\theta_0)}\\\\]
-                        <p>当 \\\\(\\\\Lambda(\\\\mathbf{x})\\\\) 很大时，数据在 \\\\(\\\\theta_1\\\\) 下比在 \\\\(\\\\theta_0\\\\) 下更可能出现，因此倾向于拒绝 \\\\(H_0\\\\)。</p>
+                        <p>给定观测 \\(\\mathbf{x}\\)，<strong>似然比</strong>定义为</p>
+                        \\[\\Lambda(\\mathbf{x}) = \\frac{L(\\theta_1 \\mid \\mathbf{x})}{L(\\theta_0 \\mid \\mathbf{x})} = \\frac{f(\\mathbf{x} \\mid \\theta_1)}{f(\\mathbf{x} \\mid \\theta_0)}\\]
+                        <p>当 \\(\\Lambda(\\mathbf{x})\\) 很大时，数据在 \\(\\theta_1\\) 下比在 \\(\\theta_0\\) 下更可能出现，因此倾向于拒绝 \\(H_0\\)。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 10.2 (最大功效检验 Most Powerful Test)</div>
                     <div class="env-body">
-                        <p>设 \\\\(\\\\mathcal{C}\\\\) 是所有显著性水平为 \\\\(\\\\alpha\\\\) 的检验的集合。检验 \\\\(\\\\varphi^*\\\\) 称为水平 \\\\(\\\\alpha\\\\) 的<strong>最大功效检验</strong>（MP test），如果</p>
-                        \\\\[E_{\\\\theta_0}[\\\\varphi^*] \\\\le \\\\alpha \\\\quad \\\\text{and} \\\\quad E_{\\\\theta_1}[\\\\varphi^*] \\\\ge E_{\\\\theta_1}[\\\\varphi] \\\\quad \\\\forall \\\\varphi \\\\in \\\\mathcal{C}\\\\]
-                        <p>其中 \\\\(\\\\varphi(\\\\mathbf{x}) \\\\in [0,1]\\\\) 是随机化检验函数，表示拒绝 \\\\(H_0\\\\) 的概率。</p>
+                        <p>设 \\(\\mathcal{C}\\) 是所有显著性水平为 \\(\\alpha\\) 的检验的集合。检验 \\(\\varphi^*\\) 称为水平 \\(\\alpha\\) 的<strong>最大功效检验</strong>（MP test），如果</p>
+                        \\[E_{\\theta_0}[\\varphi^*] \\le \\alpha \\quad \\text{and} \\quad E_{\\theta_1}[\\varphi^*] \\ge E_{\\theta_1}[\\varphi] \\quad \\forall \\varphi \\in \\mathcal{C}\\]
+                        <p>其中 \\(\\varphi(\\mathbf{x}) \\in [0,1]\\) 是随机化检验函数，表示拒绝 \\(H_0\\) 的概率。</p>
                     </div>
                 </div>
 
@@ -46,29 +46,29 @@ window.CHAPTERS.push({
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 10.1 (Neyman-Pearson Lemma)</div>
                     <div class="env-body">
-                        <p>考虑检验 \\\\(H_0: \\\\theta = \\\\theta_0\\\\) vs \\\\(H_1: \\\\theta = \\\\theta_1\\\\)。对于给定的 \\\\(\\\\alpha \\\\in (0,1)\\\\)，存在常数 \\\\(k \\\\ge 0\\\\) 和 \\\\(\\\\gamma \\\\in [0,1]\\\\) 使得检验</p>
-                        \\\\[\\\\varphi^*(\\\\mathbf{x}) = \\\\begin{cases} 1 & \\\\text{if } \\\\Lambda(\\\\mathbf{x}) > k \\\\\\\\ \\\\gamma & \\\\text{if } \\\\Lambda(\\\\mathbf{x}) = k \\\\\\\\ 0 & \\\\text{if } \\\\Lambda(\\\\mathbf{x}) < k \\\\end{cases}\\\\]
-                        <p>满足 \\\\(E_{\\\\theta_0}[\\\\varphi^*] = \\\\alpha\\\\)，并且 \\\\(\\\\varphi^*\\\\) 是水平 \\\\(\\\\alpha\\\\) 下的最大功效检验。</p>
-                        <p>更进一步，任何水平 \\\\(\\\\alpha\\\\) 的 MP 检验在几乎处处意义下必然具有上述形式。</p>
+                        <p>考虑检验 \\(H_0: \\theta = \\theta_0\\) vs \\(H_1: \\theta = \\theta_1\\)。对于给定的 \\(\\alpha \\in (0,1)\\)，存在常数 \\(k \\ge 0\\) 和 \\(\\gamma \\in [0,1]\\) 使得检验</p>
+                        \\[\\varphi^*(\\mathbf{x}) = \\begin{cases} 1 & \\text{if } \\Lambda(\\mathbf{x}) > k \\\\ \\gamma & \\text{if } \\Lambda(\\mathbf{x}) = k \\\\ 0 & \\text{if } \\Lambda(\\mathbf{x}) < k \\end{cases}\\]
+                        <p>满足 \\(E_{\\theta_0}[\\varphi^*] = \\alpha\\)，并且 \\(\\varphi^*\\) 是水平 \\(\\alpha\\) 下的最大功效检验。</p>
+                        <p>更进一步，任何水平 \\(\\alpha\\) 的 MP 检验在几乎处处意义下必然具有上述形式。</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>设 \\\\(\\\\varphi\\\\) 是任意满足 \\\\(E_{\\\\theta_0}[\\\\varphi] \\\\le \\\\alpha\\\\) 的检验函数。我们需要证明 \\\\(E_{\\\\theta_1}[\\\\varphi^*] \\\\ge E_{\\\\theta_1}[\\\\varphi]\\\\)。</p>
+                        <p>设 \\(\\varphi\\) 是任意满足 \\(E_{\\theta_0}[\\varphi] \\le \\alpha\\) 的检验函数。我们需要证明 \\(E_{\\theta_1}[\\varphi^*] \\ge E_{\\theta_1}[\\varphi]\\)。</p>
                         <p>考虑差值</p>
-                        \\\\[E_{\\\\theta_1}[\\\\varphi^*] - E_{\\\\theta_1}[\\\\varphi] = \\\\int (\\\\varphi^* - \\\\varphi) f(\\\\mathbf{x} \\\\mid \\\\theta_1) \\\\, d\\\\mu(\\\\mathbf{x})\\\\]
-                        <p>由 \\\\(\\\\varphi^*\\\\) 的定义：</p>
+                        \\[E_{\\theta_1}[\\varphi^*] - E_{\\theta_1}[\\varphi] = \\int (\\varphi^* - \\varphi) f(\\mathbf{x} \\mid \\theta_1) \\, d\\mu(\\mathbf{x})\\]
+                        <p>由 \\(\\varphi^*\\) 的定义：</p>
                         <ul>
-                            <li>当 \\\\(\\\\Lambda(\\\\mathbf{x}) > k\\\\) 时，\\\\(\\\\varphi^* = 1\\\\)，所以 \\\\(\\\\varphi^* - \\\\varphi \\\\ge 0\\\\)，且 \\\\(f(\\\\mathbf{x}|\\\\theta_1) > k \\\\cdot f(\\\\mathbf{x}|\\\\theta_0)\\\\)</li>
-                            <li>当 \\\\(\\\\Lambda(\\\\mathbf{x}) < k\\\\) 时，\\\\(\\\\varphi^* = 0\\\\)，所以 \\\\(\\\\varphi^* - \\\\varphi \\\\le 0\\\\)，且 \\\\(f(\\\\mathbf{x}|\\\\theta_1) < k \\\\cdot f(\\\\mathbf{x}|\\\\theta_0)\\\\)</li>
+                            <li>当 \\(\\Lambda(\\mathbf{x}) > k\\) 时，\\(\\varphi^* = 1\\)，所以 \\(\\varphi^* - \\varphi \\ge 0\\)，且 \\(f(\\mathbf{x}|\\theta_1) > k \\cdot f(\\mathbf{x}|\\theta_0)\\)</li>
+                            <li>当 \\(\\Lambda(\\mathbf{x}) < k\\) 时，\\(\\varphi^* = 0\\)，所以 \\(\\varphi^* - \\varphi \\le 0\\)，且 \\(f(\\mathbf{x}|\\theta_1) < k \\cdot f(\\mathbf{x}|\\theta_0)\\)</li>
                         </ul>
-                        <p>在两种情况下都有 \\\\((\\\\varphi^* - \\\\varphi)(f(\\\\mathbf{x}|\\\\theta_1) - k \\\\cdot f(\\\\mathbf{x}|\\\\theta_0)) \\\\ge 0\\\\)。因此</p>
-                        \\\\[\\\\int (\\\\varphi^* - \\\\varphi)(f(\\\\mathbf{x}|\\\\theta_1) - k f(\\\\mathbf{x}|\\\\theta_0)) \\\\, d\\\\mu \\\\ge 0\\\\]
+                        <p>在两种情况下都有 \\((\\varphi^* - \\varphi)(f(\\mathbf{x}|\\theta_1) - k \\cdot f(\\mathbf{x}|\\theta_0)) \\ge 0\\)。因此</p>
+                        \\[\\int (\\varphi^* - \\varphi)(f(\\mathbf{x}|\\theta_1) - k f(\\mathbf{x}|\\theta_0)) \\, d\\mu \\ge 0\\]
                         <p>展开得</p>
-                        \\\\[E_{\\\\theta_1}[\\\\varphi^*] - E_{\\\\theta_1}[\\\\varphi] \\\\ge k(E_{\\\\theta_0}[\\\\varphi^*] - E_{\\\\theta_0}[\\\\varphi]) = k(\\\\alpha - E_{\\\\theta_0}[\\\\varphi]) \\\\ge 0\\\\]
-                        <p>最后一个不等式因为 \\\\(k \\\\ge 0\\\\) 且 \\\\(E_{\\\\theta_0}[\\\\varphi] \\\\le \\\\alpha\\\\)。</p>
+                        \\[E_{\\theta_1}[\\varphi^*] - E_{\\theta_1}[\\varphi] \\ge k(E_{\\theta_0}[\\varphi^*] - E_{\\theta_0}[\\varphi]) = k(\\alpha - E_{\\theta_0}[\\varphi]) \\ge 0\\]
+                        <p>最后一个不等式因为 \\(k \\ge 0\\) 且 \\(E_{\\theta_0}[\\varphi] \\le \\alpha\\)。</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
@@ -76,16 +76,16 @@ window.CHAPTERS.push({
                 <div class="env-block example">
                     <div class="env-title">Example 10.1 (正态均值的 NP 检验)</div>
                     <div class="env-body">
-                        <p>设 \\\\(X_1, \\\\ldots, X_n \\\\overset{\\\\text{iid}}{\\\\sim} N(\\\\mu, \\\\sigma^2)\\\\)，\\\\(\\\\sigma^2\\\\) 已知。检验 \\\\(H_0: \\\\mu = \\\\mu_0\\\\) vs \\\\(H_1: \\\\mu = \\\\mu_1\\\\)（其中 \\\\(\\\\mu_1 > \\\\mu_0\\\\)）。似然比为</p>
-                        \\\\[\\\\Lambda(\\\\mathbf{x}) = \\\\frac{\\\\prod_{i=1}^n \\\\frac{1}{\\\\sqrt{2\\\\pi}\\\\sigma} e^{-(x_i - \\\\mu_1)^2/(2\\\\sigma^2)}}{\\\\prod_{i=1}^n \\\\frac{1}{\\\\sqrt{2\\\\pi}\\\\sigma} e^{-(x_i - \\\\mu_0)^2/(2\\\\sigma^2)}} = \\\\exp\\\\left\\\\{\\\\frac{(\\\\mu_1 - \\\\mu_0)}{\\\\sigma^2} \\\\left(\\\\sum_{i=1}^n x_i - \\\\frac{n(\\\\mu_0 + \\\\mu_1)}{2}\\\\right)\\\\right\\\\}\\\\]
-                        <p>因为 \\\\(\\\\mu_1 > \\\\mu_0\\\\)，\\\\(\\\\Lambda(\\\\mathbf{x}) > k\\\\) 等价于 \\\\(\\\\bar{x} > c\\\\)。因此 NP 最大功效检验拒绝域为 \\\\(\\\\bar{X} > \\\\mu_0 + z_\\\\alpha \\\\cdot \\\\sigma / \\\\sqrt{n}\\\\)。</p>
+                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)，\\(\\sigma^2\\) 已知。检验 \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu = \\mu_1\\)（其中 \\(\\mu_1 > \\mu_0\\)）。似然比为</p>
+                        \\[\\Lambda(\\mathbf{x}) = \\frac{\\prod_{i=1}^n \\frac{1}{\\sqrt{2\\pi}\\sigma} e^{-(x_i - \\mu_1)^2/(2\\sigma^2)}}{\\prod_{i=1}^n \\frac{1}{\\sqrt{2\\pi}\\sigma} e^{-(x_i - \\mu_0)^2/(2\\sigma^2)}} = \\exp\\left\\{\\frac{(\\mu_1 - \\mu_0)}{\\sigma^2} \\left(\\sum_{i=1}^n x_i - \\frac{n(\\mu_0 + \\mu_1)}{2}\\right)\\right\\}\\]
+                        <p>因为 \\(\\mu_1 > \\mu_0\\)，\\(\\Lambda(\\mathbf{x}) > k\\) 等价于 \\(\\bar{x} > c\\)。因此 NP 最大功效检验拒绝域为 \\(\\bar{X} > \\mu_0 + z_\\alpha \\cdot \\sigma / \\sqrt{n}\\)。</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition: 为什么似然比是最优的？</div>
                     <div class="env-body">
-                        <p>想象你是一个侦探，手中有两个嫌疑人（\\\\(\\\\theta_0\\\\) 和 \\\\(\\\\theta_1\\\\)）。对于每条线索（观测值），你计算"这条线索在嫌疑人 1 犯案时出现的可能性"与"在嫌疑人 0 犯案时出现的可能性"之比。当这个比值足够大时，你有理由认为嫌疑人 1 更可能。NP 引理告诉我们：这种基于似然比的判断方式是所有判断策略中最灵敏的。</p>
+                        <p>想象你是一个侦探，手中有两个嫌疑人（\\(\\theta_0\\) 和 \\(\\theta_1\\)）。对于每条线索（观测值），你计算"这条线索在嫌疑人 1 犯案时出现的可能性"与"在嫌疑人 0 犯案时出现的可能性"之比。当这个比值足够大时，你有理由认为嫌疑人 1 更可能。NP 引理告诉我们：这种基于似然比的判断方式是所有判断策略中最灵敏的。</p>
                     </div>
                 </div>
 
@@ -183,19 +183,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\\\(X \\\\sim \\\\text{Bernoulli}(p)\\\\)，检验 \\\\(H_0: p = 0.5\\\\) vs \\\\(H_1: p = 0.7\\\\)，基于 \\\\(n\\\\) 次独立观测。写出似然比，并说明 NP 最大功效检验的拒绝域形式。',
-                    hint: '似然比可以表示为 \\\\(\\\\left(\\\\frac{0.7}{0.5}\\\\right)^{\\\\sum x_i} \\\\left(\\\\frac{0.3}{0.5}\\\\right)^{n - \\\\sum x_i}\\\\)，这是 \\\\(\\\\sum x_i\\\\) 的单调递增函数。',
-                    solution: '似然比为 \\\\(\\\\Lambda = \\\\prod_{i=1}^n \\\\frac{0.7^{x_i} \\\\cdot 0.3^{1-x_i}}{0.5^{x_i} \\\\cdot 0.5^{1-x_i}} = \\\\left(\\\\frac{7}{5}\\\\right)^{\\\\sum x_i} \\\\left(\\\\frac{3}{5}\\\\right)^{n - \\\\sum x_i}\\\\)。取对数得 \\\\(\\\\log \\\\Lambda = (\\\\sum x_i) \\\\log \\\\frac{7}{3} + n \\\\log \\\\frac{3}{5}\\\\)。因为 \\\\(\\\\log(7/3) > 0\\\\)，\\\\(\\\\Lambda > k\\\\) 等价于 \\\\(\\\\sum X_i > c\\\\)。在 \\\\(H_0\\\\) 下，\\\\(\\\\sum X_i \\\\sim \\\\text{Binomial}(n, 0.5)\\\\)，选择 \\\\(c\\\\) 使得 \\\\(P_{H_0}(\\\\sum X_i > c) = \\\\alpha\\\\)。由于 \\\\(\\\\sum X_i\\\\) 是离散的，可能需要随机化才能精确达到水平 \\\\(\\\\alpha\\\\)。'
+                    question: '设 \\(X \\sim \\text{Bernoulli}(p)\\)，检验 \\(H_0: p = 0.5\\) vs \\(H_1: p = 0.7\\)，基于 \\(n\\) 次独立观测。写出似然比，并说明 NP 最大功效检验的拒绝域形式。',
+                    hint: '似然比可以表示为 \\(\\left(\\frac{0.7}{0.5}\\right)^{\\sum x_i} \\left(\\frac{0.3}{0.5}\\right)^{n - \\sum x_i}\\)，这是 \\(\\sum x_i\\) 的单调递增函数。',
+                    solution: '似然比为 \\(\\Lambda = \\prod_{i=1}^n \\frac{0.7^{x_i} \\cdot 0.3^{1-x_i}}{0.5^{x_i} \\cdot 0.5^{1-x_i}} = \\left(\\frac{7}{5}\\right)^{\\sum x_i} \\left(\\frac{3}{5}\\right)^{n - \\sum x_i}\\)。取对数得 \\(\\log \\Lambda = (\\sum x_i) \\log \\frac{7}{3} + n \\log \\frac{3}{5}\\)。因为 \\(\\log(7/3) > 0\\)，\\(\\Lambda > k\\) 等价于 \\(\\sum X_i > c\\)。在 \\(H_0\\) 下，\\(\\sum X_i \\sim \\text{Binomial}(n, 0.5)\\)，选择 \\(c\\) 使得 \\(P_{H_0}(\\sum X_i > c) = \\alpha\\)。由于 \\(\\sum X_i\\) 是离散的，可能需要随机化才能精确达到水平 \\(\\alpha\\)。'
                 },
                 {
-                    question: '证明 Neyman-Pearson 检验的功效函数 \\\\(\\\\beta(\\\\theta_1)\\\\) 满足 \\\\(\\\\beta(\\\\theta_1) \\\\ge \\\\alpha\\\\)，即功效不低于显著性水平（除非 \\\\(f(\\\\mathbf{x}|\\\\theta_0) = f(\\\\mathbf{x}|\\\\theta_1)\\\\) a.e.）。',
-                    hint: '考虑常值检验 \\\\(\\\\varphi(\\\\mathbf{x}) = \\\\alpha\\\\)（以概率 \\\\(\\\\alpha\\\\) 随机拒绝），它的功效恰好是 \\\\(\\\\alpha\\\\)。',
-                    solution: '常值检验 \\\\(\\\\varphi(\\\\mathbf{x}) \\\\equiv \\\\alpha\\\\) 满足 \\\\(E_{\\\\theta_0}[\\\\varphi] = \\\\alpha\\\\)，因此属于水平 \\\\(\\\\alpha\\\\) 的检验类。其功效为 \\\\(E_{\\\\theta_1}[\\\\varphi] = \\\\alpha\\\\)。由 NP 引理，MP 检验 \\\\(\\\\varphi^*\\\\) 的功效满足 \\\\(E_{\\\\theta_1}[\\\\varphi^*] \\\\ge E_{\\\\theta_1}[\\\\varphi] = \\\\alpha\\\\)。等号成立当且仅当 \\\\(\\\\Lambda(\\\\mathbf{x}) = 1\\\\) a.e.，即两个分布几乎处处相同。'
+                    question: '证明 Neyman-Pearson 检验的功效函数 \\(\\beta(\\theta_1)\\) 满足 \\(\\beta(\\theta_1) \\ge \\alpha\\)，即功效不低于显著性水平（除非 \\(f(\\mathbf{x}|\\theta_0) = f(\\mathbf{x}|\\theta_1)\\) a.e.）。',
+                    hint: '考虑常值检验 \\(\\varphi(\\mathbf{x}) = \\alpha\\)（以概率 \\(\\alpha\\) 随机拒绝），它的功效恰好是 \\(\\alpha\\)。',
+                    solution: '常值检验 \\(\\varphi(\\mathbf{x}) \\equiv \\alpha\\) 满足 \\(E_{\\theta_0}[\\varphi] = \\alpha\\)，因此属于水平 \\(\\alpha\\) 的检验类。其功效为 \\(E_{\\theta_1}[\\varphi] = \\alpha\\)。由 NP 引理，MP 检验 \\(\\varphi^*\\) 的功效满足 \\(E_{\\theta_1}[\\varphi^*] \\ge E_{\\theta_1}[\\varphi] = \\alpha\\)。等号成立当且仅当 \\(\\Lambda(\\mathbf{x}) = 1\\) a.e.，即两个分布几乎处处相同。'
                 },
                 {
-                    question: '设 \\\\(X_1, \\\\ldots, X_n \\\\overset{\\\\text{iid}}{\\\\sim} \\\\text{Exp}(\\\\lambda)\\\\)，检验 \\\\(H_0: \\\\lambda = 1\\\\) vs \\\\(H_1: \\\\lambda = 2\\\\)。求水平 \\\\(\\\\alpha\\\\) 的 NP 最大功效检验。',
-                    hint: '写出似然比并化简。注意 \\\\(\\\\Lambda\\\\) 是 \\\\(\\\\sum x_i\\\\) 的单调函数。在 \\\\(H_0\\\\) 下，\\\\(2\\\\sum X_i \\\\sim \\\\chi^2(2n)\\\\)。',
-                    solution: '似然比 \\\\(\\\\Lambda = \\\\frac{2^n e^{-2\\\\sum x_i}}{e^{-\\\\sum x_i}} = 2^n e^{-\\\\sum x_i}\\\\)。\\\\(\\\\Lambda > k\\\\) 等价于 \\\\(\\\\sum x_i < c\\\\)（因为指数函数递减）。在 \\\\(H_0\\\\) 下，\\\\(X_i \\\\sim \\\\text{Exp}(1)\\\\)，所以 \\\\(2\\\\sum X_i \\\\sim \\\\chi^2(2n)\\\\)。拒绝域为 \\\\(2\\\\sum X_i < \\\\chi^2_{1-\\\\alpha}(2n)\\\\)，其中 \\\\(\\\\chi^2_{1-\\\\alpha}(2n)\\\\) 是 \\\\(\\\\chi^2(2n)\\\\) 分布的 \\\\(1-\\\\alpha\\\\) 下分位数。'
+                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Exp}(\\lambda)\\)，检验 \\(H_0: \\lambda = 1\\) vs \\(H_1: \\lambda = 2\\)。求水平 \\(\\alpha\\) 的 NP 最大功效检验。',
+                    hint: '写出似然比并化简。注意 \\(\\Lambda\\) 是 \\(\\sum x_i\\) 的单调函数。在 \\(H_0\\) 下，\\(2\\sum X_i \\sim \\chi^2(2n)\\)。',
+                    solution: '似然比 \\(\\Lambda = \\frac{2^n e^{-2\\sum x_i}}{e^{-\\sum x_i}} = 2^n e^{-\\sum x_i}\\)。\\(\\Lambda > k\\) 等价于 \\(\\sum x_i < c\\)（因为指数函数递减）。在 \\(H_0\\) 下，\\(X_i \\sim \\text{Exp}(1)\\)，所以 \\(2\\sum X_i \\sim \\chi^2(2n)\\)。拒绝域为 \\(2\\sum X_i < \\chi^2_{1-\\alpha}(2n)\\)，其中 \\(\\chi^2_{1-\\alpha}(2n)\\) 是 \\(\\chi^2(2n)\\) 分布的 \\(1-\\alpha\\) 下分位数。'
                 }
             ]
         },
@@ -208,15 +208,15 @@ window.CHAPTERS.push({
             content: `
                 <h2>一致最大功效检验</h2>
 
-                <p>Neyman-Pearson 引理处理的是简单对简单的假设检验。在实际应用中，备择假设通常是复合的（composite），例如 \\\\(H_1: \\\\theta > \\\\theta_0\\\\)。自然的问题是：是否存在一个检验，在所有备择假设值下都是最大功效的？这就引出了<strong>一致最大功效检验</strong>（UMP test）的概念。</p>
+                <p>Neyman-Pearson 引理处理的是简单对简单的假设检验。在实际应用中，备择假设通常是复合的（composite），例如 \\(H_1: \\theta > \\theta_0\\)。自然的问题是：是否存在一个检验，在所有备择假设值下都是最大功效的？这就引出了<strong>一致最大功效检验</strong>（UMP test）的概念。</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 10.3 (一致最大功效检验 UMP Test)</div>
                     <div class="env-body">
-                        <p>设检验问题为 \\\\(H_0: \\\\theta \\\\in \\\\Theta_0\\\\) vs \\\\(H_1: \\\\theta \\\\in \\\\Theta_1\\\\)。检验 \\\\(\\\\varphi^*\\\\) 称为水平 \\\\(\\\\alpha\\\\) 的<strong>一致最大功效检验</strong>（UMP test），如果：</p>
+                        <p>设检验问题为 \\(H_0: \\theta \\in \\Theta_0\\) vs \\(H_1: \\theta \\in \\Theta_1\\)。检验 \\(\\varphi^*\\) 称为水平 \\(\\alpha\\) 的<strong>一致最大功效检验</strong>（UMP test），如果：</p>
                         <ol>
-                            <li>\\\\(\\\\sup_{\\\\theta \\\\in \\\\Theta_0} E_\\\\theta[\\\\varphi^*] \\\\le \\\\alpha\\\\)（控制犯错概率）</li>
-                            <li>对所有 \\\\(\\\\theta \\\\in \\\\Theta_1\\\\) 和所有满足 (1) 的检验 \\\\(\\\\varphi\\\\)，都有 \\\\(E_\\\\theta[\\\\varphi^*] \\\\ge E_\\\\theta[\\\\varphi]\\\\)（在每个备择参数值下功效最大）</li>
+                            <li>\\(\\sup_{\\theta \\in \\Theta_0} E_\\theta[\\varphi^*] \\le \\alpha\\)（控制犯错概率）</li>
+                            <li>对所有 \\(\\theta \\in \\Theta_1\\) 和所有满足 (1) 的检验 \\(\\varphi\\)，都有 \\(E_\\theta[\\varphi^*] \\ge E_\\theta[\\varphi]\\)（在每个备择参数值下功效最大）</li>
                         </ol>
                     </div>
                 </div>
@@ -228,40 +228,40 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 10.4 (单调似然比 MLR)</div>
                     <div class="env-body">
-                        <p>设 \\\\(\\\\{f(\\\\mathbf{x} | \\\\theta): \\\\theta \\\\in \\\\Theta\\\\}\\\\) 是一个参数族，\\\\(T(\\\\mathbf{x})\\\\) 是一个实值统计量。如果对所有 \\\\(\\\\theta_1 > \\\\theta_0\\\\)，似然比</p>
-                        \\\\[\\\\frac{f(\\\\mathbf{x} | \\\\theta_1)}{f(\\\\mathbf{x} | \\\\theta_0)}\\\\]
-                        <p>是 \\\\(T(\\\\mathbf{x})\\\\) 的<strong>非递减函数</strong>（在 \\\\(f(\\\\mathbf{x}|\\\\theta_0) > 0\\\\) 的集合上），则称该族关于 \\\\(T\\\\) 具有<strong>单调似然比</strong>性质。</p>
+                        <p>设 \\(\\{f(\\mathbf{x} | \\theta): \\theta \\in \\Theta\\}\\) 是一个参数族，\\(T(\\mathbf{x})\\) 是一个实值统计量。如果对所有 \\(\\theta_1 > \\theta_0\\)，似然比</p>
+                        \\[\\frac{f(\\mathbf{x} | \\theta_1)}{f(\\mathbf{x} | \\theta_0)}\\]
+                        <p>是 \\(T(\\mathbf{x})\\) 的<strong>非递减函数</strong>（在 \\(f(\\mathbf{x}|\\theta_0) > 0\\) 的集合上），则称该族关于 \\(T\\) 具有<strong>单调似然比</strong>性质。</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
                     <div class="env-title">Example 10.2 (指数族的 MLR 性质)</div>
                     <div class="env-body">
-                        <p>设 \\\\(X_1, \\\\ldots, X_n\\\\) 来自单参数指数族</p>
-                        \\\\[f(x | \\\\theta) = h(x) c(\\\\theta) \\\\exp(\\\\eta(\\\\theta) T(x))\\\\]
-                        <p>如果 \\\\(\\\\eta(\\\\theta)\\\\) 是 \\\\(\\\\theta\\\\) 的严格递增函数，则似然比为</p>
-                        \\\\[\\\\frac{f(\\\\mathbf{x}|\\\\theta_1)}{f(\\\\mathbf{x}|\\\\theta_0)} = \\\\frac{c(\\\\theta_1)^n}{c(\\\\theta_0)^n} \\\\exp\\\\left\\\\{(\\\\eta(\\\\theta_1) - \\\\eta(\\\\theta_0)) \\\\sum_{i=1}^n T(x_i)\\\\right\\\\}\\\\]
-                        <p>当 \\\\(\\\\theta_1 > \\\\theta_0\\\\) 时，\\\\(\\\\eta(\\\\theta_1) - \\\\eta(\\\\theta_0) > 0\\\\)，所以似然比是 \\\\(\\\\sum T(X_i)\\\\) 的严格递增函数。因此指数族（在 \\\\(\\\\eta\\\\) 递增的条件下）具有 MLR 性质。</p>
-                        <p>例如：正态 \\\\(N(\\\\mu, \\\\sigma^2)\\\\)（\\\\(\\\\sigma^2\\\\) 已知）关于 \\\\(\\\\bar{X}\\\\)，Poisson 关于 \\\\(\\\\sum X_i\\\\)，指数分布关于 \\\\(\\\\sum X_i\\\\) 等。</p>
+                        <p>设 \\(X_1, \\ldots, X_n\\) 来自单参数指数族</p>
+                        \\[f(x | \\theta) = h(x) c(\\theta) \\exp(\\eta(\\theta) T(x))\\]
+                        <p>如果 \\(\\eta(\\theta)\\) 是 \\(\\theta\\) 的严格递增函数，则似然比为</p>
+                        \\[\\frac{f(\\mathbf{x}|\\theta_1)}{f(\\mathbf{x}|\\theta_0)} = \\frac{c(\\theta_1)^n}{c(\\theta_0)^n} \\exp\\left\\{(\\eta(\\theta_1) - \\eta(\\theta_0)) \\sum_{i=1}^n T(x_i)\\right\\}\\]
+                        <p>当 \\(\\theta_1 > \\theta_0\\) 时，\\(\\eta(\\theta_1) - \\eta(\\theta_0) > 0\\)，所以似然比是 \\(\\sum T(X_i)\\) 的严格递增函数。因此指数族（在 \\(\\eta\\) 递增的条件下）具有 MLR 性质。</p>
+                        <p>例如：正态 \\(N(\\mu, \\sigma^2)\\)（\\(\\sigma^2\\) 已知）关于 \\(\\bar{X}\\)，Poisson 关于 \\(\\sum X_i\\)，指数分布关于 \\(\\sum X_i\\) 等。</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 10.2 (Karlin-Rubin Theorem)</div>
                     <div class="env-body">
-                        <p>设 \\\\(\\\\{f(\\\\mathbf{x}|\\\\theta)\\\\}\\\\) 关于统计量 \\\\(T(\\\\mathbf{x})\\\\) 具有 MLR 性质。考虑单边检验</p>
-                        \\\\[H_0: \\\\theta \\\\le \\\\theta_0 \\\\quad \\\\text{vs} \\\\quad H_1: \\\\theta > \\\\theta_0\\\\]
-                        <p>则 UMP 水平 \\\\(\\\\alpha\\\\) 检验具有拒绝域的形式</p>
-                        \\\\[T(\\\\mathbf{x}) > t_0\\\\]
-                        <p>其中 \\\\(t_0\\\\) 由 \\\\(P_{\\\\theta_0}(T(\\\\mathbf{X}) > t_0) = \\\\alpha\\\\) 确定（可能需要随机化）。</p>
+                        <p>设 \\(\\{f(\\mathbf{x}|\\theta)\\}\\) 关于统计量 \\(T(\\mathbf{x})\\) 具有 MLR 性质。考虑单边检验</p>
+                        \\[H_0: \\theta \\le \\theta_0 \\quad \\text{vs} \\quad H_1: \\theta > \\theta_0\\]
+                        <p>则 UMP 水平 \\(\\alpha\\) 检验具有拒绝域的形式</p>
+                        \\[T(\\mathbf{x}) > t_0\\]
+                        <p>其中 \\(t_0\\) 由 \\(P_{\\theta_0}(T(\\mathbf{X}) > t_0) = \\alpha\\) 确定（可能需要随机化）。</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof (Sketch)</div>
                     <div class="env-body">
-                        <p>对于任意固定的 \\\\(\\\\theta_1 > \\\\theta_0\\\\)，由 MLR 性质和 NP 引理，水平 \\\\(\\\\alpha\\\\) 下检验 \\\\(H_0: \\\\theta = \\\\theta_0\\\\) vs \\\\(H_1: \\\\theta = \\\\theta_1\\\\) 的 MP 检验形式为 "拒绝当 \\\\(T > t_0\\\\)"。关键在于：临界值 \\\\(t_0\\\\) 只依赖于 \\\\(\\\\theta_0\\\\) 和 \\\\(\\\\alpha\\\\)，而不依赖于 \\\\(\\\\theta_1\\\\) 的具体值。因此同一个检验对所有 \\\\(\\\\theta_1 > \\\\theta_0\\\\) 都是 MP 的，即为 UMP。</p>
-                        <p>还需验证 \\\\(\\\\sup_{\\\\theta \\\\le \\\\theta_0} E_\\\\theta[\\\\varphi] \\\\le \\\\alpha\\\\)。这由功效函数 \\\\(\\\\beta(\\\\theta) = P_\\\\theta(T > t_0)\\\\) 在 MLR 条件下的单调性保证：对 \\\\(\\\\theta \\\\le \\\\theta_0\\\\)，\\\\(\\\\beta(\\\\theta) \\\\le \\\\beta(\\\\theta_0) = \\\\alpha\\\\)。</p>
+                        <p>对于任意固定的 \\(\\theta_1 > \\theta_0\\)，由 MLR 性质和 NP 引理，水平 \\(\\alpha\\) 下检验 \\(H_0: \\theta = \\theta_0\\) vs \\(H_1: \\theta = \\theta_1\\) 的 MP 检验形式为 "拒绝当 \\(T > t_0\\)"。关键在于：临界值 \\(t_0\\) 只依赖于 \\(\\theta_0\\) 和 \\(\\alpha\\)，而不依赖于 \\(\\theta_1\\) 的具体值。因此同一个检验对所有 \\(\\theta_1 > \\theta_0\\) 都是 MP 的，即为 UMP。</p>
+                        <p>还需验证 \\(\\sup_{\\theta \\le \\theta_0} E_\\theta[\\varphi] \\le \\alpha\\)。这由功效函数 \\(\\beta(\\theta) = P_\\theta(T > t_0)\\) 在 MLR 条件下的单调性保证：对 \\(\\theta \\le \\theta_0\\)，\\(\\beta(\\theta) \\le \\beta(\\theta_0) = \\alpha\\)。</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
@@ -271,7 +271,7 @@ window.CHAPTERS.push({
                 <div class="env-block warning">
                     <div class="env-title">Warning: UMP Tests Do Not Exist for Two-Sided Alternatives</div>
                     <div class="env-body">
-                        <p>考虑 \\\\(H_0: \\\\theta = \\\\theta_0\\\\) vs \\\\(H_1: \\\\theta \\\\ne \\\\theta_0\\\\)。对于 \\\\(\\\\theta_1 > \\\\theta_0\\\\)，NP 检验拒绝 \\\\(T\\\\) 大的观测；但对 \\\\(\\\\theta_1 < \\\\theta_0\\\\)，NP 检验拒绝 \\\\(T\\\\) 小的观测。这两个方向的检验互相矛盾，因此不可能同时在两个方向上达到最大功效。</p>
+                        <p>考虑 \\(H_0: \\theta = \\theta_0\\) vs \\(H_1: \\theta \\ne \\theta_0\\)。对于 \\(\\theta_1 > \\theta_0\\)，NP 检验拒绝 \\(T\\) 大的观测；但对 \\(\\theta_1 < \\theta_0\\)，NP 检验拒绝 \\(T\\) 小的观测。这两个方向的检验互相矛盾，因此不可能同时在两个方向上达到最大功效。</p>
                         <p>对于双侧备择假设，常用的替代方案包括：</p>
                         <ul>
                             <li><strong>一致最大功效无偏检验</strong>（UMPU test）</li>
@@ -416,19 +416,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\\\(X_1, \\\\ldots, X_n \\\\overset{\\\\text{iid}}{\\\\sim} N(\\\\mu, 1)\\\\)。证明对于检验 \\\\(H_0: \\\\mu \\\\le 0\\\\) vs \\\\(H_1: \\\\mu > 0\\\\)，UMP 水平 \\\\(\\\\alpha\\\\) 检验的拒绝域为 \\\\(\\\\bar{X} > z_\\\\alpha / \\\\sqrt{n}\\\\)。',
-                    hint: '正态分布关于 \\\\(\\\\bar{X}\\\\) 具有 MLR 性质，直接应用 Karlin-Rubin 定理。',
-                    solution: '正态密度可写为 \\\\(f(x|\\\\mu) = \\\\frac{1}{\\\\sqrt{2\\\\pi}} \\\\exp(-x^2/2 + \\\\mu x - \\\\mu^2/2)\\\\)，这是以 \\\\(\\\\eta(\\\\mu) = \\\\mu\\\\)（关于 \\\\(\\\\mu\\\\) 递增）为自然参数、\\\\(T(x) = x\\\\) 为充分统计量的指数族。因此联合密度关于 \\\\(\\\\sum X_i\\\\)（等价于 \\\\(\\\\bar{X}\\\\)）具有 MLR 性质。由 Karlin-Rubin 定理，UMP 检验拒绝当 \\\\(\\\\bar{X} > c\\\\)。在 \\\\(\\\\mu = 0\\\\)（边界值）下，\\\\(\\\\bar{X} \\\\sim N(0, 1/n)\\\\)，所以 \\\\(c = z_\\\\alpha / \\\\sqrt{n}\\\\)。'
+                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, 1)\\)。证明对于检验 \\(H_0: \\mu \\le 0\\) vs \\(H_1: \\mu > 0\\)，UMP 水平 \\(\\alpha\\) 检验的拒绝域为 \\(\\bar{X} > z_\\alpha / \\sqrt{n}\\)。',
+                    hint: '正态分布关于 \\(\\bar{X}\\) 具有 MLR 性质，直接应用 Karlin-Rubin 定理。',
+                    solution: '正态密度可写为 \\(f(x|\\mu) = \\frac{1}{\\sqrt{2\\pi}} \\exp(-x^2/2 + \\mu x - \\mu^2/2)\\)，这是以 \\(\\eta(\\mu) = \\mu\\)（关于 \\(\\mu\\) 递增）为自然参数、\\(T(x) = x\\) 为充分统计量的指数族。因此联合密度关于 \\(\\sum X_i\\)（等价于 \\(\\bar{X}\\)）具有 MLR 性质。由 Karlin-Rubin 定理，UMP 检验拒绝当 \\(\\bar{X} > c\\)。在 \\(\\mu = 0\\)（边界值）下，\\(\\bar{X} \\sim N(0, 1/n)\\)，所以 \\(c = z_\\alpha / \\sqrt{n}\\)。'
                 },
                 {
-                    question: '解释为什么 \\\\(H_0: \\\\mu = 0\\\\) vs \\\\(H_1: \\\\mu \\\\ne 0\\\\) 没有 UMP 检验（对正态总体 \\\\(N(\\\\mu, 1)\\\\)），并说明通常使用什么检验代替。',
-                    hint: '考虑 \\\\(\\\\mu > 0\\\\) 和 \\\\(\\\\mu < 0\\\\) 两种情形下 NP 检验的方向。',
-                    solution: '对于 \\\\(\\\\mu_1 > 0\\\\)，NP MP 检验拒绝大的 \\\\(\\\\bar{X}\\\\)（右尾）；对于 \\\\(\\\\mu_1 < 0\\\\)，NP MP 检验拒绝小的 \\\\(\\\\bar{X}\\\\)（左尾）。假设存在 UMP 检验 \\\\(\\\\varphi^*\\\\)，则它必须同时在右尾和左尾达到最大功效，这是不可能的（除非 \\\\(\\\\varphi^* = \\\\alpha\\\\) a.e.）。通常的替代方案是双尾 z-检验：拒绝当 \\\\(|\\\\bar{X}| > z_{\\\\alpha/2}/\\\\sqrt{n}\\\\)。此检验是 UMPU（一致最大功效无偏）检验。'
+                    question: '解释为什么 \\(H_0: \\mu = 0\\) vs \\(H_1: \\mu \\ne 0\\) 没有 UMP 检验（对正态总体 \\(N(\\mu, 1)\\)），并说明通常使用什么检验代替。',
+                    hint: '考虑 \\(\\mu > 0\\) 和 \\(\\mu < 0\\) 两种情形下 NP 检验的方向。',
+                    solution: '对于 \\(\\mu_1 > 0\\)，NP MP 检验拒绝大的 \\(\\bar{X}\\)（右尾）；对于 \\(\\mu_1 < 0\\)，NP MP 检验拒绝小的 \\(\\bar{X}\\)（左尾）。假设存在 UMP 检验 \\(\\varphi^*\\)，则它必须同时在右尾和左尾达到最大功效，这是不可能的（除非 \\(\\varphi^* = \\alpha\\) a.e.）。通常的替代方案是双尾 z-检验：拒绝当 \\(|\\bar{X}| > z_{\\alpha/2}/\\sqrt{n}\\)。此检验是 UMPU（一致最大功效无偏）检验。'
                 },
                 {
-                    question: '设 \\\\(X_1, \\\\ldots, X_n \\\\overset{\\\\text{iid}}{\\\\sim} \\\\text{Exp}(\\\\lambda)\\\\)。对 \\\\(H_0: \\\\lambda \\\\ge \\\\lambda_0\\\\) vs \\\\(H_1: \\\\lambda < \\\\lambda_0\\\\)，求 UMP 水平 \\\\(\\\\alpha\\\\) 检验。',
-                    hint: '指数族的密度为 \\\\(f(x|\\\\lambda) = \\\\lambda e^{-\\\\lambda x}\\\\)，自然参数 \\\\(\\\\eta(\\\\lambda) = -\\\\lambda\\\\) 关于 \\\\(\\\\lambda\\\\) 递减。注意递减意味着似然比关于 \\\\(T = \\\\sum X_i\\\\) 的单调方向。',
-                    solution: '写成指数族形式：\\\\(f(x|\\\\lambda) = \\\\lambda \\\\exp(-\\\\lambda x)\\\\)，自然参数 \\\\(\\\\eta = -\\\\lambda\\\\) 关于 \\\\(\\\\lambda\\\\) 递减。因此关于 \\\\(T = \\\\sum X_i\\\\)，似然比在 \\\\(\\\\lambda_1 < \\\\lambda_0\\\\) 时（\\\\(\\\\eta_1 > \\\\eta_0\\\\)）是 \\\\(T\\\\) 的递增函数。等价地，\\\\(\\\\Lambda > k\\\\) 等价于 \\\\(T > c\\\\)。UMP 检验拒绝当 \\\\(\\\\sum X_i > c\\\\)。在 \\\\(H_0\\\\) 边界 \\\\(\\\\lambda = \\\\lambda_0\\\\) 下，\\\\(2\\\\lambda_0 \\\\sum X_i \\\\sim \\\\chi^2(2n)\\\\)，所以 \\\\(c = \\\\chi^2_\\\\alpha(2n) / (2\\\\lambda_0)\\\\)。'
+                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Exp}(\\lambda)\\)。对 \\(H_0: \\lambda \\ge \\lambda_0\\) vs \\(H_1: \\lambda < \\lambda_0\\)，求 UMP 水平 \\(\\alpha\\) 检验。',
+                    hint: '指数族的密度为 \\(f(x|\\lambda) = \\lambda e^{-\\lambda x}\\)，自然参数 \\(\\eta(\\lambda) = -\\lambda\\) 关于 \\(\\lambda\\) 递减。注意递减意味着似然比关于 \\(T = \\sum X_i\\) 的单调方向。',
+                    solution: '写成指数族形式：\\(f(x|\\lambda) = \\lambda \\exp(-\\lambda x)\\)，自然参数 \\(\\eta = -\\lambda\\) 关于 \\(\\lambda\\) 递减。因此关于 \\(T = \\sum X_i\\)，似然比在 \\(\\lambda_1 < \\lambda_0\\) 时（\\(\\eta_1 > \\eta_0\\)）是 \\(T\\) 的递增函数。等价地，\\(\\Lambda > k\\) 等价于 \\(T > c\\)。UMP 检验拒绝当 \\(\\sum X_i > c\\)。在 \\(H_0\\) 边界 \\(\\lambda = \\lambda_0\\) 下，\\(2\\lambda_0 \\sum X_i \\sim \\chi^2(2n)\\)，所以 \\(c = \\chi^2_\\alpha(2n) / (2\\lambda_0)\\)。'
                 }
             ]
         },
@@ -441,22 +441,22 @@ window.CHAPTERS.push({
             content: `
                 <h2>广义似然比检验</h2>
 
-                <p>当 UMP 检验不存在（如双侧检验或多参数情形）时，我们需要一种通用的构造检验的方法。<strong>广义似然比检验</strong>（Generalized Likelihood Ratio Test, GLRT）是最广泛使用的方法之一。其基本思想是：比较在约束（\\\\(H_0\\\\)）下和无约束下的最大似然值。</p>
+                <p>当 UMP 检验不存在（如双侧检验或多参数情形）时，我们需要一种通用的构造检验的方法。<strong>广义似然比检验</strong>（Generalized Likelihood Ratio Test, GLRT）是最广泛使用的方法之一。其基本思想是：比较在约束（\\(H_0\\)）下和无约束下的最大似然值。</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 10.5 (广义似然比统计量 GLRT Statistic)</div>
                     <div class="env-body">
-                        <p>设参数空间为 \\\\(\\\\Theta\\\\)，零假设对应的参数子空间为 \\\\(\\\\Theta_0 \\\\subset \\\\Theta\\\\)。<strong>广义似然比统计量</strong>定义为</p>
-                        \\\\[\\\\Lambda(\\\\mathbf{x}) = \\\\frac{\\\\sup_{\\\\theta \\\\in \\\\Theta_0} L(\\\\theta | \\\\mathbf{x})}{\\\\sup_{\\\\theta \\\\in \\\\Theta} L(\\\\theta | \\\\mathbf{x})}\\\\]
-                        <p>显然 \\\\(0 \\\\le \\\\Lambda(\\\\mathbf{x}) \\\\le 1\\\\)。当 \\\\(\\\\Lambda\\\\) 接近 0 时，说明约束模型（\\\\(H_0\\\\)）的最佳拟合远不如无约束模型，因此有理由拒绝 \\\\(H_0\\\\)。</p>
-                        <p>GLRT 拒绝域为 \\\\(\\\\Lambda(\\\\mathbf{x}) < c\\\\)，或等价地 \\\\(-2 \\\\log \\\\Lambda(\\\\mathbf{x}) > c'\\\\)。</p>
+                        <p>设参数空间为 \\(\\Theta\\)，零假设对应的参数子空间为 \\(\\Theta_0 \\subset \\Theta\\)。<strong>广义似然比统计量</strong>定义为</p>
+                        \\[\\Lambda(\\mathbf{x}) = \\frac{\\sup_{\\theta \\in \\Theta_0} L(\\theta | \\mathbf{x})}{\\sup_{\\theta \\in \\Theta} L(\\theta | \\mathbf{x})}\\]
+                        <p>显然 \\(0 \\le \\Lambda(\\mathbf{x}) \\le 1\\)。当 \\(\\Lambda\\) 接近 0 时，说明约束模型（\\(H_0\\)）的最佳拟合远不如无约束模型，因此有理由拒绝 \\(H_0\\)。</p>
+                        <p>GLRT 拒绝域为 \\(\\Lambda(\\mathbf{x}) < c\\)，或等价地 \\(-2 \\log \\Lambda(\\mathbf{x}) > c'\\)。</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark (符号约定)</div>
                     <div class="env-body">
-                        <p>注意不同教材对似然比的定义方向可能不同。有些定义分子为无约束 MLE、分母为约束 MLE（此时 \\\\(\\\\Lambda \\\\ge 1\\\\)，拒绝大值）。本课程采用 Casella & Berger 的约定：分子是约束最大似然，分母是全局最大似然，因此 \\\\(\\\\Lambda \\\\in [0, 1]\\\\)，拒绝小值。</p>
+                        <p>注意不同教材对似然比的定义方向可能不同。有些定义分子为无约束 MLE、分母为约束 MLE（此时 \\(\\Lambda \\ge 1\\)，拒绝大值）。本课程采用 Casella & Berger 的约定：分子是约束最大似然，分母是全局最大似然，因此 \\(\\Lambda \\in [0, 1]\\)，拒绝小值。</p>
                     </div>
                 </div>
 
@@ -465,32 +465,32 @@ window.CHAPTERS.push({
                 <div class="env-block example">
                     <div class="env-title">Example 10.3 (单正态均值检验)</div>
                     <div class="env-body">
-                        <p>设 \\\\(X_1, \\\\ldots, X_n \\\\overset{\\\\text{iid}}{\\\\sim} N(\\\\mu, \\\\sigma^2)\\\\)，\\\\(\\\\sigma^2\\\\) 已知。检验 \\\\(H_0: \\\\mu = \\\\mu_0\\\\) vs \\\\(H_1: \\\\mu \\\\ne \\\\mu_0\\\\)。</p>
-                        <p><strong>分母</strong>：无约束 MLE 为 \\\\(\\\\hat{\\\\mu} = \\\\bar{X}\\\\)，代入得</p>
-                        \\\\[\\\\sup_\\\\mu L(\\\\mu) = \\\\left(\\\\frac{1}{2\\\\pi\\\\sigma^2}\\\\right)^{n/2} \\\\exp\\\\left(-\\\\frac{1}{2\\\\sigma^2} \\\\sum (X_i - \\\\bar{X})^2\\\\right)\\\\]
-                        <p><strong>分子</strong>：在 \\\\(\\\\mu = \\\\mu_0\\\\) 约束下</p>
-                        \\\\[L(\\\\mu_0) = \\\\left(\\\\frac{1}{2\\\\pi\\\\sigma^2}\\\\right)^{n/2} \\\\exp\\\\left(-\\\\frac{1}{2\\\\sigma^2} \\\\sum (X_i - \\\\mu_0)^2\\\\right)\\\\]
+                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)，\\(\\sigma^2\\) 已知。检验 \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu \\ne \\mu_0\\)。</p>
+                        <p><strong>分母</strong>：无约束 MLE 为 \\(\\hat{\\mu} = \\bar{X}\\)，代入得</p>
+                        \\[\\sup_\\mu L(\\mu) = \\left(\\frac{1}{2\\pi\\sigma^2}\\right)^{n/2} \\exp\\left(-\\frac{1}{2\\sigma^2} \\sum (X_i - \\bar{X})^2\\right)\\]
+                        <p><strong>分子</strong>：在 \\(\\mu = \\mu_0\\) 约束下</p>
+                        \\[L(\\mu_0) = \\left(\\frac{1}{2\\pi\\sigma^2}\\right)^{n/2} \\exp\\left(-\\frac{1}{2\\sigma^2} \\sum (X_i - \\mu_0)^2\\right)\\]
                         <p>因此</p>
-                        \\\\[\\\\Lambda = \\\\exp\\\\left(-\\\\frac{n}{2\\\\sigma^2}(\\\\bar{X} - \\\\mu_0)^2\\\\right)\\\\]
-                        <p>所以 \\\\(-2\\\\log \\\\Lambda = \\\\frac{n(\\\\bar{X} - \\\\mu_0)^2}{\\\\sigma^2} = Z^2\\\\)，其中 \\\\(Z = \\\\frac{\\\\bar{X} - \\\\mu_0}{\\\\sigma/\\\\sqrt{n}} \\\\sim N(0,1)\\\\)。拒绝域 \\\\(-2\\\\log\\\\Lambda > c'\\\\) 等价于 \\\\(|Z| > \\\\sqrt{c'}\\\\)，即标准的双尾 z-检验。</p>
+                        \\[\\Lambda = \\exp\\left(-\\frac{n}{2\\sigma^2}(\\bar{X} - \\mu_0)^2\\right)\\]
+                        <p>所以 \\(-2\\log \\Lambda = \\frac{n(\\bar{X} - \\mu_0)^2}{\\sigma^2} = Z^2\\)，其中 \\(Z = \\frac{\\bar{X} - \\mu_0}{\\sigma/\\sqrt{n}} \\sim N(0,1)\\)。拒绝域 \\(-2\\log\\Lambda > c'\\) 等价于 \\(|Z| > \\sqrt{c'}\\)，即标准的双尾 z-检验。</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
                     <div class="env-title">Example 10.4 (两正态均值相等的检验)</div>
                     <div class="env-body">
-                        <p>设 \\\\(X_1, \\\\ldots, X_m \\\\overset{\\\\text{iid}}{\\\\sim} N(\\\\mu_1, \\\\sigma^2)\\\\)，\\\\(Y_1, \\\\ldots, Y_n \\\\overset{\\\\text{iid}}{\\\\sim} N(\\\\mu_2, \\\\sigma^2)\\\\)，\\\\(\\\\sigma^2\\\\) 已知。检验 \\\\(H_0: \\\\mu_1 = \\\\mu_2\\\\) vs \\\\(H_1: \\\\mu_1 \\\\ne \\\\mu_2\\\\)。</p>
-                        <p>全参数空间 \\\\(\\\\Theta = \\\\{(\\\\mu_1, \\\\mu_2): \\\\mu_1, \\\\mu_2 \\\\in \\\\mathbb{R}\\\\}\\\\)，约束空间 \\\\(\\\\Theta_0 = \\\\{(\\\\mu, \\\\mu): \\\\mu \\\\in \\\\mathbb{R}\\\\}\\\\)。</p>
+                        <p>设 \\(X_1, \\ldots, X_m \\overset{\\text{iid}}{\\sim} N(\\mu_1, \\sigma^2)\\)，\\(Y_1, \\ldots, Y_n \\overset{\\text{iid}}{\\sim} N(\\mu_2, \\sigma^2)\\)，\\(\\sigma^2\\) 已知。检验 \\(H_0: \\mu_1 = \\mu_2\\) vs \\(H_1: \\mu_1 \\ne \\mu_2\\)。</p>
+                        <p>全参数空间 \\(\\Theta = \\{(\\mu_1, \\mu_2): \\mu_1, \\mu_2 \\in \\mathbb{R}\\}\\)，约束空间 \\(\\Theta_0 = \\{(\\mu, \\mu): \\mu \\in \\mathbb{R}\\}\\)。</p>
                         <p>经计算，GLRT 统计量化简为</p>
-                        \\\\[-2\\\\log\\\\Lambda = \\\\frac{mn}{m+n} \\\\cdot \\\\frac{(\\\\bar{X} - \\\\bar{Y})^2}{\\\\sigma^2}\\\\]
-                        <p>在 \\\\(H_0\\\\) 下，\\\\(\\\\bar{X} - \\\\bar{Y} \\\\sim N(0, \\\\sigma^2(1/m + 1/n))\\\\)，所以 \\\\(-2\\\\log\\\\Lambda \\\\sim \\\\chi^2(1)\\\\)。</p>
+                        \\[-2\\log\\Lambda = \\frac{mn}{m+n} \\cdot \\frac{(\\bar{X} - \\bar{Y})^2}{\\sigma^2}\\]
+                        <p>在 \\(H_0\\) 下，\\(\\bar{X} - \\bar{Y} \\sim N(0, \\sigma^2(1/m + 1/n))\\)，所以 \\(-2\\log\\Lambda \\sim \\chi^2(1)\\)。</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition: GLRT 的几何直觉</div>
                     <div class="env-body">
-                        <p>把似然函数看成参数空间上的一座"山"。无约束 MLE 是山顶（海拔最高点），约束 MLE 是限制在某条路径（\\\\(\\\\Theta_0\\\\)）上的最高点。GLRT 检验的是：站在约束路径的最高点和站在山顶，视野差距有多大？如果差距很大（\\\\(\\\\Lambda\\\\) 很小），说明约束是不合理的，应该拒绝 \\\\(H_0\\\\)。</p>
+                        <p>把似然函数看成参数空间上的一座"山"。无约束 MLE 是山顶（海拔最高点），约束 MLE 是限制在某条路径（\\(\\Theta_0\\)）上的最高点。GLRT 检验的是：站在约束路径的最高点和站在山顶，视野差距有多大？如果差距很大（\\(\\Lambda\\) 很小），说明约束是不合理的，应该拒绝 \\(H_0\\)。</p>
                     </div>
                 </div>
 
@@ -614,19 +614,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\\\(X_1, \\\\ldots, X_n \\\\overset{\\\\text{iid}}{\\\\sim} N(\\\\mu, \\\\sigma^2)\\\\)，其中 \\\\(\\\\mu\\\\) 和 \\\\(\\\\sigma^2\\\\) 都未知。对于 \\\\(H_0: \\\\mu = \\\\mu_0\\\\) vs \\\\(H_1: \\\\mu \\\\ne \\\\mu_0\\\\)，推导 GLRT 统计量并说明其在 \\\\(H_0\\\\) 下的分布。',
-                    hint: '全模型的 MLE 为 \\\\(\\\\hat{\\\\mu} = \\\\bar{X}\\\\)，\\\\(\\\\hat{\\\\sigma}^2 = \\\\frac{1}{n}\\\\sum(X_i - \\\\bar{X})^2\\\\)。约束模型的 MLE 为 \\\\(\\\\mu = \\\\mu_0\\\\)，\\\\(\\\\tilde{\\\\sigma}^2 = \\\\frac{1}{n}\\\\sum(X_i - \\\\mu_0)^2\\\\)。',
-                    solution: '代入计算后 \\\\(\\\\Lambda = \\\\left(\\\\frac{\\\\hat{\\\\sigma}^2}{\\\\tilde{\\\\sigma}^2}\\\\right)^{n/2} = \\\\left(\\\\frac{\\\\sum(X_i - \\\\bar{X})^2}{\\\\sum(X_i - \\\\mu_0)^2}\\\\right)^{n/2} = \\\\left(\\\\frac{1}{1 + T^2/(n-1)}\\\\right)^{n/2}\\\\)，其中 \\\\(T = \\\\frac{\\\\bar{X} - \\\\mu_0}{S/\\\\sqrt{n}}\\\\)，\\\\(S^2 = \\\\frac{1}{n-1}\\\\sum(X_i - \\\\bar{X})^2\\\\)。因此 \\\\(\\\\Lambda < c\\\\) 等价于 \\\\(|T| > c\'\\\\)。在 \\\\(H_0\\\\) 下 \\\\(T \\\\sim t(n-1)\\\\)，即 GLRT 简化为 t-检验。'
+                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)，其中 \\(\\mu\\) 和 \\(\\sigma^2\\) 都未知。对于 \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu \\ne \\mu_0\\)，推导 GLRT 统计量并说明其在 \\(H_0\\) 下的分布。',
+                    hint: '全模型的 MLE 为 \\(\\hat{\\mu} = \\bar{X}\\)，\\(\\hat{\\sigma}^2 = \\frac{1}{n}\\sum(X_i - \\bar{X})^2\\)。约束模型的 MLE 为 \\(\\mu = \\mu_0\\)，\\(\\tilde{\\sigma}^2 = \\frac{1}{n}\\sum(X_i - \\mu_0)^2\\)。',
+                    solution: '代入计算后 \\(\\Lambda = \\left(\\frac{\\hat{\\sigma}^2}{\\tilde{\\sigma}^2}\\right)^{n/2} = \\left(\\frac{\\sum(X_i - \\bar{X})^2}{\\sum(X_i - \\mu_0)^2}\\right)^{n/2} = \\left(\\frac{1}{1 + T^2/(n-1)}\\right)^{n/2}\\)，其中 \\(T = \\frac{\\bar{X} - \\mu_0}{S/\\sqrt{n}}\\)，\\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2\\)。因此 \\(\\Lambda < c\\) 等价于 \\(|T| > c\'\\)。在 \\(H_0\\) 下 \\(T \\sim t(n-1)\\)，即 GLRT 简化为 t-检验。'
                 },
                 {
-                    question: '对于 GLRT，证明 \\\\(0 \\\\le \\\\Lambda(\\\\mathbf{x}) \\\\le 1\\\\) 恒成立，并说明 \\\\(\\\\Lambda = 1\\\\) 在什么情况下发生。',
-                    hint: '注意分子是在 \\\\(\\\\Theta_0 \\\\subset \\\\Theta\\\\) 上的上确界。',
-                    solution: '因为 \\\\(\\\\Theta_0 \\\\subset \\\\Theta\\\\)，所以 \\\\(\\\\sup_{\\\\theta \\\\in \\\\Theta_0} L(\\\\theta) \\\\le \\\\sup_{\\\\theta \\\\in \\\\Theta} L(\\\\theta)\\\\)，因此 \\\\(\\\\Lambda \\\\le 1\\\\)。由于似然函数非负，\\\\(\\\\Lambda \\\\ge 0\\\\)。\\\\(\\\\Lambda = 1\\\\) 当且仅当无约束 MLE 恰好落在 \\\\(\\\\Theta_0\\\\) 中，即数据完全支持零假设。例如在 Example 10.3 中，\\\\(\\\\Lambda = 1\\\\) 当且仅当 \\\\(\\\\bar{X} = \\\\mu_0\\\\)。'
+                    question: '对于 GLRT，证明 \\(0 \\le \\Lambda(\\mathbf{x}) \\le 1\\) 恒成立，并说明 \\(\\Lambda = 1\\) 在什么情况下发生。',
+                    hint: '注意分子是在 \\(\\Theta_0 \\subset \\Theta\\) 上的上确界。',
+                    solution: '因为 \\(\\Theta_0 \\subset \\Theta\\)，所以 \\(\\sup_{\\theta \\in \\Theta_0} L(\\theta) \\le \\sup_{\\theta \\in \\Theta} L(\\theta)\\)，因此 \\(\\Lambda \\le 1\\)。由于似然函数非负，\\(\\Lambda \\ge 0\\)。\\(\\Lambda = 1\\) 当且仅当无约束 MLE 恰好落在 \\(\\Theta_0\\) 中，即数据完全支持零假设。例如在 Example 10.3 中，\\(\\Lambda = 1\\) 当且仅当 \\(\\bar{X} = \\mu_0\\)。'
                 },
                 {
                     question: '（GLRT 不总是最优的）构造一个简单的例子，说明 GLRT 不一定给出 UMP 检验（即使 UMP 检验存在）。',
-                    hint: '考虑正态单侧检验 \\\\(H_0: \\\\mu \\\\le 0\\\\) vs \\\\(H_1: \\\\mu > 0\\\\)，\\\\(\\\\sigma^2\\\\) 已知。GLRT 的行为是什么？',
-                    solution: '设 \\\\(X \\\\sim N(\\\\mu, 1)\\\\)。对于 \\\\(H_0: \\\\mu \\\\le 0\\\\) vs \\\\(H_1: \\\\mu > 0\\\\)：无约束 MLE 为 \\\\(\\\\hat{\\\\mu} = X\\\\)。约束 MLE 为 \\\\(\\\\tilde{\\\\mu} = \\\\min(X, 0)\\\\)。当 \\\\(X > 0\\\\) 时 \\\\(\\\\Lambda = \\\\exp(-X^2/2)\\\\)，当 \\\\(X \\\\le 0\\\\) 时 \\\\(\\\\Lambda = 1\\\\)。GLRT 拒绝当 \\\\(X > c\\\\)，这恰好是 UMP 检验。但考虑更复杂的约束形式（如区间假设 \\\\(H_0: \\\\mu \\\\in [a, b]\\\\)），GLRT 可能不是 UMP。一般地，GLRT 的优势在于通用性而非最优性。'
+                    hint: '考虑正态单侧检验 \\(H_0: \\mu \\le 0\\) vs \\(H_1: \\mu > 0\\)，\\(\\sigma^2\\) 已知。GLRT 的行为是什么？',
+                    solution: '设 \\(X \\sim N(\\mu, 1)\\)。对于 \\(H_0: \\mu \\le 0\\) vs \\(H_1: \\mu > 0\\)：无约束 MLE 为 \\(\\hat{\\mu} = X\\)。约束 MLE 为 \\(\\tilde{\\mu} = \\min(X, 0)\\)。当 \\(X > 0\\) 时 \\(\\Lambda = \\exp(-X^2/2)\\)，当 \\(X \\le 0\\) 时 \\(\\Lambda = 1\\)。GLRT 拒绝当 \\(X > c\\)，这恰好是 UMP 检验。但考虑更复杂的约束形式（如区间假设 \\(H_0: \\mu \\in [a, b]\\)），GLRT 可能不是 UMP。一般地，GLRT 的优势在于通用性而非最优性。'
                 }
             ]
         },
@@ -639,19 +639,19 @@ window.CHAPTERS.push({
             content: `
                 <h2>Wilks 定理</h2>
 
-                <p>GLRT 的一个重要实际问题是：如何确定拒绝域的临界值？在有限样本下，\\\\(-2\\\\log\\\\Lambda\\\\) 的精确分布通常难以求得。<strong>Wilks 定理</strong>提供了一个优雅的渐近解：在正则条件下，\\\\(-2\\\\log\\\\Lambda\\\\) 的渐近分布是卡方分布，自由度等于约束的个数。</p>
+                <p>GLRT 的一个重要实际问题是：如何确定拒绝域的临界值？在有限样本下，\\(-2\\log\\Lambda\\) 的精确分布通常难以求得。<strong>Wilks 定理</strong>提供了一个优雅的渐近解：在正则条件下，\\(-2\\log\\Lambda\\) 的渐近分布是卡方分布，自由度等于约束的个数。</p>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 10.3 (Wilks' Theorem)</div>
                     <div class="env-body">
-                        <p>设 \\\\(X_1, \\\\ldots, X_n \\\\overset{\\\\text{iid}}{\\\\sim} f(x | \\\\theta)\\\\)，其中 \\\\(\\\\theta \\\\in \\\\Theta \\\\subset \\\\mathbb{R}^p\\\\)。考虑检验 \\\\(H_0: \\\\theta \\\\in \\\\Theta_0\\\\)，其中 \\\\(\\\\Theta_0\\\\) 是 \\\\(\\\\Theta\\\\) 中维数为 \\\\(q\\\\) 的子集（即 \\\\(\\\\Theta_0\\\\) 由 \\\\(r = p - q\\\\) 个独立约束确定）。在以下正则条件下：</p>
+                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} f(x | \\theta)\\)，其中 \\(\\theta \\in \\Theta \\subset \\mathbb{R}^p\\)。考虑检验 \\(H_0: \\theta \\in \\Theta_0\\)，其中 \\(\\Theta_0\\) 是 \\(\\Theta\\) 中维数为 \\(q\\) 的子集（即 \\(\\Theta_0\\) 由 \\(r = p - q\\) 个独立约束确定）。在以下正则条件下：</p>
                         <ol>
-                            <li>参数的真值 \\\\(\\\\theta_0 \\\\in \\\\Theta_0\\\\) 是 \\\\(\\\\Theta_0\\\\) 的内点</li>
-                            <li>Fisher 信息矩阵 \\\\(I(\\\\theta_0)\\\\) 正定</li>
+                            <li>参数的真值 \\(\\theta_0 \\in \\Theta_0\\) 是 \\(\\Theta_0\\) 的内点</li>
+                            <li>Fisher 信息矩阵 \\(I(\\theta_0)\\) 正定</li>
                             <li>适当的可微性和可积性条件成立</li>
                         </ol>
-                        <p>当 \\\\(H_0\\\\) 为真时，</p>
-                        \\\\[-2 \\\\log \\\\Lambda(\\\\mathbf{X}) \\\\xrightarrow{d} \\\\chi^2(r), \\\\quad r = \\\\dim(\\\\Theta) - \\\\dim(\\\\Theta_0) = p - q\\\\]
+                        <p>当 \\(H_0\\) 为真时，</p>
+                        \\[-2 \\log \\Lambda(\\mathbf{X}) \\xrightarrow{d} \\chi^2(r), \\quad r = \\dim(\\Theta) - \\dim(\\Theta_0) = p - q\\]
                     </div>
                 </div>
 
@@ -659,17 +659,17 @@ window.CHAPTERS.push({
                     <div class="env-title">Proof (Sketch)</div>
                     <div class="env-body">
                         <p>关键步骤如下：</p>
-                        <p><strong>Step 1.</strong> 对数似然函数在 MLE \\\\(\\\\hat{\\\\theta}\\\\) 处的二阶 Taylor 展开：</p>
-                        \\\\[\\\\ell(\\\\theta) \\\\approx \\\\ell(\\\\hat{\\\\theta}) - \\\\frac{1}{2} (\\\\theta - \\\\hat{\\\\theta})^T \\\\mathcal{J}_n (\\\\theta - \\\\hat{\\\\theta})\\\\]
-                        <p>其中 \\\\(\\\\mathcal{J}_n = -\\\\nabla^2 \\\\ell(\\\\hat{\\\\theta})\\\\) 是观测信息矩阵。</p>
+                        <p><strong>Step 1.</strong> 对数似然函数在 MLE \\(\\hat{\\theta}\\) 处的二阶 Taylor 展开：</p>
+                        \\[\\ell(\\theta) \\approx \\ell(\\hat{\\theta}) - \\frac{1}{2} (\\theta - \\hat{\\theta})^T \\mathcal{J}_n (\\theta - \\hat{\\theta})\\]
+                        <p>其中 \\(\\mathcal{J}_n = -\\nabla^2 \\ell(\\hat{\\theta})\\) 是观测信息矩阵。</p>
 
-                        <p><strong>Step 2.</strong> 类似地，约束 MLE \\\\(\\\\tilde{\\\\theta}\\\\) 也满足</p>
-                        \\\\[\\\\ell(\\\\tilde{\\\\theta}) \\\\approx \\\\ell(\\\\hat{\\\\theta}) - \\\\frac{1}{2} (\\\\tilde{\\\\theta} - \\\\hat{\\\\theta})^T \\\\mathcal{J}_n (\\\\tilde{\\\\theta} - \\\\hat{\\\\theta})\\\\]
+                        <p><strong>Step 2.</strong> 类似地，约束 MLE \\(\\tilde{\\theta}\\) 也满足</p>
+                        \\[\\ell(\\tilde{\\theta}) \\approx \\ell(\\hat{\\theta}) - \\frac{1}{2} (\\tilde{\\theta} - \\hat{\\theta})^T \\mathcal{J}_n (\\tilde{\\theta} - \\hat{\\theta})\\]
 
                         <p><strong>Step 3.</strong> 因此</p>
-                        \\\\[-2\\\\log\\\\Lambda = 2(\\\\ell(\\\\hat{\\\\theta}) - \\\\ell(\\\\tilde{\\\\theta})) \\\\approx (\\\\hat{\\\\theta} - \\\\tilde{\\\\theta})^T \\\\mathcal{J}_n (\\\\hat{\\\\theta} - \\\\tilde{\\\\theta})\\\\]
+                        \\[-2\\log\\Lambda = 2(\\ell(\\hat{\\theta}) - \\ell(\\tilde{\\theta})) \\approx (\\hat{\\theta} - \\tilde{\\theta})^T \\mathcal{J}_n (\\hat{\\theta} - \\tilde{\\theta})\\]
 
-                        <p><strong>Step 4.</strong> 利用 MLE 的渐近正态性 \\\\(\\\\sqrt{n}(\\\\hat{\\\\theta} - \\\\theta_0) \\\\xrightarrow{d} N(0, I(\\\\theta_0)^{-1})\\\\) 和约束 MLE 的性质，可以证明右端渐近服从 \\\\(\\\\chi^2(r)\\\\)。直觉上，\\\\(\\\\hat{\\\\theta} - \\\\tilde{\\\\theta}\\\\) 在 \\\\(r\\\\) 个约束方向上有非平凡分量，每个贡献一个自由度。</p>
+                        <p><strong>Step 4.</strong> 利用 MLE 的渐近正态性 \\(\\sqrt{n}(\\hat{\\theta} - \\theta_0) \\xrightarrow{d} N(0, I(\\theta_0)^{-1})\\) 和约束 MLE 的性质，可以证明右端渐近服从 \\(\\chi^2(r)\\)。直觉上，\\(\\hat{\\theta} - \\tilde{\\theta}\\) 在 \\(r\\) 个约束方向上有非平凡分量，每个贡献一个自由度。</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
@@ -677,24 +677,24 @@ window.CHAPTERS.push({
                 <div class="env-block example">
                     <div class="env-title">Example 10.5 (验证 Wilks 定理)</div>
                     <div class="env-body">
-                        <p>回看 Example 10.3：\\\\(X_i \\\\sim N(\\\\mu, \\\\sigma^2)\\\\)（\\\\(\\\\sigma^2\\\\) 已知），检验 \\\\(H_0: \\\\mu = \\\\mu_0\\\\)。这里 \\\\(p = 1\\\\)，\\\\(q = 0\\\\)（\\\\(\\\\Theta_0\\\\) 是单点），\\\\(r = 1\\\\)。我们已经推导出 \\\\(-2\\\\log\\\\Lambda = Z^2\\\\)，而 \\\\(Z \\\\sim N(0,1)\\\\) 意味着 \\\\(Z^2 \\\\sim \\\\chi^2(1)\\\\)。这是<strong>精确分布</strong>，不仅仅是渐近分布，完美验证了 Wilks 定理。</p>
+                        <p>回看 Example 10.3：\\(X_i \\sim N(\\mu, \\sigma^2)\\)（\\(\\sigma^2\\) 已知），检验 \\(H_0: \\mu = \\mu_0\\)。这里 \\(p = 1\\)，\\(q = 0\\)（\\(\\Theta_0\\) 是单点），\\(r = 1\\)。我们已经推导出 \\(-2\\log\\Lambda = Z^2\\)，而 \\(Z \\sim N(0,1)\\) 意味着 \\(Z^2 \\sim \\chi^2(1)\\)。这是<strong>精确分布</strong>，不仅仅是渐近分布，完美验证了 Wilks 定理。</p>
                     </div>
                 </div>
 
                 <h3>三大渐近等价检验</h3>
 
-                <p>在正则条件下，有三种重要的检验统计量在渐近意义下等价，都收敛到 \\\\(\\\\chi^2(r)\\\\)：</p>
+                <p>在正则条件下，有三种重要的检验统计量在渐近意义下等价，都收敛到 \\(\\chi^2(r)\\)：</p>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 10.4 (三大检验的渐近等价性)</div>
                     <div class="env-body">
-                        <p>在正则条件下，以下三个统计量在 \\\\(H_0\\\\) 下渐近服从 \\\\(\\\\chi^2(r)\\\\)，且在局部备择假设下渐近等价：</p>
+                        <p>在正则条件下，以下三个统计量在 \\(H_0\\) 下渐近服从 \\(\\chi^2(r)\\)，且在局部备择假设下渐近等价：</p>
                         <ol>
-                            <li><strong>似然比检验</strong>（LRT）：\\\\(W_{\\\\text{LR}} = -2\\\\log\\\\Lambda = 2(\\\\ell(\\\\hat{\\\\theta}) - \\\\ell(\\\\tilde{\\\\theta}))\\\\)</li>
-                            <li><strong>Wald 检验</strong>：\\\\(W_{\\\\text{Wald}} = (\\\\hat{\\\\theta} - \\\\theta_0)^T [\\\\widehat{\\\\operatorname{Var}}(\\\\hat{\\\\theta})]^{-1} (\\\\hat{\\\\theta} - \\\\theta_0)\\\\)</li>
-                            <li><strong>Score (Rao / LM) 检验</strong>：\\\\(W_{\\\\text{Score}} = U(\\\\tilde{\\\\theta})^T I(\\\\tilde{\\\\theta})^{-1} U(\\\\tilde{\\\\theta})\\\\)，其中 \\\\(U(\\\\theta) = \\\\nabla \\\\ell(\\\\theta)\\\\) 是得分函数</li>
+                            <li><strong>似然比检验</strong>（LRT）：\\(W_{\\text{LR}} = -2\\log\\Lambda = 2(\\ell(\\hat{\\theta}) - \\ell(\\tilde{\\theta}))\\)</li>
+                            <li><strong>Wald 检验</strong>：\\(W_{\\text{Wald}} = (\\hat{\\theta} - \\theta_0)^T [\\widehat{\\operatorname{Var}}(\\hat{\\theta})]^{-1} (\\hat{\\theta} - \\theta_0)\\)</li>
+                            <li><strong>Score (Rao / LM) 检验</strong>：\\(W_{\\text{Score}} = U(\\tilde{\\theta})^T I(\\tilde{\\theta})^{-1} U(\\tilde{\\theta})\\)，其中 \\(U(\\theta) = \\nabla \\ell(\\theta)\\) 是得分函数</li>
                         </ol>
-                        <p>在 \\\\(H_0\\\\) 成立时，\\\\(W_{\\\\text{LR}}, W_{\\\\text{Wald}}, W_{\\\\text{Score}} \\\\xrightarrow{d} \\\\chi^2(r)\\\\)。</p>
+                        <p>在 \\(H_0\\) 成立时，\\(W_{\\text{LR}}, W_{\\text{Wald}}, W_{\\text{Score}} \\xrightarrow{d} \\chi^2(r)\\)。</p>
                     </div>
                 </div>
 
@@ -703,9 +703,9 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>想象对数似然函数是一个山丘：</p>
                         <ul>
-                            <li><strong>LRT</strong>：比较山顶的高度（无约束 MLE）和限制在 \\\\(\\\\Theta_0\\\\) 上的最高点高度，差距大则拒绝。</li>
-                            <li><strong>Wald 检验</strong>：看无约束 MLE 离 \\\\(\\\\Theta_0\\\\) 有多远（在信息度量下的距离），远则拒绝。只需无约束 MLE。</li>
-                            <li><strong>Score 检验</strong>：站在 \\\\(\\\\Theta_0\\\\) 上的约束 MLE 处，看对数似然的梯度（斜率）有多大。如果在 \\\\(\\\\Theta_0\\\\) 上斜率很大，说明离真正的山顶很远，应拒绝。只需约束 MLE。</li>
+                            <li><strong>LRT</strong>：比较山顶的高度（无约束 MLE）和限制在 \\(\\Theta_0\\) 上的最高点高度，差距大则拒绝。</li>
+                            <li><strong>Wald 检验</strong>：看无约束 MLE 离 \\(\\Theta_0\\) 有多远（在信息度量下的距离），远则拒绝。只需无约束 MLE。</li>
+                            <li><strong>Score 检验</strong>：站在 \\(\\Theta_0\\) 上的约束 MLE 处，看对数似然的梯度（斜率）有多大。如果在 \\(\\Theta_0\\) 上斜率很大，说明离真正的山顶很远，应拒绝。只需约束 MLE。</li>
                         </ul>
                     </div>
                 </div>
@@ -715,8 +715,8 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>Wilks 定理需要正则条件，以下情况会导致失效：</p>
                         <ul>
-                            <li><strong>参数在边界上</strong>：如检验 \\\\(H_0: \\\\sigma^2 = 0\\\\)，参数在参数空间的边界。此时 \\\\(-2\\\\log\\\\Lambda\\\\) 可能服从 \\\\(\\\\frac{1}{2}\\\\chi^2(0) + \\\\frac{1}{2}\\\\chi^2(1)\\\\) 混合分布。</li>
-                            <li><strong>参数维数随 \\\\(n\\\\) 增长</strong>：高维设定下，Wilks 定理的卡方近似可能不准确。</li>
+                            <li><strong>参数在边界上</strong>：如检验 \\(H_0: \\sigma^2 = 0\\)，参数在参数空间的边界。此时 \\(-2\\log\\Lambda\\) 可能服从 \\(\\frac{1}{2}\\chi^2(0) + \\frac{1}{2}\\chi^2(1)\\) 混合分布。</li>
+                            <li><strong>参数维数随 \\(n\\) 增长</strong>：高维设定下，Wilks 定理的卡方近似可能不准确。</li>
                             <li><strong>非可辨识性</strong>：如混合模型中成分数的检验。</li>
                         </ul>
                     </div>
@@ -1047,19 +1047,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '对于 \\\\(X_1, \\\\ldots, X_n \\\\overset{\\\\text{iid}}{\\\\sim} \\\\text{Poisson}(\\\\lambda)\\\\)，检验 \\\\(H_0: \\\\lambda = \\\\lambda_0\\\\) vs \\\\(H_1: \\\\lambda \\\\ne \\\\lambda_0\\\\)。推导 GLRT 统计量 \\\\(-2\\\\log\\\\Lambda\\\\)，并利用 Wilks 定理确定其渐近分布。',
-                    hint: 'Poisson 的 MLE 为 \\\\(\\\\hat{\\\\lambda} = \\\\bar{X}\\\\)。对数似然为 \\\\(\\\\ell(\\\\lambda) = (\\\\sum x_i) \\\\log \\\\lambda - n\\\\lambda - \\\\sum \\\\log(x_i!)\\\\)。',
-                    solution: '\\\\(-2\\\\log\\\\Lambda = 2[\\\\ell(\\\\hat{\\\\lambda}) - \\\\ell(\\\\lambda_0)] = 2[n\\\\bar{X}\\\\log(\\\\bar{X}/\\\\lambda_0) - n(\\\\bar{X} - \\\\lambda_0)]\\\\)。这里 \\\\(p = 1\\\\)，\\\\(q = 0\\\\)，\\\\(r = 1\\\\)。由 Wilks 定理，在 \\\\(H_0\\\\) 下 \\\\(-2\\\\log\\\\Lambda \\\\xrightarrow{d} \\\\chi^2(1)\\\\)。实际操作中，在 \\\\(\\\\alpha = 0.05\\\\) 水平下拒绝当 \\\\(-2\\\\log\\\\Lambda > 3.841\\\\)。'
+                    question: '对于 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Poisson}(\\lambda)\\)，检验 \\(H_0: \\lambda = \\lambda_0\\) vs \\(H_1: \\lambda \\ne \\lambda_0\\)。推导 GLRT 统计量 \\(-2\\log\\Lambda\\)，并利用 Wilks 定理确定其渐近分布。',
+                    hint: 'Poisson 的 MLE 为 \\(\\hat{\\lambda} = \\bar{X}\\)。对数似然为 \\(\\ell(\\lambda) = (\\sum x_i) \\log \\lambda - n\\lambda - \\sum \\log(x_i!)\\)。',
+                    solution: '\\(-2\\log\\Lambda = 2[\\ell(\\hat{\\lambda}) - \\ell(\\lambda_0)] = 2[n\\bar{X}\\log(\\bar{X}/\\lambda_0) - n(\\bar{X} - \\lambda_0)]\\)。这里 \\(p = 1\\)，\\(q = 0\\)，\\(r = 1\\)。由 Wilks 定理，在 \\(H_0\\) 下 \\(-2\\log\\Lambda \\xrightarrow{d} \\chi^2(1)\\)。实际操作中，在 \\(\\alpha = 0.05\\) 水平下拒绝当 \\(-2\\log\\Lambda > 3.841\\)。'
                 },
                 {
-                    question: '考虑多元正态模型 \\\\(X_1, \\\\ldots, X_n \\\\overset{\\\\text{iid}}{\\\\sim} N_p(\\\\mu, \\\\Sigma)\\\\)，检验 \\\\(H_0: \\\\mu = \\\\mathbf{0}\\\\) vs \\\\(H_1: \\\\mu \\\\ne \\\\mathbf{0}\\\\)（\\\\(\\\\Sigma\\\\) 已知）。说明 Wilks 定理中的自由度 \\\\(r\\\\) 是多少，并给出 GLRT 的渐近拒绝准则。',
-                    hint: '全参数空间维数为 \\\\(p\\\\)（即 \\\\(\\\\mu\\\\) 的维数），约束空间维数为 \\\\(0\\\\)。',
-                    solution: '全参数空间 \\\\(\\\\Theta = \\\\mathbb{R}^p\\\\)，维数 \\\\(p\\\\)。约束空间 \\\\(\\\\Theta_0 = \\\\{\\\\mathbf{0}\\\\}\\\\)，维数 \\\\(0\\\\)。因此 \\\\(r = p - 0 = p\\\\)。GLRT 统计量为 \\\\(-2\\\\log\\\\Lambda = n \\\\bar{X}^T \\\\Sigma^{-1} \\\\bar{X}\\\\)（这就是 Hotelling \\\\(T^2\\\\) 统计量的 \\\\(\\\\Sigma\\\\) 已知版本）。渐近地，在 \\\\(H_0\\\\) 下 \\\\(-2\\\\log\\\\Lambda \\\\sim \\\\chi^2(p)\\\\)（事实上这里是精确分布）。拒绝当 \\\\(-2\\\\log\\\\Lambda > \\\\chi^2_\\\\alpha(p)\\\\)。'
+                    question: '考虑多元正态模型 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N_p(\\mu, \\Sigma)\\)，检验 \\(H_0: \\mu = \\mathbf{0}\\) vs \\(H_1: \\mu \\ne \\mathbf{0}\\)（\\(\\Sigma\\) 已知）。说明 Wilks 定理中的自由度 \\(r\\) 是多少，并给出 GLRT 的渐近拒绝准则。',
+                    hint: '全参数空间维数为 \\(p\\)（即 \\(\\mu\\) 的维数），约束空间维数为 \\(0\\)。',
+                    solution: '全参数空间 \\(\\Theta = \\mathbb{R}^p\\)，维数 \\(p\\)。约束空间 \\(\\Theta_0 = \\{\\mathbf{0}\\}\\)，维数 \\(0\\)。因此 \\(r = p - 0 = p\\)。GLRT 统计量为 \\(-2\\log\\Lambda = n \\bar{X}^T \\Sigma^{-1} \\bar{X}\\)（这就是 Hotelling \\(T^2\\) 统计量的 \\(\\Sigma\\) 已知版本）。渐近地，在 \\(H_0\\) 下 \\(-2\\log\\Lambda \\sim \\chi^2(p)\\)（事实上这里是精确分布）。拒绝当 \\(-2\\log\\Lambda > \\chi^2_\\alpha(p)\\)。'
                 },
                 {
                     question: '解释 Wald 检验和 Score 检验各自的计算优势。在什么实际场景下你会优先选择 Score 检验而不是 Wald 检验？',
-                    hint: '考虑哪种检验只需要在 \\\\(H_0\\\\) 下的估计，哪种需要无约束估计。',
-                    solution: 'Wald 检验只需要无约束 MLE \\\\(\\\\hat{\\\\theta}\\\\)，不需要约束优化，因此当无约束 MLE 容易计算时很方便。Score 检验只需要约束 MLE \\\\(\\\\tilde{\\\\theta}\\\\)（即在 \\\\(H_0\\\\) 下的估计），不需要拟合完整模型。在以下场景中 Score 检验更优：(1) 完整模型的 MLE 计算复杂或不稳定（如非线性模型）；(2) 需要检验多个变量是否应加入模型（向前选择），此时只需一次约束模型拟合即可计算多个 Score 统计量；(3) 在流行病学中的 Cochran-Armitage 趋势检验本质上就是 Score 检验。LRT 介于两者之间，需要两种 MLE。'
+                    hint: '考虑哪种检验只需要在 \\(H_0\\) 下的估计，哪种需要无约束估计。',
+                    solution: 'Wald 检验只需要无约束 MLE \\(\\hat{\\theta}\\)，不需要约束优化，因此当无约束 MLE 容易计算时很方便。Score 检验只需要约束 MLE \\(\\tilde{\\theta}\\)（即在 \\(H_0\\) 下的估计），不需要拟合完整模型。在以下场景中 Score 检验更优：(1) 完整模型的 MLE 计算复杂或不稳定（如非线性模型）；(2) 需要检验多个变量是否应加入模型（向前选择），此时只需一次约束模型拟合即可计算多个 Score 统计量；(3) 在流行病学中的 Cochran-Armitage 趋势检验本质上就是 Score 检验。LRT 介于两者之间，需要两种 MLE。'
                 }
             ]
         }

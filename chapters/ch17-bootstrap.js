@@ -12,43 +12,43 @@ window.CHAPTERS.push({
             content: `
                 <h2>Bootstrap 原理</h2>
 
-                <p>Bootstrap 是现代统计学中最重要的计算方法之一，由 Bradley Efron 于 1979 年提出。其核心思想极为简洁：<strong>用经验分布 \\\\(\\\\hat{F}_n\\\\) 代替未知的总体分布 \\\\(F\\\\)</strong>，通过重抽样来近似统计量的抽样分布。</p>
+                <p>Bootstrap 是现代统计学中最重要的计算方法之一，由 Bradley Efron 于 1979 年提出。其核心思想极为简洁：<strong>用经验分布 \\(\\hat{F}_n\\) 代替未知的总体分布 \\(F\\)</strong>，通过重抽样来近似统计量的抽样分布。</p>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition (Bootstrap 世界 vs 真实世界)</div>
                     <div class="env-body">
-                        <p>在<strong>真实世界</strong>中，我们从未知分布 \\\\(F\\\\) 中抽取样本 \\\\(X_1, \\\\ldots, X_n\\\\)，然后计算统计量 \\\\(\\\\hat{\\\\theta}_n = g(X_1, \\\\ldots, X_n)\\\\)。我们想知道 \\\\(\\\\hat{\\\\theta}_n\\\\) 的抽样分布，但 \\\\(F\\\\) 未知。</p>
-                        <p>在<strong>Bootstrap 世界</strong>中，经验分布 \\\\(\\\\hat{F}_n\\\\) 扮演 \\\\(F\\\\) 的角色。我们从 \\\\(\\\\hat{F}_n\\\\) 中重复抽样（即从原始数据中<strong>有放回地抽样</strong>），得到 Bootstrap 样本 \\\\(X_1^*, \\\\ldots, X_n^*\\\\)，计算 \\\\(\\\\hat{\\\\theta}_n^* = g(X_1^*, \\\\ldots, X_n^*)\\\\)。重复 \\\\(B\\\\) 次，Bootstrap 统计量的分布就近似了 \\\\(\\\\hat{\\\\theta}_n\\\\) 的抽样分布。</p>
+                        <p>在<strong>真实世界</strong>中，我们从未知分布 \\(F\\) 中抽取样本 \\(X_1, \\ldots, X_n\\)，然后计算统计量 \\(\\hat{\\theta}_n = g(X_1, \\ldots, X_n)\\)。我们想知道 \\(\\hat{\\theta}_n\\) 的抽样分布，但 \\(F\\) 未知。</p>
+                        <p>在<strong>Bootstrap 世界</strong>中，经验分布 \\(\\hat{F}_n\\) 扮演 \\(F\\) 的角色。我们从 \\(\\hat{F}_n\\) 中重复抽样（即从原始数据中<strong>有放回地抽样</strong>），得到 Bootstrap 样本 \\(X_1^*, \\ldots, X_n^*\\)，计算 \\(\\hat{\\theta}_n^* = g(X_1^*, \\ldots, X_n^*)\\)。重复 \\(B\\) 次，Bootstrap 统计量的分布就近似了 \\(\\hat{\\theta}_n\\) 的抽样分布。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.1 (经验分布函数)</div>
                     <div class="env-body">
-                        <p>设 \\\\(X_1, \\\\ldots, X_n\\\\) 是来自分布 \\\\(F\\\\) 的随机样本。<strong>经验分布函数</strong> (empirical distribution function) 定义为</p>
-                        \\\\[\\\\hat{F}_n(x) = \\\\frac{1}{n} \\\\sum_{i=1}^{n} \\\\mathbf{1}(X_i \\\\le x).\\\\]
-                        <p>由 Glivenko-Cantelli 定理，\\\\(\\\\sup_x |\\\\hat{F}_n(x) - F(x)| \\\\xrightarrow{\\\\text{a.s.}} 0\\\\)，即 \\\\(\\\\hat{F}_n\\\\) 一致地逼近 \\\\(F\\\\)。</p>
+                        <p>设 \\(X_1, \\ldots, X_n\\) 是来自分布 \\(F\\) 的随机样本。<strong>经验分布函数</strong> (empirical distribution function) 定义为</p>
+                        \\[\\hat{F}_n(x) = \\frac{1}{n} \\sum_{i=1}^{n} \\mathbf{1}(X_i \\le x).\\]
+                        <p>由 Glivenko-Cantelli 定理，\\(\\sup_x |\\hat{F}_n(x) - F(x)| \\xrightarrow{\\text{a.s.}} 0\\)，即 \\(\\hat{F}_n\\) 一致地逼近 \\(F\\)。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.2 (非参数 Bootstrap)</div>
                     <div class="env-body">
-                        <p>设 \\\\(\\\\mathbf{X} = (X_1, \\\\ldots, X_n)\\\\) 为观测数据，\\\\(\\\\hat{\\\\theta}_n = T(\\\\mathbf{X})\\\\) 为感兴趣的统计量。<strong>非参数 Bootstrap</strong> 的步骤如下：</p>
-                        <p><strong>Step 1.</strong> 从 \\\\(\\\\{X_1, \\\\ldots, X_n\\\\}\\\\) 中<strong>有放回地</strong>抽取 \\\\(n\\\\) 个观测值，得到 Bootstrap 样本 \\\\(\\\\mathbf{X}^* = (X_1^*, \\\\ldots, X_n^*)\\\\)。</p>
-                        <p><strong>Step 2.</strong> 计算 Bootstrap 统计量 \\\\(\\\\hat{\\\\theta}_n^* = T(\\\\mathbf{X}^*)\\\\)。</p>
-                        <p><strong>Step 3.</strong> 重复 Steps 1-2 共 \\\\(B\\\\) 次，得到 \\\\(\\\\hat{\\\\theta}_n^{*(1)}, \\\\ldots, \\\\hat{\\\\theta}_n^{*(B)}\\\\)。</p>
-                        <p>这 \\\\(B\\\\) 个值的经验分布即为 \\\\(\\\\hat{\\\\theta}_n\\\\) 的 Bootstrap 近似分布。</p>
+                        <p>设 \\(\\mathbf{X} = (X_1, \\ldots, X_n)\\) 为观测数据，\\(\\hat{\\theta}_n = T(\\mathbf{X})\\) 为感兴趣的统计量。<strong>非参数 Bootstrap</strong> 的步骤如下：</p>
+                        <p><strong>Step 1.</strong> 从 \\(\\{X_1, \\ldots, X_n\\}\\) 中<strong>有放回地</strong>抽取 \\(n\\) 个观测值，得到 Bootstrap 样本 \\(\\mathbf{X}^* = (X_1^*, \\ldots, X_n^*)\\)。</p>
+                        <p><strong>Step 2.</strong> 计算 Bootstrap 统计量 \\(\\hat{\\theta}_n^* = T(\\mathbf{X}^*)\\)。</p>
+                        <p><strong>Step 3.</strong> 重复 Steps 1-2 共 \\(B\\) 次，得到 \\(\\hat{\\theta}_n^{*(1)}, \\ldots, \\hat{\\theta}_n^{*(B)}\\)。</p>
+                        <p>这 \\(B\\) 个值的经验分布即为 \\(\\hat{\\theta}_n\\) 的 Bootstrap 近似分布。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.3 (参数 Bootstrap)</div>
                     <div class="env-body">
-                        <p>若已知分布族 \\\\(\\\\{F_{\\\\theta} : \\\\theta \\\\in \\\\Theta\\\\}\\\\)，先用数据估计参数 \\\\(\\\\hat{\\\\theta}\\\\)，然后从 \\\\(F_{\\\\hat{\\\\theta}}\\\\) 中生成 Bootstrap 样本。</p>
-                        <p><strong>Step 1.</strong> 从拟合模型 \\\\(F_{\\\\hat{\\\\theta}}\\\\) 中生成 \\\\(X_1^*, \\\\ldots, X_n^* \\\\sim F_{\\\\hat{\\\\theta}}\\\\)。</p>
-                        <p><strong>Step 2.</strong> 计算 \\\\(\\\\hat{\\\\theta}^* = T(X_1^*, \\\\ldots, X_n^*)\\\\)。</p>
-                        <p><strong>Step 3.</strong> 重复 \\\\(B\\\\) 次。</p>
+                        <p>若已知分布族 \\(\\{F_{\\theta} : \\theta \\in \\Theta\\}\\)，先用数据估计参数 \\(\\hat{\\theta}\\)，然后从 \\(F_{\\hat{\\theta}}\\) 中生成 Bootstrap 样本。</p>
+                        <p><strong>Step 1.</strong> 从拟合模型 \\(F_{\\hat{\\theta}}\\) 中生成 \\(X_1^*, \\ldots, X_n^* \\sim F_{\\hat{\\theta}}\\)。</p>
+                        <p><strong>Step 2.</strong> 计算 \\(\\hat{\\theta}^* = T(X_1^*, \\ldots, X_n^*)\\)。</p>
+                        <p><strong>Step 3.</strong> 重复 \\(B\\) 次。</p>
                         <p>参数 Bootstrap 在模型正确指定时更高效，但在模型错误时可能导致偏差。</p>
                     </div>
                 </div>
@@ -56,18 +56,18 @@ window.CHAPTERS.push({
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 17.4 (Bootstrap 的一致性)</div>
                     <div class="env-body">
-                        <p>设 \\\\(T_n = \\\\sqrt{n}(\\\\hat{\\\\theta}_n - \\\\theta)\\\\) 的分布收敛到某个连续分布。在适当的正则条件下，Bootstrap 分布</p>
-                        \\\\[T_n^* = \\\\sqrt{n}(\\\\hat{\\\\theta}_n^* - \\\\hat{\\\\theta}_n)\\\\]
-                        <p>的条件分布（给定数据）以概率 1 收敛到 \\\\(T_n\\\\) 的极限分布。即 Bootstrap 是<strong>一致的</strong> (consistent)。</p>
+                        <p>设 \\(T_n = \\sqrt{n}(\\hat{\\theta}_n - \\theta)\\) 的分布收敛到某个连续分布。在适当的正则条件下，Bootstrap 分布</p>
+                        \\[T_n^* = \\sqrt{n}(\\hat{\\theta}_n^* - \\hat{\\theta}_n)\\]
+                        <p>的条件分布（给定数据）以概率 1 收敛到 \\(T_n\\) 的极限分布。即 Bootstrap 是<strong>一致的</strong> (consistent)。</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
                     <div class="env-title">Example 17.5 (Bootstrap 估计均值的标准误)</div>
                     <div class="env-body">
-                        <p>设 \\\\(X_1, \\\\ldots, X_n \\\\sim F\\\\)，\\\\(\\\\hat{\\\\theta} = \\\\bar{X}\\\\)。Bootstrap 标准误为</p>
-                        \\\\[\\\\text{se}_{\\\\text{boot}} = \\\\sqrt{\\\\frac{1}{B} \\\\sum_{b=1}^{B} \\\\left(\\\\bar{X}^{*(b)} - \\\\frac{1}{B}\\\\sum_{b=1}^{B} \\\\bar{X}^{*(b)}\\\\right)^2}.\\\\]
-                        <p>当 \\\\(B \\\\to \\\\infty\\\\)，\\\\(\\\\text{se}_{\\\\text{boot}} \\\\to \\\\hat{\\\\sigma}/\\\\sqrt{n}\\\\)（其中 \\\\(\\\\hat{\\\\sigma}^2\\\\) 是样本方差的 \\\\((n-1)/n\\\\) 倍），这与经典公式一致。</p>
+                        <p>设 \\(X_1, \\ldots, X_n \\sim F\\)，\\(\\hat{\\theta} = \\bar{X}\\)。Bootstrap 标准误为</p>
+                        \\[\\text{se}_{\\text{boot}} = \\sqrt{\\frac{1}{B} \\sum_{b=1}^{B} \\left(\\bar{X}^{*(b)} - \\frac{1}{B}\\sum_{b=1}^{B} \\bar{X}^{*(b)}\\right)^2}.\\]
+                        <p>当 \\(B \\to \\infty\\)，\\(\\text{se}_{\\text{boot}} \\to \\hat{\\sigma}/\\sqrt{n}\\)（其中 \\(\\hat{\\sigma}^2\\) 是样本方差的 \\((n-1)/n\\) 倍），这与经典公式一致。</p>
                     </div>
                 </div>
 
@@ -257,9 +257,9 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\\\(X_1, \\\\ldots, X_{20}\\\\) 是样本，解释为什么从中有放回抽取 20 个观测构成的 Bootstrap 样本中，大约有 \\\\(1 - (1 - 1/n)^n \\\\approx 1 - 1/e \\\\approx 63.2\\\\%\\\\) 的原始观测会至少出现一次。',
-                    hint: '考虑某个固定观测 \\\\(X_i\\\\) 在一次 Bootstrap 抽样中不被选中的概率是 \\\\((1 - 1/n)^n\\\\)。',
-                    solution: '对于固定的 \\\\(X_i\\\\)，在 Bootstrap 样本中每次抽样不选中它的概率是 \\\\(1 - 1/n\\\\)。由于 \\\\(n\\\\) 次抽样独立，\\\\(X_i\\\\) 一次都不被选中的概率为 \\\\((1 - 1/n)^n \\\\to 1/e \\\\approx 0.368\\\\)。因此 \\\\(X_i\\\\) 至少出现一次的概率约为 \\\\(1 - 1/e \\\\approx 0.632\\\\)。对所有 \\\\(n\\\\) 个观测取平均，预期约 \\\\(63.2\\\\%\\\\) 的不同观测会出现在 Bootstrap 样本中。'
+                    question: '设 \\(X_1, \\ldots, X_{20}\\) 是样本，解释为什么从中有放回抽取 20 个观测构成的 Bootstrap 样本中，大约有 \\(1 - (1 - 1/n)^n \\approx 1 - 1/e \\approx 63.2\\%\\) 的原始观测会至少出现一次。',
+                    hint: '考虑某个固定观测 \\(X_i\\) 在一次 Bootstrap 抽样中不被选中的概率是 \\((1 - 1/n)^n\\)。',
+                    solution: '对于固定的 \\(X_i\\)，在 Bootstrap 样本中每次抽样不选中它的概率是 \\(1 - 1/n\\)。由于 \\(n\\) 次抽样独立，\\(X_i\\) 一次都不被选中的概率为 \\((1 - 1/n)^n \\to 1/e \\approx 0.368\\)。因此 \\(X_i\\) 至少出现一次的概率约为 \\(1 - 1/e \\approx 0.632\\)。对所有 \\(n\\) 个观测取平均，预期约 \\(63.2\\%\\) 的不同观测会出现在 Bootstrap 样本中。'
                 },
                 {
                     question: '比较参数 Bootstrap 和非参数 Bootstrap 的优缺点。在什么情况下应优先使用参数 Bootstrap？',
@@ -267,9 +267,9 @@ window.CHAPTERS.push({
                     solution: '参数 Bootstrap 在模型正确指定时更高效（方差更小），因为它利用了分布族的结构信息。例如对正态数据，参数 Bootstrap 可以精确模拟正态抽样。但如果模型错误，参数 Bootstrap 的结果可能严重偏差。非参数 Bootstrap 不依赖模型假设，更加稳健，但需要更大的样本量来获得好的近似。当有充分理由相信参数模型时（如物理理论支持），优先使用参数 Bootstrap；否则使用非参数 Bootstrap。'
                 },
                 {
-                    question: '证明当 \\\\(B \\\\to \\\\infty\\\\) 时，Bootstrap 样本均值的标准差收敛于 \\\\(\\\\hat{\\\\sigma}/\\\\sqrt{n}\\\\)（其中 \\\\(\\\\hat{\\\\sigma}^2 = \\\\frac{1}{n}\\\\sum_{i=1}^{n}(X_i - \\\\bar{X})^2\\\\)）。',
-                    hint: '计算 \\\\(\\\\operatorname{Var}^*(\\\\bar{X}^*) = \\\\operatorname{Var}^*(X_1^*)/n\\\\)，其中 \\\\(\\\\operatorname{Var}^*\\\\) 是在 Bootstrap 世界（即关于 \\\\(\\\\hat{F}_n\\\\)）中的方差。',
-                    solution: '在 Bootstrap 世界中，\\\\(X_1^*\\\\) 从 \\\\(\\\\hat{F}_n\\\\) 中抽取，即等概率取 \\\\(X_1, \\\\ldots, X_n\\\\) 中的一个。因此 \\\\(E^*(X_1^*) = \\\\bar{X}\\\\)，\\\\(\\\\operatorname{Var}^*(X_1^*) = \\\\frac{1}{n}\\\\sum_{i=1}^{n}(X_i - \\\\bar{X})^2 = \\\\hat{\\\\sigma}^2\\\\)。由于 Bootstrap 样本中各 \\\\(X_i^*\\\\) 条件独立，\\\\(\\\\operatorname{Var}^*(\\\\bar{X}^*) = \\\\hat{\\\\sigma}^2/n\\\\)。当 \\\\(B \\\\to \\\\infty\\\\) 时，Bootstrap 样本均值的经验方差依大数律收敛于 \\\\(\\\\hat{\\\\sigma}^2/n\\\\)，故其标准差收敛于 \\\\(\\\\hat{\\\\sigma}/\\\\sqrt{n}\\\\)。'
+                    question: '证明当 \\(B \\to \\infty\\) 时，Bootstrap 样本均值的标准差收敛于 \\(\\hat{\\sigma}/\\sqrt{n}\\)（其中 \\(\\hat{\\sigma}^2 = \\frac{1}{n}\\sum_{i=1}^{n}(X_i - \\bar{X})^2\\)）。',
+                    hint: '计算 \\(\\operatorname{Var}^*(\\bar{X}^*) = \\operatorname{Var}^*(X_1^*)/n\\)，其中 \\(\\operatorname{Var}^*\\) 是在 Bootstrap 世界（即关于 \\(\\hat{F}_n\\)）中的方差。',
+                    solution: '在 Bootstrap 世界中，\\(X_1^*\\) 从 \\(\\hat{F}_n\\) 中抽取，即等概率取 \\(X_1, \\ldots, X_n\\) 中的一个。因此 \\(E^*(X_1^*) = \\bar{X}\\)，\\(\\operatorname{Var}^*(X_1^*) = \\frac{1}{n}\\sum_{i=1}^{n}(X_i - \\bar{X})^2 = \\hat{\\sigma}^2\\)。由于 Bootstrap 样本中各 \\(X_i^*\\) 条件独立，\\(\\operatorname{Var}^*(\\bar{X}^*) = \\hat{\\sigma}^2/n\\)。当 \\(B \\to \\infty\\) 时，Bootstrap 样本均值的经验方差依大数律收敛于 \\(\\hat{\\sigma}^2/n\\)，故其标准差收敛于 \\(\\hat{\\sigma}/\\sqrt{n}\\)。'
                 }
             ]
         },
@@ -286,9 +286,9 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.6 (百分位法置信区间)</div>
                     <div class="env-body">
-                        <p>设 \\\\(\\\\hat{\\\\theta}^{*(1)}, \\\\ldots, \\\\hat{\\\\theta}^{*(B)}\\\\) 为 \\\\(B\\\\) 个 Bootstrap 统计量。<strong>百分位法</strong> (percentile method) 的 \\\\(1 - \\\\alpha\\\\) 置信区间为</p>
-                        \\\\[C_{\\\\text{perc}} = \\\\left[\\\\hat{\\\\theta}^*_{(\\\\alpha/2)}, \\\\; \\\\hat{\\\\theta}^*_{(1-\\\\alpha/2)}\\\\right],\\\\]
-                        <p>其中 \\\\(\\\\hat{\\\\theta}^*_{(q)}\\\\) 表示 Bootstrap 统计量的 \\\\(q\\\\)-分位数。</p>
+                        <p>设 \\(\\hat{\\theta}^{*(1)}, \\ldots, \\hat{\\theta}^{*(B)}\\) 为 \\(B\\) 个 Bootstrap 统计量。<strong>百分位法</strong> (percentile method) 的 \\(1 - \\alpha\\) 置信区间为</p>
+                        \\[C_{\\text{perc}} = \\left[\\hat{\\theta}^*_{(\\alpha/2)}, \\; \\hat{\\theta}^*_{(1-\\alpha/2)}\\right],\\]
+                        <p>其中 \\(\\hat{\\theta}^*_{(q)}\\) 表示 Bootstrap 统计量的 \\(q\\)-分位数。</p>
                     </div>
                 </div>
 
@@ -302,28 +302,28 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.7 (基本 Bootstrap 置信区间)</div>
                     <div class="env-body">
-                        <p><strong>基本 Bootstrap 法</strong> (basic/pivotal bootstrap) 基于 Bootstrap 枢轴量 \\\\(\\\\hat{\\\\theta}^* - \\\\hat{\\\\theta}\\\\) 近似 \\\\(\\\\hat{\\\\theta} - \\\\theta\\\\) 的分布，得到</p>
-                        \\\\[C_{\\\\text{basic}} = \\\\left[2\\\\hat{\\\\theta} - \\\\hat{\\\\theta}^*_{(1-\\\\alpha/2)}, \\\\; 2\\\\hat{\\\\theta} - \\\\hat{\\\\theta}^*_{(\\\\alpha/2)}\\\\right].\\\\]
+                        <p><strong>基本 Bootstrap 法</strong> (basic/pivotal bootstrap) 基于 Bootstrap 枢轴量 \\(\\hat{\\theta}^* - \\hat{\\theta}\\) 近似 \\(\\hat{\\theta} - \\theta\\) 的分布，得到</p>
+                        \\[C_{\\text{basic}} = \\left[2\\hat{\\theta} - \\hat{\\theta}^*_{(1-\\alpha/2)}, \\; 2\\hat{\\theta} - \\hat{\\theta}^*_{(\\alpha/2)}\\right].\\]
                     </div>
                 </div>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 17.8 (基本 Bootstrap 法的动机)</div>
                     <div class="env-body">
-                        <p>若存在单调变换 \\\\(m\\\\) 使得 \\\\(m(\\\\hat{\\\\theta}) - m(\\\\theta)\\\\) 的分布与 \\\\(\\\\theta\\\\) 无关（即为枢轴量），则基本 Bootstrap 法在该变换下给出精确的置信区间。</p>
+                        <p>若存在单调变换 \\(m\\) 使得 \\(m(\\hat{\\theta}) - m(\\theta)\\) 的分布与 \\(\\theta\\) 无关（即为枢轴量），则基本 Bootstrap 法在该变换下给出精确的置信区间。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.9 (BCa 置信区间)</div>
                     <div class="env-body">
-                        <p><strong>BCa 法</strong> (bias-corrected and accelerated) 对百分位法进行偏差和加速度校正。\\\\(1 - \\\\alpha\\\\) BCa 置信区间为</p>
-                        \\\\[C_{\\\\text{BCa}} = \\\\left[\\\\hat{\\\\theta}^*_{(\\\\alpha_1)}, \\\\; \\\\hat{\\\\theta}^*_{(\\\\alpha_2)}\\\\right],\\\\]
+                        <p><strong>BCa 法</strong> (bias-corrected and accelerated) 对百分位法进行偏差和加速度校正。\\(1 - \\alpha\\) BCa 置信区间为</p>
+                        \\[C_{\\text{BCa}} = \\left[\\hat{\\theta}^*_{(\\alpha_1)}, \\; \\hat{\\theta}^*_{(\\alpha_2)}\\right],\\]
                         <p>其中</p>
-                        \\\\[\\\\alpha_1 = \\\\Phi\\\\!\\\\left(\\\\hat{z}_0 + \\\\frac{\\\\hat{z}_0 + z_{\\\\alpha/2}}{1 - \\\\hat{a}(\\\\hat{z}_0 + z_{\\\\alpha/2})}\\\\right), \\\\quad \\\\alpha_2 = \\\\Phi\\\\!\\\\left(\\\\hat{z}_0 + \\\\frac{\\\\hat{z}_0 + z_{1-\\\\alpha/2}}{1 - \\\\hat{a}(\\\\hat{z}_0 + z_{1-\\\\alpha/2})}\\\\right),\\\\]
-                        <p>偏差校正因子 \\\\(\\\\hat{z}_0 = \\\\Phi^{-1}\\\\!\\\\left(\\\\frac{\\\\#\\\\{\\\\hat{\\\\theta}^{*(b)} < \\\\hat{\\\\theta}\\\\}}{B}\\\\right)\\\\)，加速度因子</p>
-                        \\\\[\\\\hat{a} = \\\\frac{\\\\sum_{i=1}^{n}(\\\\hat{\\\\theta}_{(\\\\cdot)} - \\\\hat{\\\\theta}_{(i)})^3}{6\\\\left[\\\\sum_{i=1}^{n}(\\\\hat{\\\\theta}_{(\\\\cdot)} - \\\\hat{\\\\theta}_{(i)})^2\\\\right]^{3/2}},\\\\]
-                        <p>其中 \\\\(\\\\hat{\\\\theta}_{(i)}\\\\) 是删去第 \\\\(i\\\\) 个观测后的估计值，\\\\(\\\\hat{\\\\theta}_{(\\\\cdot)} = \\\\frac{1}{n}\\\\sum_{i}\\\\hat{\\\\theta}_{(i)}\\\\)。</p>
+                        \\[\\alpha_1 = \\Phi\\!\\left(\\hat{z}_0 + \\frac{\\hat{z}_0 + z_{\\alpha/2}}{1 - \\hat{a}(\\hat{z}_0 + z_{\\alpha/2})}\\right), \\quad \\alpha_2 = \\Phi\\!\\left(\\hat{z}_0 + \\frac{\\hat{z}_0 + z_{1-\\alpha/2}}{1 - \\hat{a}(\\hat{z}_0 + z_{1-\\alpha/2})}\\right),\\]
+                        <p>偏差校正因子 \\(\\hat{z}_0 = \\Phi^{-1}\\!\\left(\\frac{\\#\\{\\hat{\\theta}^{*(b)} < \\hat{\\theta}\\}}{B}\\right)\\)，加速度因子</p>
+                        \\[\\hat{a} = \\frac{\\sum_{i=1}^{n}(\\hat{\\theta}_{(\\cdot)} - \\hat{\\theta}_{(i)})^3}{6\\left[\\sum_{i=1}^{n}(\\hat{\\theta}_{(\\cdot)} - \\hat{\\theta}_{(i)})^2\\right]^{3/2}},\\]
+                        <p>其中 \\(\\hat{\\theta}_{(i)}\\) 是删去第 \\(i\\) 个观测后的估计值，\\(\\hat{\\theta}_{(\\cdot)} = \\frac{1}{n}\\sum_{i}\\hat{\\theta}_{(i)}\\)。</p>
                     </div>
                 </div>
 
@@ -331,8 +331,8 @@ window.CHAPTERS.push({
                     <div class="env-title">Warning (Bootstrap 失效的情形)</div>
                     <div class="env-body">
                         <p>Bootstrap 并非万能。以下情形中 Bootstrap 可能失效：</p>
-                        <p><strong>1. 不光滑泛函：</strong>对于极值（如 \\\\(X_{(n)} = \\\\max_i X_i\\\\)），Bootstrap 分布的收敛速率不正确。</p>
-                        <p><strong>2. 重尾分布：</strong>当 \\\\(\\\\operatorname{Var}(X) = \\\\infty\\\\) 时，Bootstrap 对均值的推断不一致。</p>
+                        <p><strong>1. 不光滑泛函：</strong>对于极值（如 \\(X_{(n)} = \\max_i X_i\\)），Bootstrap 分布的收敛速率不正确。</p>
+                        <p><strong>2. 重尾分布：</strong>当 \\(\\operatorname{Var}(X) = \\infty\\) 时，Bootstrap 对均值的推断不一致。</p>
                         <p><strong>3. 非独立数据：</strong>简单的 i.i.d. Bootstrap 不适用于时间序列等相依数据（需要 block bootstrap 等变体）。</p>
                     </div>
                 </div>
@@ -340,7 +340,7 @@ window.CHAPTERS.push({
                 <div class="env-block example">
                     <div class="env-title">Example 17.10 (三种 Bootstrap CI 的比较)</div>
                     <div class="env-body">
-                        <p>设 \\\\(X_1, \\\\ldots, X_{20} \\\\sim \\\\text{Exp}(1)\\\\)（右偏分布），估计均值 \\\\(\\\\theta = 1\\\\)。使用下面的可视化工具观察三种方法的差异。对于偏态分布，BCa 通常比百分位法有更好的覆盖率。</p>
+                        <p>设 \\(X_1, \\ldots, X_{20} \\sim \\text{Exp}(1)\\)（右偏分布），估计均值 \\(\\theta = 1\\)。使用下面的可视化工具观察三种方法的差异。对于偏态分布，BCa 通常比百分位法有更好的覆盖率。</p>
                     </div>
                 </div>
 
@@ -567,19 +567,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '证明当 Bootstrap 分布关于 \\\\(\\\\hat{\\\\theta}\\\\) 对称且无偏时，百分位法和基本 Bootstrap 法给出相同的置信区间。',
-                    hint: '对称意味着 \\\\(\\\\hat{\\\\theta}^*_{(\\\\alpha/2)} = 2\\\\hat{\\\\theta} - \\\\hat{\\\\theta}^*_{(1-\\\\alpha/2)}\\\\)。',
-                    solution: '设 Bootstrap 分布关于 \\\\(\\\\hat{\\\\theta}\\\\) 对称，则 \\\\(\\\\hat{\\\\theta}^*_{(q)} + \\\\hat{\\\\theta}^*_{(1-q)} = 2\\\\hat{\\\\theta}\\\\) 对所有 \\\\(q\\\\)。百分位法给出 \\\\([\\\\hat{\\\\theta}^*_{(\\\\alpha/2)}, \\\\hat{\\\\theta}^*_{(1-\\\\alpha/2)}]\\\\)。基本法给出 \\\\([2\\\\hat{\\\\theta} - \\\\hat{\\\\theta}^*_{(1-\\\\alpha/2)}, 2\\\\hat{\\\\theta} - \\\\hat{\\\\theta}^*_{(\\\\alpha/2)}]\\\\)。由对称性，\\\\(2\\\\hat{\\\\theta} - \\\\hat{\\\\theta}^*_{(1-\\\\alpha/2)} = \\\\hat{\\\\theta}^*_{(\\\\alpha/2)}\\\\) 且 \\\\(2\\\\hat{\\\\theta} - \\\\hat{\\\\theta}^*_{(\\\\alpha/2)} = \\\\hat{\\\\theta}^*_{(1-\\\\alpha/2)}\\\\)，两者一致。'
+                    question: '证明当 Bootstrap 分布关于 \\(\\hat{\\theta}\\) 对称且无偏时，百分位法和基本 Bootstrap 法给出相同的置信区间。',
+                    hint: '对称意味着 \\(\\hat{\\theta}^*_{(\\alpha/2)} = 2\\hat{\\theta} - \\hat{\\theta}^*_{(1-\\alpha/2)}\\)。',
+                    solution: '设 Bootstrap 分布关于 \\(\\hat{\\theta}\\) 对称，则 \\(\\hat{\\theta}^*_{(q)} + \\hat{\\theta}^*_{(1-q)} = 2\\hat{\\theta}\\) 对所有 \\(q\\)。百分位法给出 \\([\\hat{\\theta}^*_{(\\alpha/2)}, \\hat{\\theta}^*_{(1-\\alpha/2)}]\\)。基本法给出 \\([2\\hat{\\theta} - \\hat{\\theta}^*_{(1-\\alpha/2)}, 2\\hat{\\theta} - \\hat{\\theta}^*_{(\\alpha/2)}]\\)。由对称性，\\(2\\hat{\\theta} - \\hat{\\theta}^*_{(1-\\alpha/2)} = \\hat{\\theta}^*_{(\\alpha/2)}\\) 且 \\(2\\hat{\\theta} - \\hat{\\theta}^*_{(\\alpha/2)} = \\hat{\\theta}^*_{(1-\\alpha/2)}\\)，两者一致。'
                 },
                 {
-                    question: '在 BCa 方法中，偏差校正因子 \\\\(\\\\hat{z}_0\\\\) 的直觉含义是什么？当 \\\\(\\\\hat{z}_0 = 0\\\\) 时，BCa 退化为什么方法？',
-                    hint: '考虑当正好一半的 Bootstrap 复制值小于 \\\\(\\\\hat{\\\\theta}\\\\) 时，\\\\(\\\\hat{z}_0\\\\) 等于多少。',
-                    solution: '\\\\(\\\\hat{z}_0\\\\) 度量 Bootstrap 分布中位数相对于 \\\\(\\\\hat{\\\\theta}\\\\) 的偏差。当 \\\\(\\\\hat{z}_0 = 0\\\\) 时，意味着恰好一半的 Bootstrap 复制值小于 \\\\(\\\\hat{\\\\theta}\\\\)（Bootstrap 分布的中位数等于 \\\\(\\\\hat{\\\\theta}\\\\)），即无偏差。此时若同时 \\\\(\\\\hat{a} = 0\\\\)（无加速度），则 \\\\(\\\\alpha_1 = \\\\Phi(z_{\\\\alpha/2}) = \\\\alpha/2\\\\)，\\\\(\\\\alpha_2 = 1 - \\\\alpha/2\\\\)，BCa 退化为百分位法。'
+                    question: '在 BCa 方法中，偏差校正因子 \\(\\hat{z}_0\\) 的直觉含义是什么？当 \\(\\hat{z}_0 = 0\\) 时，BCa 退化为什么方法？',
+                    hint: '考虑当正好一半的 Bootstrap 复制值小于 \\(\\hat{\\theta}\\) 时，\\(\\hat{z}_0\\) 等于多少。',
+                    solution: '\\(\\hat{z}_0\\) 度量 Bootstrap 分布中位数相对于 \\(\\hat{\\theta}\\) 的偏差。当 \\(\\hat{z}_0 = 0\\) 时，意味着恰好一半的 Bootstrap 复制值小于 \\(\\hat{\\theta}\\)（Bootstrap 分布的中位数等于 \\(\\hat{\\theta}\\)），即无偏差。此时若同时 \\(\\hat{a} = 0\\)（无加速度），则 \\(\\alpha_1 = \\Phi(z_{\\alpha/2}) = \\alpha/2\\)，\\(\\alpha_2 = 1 - \\alpha/2\\)，BCa 退化为百分位法。'
                 },
                 {
-                    question: '解释为什么 Bootstrap 对样本最大值 \\\\(X_{(n)}\\\\) 的推断不一致。',
-                    hint: '考虑 \\\\(n(\\\\theta - X_{(n)})\\\\) 的真实极限分布与 Bootstrap 版本 \\\\(n(X_{(n)} - X^*_{(n)})\\\\) 的极限分布是否一致（以均匀分布为例）。',
-                    solution: '设 \\\\(X_1, \\\\ldots, X_n \\\\sim \\\\text{Unif}(0, \\\\theta)\\\\)。真实世界中 \\\\(n(\\\\theta - X_{(n)}) \\\\xrightarrow{d} \\\\text{Exp}(1/\\\\theta)\\\\)，收敛率为 \\\\(n\\\\)。但在 Bootstrap 世界中，\\\\(X^*_{(n)} = X_{(n)}\\\\) 以高概率成立（只要某次抽到了最大观测值）。具体而言，\\\\(P^*(X^*_{(n)} = X_{(n)}) = 1 - (1-1/n)^n \\\\to 1 - 1/e\\\\)，所以 \\\\(n(X_{(n)} - X^*_{(n)})\\\\) 的分布在 0 处有质量约 \\\\(63\\\\%\\\\)，与 \\\\(\\\\text{Exp}(1/\\\\theta)\\\\) 的连续分布不一致。这是因为极值是不光滑泛函。'
+                    question: '解释为什么 Bootstrap 对样本最大值 \\(X_{(n)}\\) 的推断不一致。',
+                    hint: '考虑 \\(n(\\theta - X_{(n)})\\) 的真实极限分布与 Bootstrap 版本 \\(n(X_{(n)} - X^*_{(n)})\\) 的极限分布是否一致（以均匀分布为例）。',
+                    solution: '设 \\(X_1, \\ldots, X_n \\sim \\text{Unif}(0, \\theta)\\)。真实世界中 \\(n(\\theta - X_{(n)}) \\xrightarrow{d} \\text{Exp}(1/\\theta)\\)，收敛率为 \\(n\\)。但在 Bootstrap 世界中，\\(X^*_{(n)} = X_{(n)}\\) 以高概率成立（只要某次抽到了最大观测值）。具体而言，\\(P^*(X^*_{(n)} = X_{(n)}) = 1 - (1-1/n)^n \\to 1 - 1/e\\)，所以 \\(n(X_{(n)} - X^*_{(n)})\\) 的分布在 0 处有质量约 \\(63\\%\\)，与 \\(\\text{Exp}(1/\\theta)\\) 的连续分布不一致。这是因为极值是不光滑泛函。'
                 }
             ]
         },
@@ -596,42 +596,42 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.11 (Bootstrap p 值)</div>
                     <div class="env-body">
-                        <p>设观测到的检验统计量为 \\\\(T_{\\\\text{obs}}\\\\)，在零假设 \\\\(H_0\\\\) 下通过 Bootstrap 生成 \\\\(T^{*(1)}, \\\\ldots, T^{*(B)}\\\\)。<strong>Bootstrap p 值</strong>定义为</p>
-                        \\\\[p_{\\\\text{boot}} = \\\\frac{1}{B} \\\\sum_{b=1}^{B} \\\\mathbf{1}\\\\!\\\\left(T^{*(b)} \\\\ge T_{\\\\text{obs}}\\\\right).\\\\]
-                        <p>（对于双侧检验，使用 \\\\(|T^{*(b)}| \\\\ge |T_{\\\\text{obs}}|\\\\)。）</p>
+                        <p>设观测到的检验统计量为 \\(T_{\\text{obs}}\\)，在零假设 \\(H_0\\) 下通过 Bootstrap 生成 \\(T^{*(1)}, \\ldots, T^{*(B)}\\)。<strong>Bootstrap p 值</strong>定义为</p>
+                        \\[p_{\\text{boot}} = \\frac{1}{B} \\sum_{b=1}^{B} \\mathbf{1}\\!\\left(T^{*(b)} \\ge T_{\\text{obs}}\\right).\\]
+                        <p>（对于双侧检验，使用 \\(|T^{*(b)}| \\ge |T_{\\text{obs}}|\\)。）</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark (零假设下的 Bootstrap)</div>
                     <div class="env-body">
-                        <p>进行 Bootstrap 假设检验时，关键是要在<strong>零假设下</strong>进行重抽样。例如检验 \\\\(H_0: \\\\mu = \\\\mu_0\\\\) 时，应将数据中心化为 \\\\(Y_i = X_i - \\\\bar{X} + \\\\mu_0\\\\)，然后从 \\\\(Y_1, \\\\ldots, Y_n\\\\) 中进行 Bootstrap 抽样。</p>
+                        <p>进行 Bootstrap 假设检验时，关键是要在<strong>零假设下</strong>进行重抽样。例如检验 \\(H_0: \\mu = \\mu_0\\) 时，应将数据中心化为 \\(Y_i = X_i - \\bar{X} + \\mu_0\\)，然后从 \\(Y_1, \\ldots, Y_n\\) 中进行 Bootstrap 抽样。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.12 (置换检验)</div>
                     <div class="env-body">
-                        <p>考虑两样本问题：\\\\(X_1, \\\\ldots, X_m \\\\sim F\\\\)，\\\\(Y_1, \\\\ldots, Y_n \\\\sim G\\\\)，检验 \\\\(H_0: F = G\\\\)。</p>
+                        <p>考虑两样本问题：\\(X_1, \\ldots, X_m \\sim F\\)，\\(Y_1, \\ldots, Y_n \\sim G\\)，检验 \\(H_0: F = G\\)。</p>
                         <p><strong>置换检验</strong> (permutation test) 的步骤：</p>
-                        <p><strong>Step 1.</strong> 计算观测统计量 \\\\(T_{\\\\text{obs}}\\\\)（如两组均值之差 \\\\(\\\\bar{X} - \\\\bar{Y}\\\\)）。</p>
-                        <p><strong>Step 2.</strong> 将所有 \\\\(m + n\\\\) 个观测值混合，随机划分为大小 \\\\(m\\\\) 和 \\\\(n\\\\) 的两组。</p>
-                        <p><strong>Step 3.</strong> 对每次置换计算统计量 \\\\(T^{*(b)}\\\\)。</p>
-                        <p><strong>Step 4.</strong> p 值为 \\\\(\\\\frac{1}{B}\\\\sum_{b=1}^{B} \\\\mathbf{1}(|T^{*(b)}| \\\\ge |T_{\\\\text{obs}}|)\\\\)。</p>
+                        <p><strong>Step 1.</strong> 计算观测统计量 \\(T_{\\text{obs}}\\)（如两组均值之差 \\(\\bar{X} - \\bar{Y}\\)）。</p>
+                        <p><strong>Step 2.</strong> 将所有 \\(m + n\\) 个观测值混合，随机划分为大小 \\(m\\) 和 \\(n\\) 的两组。</p>
+                        <p><strong>Step 3.</strong> 对每次置换计算统计量 \\(T^{*(b)}\\)。</p>
+                        <p><strong>Step 4.</strong> p 值为 \\(\\frac{1}{B}\\sum_{b=1}^{B} \\mathbf{1}(|T^{*(b)}| \\ge |T_{\\text{obs}}|)\\)。</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 17.13 (置换检验的精确性)</div>
                     <div class="env-body">
-                        <p>在 \\\\(H_0: F = G\\\\) 下，若使用所有 \\\\(\\\\binom{m+n}{m}\\\\) 种置换，则置换检验是<strong>精确检验</strong>，即对任意 \\\\(\\\\alpha\\\\)，其真实水平恰好等于（或不超过）\\\\(\\\\alpha\\\\)。</p>
+                        <p>在 \\(H_0: F = G\\) 下，若使用所有 \\(\\binom{m+n}{m}\\) 种置换，则置换检验是<strong>精确检验</strong>，即对任意 \\(\\alpha\\)，其真实水平恰好等于（或不超过）\\(\\alpha\\)。</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>在 \\\\(H_0\\\\) 下，所有 \\\\(N = m + n\\\\) 个观测值来自同一分布。因此数据的任何排列都是等可能的。检验统计量在所有 \\\\(\\\\binom{N}{m}\\\\) 种划分上取值构成了其精确的零分布。p 值等于零分布中不小于观测值的比例，由对称性可知检验水平精确为 \\\\(\\\\alpha\\\\)。</p>
+                        <p>在 \\(H_0\\) 下，所有 \\(N = m + n\\) 个观测值来自同一分布。因此数据的任何排列都是等可能的。检验统计量在所有 \\(\\binom{N}{m}\\) 种划分上取值构成了其精确的零分布。p 值等于零分布中不小于观测值的比例，由对称性可知检验水平精确为 \\(\\alpha\\)。</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
@@ -639,7 +639,7 @@ window.CHAPTERS.push({
                 <div class="env-block example">
                     <div class="env-title">Example 17.14 (Bootstrap 双样本检验)</div>
                     <div class="env-body">
-                        <p>设 \\\\(X_1, \\\\ldots, X_{15} \\\\sim N(\\\\mu_1, 1)\\\\)，\\\\(Y_1, \\\\ldots, Y_{15} \\\\sim N(\\\\mu_2, 1)\\\\)。检验 \\\\(H_0: \\\\mu_1 = \\\\mu_2\\\\)。使用下面的可视化工具，调整 \\\\(\\\\mu_2\\\\) 观察 p 值如何变化。当 \\\\(\\\\mu_1 = \\\\mu_2\\\\) 时，p 值应大致均匀分布在 \\\\([0,1]\\\\) 上。</p>
+                        <p>设 \\(X_1, \\ldots, X_{15} \\sim N(\\mu_1, 1)\\)，\\(Y_1, \\ldots, Y_{15} \\sim N(\\mu_2, 1)\\)。检验 \\(H_0: \\mu_1 = \\mu_2\\)。使用下面的可视化工具，调整 \\(\\mu_2\\) 观察 p 值如何变化。当 \\(\\mu_1 = \\mu_2\\) 时，p 值应大致均匀分布在 \\([0,1]\\) 上。</p>
                     </div>
                 </div>
 
@@ -842,7 +842,7 @@ window.CHAPTERS.push({
                     solution: '置换检验将两组数据混合后无放回地重新分配，保持组的大小不变。它检验的精确零假设是 F = G（两个分布完全相同）。Bootstrap 检验则通过有放回抽样在 H0 下构造零分布，检验的可以是更具体的假设（如 mu1 = mu2）。当两组方差不同但均值相同时（H0: mu1 = mu2 但 sigma1 != sigma2），置换检验可能不恰当（因为 F != G），而适当构造的 Bootstrap 检验仍然有效。此外，对于非常小的样本，置换检验提供精确检验，而 Bootstrap 只是近似的。'
                 },
                 {
-                    question: '假设你对 \\\\(n = 100\\\\) 个数据点用 \\\\(B = 999\\\\) 次 Bootstrap 进行单侧检验。得到的 p 值可能取哪些值？为什么通常建议 \\\\(B\\\\) 取奇数（如 999 而非 1000）？',
+                    question: '假设你对 \\(n = 100\\) 个数据点用 \\(B = 999\\) 次 Bootstrap 进行单侧检验。得到的 p 值可能取哪些值？为什么通常建议 \\(B\\) 取奇数（如 999 而非 1000）？',
                     hint: '考虑 Bootstrap p 值的分辨率。',
                     solution: 'Bootstrap p 值的形式为 k/B（或 (k+1)/(B+1) 的修正形式），其中 k = 0, 1, ..., B。因此可能的 p 值为 0/999, 1/999, ..., 999/999。分辨率为 1/B。取 B = 999 时，若使用修正 p 值 (k+1)/(B+1) = (k+1)/1000，恰好得到千分之一为单位的 p 值，便于解读。若 B = 1000，修正后分母为 1001，p 值不那么"整"。更重要的是，修正公式 (k+1)/(B+1) 确保 p 值不会为 0，这在理论上更合理。'
                 }
@@ -861,33 +861,33 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.15 (Jackknife 估计)</div>
                     <div class="env-body">
-                        <p>设 \\\\(\\\\hat{\\\\theta} = T(X_1, \\\\ldots, X_n)\\\\) 为统计量。记 \\\\(\\\\hat{\\\\theta}_{(i)} = T(X_1, \\\\ldots, X_{i-1}, X_{i+1}, \\\\ldots, X_n)\\\\) 为删去第 \\\\(i\\\\) 个观测后的估计值。定义：</p>
+                        <p>设 \\(\\hat{\\theta} = T(X_1, \\ldots, X_n)\\) 为统计量。记 \\(\\hat{\\theta}_{(i)} = T(X_1, \\ldots, X_{i-1}, X_{i+1}, \\ldots, X_n)\\) 为删去第 \\(i\\) 个观测后的估计值。定义：</p>
                         <p><strong>Jackknife 偏差估计：</strong></p>
-                        \\\\[\\\\widehat{\\\\text{Bias}}_{\\\\text{jack}} = (n-1)\\\\left(\\\\hat{\\\\theta}_{(\\\\cdot)} - \\\\hat{\\\\theta}\\\\right), \\\\quad \\\\hat{\\\\theta}_{(\\\\cdot)} = \\\\frac{1}{n}\\\\sum_{i=1}^{n} \\\\hat{\\\\theta}_{(i)}.\\\\]
+                        \\[\\widehat{\\text{Bias}}_{\\text{jack}} = (n-1)\\left(\\hat{\\theta}_{(\\cdot)} - \\hat{\\theta}\\right), \\quad \\hat{\\theta}_{(\\cdot)} = \\frac{1}{n}\\sum_{i=1}^{n} \\hat{\\theta}_{(i)}.\\]
                         <p><strong>Jackknife 方差估计：</strong></p>
-                        \\\\[\\\\widehat{\\\\text{Var}}_{\\\\text{jack}} = \\\\frac{n-1}{n} \\\\sum_{i=1}^{n} \\\\left(\\\\hat{\\\\theta}_{(i)} - \\\\hat{\\\\theta}_{(\\\\cdot)}\\\\right)^2.\\\\]
+                        \\[\\widehat{\\text{Var}}_{\\text{jack}} = \\frac{n-1}{n} \\sum_{i=1}^{n} \\left(\\hat{\\theta}_{(i)} - \\hat{\\theta}_{(\\cdot)}\\right)^2.\\]
                         <p><strong>偏差校正 Jackknife 估计：</strong></p>
-                        \\\\[\\\\tilde{\\\\theta}_{\\\\text{jack}} = \\\\hat{\\\\theta} - \\\\widehat{\\\\text{Bias}}_{\\\\text{jack}} = n\\\\hat{\\\\theta} - (n-1)\\\\hat{\\\\theta}_{(\\\\cdot)}.\\\\]
+                        \\[\\tilde{\\theta}_{\\text{jack}} = \\hat{\\theta} - \\widehat{\\text{Bias}}_{\\text{jack}} = n\\hat{\\theta} - (n-1)\\hat{\\theta}_{(\\cdot)}.\\]
                     </div>
                 </div>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 17.16 (Jackknife 偏差校正的精度)</div>
                     <div class="env-body">
-                        <p>若 \\\\(\\\\hat{\\\\theta}\\\\) 的偏差可以展开为</p>
-                        \\\\[\\\\text{Bias}(\\\\hat{\\\\theta}) = \\\\frac{a_1}{n} + \\\\frac{a_2}{n^2} + \\\\cdots,\\\\]
-                        <p>则 Jackknife 偏差校正后的估计量 \\\\(\\\\tilde{\\\\theta}_{\\\\text{jack}}\\\\) 的偏差为 \\\\(O(n^{-2})\\\\)，即消除了 \\\\(O(n^{-1})\\\\) 阶的偏差。</p>
+                        <p>若 \\(\\hat{\\theta}\\) 的偏差可以展开为</p>
+                        \\[\\text{Bias}(\\hat{\\theta}) = \\frac{a_1}{n} + \\frac{a_2}{n^2} + \\cdots,\\]
+                        <p>则 Jackknife 偏差校正后的估计量 \\(\\tilde{\\theta}_{\\text{jack}}\\) 的偏差为 \\(O(n^{-2})\\)，即消除了 \\(O(n^{-1})\\) 阶的偏差。</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof (sketch)</div>
                     <div class="env-body">
-                        <p>记 \\\\(E[\\\\hat{\\\\theta}] = \\\\theta + a_1/n + a_2/n^2 + \\\\cdots\\\\)。删去一个观测后样本量为 \\\\(n-1\\\\)，因此</p>
-                        \\\\[E[\\\\hat{\\\\theta}_{(i)}] = \\\\theta + \\\\frac{a_1}{n-1} + \\\\frac{a_2}{(n-1)^2} + \\\\cdots.\\\\]
+                        <p>记 \\(E[\\hat{\\theta}] = \\theta + a_1/n + a_2/n^2 + \\cdots\\)。删去一个观测后样本量为 \\(n-1\\)，因此</p>
+                        \\[E[\\hat{\\theta}_{(i)}] = \\theta + \\frac{a_1}{n-1} + \\frac{a_2}{(n-1)^2} + \\cdots.\\]
                         <p>于是</p>
-                        \\\\[E[\\\\tilde{\\\\theta}_{\\\\text{jack}}] = nE[\\\\hat{\\\\theta}] - (n-1)E[\\\\hat{\\\\theta}_{(\\\\cdot)}] = n\\\\left(\\\\theta + \\\\frac{a_1}{n} + \\\\frac{a_2}{n^2}\\\\right) - (n-1)\\\\left(\\\\theta + \\\\frac{a_1}{n-1} + \\\\frac{a_2}{(n-1)^2}\\\\right) + \\\\cdots\\\\]
-                        \\\\[= \\\\theta + a_1 + \\\\frac{a_2}{n} - \\\\theta - a_1 - \\\\frac{(n-1)a_2}{(n-1)^2} + \\\\cdots = \\\\theta + O(n^{-2}).\\\\]
+                        \\[E[\\tilde{\\theta}_{\\text{jack}}] = nE[\\hat{\\theta}] - (n-1)E[\\hat{\\theta}_{(\\cdot)}] = n\\left(\\theta + \\frac{a_1}{n} + \\frac{a_2}{n^2}\\right) - (n-1)\\left(\\theta + \\frac{a_1}{n-1} + \\frac{a_2}{(n-1)^2}\\right) + \\cdots\\]
+                        \\[= \\theta + a_1 + \\frac{a_2}{n} - \\theta - a_1 - \\frac{(n-1)a_2}{(n-1)^2} + \\cdots = \\theta + O(n^{-2}).\\]
                         <div class="qed">∎</div>
                     </div>
                 </div>
@@ -895,22 +895,22 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.17 (Jackknife 伪值与影响)</div>
                     <div class="env-body">
-                        <p>第 \\\\(i\\\\) 个观测的 <strong>Jackknife 伪值</strong> (pseudovalue) 定义为</p>
-                        \\\\[\\\\tilde{\\\\theta}_i = n\\\\hat{\\\\theta} - (n-1)\\\\hat{\\\\theta}_{(i)}.\\\\]
-                        <p>注意 \\\\(\\\\tilde{\\\\theta}_{\\\\text{jack}} = \\\\frac{1}{n}\\\\sum_{i=1}^{n} \\\\tilde{\\\\theta}_i\\\\)。伪值度量了第 \\\\(i\\\\) 个观测对整体估计的<strong>影响</strong>。</p>
+                        <p>第 \\(i\\) 个观测的 <strong>Jackknife 伪值</strong> (pseudovalue) 定义为</p>
+                        \\[\\tilde{\\theta}_i = n\\hat{\\theta} - (n-1)\\hat{\\theta}_{(i)}.\\]
+                        <p>注意 \\(\\tilde{\\theta}_{\\text{jack}} = \\frac{1}{n}\\sum_{i=1}^{n} \\tilde{\\theta}_i\\)。伪值度量了第 \\(i\\) 个观测对整体估计的<strong>影响</strong>。</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.18 (交叉验证)</div>
                     <div class="env-body">
-                        <p>设数据 \\\\(\\\\mathcal{D} = \\\\{(x_i, y_i)\\\\}_{i=1}^{n}\\\\)，模型为 \\\\(\\\\hat{f}\\\\)。<strong>\\\\(K\\\\)-折交叉验证</strong> (K-fold cross-validation) 的步骤：</p>
-                        <p><strong>Step 1.</strong> 将数据随机等分为 \\\\(K\\\\) 个子集 \\\\(\\\\mathcal{D}_1, \\\\ldots, \\\\mathcal{D}_K\\\\)。</p>
-                        <p><strong>Step 2.</strong> 对 \\\\(k = 1, \\\\ldots, K\\\\)：用 \\\\(\\\\mathcal{D} \\\\setminus \\\\mathcal{D}_k\\\\) 训练模型 \\\\(\\\\hat{f}^{(-k)}\\\\)，在 \\\\(\\\\mathcal{D}_k\\\\) 上计算预测误差。</p>
+                        <p>设数据 \\(\\mathcal{D} = \\{(x_i, y_i)\\}_{i=1}^{n}\\)，模型为 \\(\\hat{f}\\)。<strong>\\(K\\)-折交叉验证</strong> (K-fold cross-validation) 的步骤：</p>
+                        <p><strong>Step 1.</strong> 将数据随机等分为 \\(K\\) 个子集 \\(\\mathcal{D}_1, \\ldots, \\mathcal{D}_K\\)。</p>
+                        <p><strong>Step 2.</strong> 对 \\(k = 1, \\ldots, K\\)：用 \\(\\mathcal{D} \\setminus \\mathcal{D}_k\\) 训练模型 \\(\\hat{f}^{(-k)}\\)，在 \\(\\mathcal{D}_k\\) 上计算预测误差。</p>
                         <p><strong>Step 3.</strong> 交叉验证误差为</p>
-                        \\\\[\\\\text{CV}(K) = \\\\frac{1}{n} \\\\sum_{k=1}^{K} \\\\sum_{i \\\\in \\\\mathcal{D}_k} L(y_i, \\\\hat{f}^{(-k)}(x_i)),\\\\]
-                        <p>其中 \\\\(L\\\\) 是损失函数（如平方误差 \\\\(L(y, \\\\hat{y}) = (y - \\\\hat{y})^2\\\\)）。</p>
-                        <p>当 \\\\(K = n\\\\) 时为<strong>留一交叉验证</strong> (LOOCV)。</p>
+                        \\[\\text{CV}(K) = \\frac{1}{n} \\sum_{k=1}^{K} \\sum_{i \\in \\mathcal{D}_k} L(y_i, \\hat{f}^{(-k)}(x_i)),\\]
+                        <p>其中 \\(L\\) 是损失函数（如平方误差 \\(L(y, \\hat{y}) = (y - \\hat{y})^2\\)）。</p>
+                        <p>当 \\(K = n\\) 时为<strong>留一交叉验证</strong> (LOOCV)。</p>
                     </div>
                 </div>
 
@@ -918,8 +918,8 @@ window.CHAPTERS.push({
                     <div class="env-title">Theorem 17.19 (LOOCV 与 Jackknife 的关系)</div>
                     <div class="env-body">
                         <p>对于线性回归模型，LOOCV 等价于</p>
-                        \\\\[\\\\text{CV}(n) = \\\\frac{1}{n} \\\\sum_{i=1}^{n} \\\\left(\\\\frac{y_i - \\\\hat{y}_i}{1 - h_{ii}}\\\\right)^2,\\\\]
-                        <p>其中 \\\\(h_{ii}\\\\) 是帽子矩阵 \\\\(H = X(X^TX)^{-1}X^T\\\\) 的第 \\\\(i\\\\) 个对角元素。因此 LOOCV 可以从一次完整回归中计算，无需反复拟合。</p>
+                        \\[\\text{CV}(n) = \\frac{1}{n} \\sum_{i=1}^{n} \\left(\\frac{y_i - \\hat{y}_i}{1 - h_{ii}}\\right)^2,\\]
+                        <p>其中 \\(h_{ii}\\) 是帽子矩阵 \\(H = X(X^TX)^{-1}X^T\\) 的第 \\(i\\) 个对角元素。因此 LOOCV 可以从一次完整回归中计算，无需反复拟合。</p>
                     </div>
                 </div>
 
@@ -1303,14 +1303,14 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\\\(\\\\hat{\\\\theta} = \\\\bar{X}^2\\\\) 是 \\\\(\\\\mu^2\\\\) 的估计量（其中 \\\\(X_i \\\\sim N(\\\\mu, \\\\sigma^2)\\\\)）。求 \\\\(\\\\hat{\\\\theta}\\\\) 的偏差，并说明 Jackknife 偏差校正如何减小它。',
-                    hint: '\\\\(E[\\\\bar{X}^2] = \\\\mu^2 + \\\\sigma^2/n\\\\)。偏差是 \\\\(\\\\sigma^2/n\\\\)，形式为 \\\\(a_1/n\\\\)。',
-                    solution: '\\\\(E[\\\\bar{X}^2] = \\\\operatorname{Var}(\\\\bar{X}) + (E[\\\\bar{X}])^2 = \\\\sigma^2/n + \\\\mu^2\\\\)。因此偏差为 \\\\(\\\\sigma^2/n\\\\)，确实是 \\\\(O(1/n)\\\\) 的形式。Jackknife 偏差估计为 \\\\((n-1)(\\\\hat{\\\\theta}_{(\\\\cdot)} - \\\\hat{\\\\theta})\\\\)。每个 \\\\(\\\\hat{\\\\theta}_{(i)} = \\\\bar{X}_{(i)}^2\\\\) 的期望为 \\\\(\\\\mu^2 + \\\\sigma^2/(n-1)\\\\)。因此 Jackknife 偏差估计的期望为 \\\\((n-1)(\\\\sigma^2/(n-1) - \\\\sigma^2/n) = \\\\sigma^2/n\\\\)，正确估计了偏差。校正后 \\\\(\\\\tilde{\\\\theta}_{\\\\text{jack}} = \\\\bar{X}^2 - S^2/n\\\\)（近似），偏差降为 \\\\(O(n^{-2})\\\\)。'
+                    question: '设 \\(\\hat{\\theta} = \\bar{X}^2\\) 是 \\(\\mu^2\\) 的估计量（其中 \\(X_i \\sim N(\\mu, \\sigma^2)\\)）。求 \\(\\hat{\\theta}\\) 的偏差，并说明 Jackknife 偏差校正如何减小它。',
+                    hint: '\\(E[\\bar{X}^2] = \\mu^2 + \\sigma^2/n\\)。偏差是 \\(\\sigma^2/n\\)，形式为 \\(a_1/n\\)。',
+                    solution: '\\(E[\\bar{X}^2] = \\operatorname{Var}(\\bar{X}) + (E[\\bar{X}])^2 = \\sigma^2/n + \\mu^2\\)。因此偏差为 \\(\\sigma^2/n\\)，确实是 \\(O(1/n)\\) 的形式。Jackknife 偏差估计为 \\((n-1)(\\hat{\\theta}_{(\\cdot)} - \\hat{\\theta})\\)。每个 \\(\\hat{\\theta}_{(i)} = \\bar{X}_{(i)}^2\\) 的期望为 \\(\\mu^2 + \\sigma^2/(n-1)\\)。因此 Jackknife 偏差估计的期望为 \\((n-1)(\\sigma^2/(n-1) - \\sigma^2/n) = \\sigma^2/n\\)，正确估计了偏差。校正后 \\(\\tilde{\\theta}_{\\text{jack}} = \\bar{X}^2 - S^2/n\\)（近似），偏差降为 \\(O(n^{-2})\\)。'
                 },
                 {
                     question: '解释为什么 Jackknife 对中位数的方差估计不一致，而 Bootstrap 可以一致估计中位数的方差。',
                     hint: '考虑删去一个观测对中位数的影响——中位数是不光滑统计量。',
-                    solution: '中位数是不光滑 (non-smooth) 泛函。删去一个观测时，样本中位数只可能变为相邻的次序统计量，因此 Jackknife 值 \\\\(\\\\hat{\\\\theta}_{(i)}\\\\) 只能取少数几个不同的值。具体而言，大多数 \\\\(\\\\hat{\\\\theta}_{(i)}\\\\) 等于 \\\\(\\\\hat{\\\\theta}\\\\) 或非常接近，导致 Jackknife 方差估计中 \\\\((\\\\hat{\\\\theta}_{(i)} - \\\\hat{\\\\theta}_{(\\\\cdot)})^2\\\\) 的求和低估了真实方差。乘以 \\\\((n-1)/n\\\\) 的放大因子也无法补偿这种阶梯效应。而 Bootstrap 通过有放回抽样可以产生连续范围的中位数值，能更好地近似其抽样分布。'
+                    solution: '中位数是不光滑 (non-smooth) 泛函。删去一个观测时，样本中位数只可能变为相邻的次序统计量，因此 Jackknife 值 \\(\\hat{\\theta}_{(i)}\\) 只能取少数几个不同的值。具体而言，大多数 \\(\\hat{\\theta}_{(i)}\\) 等于 \\(\\hat{\\theta}\\) 或非常接近，导致 Jackknife 方差估计中 \\((\\hat{\\theta}_{(i)} - \\hat{\\theta}_{(\\cdot)})^2\\) 的求和低估了真实方差。乘以 \\((n-1)/n\\) 的放大因子也无法补偿这种阶梯效应。而 Bootstrap 通过有放回抽样可以产生连续范围的中位数值，能更好地近似其抽样分布。'
                 },
                 {
                     question: '在 K-折交叉验证中，讨论 K 的选择对偏差-方差权衡的影响。LOOCV (K=n) 与 5-fold CV 各有什么优缺点？',
