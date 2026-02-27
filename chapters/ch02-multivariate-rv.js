@@ -2,72 +2,72 @@ window.CHAPTERS = window.CHAPTERS || [];
 window.CHAPTERS.push({
     id: 'ch02',
     number: 2,
-    title: '多维随机变量',
+    title: 'Multivariate Random Variables',
     subtitle: 'Multivariate Random Variables',
     sections: [
         // ============================================================
-        // Section 1: 联合分布与边际分布
+        // Section 1: Joint and Marginal Distributions
         // ============================================================
         {
             id: 'ch02-sec01',
-            title: '联合分布与边际分布',
+            title: 'Joint and Marginal Distributions',
             content: `
-                <h2>联合分布与边际分布</h2>
-                <p>单个随机变量的分布描述了一个维度上的不确定性。然而在实际问题中，我们常常需要同时研究多个随机变量的联合行为——例如身高与体重、收入与消费、温度与气压等。<strong>多维随机变量</strong>（也称随机向量）的理论为此提供了严格的数学框架。</p>
+                <h2>Joint Distributions and Marginal Distributions 联合分布与边际分布</h2>
+                <p>The distribution of a single random variable describes uncertainty in one dimension. However, in practice, we often need to study the joint behavior of multiple random variables simultaneously — for example, height and weight, income and consumption, temperature and atmospheric pressure. The theory of <strong>multivariate random variables</strong> (多维随机变量, also called random vectors) provides a rigorous mathematical framework for this purpose.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 2.1 (联合累积分布函数)</div>
+                    <div class="env-title">Definition 2.1 (Joint Cumulative Distribution Function)</div>
                     <div class="env-body">
-                        <p>设 \\(X\\) 和 \\(Y\\) 是定义在同一概率空间 \\((\\Omega, \\mathcal{F}, P)\\) 上的两个随机变量。它们的<strong>联合累积分布函数</strong>（joint CDF）定义为</p>
+                        <p>Let \\(X\\) and \\(Y\\) be two random variables defined on the same probability space \\((\\Omega, \\mathcal{F}, P)\\). Their <strong>joint cumulative distribution function</strong> (联合累积分布函数, joint CDF) is defined as</p>
                         \\[F_{X,Y}(x, y) = P(X \\leq x, Y \\leq y), \\quad (x, y) \\in \\mathbb{R}^2.\\]
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 2.2 (联合 CDF 的基本性质)</div>
+                    <div class="env-title">Theorem 2.2 (Basic Properties of the Joint CDF)</div>
                     <div class="env-body">
-                        <p>联合 CDF \\(F_{X,Y}\\) 满足：</p>
+                        <p>The joint CDF \\(F_{X,Y}\\) satisfies:</p>
                         <ol>
-                            <li>\\(F_{X,Y}\\) 关于 \\(x\\) 和 \\(y\\) 各自非递减；</li>
-                            <li>\\(F_{X,Y}(-\\infty, y) = 0\\)，\\(F_{X,Y}(x, -\\infty) = 0\\)，\\(F_{X,Y}(\\infty, \\infty) = 1\\)；</li>
-                            <li>\\(F_{X,Y}\\) 关于 \\(x\\) 和 \\(y\\) 各自右连续；</li>
-                            <li>对任意 \\(a_1 < a_2\\), \\(b_1 < b_2\\)：\\(P(a_1 < X \\leq a_2, b_1 < Y \\leq b_2) = F(a_2,b_2) - F(a_1,b_2) - F(a_2,b_1) + F(a_1,b_1) \\geq 0\\)。</li>
+                            <li>\\(F_{X,Y}\\) is non-decreasing in each of \\(x\\) and \\(y\\);</li>
+                            <li>\\(F_{X,Y}(-\\infty, y) = 0\\), \\(F_{X,Y}(x, -\\infty) = 0\\), \\(F_{X,Y}(\\infty, \\infty) = 1\\);</li>
+                            <li>\\(F_{X,Y}\\) is right-continuous in each of \\(x\\) and \\(y\\);</li>
+                            <li>For any \\(a_1 < a_2\\), \\(b_1 < b_2\\): \\(P(a_1 < X \\leq a_2, b_1 < Y \\leq b_2) = F(a_2,b_2) - F(a_1,b_2) - F(a_2,b_1) + F(a_1,b_1) \\geq 0\\).</li>
                         </ol>
                     </div>
                 </div>
 
-                <h3>离散情形：联合概率质量函数</h3>
+                <h3>Discrete Case: Joint Probability Mass Function 离散情形：联合概率质量函数</h3>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 2.3 (联合 PMF)</div>
+                    <div class="env-title">Definition 2.3 (Joint PMF)</div>
                     <div class="env-body">
-                        <p>若 \\((X, Y)\\) 是离散随机向量，其<strong>联合概率质量函数</strong>为</p>
+                        <p>If \\((X, Y)\\) is a discrete random vector, its <strong>joint probability mass function</strong> (联合概率质量函数) is</p>
                         \\[p_{X,Y}(x, y) = P(X = x, Y = y).\\]
-                        <p>满足 \\(p_{X,Y}(x,y) \\geq 0\\) 且 \\(\\sum_x \\sum_y p_{X,Y}(x,y) = 1\\)。</p>
+                        <p>It satisfies \\(p_{X,Y}(x,y) \\geq 0\\) and \\(\\sum_x \\sum_y p_{X,Y}(x,y) = 1\\).</p>
                     </div>
                 </div>
 
-                <h3>连续情形：联合概率密度函数</h3>
+                <h3>Continuous Case: Joint Probability Density Function 连续情形：联合概率密度函数</h3>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 2.4 (联合 PDF)</div>
+                    <div class="env-title">Definition 2.4 (Joint PDF)</div>
                     <div class="env-body">
-                        <p>若存在非负可积函数 \\(f_{X,Y}\\) 使得</p>
+                        <p>If there exists a non-negative integrable function \\(f_{X,Y}\\) such that</p>
                         \\[F_{X,Y}(x,y) = \\int_{-\\infty}^{x} \\int_{-\\infty}^{y} f_{X,Y}(s,t) \\, dt \\, ds,\\]
-                        <p>则称 \\((X,Y)\\) 为连续随机向量，\\(f_{X,Y}\\) 为其<strong>联合概率密度函数</strong>。</p>
-                        <p>满足 \\(f_{X,Y}(x,y) \\geq 0\\) 且 \\(\\int_{-\\infty}^{\\infty}\\int_{-\\infty}^{\\infty} f_{X,Y}(x,y) \\, dx \\, dy = 1\\)。</p>
+                        <p>then \\((X,Y)\\) is called a continuous random vector and \\(f_{X,Y}\\) is its <strong>joint probability density function</strong> (联合概率密度函数).</p>
+                        <p>It satisfies \\(f_{X,Y}(x,y) \\geq 0\\) and \\(\\int_{-\\infty}^{\\infty}\\int_{-\\infty}^{\\infty} f_{X,Y}(x,y) \\, dx \\, dy = 1\\).</p>
                     </div>
                 </div>
 
-                <h3>边际分布</h3>
+                <h3>Marginal Distributions 边际分布</h3>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 2.5 (边际分布)</div>
+                    <div class="env-title">Definition 2.5 (Marginal Distribution)</div>
                     <div class="env-body">
-                        <p>从联合分布中"消去"一个变量，得到另一个变量的单独分布，称为<strong>边际分布</strong>（marginal distribution）。</p>
-                        <p><strong>离散情形：</strong></p>
+                        <p>By "integrating out" one variable from the joint distribution, we obtain the individual distribution of the other variable, called the <strong>marginal distribution</strong> (边际分布).</p>
+                        <p><strong>Discrete case:</strong></p>
                         \\[p_X(x) = \\sum_{y} p_{X,Y}(x, y), \\qquad p_Y(y) = \\sum_{x} p_{X,Y}(x, y).\\]
-                        <p><strong>连续情形：</strong></p>
+                        <p><strong>Continuous case:</strong></p>
                         \\[f_X(x) = \\int_{-\\infty}^{\\infty} f_{X,Y}(x, y) \\, dy, \\qquad f_Y(y) = \\int_{-\\infty}^{\\infty} f_{X,Y}(x, y) \\, dx.\\]
                     </div>
                 </div>
@@ -75,14 +75,14 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>可以将联合分布想象成一张二维表格（离散情形）或一个二维地形图（连续情形）。边际分布就是把这张表/地形沿着一个方向"投影"或"压缩"——把列加起来得到行边际，把行加起来得到列边际。</p>
+                        <p>Think of the joint distribution as a two-dimensional table (discrete case) or a two-dimensional terrain map (continuous case). The marginal distribution is obtained by "projecting" or "collapsing" the table/terrain along one direction — summing the columns gives the row marginal, and summing the rows gives the column marginal.</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
                     <div class="env-title">Example 2.6</div>
                     <div class="env-body">
-                        <p>考虑一个离散联合分布，其中 \\(X \\in \\{0, 1, 2\\}\\)，\\(Y \\in \\{0, 1, 2\\}\\)。下面的交互式表格展示了如何通过对行或列求和来获得边际分布。</p>
+                        <p>Consider a discrete joint distribution where \\(X \\in \\{0, 1, 2\\}\\) and \\(Y \\in \\{0, 1, 2\\}\\). The interactive table below shows how to obtain the marginal distributions by summing over rows or columns.</p>
                     </div>
                 </div>
 
@@ -91,15 +91,15 @@ window.CHAPTERS.push({
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>知道边际分布 \\(p_X\\) 和 \\(p_Y\\)，<strong>不能</strong>唯一确定联合分布 \\(p_{X,Y}\\)。不同的联合分布可以有相同的边际分布。联合分布包含的信息严格多于两个边际分布之和。</p>
+                        <p>Knowing the marginal distributions \\(p_X\\) and \\(p_Y\\) does <strong>not</strong> uniquely determine the joint distribution \\(p_{X,Y}\\). Different joint distributions can share the same marginals. The joint distribution contains strictly more information than the sum of the two marginal distributions.</p>
                     </div>
                 </div>
             `,
             visualizations: [
                 {
                     id: 'joint-pmf-table',
-                    title: 'Interactive: 联合 PMF 表与边际分布',
-                    description: '点击单元格修改联合概率，观察边际分布如何变化。行/列求和自动高亮。',
+                    title: 'Interactive: Joint PMF Table and Marginal Distributions',
+                    description: 'Click a cell to select it, then use the slider to modify the joint probability and observe how the marginals change. Row/column sums are highlighted automatically.',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 420, scale: 40});
                         // Joint PMF data (3x3)
@@ -292,21 +292,21 @@ window.CHAPTERS.push({
         },
 
         // ============================================================
-        // Section 2: 条件分布与独立性
+        // Section 2: Conditional Distributions and Independence
         // ============================================================
         {
             id: 'ch02-sec02',
-            title: '条件分布与独立性',
+            title: 'Conditional Distributions and Independence',
             content: `
-                <h2>条件分布与独立性</h2>
-                <p>联合分布告诉我们两个变量的全部信息。但我们常常需要回答这样的问题：<em>已知 \\(Y = y\\) 的条件下，\\(X\\) 的分布是什么？</em>这就是条件分布。</p>
+                <h2>Conditional Distributions and Independence 条件分布与独立性</h2>
+                <p>The joint distribution tells us everything about two variables. But we often need to answer questions like: <em>Given \\(Y = y\\), what is the distribution of \\(X\\)?</em> This leads to the concept of conditional distributions (条件分布).</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 2.7 (条件分布)</div>
+                    <div class="env-title">Definition 2.7 (Conditional Distribution)</div>
                     <div class="env-body">
-                        <p><strong>离散情形：</strong>若 \\(p_Y(y) > 0\\)，则 \\(X\\) 在 \\(Y = y\\) 条件下的<strong>条件 PMF</strong>为</p>
+                        <p><strong>Discrete case:</strong> If \\(p_Y(y) > 0\\), the <strong>conditional PMF</strong> (条件概率质量函数) of \\(X\\) given \\(Y = y\\) is</p>
                         \\[p_{X|Y}(x|y) = \\frac{p_{X,Y}(x,y)}{p_Y(y)}.\\]
-                        <p><strong>连续情形：</strong>若 \\(f_Y(y) > 0\\)，则 \\(X\\) 在 \\(Y = y\\) 条件下的<strong>条件 PDF</strong>为</p>
+                        <p><strong>Continuous case:</strong> If \\(f_Y(y) > 0\\), the <strong>conditional PDF</strong> (条件概率密度函数) of \\(X\\) given \\(Y = y\\) is</p>
                         \\[f_{X|Y}(x|y) = \\frac{f_{X,Y}(x,y)}{f_Y(y)}.\\]
                     </div>
                 </div>
@@ -314,14 +314,14 @@ window.CHAPTERS.push({
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>连续情形中，\\(P(Y = y) = 0\\)，所以条件分布不能直接通过条件概率的定义得到。条件 PDF 的正确理解方式是通过极限：\\(f_{X|Y}(x|y) = \\lim_{\\epsilon \\to 0} \\frac{P(X \\leq x \\mid y < Y \\leq y + \\epsilon)}{dx}\\)。</p>
+                        <p>In the continuous case, \\(P(Y = y) = 0\\), so the conditional distribution cannot be obtained directly from the definition of conditional probability. The correct interpretation of the conditional PDF is through a limit: \\(f_{X|Y}(x|y) = \\lim_{\\epsilon \\to 0} \\frac{P(X \\leq x \\mid y < Y \\leq y + \\epsilon)}{dx}\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 2.8 (Bayes' Rule for Densities)</div>
                     <div class="env-body">
-                        <p>若 \\(f_X(x) > 0\\) 且 \\(f_Y(y) > 0\\)，则</p>
+                        <p>If \\(f_X(x) > 0\\) and \\(f_Y(y) > 0\\), then</p>
                         \\[f_{X|Y}(x|y) = \\frac{f_{Y|X}(y|x) \\cdot f_X(x)}{f_Y(y)}.\\]
                     </div>
                 </div>
@@ -329,39 +329,39 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>由条件密度定义：\\(f_{X|Y}(x|y) = \\frac{f_{X,Y}(x,y)}{f_Y(y)}\\)。又因为 \\(f_{X,Y}(x,y) = f_{Y|X}(y|x) \\cdot f_X(x)\\)，代入即得。</p>
+                        <p>By the definition of conditional density: \\(f_{X|Y}(x|y) = \\frac{f_{X,Y}(x,y)}{f_Y(y)}\\). Since \\(f_{X,Y}(x,y) = f_{Y|X}(y|x) \\cdot f_X(x)\\), substituting yields the result.</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
-                <h3>独立性</h3>
+                <h3>Independence 独立性</h3>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 2.9 (独立随机变量)</div>
+                    <div class="env-title">Definition 2.9 (Independent Random Variables)</div>
                     <div class="env-body">
-                        <p>随机变量 \\(X\\) 和 \\(Y\\) 称为<strong>（统计）独立</strong>的，如果对所有 \\((x, y) \\in \\mathbb{R}^2\\)：</p>
+                        <p>Random variables \\(X\\) and \\(Y\\) are said to be <strong>(statistically) independent</strong> (独立) if for all \\((x, y) \\in \\mathbb{R}^2\\):</p>
                         \\[F_{X,Y}(x,y) = F_X(x) \\cdot F_Y(y).\\]
-                        <p>等价地：</p>
+                        <p>Equivalently:</p>
                         <ul>
-                            <li>离散情形：\\(p_{X,Y}(x,y) = p_X(x) \\cdot p_Y(y)\\) 对所有 \\(x, y\\)；</li>
-                            <li>连续情形：\\(f_{X,Y}(x,y) = f_X(x) \\cdot f_Y(y)\\) 几乎处处成立。</li>
+                            <li>Discrete case: \\(p_{X,Y}(x,y) = p_X(x) \\cdot p_Y(y)\\) for all \\(x, y\\);</li>
+                            <li>Continuous case: \\(f_{X,Y}(x,y) = f_X(x) \\cdot f_Y(y)\\) almost everywhere.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 2.10 (独立性的因式分解判据)</div>
+                    <div class="env-title">Theorem 2.10 (Factorization Criterion for Independence)</div>
                     <div class="env-body">
-                        <p>\\(X\\) 和 \\(Y\\) 独立 \\(\\iff\\) 联合密度（或质量）函数可以分解为</p>
+                        <p>\\(X\\) and \\(Y\\) are independent \\(\\iff\\) the joint density (or mass) function can be factored as</p>
                         \\[f_{X,Y}(x,y) = g(x) \\cdot h(y)\\]
-                        <p>对某些非负函数 \\(g\\) 和 \\(h\\)（不必是边际密度本身，只需可分离）。</p>
+                        <p>for some non-negative functions \\(g\\) and \\(h\\) (they need not be the marginal densities themselves, only separable).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>(\\(\\Rightarrow\\)) 显然。(\\(\\Leftarrow\\)) 若 \\(f_{X,Y}(x,y) = g(x)h(y)\\)，则 \\(f_X(x) = g(x)\\int h(y)\\,dy = g(x) \\cdot c_h\\)，\\(f_Y(y) = h(y)\\int g(x)\\,dx = h(y) \\cdot c_g\\)。因此 \\(f_X(x)f_Y(y) = c_g c_h \\cdot g(x)h(y)\\)。又 \\(1 = \\iint g(x)h(y)\\,dx\\,dy = c_g c_h\\)，故 \\(f_X(x)f_Y(y) = g(x)h(y) = f_{X,Y}(x,y)\\)。</p>
+                        <p>(\\(\\Rightarrow\\)) Obvious. (\\(\\Leftarrow\\)) If \\(f_{X,Y}(x,y) = g(x)h(y)\\), then \\(f_X(x) = g(x)\\int h(y)\\,dy = g(x) \\cdot c_h\\) and \\(f_Y(y) = h(y)\\int g(x)\\,dx = h(y) \\cdot c_g\\). Therefore \\(f_X(x)f_Y(y) = c_g c_h \\cdot g(x)h(y)\\). Since \\(1 = \\iint g(x)h(y)\\,dx\\,dy = c_g c_h\\), we have \\(f_X(x)f_Y(y) = g(x)h(y) = f_{X,Y}(x,y)\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
@@ -369,7 +369,7 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>独立意味着"知道 \\(Y\\) 的值不会改变对 \\(X\\) 分布的认知"。条件分布等于边际分布：\\(f_{X|Y}(x|y) = f_X(x)\\)。在下面的交互图中，你可以拖动切片位置来观察：当 \\(X\\) 和 \\(Y\\) 独立时，条件密度的形状不随切片位置改变；不独立时则会显著变化。</p>
+                        <p>Independence means "knowing the value of \\(Y\\) does not change our knowledge about the distribution of \\(X\\)." The conditional distribution equals the marginal distribution: \\(f_{X|Y}(x|y) = f_X(x)\\). In the interactive plot below, you can drag the slice position to observe: when \\(X\\) and \\(Y\\) are independent, the shape of the conditional density does not change with the slice position; when they are dependent, it changes noticeably.</p>
                     </div>
                 </div>
 
@@ -378,18 +378,18 @@ window.CHAPTERS.push({
                 <div class="env-block example">
                     <div class="env-title">Example 2.11</div>
                     <div class="env-body">
-                        <p>设 \\(f_{X,Y}(x,y) = 2\\) 在三角形区域 \\(0 < x < y < 1\\) 上。</p>
-                        <p>边际密度：\\(f_X(x) = \\int_x^1 2\\,dy = 2(1-x)\\)，\\(f_Y(y) = \\int_0^y 2\\,dx = 2y\\)。</p>
-                        <p>检验独立性：\\(f_X(x) \\cdot f_Y(y) = 4y(1-x) \\neq 2 = f_{X,Y}(x,y)\\)。</p>
-                        <p>所以 \\(X\\) 和 \\(Y\\) 不独立（直觉上也很明显：\\(X < Y\\) 这个约束耦合了两者）。</p>
+                        <p>Let \\(f_{X,Y}(x,y) = 2\\) on the triangular region \\(0 < x < y < 1\\).</p>
+                        <p>Marginal densities: \\(f_X(x) = \\int_x^1 2\\,dy = 2(1-x)\\), \\(f_Y(y) = \\int_0^y 2\\,dx = 2y\\).</p>
+                        <p>Testing for independence: \\(f_X(x) \\cdot f_Y(y) = 4y(1-x) \\neq 2 = f_{X,Y}(x,y)\\).</p>
+                        <p>Therefore \\(X\\) and \\(Y\\) are not independent (intuitively obvious as well: the constraint \\(X < Y\\) couples the two).</p>
                     </div>
                 </div>
             `,
             visualizations: [
                 {
                     id: 'conditional-slicer',
-                    title: 'Interactive: 条件分布切片器',
-                    description: '拖动垂直线来查看在固定 x 位置处 Y 的条件密度如何变化',
+                    title: 'Interactive: Conditional Distribution Slicer',
+                    description: 'Drag the vertical line to see how the conditional density of Y changes at a fixed x position.',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400, scale: 80,
@@ -502,34 +502,34 @@ window.CHAPTERS.push({
         },
 
         // ============================================================
-        // Section 3: 协方差与相关系数
+        // Section 3: Covariance and Correlation
         // ============================================================
         {
             id: 'ch02-sec03',
-            title: '协方差与相关系数',
+            title: 'Covariance and Correlation',
             content: `
-                <h2>协方差与相关系数</h2>
-                <p>边际分布和条件分布描述了各变量的概率行为。但我们常常最关心的是一个简洁的度量：<em>两个变量之间线性关联的强度和方向</em>。协方差和相关系数正是为此而设。</p>
+                <h2>Covariance and Correlation 协方差与相关系数</h2>
+                <p>Marginal and conditional distributions describe the probabilistic behavior of individual variables. But what we often care about most is a concise measure: <em>the strength and direction of the linear association between two variables</em>. Covariance (协方差) and the correlation coefficient (相关系数) are designed precisely for this purpose.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 2.12 (协方差)</div>
+                    <div class="env-title">Definition 2.12 (Covariance)</div>
                     <div class="env-body">
-                        <p>设 \\(X\\) 和 \\(Y\\) 的期望有限，则它们的<strong>协方差</strong>（covariance）定义为</p>
+                        <p>If the expectations of \\(X\\) and \\(Y\\) are finite, their <strong>covariance</strong> (协方差) is defined as</p>
                         \\[\\operatorname{Cov}(X, Y) = \\mathbb{E}[(X - \\mathbb{E}[X])(Y - \\mathbb{E}[Y])] = \\mathbb{E}[XY] - \\mathbb{E}[X]\\mathbb{E}[Y].\\]
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 2.13 (协方差的性质)</div>
+                    <div class="env-title">Theorem 2.13 (Properties of Covariance)</div>
                     <div class="env-body">
-                        <p>设 \\(X, Y, Z\\) 为随机变量，\\(a, b \\in \\mathbb{R}\\)：</p>
+                        <p>Let \\(X, Y, Z\\) be random variables and \\(a, b \\in \\mathbb{R}\\):</p>
                         <ol>
-                            <li>\\(\\operatorname{Cov}(X, X) = \\operatorname{Var}(X)\\)；</li>
-                            <li>\\(\\operatorname{Cov}(X, Y) = \\operatorname{Cov}(Y, X)\\)（对称性）；</li>
-                            <li>\\(\\operatorname{Cov}(aX + b, Y) = a \\operatorname{Cov}(X, Y)\\)（双线性的一半）；</li>
-                            <li>\\(\\operatorname{Cov}(X + Y, Z) = \\operatorname{Cov}(X, Z) + \\operatorname{Cov}(Y, Z)\\)；</li>
-                            <li>\\(\\operatorname{Var}(X + Y) = \\operatorname{Var}(X) + \\operatorname{Var}(Y) + 2\\operatorname{Cov}(X, Y)\\)；</li>
-                            <li>若 \\(X \\perp Y\\)（独立），则 \\(\\operatorname{Cov}(X, Y) = 0\\)。</li>
+                            <li>\\(\\operatorname{Cov}(X, X) = \\operatorname{Var}(X)\\);</li>
+                            <li>\\(\\operatorname{Cov}(X, Y) = \\operatorname{Cov}(Y, X)\\) (symmetry);</li>
+                            <li>\\(\\operatorname{Cov}(aX + b, Y) = a \\operatorname{Cov}(X, Y)\\) (one half of bilinearity);</li>
+                            <li>\\(\\operatorname{Cov}(X + Y, Z) = \\operatorname{Cov}(X, Z) + \\operatorname{Cov}(Y, Z)\\);</li>
+                            <li>\\(\\operatorname{Var}(X + Y) = \\operatorname{Var}(X) + \\operatorname{Var}(Y) + 2\\operatorname{Cov}(X, Y)\\);</li>
+                            <li>If \\(X \\perp Y\\) (independent), then \\(\\operatorname{Cov}(X, Y) = 0\\).</li>
                         </ol>
                     </div>
                 </div>
@@ -537,35 +537,35 @@ window.CHAPTERS.push({
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>\\(\\operatorname{Cov}(X, Y) = 0\\) <strong>不</strong>意味着 \\(X\\) 和 \\(Y\\) 独立！经典反例：\\(X \\sim N(0,1)\\)，\\(Y = X^2\\)。则 \\(\\operatorname{Cov}(X, X^2) = \\mathbb{E}[X^3] - \\mathbb{E}[X]\\mathbb{E}[X^2] = 0\\)，但 \\(Y\\) 完全由 \\(X\\) 决定。协方差只捕捉<strong>线性</strong>关联。</p>
+                        <p>\\(\\operatorname{Cov}(X, Y) = 0\\) does <strong>not</strong> imply that \\(X\\) and \\(Y\\) are independent! Classic counterexample: \\(X \\sim N(0,1)\\), \\(Y = X^2\\). Then \\(\\operatorname{Cov}(X, X^2) = \\mathbb{E}[X^3] - \\mathbb{E}[X]\\mathbb{E}[X^2] = 0\\), yet \\(Y\\) is completely determined by \\(X\\). Covariance captures only <strong>linear</strong> association.</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 2.14 (相关系数)</div>
+                    <div class="env-title">Definition 2.14 (Correlation Coefficient)</div>
                     <div class="env-body">
-                        <p>若 \\(\\operatorname{Var}(X) > 0\\) 且 \\(\\operatorname{Var}(Y) > 0\\)，则<strong>Pearson 相关系数</strong>为</p>
+                        <p>If \\(\\operatorname{Var}(X) > 0\\) and \\(\\operatorname{Var}(Y) > 0\\), the <strong>Pearson correlation coefficient</strong> (Pearson 相关系数) is</p>
                         \\[\\rho(X, Y) = \\frac{\\operatorname{Cov}(X, Y)}{\\sqrt{\\operatorname{Var}(X)} \\cdot \\sqrt{\\operatorname{Var}(Y)}} = \\frac{\\operatorname{Cov}(X,Y)}{\\sigma_X \\sigma_Y}.\\]
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 2.15 (Cauchy-Schwarz 不等式与 \\(|\\rho| \\leq 1\\))</div>
+                    <div class="env-title">Theorem 2.15 (Cauchy-Schwarz Inequality and \\(|\\rho| \\leq 1\\))</div>
                     <div class="env-body">
-                        <p>对任意两个平方可积随机变量：</p>
+                        <p>For any two square-integrable random variables:</p>
                         \\[|\\mathbb{E}[XY]|^2 \\leq \\mathbb{E}[X^2] \\cdot \\mathbb{E}[Y^2].\\]
-                        <p>由此可得 \\(-1 \\leq \\rho(X, Y) \\leq 1\\)。等号成立当且仅当 \\(Y = aX + b\\) a.s. 对某常数 \\(a \\neq 0, b\\)。</p>
+                        <p>From this it follows that \\(-1 \\leq \\rho(X, Y) \\leq 1\\). Equality holds if and only if \\(Y = aX + b\\) a.s. for some constants \\(a \\neq 0, b\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>令 \\(U = X - \\mathbb{E}[X]\\)，\\(V = Y - \\mathbb{E}[Y]\\)。对任意 \\(t \\in \\mathbb{R}\\)：</p>
+                        <p>Let \\(U = X - \\mathbb{E}[X]\\), \\(V = Y - \\mathbb{E}[Y]\\). For any \\(t \\in \\mathbb{R}\\):</p>
                         \\[0 \\leq \\mathbb{E}[(U + tV)^2] = \\mathbb{E}[U^2] + 2t\\mathbb{E}[UV] + t^2 \\mathbb{E}[V^2].\\]
-                        <p>这是 \\(t\\) 的非负二次函数，故判别式 \\(\\leq 0\\)：</p>
+                        <p>This is a non-negative quadratic function of \\(t\\), so the discriminant \\(\\leq 0\\):</p>
                         \\[4(\\mathbb{E}[UV])^2 - 4\\mathbb{E}[U^2]\\mathbb{E}[V^2] \\leq 0 \\implies (\\operatorname{Cov}(X,Y))^2 \\leq \\operatorname{Var}(X) \\operatorname{Var}(Y).\\]
-                        <p>两边除以 \\(\\sigma_X^2 \\sigma_Y^2\\) 得 \\(\\rho^2 \\leq 1\\)。</p>
+                        <p>Dividing both sides by \\(\\sigma_X^2 \\sigma_Y^2\\) gives \\(\\rho^2 \\leq 1\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
@@ -573,7 +573,7 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>\\(\\rho\\) 衡量的是数据点围绕一条直线散布的紧密程度。\\(\\rho = 1\\) 表示完全正线性关系（所有点在一条正斜率直线上），\\(\\rho = -1\\) 表示完全负线性关系，\\(\\rho = 0\\) 表示没有线性趋势（但可能有非线性关系）。下面的散点图可视化展示了不同 \\(\\rho\\) 值下的数据分布。</p>
+                        <p>\\(\\rho\\) measures how tightly data points cluster around a straight line. \\(\\rho = 1\\) indicates a perfect positive linear relationship (all points lie on a positively sloped line), \\(\\rho = -1\\) indicates a perfect negative linear relationship, and \\(\\rho = 0\\) indicates no linear trend (though a nonlinear relationship may still exist). The scatter plot visualization below demonstrates the data distribution for different values of \\(\\rho\\).</p>
                     </div>
                 </div>
 
@@ -582,8 +582,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'correlation-scatter',
-                    title: 'Interactive: 相关系数散点图',
-                    description: '拖动滑块改变 rho 值，观察散点图形状如何变化',
+                    title: 'Interactive: Correlation Coefficient Scatter Plot',
+                    description: 'Drag the slider to change rho and observe how the scatter plot shape changes.',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 420, scale: 55, originX: 280, originY: 210});
                         var rho = 0.7;
@@ -689,69 +689,69 @@ window.CHAPTERS.push({
         },
 
         // ============================================================
-        // Section 4: 多维正态分布
+        // Section 4: Multivariate Normal Distribution
         // ============================================================
         {
             id: 'ch02-sec04',
-            title: '多维正态分布',
+            title: 'Multivariate Normal Distribution',
             content: `
-                <h2>多维正态分布</h2>
-                <p>正态分布是概率论和统计学中最重要的分布族。其多维推广——<strong>多维正态分布</strong>（Multivariate Normal, MVN）——在统计推断中扮演核心角色，因为它在线性变换下封闭，且边际分布、条件分布仍然是正态分布。</p>
+                <h2>Multivariate Normal Distribution 多维正态分布</h2>
+                <p>The normal distribution is the most important distribution family in probability theory and statistics. Its multivariate generalization — the <strong>multivariate normal distribution</strong> (多维正态分布, MVN) — plays a central role in statistical inference because it is closed under linear transformations, and its marginal and conditional distributions are also normal.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 2.16 (二维正态分布)</div>
+                    <div class="env-title">Definition 2.16 (Bivariate Normal Distribution)</div>
                     <div class="env-body">
-                        <p>随机向量 \\((X, Y)^T\\) 服从<strong>二维正态分布</strong>，记为 \\((X,Y)^T \\sim N_2(\\boldsymbol{\\mu}, \\boldsymbol{\\Sigma})\\)，如果其联合 PDF 为</p>
+                        <p>The random vector \\((X, Y)^T\\) follows a <strong>bivariate normal distribution</strong> (二维正态分布), written \\((X,Y)^T \\sim N_2(\\boldsymbol{\\mu}, \\boldsymbol{\\Sigma})\\), if its joint PDF is</p>
                         \\[f(x,y) = \\frac{1}{2\\pi \\sigma_1 \\sigma_2 \\sqrt{1-\\rho^2}} \\exp\\left(-\\frac{1}{2(1-\\rho^2)}\\left[\\frac{(x-\\mu_1)^2}{\\sigma_1^2} - 2\\rho\\frac{(x-\\mu_1)(y-\\mu_2)}{\\sigma_1 \\sigma_2} + \\frac{(y-\\mu_2)^2}{\\sigma_2^2}\\right]\\right),\\]
-                        <p>其中 \\(\\boldsymbol{\\mu} = (\\mu_1, \\mu_2)^T\\) 为均值向量，\\(\\boldsymbol{\\Sigma} = \\begin{pmatrix} \\sigma_1^2 & \\rho\\sigma_1\\sigma_2 \\\\ \\rho\\sigma_1\\sigma_2 & \\sigma_2^2 \\end{pmatrix}\\) 为协方差矩阵。</p>
+                        <p>where \\(\\boldsymbol{\\mu} = (\\mu_1, \\mu_2)^T\\) is the mean vector (均值向量) and \\(\\boldsymbol{\\Sigma} = \\begin{pmatrix} \\sigma_1^2 & \\rho\\sigma_1\\sigma_2 \\\\ \\rho\\sigma_1\\sigma_2 & \\sigma_2^2 \\end{pmatrix}\\) is the covariance matrix (协方差矩阵).</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 2.17 (一般多维正态分布)</div>
+                    <div class="env-title">Definition 2.17 (General Multivariate Normal Distribution)</div>
                     <div class="env-body">
-                        <p>\\(p\\)-维随机向量 \\(\\mathbf{X} = (X_1, \\ldots, X_p)^T\\) 服从 \\(N_p(\\boldsymbol{\\mu}, \\boldsymbol{\\Sigma})\\)，如果</p>
+                        <p>The \\(p\\)-dimensional random vector \\(\\mathbf{X} = (X_1, \\ldots, X_p)^T\\) follows \\(N_p(\\boldsymbol{\\mu}, \\boldsymbol{\\Sigma})\\) if</p>
                         \\[f(\\mathbf{x}) = \\frac{1}{(2\\pi)^{p/2} |\\boldsymbol{\\Sigma}|^{1/2}} \\exp\\left(-\\frac{1}{2}(\\mathbf{x} - \\boldsymbol{\\mu})^T \\boldsymbol{\\Sigma}^{-1} (\\mathbf{x} - \\boldsymbol{\\mu})\\right),\\]
-                        <p>其中 \\(\\boldsymbol{\\mu} \\in \\mathbb{R}^p\\) 为均值向量，\\(\\boldsymbol{\\Sigma} \\in \\mathbb{R}^{p \\times p}\\) 为正定协方差矩阵。</p>
+                        <p>where \\(\\boldsymbol{\\mu} \\in \\mathbb{R}^p\\) is the mean vector and \\(\\boldsymbol{\\Sigma} \\in \\mathbb{R}^{p \\times p}\\) is a positive definite covariance matrix.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 2.18 (MVN 的基本性质)</div>
+                    <div class="env-title">Theorem 2.18 (Key Properties of the MVN)</div>
                     <div class="env-body">
-                        <p>设 \\(\\mathbf{X} \\sim N_p(\\boldsymbol{\\mu}, \\boldsymbol{\\Sigma})\\)：</p>
+                        <p>Let \\(\\mathbf{X} \\sim N_p(\\boldsymbol{\\mu}, \\boldsymbol{\\Sigma})\\):</p>
                         <ol>
-                            <li><strong>线性变换封闭：</strong>\\(\\mathbf{A}\\mathbf{X} + \\mathbf{b} \\sim N_q(\\mathbf{A}\\boldsymbol{\\mu} + \\mathbf{b}, \\mathbf{A}\\boldsymbol{\\Sigma}\\mathbf{A}^T)\\) 对任意 \\(\\mathbf{A} \\in \\mathbb{R}^{q \\times p}, \\mathbf{b} \\in \\mathbb{R}^q\\)；</li>
-                            <li><strong>边际正态：</strong>任何子向量也服从正态分布；</li>
-                            <li><strong>条件正态：</strong>条件分布也是正态分布，且均值是线性函数，方差不依赖于条件变量的值；</li>
-                            <li><strong>不相关 \\(\\iff\\) 独立：</strong>对于多维正态，\\(\\operatorname{Cov}(X_i, X_j) = 0 \\iff X_i \\perp X_j\\)。</li>
+                            <li><strong>Closure under linear transformations:</strong> \\(\\mathbf{A}\\mathbf{X} + \\mathbf{b} \\sim N_q(\\mathbf{A}\\boldsymbol{\\mu} + \\mathbf{b}, \\mathbf{A}\\boldsymbol{\\Sigma}\\mathbf{A}^T)\\) for any \\(\\mathbf{A} \\in \\mathbb{R}^{q \\times p}, \\mathbf{b} \\in \\mathbb{R}^q\\);</li>
+                            <li><strong>Marginal normality:</strong> Any sub-vector also follows a normal distribution;</li>
+                            <li><strong>Conditional normality:</strong> Conditional distributions are also normal, with mean being a linear function and variance not depending on the conditioning variable's value;</li>
+                            <li><strong>Uncorrelated \\(\\iff\\) Independent:</strong> For multivariate normal, \\(\\operatorname{Cov}(X_i, X_j) = 0 \\iff X_i \\perp X_j\\).</li>
                         </ol>
                     </div>
                 </div>
 
                 <div class="env-block proof">
-                    <div class="env-title">Proof (不相关 \\(\\Rightarrow\\) 独立)</div>
+                    <div class="env-title">Proof (Uncorrelated \\(\\Rightarrow\\) Independent)</div>
                     <div class="env-body">
-                        <p>设 \\((X, Y)^T \\sim N_2\\) 且 \\(\\rho = 0\\)。此时协方差矩阵 \\(\\boldsymbol{\\Sigma}\\) 为对角阵，指数项分解为</p>
+                        <p>Suppose \\((X, Y)^T \\sim N_2\\) with \\(\\rho = 0\\). Then the covariance matrix \\(\\boldsymbol{\\Sigma}\\) is diagonal, and the exponent decomposes as</p>
                         \\[\\frac{(x-\\mu_1)^2}{\\sigma_1^2} + \\frac{(y-\\mu_2)^2}{\\sigma_2^2},\\]
-                        <p>从而 \\(f(x,y) = \\frac{1}{\\sqrt{2\\pi}\\sigma_1}e^{-(x-\\mu_1)^2/(2\\sigma_1^2)} \\cdot \\frac{1}{\\sqrt{2\\pi}\\sigma_2}e^{-(y-\\mu_2)^2/(2\\sigma_2^2)} = f_X(x) \\cdot f_Y(y)\\)。</p>
+                        <p>so that \\(f(x,y) = \\frac{1}{\\sqrt{2\\pi}\\sigma_1}e^{-(x-\\mu_1)^2/(2\\sigma_1^2)} \\cdot \\frac{1}{\\sqrt{2\\pi}\\sigma_2}e^{-(y-\\mu_2)^2/(2\\sigma_2^2)} = f_X(x) \\cdot f_Y(y)\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 2.19 (条件正态分布)</div>
+                    <div class="env-title">Theorem 2.19 (Conditional Normal Distribution)</div>
                     <div class="env-body">
-                        <p>设 \\((X,Y)^T \\sim N_2(\\boldsymbol{\\mu}, \\boldsymbol{\\Sigma})\\)。则</p>
+                        <p>Let \\((X,Y)^T \\sim N_2(\\boldsymbol{\\mu}, \\boldsymbol{\\Sigma})\\). Then</p>
                         \\[X | Y = y \\sim N\\left(\\mu_1 + \\rho \\frac{\\sigma_1}{\\sigma_2}(y - \\mu_2), \\; \\sigma_1^2(1 - \\rho^2)\\right).\\]
-                        <p>注意条件方差 \\(\\sigma_1^2(1 - \\rho^2)\\) 不依赖于 \\(y\\)，且 \\(|\\rho|\\) 越大，条件方差越小。</p>
+                        <p>Note that the conditional variance \\(\\sigma_1^2(1 - \\rho^2)\\) does not depend on \\(y\\), and the larger \\(|\\rho|\\) is, the smaller the conditional variance.</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>二维正态分布的等密度线是椭圆。椭圆的长轴方向由协方差矩阵的特征向量决定，长短轴比由特征值决定。\\(\\rho = 0\\) 时椭圆轴与坐标轴对齐；\\(|\\rho|\\) 增大时椭圆倾斜并变窄。下面的交互可视化让你直接观察参数变化对密度等高线的影响。</p>
+                        <p>The level curves of a bivariate normal distribution are ellipses. The direction of the major axis is determined by the eigenvectors of the covariance matrix, and the aspect ratio of the axes is determined by the eigenvalues. When \\(\\rho = 0\\), the ellipse axes align with the coordinate axes; as \\(|\\rho|\\) increases, the ellipse tilts and becomes narrower. The interactive visualization below lets you directly observe how parameter changes affect the density contours.</p>
                     </div>
                 </div>
 
@@ -760,16 +760,16 @@ window.CHAPTERS.push({
                 <div class="env-block example">
                     <div class="env-title">Example 2.20</div>
                     <div class="env-body">
-                        <p>设 \\((X, Y)^T \\sim N_2\\left(\\begin{pmatrix}1\\\\2\\end{pmatrix}, \\begin{pmatrix}4 & 3\\\\3 & 9\\end{pmatrix}\\right)\\)。则 \\(\\sigma_1 = 2, \\sigma_2 = 3, \\rho = 3/(2 \\cdot 3) = 0.5\\)。</p>
-                        <p>条件分布：\\(X | Y = 5 \\sim N(1 + 0.5 \\cdot \\frac{2}{3}(5 - 2), \\; 4(1 - 0.25)) = N(2, 3)\\)。</p>
+                        <p>Let \\((X, Y)^T \\sim N_2\\left(\\begin{pmatrix}1\\\\2\\end{pmatrix}, \\begin{pmatrix}4 & 3\\\\3 & 9\\end{pmatrix}\\right)\\). Then \\(\\sigma_1 = 2, \\sigma_2 = 3, \\rho = 3/(2 \\cdot 3) = 0.5\\).</p>
+                        <p>Conditional distribution: \\(X | Y = 5 \\sim N(1 + 0.5 \\cdot \\frac{2}{3}(5 - 2), \\; 4(1 - 0.25)) = N(2, 3)\\).</p>
                     </div>
                 </div>
             `,
             visualizations: [
                 {
                     id: 'mvn-contour',
-                    title: 'Interactive: 二维正态分布等高线',
-                    description: '调整参数观察等高线椭圆的变化，拖动中心点移动均值',
+                    title: 'Interactive: Bivariate Normal Contour Plot',
+                    description: 'Adjust the parameters to observe how the contour ellipses change. Drag the center point to move the mean.',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 420, scale: 50, originX: 280, originY: 210});
                         var sigma1 = 1.0, sigma2 = 1.0, rhoVal = 0.5;
@@ -876,72 +876,72 @@ window.CHAPTERS.push({
         },
 
         // ============================================================
-        // Section 5: 随机变量的变换
+        // Section 5: Transformations of Random Variables
         // ============================================================
         {
             id: 'ch02-sec05',
-            title: '随机变量的变换',
+            title: 'Transformations of Random Variables',
             content: `
-                <h2>随机变量的变换</h2>
-                <p>在概率论和统计学中，我们经常需要研究随机变量经过某种函数变换后的分布。例如：如果 \\(X \\sim N(0,1)\\)，那么 \\(X^2\\) 的分布是什么？如果 \\(X, Y\\) 独立，\\(X + Y\\) 的分布如何？这些问题的系统解答依赖于<strong>变量变换</strong>（change of variables）技术。</p>
+                <h2>Transformations of Random Variables 随机变量的变换</h2>
+                <p>In probability theory and statistics, we frequently need to study the distribution of a random variable after it undergoes some function transformation. For example: if \\(X \\sim N(0,1)\\), what is the distribution of \\(X^2\\)? If \\(X, Y\\) are independent, what is the distribution of \\(X + Y\\)? The systematic answer to these questions relies on the <strong>change of variables</strong> (变量变换) technique.</p>
 
-                <h3>CDF 方法</h3>
+                <h3>CDF Method CDF 方法</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 2.21 (CDF Method)</div>
                     <div class="env-body">
-                        <p>设 \\(Y = g(X)\\)，求 \\(Y\\) 的分布。<strong>CDF 方法</strong>：先求 CDF</p>
+                        <p>Given \\(Y = g(X)\\), find the distribution of \\(Y\\). The <strong>CDF method</strong>: first compute the CDF</p>
                         \\[F_Y(y) = P(Y \\leq y) = P(g(X) \\leq y),\\]
-                        <p>然后对 \\(y\\) 求导得 PDF：\\(f_Y(y) = F_Y'(y)\\)。</p>
+                        <p>then differentiate with respect to \\(y\\) to obtain the PDF: \\(f_Y(y) = F_Y'(y)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 2.22 (\\(\\chi^2(1)\\) 分布)</div>
+                    <div class="env-title">Example 2.22 (The \\(\\chi^2(1)\\) Distribution)</div>
                     <div class="env-body">
-                        <p>设 \\(Z \\sim N(0,1)\\)，\\(Y = Z^2\\)。对 \\(y > 0\\)：</p>
+                        <p>Let \\(Z \\sim N(0,1)\\) and \\(Y = Z^2\\). For \\(y > 0\\):</p>
                         \\[F_Y(y) = P(Z^2 \\leq y) = P(-\\sqrt{y} \\leq Z \\leq \\sqrt{y}) = \\Phi(\\sqrt{y}) - \\Phi(-\\sqrt{y}) = 2\\Phi(\\sqrt{y}) - 1.\\]
-                        <p>求导：</p>
+                        <p>Differentiating:</p>
                         \\[f_Y(y) = 2\\phi(\\sqrt{y}) \\cdot \\frac{1}{2\\sqrt{y}} = \\frac{1}{\\sqrt{2\\pi y}} e^{-y/2}, \\quad y > 0.\\]
-                        <p>这正是 \\(\\chi^2(1) = \\text{Gamma}(1/2, 1/2)\\) 分布的密度。</p>
+                        <p>This is exactly the density of the \\(\\chi^2(1) = \\text{Gamma}(1/2, 1/2)\\) distribution.</p>
                     </div>
                 </div>
 
-                <h3>PDF 变换定理（Jacobian 方法）</h3>
+                <h3>PDF Transformation Theorem (Jacobian Method) PDF 变换定理（Jacobian 方法）</h3>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 2.23 (一维变量变换)</div>
+                    <div class="env-title">Theorem 2.23 (Univariate Change of Variables)</div>
                     <div class="env-body">
-                        <p>设 \\(X\\) 有 PDF \\(f_X(x)\\)，\\(Y = g(X)\\)，其中 \\(g\\) 在 \\(f_X > 0\\) 的区域上严格单调且可微。则</p>
+                        <p>Let \\(X\\) have PDF \\(f_X(x)\\) and \\(Y = g(X)\\), where \\(g\\) is strictly monotone and differentiable on the region where \\(f_X > 0\\). Then</p>
                         \\[f_Y(y) = f_X(g^{-1}(y)) \\cdot \\left|\\frac{d}{dy} g^{-1}(y)\\right|.\\]
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 2.24 (二维变量变换 — Jacobian)</div>
+                    <div class="env-title">Theorem 2.24 (Bivariate Change of Variables — Jacobian)</div>
                     <div class="env-body">
-                        <p>设 \\((X_1, X_2)\\) 有联合 PDF \\(f_{X_1, X_2}\\)，变换 \\((Y_1, Y_2) = (g_1(X_1,X_2), g_2(X_1,X_2))\\) 为一一映射且连续可微。令逆变换为 \\((X_1,X_2) = (h_1(Y_1,Y_2), h_2(Y_1,Y_2))\\)，<strong>Jacobian 行列式</strong>为</p>
+                        <p>Let \\((X_1, X_2)\\) have joint PDF \\(f_{X_1, X_2}\\), and let the transformation \\((Y_1, Y_2) = (g_1(X_1,X_2), g_2(X_1,X_2))\\) be a one-to-one, continuously differentiable mapping. Let the inverse transformation be \\((X_1,X_2) = (h_1(Y_1,Y_2), h_2(Y_1,Y_2))\\), and the <strong>Jacobian determinant</strong> (Jacobian 行列式) be</p>
                         \\[J = \\det \\begin{pmatrix} \\frac{\\partial h_1}{\\partial y_1} & \\frac{\\partial h_1}{\\partial y_2} \\\\ \\frac{\\partial h_2}{\\partial y_1} & \\frac{\\partial h_2}{\\partial y_2} \\end{pmatrix}.\\]
-                        <p>则</p>
+                        <p>Then</p>
                         \\[f_{Y_1, Y_2}(y_1, y_2) = f_{X_1, X_2}(h_1(y_1,y_2), h_2(y_1,y_2)) \\cdot |J|.\\]
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 2.25 (Box-Muller 变换)</div>
+                    <div class="env-title">Example 2.25 (Box-Muller Transform)</div>
                     <div class="env-body">
-                        <p>设 \\(U_1, U_2 \\stackrel{iid}{\\sim} \\text{Uniform}(0,1)\\)。令</p>
+                        <p>Let \\(U_1, U_2 \\stackrel{iid}{\\sim} \\text{Uniform}(0,1)\\). Define</p>
                         \\[Z_1 = \\sqrt{-2\\ln U_1} \\cos(2\\pi U_2), \\quad Z_2 = \\sqrt{-2\\ln U_1} \\sin(2\\pi U_2).\\]
-                        <p>通过 Jacobian 方法可以验证 \\(Z_1, Z_2 \\stackrel{iid}{\\sim} N(0,1)\\)。这就是著名的 Box-Muller 变换。</p>
+                        <p>Using the Jacobian method, one can verify that \\(Z_1, Z_2 \\stackrel{iid}{\\sim} N(0,1)\\). This is the famous Box-Muller transform.</p>
                     </div>
                 </div>
 
-                <h3>卷积公式</h3>
+                <h3>Convolution Formula 卷积公式</h3>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 2.26 (独立随机变量之和的分布)</div>
+                    <div class="env-title">Theorem 2.26 (Distribution of the Sum of Independent Random Variables)</div>
                     <div class="env-body">
-                        <p>若 \\(X\\) 和 \\(Y\\) 独立，\\(Z = X + Y\\)，则 \\(Z\\) 的 PDF 为卷积</p>
+                        <p>If \\(X\\) and \\(Y\\) are independent and \\(Z = X + Y\\), then the PDF of \\(Z\\) is the convolution</p>
                         \\[f_Z(z) = \\int_{-\\infty}^{\\infty} f_X(x) f_Y(z - x) \\, dx = (f_X * f_Y)(z).\\]
                     </div>
                 </div>
@@ -949,28 +949,28 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>令 \\(Z = X + Y\\)，\\(W = X\\)。逆变换 \\(X = W\\)，\\(Y = Z - W\\)，Jacobian \\(|J| = 1\\)。因此</p>
+                        <p>Let \\(Z = X + Y\\) and \\(W = X\\). The inverse transformation is \\(X = W\\), \\(Y = Z - W\\), with Jacobian \\(|J| = 1\\). Therefore</p>
                         \\[f_{Z,W}(z,w) = f_{X,Y}(w, z-w) = f_X(w)f_Y(z-w).\\]
-                        <p>对 \\(w\\) 积分得边际 \\(f_Z(z) = \\int f_X(w)f_Y(z-w)\\,dw\\)。</p>
+                        <p>Integrating over \\(w\\) gives the marginal \\(f_Z(z) = \\int f_X(w)f_Y(z-w)\\,dw\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
-                <h3>顺序统计量</h3>
+                <h3>Order Statistics 顺序统计量</h3>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 2.27 (顺序统计量)</div>
+                    <div class="env-title">Definition 2.27 (Order Statistics)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n\\) 为 iid 随机变量。将它们从小到大排列为 \\(X_{(1)} \\leq X_{(2)} \\leq \\cdots \\leq X_{(n)}\\)，其中 \\(X_{(k)}\\) 称为第 \\(k\\) 个<strong>顺序统计量</strong>（order statistic）。</p>
+                        <p>Let \\(X_1, \\ldots, X_n\\) be iid random variables. Arranging them in non-decreasing order \\(X_{(1)} \\leq X_{(2)} \\leq \\cdots \\leq X_{(n)}\\), where \\(X_{(k)}\\) is called the \\(k\\)-th <strong>order statistic</strong> (顺序统计量).</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 2.28 (顺序统计量的密度)</div>
+                    <div class="env-title">Theorem 2.28 (Density of Order Statistics)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\stackrel{iid}{\\sim} f_X\\)，CDF 为 \\(F_X\\)。则第 \\(k\\) 个顺序统计量的 PDF 为</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\stackrel{iid}{\\sim} f_X\\) with CDF \\(F_X\\). The PDF of the \\(k\\)-th order statistic is</p>
                         \\[f_{X_{(k)}}(x) = \\frac{n!}{(k-1)!(n-k)!} [F_X(x)]^{k-1} [1 - F_X(x)]^{n-k} f_X(x).\\]
-                        <p>特别地，最小值 \\(X_{(1)}\\) 和最大值 \\(X_{(n)}\\) 的 CDF 分别为</p>
+                        <p>In particular, the CDFs of the minimum \\(X_{(1)}\\) and maximum \\(X_{(n)}\\) are</p>
                         \\[F_{X_{(1)}}(x) = 1 - [1 - F_X(x)]^n, \\qquad F_{X_{(n)}}(x) = [F_X(x)]^n.\\]
                     </div>
                 </div>
@@ -978,7 +978,7 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>顺序统计量密度的组合因子有直观解释：要让 \\(X_{(k)} = x\\)，需要恰好 \\(k-1\\) 个观测值落在 \\((-\\infty, x)\\) 中（概率 \\(F(x)^{k-1}\\)），恰好 \\(n-k\\) 个落在 \\((x, \\infty)\\) 中（概率 \\((1-F(x))^{n-k}\\)），然后一个在 \\(x\\) 处（密度 \\(f(x)\\)）。多项式系数负责选择这些角色的方式数。</p>
+                        <p>The combinatorial factor in the order statistic density has an intuitive interpretation: for \\(X_{(k)} = x\\), exactly \\(k-1\\) observations must fall in \\((-\\infty, x)\\) (probability \\(F(x)^{k-1}\\)), exactly \\(n-k\\) must fall in \\((x, \\infty)\\) (probability \\((1-F(x))^{n-k}\\)), and one must be at \\(x\\) (density \\(f(x)\\)). The multinomial coefficient accounts for the number of ways to assign these roles.</p>
                     </div>
                 </div>
 
@@ -989,8 +989,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'transformation-viz',
-                    title: 'Interactive: 随机变量变换可视化',
-                    description: '选择变换函数 g(x)，观察输入 PDF 如何映射到输出 PDF',
+                    title: 'Interactive: Random Variable Transformation Visualization',
+                    description: 'Choose a transformation function g(x) and observe how the input PDF maps to the output PDF.',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 400, scale: 40, originX: 60, originY: 200});
                         var transformType = 'square';
@@ -1080,8 +1080,8 @@ window.CHAPTERS.push({
                 },
                 {
                     id: 'order-stats-viz',
-                    title: 'Interactive: 顺序统计量分布',
-                    description: '从 Uniform(0,1) 中抽样 n 个值，观察第 k 个顺序统计量的分布',
+                    title: 'Interactive: Order Statistics Distribution',
+                    description: 'Sample n values from Uniform(0,1) and observe the distribution of the k-th order statistic.',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 380, scale: 100, originX: 60, originY: 310});
                         var n = 5, k = 1;

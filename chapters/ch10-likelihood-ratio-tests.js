@@ -2,90 +2,90 @@ window.CHAPTERS = window.CHAPTERS || [];
 window.CHAPTERS.push({
     id: 'ch10',
     number: 10,
-    title: '似然比检验',
+    title: 'Likelihood Ratio Tests',
     subtitle: 'Likelihood Ratio Tests',
     sections: [
         // ============================================================
-        // Section 1: Neyman-Pearson 引理
+        // Section 1: The Neyman-Pearson Lemma
         // ============================================================
         {
             id: 'ch10-sec01',
-            title: 'Neyman-Pearson 引理',
+            title: 'The Neyman-Pearson Lemma',
             content: `
-                <h2>Neyman-Pearson 引理</h2>
+                <h2>The Neyman-Pearson Lemma<span class="subtitle-zh"> / Neyman-Pearson 引理</span></h2>
 
-                <p>假设检验的核心问题是：在控制犯第一类错误（拒真）概率的前提下，如何使检验的功效（检出力）最大？Neyman-Pearson 引理给出了简单假设对简单假设情形下的最优解。这一结果不仅是假设检验理论的基石，也为后续发展的似然比检验提供了根本性的启示。</p>
+                <p>The central question of hypothesis testing is: given that we control the probability of Type I error (rejecting a true null hypothesis), how can we maximize the power (probability of detection) of a test? The Neyman-Pearson lemma provides the optimal solution for testing a simple hypothesis against a simple hypothesis. This result is not only the cornerstone of hypothesis testing theory but also provides fundamental insight for the likelihood ratio tests (似然比检验) developed subsequently.</p>
 
-                <h3>问题设定</h3>
+                <h3>Problem Setup<span class="subtitle-zh"> / 问题设定</span></h3>
 
-                <p>考虑一个参数空间 \\(\\Theta = \\{\\theta_0, \\theta_1\\}\\) 只有两个元素的检验问题：</p>
+                <p>Consider a testing problem where the parameter space \\(\\Theta = \\{\\theta_0, \\theta_1\\}\\) has only two elements:</p>
                 \\[H_0: \\theta = \\theta_0 \\quad \\text{vs} \\quad H_1: \\theta = \\theta_1\\]
 
-                <p>这里 \\(H_0\\) 和 \\(H_1\\) 都是<strong>简单假设</strong>（simple hypothesis），即参数值完全确定。设观测数据 \\(X = (X_1, \\ldots, X_n)\\) 的联合密度（或概率质量函数）在 \\(\\theta_0\\) 下为 \\(f(\\mathbf{x} \\mid \\theta_0)\\)，在 \\(\\theta_1\\) 下为 \\(f(\\mathbf{x} \\mid \\theta_1)\\)。</p>
+                <p>Here both \\(H_0\\) and \\(H_1\\) are <strong>simple hypotheses</strong> (简单假设), meaning the parameter values are fully specified. Let the joint density (or probability mass function) of the observed data \\(X = (X_1, \\ldots, X_n)\\) under \\(\\theta_0\\) be \\(f(\\mathbf{x} \\mid \\theta_0)\\) and under \\(\\theta_1\\) be \\(f(\\mathbf{x} \\mid \\theta_1)\\).</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 10.1 (似然比 Likelihood Ratio)</div>
+                    <div class="env-title">Definition 10.1 (Likelihood Ratio)</div>
                     <div class="env-body">
-                        <p>给定观测 \\(\\mathbf{x}\\)，<strong>似然比</strong>定义为</p>
+                        <p>Given observation \\(\\mathbf{x}\\), the <strong>likelihood ratio</strong> (似然比) is defined as</p>
                         \\[\\Lambda(\\mathbf{x}) = \\frac{L(\\theta_1 \\mid \\mathbf{x})}{L(\\theta_0 \\mid \\mathbf{x})} = \\frac{f(\\mathbf{x} \\mid \\theta_1)}{f(\\mathbf{x} \\mid \\theta_0)}\\]
-                        <p>当 \\(\\Lambda(\\mathbf{x})\\) 很大时，数据在 \\(\\theta_1\\) 下比在 \\(\\theta_0\\) 下更可能出现，因此倾向于拒绝 \\(H_0\\)。</p>
+                        <p>When \\(\\Lambda(\\mathbf{x})\\) is large, the data are more likely under \\(\\theta_1\\) than under \\(\\theta_0\\), so we are inclined to reject \\(H_0\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 10.2 (最大功效检验 Most Powerful Test)</div>
+                    <div class="env-title">Definition 10.2 (Most Powerful Test)</div>
                     <div class="env-body">
-                        <p>设 \\(\\mathcal{C}\\) 是所有显著性水平为 \\(\\alpha\\) 的检验的集合。检验 \\(\\varphi^*\\) 称为水平 \\(\\alpha\\) 的<strong>最大功效检验</strong>（MP test），如果</p>
+                        <p>Let \\(\\mathcal{C}\\) be the collection of all tests at significance level \\(\\alpha\\). A test \\(\\varphi^*\\) is called the <strong>most powerful test</strong> (最大功效检验, MP test) at level \\(\\alpha\\) if</p>
                         \\[E_{\\theta_0}[\\varphi^*] \\le \\alpha \\quad \\text{and} \\quad E_{\\theta_1}[\\varphi^*] \\ge E_{\\theta_1}[\\varphi] \\quad \\forall \\varphi \\in \\mathcal{C}\\]
-                        <p>其中 \\(\\varphi(\\mathbf{x}) \\in [0,1]\\) 是随机化检验函数，表示拒绝 \\(H_0\\) 的概率。</p>
+                        <p>where \\(\\varphi(\\mathbf{x}) \\in [0,1]\\) is a randomized test function representing the probability of rejecting \\(H_0\\).</p>
                     </div>
                 </div>
 
-                <h3>Neyman-Pearson 引理</h3>
+                <h3>The Neyman-Pearson Lemma<span class="subtitle-zh"> / Neyman-Pearson 引理</span></h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 10.1 (Neyman-Pearson Lemma)</div>
                     <div class="env-body">
-                        <p>考虑检验 \\(H_0: \\theta = \\theta_0\\) vs \\(H_1: \\theta = \\theta_1\\)。对于给定的 \\(\\alpha \\in (0,1)\\)，存在常数 \\(k \\ge 0\\) 和 \\(\\gamma \\in [0,1]\\) 使得检验</p>
+                        <p>Consider testing \\(H_0: \\theta = \\theta_0\\) vs \\(H_1: \\theta = \\theta_1\\). For a given \\(\\alpha \\in (0,1)\\), there exist constants \\(k \\ge 0\\) and \\(\\gamma \\in [0,1]\\) such that the test</p>
                         \\[\\varphi^*(\\mathbf{x}) = \\begin{cases} 1 & \\text{if } \\Lambda(\\mathbf{x}) > k \\\\ \\gamma & \\text{if } \\Lambda(\\mathbf{x}) = k \\\\ 0 & \\text{if } \\Lambda(\\mathbf{x}) < k \\end{cases}\\]
-                        <p>满足 \\(E_{\\theta_0}[\\varphi^*] = \\alpha\\)，并且 \\(\\varphi^*\\) 是水平 \\(\\alpha\\) 下的最大功效检验。</p>
-                        <p>更进一步，任何水平 \\(\\alpha\\) 的 MP 检验在几乎处处意义下必然具有上述形式。</p>
+                        <p>satisfies \\(E_{\\theta_0}[\\varphi^*] = \\alpha\\), and \\(\\varphi^*\\) is the most powerful test at level \\(\\alpha\\).</p>
+                        <p>Furthermore, any MP test at level \\(\\alpha\\) must have the above form almost everywhere.</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>设 \\(\\varphi\\) 是任意满足 \\(E_{\\theta_0}[\\varphi] \\le \\alpha\\) 的检验函数。我们需要证明 \\(E_{\\theta_1}[\\varphi^*] \\ge E_{\\theta_1}[\\varphi]\\)。</p>
-                        <p>考虑差值</p>
+                        <p>Let \\(\\varphi\\) be any test function satisfying \\(E_{\\theta_0}[\\varphi] \\le \\alpha\\). We need to show that \\(E_{\\theta_1}[\\varphi^*] \\ge E_{\\theta_1}[\\varphi]\\).</p>
+                        <p>Consider the difference</p>
                         \\[E_{\\theta_1}[\\varphi^*] - E_{\\theta_1}[\\varphi] = \\int (\\varphi^* - \\varphi) f(\\mathbf{x} \\mid \\theta_1) \\, d\\mu(\\mathbf{x})\\]
-                        <p>由 \\(\\varphi^*\\) 的定义：</p>
+                        <p>By the definition of \\(\\varphi^*\\):</p>
                         <ul>
-                            <li>当 \\(\\Lambda(\\mathbf{x}) > k\\) 时，\\(\\varphi^* = 1\\)，所以 \\(\\varphi^* - \\varphi \\ge 0\\)，且 \\(f(\\mathbf{x}|\\theta_1) > k \\cdot f(\\mathbf{x}|\\theta_0)\\)</li>
-                            <li>当 \\(\\Lambda(\\mathbf{x}) < k\\) 时，\\(\\varphi^* = 0\\)，所以 \\(\\varphi^* - \\varphi \\le 0\\)，且 \\(f(\\mathbf{x}|\\theta_1) < k \\cdot f(\\mathbf{x}|\\theta_0)\\)</li>
+                            <li>When \\(\\Lambda(\\mathbf{x}) > k\\), \\(\\varphi^* = 1\\), so \\(\\varphi^* - \\varphi \\ge 0\\), and \\(f(\\mathbf{x}|\\theta_1) > k \\cdot f(\\mathbf{x}|\\theta_0)\\)</li>
+                            <li>When \\(\\Lambda(\\mathbf{x}) < k\\), \\(\\varphi^* = 0\\), so \\(\\varphi^* - \\varphi \\le 0\\), and \\(f(\\mathbf{x}|\\theta_1) < k \\cdot f(\\mathbf{x}|\\theta_0)\\)</li>
                         </ul>
-                        <p>在两种情况下都有 \\((\\varphi^* - \\varphi)(f(\\mathbf{x}|\\theta_1) - k \\cdot f(\\mathbf{x}|\\theta_0)) \\ge 0\\)。因此</p>
+                        <p>In both cases we have \\((\\varphi^* - \\varphi)(f(\\mathbf{x}|\\theta_1) - k \\cdot f(\\mathbf{x}|\\theta_0)) \\ge 0\\). Therefore</p>
                         \\[\\int (\\varphi^* - \\varphi)(f(\\mathbf{x}|\\theta_1) - k f(\\mathbf{x}|\\theta_0)) \\, d\\mu \\ge 0\\]
-                        <p>展开得</p>
+                        <p>Expanding gives</p>
                         \\[E_{\\theta_1}[\\varphi^*] - E_{\\theta_1}[\\varphi] \\ge k(E_{\\theta_0}[\\varphi^*] - E_{\\theta_0}[\\varphi]) = k(\\alpha - E_{\\theta_0}[\\varphi]) \\ge 0\\]
-                        <p>最后一个不等式因为 \\(k \\ge 0\\) 且 \\(E_{\\theta_0}[\\varphi] \\le \\alpha\\)。</p>
+                        <p>The last inequality holds because \\(k \\ge 0\\) and \\(E_{\\theta_0}[\\varphi] \\le \\alpha\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 10.1 (正态均值的 NP 检验)</div>
+                    <div class="env-title">Example 10.1 (NP Test for the Normal Mean)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)，\\(\\sigma^2\\) 已知。检验 \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu = \\mu_1\\)（其中 \\(\\mu_1 > \\mu_0\\)）。似然比为</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\) with \\(\\sigma^2\\) known. Test \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu = \\mu_1\\) (where \\(\\mu_1 > \\mu_0\\)). The likelihood ratio is</p>
                         \\[\\Lambda(\\mathbf{x}) = \\frac{\\prod_{i=1}^n \\frac{1}{\\sqrt{2\\pi}\\sigma} e^{-(x_i - \\mu_1)^2/(2\\sigma^2)}}{\\prod_{i=1}^n \\frac{1}{\\sqrt{2\\pi}\\sigma} e^{-(x_i - \\mu_0)^2/(2\\sigma^2)}} = \\exp\\left\\{\\frac{(\\mu_1 - \\mu_0)}{\\sigma^2} \\left(\\sum_{i=1}^n x_i - \\frac{n(\\mu_0 + \\mu_1)}{2}\\right)\\right\\}\\]
-                        <p>因为 \\(\\mu_1 > \\mu_0\\)，\\(\\Lambda(\\mathbf{x}) > k\\) 等价于 \\(\\bar{x} > c\\)。因此 NP 最大功效检验拒绝域为 \\(\\bar{X} > \\mu_0 + z_\\alpha \\cdot \\sigma / \\sqrt{n}\\)。</p>
+                        <p>Since \\(\\mu_1 > \\mu_0\\), \\(\\Lambda(\\mathbf{x}) > k\\) is equivalent to \\(\\bar{x} > c\\). Therefore the NP most powerful test has rejection region \\(\\bar{X} > \\mu_0 + z_\\alpha \\cdot \\sigma / \\sqrt{n}\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
-                    <div class="env-title">Intuition: 为什么似然比是最优的？</div>
+                    <div class="env-title">Intuition: Why Is the Likelihood Ratio Optimal?</div>
                     <div class="env-body">
-                        <p>想象你是一个侦探，手中有两个嫌疑人（\\(\\theta_0\\) 和 \\(\\theta_1\\)）。对于每条线索（观测值），你计算"这条线索在嫌疑人 1 犯案时出现的可能性"与"在嫌疑人 0 犯案时出现的可能性"之比。当这个比值足够大时，你有理由认为嫌疑人 1 更可能。NP 引理告诉我们：这种基于似然比的判断方式是所有判断策略中最灵敏的。</p>
+                        <p>Imagine you are a detective with two suspects (\\(\\theta_0\\) and \\(\\theta_1\\)). For each piece of evidence (observation), you compute the ratio of "how likely this evidence is if suspect 1 committed the crime" to "how likely it is if suspect 0 did." When this ratio is large enough, you have reason to believe suspect 1 is more likely. The NP lemma tells us: this likelihood-ratio-based judgment is the most sensitive among all possible decision strategies.</p>
                     </div>
                 </div>
 
@@ -94,8 +94,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'np-lemma-viz',
-                    title: 'Interactive: Neyman-Pearson 引理',
-                    description: '可视化两个正态分布下的似然比检验。拖动阈值观察拒绝域和功效的变化。',
+                    title: 'Interactive: The Neyman-Pearson Lemma / Neyman-Pearson 引理',
+                    description: 'Visualize the likelihood ratio test under two normal distributions. Drag the threshold to observe changes in the rejection region and power. / 可视化两个正态分布下的似然比检验。拖动阈值观察拒绝域和功效的变化。',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -183,99 +183,99 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X \\sim \\text{Bernoulli}(p)\\)，检验 \\(H_0: p = 0.5\\) vs \\(H_1: p = 0.7\\)，基于 \\(n\\) 次独立观测。写出似然比，并说明 NP 最大功效检验的拒绝域形式。',
-                    hint: '似然比可以表示为 \\(\\left(\\frac{0.7}{0.5}\\right)^{\\sum x_i} \\left(\\frac{0.3}{0.5}\\right)^{n - \\sum x_i}\\)，这是 \\(\\sum x_i\\) 的单调递增函数。',
-                    solution: '似然比为 \\(\\Lambda = \\prod_{i=1}^n \\frac{0.7^{x_i} \\cdot 0.3^{1-x_i}}{0.5^{x_i} \\cdot 0.5^{1-x_i}} = \\left(\\frac{7}{5}\\right)^{\\sum x_i} \\left(\\frac{3}{5}\\right)^{n - \\sum x_i}\\)。取对数得 \\(\\log \\Lambda = (\\sum x_i) \\log \\frac{7}{3} + n \\log \\frac{3}{5}\\)。因为 \\(\\log(7/3) > 0\\)，\\(\\Lambda > k\\) 等价于 \\(\\sum X_i > c\\)。在 \\(H_0\\) 下，\\(\\sum X_i \\sim \\text{Binomial}(n, 0.5)\\)，选择 \\(c\\) 使得 \\(P_{H_0}(\\sum X_i > c) = \\alpha\\)。由于 \\(\\sum X_i\\) 是离散的，可能需要随机化才能精确达到水平 \\(\\alpha\\)。'
+                    question: 'Let \\(X \\sim \\text{Bernoulli}(p)\\). Test \\(H_0: p = 0.5\\) vs \\(H_1: p = 0.7\\) based on \\(n\\) independent observations. Write out the likelihood ratio and describe the form of the NP most powerful test rejection region.',
+                    hint: 'The likelihood ratio can be expressed as \\(\\left(\\frac{0.7}{0.5}\\right)^{\\sum x_i} \\left(\\frac{0.3}{0.5}\\right)^{n - \\sum x_i}\\), which is a monotonically increasing function of \\(\\sum x_i\\).',
+                    solution: 'The likelihood ratio is \\(\\Lambda = \\prod_{i=1}^n \\frac{0.7^{x_i} \\cdot 0.3^{1-x_i}}{0.5^{x_i} \\cdot 0.5^{1-x_i}} = \\left(\\frac{7}{5}\\right)^{\\sum x_i} \\left(\\frac{3}{5}\\right)^{n - \\sum x_i}\\). Taking logarithms gives \\(\\log \\Lambda = (\\sum x_i) \\log \\frac{7}{3} + n \\log \\frac{3}{5}\\). Since \\(\\log(7/3) > 0\\), \\(\\Lambda > k\\) is equivalent to \\(\\sum X_i > c\\). Under \\(H_0\\), \\(\\sum X_i \\sim \\text{Binomial}(n, 0.5)\\), so we choose \\(c\\) such that \\(P_{H_0}(\\sum X_i > c) = \\alpha\\). Since \\(\\sum X_i\\) is discrete, randomization may be needed to achieve the exact level \\(\\alpha\\).'
                 },
                 {
-                    question: '证明 Neyman-Pearson 检验的功效函数 \\(\\beta(\\theta_1)\\) 满足 \\(\\beta(\\theta_1) \\ge \\alpha\\)，即功效不低于显著性水平（除非 \\(f(\\mathbf{x}|\\theta_0) = f(\\mathbf{x}|\\theta_1)\\) a.e.）。',
-                    hint: '考虑常值检验 \\(\\varphi(\\mathbf{x}) = \\alpha\\)（以概率 \\(\\alpha\\) 随机拒绝），它的功效恰好是 \\(\\alpha\\)。',
-                    solution: '常值检验 \\(\\varphi(\\mathbf{x}) \\equiv \\alpha\\) 满足 \\(E_{\\theta_0}[\\varphi] = \\alpha\\)，因此属于水平 \\(\\alpha\\) 的检验类。其功效为 \\(E_{\\theta_1}[\\varphi] = \\alpha\\)。由 NP 引理，MP 检验 \\(\\varphi^*\\) 的功效满足 \\(E_{\\theta_1}[\\varphi^*] \\ge E_{\\theta_1}[\\varphi] = \\alpha\\)。等号成立当且仅当 \\(\\Lambda(\\mathbf{x}) = 1\\) a.e.，即两个分布几乎处处相同。'
+                    question: 'Prove that the power function of the Neyman-Pearson test satisfies \\(\\beta(\\theta_1) \\ge \\alpha\\), i.e., the power is no less than the significance level (unless \\(f(\\mathbf{x}|\\theta_0) = f(\\mathbf{x}|\\theta_1)\\) a.e.).',
+                    hint: 'Consider the constant test \\(\\varphi(\\mathbf{x}) = \\alpha\\) (reject randomly with probability \\(\\alpha\\)), whose power is exactly \\(\\alpha\\).',
+                    solution: 'The constant test \\(\\varphi(\\mathbf{x}) \\equiv \\alpha\\) satisfies \\(E_{\\theta_0}[\\varphi] = \\alpha\\), so it belongs to the class of level \\(\\alpha\\) tests. Its power is \\(E_{\\theta_1}[\\varphi] = \\alpha\\). By the NP lemma, the MP test \\(\\varphi^*\\) satisfies \\(E_{\\theta_1}[\\varphi^*] \\ge E_{\\theta_1}[\\varphi] = \\alpha\\). Equality holds if and only if \\(\\Lambda(\\mathbf{x}) = 1\\) a.e., i.e., the two distributions are almost everywhere identical.'
                 },
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Exp}(\\lambda)\\)，检验 \\(H_0: \\lambda = 1\\) vs \\(H_1: \\lambda = 2\\)。求水平 \\(\\alpha\\) 的 NP 最大功效检验。',
-                    hint: '写出似然比并化简。注意 \\(\\Lambda\\) 是 \\(\\sum x_i\\) 的单调函数。在 \\(H_0\\) 下，\\(2\\sum X_i \\sim \\chi^2(2n)\\)。',
-                    solution: '似然比 \\(\\Lambda = \\frac{2^n e^{-2\\sum x_i}}{e^{-\\sum x_i}} = 2^n e^{-\\sum x_i}\\)。\\(\\Lambda > k\\) 等价于 \\(\\sum x_i < c\\)（因为指数函数递减）。在 \\(H_0\\) 下，\\(X_i \\sim \\text{Exp}(1)\\)，所以 \\(2\\sum X_i \\sim \\chi^2(2n)\\)。拒绝域为 \\(2\\sum X_i < \\chi^2_{1-\\alpha}(2n)\\)，其中 \\(\\chi^2_{1-\\alpha}(2n)\\) 是 \\(\\chi^2(2n)\\) 分布的 \\(1-\\alpha\\) 下分位数。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Exp}(\\lambda)\\). Test \\(H_0: \\lambda = 1\\) vs \\(H_1: \\lambda = 2\\). Find the NP most powerful test at level \\(\\alpha\\).',
+                    hint: 'Write out the likelihood ratio and simplify. Note that \\(\\Lambda\\) is a monotone function of \\(\\sum x_i\\). Under \\(H_0\\), \\(2\\sum X_i \\sim \\chi^2(2n)\\).',
+                    solution: 'The likelihood ratio is \\(\\Lambda = \\frac{2^n e^{-2\\sum x_i}}{e^{-\\sum x_i}} = 2^n e^{-\\sum x_i}\\). \\(\\Lambda > k\\) is equivalent to \\(\\sum x_i < c\\) (since the exponential function is decreasing). Under \\(H_0\\), \\(X_i \\sim \\text{Exp}(1)\\), so \\(2\\sum X_i \\sim \\chi^2(2n)\\). The rejection region is \\(2\\sum X_i < \\chi^2_{1-\\alpha}(2n)\\), where \\(\\chi^2_{1-\\alpha}(2n)\\) is the \\(1-\\alpha\\) lower quantile of the \\(\\chi^2(2n)\\) distribution.'
                 }
             ]
         },
         // ============================================================
-        // Section 2: 一致最大功效检验
+        // Section 2: Uniformly Most Powerful Tests
         // ============================================================
         {
             id: 'ch10-sec02',
-            title: '一致最大功效检验',
+            title: 'Uniformly Most Powerful Tests',
             content: `
-                <h2>一致最大功效检验</h2>
+                <h2>Uniformly Most Powerful Tests<span class="subtitle-zh"> / 一致最大功效检验</span></h2>
 
-                <p>Neyman-Pearson 引理处理的是简单对简单的假设检验。在实际应用中，备择假设通常是复合的（composite），例如 \\(H_1: \\theta > \\theta_0\\)。自然的问题是：是否存在一个检验，在所有备择假设值下都是最大功效的？这就引出了<strong>一致最大功效检验</strong>（UMP test）的概念。</p>
+                <p>The Neyman-Pearson lemma deals with testing simple vs simple hypotheses. In practice, the alternative hypothesis is usually composite, such as \\(H_1: \\theta > \\theta_0\\). A natural question arises: does there exist a test that is most powerful for all values of the alternative? This leads to the concept of the <strong>uniformly most powerful test</strong> (一致最大功效检验, UMP test).</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 10.3 (一致最大功效检验 UMP Test)</div>
+                    <div class="env-title">Definition 10.3 (UMP Test)</div>
                     <div class="env-body">
-                        <p>设检验问题为 \\(H_0: \\theta \\in \\Theta_0\\) vs \\(H_1: \\theta \\in \\Theta_1\\)。检验 \\(\\varphi^*\\) 称为水平 \\(\\alpha\\) 的<strong>一致最大功效检验</strong>（UMP test），如果：</p>
+                        <p>Consider the testing problem \\(H_0: \\theta \\in \\Theta_0\\) vs \\(H_1: \\theta \\in \\Theta_1\\). A test \\(\\varphi^*\\) is called a <strong>uniformly most powerful test</strong> (一致最大功效检验, UMP test) at level \\(\\alpha\\) if:</p>
                         <ol>
-                            <li>\\(\\sup_{\\theta \\in \\Theta_0} E_\\theta[\\varphi^*] \\le \\alpha\\)（控制犯错概率）</li>
-                            <li>对所有 \\(\\theta \\in \\Theta_1\\) 和所有满足 (1) 的检验 \\(\\varphi\\)，都有 \\(E_\\theta[\\varphi^*] \\ge E_\\theta[\\varphi]\\)（在每个备择参数值下功效最大）</li>
+                            <li>\\(\\sup_{\\theta \\in \\Theta_0} E_\\theta[\\varphi^*] \\le \\alpha\\) (controls error probability)</li>
+                            <li>For all \\(\\theta \\in \\Theta_1\\) and all tests \\(\\varphi\\) satisfying (1), \\(E_\\theta[\\varphi^*] \\ge E_\\theta[\\varphi]\\) (maximizes power at every alternative parameter value)</li>
                         </ol>
                     </div>
                 </div>
 
-                <h3>单调似然比与 Karlin-Rubin 定理</h3>
+                <h3>Monotone Likelihood Ratio and the Karlin-Rubin Theorem<span class="subtitle-zh"> / 单调似然比与 Karlin-Rubin 定理</span></h3>
 
-                <p>UMP 检验的存在性与分布族的<strong>单调似然比</strong>（Monotone Likelihood Ratio, MLR）性质密切相关。</p>
+                <p>The existence of UMP tests is closely related to the <strong>monotone likelihood ratio</strong> (单调似然比, MLR) property of the distribution family.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 10.4 (单调似然比 MLR)</div>
+                    <div class="env-title">Definition 10.4 (Monotone Likelihood Ratio)</div>
                     <div class="env-body">
-                        <p>设 \\(\\{f(\\mathbf{x} | \\theta): \\theta \\in \\Theta\\}\\) 是一个参数族，\\(T(\\mathbf{x})\\) 是一个实值统计量。如果对所有 \\(\\theta_1 > \\theta_0\\)，似然比</p>
+                        <p>Let \\(\\{f(\\mathbf{x} | \\theta): \\theta \\in \\Theta\\}\\) be a parametric family and \\(T(\\mathbf{x})\\) a real-valued statistic. If for all \\(\\theta_1 > \\theta_0\\), the likelihood ratio</p>
                         \\[\\frac{f(\\mathbf{x} | \\theta_1)}{f(\\mathbf{x} | \\theta_0)}\\]
-                        <p>是 \\(T(\\mathbf{x})\\) 的<strong>非递减函数</strong>（在 \\(f(\\mathbf{x}|\\theta_0) > 0\\) 的集合上），则称该族关于 \\(T\\) 具有<strong>单调似然比</strong>性质。</p>
+                        <p>is a <strong>nondecreasing function</strong> of \\(T(\\mathbf{x})\\) (on the set where \\(f(\\mathbf{x}|\\theta_0) > 0\\)), then the family is said to have the <strong>monotone likelihood ratio</strong> (单调似然比) property with respect to \\(T\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 10.2 (指数族的 MLR 性质)</div>
+                    <div class="env-title">Example 10.2 (MLR Property of Exponential Families)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n\\) 来自单参数指数族</p>
+                        <p>Let \\(X_1, \\ldots, X_n\\) come from a one-parameter exponential family</p>
                         \\[f(x | \\theta) = h(x) c(\\theta) \\exp(\\eta(\\theta) T(x))\\]
-                        <p>如果 \\(\\eta(\\theta)\\) 是 \\(\\theta\\) 的严格递增函数，则似然比为</p>
+                        <p>If \\(\\eta(\\theta)\\) is a strictly increasing function of \\(\\theta\\), then the likelihood ratio is</p>
                         \\[\\frac{f(\\mathbf{x}|\\theta_1)}{f(\\mathbf{x}|\\theta_0)} = \\frac{c(\\theta_1)^n}{c(\\theta_0)^n} \\exp\\left\\{(\\eta(\\theta_1) - \\eta(\\theta_0)) \\sum_{i=1}^n T(x_i)\\right\\}\\]
-                        <p>当 \\(\\theta_1 > \\theta_0\\) 时，\\(\\eta(\\theta_1) - \\eta(\\theta_0) > 0\\)，所以似然比是 \\(\\sum T(X_i)\\) 的严格递增函数。因此指数族（在 \\(\\eta\\) 递增的条件下）具有 MLR 性质。</p>
-                        <p>例如：正态 \\(N(\\mu, \\sigma^2)\\)（\\(\\sigma^2\\) 已知）关于 \\(\\bar{X}\\)，Poisson 关于 \\(\\sum X_i\\)，指数分布关于 \\(\\sum X_i\\) 等。</p>
+                        <p>When \\(\\theta_1 > \\theta_0\\), we have \\(\\eta(\\theta_1) - \\eta(\\theta_0) > 0\\), so the likelihood ratio is a strictly increasing function of \\(\\sum T(X_i)\\). Therefore exponential families (under the condition that \\(\\eta\\) is increasing) possess the MLR property.</p>
+                        <p>Examples include: Normal \\(N(\\mu, \\sigma^2)\\) (\\(\\sigma^2\\) known) with respect to \\(\\bar{X}\\), Poisson with respect to \\(\\sum X_i\\), Exponential with respect to \\(\\sum X_i\\), etc.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 10.2 (Karlin-Rubin Theorem)</div>
                     <div class="env-body">
-                        <p>设 \\(\\{f(\\mathbf{x}|\\theta)\\}\\) 关于统计量 \\(T(\\mathbf{x})\\) 具有 MLR 性质。考虑单边检验</p>
+                        <p>Let \\(\\{f(\\mathbf{x}|\\theta)\\}\\) have the MLR property with respect to the statistic \\(T(\\mathbf{x})\\). Consider the one-sided test</p>
                         \\[H_0: \\theta \\le \\theta_0 \\quad \\text{vs} \\quad H_1: \\theta > \\theta_0\\]
-                        <p>则 UMP 水平 \\(\\alpha\\) 检验具有拒绝域的形式</p>
+                        <p>Then the UMP level \\(\\alpha\\) test has a rejection region of the form</p>
                         \\[T(\\mathbf{x}) > t_0\\]
-                        <p>其中 \\(t_0\\) 由 \\(P_{\\theta_0}(T(\\mathbf{X}) > t_0) = \\alpha\\) 确定（可能需要随机化）。</p>
+                        <p>where \\(t_0\\) is determined by \\(P_{\\theta_0}(T(\\mathbf{X}) > t_0) = \\alpha\\) (randomization may be needed).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof (Sketch)</div>
                     <div class="env-body">
-                        <p>对于任意固定的 \\(\\theta_1 > \\theta_0\\)，由 MLR 性质和 NP 引理，水平 \\(\\alpha\\) 下检验 \\(H_0: \\theta = \\theta_0\\) vs \\(H_1: \\theta = \\theta_1\\) 的 MP 检验形式为 "拒绝当 \\(T > t_0\\)"。关键在于：临界值 \\(t_0\\) 只依赖于 \\(\\theta_0\\) 和 \\(\\alpha\\)，而不依赖于 \\(\\theta_1\\) 的具体值。因此同一个检验对所有 \\(\\theta_1 > \\theta_0\\) 都是 MP 的，即为 UMP。</p>
-                        <p>还需验证 \\(\\sup_{\\theta \\le \\theta_0} E_\\theta[\\varphi] \\le \\alpha\\)。这由功效函数 \\(\\beta(\\theta) = P_\\theta(T > t_0)\\) 在 MLR 条件下的单调性保证：对 \\(\\theta \\le \\theta_0\\)，\\(\\beta(\\theta) \\le \\beta(\\theta_0) = \\alpha\\)。</p>
+                        <p>For any fixed \\(\\theta_1 > \\theta_0\\), by the MLR property and the NP lemma, the MP test at level \\(\\alpha\\) for \\(H_0: \\theta = \\theta_0\\) vs \\(H_1: \\theta = \\theta_1\\) has the form "reject when \\(T > t_0\\)." The key observation is that the critical value \\(t_0\\) depends only on \\(\\theta_0\\) and \\(\\alpha\\), not on the specific value of \\(\\theta_1\\). Therefore the same test is MP for all \\(\\theta_1 > \\theta_0\\), making it UMP.</p>
+                        <p>We also need to verify that \\(\\sup_{\\theta \\le \\theta_0} E_\\theta[\\varphi] \\le \\alpha\\). This is guaranteed by the monotonicity of the power function \\(\\beta(\\theta) = P_\\theta(T > t_0)\\) under the MLR condition: for \\(\\theta \\le \\theta_0\\), \\(\\beta(\\theta) \\le \\beta(\\theta_0) = \\alpha\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
-                <h3>双侧检验中 UMP 不存在</h3>
+                <h3>Non-Existence of UMP for Two-Sided Tests<span class="subtitle-zh"> / 双侧检验中 UMP 不存在</span></h3>
 
                 <div class="env-block warning">
                     <div class="env-title">Warning: UMP Tests Do Not Exist for Two-Sided Alternatives</div>
                     <div class="env-body">
-                        <p>考虑 \\(H_0: \\theta = \\theta_0\\) vs \\(H_1: \\theta \\ne \\theta_0\\)。对于 \\(\\theta_1 > \\theta_0\\)，NP 检验拒绝 \\(T\\) 大的观测；但对 \\(\\theta_1 < \\theta_0\\)，NP 检验拒绝 \\(T\\) 小的观测。这两个方向的检验互相矛盾，因此不可能同时在两个方向上达到最大功效。</p>
-                        <p>对于双侧备择假设，常用的替代方案包括：</p>
+                        <p>Consider \\(H_0: \\theta = \\theta_0\\) vs \\(H_1: \\theta \\ne \\theta_0\\). For \\(\\theta_1 > \\theta_0\\), the NP test rejects for large \\(T\\); but for \\(\\theta_1 < \\theta_0\\), the NP test rejects for small \\(T\\). These two directions contradict each other, so it is impossible to achieve maximum power in both directions simultaneously.</p>
+                        <p>For two-sided alternatives, common alternatives include:</p>
                         <ul>
-                            <li><strong>一致最大功效无偏检验</strong>（UMPU test）</li>
-                            <li><strong>广义似然比检验</strong>（GLRT，见下一节）</li>
+                            <li><strong>Uniformly most powerful unbiased test</strong> (一致最大功效无偏检验, UMPU test)</li>
+                            <li><strong>Generalized likelihood ratio test</strong> (广义似然比检验, GLRT, see the next section)</li>
                         </ul>
                     </div>
                 </div>
@@ -285,8 +285,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'mlr-viz',
-                    title: 'Interactive: 单调似然比与 UMP 检验',
-                    description: '观察指数族的似然比如何随统计量 T 单调变化，以及不同 theta_1 值下拒绝域不变。',
+                    title: 'Interactive: Monotone Likelihood Ratio and UMP Tests / 单调似然比与 UMP 检验',
+                    description: 'Observe how the likelihood ratio of an exponential family changes monotonically with the statistic T, and how the rejection region remains unchanged for different theta_1 values. / 观察指数族的似然比如何随统计量 T 单调变化，以及不同 theta_1 值下拒绝域不变。',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -416,81 +416,81 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, 1)\\)。证明对于检验 \\(H_0: \\mu \\le 0\\) vs \\(H_1: \\mu > 0\\)，UMP 水平 \\(\\alpha\\) 检验的拒绝域为 \\(\\bar{X} > z_\\alpha / \\sqrt{n}\\)。',
-                    hint: '正态分布关于 \\(\\bar{X}\\) 具有 MLR 性质，直接应用 Karlin-Rubin 定理。',
-                    solution: '正态密度可写为 \\(f(x|\\mu) = \\frac{1}{\\sqrt{2\\pi}} \\exp(-x^2/2 + \\mu x - \\mu^2/2)\\)，这是以 \\(\\eta(\\mu) = \\mu\\)（关于 \\(\\mu\\) 递增）为自然参数、\\(T(x) = x\\) 为充分统计量的指数族。因此联合密度关于 \\(\\sum X_i\\)（等价于 \\(\\bar{X}\\)）具有 MLR 性质。由 Karlin-Rubin 定理，UMP 检验拒绝当 \\(\\bar{X} > c\\)。在 \\(\\mu = 0\\)（边界值）下，\\(\\bar{X} \\sim N(0, 1/n)\\)，所以 \\(c = z_\\alpha / \\sqrt{n}\\)。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, 1)\\). Prove that for testing \\(H_0: \\mu \\le 0\\) vs \\(H_1: \\mu > 0\\), the UMP level \\(\\alpha\\) test has rejection region \\(\\bar{X} > z_\\alpha / \\sqrt{n}\\).',
+                    hint: 'The normal distribution has the MLR property with respect to \\(\\bar{X}\\). Apply the Karlin-Rubin theorem directly.',
+                    solution: 'The normal density can be written as \\(f(x|\\mu) = \\frac{1}{\\sqrt{2\\pi}} \\exp(-x^2/2 + \\mu x - \\mu^2/2)\\), which is an exponential family with natural parameter \\(\\eta(\\mu) = \\mu\\) (increasing in \\(\\mu\\)) and sufficient statistic \\(T(x) = x\\). Therefore the joint density has the MLR property with respect to \\(\\sum X_i\\) (equivalently \\(\\bar{X}\\)). By the Karlin-Rubin theorem, the UMP test rejects when \\(\\bar{X} > c\\). Under \\(\\mu = 0\\) (the boundary value), \\(\\bar{X} \\sim N(0, 1/n)\\), so \\(c = z_\\alpha / \\sqrt{n}\\).'
                 },
                 {
-                    question: '解释为什么 \\(H_0: \\mu = 0\\) vs \\(H_1: \\mu \\ne 0\\) 没有 UMP 检验（对正态总体 \\(N(\\mu, 1)\\)），并说明通常使用什么检验代替。',
-                    hint: '考虑 \\(\\mu > 0\\) 和 \\(\\mu < 0\\) 两种情形下 NP 检验的方向。',
-                    solution: '对于 \\(\\mu_1 > 0\\)，NP MP 检验拒绝大的 \\(\\bar{X}\\)（右尾）；对于 \\(\\mu_1 < 0\\)，NP MP 检验拒绝小的 \\(\\bar{X}\\)（左尾）。假设存在 UMP 检验 \\(\\varphi^*\\)，则它必须同时在右尾和左尾达到最大功效，这是不可能的（除非 \\(\\varphi^* = \\alpha\\) a.e.）。通常的替代方案是双尾 z-检验：拒绝当 \\(|\\bar{X}| > z_{\\alpha/2}/\\sqrt{n}\\)。此检验是 UMPU（一致最大功效无偏）检验。'
+                    question: 'Explain why there is no UMP test for \\(H_0: \\mu = 0\\) vs \\(H_1: \\mu \\ne 0\\) (for a normal population \\(N(\\mu, 1)\\)), and describe what test is typically used instead.',
+                    hint: 'Consider the directions of the NP test for \\(\\mu > 0\\) and \\(\\mu < 0\\).',
+                    solution: 'For \\(\\mu_1 > 0\\), the NP MP test rejects large \\(\\bar{X}\\) (right tail); for \\(\\mu_1 < 0\\), the NP MP test rejects small \\(\\bar{X}\\) (left tail). If a UMP test \\(\\varphi^*\\) existed, it would have to simultaneously achieve maximum power in both the right and left tails, which is impossible (unless \\(\\varphi^* = \\alpha\\) a.e.). The usual alternative is the two-tailed z-test: reject when \\(|\\bar{X}| > z_{\\alpha/2}/\\sqrt{n}\\). This test is UMPU (uniformly most powerful unbiased).'
                 },
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Exp}(\\lambda)\\)。对 \\(H_0: \\lambda \\ge \\lambda_0\\) vs \\(H_1: \\lambda < \\lambda_0\\)，求 UMP 水平 \\(\\alpha\\) 检验。',
-                    hint: '指数族的密度为 \\(f(x|\\lambda) = \\lambda e^{-\\lambda x}\\)，自然参数 \\(\\eta(\\lambda) = -\\lambda\\) 关于 \\(\\lambda\\) 递减。注意递减意味着似然比关于 \\(T = \\sum X_i\\) 的单调方向。',
-                    solution: '写成指数族形式：\\(f(x|\\lambda) = \\lambda \\exp(-\\lambda x)\\)，自然参数 \\(\\eta = -\\lambda\\) 关于 \\(\\lambda\\) 递减。因此关于 \\(T = \\sum X_i\\)，似然比在 \\(\\lambda_1 < \\lambda_0\\) 时（\\(\\eta_1 > \\eta_0\\)）是 \\(T\\) 的递增函数。等价地，\\(\\Lambda > k\\) 等价于 \\(T > c\\)。UMP 检验拒绝当 \\(\\sum X_i > c\\)。在 \\(H_0\\) 边界 \\(\\lambda = \\lambda_0\\) 下，\\(2\\lambda_0 \\sum X_i \\sim \\chi^2(2n)\\)，所以 \\(c = \\chi^2_\\alpha(2n) / (2\\lambda_0)\\)。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Exp}(\\lambda)\\). For \\(H_0: \\lambda \\ge \\lambda_0\\) vs \\(H_1: \\lambda < \\lambda_0\\), find the UMP level \\(\\alpha\\) test.',
+                    hint: 'The exponential family density is \\(f(x|\\lambda) = \\lambda e^{-\\lambda x}\\), with natural parameter \\(\\eta(\\lambda) = -\\lambda\\) which is decreasing in \\(\\lambda\\). Note that the decreasing direction affects the monotonicity of the likelihood ratio with respect to \\(T = \\sum X_i\\).',
+                    solution: 'Written in exponential family form: \\(f(x|\\lambda) = \\lambda \\exp(-\\lambda x)\\), with natural parameter \\(\\eta = -\\lambda\\) decreasing in \\(\\lambda\\). Therefore with respect to \\(T = \\sum X_i\\), the likelihood ratio for \\(\\lambda_1 < \\lambda_0\\) (i.e., \\(\\eta_1 > \\eta_0\\)) is an increasing function of \\(T\\). Equivalently, \\(\\Lambda > k\\) is equivalent to \\(T > c\\). The UMP test rejects when \\(\\sum X_i > c\\). Under the boundary \\(\\lambda = \\lambda_0\\) of \\(H_0\\), \\(2\\lambda_0 \\sum X_i \\sim \\chi^2(2n)\\), so \\(c = \\chi^2_\\alpha(2n) / (2\\lambda_0)\\).'
                 }
             ]
         },
         // ============================================================
-        // Section 3: 广义似然比检验
+        // Section 3: Generalized Likelihood Ratio Tests
         // ============================================================
         {
             id: 'ch10-sec03',
-            title: '广义似然比检验',
+            title: 'Generalized Likelihood Ratio Tests',
             content: `
-                <h2>广义似然比检验</h2>
+                <h2>Generalized Likelihood Ratio Tests<span class="subtitle-zh"> / 广义似然比检验</span></h2>
 
-                <p>当 UMP 检验不存在（如双侧检验或多参数情形）时，我们需要一种通用的构造检验的方法。<strong>广义似然比检验</strong>（Generalized Likelihood Ratio Test, GLRT）是最广泛使用的方法之一。其基本思想是：比较在约束（\\(H_0\\)）下和无约束下的最大似然值。</p>
+                <p>When a UMP test does not exist (e.g., for two-sided tests or multi-parameter settings), we need a general method for constructing tests. The <strong>generalized likelihood ratio test</strong> (广义似然比检验, GLRT) is one of the most widely used approaches. Its basic idea is to compare the maximum likelihood values under the constraint (\\(H_0\\)) and without constraint.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 10.5 (广义似然比统计量 GLRT Statistic)</div>
+                    <div class="env-title">Definition 10.5 (GLRT Statistic)</div>
                     <div class="env-body">
-                        <p>设参数空间为 \\(\\Theta\\)，零假设对应的参数子空间为 \\(\\Theta_0 \\subset \\Theta\\)。<strong>广义似然比统计量</strong>定义为</p>
+                        <p>Let the parameter space be \\(\\Theta\\) and the parameter subspace corresponding to the null hypothesis be \\(\\Theta_0 \\subset \\Theta\\). The <strong>generalized likelihood ratio statistic</strong> (广义似然比统计量) is defined as</p>
                         \\[\\Lambda(\\mathbf{x}) = \\frac{\\sup_{\\theta \\in \\Theta_0} L(\\theta | \\mathbf{x})}{\\sup_{\\theta \\in \\Theta} L(\\theta | \\mathbf{x})}\\]
-                        <p>显然 \\(0 \\le \\Lambda(\\mathbf{x}) \\le 1\\)。当 \\(\\Lambda\\) 接近 0 时，说明约束模型（\\(H_0\\)）的最佳拟合远不如无约束模型，因此有理由拒绝 \\(H_0\\)。</p>
-                        <p>GLRT 拒绝域为 \\(\\Lambda(\\mathbf{x}) < c\\)，或等价地 \\(-2 \\log \\Lambda(\\mathbf{x}) > c'\\)。</p>
+                        <p>Clearly \\(0 \\le \\Lambda(\\mathbf{x}) \\le 1\\). When \\(\\Lambda\\) is close to 0, the best fit under the constrained model (\\(H_0\\)) is far inferior to the unconstrained model, providing reason to reject \\(H_0\\).</p>
+                        <p>The GLRT rejection region is \\(\\Lambda(\\mathbf{x}) < c\\), or equivalently \\(-2 \\log \\Lambda(\\mathbf{x}) > c'\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
-                    <div class="env-title">Remark (符号约定)</div>
+                    <div class="env-title">Remark (Notation Convention)</div>
                     <div class="env-body">
-                        <p>注意不同教材对似然比的定义方向可能不同。有些定义分子为无约束 MLE、分母为约束 MLE（此时 \\(\\Lambda \\ge 1\\)，拒绝大值）。本课程采用 Casella & Berger 的约定：分子是约束最大似然，分母是全局最大似然，因此 \\(\\Lambda \\in [0, 1]\\)，拒绝小值。</p>
+                        <p>Note that different textbooks may define the likelihood ratio in opposite directions. Some place the unrestricted MLE in the numerator and the restricted MLE in the denominator (so that \\(\\Lambda \\ge 1\\) and large values lead to rejection). This course follows the Casella & Berger convention: the numerator is the constrained maximum likelihood and the denominator is the global maximum likelihood, so \\(\\Lambda \\in [0, 1]\\) and small values lead to rejection.</p>
                     </div>
                 </div>
 
-                <h3>Example: 正态均值的 GLRT</h3>
+                <h3>Example: GLRT for the Normal Mean<span class="subtitle-zh"> / 正态均值的 GLRT</span></h3>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 10.3 (单正态均值检验)</div>
+                    <div class="env-title">Example 10.3 (Single Normal Mean Test)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)，\\(\\sigma^2\\) 已知。检验 \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu \\ne \\mu_0\\)。</p>
-                        <p><strong>分母</strong>：无约束 MLE 为 \\(\\hat{\\mu} = \\bar{X}\\)，代入得</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\) with \\(\\sigma^2\\) known. Test \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu \\ne \\mu_0\\).</p>
+                        <p><strong>Denominator</strong>: The unrestricted MLE is \\(\\hat{\\mu} = \\bar{X}\\), giving</p>
                         \\[\\sup_\\mu L(\\mu) = \\left(\\frac{1}{2\\pi\\sigma^2}\\right)^{n/2} \\exp\\left(-\\frac{1}{2\\sigma^2} \\sum (X_i - \\bar{X})^2\\right)\\]
-                        <p><strong>分子</strong>：在 \\(\\mu = \\mu_0\\) 约束下</p>
+                        <p><strong>Numerator</strong>: Under the constraint \\(\\mu = \\mu_0\\)</p>
                         \\[L(\\mu_0) = \\left(\\frac{1}{2\\pi\\sigma^2}\\right)^{n/2} \\exp\\left(-\\frac{1}{2\\sigma^2} \\sum (X_i - \\mu_0)^2\\right)\\]
-                        <p>因此</p>
+                        <p>Therefore</p>
                         \\[\\Lambda = \\exp\\left(-\\frac{n}{2\\sigma^2}(\\bar{X} - \\mu_0)^2\\right)\\]
-                        <p>所以 \\(-2\\log \\Lambda = \\frac{n(\\bar{X} - \\mu_0)^2}{\\sigma^2} = Z^2\\)，其中 \\(Z = \\frac{\\bar{X} - \\mu_0}{\\sigma/\\sqrt{n}} \\sim N(0,1)\\)。拒绝域 \\(-2\\log\\Lambda > c'\\) 等价于 \\(|Z| > \\sqrt{c'}\\)，即标准的双尾 z-检验。</p>
+                        <p>So \\(-2\\log \\Lambda = \\frac{n(\\bar{X} - \\mu_0)^2}{\\sigma^2} = Z^2\\), where \\(Z = \\frac{\\bar{X} - \\mu_0}{\\sigma/\\sqrt{n}} \\sim N(0,1)\\). The rejection region \\(-2\\log\\Lambda > c'\\) is equivalent to \\(|Z| > \\sqrt{c'}\\), which is the standard two-tailed z-test.</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 10.4 (两正态均值相等的检验)</div>
+                    <div class="env-title">Example 10.4 (Testing Equality of Two Normal Means)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_m \\overset{\\text{iid}}{\\sim} N(\\mu_1, \\sigma^2)\\)，\\(Y_1, \\ldots, Y_n \\overset{\\text{iid}}{\\sim} N(\\mu_2, \\sigma^2)\\)，\\(\\sigma^2\\) 已知。检验 \\(H_0: \\mu_1 = \\mu_2\\) vs \\(H_1: \\mu_1 \\ne \\mu_2\\)。</p>
-                        <p>全参数空间 \\(\\Theta = \\{(\\mu_1, \\mu_2): \\mu_1, \\mu_2 \\in \\mathbb{R}\\}\\)，约束空间 \\(\\Theta_0 = \\{(\\mu, \\mu): \\mu \\in \\mathbb{R}\\}\\)。</p>
-                        <p>经计算，GLRT 统计量化简为</p>
+                        <p>Let \\(X_1, \\ldots, X_m \\overset{\\text{iid}}{\\sim} N(\\mu_1, \\sigma^2)\\) and \\(Y_1, \\ldots, Y_n \\overset{\\text{iid}}{\\sim} N(\\mu_2, \\sigma^2)\\) with \\(\\sigma^2\\) known. Test \\(H_0: \\mu_1 = \\mu_2\\) vs \\(H_1: \\mu_1 \\ne \\mu_2\\).</p>
+                        <p>The full parameter space is \\(\\Theta = \\{(\\mu_1, \\mu_2): \\mu_1, \\mu_2 \\in \\mathbb{R}\\}\\), and the constrained space is \\(\\Theta_0 = \\{(\\mu, \\mu): \\mu \\in \\mathbb{R}\\}\\).</p>
+                        <p>After computation, the GLRT statistic simplifies to</p>
                         \\[-2\\log\\Lambda = \\frac{mn}{m+n} \\cdot \\frac{(\\bar{X} - \\bar{Y})^2}{\\sigma^2}\\]
-                        <p>在 \\(H_0\\) 下，\\(\\bar{X} - \\bar{Y} \\sim N(0, \\sigma^2(1/m + 1/n))\\)，所以 \\(-2\\log\\Lambda \\sim \\chi^2(1)\\)。</p>
+                        <p>Under \\(H_0\\), \\(\\bar{X} - \\bar{Y} \\sim N(0, \\sigma^2(1/m + 1/n))\\), so \\(-2\\log\\Lambda \\sim \\chi^2(1)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
-                    <div class="env-title">Intuition: GLRT 的几何直觉</div>
+                    <div class="env-title">Intuition: Geometric Intuition for the GLRT</div>
                     <div class="env-body">
-                        <p>把似然函数看成参数空间上的一座"山"。无约束 MLE 是山顶（海拔最高点），约束 MLE 是限制在某条路径（\\(\\Theta_0\\)）上的最高点。GLRT 检验的是：站在约束路径的最高点和站在山顶，视野差距有多大？如果差距很大（\\(\\Lambda\\) 很小），说明约束是不合理的，应该拒绝 \\(H_0\\)。</p>
+                        <p>Think of the likelihood function as a "mountain" over the parameter space. The unrestricted MLE is the summit (highest point), and the constrained MLE is the highest point along a restricted path (\\(\\Theta_0\\)). The GLRT tests whether the gap between standing at the highest point on the constrained path versus the summit is large. If the gap is large (\\(\\Lambda\\) is small), then the constraint is unreasonable and we should reject \\(H_0\\).</p>
                     </div>
                 </div>
 
@@ -499,8 +499,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'glrt-viz',
-                    title: 'Interactive: 广义似然比检验',
-                    description: '观察约束 MLE 与无约束 MLE 下似然值的比较，以及 GLRT 统计量的变化。',
+                    title: 'Interactive: Generalized Likelihood Ratio Test / 广义似然比检验',
+                    description: 'Compare the likelihood values under the constrained MLE and unrestricted MLE, and observe the GLRT statistic. / 观察约束 MLE 与无约束 MLE 下似然值的比较，以及 GLRT 统计量的变化。',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -614,43 +614,43 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)，其中 \\(\\mu\\) 和 \\(\\sigma^2\\) 都未知。对于 \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu \\ne \\mu_0\\)，推导 GLRT 统计量并说明其在 \\(H_0\\) 下的分布。',
-                    hint: '全模型的 MLE 为 \\(\\hat{\\mu} = \\bar{X}\\)，\\(\\hat{\\sigma}^2 = \\frac{1}{n}\\sum(X_i - \\bar{X})^2\\)。约束模型的 MLE 为 \\(\\mu = \\mu_0\\)，\\(\\tilde{\\sigma}^2 = \\frac{1}{n}\\sum(X_i - \\mu_0)^2\\)。',
-                    solution: '代入计算后 \\(\\Lambda = \\left(\\frac{\\hat{\\sigma}^2}{\\tilde{\\sigma}^2}\\right)^{n/2} = \\left(\\frac{\\sum(X_i - \\bar{X})^2}{\\sum(X_i - \\mu_0)^2}\\right)^{n/2} = \\left(\\frac{1}{1 + T^2/(n-1)}\\right)^{n/2}\\)，其中 \\(T = \\frac{\\bar{X} - \\mu_0}{S/\\sqrt{n}}\\)，\\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2\\)。因此 \\(\\Lambda < c\\) 等价于 \\(|T| > c\'\\)。在 \\(H_0\\) 下 \\(T \\sim t(n-1)\\)，即 GLRT 简化为 t-检验。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\), where both \\(\\mu\\) and \\(\\sigma^2\\) are unknown. For \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu \\ne \\mu_0\\), derive the GLRT statistic and state its distribution under \\(H_0\\).',
+                    hint: 'The full model MLEs are \\(\\hat{\\mu} = \\bar{X}\\) and \\(\\hat{\\sigma}^2 = \\frac{1}{n}\\sum(X_i - \\bar{X})^2\\). The constrained model MLEs are \\(\\mu = \\mu_0\\) and \\(\\tilde{\\sigma}^2 = \\frac{1}{n}\\sum(X_i - \\mu_0)^2\\).',
+                    solution: 'Substituting gives \\(\\Lambda = \\left(\\frac{\\hat{\\sigma}^2}{\\tilde{\\sigma}^2}\\right)^{n/2} = \\left(\\frac{\\sum(X_i - \\bar{X})^2}{\\sum(X_i - \\mu_0)^2}\\right)^{n/2} = \\left(\\frac{1}{1 + T^2/(n-1)}\\right)^{n/2}\\), where \\(T = \\frac{\\bar{X} - \\mu_0}{S/\\sqrt{n}}\\) and \\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2\\). Therefore \\(\\Lambda < c\\) is equivalent to \\(|T| > c\'\\). Under \\(H_0\\), \\(T \\sim t(n-1)\\), so the GLRT reduces to the t-test.'
                 },
                 {
-                    question: '对于 GLRT，证明 \\(0 \\le \\Lambda(\\mathbf{x}) \\le 1\\) 恒成立，并说明 \\(\\Lambda = 1\\) 在什么情况下发生。',
-                    hint: '注意分子是在 \\(\\Theta_0 \\subset \\Theta\\) 上的上确界。',
-                    solution: '因为 \\(\\Theta_0 \\subset \\Theta\\)，所以 \\(\\sup_{\\theta \\in \\Theta_0} L(\\theta) \\le \\sup_{\\theta \\in \\Theta} L(\\theta)\\)，因此 \\(\\Lambda \\le 1\\)。由于似然函数非负，\\(\\Lambda \\ge 0\\)。\\(\\Lambda = 1\\) 当且仅当无约束 MLE 恰好落在 \\(\\Theta_0\\) 中，即数据完全支持零假设。例如在 Example 10.3 中，\\(\\Lambda = 1\\) 当且仅当 \\(\\bar{X} = \\mu_0\\)。'
+                    question: 'For the GLRT, prove that \\(0 \\le \\Lambda(\\mathbf{x}) \\le 1\\) always holds, and explain when \\(\\Lambda = 1\\) occurs.',
+                    hint: 'Note that the numerator is the supremum over \\(\\Theta_0 \\subset \\Theta\\).',
+                    solution: 'Since \\(\\Theta_0 \\subset \\Theta\\), we have \\(\\sup_{\\theta \\in \\Theta_0} L(\\theta) \\le \\sup_{\\theta \\in \\Theta} L(\\theta)\\), so \\(\\Lambda \\le 1\\). Since the likelihood function is nonnegative, \\(\\Lambda \\ge 0\\). \\(\\Lambda = 1\\) if and only if the unrestricted MLE happens to fall within \\(\\Theta_0\\), meaning the data fully support the null hypothesis. For instance, in Example 10.3, \\(\\Lambda = 1\\) if and only if \\(\\bar{X} = \\mu_0\\).'
                 },
                 {
-                    question: '（GLRT 不总是最优的）构造一个简单的例子，说明 GLRT 不一定给出 UMP 检验（即使 UMP 检验存在）。',
-                    hint: '考虑正态单侧检验 \\(H_0: \\mu \\le 0\\) vs \\(H_1: \\mu > 0\\)，\\(\\sigma^2\\) 已知。GLRT 的行为是什么？',
-                    solution: '设 \\(X \\sim N(\\mu, 1)\\)。对于 \\(H_0: \\mu \\le 0\\) vs \\(H_1: \\mu > 0\\)：无约束 MLE 为 \\(\\hat{\\mu} = X\\)。约束 MLE 为 \\(\\tilde{\\mu} = \\min(X, 0)\\)。当 \\(X > 0\\) 时 \\(\\Lambda = \\exp(-X^2/2)\\)，当 \\(X \\le 0\\) 时 \\(\\Lambda = 1\\)。GLRT 拒绝当 \\(X > c\\)，这恰好是 UMP 检验。但考虑更复杂的约束形式（如区间假设 \\(H_0: \\mu \\in [a, b]\\)），GLRT 可能不是 UMP。一般地，GLRT 的优势在于通用性而非最优性。'
+                    question: '(The GLRT is not always optimal) Construct a simple example showing that the GLRT does not necessarily yield the UMP test (even when the UMP test exists).',
+                    hint: 'Consider the one-sided normal test \\(H_0: \\mu \\le 0\\) vs \\(H_1: \\mu > 0\\) with known \\(\\sigma^2\\). What does the GLRT do?',
+                    solution: 'Let \\(X \\sim N(\\mu, 1)\\). For \\(H_0: \\mu \\le 0\\) vs \\(H_1: \\mu > 0\\): the unrestricted MLE is \\(\\hat{\\mu} = X\\). The constrained MLE is \\(\\tilde{\\mu} = \\min(X, 0)\\). When \\(X > 0\\), \\(\\Lambda = \\exp(-X^2/2)\\); when \\(X \\le 0\\), \\(\\Lambda = 1\\). The GLRT rejects when \\(X > c\\), which happens to be the UMP test. However, for more complex constraint forms (such as interval hypotheses \\(H_0: \\mu \\in [a, b]\\)), the GLRT may not be UMP. In general, the GLRT\'s advantage lies in its generality rather than optimality.'
                 }
             ]
         },
         // ============================================================
-        // Section 4: Wilks 定理
+        // Section 4: Wilks' Theorem
         // ============================================================
         {
             id: 'ch10-sec04',
-            title: 'Wilks 定理',
+            title: "Wilks' Theorem",
             content: `
-                <h2>Wilks 定理</h2>
+                <h2>Wilks' Theorem<span class="subtitle-zh"> / Wilks 定理</span></h2>
 
-                <p>GLRT 的一个重要实际问题是：如何确定拒绝域的临界值？在有限样本下，\\(-2\\log\\Lambda\\) 的精确分布通常难以求得。<strong>Wilks 定理</strong>提供了一个优雅的渐近解：在正则条件下，\\(-2\\log\\Lambda\\) 的渐近分布是卡方分布，自由度等于约束的个数。</p>
+                <p>An important practical issue with the GLRT is: how do we determine the critical value for the rejection region? In finite samples, the exact distribution of \\(-2\\log\\Lambda\\) is usually difficult to obtain. <strong>Wilks' theorem</strong> (Wilks 定理) provides an elegant asymptotic solution: under regularity conditions, the asymptotic distribution of \\(-2\\log\\Lambda\\) is a chi-squared distribution with degrees of freedom equal to the number of constraints.</p>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 10.3 (Wilks' Theorem)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} f(x | \\theta)\\)，其中 \\(\\theta \\in \\Theta \\subset \\mathbb{R}^p\\)。考虑检验 \\(H_0: \\theta \\in \\Theta_0\\)，其中 \\(\\Theta_0\\) 是 \\(\\Theta\\) 中维数为 \\(q\\) 的子集（即 \\(\\Theta_0\\) 由 \\(r = p - q\\) 个独立约束确定）。在以下正则条件下：</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} f(x | \\theta)\\), where \\(\\theta \\in \\Theta \\subset \\mathbb{R}^p\\). Consider testing \\(H_0: \\theta \\in \\Theta_0\\), where \\(\\Theta_0\\) is a subset of \\(\\Theta\\) with dimension \\(q\\) (i.e., \\(\\Theta_0\\) is determined by \\(r = p - q\\) independent constraints). Under the following regularity conditions:</p>
                         <ol>
-                            <li>参数的真值 \\(\\theta_0 \\in \\Theta_0\\) 是 \\(\\Theta_0\\) 的内点</li>
-                            <li>Fisher 信息矩阵 \\(I(\\theta_0)\\) 正定</li>
-                            <li>适当的可微性和可积性条件成立</li>
+                            <li>The true parameter value \\(\\theta_0 \\in \\Theta_0\\) is an interior point of \\(\\Theta_0\\)</li>
+                            <li>The Fisher information matrix \\(I(\\theta_0)\\) is positive definite</li>
+                            <li>Appropriate differentiability and integrability conditions hold</li>
                         </ol>
-                        <p>当 \\(H_0\\) 为真时，</p>
+                        <p>When \\(H_0\\) is true,</p>
                         \\[-2 \\log \\Lambda(\\mathbf{X}) \\xrightarrow{d} \\chi^2(r), \\quad r = \\dim(\\Theta) - \\dim(\\Theta_0) = p - q\\]
                     </div>
                 </div>
@@ -658,66 +658,66 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof (Sketch)</div>
                     <div class="env-body">
-                        <p>关键步骤如下：</p>
-                        <p><strong>Step 1.</strong> 对数似然函数在 MLE \\(\\hat{\\theta}\\) 处的二阶 Taylor 展开：</p>
+                        <p>The key steps are as follows:</p>
+                        <p><strong>Step 1.</strong> Second-order Taylor expansion of the log-likelihood at the MLE \\(\\hat{\\theta}\\):</p>
                         \\[\\ell(\\theta) \\approx \\ell(\\hat{\\theta}) - \\frac{1}{2} (\\theta - \\hat{\\theta})^T \\mathcal{J}_n (\\theta - \\hat{\\theta})\\]
-                        <p>其中 \\(\\mathcal{J}_n = -\\nabla^2 \\ell(\\hat{\\theta})\\) 是观测信息矩阵。</p>
+                        <p>where \\(\\mathcal{J}_n = -\\nabla^2 \\ell(\\hat{\\theta})\\) is the observed information matrix.</p>
 
-                        <p><strong>Step 2.</strong> 类似地，约束 MLE \\(\\tilde{\\theta}\\) 也满足</p>
+                        <p><strong>Step 2.</strong> Similarly, the constrained MLE \\(\\tilde{\\theta}\\) satisfies</p>
                         \\[\\ell(\\tilde{\\theta}) \\approx \\ell(\\hat{\\theta}) - \\frac{1}{2} (\\tilde{\\theta} - \\hat{\\theta})^T \\mathcal{J}_n (\\tilde{\\theta} - \\hat{\\theta})\\]
 
-                        <p><strong>Step 3.</strong> 因此</p>
+                        <p><strong>Step 3.</strong> Therefore</p>
                         \\[-2\\log\\Lambda = 2(\\ell(\\hat{\\theta}) - \\ell(\\tilde{\\theta})) \\approx (\\hat{\\theta} - \\tilde{\\theta})^T \\mathcal{J}_n (\\hat{\\theta} - \\tilde{\\theta})\\]
 
-                        <p><strong>Step 4.</strong> 利用 MLE 的渐近正态性 \\(\\sqrt{n}(\\hat{\\theta} - \\theta_0) \\xrightarrow{d} N(0, I(\\theta_0)^{-1})\\) 和约束 MLE 的性质，可以证明右端渐近服从 \\(\\chi^2(r)\\)。直觉上，\\(\\hat{\\theta} - \\tilde{\\theta}\\) 在 \\(r\\) 个约束方向上有非平凡分量，每个贡献一个自由度。</p>
+                        <p><strong>Step 4.</strong> Using the asymptotic normality of the MLE \\(\\sqrt{n}(\\hat{\\theta} - \\theta_0) \\xrightarrow{d} N(0, I(\\theta_0)^{-1})\\) and properties of the constrained MLE, one can show that the right-hand side converges in distribution to \\(\\chi^2(r)\\). Intuitively, \\(\\hat{\\theta} - \\tilde{\\theta}\\) has nontrivial components in \\(r\\) constrained directions, each contributing one degree of freedom.</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 10.5 (验证 Wilks 定理)</div>
+                    <div class="env-title">Example 10.5 (Verifying Wilks' Theorem)</div>
                     <div class="env-body">
-                        <p>回看 Example 10.3：\\(X_i \\sim N(\\mu, \\sigma^2)\\)（\\(\\sigma^2\\) 已知），检验 \\(H_0: \\mu = \\mu_0\\)。这里 \\(p = 1\\)，\\(q = 0\\)（\\(\\Theta_0\\) 是单点），\\(r = 1\\)。我们已经推导出 \\(-2\\log\\Lambda = Z^2\\)，而 \\(Z \\sim N(0,1)\\) 意味着 \\(Z^2 \\sim \\chi^2(1)\\)。这是<strong>精确分布</strong>，不仅仅是渐近分布，完美验证了 Wilks 定理。</p>
+                        <p>Revisiting Example 10.3: \\(X_i \\sim N(\\mu, \\sigma^2)\\) (\\(\\sigma^2\\) known), testing \\(H_0: \\mu = \\mu_0\\). Here \\(p = 1\\), \\(q = 0\\) (\\(\\Theta_0\\) is a single point), \\(r = 1\\). We already derived \\(-2\\log\\Lambda = Z^2\\), and \\(Z \\sim N(0,1)\\) implies \\(Z^2 \\sim \\chi^2(1)\\). This is the <strong>exact distribution</strong>, not just an asymptotic one, perfectly verifying Wilks' theorem.</p>
                     </div>
                 </div>
 
-                <h3>三大渐近等价检验</h3>
+                <h3>Three Asymptotically Equivalent Tests<span class="subtitle-zh"> / 三大渐近等价检验</span></h3>
 
-                <p>在正则条件下，有三种重要的检验统计量在渐近意义下等价，都收敛到 \\(\\chi^2(r)\\)：</p>
+                <p>Under regularity conditions, there are three important test statistics that are asymptotically equivalent, all converging to \\(\\chi^2(r)\\):</p>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 10.4 (三大检验的渐近等价性)</div>
+                    <div class="env-title">Theorem 10.4 (Asymptotic Equivalence of Three Tests)</div>
                     <div class="env-body">
-                        <p>在正则条件下，以下三个统计量在 \\(H_0\\) 下渐近服从 \\(\\chi^2(r)\\)，且在局部备择假设下渐近等价：</p>
+                        <p>Under regularity conditions, the following three statistics converge in distribution to \\(\\chi^2(r)\\) under \\(H_0\\), and are asymptotically equivalent under local alternatives:</p>
                         <ol>
-                            <li><strong>似然比检验</strong>（LRT）：\\(W_{\\text{LR}} = -2\\log\\Lambda = 2(\\ell(\\hat{\\theta}) - \\ell(\\tilde{\\theta}))\\)</li>
-                            <li><strong>Wald 检验</strong>：\\(W_{\\text{Wald}} = (\\hat{\\theta} - \\theta_0)^T [\\widehat{\\operatorname{Var}}(\\hat{\\theta})]^{-1} (\\hat{\\theta} - \\theta_0)\\)</li>
-                            <li><strong>Score (Rao / LM) 检验</strong>：\\(W_{\\text{Score}} = U(\\tilde{\\theta})^T I(\\tilde{\\theta})^{-1} U(\\tilde{\\theta})\\)，其中 \\(U(\\theta) = \\nabla \\ell(\\theta)\\) 是得分函数</li>
+                            <li><strong>Likelihood ratio test</strong> (似然比检验, LRT): \\(W_{\\text{LR}} = -2\\log\\Lambda = 2(\\ell(\\hat{\\theta}) - \\ell(\\tilde{\\theta}))\\)</li>
+                            <li><strong>Wald test</strong> (Wald 检验): \\(W_{\\text{Wald}} = (\\hat{\\theta} - \\theta_0)^T [\\widehat{\\operatorname{Var}}(\\hat{\\theta})]^{-1} (\\hat{\\theta} - \\theta_0)\\)</li>
+                            <li><strong>Score (Rao / LM) test</strong> (Score 检验): \\(W_{\\text{Score}} = U(\\tilde{\\theta})^T I(\\tilde{\\theta})^{-1} U(\\tilde{\\theta})\\), where \\(U(\\theta) = \\nabla \\ell(\\theta)\\) is the score function</li>
                         </ol>
-                        <p>在 \\(H_0\\) 成立时，\\(W_{\\text{LR}}, W_{\\text{Wald}}, W_{\\text{Score}} \\xrightarrow{d} \\chi^2(r)\\)。</p>
+                        <p>When \\(H_0\\) holds, \\(W_{\\text{LR}}, W_{\\text{Wald}}, W_{\\text{Score}} \\xrightarrow{d} \\chi^2(r)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
-                    <div class="env-title">Intuition: 三大检验的几何意义</div>
+                    <div class="env-title">Intuition: Geometric Meaning of the Three Tests</div>
                     <div class="env-body">
-                        <p>想象对数似然函数是一个山丘：</p>
+                        <p>Imagine the log-likelihood function as a hill:</p>
                         <ul>
-                            <li><strong>LRT</strong>：比较山顶的高度（无约束 MLE）和限制在 \\(\\Theta_0\\) 上的最高点高度，差距大则拒绝。</li>
-                            <li><strong>Wald 检验</strong>：看无约束 MLE 离 \\(\\Theta_0\\) 有多远（在信息度量下的距离），远则拒绝。只需无约束 MLE。</li>
-                            <li><strong>Score 检验</strong>：站在 \\(\\Theta_0\\) 上的约束 MLE 处，看对数似然的梯度（斜率）有多大。如果在 \\(\\Theta_0\\) 上斜率很大，说明离真正的山顶很远，应拒绝。只需约束 MLE。</li>
+                            <li><strong>LRT</strong>: Compares the height at the summit (unrestricted MLE) with the highest point restricted to \\(\\Theta_0\\). A large gap leads to rejection.</li>
+                            <li><strong>Wald test</strong>: Measures how far the unrestricted MLE is from \\(\\Theta_0\\) (in the information metric). A large distance leads to rejection. Only requires the unrestricted MLE.</li>
+                            <li><strong>Score test</strong>: Standing at the constrained MLE on \\(\\Theta_0\\), measures how steep the gradient of the log-likelihood is. If the slope is large on \\(\\Theta_0\\), it suggests the true summit is far away, and we should reject. Only requires the constrained MLE.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="env-block warning">
-                    <div class="env-title">Warning: 正则条件的重要性</div>
+                    <div class="env-title">Warning: Importance of Regularity Conditions</div>
                     <div class="env-body">
-                        <p>Wilks 定理需要正则条件，以下情况会导致失效：</p>
+                        <p>Wilks' theorem requires regularity conditions. The following situations cause it to fail:</p>
                         <ul>
-                            <li><strong>参数在边界上</strong>：如检验 \\(H_0: \\sigma^2 = 0\\)，参数在参数空间的边界。此时 \\(-2\\log\\Lambda\\) 可能服从 \\(\\frac{1}{2}\\chi^2(0) + \\frac{1}{2}\\chi^2(1)\\) 混合分布。</li>
-                            <li><strong>参数维数随 \\(n\\) 增长</strong>：高维设定下，Wilks 定理的卡方近似可能不准确。</li>
-                            <li><strong>非可辨识性</strong>：如混合模型中成分数的检验。</li>
+                            <li><strong>Parameter on the boundary</strong>: e.g., testing \\(H_0: \\sigma^2 = 0\\), where the parameter lies on the boundary of the parameter space. In this case \\(-2\\log\\Lambda\\) may follow a mixture distribution \\(\\frac{1}{2}\\chi^2(0) + \\frac{1}{2}\\chi^2(1)\\).</li>
+                            <li><strong>Parameter dimension grows with \\(n\\)</strong>: In high-dimensional settings, the chi-squared approximation of Wilks' theorem may be inaccurate.</li>
+                            <li><strong>Non-identifiability</strong>: e.g., testing the number of components in a mixture model.</li>
                         </ul>
                     </div>
                 </div>
@@ -729,8 +729,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'wilks-sim-viz',
-                    title: 'Interactive: Wilks 定理模拟验证',
-                    description: '模拟 -2 log Lambda 在 H0 下的分布，与 chi-squared PDF 对比，观察随 n 增大的收敛。',
+                    title: "Interactive: Wilks' Theorem Simulation / Wilks 定理模拟验证",
+                    description: "Simulate the distribution of -2 log Lambda under H0 and compare with the chi-squared PDF. Observe convergence as n increases. / 模拟 -2 log Lambda 在 H0 下的分布，与卡方 PDF 对比，观察随 n 增大的收敛。",
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -847,7 +847,7 @@ window.CHAPTERS.push({
                             viz.screenText('chi-sq(' + r + ') PDF', 400, 68, viz.colors.orange, 11, 'left');
 
                             // Title
-                            viz.screenText('Wilks Theorem: n = ' + n + ', r = ' + r + ' (' + nSamples + ' simulations)', 300, 15, viz.colors.white, 13);
+                            viz.screenText("Wilks' Theorem: n = " + n + ', r = ' + r + ' (' + nSamples + ' simulations)', 300, 15, viz.colors.white, 13);
                             viz.screenText('-2 log Lambda', 300, 360, viz.colors.text, 12);
                         }
 
@@ -857,8 +857,8 @@ window.CHAPTERS.push({
                 },
                 {
                     id: 'three-tests-viz',
-                    title: 'Interactive: 三大检验统计量对比',
-                    description: '对比 LRT, Wald, Score 检验统计量在正态均值检验中的行为。',
+                    title: 'Interactive: Comparison of Three Test Statistics / 三大检验统计量对比',
+                    description: 'Compare the behavior of LRT, Wald, and Score test statistics in the normal mean test. / 对比 LRT, Wald, Score 检验统计量在正态均值检验中的行为。',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -881,12 +881,7 @@ window.CHAPTERS.push({
                             viz.clear();
                             var ctx = viz.ctx;
 
-                            // For H0: mu = 0 vs H1: mu != 0, sigma known
-                            // LRT: -2logLambda = n * xbar^2
-                            // Wald: n * xbar^2 / sigma^2 = n * xbar^2 (same!)
-                            // Score: n * xbar^2 (also same in this case)
-                            // These are identical for normal with known sigma
-                            // Use unknown sigma case for differentiation:
+                            // For H0: mu = 0 vs H1: mu != 0, sigma unknown
                             // LRT: n*log(1 + T^2/(n-1)) where T = sqrt(n)*xbar/S
                             // Wald: T^2
                             // Score: n*xbar^2 / S_0^2 where S_0^2 computed at tilde-theta
@@ -1047,19 +1042,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '对于 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Poisson}(\\lambda)\\)，检验 \\(H_0: \\lambda = \\lambda_0\\) vs \\(H_1: \\lambda \\ne \\lambda_0\\)。推导 GLRT 统计量 \\(-2\\log\\Lambda\\)，并利用 Wilks 定理确定其渐近分布。',
-                    hint: 'Poisson 的 MLE 为 \\(\\hat{\\lambda} = \\bar{X}\\)。对数似然为 \\(\\ell(\\lambda) = (\\sum x_i) \\log \\lambda - n\\lambda - \\sum \\log(x_i!)\\)。',
-                    solution: '\\(-2\\log\\Lambda = 2[\\ell(\\hat{\\lambda}) - \\ell(\\lambda_0)] = 2[n\\bar{X}\\log(\\bar{X}/\\lambda_0) - n(\\bar{X} - \\lambda_0)]\\)。这里 \\(p = 1\\)，\\(q = 0\\)，\\(r = 1\\)。由 Wilks 定理，在 \\(H_0\\) 下 \\(-2\\log\\Lambda \\xrightarrow{d} \\chi^2(1)\\)。实际操作中，在 \\(\\alpha = 0.05\\) 水平下拒绝当 \\(-2\\log\\Lambda > 3.841\\)。'
+                    question: 'For \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Poisson}(\\lambda)\\), testing \\(H_0: \\lambda = \\lambda_0\\) vs \\(H_1: \\lambda \\ne \\lambda_0\\), derive the GLRT statistic \\(-2\\log\\Lambda\\) and use Wilks\' theorem to determine its asymptotic distribution.',
+                    hint: 'The Poisson MLE is \\(\\hat{\\lambda} = \\bar{X}\\). The log-likelihood is \\(\\ell(\\lambda) = (\\sum x_i) \\log \\lambda - n\\lambda - \\sum \\log(x_i!)\\).',
+                    solution: '\\(-2\\log\\Lambda = 2[\\ell(\\hat{\\lambda}) - \\ell(\\lambda_0)] = 2[n\\bar{X}\\log(\\bar{X}/\\lambda_0) - n(\\bar{X} - \\lambda_0)]\\). Here \\(p = 1\\), \\(q = 0\\), \\(r = 1\\). By Wilks\' theorem, under \\(H_0\\), \\(-2\\log\\Lambda \\xrightarrow{d} \\chi^2(1)\\). In practice, at the \\(\\alpha = 0.05\\) level, reject when \\(-2\\log\\Lambda > 3.841\\).'
                 },
                 {
-                    question: '考虑多元正态模型 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N_p(\\mu, \\Sigma)\\)，检验 \\(H_0: \\mu = \\mathbf{0}\\) vs \\(H_1: \\mu \\ne \\mathbf{0}\\)（\\(\\Sigma\\) 已知）。说明 Wilks 定理中的自由度 \\(r\\) 是多少，并给出 GLRT 的渐近拒绝准则。',
-                    hint: '全参数空间维数为 \\(p\\)（即 \\(\\mu\\) 的维数），约束空间维数为 \\(0\\)。',
-                    solution: '全参数空间 \\(\\Theta = \\mathbb{R}^p\\)，维数 \\(p\\)。约束空间 \\(\\Theta_0 = \\{\\mathbf{0}\\}\\)，维数 \\(0\\)。因此 \\(r = p - 0 = p\\)。GLRT 统计量为 \\(-2\\log\\Lambda = n \\bar{X}^T \\Sigma^{-1} \\bar{X}\\)（这就是 Hotelling \\(T^2\\) 统计量的 \\(\\Sigma\\) 已知版本）。渐近地，在 \\(H_0\\) 下 \\(-2\\log\\Lambda \\sim \\chi^2(p)\\)（事实上这里是精确分布）。拒绝当 \\(-2\\log\\Lambda > \\chi^2_\\alpha(p)\\)。'
+                    question: 'Consider the multivariate normal model \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N_p(\\mu, \\Sigma)\\), testing \\(H_0: \\mu = \\mathbf{0}\\) vs \\(H_1: \\mu \\ne \\mathbf{0}\\) (\\(\\Sigma\\) known). State the degrees of freedom \\(r\\) in Wilks\' theorem and give the asymptotic rejection criterion for the GLRT.',
+                    hint: 'The full parameter space has dimension \\(p\\) (the dimension of \\(\\mu\\)), and the constrained space has dimension \\(0\\).',
+                    solution: 'The full parameter space is \\(\\Theta = \\mathbb{R}^p\\) with dimension \\(p\\). The constrained space is \\(\\Theta_0 = \\{\\mathbf{0}\\}\\) with dimension \\(0\\). Therefore \\(r = p - 0 = p\\). The GLRT statistic is \\(-2\\log\\Lambda = n \\bar{X}^T \\Sigma^{-1} \\bar{X}\\) (this is the known-\\(\\Sigma\\) version of the Hotelling \\(T^2\\) statistic). Asymptotically, under \\(H_0\\), \\(-2\\log\\Lambda \\sim \\chi^2(p)\\) (in fact this is the exact distribution here). Reject when \\(-2\\log\\Lambda > \\chi^2_\\alpha(p)\\).'
                 },
                 {
-                    question: '解释 Wald 检验和 Score 检验各自的计算优势。在什么实际场景下你会优先选择 Score 检验而不是 Wald 检验？',
-                    hint: '考虑哪种检验只需要在 \\(H_0\\) 下的估计，哪种需要无约束估计。',
-                    solution: 'Wald 检验只需要无约束 MLE \\(\\hat{\\theta}\\)，不需要约束优化，因此当无约束 MLE 容易计算时很方便。Score 检验只需要约束 MLE \\(\\tilde{\\theta}\\)（即在 \\(H_0\\) 下的估计），不需要拟合完整模型。在以下场景中 Score 检验更优：(1) 完整模型的 MLE 计算复杂或不稳定（如非线性模型）；(2) 需要检验多个变量是否应加入模型（向前选择），此时只需一次约束模型拟合即可计算多个 Score 统计量；(3) 在流行病学中的 Cochran-Armitage 趋势检验本质上就是 Score 检验。LRT 介于两者之间，需要两种 MLE。'
+                    question: 'Explain the computational advantages of the Wald test and the Score test, respectively. In what practical scenarios would you prefer the Score test over the Wald test?',
+                    hint: 'Consider which test requires only estimation under \\(H_0\\) and which requires the unrestricted estimate.',
+                    solution: 'The Wald test only requires the unrestricted MLE \\(\\hat{\\theta}\\) without constrained optimization, making it convenient when the unrestricted MLE is easy to compute. The Score test only requires the constrained MLE \\(\\tilde{\\theta}\\) (i.e., estimation under \\(H_0\\)) without fitting the full model. The Score test is preferable in the following scenarios: (1) when the full model MLE is computationally complex or unstable (e.g., nonlinear models); (2) when testing whether multiple variables should be added to a model (forward selection), since a single constrained model fit suffices to compute multiple Score statistics; (3) the Cochran-Armitage trend test in epidemiology is essentially a Score test. The LRT falls between the two, requiring both MLEs.'
                 }
             ]
         }

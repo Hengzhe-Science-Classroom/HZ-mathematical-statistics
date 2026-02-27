@@ -2,61 +2,61 @@ window.CHAPTERS = window.CHAPTERS || [];
 window.CHAPTERS.push({
     id: 'ch06',
     number: 6,
-    title: '点估计',
+    title: 'Point Estimation',
     subtitle: 'Point Estimation',
     sections: [
         // ===== Section 1: Estimators and Estimates =====
         {
             id: 'ch06-sec01',
-            title: '估计量与估计值',
+            title: 'Estimators and Estimates',
             content: `
-                <h2>估计量与估计值 · Estimators and Estimates</h2>
+                <h2>Estimators and Estimates / 估计量与估计值</h2>
 
-                <p>统计推断的核心任务之一是根据观测数据来推断未知的总体参数。<strong>点估计</strong>（point estimation）的目标是用一个统计量的值来"猜测"参数的真实值。</p>
+                <p>One of the central tasks of statistical inference (统计推断) is to infer unknown population parameters from observed data. The goal of <strong>point estimation</strong> (点估计) is to use the value of a statistic to "guess" the true value of the parameter.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 6.1 (统计模型与参数空间 / Statistical Model and Parameter Space)</div>
+                    <div class="env-title">Definition 6.1 (Statistical Model and Parameter Space)</div>
                     <div class="env-body">
-                        <p>设观测数据 \\(X_1, \\ldots, X_n\\) 来自某总体分布族 \\(\\{P_\\theta : \\theta \\in \\Theta\\}\\)，其中：</p>
+                        <p>Suppose the observed data \\(X_1, \\ldots, X_n\\) come from a family of distributions \\(\\{P_\\theta : \\theta \\in \\Theta\\}\\), where:</p>
                         <ul>
-                            <li>\\(\\Theta \\subseteq \\mathbb{R}^k\\) 称为<strong>参数空间</strong>（parameter space）；</li>
-                            <li>\\(\\theta\\) 是未知的<strong>真参数</strong>（true parameter）；</li>
-                            <li>三元组 \\((\\mathcal{X}, \\{P_\\theta\\}, \\Theta)\\) 构成一个<strong>参数统计模型</strong>。</li>
+                            <li>\\(\\Theta \\subseteq \\mathbb{R}^k\\) is called the <strong>parameter space</strong> (参数空间);</li>
+                            <li>\\(\\theta\\) is the unknown <strong>true parameter</strong> (真参数);</li>
+                            <li>The triple \\((\\mathcal{X}, \\{P_\\theta\\}, \\Theta)\\) constitutes a <strong>parametric statistical model</strong> (参数统计模型).</li>
                         </ul>
-                        <p>例如：Bernoulli 分布 \\(\\Theta = (0, 1)\\)；正态分布 \\(N(\\mu, \\sigma^2)\\)：\\(\\Theta = \\mathbb{R} \\times (0, \\infty)\\)；均匀分布 \\(U(0, \\theta)\\)：\\(\\Theta = (0, \\infty)\\)。</p>
+                        <p>Examples: Bernoulli distribution \\(\\Theta = (0, 1)\\); Normal distribution \\(N(\\mu, \\sigma^2)\\): \\(\\Theta = \\mathbb{R} \\times (0, \\infty)\\); Uniform distribution \\(U(0, \\theta)\\): \\(\\Theta = (0, \\infty)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 6.2 (估计量与估计值 / Estimator and Estimate)</div>
+                    <div class="env-title">Definition 6.2 (Estimator and Estimate)</div>
                     <div class="env-body">
-                        <p>设 \\(g(\\theta)\\) 是参数的某个函数（称为<strong>估计目标</strong>）。一个<strong>估计量</strong>（estimator）是样本的可测函数 \\(\\hat{g} = T(X_1, \\ldots, X_n)\\)，其中 \\(T\\) 不依赖于未知参数 \\(\\theta\\)。</p>
-                        <p>当观测到具体样本值 \\(x_1, \\ldots, x_n\\) 后，\\(T(x_1, \\ldots, x_n)\\) 称为一个<strong>估计值</strong>（estimate）。</p>
+                        <p>Let \\(g(\\theta)\\) be some function of the parameter (called the <strong>estimation target</strong> (估计目标)). An <strong>estimator</strong> (估计量) is a measurable function of the sample \\(\\hat{g} = T(X_1, \\ldots, X_n)\\), where \\(T\\) does not depend on the unknown parameter \\(\\theta\\).</p>
+                        <p>After observing specific sample values \\(x_1, \\ldots, x_n\\), the number \\(T(x_1, \\ldots, x_n)\\) is called an <strong>estimate</strong> (估计值).</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>估计量是一个<em>随机变量</em>——它随样本的随机性而变化；估计值是一个<em>数</em>——它是在特定观测下算出的结果。就像天气预报模型（估计量）vs 今天的预报结果（估计值），两者身份截然不同。我们评价估计量的好坏是在其作为随机变量的层面上（如无偏性、方差等），而具体的估计值只是该随机变量的一次实现。</p>
+                        <p>An estimator is a <em>random variable</em> -- it varies with the randomness of the sample; an estimate is a <em>number</em> -- it is the result computed from a specific observation. Think of a weather forecasting model (estimator) versus today's forecast result (estimate): the two have fundamentally different identities. We evaluate the quality of an estimator at the random variable level (e.g., unbiasedness, variance), while a specific estimate is merely a single realization of that random variable.</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 6.3 (常见估计量)</div>
+                    <div class="env-title">Example 6.3 (Common Estimators)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)。</p>
-                        <p>（a）样本均值 \\(\\bar{X} = \\frac{1}{n}\\sum_{i=1}^n X_i\\) 是 \\(\\mu\\) 的估计量。</p>
-                        <p>（b）样本方差 \\(S^2 = \\frac{1}{n-1}\\sum_{i=1}^n (X_i - \\bar{X})^2\\) 是 \\(\\sigma^2\\) 的估计量。</p>
-                        <p>（c）样本中位数 \\(\\operatorname{Med}(X_1, \\ldots, X_n)\\) 也是 \\(\\mu\\) 的估计量。</p>
-                        <p>对同一个参数，估计量并不唯一——我们需要准则来判断哪个更好（详见 Chapter 7）。</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\).</p>
+                        <p>(a) The sample mean \\(\\bar{X} = \\frac{1}{n}\\sum_{i=1}^n X_i\\) is an estimator of \\(\\mu\\).</p>
+                        <p>(b) The sample variance \\(S^2 = \\frac{1}{n-1}\\sum_{i=1}^n (X_i - \\bar{X})^2\\) is an estimator of \\(\\sigma^2\\).</p>
+                        <p>(c) The sample median \\(\\operatorname{Med}(X_1, \\ldots, X_n)\\) is also an estimator of \\(\\mu\\).</p>
+                        <p>For the same parameter, the estimator is not unique -- we need criteria to judge which is better (see Chapter 7 for details).</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>点估计问题可以抽象为：给定统计模型 \\(\\{f(x; \\theta) : \\theta \\in \\Theta\\}\\) 和参数的函数 \\(g(\\theta)\\)，寻找统计量 \\(T(X_1, \\ldots, X_n)\\) 使得 \\(T\\) 在某种意义下"接近"\\(g(\\theta)\\)。本章介绍两种系统的构造方法：矩估计法和最大似然估计法。</p>
+                        <p>The point estimation problem can be abstracted as: given a statistical model \\(\\{f(x; \\theta) : \\theta \\in \\Theta\\}\\) and a function of the parameter \\(g(\\theta)\\), find a statistic \\(T(X_1, \\ldots, X_n)\\) such that \\(T\\) is "close" to \\(g(\\theta)\\) in some sense. This chapter introduces two systematic construction methods: the method of moments and maximum likelihood estimation.</p>
                     </div>
                 </div>
 
@@ -65,8 +65,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'estimation-concept-viz',
-                    title: 'Interactive: 估计量的随机性',
-                    description: '每次抽样产生不同的估计值——观察估计量围绕真实参数的波动',
+                    title: 'Interactive: Randomness of an Estimator / 估计量的随机性',
+                    description: 'Each sample yields a different estimate -- observe how estimator values fluctuate around the true parameter',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 400, scale: 50, originX: 280, originY: 340});
                         var trueTheta = 3.0;
@@ -204,19 +204,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} U(0, \\theta)\\)，其中 \\(\\theta > 0\\)。请说明为什么 \\(T_1 = 2\\bar{X}\\) 和 \\(T_2 = \\frac{n+1}{n}X_{(n)}\\)（其中 \\(X_{(n)} = \\max_i X_i\\)）都是 \\(\\theta\\) 的估计量，并验证它们的无偏性。',
-                    hint: '验证它们都是样本的函数，且不依赖于未知参数 \\(\\theta\\)。对于 \\(X_{(n)}\\)，使用最大次序统计量的 CDF：\\(P(X_{(n)} \\le x) = (x/\\theta)^n\\)。',
-                    solution: '\\(T_1 = 2\\bar{X} = \\frac{2}{n}\\sum_{i=1}^n X_i\\) 只依赖于观测值，不含 \\(\\theta\\)，故是统计量。\\(T_2 = \\frac{n+1}{n}\\max_i X_i\\) 同理。由于 \\(\\mathbb{E}[\\bar{X}] = \\theta/2\\)，故 \\(\\mathbb{E}[T_1] = \\theta\\)。又 \\(X_{(n)}\\) 的 PDF 为 \\(f_{(n)}(x) = nx^{n-1}/\\theta^n\\)，故 \\(\\mathbb{E}[X_{(n)}] = \\frac{n}{n+1}\\theta\\)，于是 \\(\\mathbb{E}[T_2] = \\theta\\)。两者都是 \\(\\theta\\) 的无偏估计量。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} U(0, \\theta)\\), where \\(\\theta > 0\\). Explain why both \\(T_1 = 2\\bar{X}\\) and \\(T_2 = \\frac{n+1}{n}X_{(n)}\\) (where \\(X_{(n)} = \\max_i X_i\\)) are estimators of \\(\\theta\\), and verify their unbiasedness.',
+                    hint: 'Verify that both are functions of the sample and do not depend on the unknown parameter \\(\\theta\\). For \\(X_{(n)}\\), use the CDF of the maximum order statistic: \\(P(X_{(n)} \\le x) = (x/\\theta)^n\\).',
+                    solution: '\\(T_1 = 2\\bar{X} = \\frac{2}{n}\\sum_{i=1}^n X_i\\) depends only on observed values and does not contain \\(\\theta\\), so it is a statistic. \\(T_2 = \\frac{n+1}{n}\\max_i X_i\\) likewise. Since \\(\\mathbb{E}[\\bar{X}] = \\theta/2\\), we have \\(\\mathbb{E}[T_1] = \\theta\\). Also, the PDF of \\(X_{(n)}\\) is \\(f_{(n)}(x) = nx^{n-1}/\\theta^n\\), so \\(\\mathbb{E}[X_{(n)}] = \\frac{n}{n+1}\\theta\\), hence \\(\\mathbb{E}[T_2] = \\theta\\). Both are unbiased estimators of \\(\\theta\\).'
                 },
                 {
-                    question: '估计量和估计值的核心区别是什么？为什么这个区别在统计推断中很重要？',
-                    hint: '从随机变量和实数的角度思考。',
-                    solution: '估计量是随机变量（样本的函数），其值随样本变化；估计值是代入具体观测后得到的实数。统计推断中我们关心估计量的抽样分布（如均值、方差、MSE），这些都是随机变量层面的性质，而非单一估计值能反映的。'
+                    question: 'What is the key distinction between an estimator and an estimate? Why is this distinction important in statistical inference?',
+                    hint: 'Think in terms of random variables versus real numbers.',
+                    solution: 'An estimator is a random variable (a function of the sample) whose value changes with the sample; an estimate is a real number obtained by plugging in specific observations. In statistical inference we care about the sampling distribution of the estimator (e.g., its mean, variance, MSE), which are properties at the random variable level and cannot be captured by a single estimate.'
                 },
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Exp}(\\lambda)\\)。写出 \\(\\lambda\\) 的两个不同的估计量。',
-                    hint: '考虑用 \\(\\bar{X}\\) 和 \\(X_{(1)} = \\min_i X_i\\)。',
-                    solution: '由 \\(\\mathbb{E}[X] = 1/\\lambda\\)，得 \\(T_1 = 1/\\bar{X}\\) 是一个自然的估计量。又 \\(X_{(1)} \\sim \\text{Exp}(n\\lambda)\\)，故 \\(\\mathbb{E}[X_{(1)}] = 1/(n\\lambda)\\)，于是 \\(T_2 = 1/(nX_{(1)})\\) 也是 \\(\\lambda\\) 的一个估计量（虽然不是无偏的）。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Exp}(\\lambda)\\). Write down two different estimators for \\(\\lambda\\).',
+                    hint: 'Consider using \\(\\bar{X}\\) and \\(X_{(1)} = \\min_i X_i\\).',
+                    solution: 'Since \\(\\mathbb{E}[X] = 1/\\lambda\\), \\(T_1 = 1/\\bar{X}\\) is a natural estimator. Also \\(X_{(1)} \\sim \\text{Exp}(n\\lambda)\\), so \\(\\mathbb{E}[X_{(1)}] = 1/(n\\lambda)\\), hence \\(T_2 = 1/(nX_{(1)})\\) is also an estimator of \\(\\lambda\\) (though not unbiased).'
                 }
             ]
         },
@@ -224,63 +224,63 @@ window.CHAPTERS.push({
         // ===== Section 2: Method of Moments =====
         {
             id: 'ch06-sec02',
-            title: '矩估计法',
+            title: 'Method of Moments',
             content: `
-                <h2>矩估计法 · Method of Moments</h2>
+                <h2>Method of Moments / 矩估计法</h2>
 
-                <p><strong>矩估计法</strong>（Method of Moments, MoM）是最古老也是最直观的参数估计方法之一，由 Karl Pearson 在 1894 年提出。其基本思想极为简洁：用样本矩代替总体矩，建立方程组来解出参数的估计。</p>
+                <p>The <strong>method of moments</strong> (矩估计法, MoM) is one of the oldest and most intuitive parameter estimation methods, proposed by Karl Pearson in 1894. Its basic idea is remarkably simple: replace population moments with sample moments and solve the resulting system of equations for the parameter estimates.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 6.4 (总体矩与样本矩 / Population and Sample Moments)</div>
+                    <div class="env-title">Definition 6.4 (Population and Sample Moments)</div>
                     <div class="env-body">
-                        <p>设 \\(X\\) 具有分布 \\(f(x; \\theta)\\)，\\(\\theta \\in \\Theta \\subseteq \\mathbb{R}^k\\)。</p>
-                        <p>第 \\(j\\) 阶<strong>总体矩</strong>：\\(\\mu_j(\\theta) = \\mathbb{E}_{\\theta}[X^j]\\)。</p>
-                        <p>第 \\(j\\) 阶<strong>样本矩</strong>：\\(m_j = \\frac{1}{n}\\sum_{i=1}^n X_i^j\\)。</p>
-                        <p>类似地，<strong>中心矩</strong>：总体中心矩 \\(\\mu_j' = \\mathbb{E}[(X - \\mathbb{E}[X])^j]\\)，样本中心矩 \\(m_j' = \\frac{1}{n}\\sum(X_i - \\bar{X})^j\\)。</p>
+                        <p>Let \\(X\\) have distribution \\(f(x; \\theta)\\), \\(\\theta \\in \\Theta \\subseteq \\mathbb{R}^k\\).</p>
+                        <p>The \\(j\\)-th <strong>population moment</strong> (总体矩): \\(\\mu_j(\\theta) = \\mathbb{E}_{\\theta}[X^j]\\).</p>
+                        <p>The \\(j\\)-th <strong>sample moment</strong> (样本矩): \\(m_j = \\frac{1}{n}\\sum_{i=1}^n X_i^j\\).</p>
+                        <p>Similarly, <strong>central moments</strong> (中心矩): the population central moment \\(\\mu_j' = \\mathbb{E}[(X - \\mathbb{E}[X])^j]\\), the sample central moment \\(m_j' = \\frac{1}{n}\\sum(X_i - \\bar{X})^j\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 6.5 (矩估计量 / Method of Moments Estimator)</div>
+                    <div class="env-title">Definition 6.5 (Method of Moments Estimator)</div>
                     <div class="env-body">
-                        <p>设参数 \\(\\theta = (\\theta_1, \\ldots, \\theta_k)\\) 有 \\(k\\) 个分量。<strong>矩估计量</strong>是方程组</p>
+                        <p>Suppose the parameter \\(\\theta = (\\theta_1, \\ldots, \\theta_k)\\) has \\(k\\) components. The <strong>method of moments estimator</strong> (矩估计量) is the solution \\(\\tilde{\\theta}_{\\text{MoM}}\\) of the system of equations</p>
                         \\[\\mu_j(\\theta) = m_j, \\quad j = 1, 2, \\ldots, k\\]
-                        <p>的解 \\(\\tilde{\\theta}_{\\text{MoM}}\\)。即令前 \\(k\\) 阶总体矩等于对应的样本矩，解出 \\(\\theta\\) 的估计。</p>
+                        <p>That is, set the first \\(k\\) population moments equal to the corresponding sample moments, and solve for the estimate of \\(\\theta\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>矩估计法的逻辑很朴素：大数定律保证 \\(m_j \\xrightarrow{\\text{a.s.}} \\mu_j(\\theta)\\)，所以用 \\(m_j\\) 代替 \\(\\mu_j(\\theta)\\) 后解出的 \\(\\tilde{\\theta}\\) 应该在大样本下接近真实的 \\(\\theta\\)。这就是连续映射定理（Continuous Mapping Theorem）的直接应用。</p>
+                        <p>The logic of the method of moments is straightforward: the law of large numbers guarantees \\(m_j \\xrightarrow{\\text{a.s.}} \\mu_j(\\theta)\\), so replacing \\(\\mu_j(\\theta)\\) with \\(m_j\\) and solving for \\(\\tilde{\\theta}\\) should yield an estimate close to the true \\(\\theta\\) for large samples. This is a direct application of the Continuous Mapping Theorem (连续映射定理).</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 6.6 (正态分布的矩估计)</div>
+                    <div class="env-title">Example 6.6 (MoM for the Normal Distribution)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)，参数为 \\(\\theta = (\\mu, \\sigma^2)\\)，共 \\(k = 2\\) 个。</p>
-                        <p>一阶矩方程：\\(\\mu_1 = \\mathbb{E}[X] = \\mu = m_1 = \\bar{X}\\)；</p>
-                        <p>二阶矩方程：\\(\\mu_2 = \\mathbb{E}[X^2] = \\mu^2 + \\sigma^2 = m_2 = \\frac{1}{n}\\sum X_i^2\\)。</p>
-                        <p>解得：\\(\\tilde{\\mu}_{\\text{MoM}} = \\bar{X}\\)，\\(\\tilde{\\sigma}^2_{\\text{MoM}} = m_2 - m_1^2 = \\frac{1}{n}\\sum_{i=1}^n (X_i - \\bar{X})^2\\)。</p>
-                        <p>注意矩估计得到的方差估计量分母为 \\(n\\) 而非 \\(n-1\\)，因此是有偏的。</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\), with parameter \\(\\theta = (\\mu, \\sigma^2)\\), so \\(k = 2\\).</p>
+                        <p>First moment equation: \\(\\mu_1 = \\mathbb{E}[X] = \\mu = m_1 = \\bar{X}\\);</p>
+                        <p>Second moment equation: \\(\\mu_2 = \\mathbb{E}[X^2] = \\mu^2 + \\sigma^2 = m_2 = \\frac{1}{n}\\sum X_i^2\\).</p>
+                        <p>Solving: \\(\\tilde{\\mu}_{\\text{MoM}} = \\bar{X}\\), \\(\\tilde{\\sigma}^2_{\\text{MoM}} = m_2 - m_1^2 = \\frac{1}{n}\\sum_{i=1}^n (X_i - \\bar{X})^2\\).</p>
+                        <p>Note that the MoM variance estimator has denominator \\(n\\) rather than \\(n-1\\), so it is biased.</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 6.7 (Gamma 分布的矩估计)</div>
+                    <div class="env-title">Example 6.7 (MoM for the Gamma Distribution)</div>
                     <div class="env-body">
-                        <p>设 \\(X \\sim \\text{Gamma}(\\alpha, \\beta)\\)，密度为 \\(f(x) = \\frac{\\beta^\\alpha}{\\Gamma(\\alpha)} x^{\\alpha-1} e^{-\\beta x}\\)，\\(x > 0\\)。</p>
-                        <p>总体矩：\\(\\mu_1 = \\alpha / \\beta\\)，\\(\\mu_2 = \\alpha(\\alpha+1)/\\beta^2\\)。</p>
-                        <p>令 \\(m_1 = \\alpha/\\beta\\)，\\(m_2 = \\alpha(\\alpha+1)/\\beta^2\\)。注意 \\(\\mu_2 - \\mu_1^2 = \\alpha/\\beta^2 = \\operatorname{Var}(X)\\)。</p>
-                        <p>解得：\\(\\tilde{\\beta} = \\bar{X} / (m_2 - \\bar{X}^2)\\)，\\(\\tilde{\\alpha} = \\bar{X} \\cdot \\tilde{\\beta} = \\bar{X}^2 / (m_2 - \\bar{X}^2)\\)。</p>
+                        <p>Let \\(X \\sim \\text{Gamma}(\\alpha, \\beta)\\), with density \\(f(x) = \\frac{\\beta^\\alpha}{\\Gamma(\\alpha)} x^{\\alpha-1} e^{-\\beta x}\\), \\(x > 0\\).</p>
+                        <p>Population moments: \\(\\mu_1 = \\alpha / \\beta\\), \\(\\mu_2 = \\alpha(\\alpha+1)/\\beta^2\\).</p>
+                        <p>Set \\(m_1 = \\alpha/\\beta\\), \\(m_2 = \\alpha(\\alpha+1)/\\beta^2\\). Note \\(\\mu_2 - \\mu_1^2 = \\alpha/\\beta^2 = \\operatorname{Var}(X)\\).</p>
+                        <p>Solving: \\(\\tilde{\\beta} = \\bar{X} / (m_2 - \\bar{X}^2)\\), \\(\\tilde{\\alpha} = \\bar{X} \\cdot \\tilde{\\beta} = \\bar{X}^2 / (m_2 - \\bar{X}^2)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 6.8 (矩估计量的相合性 / Consistency of MoM)</div>
+                    <div class="env-title">Theorem 6.8 (Consistency of MoM)</div>
                     <div class="env-body">
-                        <p>设矩方程 \\(\\mu_j(\\theta) = m_j\\) (\\(j=1,\\ldots,k\\)) 的解 \\(\\tilde{\\theta}_n\\) 是 \\(m_1,\\ldots,m_k\\) 的连续函数，且真参数 \\(\\theta_0\\) 是该方程组在 \\(\\Theta\\) 内的唯一解。若 \\(\\mathbb{E}[X^{2k}] < \\infty\\)，则</p>
+                        <p>Suppose the solution \\(\\tilde{\\theta}_n\\) of the moment equations \\(\\mu_j(\\theta) = m_j\\) (\\(j=1,\\ldots,k\\)) is a continuous function of \\(m_1,\\ldots,m_k\\), and the true parameter \\(\\theta_0\\) is the unique solution of the system in \\(\\Theta\\). If \\(\\mathbb{E}[X^{2k}] < \\infty\\), then</p>
                         \\[\\tilde{\\theta}_n \\xrightarrow{P} \\theta_0 \\quad (n \\to \\infty)\\]
                     </div>
                 </div>
@@ -288,7 +288,7 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof sketch</div>
                     <div class="env-body">
-                        <p>由大数定律，\\(m_j \\xrightarrow{P} \\mu_j(\\theta_0)\\) 对每个 \\(j = 1, \\ldots, k\\)。令 \\(h\\) 为映射 \\((\\mu_1, \\ldots, \\mu_k) \\mapsto \\theta\\) 的逆映射。由连续映射定理（Continuous Mapping Theorem），\\(\\tilde{\\theta}_n = h(m_1, \\ldots, m_k) \\xrightarrow{P} h(\\mu_1(\\theta_0), \\ldots, \\mu_k(\\theta_0)) = \\theta_0\\)。</p>
+                        <p>By the law of large numbers, \\(m_j \\xrightarrow{P} \\mu_j(\\theta_0)\\) for each \\(j = 1, \\ldots, k\\). Let \\(h\\) be the inverse mapping \\((\\mu_1, \\ldots, \\mu_k) \\mapsto \\theta\\). By the Continuous Mapping Theorem, \\(\\tilde{\\theta}_n = h(m_1, \\ldots, m_k) \\xrightarrow{P} h(\\mu_1(\\theta_0), \\ldots, \\mu_k(\\theta_0)) = \\theta_0\\).</p>
                         <div class="qed">&#8718;</div>
                     </div>
                 </div>
@@ -296,7 +296,7 @@ window.CHAPTERS.push({
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>矩估计法的局限性：（1）当参数多时需高阶矩，高阶样本矩方差大，估计不稳定；（2）矩估计量未必落在参数空间内（如估计概率可能得到负值）；（3）矩估计一般不如 MLE 高效（渐近方差更大）。</p>
+                        <p>Limitations of the method of moments: (1) When there are many parameters, higher-order moments are needed, and higher-order sample moments have large variance, leading to unstable estimates; (2) MoM estimators may fall outside the parameter space (e.g., estimating a probability could yield a negative value); (3) MoM is generally less efficient than MLE (larger asymptotic variance).</p>
                     </div>
                 </div>
 
@@ -305,8 +305,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'moment-matching-viz',
-                    title: 'Interactive: 矩匹配',
-                    description: '调整参数使理论分布的矩与样本矩匹配——观察直方图与密度曲线的拟合',
+                    title: 'Interactive: Moment Matching / 矩匹配',
+                    description: 'Adjust parameters to match the theoretical moments with sample moments -- observe the fit between histogram and density curve',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 400, scale: 60, originX: 60, originY: 340});
                         var trueAlpha = 3.0;
@@ -451,19 +451,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Beta}(a, b)\\)。求 \\(a\\) 和 \\(b\\) 的矩估计量。',
-                    hint: 'Beta 分布的均值为 \\(a/(a+b)\\)，方差为 \\(ab/[(a+b)^2(a+b+1)]\\)。设 \\(\\bar{X} = m_1\\)，\\(v = m_2 - m_1^2\\)，解方程组。',
-                    solution: '由 \\(\\mu_1 = a/(a+b)\\) 和 \\(\\operatorname{Var}(X) = ab/[(a+b)^2(a+b+1)]\\)，设 \\(\\bar{x} = m_1\\)，\\(v = m_2 - m_1^2\\)。令 \\(r = \\bar{x}(1 - \\bar{x})/v - 1\\)。则 \\(\\tilde{a} = \\bar{x} \\cdot r\\)，\\(\\tilde{b} = (1 - \\bar{x}) \\cdot r\\)。注意需要 \\(v < \\bar{x}(1-\\bar{x})\\) 才有正值解。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Beta}(a, b)\\). Find the method of moments estimators for \\(a\\) and \\(b\\).',
+                    hint: 'The mean of the Beta distribution is \\(a/(a+b)\\) and the variance is \\(ab/[(a+b)^2(a+b+1)]\\). Set \\(\\bar{X} = m_1\\) and \\(v = m_2 - m_1^2\\), then solve the system.',
+                    solution: 'From \\(\\mu_1 = a/(a+b)\\) and \\(\\operatorname{Var}(X) = ab/[(a+b)^2(a+b+1)]\\), set \\(\\bar{x} = m_1\\) and \\(v = m_2 - m_1^2\\). Let \\(r = \\bar{x}(1 - \\bar{x})/v - 1\\). Then \\(\\tilde{a} = \\bar{x} \\cdot r\\), \\(\\tilde{b} = (1 - \\bar{x}) \\cdot r\\). Note that \\(v < \\bar{x}(1-\\bar{x})\\) is required for a positive solution.'
                 },
                 {
-                    question: '证明正态分布矩估计量 \\(\\tilde{\\sigma}^2 = \\frac{1}{n}\\sum(X_i - \\bar{X})^2\\) 的偏差，并说明它是渐近无偏的。',
-                    hint: '利用 \\(\\mathbb{E}[\\sum(X_i - \\bar{X})^2] = (n-1)\\sigma^2\\)。',
-                    solution: '\\(\\mathbb{E}[\\tilde{\\sigma}^2] = \\frac{n-1}{n}\\sigma^2\\)。偏差为 \\(\\mathbb{E}[\\tilde{\\sigma}^2] - \\sigma^2 = -\\sigma^2/n\\)，当 \\(n \\to \\infty\\) 时偏差趋于 0，即渐近无偏。'
+                    question: 'Show the bias of the normal distribution MoM estimator \\(\\tilde{\\sigma}^2 = \\frac{1}{n}\\sum(X_i - \\bar{X})^2\\), and explain why it is asymptotically unbiased.',
+                    hint: 'Use the identity \\(\\mathbb{E}[\\sum(X_i - \\bar{X})^2] = (n-1)\\sigma^2\\).',
+                    solution: '\\(\\mathbb{E}[\\tilde{\\sigma}^2] = \\frac{n-1}{n}\\sigma^2\\). The bias is \\(\\mathbb{E}[\\tilde{\\sigma}^2] - \\sigma^2 = -\\sigma^2/n\\), which tends to 0 as \\(n \\to \\infty\\), i.e., it is asymptotically unbiased.'
                 },
                 {
-                    question: '给出一个矩估计量落在参数空间之外的例子。',
-                    hint: '考虑 \\(U(0, \\theta)\\) 分布或对参数有约束的分布。',
-                    solution: '考虑估计 \\(N(\\mu, \\sigma^2)\\) 的方差：矩估计量 \\(\\tilde{\\sigma}^2 = m_2 - \\bar{X}^2\\)，当所有 \\(X_i\\) 相同时 \\(\\tilde{\\sigma}^2 = 0\\)，在参数空间 \\((0,\\infty)\\) 的边界上。更极端地，对于某些非标准参数化，MoM 解可能为负数。'
+                    question: 'Give an example where the MoM estimator falls outside the parameter space.',
+                    hint: 'Consider the \\(U(0, \\theta)\\) distribution or a distribution with parameter constraints.',
+                    solution: 'Consider estimating the variance of \\(N(\\mu, \\sigma^2)\\): the MoM estimator \\(\\tilde{\\sigma}^2 = m_2 - \\bar{X}^2\\) equals 0 when all \\(X_i\\) are the same, which lies on the boundary of the parameter space \\((0,\\infty)\\). More extremely, for certain non-standard parameterizations, the MoM solution can be negative.'
                 }
             ]
         },
@@ -471,86 +471,86 @@ window.CHAPTERS.push({
         // ===== Section 3: Maximum Likelihood Estimation =====
         {
             id: 'ch06-sec03',
-            title: '最大似然估计',
+            title: 'Maximum Likelihood Estimation',
             content: `
-                <h2>最大似然估计 · Maximum Likelihood Estimation</h2>
+                <h2>Maximum Likelihood Estimation / 最大似然估计</h2>
 
-                <p><strong>最大似然估计</strong>（Maximum Likelihood Estimation, MLE）是现代统计推断中最重要、最广泛使用的估计方法。它由 R.A. Fisher 在 1920 年代系统发展，其核心原则是：选择使观测数据出现概率最大的参数值。</p>
+                <p><strong>Maximum likelihood estimation</strong> (最大似然估计, MLE) is the most important and widely used estimation method in modern statistical inference. It was systematically developed by R.A. Fisher in the 1920s. Its core principle is: choose the parameter value that maximizes the probability of the observed data.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 6.9 (似然函数 / Likelihood Function)</div>
+                    <div class="env-title">Definition 6.9 (Likelihood Function)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n\\) 是来自密度（或质量）函数 \\(f(x; \\theta)\\) 的随机样本。<strong>似然函数</strong>定义为联合密度视为 \\(\\theta\\) 的函数：</p>
+                        <p>Let \\(X_1, \\ldots, X_n\\) be a random sample from a density (or mass) function \\(f(x; \\theta)\\). The <strong>likelihood function</strong> (似然函数) is defined as the joint density viewed as a function of \\(\\theta\\):</p>
                         \\[L(\\theta \\mid \\mathbf{x}) = \\prod_{i=1}^n f(x_i; \\theta), \\quad \\theta \\in \\Theta.\\]
-                        <p><strong>对数似然函数</strong>：\\(\\ell(\\theta \\mid \\mathbf{x}) = \\log L(\\theta \\mid \\mathbf{x}) = \\sum_{i=1}^n \\log f(x_i; \\theta)\\)。</p>
+                        <p><strong>Log-likelihood function</strong> (对数似然函数): \\(\\ell(\\theta \\mid \\mathbf{x}) = \\log L(\\theta \\mid \\mathbf{x}) = \\sum_{i=1}^n \\log f(x_i; \\theta)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>似然函数和概率密度在数学形式上相同，但"视角"不同。密度 \\(f(x; \\theta)\\) 固定 \\(\\theta\\)、看 \\(x\\) 的变化；似然 \\(L(\\theta \\mid \\mathbf{x})\\) 固定数据 \\(\\mathbf{x}\\)、看 \\(\\theta\\) 的变化。似然不是关于 \\(\\theta\\) 的概率密度——它无需对 \\(\\theta\\) 积分为 1。</p>
+                        <p>The likelihood function and the probability density have the same mathematical form but different "perspectives." The density \\(f(x; \\theta)\\) fixes \\(\\theta\\) and looks at how \\(x\\) varies; the likelihood \\(L(\\theta \\mid \\mathbf{x})\\) fixes the data \\(\\mathbf{x}\\) and looks at how \\(\\theta\\) varies. The likelihood is not a probability density over \\(\\theta\\) -- it need not integrate to 1 with respect to \\(\\theta\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 6.10 (最大似然估计量 / MLE)</div>
+                    <div class="env-title">Definition 6.10 (Maximum Likelihood Estimator)</div>
                     <div class="env-body">
-                        <p><strong>最大似然估计量</strong>（MLE）是使似然函数达到最大值的参数值：</p>
+                        <p>The <strong>maximum likelihood estimator</strong> (最大似然估计量, MLE) is the parameter value that maximizes the likelihood function:</p>
                         \\[\\hat{\\theta}_{\\text{MLE}} = \\underset{\\theta \\in \\Theta}{\\arg\\max} \; L(\\theta \\mid \\mathbf{x}) = \\underset{\\theta \\in \\Theta}{\\arg\\max} \; \\ell(\\theta \\mid \\mathbf{x}).\\]
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 6.11 (得分函数与 Fisher 信息 / Score and Fisher Information)</div>
+                    <div class="env-title">Definition 6.11 (Score Function and Fisher Information)</div>
                     <div class="env-body">
-                        <p><strong>得分函数</strong>（score function）：\\(S(\\theta) = \\frac{\\partial}{\\partial \\theta} \\ell(\\theta \\mid \\mathbf{x}) = \\sum_{i=1}^n \\frac{\\partial}{\\partial \\theta} \\log f(x_i; \\theta)\\)。</p>
-                        <p>MLE 通常满足<strong>似然方程</strong>（score equation）：\\(S(\\hat{\\theta}) = 0\\)。</p>
-                        <p><strong>Fisher 信息</strong>（单个观测）：</p>
+                        <p><strong>Score function</strong> (得分函数): \\(S(\\theta) = \\frac{\\partial}{\\partial \\theta} \\ell(\\theta \\mid \\mathbf{x}) = \\sum_{i=1}^n \\frac{\\partial}{\\partial \\theta} \\log f(x_i; \\theta)\\).</p>
+                        <p>The MLE typically satisfies the <strong>score equation</strong> (似然方程): \\(S(\\hat{\\theta}) = 0\\).</p>
+                        <p><strong>Fisher information</strong> (single observation):</p>
                         \\[I(\\theta) = \\operatorname{Var}_{\\theta}\\left[\\frac{\\partial}{\\partial\\theta}\\log f(X;\\theta)\\right] = -\\mathbb{E}_{\\theta}\\left[\\frac{\\partial^2}{\\partial\\theta^2}\\log f(X;\\theta)\\right]\\]
-                        <p><strong>观测信息</strong>（observed information）：\\(J(\\theta) = -\\frac{\\partial^2}{\\partial \\theta^2} \\ell(\\theta \\mid \\mathbf{x})\\)。在 MLE 处 \\(J(\\hat{\\theta}) > 0\\) 表明似然在该点确实取到极大。</p>
+                        <p><strong>Observed information</strong> (观测信息): \\(J(\\theta) = -\\frac{\\partial^2}{\\partial \\theta^2} \\ell(\\theta \\mid \\mathbf{x})\\). At the MLE, \\(J(\\hat{\\theta}) > 0\\) indicates that the likelihood indeed attains a maximum there.</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 6.12 (Bernoulli 分布的 MLE)</div>
+                    <div class="env-title">Example 6.12 (MLE for the Bernoulli Distribution)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Bernoulli}(p)\\)。似然函数为</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Bernoulli}(p)\\). The likelihood function is</p>
                         \\[L(p) = p^{\\sum x_i}(1-p)^{n - \\sum x_i}.\\]
-                        <p>对数似然：\\(\\ell(p) = \\left(\\sum x_i\\right) \\log p + \\left(n - \\sum x_i\\right) \\log(1-p)\\)。</p>
-                        <p>得分方程：\\(\\frac{\\sum x_i}{p} - \\frac{n - \\sum x_i}{1 - p} = 0\\)。</p>
-                        <p>解得 \\(\\hat{p}_{\\text{MLE}} = \\bar{x} = \\frac{1}{n}\\sum_{i=1}^n x_i\\)，即样本比例。</p>
+                        <p>Log-likelihood: \\(\\ell(p) = \\left(\\sum x_i\\right) \\log p + \\left(n - \\sum x_i\\right) \\log(1-p)\\).</p>
+                        <p>Score equation: \\(\\frac{\\sum x_i}{p} - \\frac{n - \\sum x_i}{1 - p} = 0\\).</p>
+                        <p>Solving gives \\(\\hat{p}_{\\text{MLE}} = \\bar{x} = \\frac{1}{n}\\sum_{i=1}^n x_i\\), the sample proportion.</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 6.13 (正态分布的 MLE)</div>
+                    <div class="env-title">Example 6.13 (MLE for the Normal Distribution)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)。对数似然为</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\). The log-likelihood is</p>
                         \\[\\ell(\\mu, \\sigma^2) = -\\frac{n}{2}\\log(2\\pi) - \\frac{n}{2}\\log(\\sigma^2) - \\frac{1}{2\\sigma^2}\\sum_{i=1}^n (x_i - \\mu)^2.\\]
-                        <p>分别对 \\(\\mu\\) 和 \\(\\sigma^2\\) 求偏导并令其为零：</p>
+                        <p>Taking partial derivatives with respect to \\(\\mu\\) and \\(\\sigma^2\\) and setting them to zero:</p>
                         \\[\\hat{\\mu}_{\\text{MLE}} = \\bar{x}, \\quad \\hat{\\sigma}^2_{\\text{MLE}} = \\frac{1}{n}\\sum_{i=1}^n(x_i - \\bar{x})^2.\\]
-                        <p>注意 MLE 给出的方差估计量分母是 \\(n\\) 而非 \\(n-1\\)，因此是有偏的（但渐近无偏）。</p>
+                        <p>Note that the MLE variance estimator has denominator \\(n\\) rather than \\(n-1\\), so it is biased (but asymptotically unbiased).</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 6.14 (Poisson 分布的 MLE)</div>
+                    <div class="env-title">Example 6.14 (MLE for the Poisson Distribution)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Poisson}(\\lambda)\\)。似然函数：</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Poisson}(\\lambda)\\). The likelihood function:</p>
                         \\[L(\\lambda) = \\prod_{i=1}^n \\frac{\\lambda^{x_i} e^{-\\lambda}}{x_i!} = \\frac{\\lambda^{\\sum x_i} e^{-n\\lambda}}{\\prod x_i!}\\]
-                        <p>对数似然：\\(\\ell(\\lambda) = (\\sum x_i)\\log\\lambda - n\\lambda - \\sum \\log(x_i!)\\)。令 \\(\\ell'(\\lambda) = \\sum x_i / \\lambda - n = 0\\)，得</p>
+                        <p>Log-likelihood: \\(\\ell(\\lambda) = (\\sum x_i)\\log\\lambda - n\\lambda - \\sum \\log(x_i!)\\). Setting \\(\\ell'(\\lambda) = \\sum x_i / \\lambda - n = 0\\) gives</p>
                         \\[\\hat{\\lambda}_{\\text{MLE}} = \\bar{x}\\]
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 6.15 (均匀分布的 MLE -- 非正则情形)</div>
+                    <div class="env-title">Example 6.15 (MLE for the Uniform Distribution -- Non-Regular Case)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} U(0, \\theta)\\)。似然函数为</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} U(0, \\theta)\\). The likelihood function is</p>
                         \\[L(\\theta) = \\prod_{i=1}^n \\frac{1}{\\theta} \\cdot \\mathbf{1}(0 \\le x_i \\le \\theta) = \\theta^{-n} \\cdot \\mathbf{1}(\\theta \\ge x_{(n)}).\\]
-                        <p>对于 \\(\\theta \\ge x_{(n)}\\)，\\(L(\\theta) = \\theta^{-n}\\) 是 \\(\\theta\\) 的递减函数，因此 \\(\\hat{\\theta}_{\\text{MLE}} = x_{(n)} = \\max(x_1, \\ldots, x_n)\\)。</p>
-                        <p>这里 MLE 不能通过求解得分方程获得——似然函数在 \\(x_{(n)}\\) 处不可微。这是非正则情形的典型例子：支撑集依赖于参数。</p>
+                        <p>For \\(\\theta \\ge x_{(n)}\\), \\(L(\\theta) = \\theta^{-n}\\) is a decreasing function of \\(\\theta\\), so \\(\\hat{\\theta}_{\\text{MLE}} = x_{(n)} = \\max(x_1, \\ldots, x_n)\\).</p>
+                        <p>Here the MLE cannot be obtained by solving the score equation -- the likelihood function is not differentiable at \\(x_{(n)}\\). This is a typical example of a non-regular case: the support depends on the parameter.</p>
                     </div>
                 </div>
 
@@ -559,8 +559,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'likelihood-surface-viz',
-                    title: 'Interactive: 似然函数与 MLE',
-                    description: '调整参数观察对数似然曲线的形状，MLE 标记在峰值处',
+                    title: 'Interactive: Likelihood Function and MLE / 似然函数与MLE',
+                    description: 'Adjust parameters to observe the shape of the log-likelihood curve, with MLE marked at the peak',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 400, scale: 1, originX: 60, originY: 360});
                         var trueMu = 3.0;
@@ -793,19 +793,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Exp}(\\lambda)\\)，密度 \\(f(x) = \\lambda e^{-\\lambda x}\\)，\\(x > 0\\)。求 \\(\\lambda\\) 的 MLE 和 Fisher 信息 \\(I(\\lambda)\\)。',
-                    hint: '对数似然为 \\(\\ell(\\lambda) = n \\log \\lambda - \\lambda \\sum x_i\\)。',
-                    solution: '得分方程 \\(n/\\lambda - \\sum x_i = 0\\) 给出 \\(\\hat{\\lambda} = n / \\sum x_i = 1/\\bar{x}\\)。Fisher 信息：\\(\\frac{\\partial^2}{\\partial\\lambda^2}\\log f(X|\\lambda) = -1/\\lambda^2\\)，故 \\(I(\\lambda) = 1/\\lambda^2\\)。观测信息 \\(J(\\hat{\\lambda}) = n/\\hat{\\lambda}^2 = n\\bar{x}^2\\)。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Exp}(\\lambda)\\), with density \\(f(x) = \\lambda e^{-\\lambda x}\\), \\(x > 0\\). Find the MLE of \\(\\lambda\\) and the Fisher information \\(I(\\lambda)\\).',
+                    hint: 'The log-likelihood is \\(\\ell(\\lambda) = n \\log \\lambda - \\lambda \\sum x_i\\).',
+                    solution: 'The score equation \\(n/\\lambda - \\sum x_i = 0\\) gives \\(\\hat{\\lambda} = n / \\sum x_i = 1/\\bar{x}\\). Fisher information: \\(\\frac{\\partial^2}{\\partial\\lambda^2}\\log f(X|\\lambda) = -1/\\lambda^2\\), so \\(I(\\lambda) = 1/\\lambda^2\\). Observed information \\(J(\\hat{\\lambda}) = n/\\hat{\\lambda}^2 = n\\bar{x}^2\\).'
                 },
                 {
-                    question: '为什么在实际计算中我们通常最大化对数似然 \\(\\ell(\\theta)\\) 而不是似然 \\(L(\\theta)\\)？',
-                    hint: '考虑数值稳定性和计算便利性。',
-                    solution: '（1）似然是 \\(n\\) 个概率的乘积，当 \\(n\\) 大时极易导致数值下溢（underflow）；取对数后变为求和，数值稳定。（2）对数将乘积化为求和，求导更简便。（3）对数是严格递增函数，不改变极值点位置。'
+                    question: 'Why do we usually maximize the log-likelihood \\(\\ell(\\theta)\\) rather than the likelihood \\(L(\\theta)\\) in practice?',
+                    hint: 'Consider numerical stability and computational convenience.',
+                    solution: '(1) The likelihood is a product of \\(n\\) probabilities, which easily causes numerical underflow when \\(n\\) is large; taking the logarithm converts it to a sum, improving numerical stability. (2) The logarithm turns products into sums, making differentiation simpler. (3) The logarithm is a strictly increasing function, so it does not change the location of the extremum.'
                 },
                 {
-                    question: '说明 \\(U(0, \\theta)\\) 分布的对数似然在 MLE 处不可微，解释为什么标准得分方程方法失效。',
-                    hint: '写出 \\(L(\\theta)\\) 并辨识约束条件。',
-                    solution: '\\(L(\\theta) = \\theta^{-n}\\) 对 \\(\\theta \\ge x_{(n)}\\)，\\(L(\\theta) = 0\\) 对 \\(\\theta < x_{(n)}\\)。在约束区域内 \\(\\ell\'(\\theta) = -n/\\theta < 0\\)，严格递减，最大值在边界 \\(\\hat{\\theta} = x_{(n)}\\) 处取得。该点不可微，得分方程 \\(\\ell\'(\\theta) = 0\\) 无解。根本原因：支撑集 \\([0, \\theta]\\) 依赖于 \\(\\theta\\)，违反了正则条件。'
+                    question: 'Show that the log-likelihood of the \\(U(0, \\theta)\\) distribution is not differentiable at the MLE, and explain why the standard score equation approach fails.',
+                    hint: 'Write out \\(L(\\theta)\\) and identify the constraint.',
+                    solution: '\\(L(\\theta) = \\theta^{-n}\\) for \\(\\theta \\ge x_{(n)}\\), and \\(L(\\theta) = 0\\) for \\(\\theta < x_{(n)}\\). In the constrained region, \\(\\ell\'(\\theta) = -n/\\theta < 0\\), strictly decreasing, so the maximum is attained at the boundary \\(\\hat{\\theta} = x_{(n)}\\). This point is not differentiable, and the score equation \\(\\ell\'(\\theta) = 0\\) has no solution. The root cause: the support \\([0, \\theta]\\) depends on \\(\\theta\\), violating regularity conditions.'
                 }
             ]
         },
@@ -813,24 +813,24 @@ window.CHAPTERS.push({
         // ===== Section 4: Properties of MLE =====
         {
             id: 'ch06-sec04',
-            title: 'MLE的性质',
+            title: 'Properties of MLE',
             content: `
-                <h2>MLE的性质 · Properties of MLE</h2>
+                <h2>Properties of MLE / MLE的性质</h2>
 
-                <p>最大似然估计之所以备受推崇，是因为它在大样本下具有一系列优良的理论性质。本节讨论 MLE 的四个核心性质：不变性、相合性、渐近正态性和渐近有效性。</p>
+                <p>Maximum likelihood estimation is highly regarded because it possesses a series of excellent theoretical properties under large samples. This section discusses four core properties of MLE: invariance, consistency, asymptotic normality, and asymptotic efficiency.</p>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 6.16 (MLE 的不变性 / Invariance of MLE)</div>
+                    <div class="env-title">Theorem 6.16 (Invariance of MLE)</div>
                     <div class="env-body">
-                        <p>设 \\(\\hat{\\theta}\\) 是 \\(\\theta\\) 的 MLE，\\(g\\) 是 \\(\\theta\\) 的函数。则 \\(g(\\theta)\\) 的 MLE 为 \\(g(\\hat{\\theta})\\)。</p>
+                        <p>Let \\(\\hat{\\theta}\\) be the MLE of \\(\\theta\\), and let \\(g\\) be a function of \\(\\theta\\). Then the MLE of \\(g(\\theta)\\) is \\(g(\\hat{\\theta})\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>设 \\(g\\) 是一一映射。令 \\(\\eta = g(\\theta)\\)，则重参数化后的似然函数为 \\(L^*(\\eta) = L(g^{-1}(\\eta))\\)。由于 \\(L\\) 在 \\(\\hat{\\theta}\\) 处取最大值，\\(L^*\\) 在 \\(g(\\hat{\\theta})\\) 处取最大值。</p>
-                        <p>对一般（非一一）的 \\(g\\)，定义诱导似然 \\(L^*(\\eta) = \\sup_{\\theta: g(\\theta) = \\eta} L(\\theta)\\)。由 \\(L^*(g(\\hat{\\theta})) \\ge L(\\hat{\\theta}) = \\sup_{\\theta} L(\\theta) \\ge L^*(\\eta)\\) 对一切 \\(\\eta\\)，故 \\(g(\\hat{\\theta})\\) 最大化 \\(L^*\\)。</p>
+                        <p>Suppose \\(g\\) is a one-to-one mapping. Let \\(\\eta = g(\\theta)\\), then the reparameterized likelihood function is \\(L^*(\\eta) = L(g^{-1}(\\eta))\\). Since \\(L\\) attains its maximum at \\(\\hat{\\theta}\\), \\(L^*\\) attains its maximum at \\(g(\\hat{\\theta})\\).</p>
+                        <p>For a general (not necessarily one-to-one) \\(g\\), define the induced likelihood \\(L^*(\\eta) = \\sup_{\\theta: g(\\theta) = \\eta} L(\\theta)\\). Since \\(L^*(g(\\hat{\\theta})) \\ge L(\\hat{\\theta}) = \\sup_{\\theta} L(\\theta) \\ge L^*(\\eta)\\) for all \\(\\eta\\), \\(g(\\hat{\\theta})\\) maximizes \\(L^*\\).</p>
                         <div class="qed">&#8718;</div>
                     </div>
                 </div>
@@ -838,20 +838,20 @@ window.CHAPTERS.push({
                 <div class="env-block example">
                     <div class="env-title">Example 6.17</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)。我们已知 \\(\\hat{\\sigma}^2_{\\text{MLE}} = \\frac{1}{n}\\sum(X_i - \\bar{X})^2\\)。</p>
-                        <p>由不变性：</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\). We already know \\(\\hat{\\sigma}^2_{\\text{MLE}} = \\frac{1}{n}\\sum(X_i - \\bar{X})^2\\).</p>
+                        <p>By invariance:</p>
                         <ul>
-                            <li>标准差 \\(\\sigma\\) 的 MLE 为 \\(\\hat{\\sigma}_{\\text{MLE}} = \\sqrt{\\hat{\\sigma}^2_{\\text{MLE}}}\\)；</li>
-                            <li>\\(P(X > 0)\\) 的 MLE 为 \\(1 - \\Phi(-\\hat{\\mu}/\\hat{\\sigma}) = \\Phi(\\bar{X}/\\hat{\\sigma})\\)；</li>
-                            <li>变异系数 \\(\\sigma/\\mu\\) 的 MLE 为 \\(\\hat{\\sigma}_{\\text{MLE}} / \\bar{X}\\)。</li>
+                            <li>The MLE of the standard deviation \\(\\sigma\\) is \\(\\hat{\\sigma}_{\\text{MLE}} = \\sqrt{\\hat{\\sigma}^2_{\\text{MLE}}}\\);</li>
+                            <li>The MLE of \\(P(X > 0)\\) is \\(1 - \\Phi(-\\hat{\\mu}/\\hat{\\sigma}) = \\Phi(\\bar{X}/\\hat{\\sigma})\\);</li>
+                            <li>The MLE of the coefficient of variation \\(\\sigma/\\mu\\) is \\(\\hat{\\sigma}_{\\text{MLE}} / \\bar{X}\\).</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 6.18 (MLE 的相合性 / Consistency of MLE)</div>
+                    <div class="env-title">Theorem 6.18 (Consistency of MLE)</div>
                     <div class="env-body">
-                        <p>在适当正则条件下（参数空间 \\(\\Theta\\) 紧，\\(\\theta_0\\) 为真参数的内点，KL 散度可辨识性等），MLE 是相合的：</p>
+                        <p>Under appropriate regularity conditions (compact parameter space \\(\\Theta\\), \\(\\theta_0\\) is an interior point of the true parameter, KL divergence identifiability, etc.), the MLE is consistent:</p>
                         \\[\\hat{\\theta}_n \\xrightarrow{P} \\theta_0 \\quad \\text{as } n \\to \\infty.\\]
                     </div>
                 </div>
@@ -859,31 +859,31 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>相合性的直觉：归一化的对数似然 \\(\\frac{1}{n}\\ell(\\theta) = \\frac{1}{n}\\sum \\log f(X_i; \\theta)\\) 由大数定律收敛到 \\(\\mathbb{E}_{\\theta_0}[\\log f(X; \\theta)]\\)，而后者在 \\(\\theta = \\theta_0\\) 处取唯一最大值（这是 KL 散度 \\(D_{\\text{KL}}(f_{\\theta_0} \\| f_{\\theta}) \\ge 0\\) 的推论，等号当且仅当 \\(\\theta = \\theta_0\\)）。因此 MLE 作为有限样本最大化者，在 \\(n \\to \\infty\\) 时趋向总体最大化者 \\(\\theta_0\\)。</p>
+                        <p>The intuition behind consistency: the normalized log-likelihood \\(\\frac{1}{n}\\ell(\\theta) = \\frac{1}{n}\\sum \\log f(X_i; \\theta)\\) converges by the law of large numbers to \\(\\mathbb{E}_{\\theta_0}[\\log f(X; \\theta)]\\), which attains its unique maximum at \\(\\theta = \\theta_0\\) (this is a consequence of \\(D_{\\text{KL}}(f_{\\theta_0} \\| f_{\\theta}) \\ge 0\\), with equality if and only if \\(\\theta = \\theta_0\\)). Therefore the MLE, as the finite-sample maximizer, converges to the population maximizer \\(\\theta_0\\) as \\(n \\to \\infty\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 6.19 (MLE 的渐近正态性 / Asymptotic Normality)</div>
+                    <div class="env-title">Theorem 6.19 (Asymptotic Normality of MLE)</div>
                     <div class="env-body">
-                        <p>在正则条件下，设 \\(I(\\theta) = \\mathbb{E}_{\\theta}\\left[-\\frac{\\partial^2}{\\partial\\theta^2}\\log f(X;\\theta)\\right]\\) 为 Fisher 信息。则</p>
+                        <p>Under regularity conditions, let \\(I(\\theta) = \\mathbb{E}_{\\theta}\\left[-\\frac{\\partial^2}{\\partial\\theta^2}\\log f(X;\\theta)\\right]\\) be the Fisher information. Then</p>
                         \\[\\sqrt{n}(\\hat{\\theta}_n - \\theta_0) \\xrightarrow{d} N(0, I(\\theta_0)^{-1}).\\]
-                        <p>等价地，\\(\\hat{\\theta}_n \\approx N\\left(\\theta_0, \\frac{1}{nI(\\theta_0)}\\right)\\) 对大 \\(n\\) 近似成立。</p>
+                        <p>Equivalently, \\(\\hat{\\theta}_n \\approx N\\left(\\theta_0, \\frac{1}{nI(\\theta_0)}\\right)\\) holds approximately for large \\(n\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
-                    <div class="env-title">Remark (渐近有效性)</div>
+                    <div class="env-title">Remark (Asymptotic Efficiency)</div>
                     <div class="env-body">
-                        <p>渐近正态性定理告诉我们 MLE 的渐近方差为 \\(1/(nI(\\theta_0))\\)，恰好达到了 Cramer-Rao 下界。这意味着 MLE 是<strong>渐近有效</strong>的——在正则条件下，没有其他相合估计量的渐近方差能比 MLE 更小。这就是 Fisher 所说的 MLE 的"渐近效率"。</p>
+                        <p>The asymptotic normality theorem tells us that the asymptotic variance of the MLE is \\(1/(nI(\\theta_0))\\), which exactly achieves the Cramer-Rao lower bound. This means that the MLE is <strong>asymptotically efficient</strong> (渐近有效) -- under regularity conditions, no other consistent estimator can have a smaller asymptotic variance than the MLE. This is what Fisher called the "asymptotic efficiency" of the MLE.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 6.20 (MLE 的等变性 / Equivariance)</div>
+                    <div class="env-title">Theorem 6.20 (Equivariance of MLE)</div>
                     <div class="env-body">
-                        <p>设参数空间经过可逆变换 \\(\\eta = h(\\theta)\\)，模型重新参数化为 \\(f(x; h^{-1}(\\eta))\\)。则在新参数化下的 MLE 为 \\(\\hat{\\eta} = h(\\hat{\\theta})\\)。</p>
-                        <p>换言之，MLE 在参数的重新参数化下是等变的：先估计后变换 = 先变换后估计。</p>
+                        <p>Suppose the parameter space undergoes an invertible transformation \\(\\eta = h(\\theta)\\), and the model is reparameterized as \\(f(x; h^{-1}(\\eta))\\). Then the MLE under the new parameterization is \\(\\hat{\\eta} = h(\\hat{\\theta})\\).</p>
+                        <p>In other words, MLE is equivariant under reparameterization: estimate-then-transform = transform-then-estimate.</p>
                     </div>
                 </div>
 
@@ -892,8 +892,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'mle-convergence-viz',
-                    title: 'Interactive: MLE 收敛性与渐近正态性',
-                    description: '随着样本量增大，MLE 的抽样分布集中于真实参数，并趋近正态分布',
+                    title: 'Interactive: MLE Convergence and Asymptotic Normality / MLE收敛性与渐近正态性',
+                    description: 'As sample size increases, the sampling distribution of MLE concentrates around the true parameter and approaches normality',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 400, originX: 280, originY: 340, scale: 80});
 
@@ -980,19 +980,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)。利用 MLE 的不变性，求 \\(P(X > 0)\\) 的 MLE。',
-                    hint: '\\(P(X > 0) = 1 - \\Phi(-\\mu/\\sigma)\\)，其中 \\(\\Phi\\) 是标准正态 CDF。',
-                    solution: '由不变性，\\(P(X > 0)\\) 的 MLE 为 \\(1 - \\Phi(-\\hat{\\mu}/\\hat{\\sigma}) = \\Phi(\\bar{X}/\\hat{\\sigma})\\)，其中 \\(\\hat{\\sigma} = \\sqrt{\\frac{1}{n}\\sum(X_i - \\bar{X})^2}\\)。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\). Using the invariance property of MLE, find the MLE of \\(P(X > 0)\\).',
+                    hint: '\\(P(X > 0) = 1 - \\Phi(-\\mu/\\sigma)\\), where \\(\\Phi\\) is the standard normal CDF.',
+                    solution: 'By invariance, the MLE of \\(P(X > 0)\\) is \\(1 - \\Phi(-\\hat{\\mu}/\\hat{\\sigma}) = \\Phi(\\bar{X}/\\hat{\\sigma})\\), where \\(\\hat{\\sigma} = \\sqrt{\\frac{1}{n}\\sum(X_i - \\bar{X})^2}\\).'
                 },
                 {
-                    question: '利用不变性，求 \\(\\text{Exp}(\\lambda)\\) 分布中位数的 MLE。已知 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Exp}(\\lambda)\\)。',
-                    hint: '\\(\\text{Exp}(\\lambda)\\) 的中位数为 \\(\\log 2 / \\lambda\\)。MLE of \\(\\lambda\\) is \\(1/\\bar{X}\\)。',
-                    solution: 'MLE of \\(\\lambda\\) is \\(\\hat{\\lambda} = 1/\\bar{X}\\)。中位数 \\(g(\\lambda) = \\log 2 / \\lambda\\)。由不变性，中位数的 MLE 为 \\(g(\\hat{\\lambda}) = \\log 2 \\cdot \\bar{X}\\)。'
+                    question: 'Using invariance, find the MLE of the median of the \\(\\text{Exp}(\\lambda)\\) distribution. Given \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Exp}(\\lambda)\\).',
+                    hint: 'The median of \\(\\text{Exp}(\\lambda)\\) is \\(\\log 2 / \\lambda\\). The MLE of \\(\\lambda\\) is \\(1/\\bar{X}\\).',
+                    solution: 'The MLE of \\(\\lambda\\) is \\(\\hat{\\lambda} = 1/\\bar{X}\\). The median \\(g(\\lambda) = \\log 2 / \\lambda\\). By invariance, the MLE of the median is \\(g(\\hat{\\lambda}) = \\log 2 \\cdot \\bar{X}\\).'
                 },
                 {
-                    question: '解释为什么 MLE 在 \\(U(0, \\theta)\\) 模型中不具有渐近正态性。MLE 的实际极限分布是什么？',
-                    hint: '检查正则条件是否满足。考虑 \\(n(\\theta - X_{(n)})\\) 的极限。',
-                    solution: '正则条件要求支撑集不依赖于参数。但 \\(U(0, \\theta)\\) 的支撑集 \\([0, \\theta]\\) 随 \\(\\theta\\) 变化，违反正则性。实际上 \\(\\hat{\\theta} = X_{(n)}\\) 的收敛速度为 \\(O(1/n)\\) 而非 \\(O(1/\\sqrt{n})\\)，且极限分布为指数分布而非正态分布：\\(n(\\theta - X_{(n)}) \\xrightarrow{d} \\text{Exp}(1/\\theta)\\)。'
+                    question: 'Explain why the MLE does not have asymptotic normality in the \\(U(0, \\theta)\\) model. What is the actual limiting distribution of the MLE?',
+                    hint: 'Check whether the regularity conditions are satisfied. Consider the limit of \\(n(\\theta - X_{(n)})\\).',
+                    solution: 'The regularity conditions require the support not to depend on the parameter. But the support of \\(U(0, \\theta)\\) is \\([0, \\theta]\\), which varies with \\(\\theta\\), violating regularity. In fact, \\(\\hat{\\theta} = X_{(n)}\\) converges at rate \\(O(1/n)\\) rather than \\(O(1/\\sqrt{n})\\), and its limiting distribution is exponential rather than normal: \\(n(\\theta - X_{(n)}) \\xrightarrow{d} \\text{Exp}(1/\\theta)\\).'
                 }
             ]
         },
@@ -1000,65 +1000,65 @@ window.CHAPTERS.push({
         // ===== Section 5: EM Algorithm =====
         {
             id: 'ch06-sec05',
-            title: 'EM算法',
+            title: 'The EM Algorithm',
             content: `
-                <h2>EM算法 · The EM Algorithm</h2>
+                <h2>The EM Algorithm / EM算法</h2>
 
-                <p>在许多实际问题中，似然函数的直接最大化是困难的——可能因为含有<strong>潜变量</strong>（latent variables）或<strong>缺失数据</strong>，或者似然函数的解析形式过于复杂。<strong>EM 算法</strong>（Expectation-Maximization Algorithm，Dempster, Laird & Rubin, 1977）提供了一种优雅的迭代求解框架。</p>
+                <p>In many practical problems, direct maximization of the likelihood function is difficult -- perhaps because of <strong>latent variables</strong> (潜变量) or <strong>missing data</strong> (缺失数据), or because the analytical form of the likelihood is overly complex. The <strong>EM algorithm</strong> (Expectation-Maximization Algorithm, Dempster, Laird & Rubin, 1977) provides an elegant iterative solution framework.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 6.21 (不完全数据与完全数据 / Incomplete and Complete Data)</div>
+                    <div class="env-title">Definition 6.21 (Incomplete and Complete Data)</div>
                     <div class="env-body">
-                        <p>设<strong>观测数据</strong>（不完全数据）为 \\(\\mathbf{X}\\)，<strong>潜变量</strong>为 \\(\\mathbf{Z}\\)，<strong>完全数据</strong>为 \\((\\mathbf{X}, \\mathbf{Z})\\)。</p>
+                        <p>Let the <strong>observed data</strong> (incomplete data) be \\(\\mathbf{X}\\), the <strong>latent variables</strong> be \\(\\mathbf{Z}\\), and the <strong>complete data</strong> be \\((\\mathbf{X}, \\mathbf{Z})\\).</p>
                         <ul>
-                            <li><strong>完全数据似然</strong>：\\(L_c(\\theta) = f(\\mathbf{X}, \\mathbf{Z}; \\theta)\\)，通常形式简单。</li>
-                            <li><strong>不完全数据似然</strong>：\\(L(\\theta) = f(\\mathbf{X}; \\theta) = \\int f(\\mathbf{X}, \\mathbf{Z}; \\theta)\\,d\\mathbf{Z}\\)，常因积分（或求和）而棘手。</li>
+                            <li><strong>Complete-data likelihood</strong> (完全数据似然): \\(L_c(\\theta) = f(\\mathbf{X}, \\mathbf{Z}; \\theta)\\), which usually has a simple form.</li>
+                            <li><strong>Incomplete-data likelihood</strong> (不完全数据似然): \\(L(\\theta) = f(\\mathbf{X}; \\theta) = \\int f(\\mathbf{X}, \\mathbf{Z}; \\theta)\\,d\\mathbf{Z}\\), often intractable due to integration (or summation).</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 6.22 (EM 算法)</div>
+                    <div class="env-title">Definition 6.22 (The EM Algorithm)</div>
                     <div class="env-body">
-                        <p>给定当前参数估计 \\(\\theta^{(t)}\\)，EM 算法的第 \\((t+1)\\) 步为：</p>
-                        <p><strong>E-step（期望步）</strong>：计算完全数据对数似然关于潜变量条件分布的期望</p>
+                        <p>Given the current parameter estimate \\(\\theta^{(t)}\\), the \\((t+1)\\)-th step of the EM algorithm is:</p>
+                        <p><strong>E-step (Expectation step)</strong>: Compute the expected value of the complete-data log-likelihood with respect to the conditional distribution of the latent variables</p>
                         \\[Q(\\theta \\mid \\theta^{(t)}) = \\mathbb{E}_{\\mathbf{Z} \\mid \\mathbf{X}, \\theta^{(t)}} \\left[ \\log f(\\mathbf{X}, \\mathbf{Z}; \\theta) \\right].\\]
-                        <p><strong>M-step（最大化步）</strong>：最大化 \\(Q\\)-函数</p>
+                        <p><strong>M-step (Maximization step)</strong>: Maximize the \\(Q\\)-function</p>
                         \\[\\theta^{(t+1)} = \\underset{\\theta}{\\arg\\max} \; Q(\\theta \\mid \\theta^{(t)}).\\]
-                        <p>重复直到收敛：\\(\\|\\theta^{(t+1)} - \\theta^{(t)}\\| < \\varepsilon\\)。</p>
+                        <p>Repeat until convergence: \\(\\|\\theta^{(t+1)} - \\theta^{(t)}\\| < \\varepsilon\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 6.23 (EM 单调性)</div>
+                    <div class="env-title">Theorem 6.23 (Monotonicity of EM)</div>
                     <div class="env-body">
-                        <p>EM 算法的每一步迭代不降低不完全数据对数似然：</p>
+                        <p>Each iteration of the EM algorithm does not decrease the incomplete-data log-likelihood:</p>
                         \\[\\ell(\\theta^{(t+1)}) \\ge \\ell(\\theta^{(t)}).\\]
-                        <p>等号成立当且仅当 \\(Q(\\theta|\\theta^{(t)})\\) 在 \\(\\theta^{(t)}\\) 处已取最大值。</p>
+                        <p>Equality holds if and only if \\(Q(\\theta|\\theta^{(t)})\\) already attains its maximum at \\(\\theta^{(t)}\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof sketch</div>
                     <div class="env-body">
-                        <p>对数似然可分解为：</p>
+                        <p>The log-likelihood can be decomposed as:</p>
                         \\[\\ell(\\theta) = Q(\\theta|\\theta^{(t)}) - H(\\theta|\\theta^{(t)})\\]
-                        <p>其中 \\(H(\\theta|\\theta^{(t)}) = \\mathbb{E}_{\\mathbf{Z}|\\mathbf{X},\\theta^{(t)}}[\\log f(\\mathbf{Z}|\\mathbf{X},\\theta)]\\)。由 Gibbs 不等式（Jensen 不等式的推论），\\(H(\\theta|\\theta^{(t)}) \\le H(\\theta^{(t)}|\\theta^{(t)})\\)。因此：</p>
+                        <p>where \\(H(\\theta|\\theta^{(t)}) = \\mathbb{E}_{\\mathbf{Z}|\\mathbf{X},\\theta^{(t)}}[\\log f(\\mathbf{Z}|\\mathbf{X},\\theta)]\\). By Gibbs' inequality (a consequence of Jensen's inequality), \\(H(\\theta|\\theta^{(t)}) \\le H(\\theta^{(t)}|\\theta^{(t)})\\). Therefore:</p>
                         \\[\\ell(\\theta^{(t+1)}) - \\ell(\\theta^{(t)}) \\ge Q(\\theta^{(t+1)}|\\theta^{(t)}) - Q(\\theta^{(t)}|\\theta^{(t)}) \\ge 0\\]
-                        <p>第二个不等号来自 M-step 的最大化。</p>
+                        <p>The second inequality comes from the maximization in the M-step.</p>
                         <div class="qed">&#8718;</div>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 6.24 (高斯混合模型的 EM)</div>
+                    <div class="env-title">Example 6.24 (EM for Gaussian Mixture Models)</div>
                     <div class="env-body">
-                        <p>设观测 \\(X_1, \\ldots, X_n\\) 来自两个高斯分量的混合：</p>
+                        <p>Suppose the observations \\(X_1, \\ldots, X_n\\) come from a mixture of two Gaussian components:</p>
                         \\[f(x; \\theta) = \\pi_1 \\phi(x; \\mu_1, \\sigma_1^2) + \\pi_2 \\phi(x; \\mu_2, \\sigma_2^2),\\]
-                        <p>其中 \\(\\pi_1 + \\pi_2 = 1\\)，\\(\\phi(\\cdot; \\mu, \\sigma^2)\\) 是正态密度。引入潜变量 \\(Z_i \\in \\{1, 2\\}\\) 表示第 \\(i\\) 个数据来自哪个分量。</p>
-                        <p><strong>E-step</strong>：计算后验"责任"（responsibility）</p>
+                        <p>where \\(\\pi_1 + \\pi_2 = 1\\) and \\(\\phi(\\cdot; \\mu, \\sigma^2)\\) is the normal density. Introduce latent variables \\(Z_i \\in \\{1, 2\\}\\) indicating which component the \\(i\\)-th data point comes from.</p>
+                        <p><strong>E-step</strong>: Compute the posterior "responsibility"</p>
                         \\[\\gamma_{ik}^{(t)} = P(Z_i = k \\mid X_i, \\theta^{(t)}) = \\frac{\\pi_k^{(t)} \\phi(X_i; \\mu_k^{(t)}, (\\sigma_k^{(t)})^2)}{\\sum_{j=1}^2 \\pi_j^{(t)} \\phi(X_i; \\mu_j^{(t)}, (\\sigma_j^{(t)})^2)}.\\]
-                        <p><strong>M-step</strong>：更新参数</p>
+                        <p><strong>M-step</strong>: Update parameters</p>
                         \\[n_k = \\sum_{i=1}^n \\gamma_{ik}, \\quad \\mu_k^{(t+1)} = \\frac{1}{n_k}\\sum_{i=1}^n \\gamma_{ik} X_i, \\quad (\\sigma_k^{(t+1)})^2 = \\frac{1}{n_k}\\sum_{i=1}^n \\gamma_{ik}(X_i - \\mu_k^{(t+1)})^2, \\quad \\pi_k^{(t+1)} = n_k / n.\\]
                     </div>
                 </div>
@@ -1066,14 +1066,14 @@ window.CHAPTERS.push({
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>EM 算法的局限性：（1）只保证收敛到<strong>局部极大值</strong>（或鞍点），不一定是全局 MLE；（2）收敛速度可能很慢（线性收敛）；（3）结果依赖于初始值。实践中通常多次随机初始化（random restarts），取似然最大的解。</p>
+                        <p>Limitations of the EM algorithm: (1) It only guarantees convergence to a <strong>local maximum</strong> (or saddle point), not necessarily the global MLE; (2) Convergence can be slow (linear convergence rate); (3) Results depend on the initial values. In practice, one typically uses multiple random restarts and selects the solution with the largest likelihood.</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
-                    <div class="env-title">Remark (EM 的推广)</div>
+                    <div class="env-title">Remark (Generalizations of EM)</div>
                     <div class="env-body">
-                        <p>EM 框架有许多变体：(1) <strong>Generalized EM (GEM)</strong>: M-step 只需提升（而非最大化）\\(Q\\) 函数；(2) <strong>Monte Carlo EM</strong>: E-step 用 MCMC 近似无法解析计算的期望；(3) <strong>Variational EM</strong>: 将 E-step 推广为变分推断。</p>
+                        <p>The EM framework has many variants: (1) <strong>Generalized EM (GEM)</strong>: The M-step only needs to increase (rather than maximize) the \\(Q\\) function; (2) <strong>Monte Carlo EM</strong>: The E-step uses MCMC to approximate expectations that cannot be computed analytically; (3) <strong>Variational EM</strong>: The E-step is generalized to variational inference.</p>
                     </div>
                 </div>
 
@@ -1082,8 +1082,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'em-gaussian-mixture-viz',
-                    title: 'Interactive: EM 算法 -- 高斯混合模型',
-                    description: '观察 E-step 和 M-step 如何交替进行，逐步分离两个高斯分量',
+                    title: 'Interactive: EM Algorithm -- Gaussian Mixture Model / EM算法 -- 高斯混合模型',
+                    description: 'Observe how E-step and M-step alternate, progressively separating the two Gaussian components',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 420, scale: 50, originX: 60, originY: 370});
                         var ctx = viz.ctx;
@@ -1334,19 +1334,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '证明 EM 算法的单调性：\\(\\ell(\\theta^{(t+1)}) \\ge \\ell(\\theta^{(t)})\\)。',
-                    hint: '利用 \\(\\ell(\\theta) = Q(\\theta \\mid \\theta^{(t)}) - H(\\theta \\mid \\theta^{(t)})\\)，其中 \\(H(\\theta \\mid \\theta^{(t)}) = \\mathbb{E}_{Z|X,\\theta^{(t)}}[\\log f(Z|X, \\theta)]\\)，并利用 Jensen 不等式证明 \\(H(\\theta \\mid \\theta^{(t)}) \\le H(\\theta^{(t)} \\mid \\theta^{(t)})\\)。',
-                    solution: '分解 \\(\\ell(\\theta) = Q(\\theta | \\theta^{(t)}) - H(\\theta | \\theta^{(t)})\\)，其中 \\(H(\\theta | \\theta^{(t)}) = \\mathbb{E}_{Z|X,\\theta^{(t)}}[\\log f(Z|X,\\theta)]\\)。由 M-step，\\(Q(\\theta^{(t+1)}|\\theta^{(t)}) \\ge Q(\\theta^{(t)}|\\theta^{(t)})\\)。由 Gibbs 不等式（Jensen），\\(H(\\theta|\\theta^{(t)}) \\le H(\\theta^{(t)}|\\theta^{(t)})\\) 对任意 \\(\\theta\\)。因此 \\(\\ell(\\theta^{(t+1)}) = Q(\\theta^{(t+1)}|\\theta^{(t)}) - H(\\theta^{(t+1)}|\\theta^{(t)}) \\ge Q(\\theta^{(t)}|\\theta^{(t)}) - H(\\theta^{(t)}|\\theta^{(t)}) = \\ell(\\theta^{(t)})\\)。'
+                    question: 'Prove the monotonicity of the EM algorithm: \\(\\ell(\\theta^{(t+1)}) \\ge \\ell(\\theta^{(t)})\\).',
+                    hint: 'Use the decomposition \\(\\ell(\\theta) = Q(\\theta \\mid \\theta^{(t)}) - H(\\theta \\mid \\theta^{(t)})\\), where \\(H(\\theta \\mid \\theta^{(t)}) = \\mathbb{E}_{Z|X,\\theta^{(t)}}[\\log f(Z|X, \\theta)]\\), and apply Jensen\'s inequality to show \\(H(\\theta \\mid \\theta^{(t)}) \\le H(\\theta^{(t)} \\mid \\theta^{(t)})\\).',
+                    solution: 'Decompose \\(\\ell(\\theta) = Q(\\theta | \\theta^{(t)}) - H(\\theta | \\theta^{(t)})\\), where \\(H(\\theta | \\theta^{(t)}) = \\mathbb{E}_{Z|X,\\theta^{(t)}}[\\log f(Z|X,\\theta)]\\). By the M-step, \\(Q(\\theta^{(t+1)}|\\theta^{(t)}) \\ge Q(\\theta^{(t)}|\\theta^{(t)})\\). By Gibbs\' inequality (Jensen), \\(H(\\theta|\\theta^{(t)}) \\le H(\\theta^{(t)}|\\theta^{(t)})\\) for any \\(\\theta\\). Therefore \\(\\ell(\\theta^{(t+1)}) = Q(\\theta^{(t+1)}|\\theta^{(t)}) - H(\\theta^{(t+1)}|\\theta^{(t)}) \\ge Q(\\theta^{(t)}|\\theta^{(t)}) - H(\\theta^{(t)}|\\theta^{(t)}) = \\ell(\\theta^{(t)})\\).'
                 },
                 {
-                    question: '对于两分量 Poisson 混合 \\(f(x) = \\pi \\cdot \\text{Pois}(x|\\lambda_1) + (1-\\pi) \\cdot \\text{Pois}(x|\\lambda_2)\\)，写出 E-step 和 M-step 的具体公式。',
-                    hint: '用 Poisson PMF 替换正态 PDF，结构与高斯混合相同。',
-                    solution: 'E-step: \\(\\gamma_i = \\frac{\\pi \\cdot \\text{Pois}(x_i|\\lambda_1)}{\\pi \\cdot \\text{Pois}(x_i|\\lambda_1) + (1-\\pi)\\cdot \\text{Pois}(x_i|\\lambda_2)}\\)。M-step: \\(n_1 = \\sum \\gamma_i\\)，\\(\\lambda_1 = \\sum \\gamma_i x_i / n_1\\)，\\(\\lambda_2 = \\sum(1-\\gamma_i)x_i/(n-n_1)\\)，\\(\\pi = n_1/n\\)。加权分量的 Poisson MLE 就是加权样本均值。'
+                    question: 'For a two-component Poisson mixture \\(f(x) = \\pi \\cdot \\text{Pois}(x|\\lambda_1) + (1-\\pi) \\cdot \\text{Pois}(x|\\lambda_2)\\), write out the specific formulas for the E-step and M-step.',
+                    hint: 'Replace the normal PDF with the Poisson PMF; the structure is the same as the Gaussian mixture.',
+                    solution: 'E-step: \\(\\gamma_i = \\frac{\\pi \\cdot \\text{Pois}(x_i|\\lambda_1)}{\\pi \\cdot \\text{Pois}(x_i|\\lambda_1) + (1-\\pi)\\cdot \\text{Pois}(x_i|\\lambda_2)}\\). M-step: \\(n_1 = \\sum \\gamma_i\\), \\(\\lambda_1 = \\sum \\gamma_i x_i / n_1\\), \\(\\lambda_2 = \\sum(1-\\gamma_i)x_i/(n-n_1)\\), \\(\\pi = n_1/n\\). The weighted-component Poisson MLE is simply the weighted sample mean.'
                 },
                 {
-                    question: 'EM 算法在什么情况下收敛特别慢？解释"缺失信息比"（fraction of missing information）的含义。',
-                    hint: '考虑完全数据 Fisher 信息与观测数据 Fisher 信息的关系。',
-                    solution: 'EM 在解附近的收敛速率由矩阵 \\(DM = I_c^{-1}(\\theta) I_m(\\theta)\\) 的特征值决定，其中 \\(I_c\\) 是完全数据 Fisher 信息，\\(I_m = I_c - I_o\\) 是"缺失信息"（\\(I_o\\) 为观测信息）。当缺失信息比 \\(I_m/I_c\\) 接近 1 时（即大部分信息在潜变量中），\\(DM\\) 的特征值接近 1，导致极慢的线性收敛。这在混合分量严重重叠或缺失数据比例大时发生。'
+                    question: 'Under what circumstances does the EM algorithm converge particularly slowly? Explain the meaning of the "fraction of missing information."',
+                    hint: 'Consider the relationship between the complete-data Fisher information and the observed-data Fisher information.',
+                    solution: 'The convergence rate of EM near the solution is governed by the eigenvalues of the matrix \\(DM = I_c^{-1}(\\theta) I_m(\\theta)\\), where \\(I_c\\) is the complete-data Fisher information and \\(I_m = I_c - I_o\\) is the "missing information" (\\(I_o\\) being the observed information). When the fraction of missing information \\(I_m/I_c\\) is close to 1 (i.e., most information resides in the latent variables), the eigenvalues of \\(DM\\) are close to 1, resulting in very slow linear convergence. This occurs when mixture components overlap heavily or when the proportion of missing data is large.'
                 }
             ]
         }

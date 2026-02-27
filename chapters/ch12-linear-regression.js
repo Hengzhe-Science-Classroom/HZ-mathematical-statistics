@@ -2,51 +2,51 @@ window.CHAPTERS = window.CHAPTERS || [];
 window.CHAPTERS.push({
     id: 'ch12',
     number: 12,
-    title: '线性回归',
+    title: 'Linear Regression',
     subtitle: 'Linear Regression',
     sections: [
         // ============================================================
-        // Section 1: 简单线性回归模型
+        // Section 1: Simple Linear Regression Model
         // ============================================================
         {
             id: 'ch12-sec01',
-            title: '简单线性回归模型',
+            title: 'Simple Linear Regression Model',
             content: `
-                <h2>简单线性回归模型</h2>
+                <h2>Simple Linear Regression Model 简单线性回归模型</h2>
 
-                <p>回归分析是统计学中最基本也是最重要的方法之一。给定响应变量 \\(Y\\) 与解释变量 \\(X\\)，我们希望建立一个定量描述 \\(Y\\) 随 \\(X\\) 变化关系的模型。简单线性回归假设这种关系在参数上是线性的。</p>
+                <p>Regression analysis (回归分析) is one of the most fundamental and important methods in statistics. Given a response variable (响应变量) \\(Y\\) and an explanatory variable (解释变量) \\(X\\), we wish to build a model that quantitatively describes how \\(Y\\) varies with \\(X\\). Simple linear regression assumes this relationship is linear in the parameters.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 12.1 (简单线性回归模型)</div>
+                    <div class="env-title">Definition 12.1 (Simple Linear Regression Model)</div>
                     <div class="env-body">
-                        <p>设 \\((X_1, Y_1), \\ldots, (X_n, Y_n)\\) 是 \\(n\\) 组观测值。<strong>简单线性回归模型</strong>假设：</p>
+                        <p>Let \\((X_1, Y_1), \\ldots, (X_n, Y_n)\\) be \\(n\\) observations. The <strong>simple linear regression model</strong> (简单线性回归模型) assumes:</p>
                         \\[Y_i = \\beta_0 + \\beta_1 X_i + \\varepsilon_i, \\quad i = 1, \\ldots, n\\]
-                        <p>其中 \\(\\beta_0\\) 为截距 (intercept)，\\(\\beta_1\\) 为斜率 (slope)，\\(\\varepsilon_i\\) 为随机误差项，满足：</p>
+                        <p>where \\(\\beta_0\\) is the intercept (截距), \\(\\beta_1\\) is the slope (斜率), and \\(\\varepsilon_i\\) are random error terms satisfying:</p>
                         <ol>
-                            <li>\\(\\mathbb{E}[\\varepsilon_i] = 0\\)（零均值）</li>
-                            <li>\\(\\operatorname{Var}(\\varepsilon_i) = \\sigma^2\\)（同方差性，homoscedasticity）</li>
-                            <li>\\(\\operatorname{Cov}(\\varepsilon_i, \\varepsilon_j) = 0\\)（对 \\(i \\neq j\\)，误差不相关）</li>
+                            <li>\\(\\mathbb{E}[\\varepsilon_i] = 0\\) (zero mean)</li>
+                            <li>\\(\\operatorname{Var}(\\varepsilon_i) = \\sigma^2\\) (homoscedasticity, 同方差性)</li>
+                            <li>\\(\\operatorname{Cov}(\\varepsilon_i, \\varepsilon_j) = 0\\) for \\(i \\neq j\\) (uncorrelated errors)</li>
                         </ol>
-                        <p>在正态假设下，进一步要求 \\(\\varepsilon_i \\sim N(0, \\sigma^2)\\) 独立同分布。</p>
+                        <p>Under the normality assumption, we further require \\(\\varepsilon_i \\sim N(0, \\sigma^2)\\) i.i.d.</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>模型的几何含义非常直观：在散点图上，回归直线 \\(y = \\beta_0 + \\beta_1 x\\) 穿过数据"云"的中心。每个观测点 \\(Y_i\\) 是确定性部分 \\(\\beta_0 + \\beta_1 X_i\\) 加上随机扰动 \\(\\varepsilon_i\\) 的结果。回归的目标就是从含噪声的数据中恢复出这条"真实"直线。</p>
+                        <p>The geometric interpretation of the model is highly intuitive: on a scatterplot, the regression line \\(y = \\beta_0 + \\beta_1 x\\) passes through the center of the data "cloud." Each observation \\(Y_i\\) is the sum of a deterministic component \\(\\beta_0 + \\beta_1 X_i\\) and a random perturbation \\(\\varepsilon_i\\). The goal of regression is to recover this "true" line from the noisy data.</p>
                     </div>
                 </div>
 
-                <h3>最小二乘法 (Ordinary Least Squares)</h3>
+                <h3>Ordinary Least Squares 最小二乘法</h3>
 
-                <p>我们通过最小化残差平方和 (Residual Sum of Squares, RSS) 来估计参数：</p>
+                <p>We estimate the parameters by minimizing the Residual Sum of Squares (残差平方和, RSS):</p>
                 \\[Q(\\beta_0, \\beta_1) = \\sum_{i=1}^{n} (Y_i - \\beta_0 - \\beta_1 X_i)^2\\]
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 12.2 (OLS 估计量)</div>
+                    <div class="env-title">Theorem 12.2 (OLS Estimators)</div>
                     <div class="env-body">
-                        <p>令 \\(\\bar{X} = \\frac{1}{n}\\sum_{i=1}^{n} X_i\\)，\\(\\bar{Y} = \\frac{1}{n}\\sum_{i=1}^{n} Y_i\\)，\\(S_{xx} = \\sum_{i=1}^{n}(X_i - \\bar{X})^2\\)，\\(S_{xy} = \\sum_{i=1}^{n}(X_i - \\bar{X})(Y_i - \\bar{Y})\\)。则 \\(Q(\\beta_0, \\beta_1)\\) 的最小值在以下点取得：</p>
+                        <p>Let \\(\\bar{X} = \\frac{1}{n}\\sum_{i=1}^{n} X_i\\), \\(\\bar{Y} = \\frac{1}{n}\\sum_{i=1}^{n} Y_i\\), \\(S_{xx} = \\sum_{i=1}^{n}(X_i - \\bar{X})^2\\), \\(S_{xy} = \\sum_{i=1}^{n}(X_i - \\bar{X})(Y_i - \\bar{Y})\\). Then the minimum of \\(Q(\\beta_0, \\beta_1)\\) is attained at:</p>
                         \\[\\hat{\\beta}_1 = \\frac{S_{xy}}{S_{xx}} = \\frac{\\sum_{i=1}^{n}(X_i - \\bar{X})(Y_i - \\bar{Y})}{\\sum_{i=1}^{n}(X_i - \\bar{X})^2}\\]
                         \\[\\hat{\\beta}_0 = \\bar{Y} - \\hat{\\beta}_1 \\bar{X}\\]
                     </div>
@@ -55,14 +55,14 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>对 \\(Q\\) 关于 \\(\\beta_0, \\beta_1\\) 分别求偏导并令其为零：</p>
+                        <p>Take partial derivatives of \\(Q\\) with respect to \\(\\beta_0, \\beta_1\\) and set them to zero:</p>
                         \\[\\frac{\\partial Q}{\\partial \\beta_0} = -2\\sum_{i=1}^{n}(Y_i - \\beta_0 - \\beta_1 X_i) = 0\\]
                         \\[\\frac{\\partial Q}{\\partial \\beta_1} = -2\\sum_{i=1}^{n} X_i(Y_i - \\beta_0 - \\beta_1 X_i) = 0\\]
-                        <p>由第一个方程：\\(n\\beta_0 = \\sum Y_i - \\beta_1 \\sum X_i\\)，即 \\(\\hat{\\beta}_0 = \\bar{Y} - \\hat{\\beta}_1\\bar{X}\\)。</p>
-                        <p>代入第二个方程并化简：</p>
+                        <p>From the first equation: \\(n\\beta_0 = \\sum Y_i - \\beta_1 \\sum X_i\\), i.e., \\(\\hat{\\beta}_0 = \\bar{Y} - \\hat{\\beta}_1\\bar{X}\\).</p>
+                        <p>Substituting into the second equation and simplifying:</p>
                         \\[\\sum X_i Y_i - \\bar{Y}\\sum X_i - \\hat{\\beta}_1\\sum X_i^2 + \\hat{\\beta}_1 \\bar{X}\\sum X_i = 0\\]
-                        <p>利用 \\(\\sum(X_i - \\bar{X})(Y_i - \\bar{Y}) = \\sum X_i Y_i - n\\bar{X}\\bar{Y}\\) 和 \\(\\sum(X_i - \\bar{X})^2 = \\sum X_i^2 - n\\bar{X}^2\\)，得到 \\(\\hat{\\beta}_1 = S_{xy}/S_{xx}\\)。</p>
-                        <p>Hessian 矩阵 \\(H = 2\\begin{pmatrix} n & \\sum X_i \\\\ \\sum X_i & \\sum X_i^2 \\end{pmatrix}\\) 正定（当 \\(X_i\\) 不全相同时），故为极小值。</p>
+                        <p>Using \\(\\sum(X_i - \\bar{X})(Y_i - \\bar{Y}) = \\sum X_i Y_i - n\\bar{X}\\bar{Y}\\) and \\(\\sum(X_i - \\bar{X})^2 = \\sum X_i^2 - n\\bar{X}^2\\), we obtain \\(\\hat{\\beta}_1 = S_{xy}/S_{xx}\\).</p>
+                        <p>The Hessian matrix \\(H = 2\\begin{pmatrix} n & \\sum X_i \\\\ \\sum X_i & \\sum X_i^2 \\end{pmatrix}\\) is positive definite (when the \\(X_i\\) are not all equal), confirming a minimum.</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@ window.CHAPTERS.push({
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>注意 \\(\\hat{\\beta}_1\\) 可以写成 \\(Y_i\\) 的线性组合：\\(\\hat{\\beta}_1 = \\sum_{i=1}^{n} c_i Y_i\\)，其中 \\(c_i = (X_i - \\bar{X})/S_{xx}\\)。这一形式对后续分析估计量性质至关重要。同时，回归直线必经过样本中心点 \\((\\bar{X}, \\bar{Y})\\)。</p>
+                        <p>Note that \\(\\hat{\\beta}_1\\) can be written as a linear combination of the \\(Y_i\\): \\(\\hat{\\beta}_1 = \\sum_{i=1}^{n} c_i Y_i\\) where \\(c_i = (X_i - \\bar{X})/S_{xx}\\). This representation is crucial for analyzing the properties of the estimator. Also, the regression line necessarily passes through the sample centroid \\((\\bar{X}, \\bar{Y})\\).</p>
                     </div>
                 </div>
 
@@ -79,17 +79,17 @@ window.CHAPTERS.push({
                 <div class="env-block example">
                     <div class="env-title">Example 12.3</div>
                     <div class="env-body">
-                        <p>设有 5 组观测 \\((X_i, Y_i)\\)：\\((1,2.1),\; (2,3.9),\; (3,6.2),\; (4,7.8),\; (5,10.1)\\)。</p>
-                        <p>计算：\\(\\bar{X}=3, \\bar{Y}=6.02, S_{xx}=10, S_{xy}=19.9\\)，故 \\(\\hat{\\beta}_1 = 1.99\\)，\\(\\hat{\\beta}_0 = 6.02 - 1.99 \\times 3 = 0.05\\)。</p>
-                        <p>回归方程：\\(\\hat{Y} = 0.05 + 1.99X\\)。</p>
+                        <p>Suppose we have 5 observations \\((X_i, Y_i)\\): \\((1,2.1),\\; (2,3.9),\\; (3,6.2),\\; (4,7.8),\\; (5,10.1)\\).</p>
+                        <p>We compute: \\(\\bar{X}=3, \\bar{Y}=6.02, S_{xx}=10, S_{xy}=19.9\\), so \\(\\hat{\\beta}_1 = 1.99\\), \\(\\hat{\\beta}_0 = 6.02 - 1.99 \\times 3 = 0.05\\).</p>
+                        <p>The regression equation is: \\(\\hat{Y} = 0.05 + 1.99X\\).</p>
                     </div>
                 </div>
             `,
             visualizations: [
                 {
                     id: 'scatter-regression-viz',
-                    title: 'Interactive: 拖动数据点观察回归线变化',
-                    description: '拖动散点查看最小二乘回归线如何实时更新，残差用虚线显示',
+                    title: 'Interactive: Drag Data Points to See Regression Line Changes 拖动数据点观察回归线变化',
+                    description: 'Drag scatter points to see how the OLS regression line updates in real time; residuals shown as dashed lines',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400, scale: 40,
@@ -161,7 +161,7 @@ window.CHAPTERS.push({
 
                         viz.animate(draw);
 
-                        VizEngine.createButton(controls, '重置数据', function() {
+                        VizEngine.createButton(controls, 'Reset Data', function() {
                             var defaults = [
                                 {x: 1, y: 2.1}, {x: 2, y: 3.8}, {x: 3, y: 5.5},
                                 {x: 4, y: 7.2}, {x: 5, y: 6.8}, {x: 6, y: 8.5},
@@ -179,42 +179,42 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '证明 OLS 估计的回归直线必经过样本均值点 \\((\\bar{X}, \\bar{Y})\\)。',
-                    hint: '将 \\(x = \\bar{X}\\) 代入 \\(\\hat{Y} = \\hat{\\beta}_0 + \\hat{\\beta}_1 x\\)，利用 \\(\\hat{\\beta}_0 = \\bar{Y} - \\hat{\\beta}_1\\bar{X}\\)。',
-                    solution: '\\(\\hat{Y}|_{x=\\bar{X}} = \\hat{\\beta}_0 + \\hat{\\beta}_1\\bar{X} = (\\bar{Y} - \\hat{\\beta}_1\\bar{X}) + \\hat{\\beta}_1\\bar{X} = \\bar{Y}\\)。因此回归直线经过 \\((\\bar{X}, \\bar{Y})\\)。'
+                    question: 'Prove that the OLS regression line must pass through the sample mean point \\((\\bar{X}, \\bar{Y})\\).',
+                    hint: 'Substitute \\(x = \\bar{X}\\) into \\(\\hat{Y} = \\hat{\\beta}_0 + \\hat{\\beta}_1 x\\) and use \\(\\hat{\\beta}_0 = \\bar{Y} - \\hat{\\beta}_1\\bar{X}\\).',
+                    solution: '\\(\\hat{Y}|_{x=\\bar{X}} = \\hat{\\beta}_0 + \\hat{\\beta}_1\\bar{X} = (\\bar{Y} - \\hat{\\beta}_1\\bar{X}) + \\hat{\\beta}_1\\bar{X} = \\bar{Y}\\). Therefore the regression line passes through \\((\\bar{X}, \\bar{Y})\\).'
                 },
                 {
-                    question: '设 \\(Y_i = \\beta_0 + \\beta_1 X_i + \\varepsilon_i\\)。证明残差 \\(e_i = Y_i - \\hat{Y}_i\\) 满足 \\(\\sum_{i=1}^{n} e_i = 0\\) 和 \\(\\sum_{i=1}^{n} X_i e_i = 0\\)。',
-                    hint: '这两个条件恰好是正规方程 (normal equations) 的直接推论。',
-                    solution: '正规方程为 \\(\\sum(Y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 X_i)=0\\) 和 \\(\\sum X_i(Y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 X_i)=0\\)。由于 \\(e_i = Y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 X_i\\)，直接得到 \\(\\sum e_i = 0\\) 和 \\(\\sum X_i e_i = 0\\)。几何意义：残差向量 \\(\\mathbf{e}\\) 与 \\(\\mathbf{1}\\) 和 \\(\\mathbf{X}\\) 正交。'
+                    question: 'Let \\(Y_i = \\beta_0 + \\beta_1 X_i + \\varepsilon_i\\). Prove that the residuals \\(e_i = Y_i - \\hat{Y}_i\\) satisfy \\(\\sum_{i=1}^{n} e_i = 0\\) and \\(\\sum_{i=1}^{n} X_i e_i = 0\\).',
+                    hint: 'These two conditions are direct consequences of the normal equations.',
+                    solution: 'The normal equations are \\(\\sum(Y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 X_i)=0\\) and \\(\\sum X_i(Y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 X_i)=0\\). Since \\(e_i = Y_i - \\hat{\\beta}_0 - \\hat{\\beta}_1 X_i\\), we directly obtain \\(\\sum e_i = 0\\) and \\(\\sum X_i e_i = 0\\). Geometrically, the residual vector \\(\\mathbf{e}\\) is orthogonal to both \\(\\mathbf{1}\\) and \\(\\mathbf{X}\\).'
                 },
                 {
-                    question: '在简单线性回归中，若将所有 \\(X_i\\) 替换为 \\(X_i^* = a + bX_i\\)（\\(b \\neq 0\\)），新的 OLS 估计 \\(\\hat{\\beta}_1^*\\) 与原来的 \\(\\hat{\\beta}_1\\) 有什么关系？',
-                    hint: '计算 \\(S_{x^*y}\\) 和 \\(S_{x^*x^*}\\) 关于 \\(S_{xy}\\) 和 \\(S_{xx}\\) 的表达式。',
-                    solution: '\\(\\bar{X}^* = a + b\\bar{X}\\)，故 \\(X_i^* - \\bar{X}^* = b(X_i - \\bar{X})\\)。因此 \\(S_{x^*x^*} = b^2 S_{xx}\\)，\\(S_{x^*y} = b S_{xy}\\)，从而 \\(\\hat{\\beta}_1^* = S_{x^*y}/S_{x^*x^*} = \\hat{\\beta}_1/b\\)。截距相应变为 \\(\\hat{\\beta}_0^* = \\bar{Y} - \\hat{\\beta}_1^* (a + b\\bar{X}) = \\hat{\\beta}_0 - a\\hat{\\beta}_1/b\\)。拟合值 \\(\\hat{Y}_i\\) 不变。'
+                    question: 'In simple linear regression, if all \\(X_i\\) are replaced by \\(X_i^* = a + bX_i\\) (\\(b \\neq 0\\)), what is the relationship between the new OLS estimate \\(\\hat{\\beta}_1^*\\) and the original \\(\\hat{\\beta}_1\\)?',
+                    hint: 'Compute \\(S_{x^*y}\\) and \\(S_{x^*x^*}\\) in terms of \\(S_{xy}\\) and \\(S_{xx}\\).',
+                    solution: '\\(\\bar{X}^* = a + b\\bar{X}\\), so \\(X_i^* - \\bar{X}^* = b(X_i - \\bar{X})\\). Therefore \\(S_{x^*x^*} = b^2 S_{xx}\\), \\(S_{x^*y} = b S_{xy}\\), giving \\(\\hat{\\beta}_1^* = S_{x^*y}/S_{x^*x^*} = \\hat{\\beta}_1/b\\). The intercept becomes \\(\\hat{\\beta}_0^* = \\bar{Y} - \\hat{\\beta}_1^* (a + b\\bar{X}) = \\hat{\\beta}_0 - a\\hat{\\beta}_1/b\\). The fitted values \\(\\hat{Y}_i\\) remain unchanged.'
                 }
             ]
         },
 
         // ============================================================
-        // Section 2: 最小二乘估计的性质
+        // Section 2: Properties of OLS Estimators
         // ============================================================
         {
             id: 'ch12-sec02',
-            title: '最小二乘估计的性质',
+            title: 'Properties of OLS Estimators',
             content: `
-                <h2>最小二乘估计的性质</h2>
+                <h2>Properties of OLS Estimators 最小二乘估计的性质</h2>
 
-                <p>OLS 估计量 \\(\\hat{\\beta}_0, \\hat{\\beta}_1\\) 不仅提供了参数的自然估计，还在一大类线性无偏估计中具有最优性。这由经典的 Gauss-Markov 定理刻画。</p>
+                <p>The OLS estimators \\(\\hat{\\beta}_0, \\hat{\\beta}_1\\) not only provide natural estimates of the parameters but also possess optimality among the broad class of linear unbiased estimators (线性无偏估计量). This is characterized by the classical Gauss-Markov theorem.</p>
 
-                <h3>OLS 估计量的期望与方差</h3>
+                <h3>Expectation and Variance of OLS Estimators OLS 估计量的期望与方差</h3>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 12.4 (OLS 估计量的分布)</div>
+                    <div class="env-title">Theorem 12.4 (Distribution of OLS Estimators)</div>
                     <div class="env-body">
-                        <p>在简单线性回归模型中（假设 \\(X_i\\) 为固定的，非随机的设计点），OLS 估计量满足：</p>
+                        <p>In the simple linear regression model (assuming the \\(X_i\\) are fixed, non-random design points), the OLS estimators satisfy:</p>
                         <ol>
-                            <li>\\(\\mathbb{E}[\\hat{\\beta}_1] = \\beta_1\\)，\\(\\mathbb{E}[\\hat{\\beta}_0] = \\beta_0\\)（无偏性）</li>
+                            <li>\\(\\mathbb{E}[\\hat{\\beta}_1] = \\beta_1\\), \\(\\mathbb{E}[\\hat{\\beta}_0] = \\beta_0\\) (unbiasedness, 无偏性)</li>
                             <li>\\(\\operatorname{Var}(\\hat{\\beta}_1) = \\dfrac{\\sigma^2}{S_{xx}}\\)</li>
                             <li>\\(\\operatorname{Var}(\\hat{\\beta}_0) = \\sigma^2\\left(\\dfrac{1}{n} + \\dfrac{\\bar{X}^2}{S_{xx}}\\right)\\)</li>
                             <li>\\(\\operatorname{Cov}(\\hat{\\beta}_0, \\hat{\\beta}_1) = -\\dfrac{\\sigma^2 \\bar{X}}{S_{xx}}\\)</li>
@@ -223,22 +223,22 @@ window.CHAPTERS.push({
                 </div>
 
                 <div class="env-block proof">
-                    <div class="env-title">Proof (\\(\\hat{\\beta}_1\\) 的部分)</div>
+                    <div class="env-title">Proof (for \\(\\hat{\\beta}_1\\))</div>
                     <div class="env-body">
-                        <p>由于 \\(\\hat{\\beta}_1 = \\sum c_i Y_i\\)，其中 \\(c_i = (X_i - \\bar{X})/S_{xx}\\)，注意到 \\(\\sum c_i = 0\\) 和 \\(\\sum c_i X_i = 1\\)。</p>
-                        <p><strong>无偏性</strong>：\\(\\mathbb{E}[\\hat{\\beta}_1] = \\sum c_i \\mathbb{E}[Y_i] = \\sum c_i(\\beta_0 + \\beta_1 X_i) = \\beta_0 \\cdot 0 + \\beta_1 \\cdot 1 = \\beta_1\\)。</p>
-                        <p><strong>方差</strong>：由于 \\(Y_i\\) 不相关且等方差 \\(\\sigma^2\\)，</p>
+                        <p>Since \\(\\hat{\\beta}_1 = \\sum c_i Y_i\\) where \\(c_i = (X_i - \\bar{X})/S_{xx}\\), note that \\(\\sum c_i = 0\\) and \\(\\sum c_i X_i = 1\\).</p>
+                        <p><strong>Unbiasedness</strong>: \\(\\mathbb{E}[\\hat{\\beta}_1] = \\sum c_i \\mathbb{E}[Y_i] = \\sum c_i(\\beta_0 + \\beta_1 X_i) = \\beta_0 \\cdot 0 + \\beta_1 \\cdot 1 = \\beta_1\\).</p>
+                        <p><strong>Variance</strong>: Since the \\(Y_i\\) are uncorrelated with equal variance \\(\\sigma^2\\),</p>
                         \\[\\operatorname{Var}(\\hat{\\beta}_1) = \\sum c_i^2 \\sigma^2 = \\sigma^2 \\sum \\frac{(X_i - \\bar{X})^2}{S_{xx}^2} = \\frac{\\sigma^2}{S_{xx}}\\]
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
-                <h3>Gauss-Markov 定理</h3>
+                <h3>Gauss-Markov Theorem Gauss-Markov 定理</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 12.5 (Gauss-Markov)</div>
                     <div class="env-body">
-                        <p>在简单线性回归模型的三个基本假设下（零均值、同方差、不相关），OLS 估计量 \\(\\hat{\\beta}_0\\) 和 \\(\\hat{\\beta}_1\\) 是<strong>最优线性无偏估计量</strong> (BLUE: Best Linear Unbiased Estimator)。即对任何形如 \\(\\tilde{\\beta}_1 = \\sum a_i Y_i\\) 的线性无偏估计，都有：</p>
+                        <p>Under the three basic assumptions of the simple linear regression model (zero mean, homoscedasticity, uncorrelated errors), the OLS estimators \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\) are the <strong>Best Linear Unbiased Estimators</strong> (BLUE, 最优线性无偏估计量). That is, for any linear unbiased estimator of the form \\(\\tilde{\\beta}_1 = \\sum a_i Y_i\\), we have:</p>
                         \\[\\operatorname{Var}(\\hat{\\beta}_1) \\leq \\operatorname{Var}(\\tilde{\\beta}_1)\\]
                     </div>
                 </div>
@@ -246,12 +246,12 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>设 \\(\\tilde{\\beta}_1 = \\sum a_i Y_i\\) 是 \\(\\beta_1\\) 的线性无偏估计。令 \\(d_i = a_i - c_i\\)，其中 \\(c_i = (X_i - \\bar{X})/S_{xx}\\)。</p>
-                        <p>无偏性要求：\\(\\sum a_i = 0\\) 且 \\(\\sum a_i X_i = 1\\)。由于 \\(c_i\\) 也满足这些条件，故 \\(\\sum d_i = 0\\)，\\(\\sum d_i X_i = 0\\)。</p>
-                        <p>后者意味着 \\(\\sum d_i(X_i - \\bar{X}) = 0\\)，即 \\(\\sum d_i c_i S_{xx} = 0\\)，从而 \\(\\sum c_i d_i = 0\\)。</p>
+                        <p>Let \\(\\tilde{\\beta}_1 = \\sum a_i Y_i\\) be a linear unbiased estimator of \\(\\beta_1\\). Define \\(d_i = a_i - c_i\\) where \\(c_i = (X_i - \\bar{X})/S_{xx}\\).</p>
+                        <p>Unbiasedness requires: \\(\\sum a_i = 0\\) and \\(\\sum a_i X_i = 1\\). Since \\(c_i\\) also satisfies these conditions, we get \\(\\sum d_i = 0\\) and \\(\\sum d_i X_i = 0\\).</p>
+                        <p>The latter implies \\(\\sum d_i(X_i - \\bar{X}) = 0\\), i.e., \\(\\sum d_i c_i S_{xx} = 0\\), so \\(\\sum c_i d_i = 0\\).</p>
                         \\[\\operatorname{Var}(\\tilde{\\beta}_1) = \\sigma^2 \\sum a_i^2 = \\sigma^2 \\sum (c_i + d_i)^2 = \\sigma^2\\left(\\sum c_i^2 + 2\\sum c_i d_i + \\sum d_i^2\\right)\\]
                         \\[= \\sigma^2\\sum c_i^2 + \\sigma^2\\sum d_i^2 = \\operatorname{Var}(\\hat{\\beta}_1) + \\sigma^2\\sum d_i^2 \\geq \\operatorname{Var}(\\hat{\\beta}_1)\\]
-                        <p>等号当且仅当 \\(d_i = 0\\) 对所有 \\(i\\) 成立，即 \\(\\tilde{\\beta}_1 = \\hat{\\beta}_1\\)。</p>
+                        <p>Equality holds if and only if \\(d_i = 0\\) for all \\(i\\), i.e., \\(\\tilde{\\beta}_1 = \\hat{\\beta}_1\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
@@ -259,18 +259,18 @@ window.CHAPTERS.push({
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>Gauss-Markov 定理<strong>不</strong>假设正态性。它仅依赖一阶和二阶矩条件。但同时它也只保证在线性无偏估计类中最优——存在非线性或有偏估计（如岭回归, LASSO）可能有更小的均方误差。</p>
+                        <p>The Gauss-Markov theorem does <strong>not</strong> assume normality. It relies only on first- and second-moment conditions. However, it only guarantees optimality within the class of linear unbiased estimators -- there may exist nonlinear or biased estimators (such as ridge regression or LASSO) with smaller mean squared error.</p>
                     </div>
                 </div>
 
-                <h3>方差的无偏估计</h3>
+                <h3>Unbiased Estimation of Variance 方差的无偏估计</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 12.6</div>
                     <div class="env-body">
-                        <p>令 \\(\\hat{Y}_i = \\hat{\\beta}_0 + \\hat{\\beta}_1 X_i\\) 为拟合值，\\(e_i = Y_i - \\hat{Y}_i\\) 为残差。则</p>
+                        <p>Let \\(\\hat{Y}_i = \\hat{\\beta}_0 + \\hat{\\beta}_1 X_i\\) be the fitted values and \\(e_i = Y_i - \\hat{Y}_i\\) be the residuals. Then</p>
                         \\[s^2 = \\frac{\\text{RSS}}{n-2} = \\frac{\\sum_{i=1}^{n} e_i^2}{n-2}\\]
-                        <p>是 \\(\\sigma^2\\) 的无偏估计量，即 \\(\\mathbb{E}[s^2] = \\sigma^2\\)。分母中的 \\(n-2\\) 反映了估计两个参数 \\(\\beta_0, \\beta_1\\) 所消耗的自由度。</p>
+                        <p>is an unbiased estimator of \\(\\sigma^2\\), i.e., \\(\\mathbb{E}[s^2] = \\sigma^2\\). The \\(n-2\\) in the denominator reflects the degrees of freedom (自由度) consumed by estimating the two parameters \\(\\beta_0, \\beta_1\\).</p>
                     </div>
                 </div>
 
@@ -279,8 +279,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'ols-comparison-viz',
-                    title: 'Interactive: OLS vs 其他线性估计量',
-                    description: 'Monte Carlo 模拟比较 OLS 与其他线性无偏估计量的方差，验证 Gauss-Markov 定理',
+                    title: 'Interactive: OLS vs Other Linear Estimators OLS 与其他线性估计量比较',
+                    description: 'Monte Carlo simulation comparing variance of OLS vs another linear unbiased estimator, verifying the Gauss-Markov theorem',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400, scale: 30,
@@ -316,7 +316,7 @@ window.CHAPTERS.push({
                                 }
                                 olsEstimates.push(sxy / sxx);
 
-                                // Alternative linear unbiased (use endpoint difference)
+                                // Alternative linear unbiased (group mean method)
                                 var half = Math.floor(nObs / 2);
                                 var myLow = 0, myHigh = 0, mxLow = 0, mxHigh = 0;
                                 for (var i = 0; i < half; i++) {
@@ -382,7 +382,7 @@ window.CHAPTERS.push({
 
                             viz.screenText('OLS (BLUE)', 120, 25, viz.colors.blue, 14, 'center');
                             viz.screenText('Var = ' + olsVar.toFixed(4), 120, 45, viz.colors.blue, 12, 'center');
-                            viz.screenText('分组均值法', 420, 25, viz.colors.red, 14, 'center');
+                            viz.screenText('Group Mean Method', 420, 25, viz.colors.red, 14, 'center');
                             viz.screenText('Var = ' + altVar.toFixed(4), 420, 45, viz.colors.red, 12, 'center');
                             viz.screenText('true beta1 = ' + trueBeta1, 280, 70, viz.colors.green, 12, 'center');
 
@@ -398,7 +398,7 @@ window.CHAPTERS.push({
 
                         draw();
 
-                        VizEngine.createButton(controls, '重新模拟', function() {
+                        VizEngine.createButton(controls, 'Re-simulate', function() {
                             results = simulate();
                             draw();
                         });
@@ -415,91 +415,91 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '验证 \\(\\operatorname{Var}(\\hat{\\beta}_0) = \\sigma^2\\left(\\frac{1}{n} + \\frac{\\bar{X}^2}{S_{xx}}\\right)\\)。何时 \\(\\hat{\\beta}_0\\) 的方差最小？',
-                    hint: '利用 \\(\\hat{\\beta}_0 = \\bar{Y} - \\hat{\\beta}_1\\bar{X}\\) 以及 \\(\\bar{Y}\\) 与 \\(\\hat{\\beta}_1\\) 的协方差。',
-                    solution: '\\(\\operatorname{Var}(\\hat{\\beta}_0) = \\operatorname{Var}(\\bar{Y}) + \\bar{X}^2\\operatorname{Var}(\\hat{\\beta}_1) - 2\\bar{X}\\operatorname{Cov}(\\bar{Y}, \\hat{\\beta}_1)\\)。由于 \\(\\operatorname{Cov}(\\bar{Y}, \\hat{\\beta}_1) = \\frac{1}{n}\\sum c_i \\sigma^2 = 0\\)，故 \\(\\operatorname{Var}(\\hat{\\beta}_0) = \\sigma^2/n + \\bar{X}^2\\sigma^2/S_{xx}\\)。当 \\(\\bar{X} = 0\\) 时方差最小，说明将数据中心化后截距估计最精确。'
+                    question: 'Verify that \\(\\operatorname{Var}(\\hat{\\beta}_0) = \\sigma^2\\left(\\frac{1}{n} + \\frac{\\bar{X}^2}{S_{xx}}\\right)\\). When is \\(\\operatorname{Var}(\\hat{\\beta}_0)\\) minimized?',
+                    hint: 'Use \\(\\hat{\\beta}_0 = \\bar{Y} - \\hat{\\beta}_1\\bar{X}\\) and the covariance between \\(\\bar{Y}\\) and \\(\\hat{\\beta}_1\\).',
+                    solution: '\\(\\operatorname{Var}(\\hat{\\beta}_0) = \\operatorname{Var}(\\bar{Y}) + \\bar{X}^2\\operatorname{Var}(\\hat{\\beta}_1) - 2\\bar{X}\\operatorname{Cov}(\\bar{Y}, \\hat{\\beta}_1)\\). Since \\(\\operatorname{Cov}(\\bar{Y}, \\hat{\\beta}_1) = \\frac{1}{n}\\sum c_i \\sigma^2 = 0\\), we get \\(\\operatorname{Var}(\\hat{\\beta}_0) = \\sigma^2/n + \\bar{X}^2\\sigma^2/S_{xx}\\). The variance is minimized when \\(\\bar{X} = 0\\), meaning that centering the data yields the most precise intercept estimate.'
                 },
                 {
-                    question: '证明 \\(\\text{RSS}/\\sigma^2\\) 在正态假设下服从 \\(\\chi^2(n-2)\\) 分布，并说明 \\(\\text{RSS}\\) 与 \\(\\hat{\\beta}_1\\) 独立。',
-                    hint: '用投影矩阵 \\(H = X(X^TX)^{-1}X^T\\) 的性质。\\(\\text{RSS} = \\mathbf{Y}^T(I-H)\\mathbf{Y}\\)，利用 \\(I-H\\) 是幂等矩阵且秩为 \\(n-2\\)。',
-                    solution: '设 \\(\\mathbf{Y} \\sim N(X\\boldsymbol{\\beta}, \\sigma^2 I)\\)。令 \\(H = X(X^TX)^{-1}X^T\\) 为帽子矩阵。则 \\(\\hat{\\mathbf{Y}} = H\\mathbf{Y}\\)，\\(\\mathbf{e} = (I-H)\\mathbf{Y}\\)。由于 \\(I-H\\) 幂等且秩 \\(n-2\\)，由 Cochran 定理，\\(\\mathbf{e}^T\\mathbf{e}/\\sigma^2 \\sim \\chi^2(n-2)\\)。又 \\(\\hat{\\boldsymbol{\\beta}} = (X^TX)^{-1}X^T\\mathbf{Y}\\)，其与 \\(\\mathbf{e}\\) 的协方差矩阵为 \\((X^TX)^{-1}X^T \\cdot \\sigma^2(I-H) = 0\\)，正态下不相关即独立。'
+                    question: 'Prove that \\(\\text{RSS}/\\sigma^2\\) follows a \\(\\chi^2(n-2)\\) distribution under the normality assumption, and show that \\(\\text{RSS}\\) is independent of \\(\\hat{\\beta}_1\\).',
+                    hint: 'Use properties of the hat matrix \\(H = X(X^TX)^{-1}X^T\\). Note that \\(\\text{RSS} = \\mathbf{Y}^T(I-H)\\mathbf{Y}\\) and \\(I-H\\) is idempotent with rank \\(n-2\\).',
+                    solution: 'Let \\(\\mathbf{Y} \\sim N(X\\boldsymbol{\\beta}, \\sigma^2 I)\\). Define the hat matrix \\(H = X(X^TX)^{-1}X^T\\). Then \\(\\hat{\\mathbf{Y}} = H\\mathbf{Y}\\) and \\(\\mathbf{e} = (I-H)\\mathbf{Y}\\). Since \\(I-H\\) is idempotent with rank \\(n-2\\), by Cochran\'s theorem, \\(\\mathbf{e}^T\\mathbf{e}/\\sigma^2 \\sim \\chi^2(n-2)\\). Moreover, \\(\\hat{\\boldsymbol{\\beta}} = (X^TX)^{-1}X^T\\mathbf{Y}\\) has covariance with \\(\\mathbf{e}\\) equal to \\((X^TX)^{-1}X^T \\cdot \\sigma^2(I-H) = 0\\); under normality, zero correlation implies independence.'
                 }
             ]
         },
 
         // ============================================================
-        // Section 3: 推断与假设检验
+        // Section 3: Inference and Hypothesis Testing
         // ============================================================
         {
             id: 'ch12-sec03',
-            title: '推断与假设检验',
+            title: 'Inference and Hypothesis Testing',
             content: `
-                <h2>推断与假设检验</h2>
+                <h2>Inference and Hypothesis Testing 推断与假设检验</h2>
 
-                <p>在正态误差假设下，OLS 估计量有精确的抽样分布，使得我们可以对回归系数进行严格的统计推断。</p>
+                <p>Under the normal error assumption, the OLS estimators have exact sampling distributions, enabling rigorous statistical inference (统计推断) on the regression coefficients.</p>
 
-                <h3>正态假设下的精确分布</h3>
+                <h3>Exact Distributions Under Normality 正态假设下的精确分布</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 12.7</div>
                     <div class="env-body">
-                        <p>若 \\(\\varepsilon_i \\overset{\\text{iid}}{\\sim} N(0, \\sigma^2)\\)，则：</p>
+                        <p>If \\(\\varepsilon_i \\overset{\\text{iid}}{\\sim} N(0, \\sigma^2)\\), then:</p>
                         <ol>
-                            <li>\\(\\hat{\\beta}_1 \\sim N\\!\\left(\\beta_1,\; \\dfrac{\\sigma^2}{S_{xx}}\\right)\\)</li>
-                            <li>\\(\\hat{\\beta}_0 \\sim N\\!\\left(\\beta_0,\; \\sigma^2\\left(\\dfrac{1}{n} + \\dfrac{\\bar{X}^2}{S_{xx}}\\right)\\right)\\)</li>
-                            <li>\\(\\dfrac{(n-2)s^2}{\\sigma^2} \\sim \\chi^2(n-2)\\)，且 \\(s^2\\) 与 \\((\\hat{\\beta}_0, \\hat{\\beta}_1)\\) 独立</li>
+                            <li>\\(\\hat{\\beta}_1 \\sim N\\!\\left(\\beta_1,\\; \\dfrac{\\sigma^2}{S_{xx}}\\right)\\)</li>
+                            <li>\\(\\hat{\\beta}_0 \\sim N\\!\\left(\\beta_0,\\; \\sigma^2\\left(\\dfrac{1}{n} + \\dfrac{\\bar{X}^2}{S_{xx}}\\right)\\right)\\)</li>
+                            <li>\\(\\dfrac{(n-2)s^2}{\\sigma^2} \\sim \\chi^2(n-2)\\), and \\(s^2\\) is independent of \\((\\hat{\\beta}_0, \\hat{\\beta}_1)\\)</li>
                         </ol>
                     </div>
                 </div>
 
-                <h3>斜率的 t-检验</h3>
+                <h3>t-Test for the Slope 斜率的 t 检验</h3>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 12.8 (斜率的 t-统计量)</div>
+                    <div class="env-title">Definition 12.8 (t-Statistic for the Slope)</div>
                     <div class="env-body">
-                        <p>检验 \\(H_0: \\beta_1 = \\beta_{1,0}\\) vs \\(H_1: \\beta_1 \\neq \\beta_{1,0}\\) 的 t-统计量为：</p>
+                        <p>The t-statistic for testing \\(H_0: \\beta_1 = \\beta_{1,0}\\) vs \\(H_1: \\beta_1 \\neq \\beta_{1,0}\\) is:</p>
                         \\[T = \\frac{\\hat{\\beta}_1 - \\beta_{1,0}}{\\text{SE}(\\hat{\\beta}_1)} = \\frac{\\hat{\\beta}_1 - \\beta_{1,0}}{s / \\sqrt{S_{xx}}}\\]
-                        <p>在 \\(H_0\\) 下，\\(T \\sim t(n-2)\\)。最常见的情形是 \\(\\beta_{1,0} = 0\\)，即检验 \\(X\\) 与 \\(Y\\) 是否存在线性关系。</p>
+                        <p>Under \\(H_0\\), \\(T \\sim t(n-2)\\). The most common case is \\(\\beta_{1,0} = 0\\), testing whether there is a linear relationship between \\(X\\) and \\(Y\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
                     <div class="env-title">Example 12.9</div>
                     <div class="env-body">
-                        <p>在 Example 12.3 的数据中（\\(n=5\\)），我们有 \\(\\hat{\\beta}_1 = 1.99\\)，\\(S_{xx} = 10\\)。计算 \\(\\text{RSS} = \\sum(Y_i - \\hat{Y}_i)^2 = 0.088\\)，\\(s^2 = 0.088/3 = 0.0293\\)。</p>
-                        <p>检验 \\(H_0: \\beta_1 = 0\\)：\\(T = 1.99/(\\sqrt{0.0293}/\\sqrt{10}) = 1.99/0.0541 = 36.8\\)。</p>
-                        <p>与 \\(t(3)\\) 的临界值 \\(t_{0.025,3} = 3.182\\) 比较，\\(|T| \\gg 3.182\\)，极显著拒绝 \\(H_0\\)。</p>
+                        <p>Using the data from Example 12.3 (\\(n=5\\)), we have \\(\\hat{\\beta}_1 = 1.99\\) and \\(S_{xx} = 10\\). Computing \\(\\text{RSS} = \\sum(Y_i - \\hat{Y}_i)^2 = 0.088\\), we get \\(s^2 = 0.088/3 = 0.0293\\).</p>
+                        <p>Testing \\(H_0: \\beta_1 = 0\\): \\(T = 1.99/(\\sqrt{0.0293}/\\sqrt{10}) = 1.99/0.0541 = 36.8\\).</p>
+                        <p>Comparing with the critical value \\(t_{0.025,3} = 3.182\\), since \\(|T| \\gg 3.182\\), we reject \\(H_0\\) with overwhelming significance.</p>
                     </div>
                 </div>
 
-                <h3>斜率的置信区间</h3>
+                <h3>Confidence Interval for the Slope 斜率的置信区间</h3>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 12.10 (\\(\\beta_1\\) 的置信区间)</div>
+                    <div class="env-title">Theorem 12.10 (Confidence Interval for \\(\\beta_1\\))</div>
                     <div class="env-body">
-                        <p>\\(\\beta_1\\) 的 \\(100(1-\\alpha)\\%\\) 置信区间为：</p>
-                        \\[\\hat{\\beta}_1 \\pm t_{\\alpha/2,\, n-2} \\cdot \\frac{s}{\\sqrt{S_{xx}}}\\]
-                        <p>类似地，\\(\\beta_0\\) 的置信区间为 \\(\\hat{\\beta}_0 \\pm t_{\\alpha/2,\, n-2} \\cdot s\\sqrt{1/n + \\bar{X}^2/S_{xx}}\\)。</p>
+                        <p>A \\(100(1-\\alpha)\\%\\) confidence interval for \\(\\beta_1\\) is:</p>
+                        \\[\\hat{\\beta}_1 \\pm t_{\\alpha/2,\\, n-2} \\cdot \\frac{s}{\\sqrt{S_{xx}}}\\]
+                        <p>Similarly, the confidence interval for \\(\\beta_0\\) is \\(\\hat{\\beta}_0 \\pm t_{\\alpha/2,\\, n-2} \\cdot s\\sqrt{1/n + \\bar{X}^2/S_{xx}}\\).</p>
                     </div>
                 </div>
 
-                <h3>整体回归的 F-检验</h3>
+                <h3>Overall F-Test for Regression 整体回归的 F 检验</h3>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 12.11 (ANOVA 分解与 F-检验)</div>
+                    <div class="env-title">Definition 12.11 (ANOVA Decomposition and F-Test)</div>
                     <div class="env-body">
-                        <p>定义总变差分解：</p>
+                        <p>Define the total variation decomposition:</p>
                         \\[\\underbrace{\\sum_{i=1}^{n}(Y_i - \\bar{Y})^2}_{\\text{SST}} = \\underbrace{\\sum_{i=1}^{n}(\\hat{Y}_i - \\bar{Y})^2}_{\\text{SSR}} + \\underbrace{\\sum_{i=1}^{n}(Y_i - \\hat{Y}_i)^2}_{\\text{RSS}}\\]
-                        <p>检验 \\(H_0: \\beta_1 = 0\\) 的 F-统计量为：</p>
+                        <p>The F-statistic for testing \\(H_0: \\beta_1 = 0\\) is:</p>
                         \\[F = \\frac{\\text{SSR}/1}{\\text{RSS}/(n-2)} = \\frac{\\text{MSR}}{\\text{MSE}}\\]
-                        <p>在 \\(H_0\\) 下 \\(F \\sim F(1, n-2)\\)。在简单线性回归中，\\(F = T^2\\)，其中 \\(T\\) 是斜率的 t-统计量。</p>
+                        <p>Under \\(H_0\\), \\(F \\sim F(1, n-2)\\). In simple linear regression, \\(F = T^2\\) where \\(T\\) is the t-statistic for the slope.</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>F-检验的逻辑：如果 \\(\\beta_1 = 0\\)（即 \\(X\\) 对 \\(Y\\) 没有线性效应），那么模型解释的变异 SSR 应该很小，F 值接近 0。如果 \\(\\beta_1 \\neq 0\\)，SSR 会比纯噪声预期的大得多，F 值变大。F 越大，拒绝零假设的证据越强。</p>
+                        <p>The logic of the F-test: if \\(\\beta_1 = 0\\) (i.e., \\(X\\) has no linear effect on \\(Y\\)), then the model-explained variation SSR should be small and the F-value should be close to 0. If \\(\\beta_1 \\neq 0\\), SSR will be much larger than expected from pure noise, producing a large F-value. The larger the F, the stronger the evidence against the null hypothesis.</p>
                     </div>
                 </div>
 
@@ -508,8 +508,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 't-test-viz',
-                    title: 'Interactive: 斜率 t-检验的抽样分布',
-                    description: '模拟 t-统计量在 H0 和 H1 下的分布，调节 beta1 观察检验功效变化',
+                    title: 'Interactive: Sampling Distribution of the Slope t-Statistic 斜率 t 统计量的抽样分布',
+                    description: 'Simulate the t-statistic under H0 and H1; adjust beta1 to observe changes in test power',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400, scale: 40,
@@ -584,7 +584,6 @@ window.CHAPTERS.push({
                             viz.drawHistogram(bins, viz.colors.blue + '44', viz.colors.blue, 1);
 
                             // Critical values (approximate for t-distribution)
-                            // Use 1.96 as approximation or exact for large df
                             var tCrit = 2.16; // approx for df=13
                             if (df >= 30) tCrit = 1.96;
                             else if (df >= 20) tCrit = 2.09;
@@ -638,7 +637,7 @@ window.CHAPTERS.push({
                             draw();
                         });
 
-                        VizEngine.createButton(controls, '重新模拟', function() {
+                        VizEngine.createButton(controls, 'Re-simulate', function() {
                             tStats = runSimulation();
                             draw();
                         });
@@ -649,91 +648,91 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '在简单线性回归中，证明 F-统计量等于 t-统计量的平方：\\(F = T^2\\)。',
-                    hint: '将 SSR 用 \\(\\hat{\\beta}_1\\) 表示：\\(\\text{SSR} = \\hat{\\beta}_1^2 S_{xx}\\)。',
-                    solution: '\\(\\text{SSR} = \\sum(\\hat{Y}_i - \\bar{Y})^2 = \\hat{\\beta}_1^2 \\sum(X_i - \\bar{X})^2 = \\hat{\\beta}_1^2 S_{xx}\\)。因此 \\(F = \\hat{\\beta}_1^2 S_{xx} / s^2 = (\\hat{\\beta}_1 / (s/\\sqrt{S_{xx}}))^2 = T^2\\)。这也解释了为什么在简单线性回归中 t-检验和 F-检验是等价的。'
+                    question: 'In simple linear regression, prove that the F-statistic equals the square of the t-statistic: \\(F = T^2\\).',
+                    hint: 'Express SSR in terms of \\(\\hat{\\beta}_1\\): \\(\\text{SSR} = \\hat{\\beta}_1^2 S_{xx}\\).',
+                    solution: '\\(\\text{SSR} = \\sum(\\hat{Y}_i - \\bar{Y})^2 = \\hat{\\beta}_1^2 \\sum(X_i - \\bar{X})^2 = \\hat{\\beta}_1^2 S_{xx}\\). Therefore \\(F = \\hat{\\beta}_1^2 S_{xx} / s^2 = (\\hat{\\beta}_1 / (s/\\sqrt{S_{xx}}))^2 = T^2\\). This also explains why the t-test and the F-test are equivalent in simple linear regression.'
                 },
                 {
-                    question: '构造 \\(\\beta_1\\) 的 95% 置信区间。给定 \\(n=20\\)，\\(\\hat{\\beta}_1=2.5\\)，\\(S_{xx}=50\\)，\\(s^2=4\\)。',
-                    hint: '使用公式 \\(\\hat{\\beta}_1 \\pm t_{0.025,18} \\cdot s/\\sqrt{S_{xx}}\\)，查表得 \\(t_{0.025,18} \\approx 2.101\\)。',
-                    solution: '\\(\\text{SE}(\\hat{\\beta}_1) = s/\\sqrt{S_{xx}} = 2/\\sqrt{50} = 0.2828\\)。置信区间为 \\(2.5 \\pm 2.101 \\times 0.2828 = 2.5 \\pm 0.594 = [1.906, 3.094]\\)。由于 0 不在区间内，在 5% 水平下拒绝 \\(H_0:\\beta_1=0\\)。'
+                    question: 'Construct a 95% confidence interval for \\(\\beta_1\\). Given: \\(n=20\\), \\(\\hat{\\beta}_1=2.5\\), \\(S_{xx}=50\\), \\(s^2=4\\).',
+                    hint: 'Use the formula \\(\\hat{\\beta}_1 \\pm t_{0.025,18} \\cdot s/\\sqrt{S_{xx}}\\). From the t-table, \\(t_{0.025,18} \\approx 2.101\\).',
+                    solution: '\\(\\text{SE}(\\hat{\\beta}_1) = s/\\sqrt{S_{xx}} = 2/\\sqrt{50} = 0.2828\\). The confidence interval is \\(2.5 \\pm 2.101 \\times 0.2828 = 2.5 \\pm 0.594 = [1.906, 3.094]\\). Since 0 is not in the interval, we reject \\(H_0:\\beta_1=0\\) at the 5% significance level.'
                 },
                 {
-                    question: '如果样本量 \\(n\\) 固定，增大 \\(S_{xx}\\)（即增大 \\(X_i\\) 的离散程度）对 \\(\\hat{\\beta}_1\\) 的推断有何影响？在实验设计中有何指导意义？',
-                    hint: '考察 \\(\\operatorname{Var}(\\hat{\\beta}_1)\\) 和 t-统计量作为 \\(S_{xx}\\) 的函数。',
-                    solution: '\\(\\operatorname{Var}(\\hat{\\beta}_1) = \\sigma^2/S_{xx}\\) 随 \\(S_{xx}\\) 增大而减小。因此 t-统计量 \\(|T| = |\\hat{\\beta}_1|\\sqrt{S_{xx}}/s\\) 增大，置信区间变窄，检验功效增大。实验设计启示：应尽量让设计点 \\(X_i\\) 分散（例如选取 \\(X\\) 取值范围的两端），以获得最精确的斜率估计。但需权衡：如果线性假设在极端区域不成立，过度外推可能导致模型失效。'
+                    question: 'If the sample size \\(n\\) is fixed, what effect does increasing \\(S_{xx}\\) (i.e., increasing the spread of the \\(X_i\\)) have on inference about \\(\\hat{\\beta}_1\\)? What are the implications for experimental design?',
+                    hint: 'Examine \\(\\operatorname{Var}(\\hat{\\beta}_1)\\) and the t-statistic as functions of \\(S_{xx}\\).',
+                    solution: '\\(\\operatorname{Var}(\\hat{\\beta}_1) = \\sigma^2/S_{xx}\\) decreases as \\(S_{xx}\\) increases. Consequently the t-statistic \\(|T| = |\\hat{\\beta}_1|\\sqrt{S_{xx}}/s\\) increases, confidence intervals narrow, and test power increases. The design implication is that design points \\(X_i\\) should be spread as widely as possible (e.g., placed at the extremes of the range of \\(X\\)) to obtain the most precise slope estimate. However, a tradeoff is needed: if the linearity assumption does not hold in the extreme regions, extrapolation may cause model failure.'
                 }
             ]
         },
 
         // ============================================================
-        // Section 4: 残差分析与模型诊断
+        // Section 4: Residual Analysis and Model Diagnostics
         // ============================================================
         {
             id: 'ch12-sec04',
-            title: '残差分析与模型诊断',
+            title: 'Residual Analysis and Model Diagnostics',
             content: `
-                <h2>残差分析与模型诊断</h2>
+                <h2>Residual Analysis and Model Diagnostics 残差分析与模型诊断</h2>
 
-                <p>回归模型的有效性取决于其假设是否合理。残差分析是检验模型假设的主要工具。通过考察残差的图形模式，我们可以发现非线性、异方差、相关性和异常点等问题。</p>
+                <p>The validity of a regression model depends on whether its assumptions are reasonable. Residual analysis (残差分析) is the primary tool for checking model assumptions. By examining graphical patterns in the residuals, we can detect nonlinearity, heteroscedasticity (异方差性), correlation, and outliers (离群值).</p>
 
-                <h3>残差与标准化残差</h3>
+                <h3>Residuals and Standardized Residuals 残差与标准化残差</h3>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 12.12 (各类残差)</div>
+                    <div class="env-title">Definition 12.12 (Types of Residuals)</div>
                     <div class="env-body">
-                        <p>设帽子矩阵为 \\(H = X(X^TX)^{-1}X^T\\)，对角元素为 \\(h_{ii}\\)（杠杆值, leverage）。</p>
+                        <p>Let the hat matrix be \\(H = X(X^TX)^{-1}X^T\\) with diagonal elements \\(h_{ii}\\) (leverage values, 杠杆值).</p>
                         <ul>
-                            <li><strong>普通残差</strong>：\\(e_i = Y_i - \\hat{Y}_i\\)</li>
-                            <li><strong>标准化残差</strong>：\\(r_i = \\dfrac{e_i}{s\\sqrt{1-h_{ii}}}\\)，其中 \\(\\operatorname{Var}(e_i) = \\sigma^2(1-h_{ii})\\)</li>
-                            <li><strong>学生化残差</strong> (studentized deleted residual)：\\(t_i = \\dfrac{e_i}{s_{(i)}\\sqrt{1-h_{ii}}}\\)，其中 \\(s_{(i)}\\) 是删除第 \\(i\\) 个观测后的标准误估计。在 \\(H_0\\) 下 \\(t_i \\sim t(n-3)\\)</li>
+                            <li><strong>Ordinary residuals</strong> (普通残差): \\(e_i = Y_i - \\hat{Y}_i\\)</li>
+                            <li><strong>Standardized residuals</strong> (标准化残差): \\(r_i = \\dfrac{e_i}{s\\sqrt{1-h_{ii}}}\\), where \\(\\operatorname{Var}(e_i) = \\sigma^2(1-h_{ii})\\)</li>
+                            <li><strong>Studentized deleted residuals</strong> (学生化残差): \\(t_i = \\dfrac{e_i}{s_{(i)}\\sqrt{1-h_{ii}}}\\), where \\(s_{(i)}\\) is the standard error estimate with the \\(i\\)-th observation deleted. Under \\(H_0\\), \\(t_i \\sim t(n-3)\\)</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 12.13 (杠杆值的性质)</div>
+                    <div class="env-title">Theorem 12.13 (Properties of Leverage Values)</div>
                     <div class="env-body">
-                        <p>在简单线性回归中，杠杆值为：</p>
+                        <p>In simple linear regression, the leverage values are:</p>
                         \\[h_{ii} = \\frac{1}{n} + \\frac{(X_i - \\bar{X})^2}{S_{xx}}\\]
-                        <p>满足 \\(1/n \\leq h_{ii} \\leq 1\\) 且 \\(\\sum_{i=1}^n h_{ii} = 2\\)（等于参数个数）。\\(X_i\\) 离均值越远，其杠杆值越大，对回归线的影响力也越强。</p>
+                        <p>They satisfy \\(1/n \\leq h_{ii} \\leq 1\\) and \\(\\sum_{i=1}^n h_{ii} = 2\\) (equal to the number of parameters). The farther \\(X_i\\) is from the mean, the larger its leverage value and the stronger its influence on the regression line.</p>
                     </div>
                 </div>
 
-                <h3>决定系数 \\(R^2\\)</h3>
+                <h3>Coefficient of Determination \\(R^2\\) 决定系数</h3>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 12.14 (决定系数)</div>
+                    <div class="env-title">Definition 12.14 (Coefficient of Determination)</div>
                     <div class="env-body">
-                        <p><strong>决定系数</strong> (coefficient of determination) 定义为：</p>
+                        <p>The <strong>coefficient of determination</strong> (决定系数) is defined as:</p>
                         \\[R^2 = \\frac{\\text{SSR}}{\\text{SST}} = 1 - \\frac{\\text{RSS}}{\\text{SST}} = 1 - \\frac{\\sum e_i^2}{\\sum(Y_i - \\bar{Y})^2}\\]
-                        <p>\\(R^2 \\in [0, 1]\\) 度量了模型解释的变异占总变异的比例。在简单线性回归中 \\(R^2 = r_{XY}^2\\)，即样本相关系数的平方。</p>
+                        <p>\\(R^2 \\in [0, 1]\\) measures the proportion of total variation explained by the model. In simple linear regression, \\(R^2 = r_{XY}^2\\), the square of the sample correlation coefficient.</p>
                     </div>
                 </div>
 
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>\\(R^2\\) 高不等于模型正确。Anscombe 四重奏 (Anscombe's quartet) 经典地说明了：完全不同的数据模式可以产生几乎相同的 \\(R^2\\) 和回归方程。因此，残差图的视觉检查不可或缺。此外，\\(R^2\\) 会随着添加变量而单调增加，即使新变量无意义，所以多元回归中应使用调整后的 \\(R^2_{\\text{adj}} = 1 - \\frac{\\text{RSS}/(n-p)}{\\text{SST}/(n-1)}\\)。</p>
+                        <p>A high \\(R^2\\) does not mean the model is correct. Anscombe's quartet classically demonstrates that completely different data patterns can produce nearly identical \\(R^2\\) values and regression equations. Therefore, visual inspection of residual plots is indispensable. Furthermore, \\(R^2\\) monotonically increases when adding variables, even meaningless ones. In multiple regression, the adjusted \\(R^2_{\\text{adj}} = 1 - \\frac{\\text{RSS}/(n-p)}{\\text{SST}/(n-1)}\\) should be used instead.</p>
                     </div>
                 </div>
 
-                <h3>诊断图</h3>
+                <h3>Diagnostic Plots 诊断图</h3>
 
-                <p>典型的四面板残差诊断图包括：</p>
+                <p>A typical four-panel residual diagnostic display includes:</p>
                 <ol>
-                    <li><strong>残差 vs 拟合值</strong>：检查线性和同方差性，理想下无系统模式</li>
-                    <li><strong>正态 Q-Q 图</strong>：检查残差的正态性</li>
-                    <li><strong>Scale-Location 图</strong>：\\(\\sqrt{|r_i|}\\) vs \\(\\hat{Y}_i\\)，检查方差齐性</li>
-                    <li><strong>残差 vs 杠杆值</strong>：识别高影响点（高杠杆 + 大残差）</li>
+                    <li><strong>Residuals vs Fitted</strong>: checks linearity and homoscedasticity; ideally shows no systematic pattern</li>
+                    <li><strong>Normal Q-Q Plot</strong>: checks normality of residuals</li>
+                    <li><strong>Scale-Location Plot</strong>: \\(\\sqrt{|r_i|}\\) vs \\(\\hat{Y}_i\\), checks variance homogeneity</li>
+                    <li><strong>Residuals vs Leverage</strong>: identifies high-influence points (high leverage + large residual)</li>
                 </ol>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 12.15 (Cook 距离)</div>
+                    <div class="env-title">Definition 12.15 (Cook's Distance)</div>
                     <div class="env-body">
-                        <p>Cook 距离度量删除第 \\(i\\) 个观测对所有拟合值的综合影响：</p>
+                        <p>Cook's distance measures the overall influence of deleting the \\(i\\)-th observation on all fitted values:</p>
                         \\[D_i = \\frac{(\\hat{\\mathbf{Y}} - \\hat{\\mathbf{Y}}_{(i)})^T(\\hat{\\mathbf{Y}} - \\hat{\\mathbf{Y}}_{(i)})}{p \\cdot s^2} = \\frac{r_i^2}{p} \\cdot \\frac{h_{ii}}{1-h_{ii}}\\]
-                        <p>其中 \\(p\\) 为参数个数。经验法则：\\(D_i > 1\\) 或 \\(D_i > 4/n\\) 提示该点为强影响点。</p>
+                        <p>where \\(p\\) is the number of parameters. Rule of thumb: \\(D_i > 1\\) or \\(D_i > 4/n\\) suggests a highly influential point.</p>
                     </div>
                 </div>
 
@@ -742,8 +741,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'residual-diagnostics-viz',
-                    title: 'Interactive: 四面板残差诊断图',
-                    description: '生成随机回归数据并查看四种诊断图，可选择不同数据模式',
+                    title: 'Interactive: Four-Panel Residual Diagnostics 四面板残差诊断图',
+                    description: 'Generate random regression data and view four diagnostic plots; select different data patterns to observe violations',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 500, scale: 1,
@@ -973,19 +972,19 @@ window.CHAPTERS.push({
 
                         draw();
 
-                        VizEngine.createButton(controls, '正常数据', function() {
+                        VizEngine.createButton(controls, 'Normal', function() {
                             dataMode = 'normal'; data = generateData(); fit = fitOLS(data.xs, data.ys); draw();
                         });
-                        VizEngine.createButton(controls, '非线性', function() {
+                        VizEngine.createButton(controls, 'Nonlinear', function() {
                             dataMode = 'nonlinear'; data = generateData(); fit = fitOLS(data.xs, data.ys); draw();
                         });
-                        VizEngine.createButton(controls, '异方差', function() {
+                        VizEngine.createButton(controls, 'Heteroscedastic', function() {
                             dataMode = 'heteroscedastic'; data = generateData(); fit = fitOLS(data.xs, data.ys); draw();
                         });
-                        VizEngine.createButton(controls, '离群值', function() {
+                        VizEngine.createButton(controls, 'Outlier', function() {
                             dataMode = 'outlier'; data = generateData(); fit = fitOLS(data.xs, data.ys); draw();
                         });
-                        VizEngine.createButton(controls, '重新生成', function() {
+                        VizEngine.createButton(controls, 'Regenerate', function() {
                             data = generateData(); fit = fitOLS(data.xs, data.ys); draw();
                         });
 
@@ -995,72 +994,72 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '证明在简单线性回归中，\\(R^2 = r_{XY}^2\\)，即决定系数等于 Pearson 相关系数的平方。',
-                    hint: '将 SSR 和 SST 用 \\(S_{xx}, S_{xy}, S_{yy}\\) 表示。',
-                    solution: '\\(\\text{SSR} = \\hat{\\beta}_1^2 S_{xx} = S_{xy}^2/S_{xx}\\)，\\(\\text{SST} = S_{yy}\\)。因此 \\(R^2 = \\text{SSR}/\\text{SST} = S_{xy}^2/(S_{xx} \\cdot S_{yy}) = r_{XY}^2\\)。其中 \\(r_{XY} = S_{xy}/\\sqrt{S_{xx} S_{yy}}\\) 是样本 Pearson 相关系数。'
+                    question: 'Prove that in simple linear regression, \\(R^2 = r_{XY}^2\\), i.e., the coefficient of determination equals the square of the Pearson correlation coefficient.',
+                    hint: 'Express SSR and SST using \\(S_{xx}, S_{xy}, S_{yy}\\).',
+                    solution: '\\(\\text{SSR} = \\hat{\\beta}_1^2 S_{xx} = S_{xy}^2/S_{xx}\\) and \\(\\text{SST} = S_{yy}\\). Therefore \\(R^2 = \\text{SSR}/\\text{SST} = S_{xy}^2/(S_{xx} \\cdot S_{yy}) = r_{XY}^2\\), where \\(r_{XY} = S_{xy}/\\sqrt{S_{xx} S_{yy}}\\) is the sample Pearson correlation coefficient.'
                 },
                 {
-                    question: '一组数据的残差 vs 拟合值图呈现"喇叭形"（左窄右宽）。这意味着什么？应如何处理？',
-                    hint: '考虑方差齐性假设的违背以及可能的变换方法。',
-                    solution: '喇叭形残差图表明存在异方差 (heteroscedasticity)：方差随拟合值增大而增大，违背了 \\(\\operatorname{Var}(\\varepsilon_i) = \\sigma^2\\) 的假设。处理方法包括：(1) 对响应变量取对数或 Box-Cox 变换以稳定方差；(2) 使用加权最小二乘 (WLS)，赋予方差较大的观测较小的权重；(3) 使用 Huber-White sandwich 估计获得异方差稳健标准误。'
+                    question: 'A residuals vs fitted values plot shows a "funnel shape" (narrow on the left, wide on the right). What does this indicate and how should it be addressed?',
+                    hint: 'Consider violation of the homoscedasticity assumption and possible variance-stabilizing transformations.',
+                    solution: 'A funnel-shaped residual plot indicates heteroscedasticity: the variance increases with the fitted values, violating the \\(\\operatorname{Var}(\\varepsilon_i) = \\sigma^2\\) assumption. Remedies include: (1) applying a log or Box-Cox transformation to the response variable to stabilize the variance; (2) using weighted least squares (WLS), assigning smaller weights to observations with larger variance; (3) using Huber-White sandwich estimators to obtain heteroscedasticity-robust standard errors.'
                 },
                 {
-                    question: '证明 \\(\\sum_{i=1}^n h_{ii} = p\\)（参数个数），并解释为什么 \\(h_{ii}\\) 被称为"杠杆值"。',
-                    hint: '利用 \\(\\operatorname{tr}(H) = \\operatorname{tr}(X(X^TX)^{-1}X^T)\\) 和迹的轮换性质。对于"杠杆"的解释，考察 \\(\\hat{Y}_i\\) 对 \\(Y_i\\) 的敏感度。',
-                    solution: '\\(\\sum h_{ii} = \\operatorname{tr}(H) = \\operatorname{tr}(X(X^TX)^{-1}X^T) = \\operatorname{tr}((X^TX)^{-1}X^TX) = \\operatorname{tr}(I_p) = p\\)。杠杆值的命名来自 \\(\\partial \\hat{Y}_i / \\partial Y_i = h_{ii}\\)：改变第 \\(i\\) 个响应值一个单位，拟合值改变 \\(h_{ii}\\) 个单位。当 \\(h_{ii}\\) 接近 1 时，该观测几乎完全"杠杆"了拟合值，即它对回归面施加了极大的影响力。'
+                    question: 'Prove that \\(\\sum_{i=1}^n h_{ii} = p\\) (the number of parameters), and explain why \\(h_{ii}\\) is called the "leverage" value.',
+                    hint: 'Use \\(\\operatorname{tr}(H) = \\operatorname{tr}(X(X^TX)^{-1}X^T)\\) and the cyclic property of the trace. For the "leverage" interpretation, examine the sensitivity of \\(\\hat{Y}_i\\) to \\(Y_i\\).',
+                    solution: '\\(\\sum h_{ii} = \\operatorname{tr}(H) = \\operatorname{tr}(X(X^TX)^{-1}X^T) = \\operatorname{tr}((X^TX)^{-1}X^TX) = \\operatorname{tr}(I_p) = p\\). The name "leverage" comes from the fact that \\(\\partial \\hat{Y}_i / \\partial Y_i = h_{ii}\\): changing the \\(i\\)-th response value by one unit changes the fitted value by \\(h_{ii}\\) units. When \\(h_{ii}\\) is close to 1, that observation almost entirely "leverages" its fitted value, exerting extreme influence on the regression surface.'
                 }
             ]
         },
 
         // ============================================================
-        // Section 5: 预测与置信带
+        // Section 5: Prediction and Confidence Bands
         // ============================================================
         {
             id: 'ch12-sec05',
-            title: '预测与置信带',
+            title: 'Prediction and Confidence Bands',
             content: `
-                <h2>预测与置信带</h2>
+                <h2>Prediction and Confidence Bands 预测与置信带</h2>
 
-                <p>回归分析的重要应用之一是预测。给定一个新的 \\(X\\) 值 \\(x_0\\)，我们需要对 \\(\\mathbb{E}[Y|X=x_0]\\) 或新观测 \\(Y_0\\) 给出区间估计。两者的不确定性来源不同，导致区间宽度有本质差异。</p>
+                <p>One of the key applications of regression analysis is prediction. Given a new \\(X\\) value \\(x_0\\), we need interval estimates for \\(\\mathbb{E}[Y|X=x_0]\\) or for a new observation \\(Y_0\\). The sources of uncertainty differ between these two, leading to fundamentally different interval widths.</p>
 
-                <h3>均值响应的置信区间</h3>
+                <h3>Confidence Interval for Mean Response 均值响应的置信区间</h3>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 12.16 (均值响应的 CI)</div>
+                    <div class="env-title">Theorem 12.16 (CI for Mean Response)</div>
                     <div class="env-body">
-                        <p>对给定 \\(x_0\\)，\\(\\hat{Y}_0 = \\hat{\\beta}_0 + \\hat{\\beta}_1 x_0\\) 是 \\(\\mathbb{E}[Y|X=x_0] = \\beta_0 + \\beta_1 x_0\\) 的无偏估计，方差为：</p>
+                        <p>For a given \\(x_0\\), \\(\\hat{Y}_0 = \\hat{\\beta}_0 + \\hat{\\beta}_1 x_0\\) is an unbiased estimator of \\(\\mathbb{E}[Y|X=x_0] = \\beta_0 + \\beta_1 x_0\\), with variance:</p>
                         \\[\\operatorname{Var}(\\hat{Y}_0) = \\sigma^2 \\left(\\frac{1}{n} + \\frac{(x_0 - \\bar{X})^2}{S_{xx}}\\right)\\]
-                        <p>\\(\\mathbb{E}[Y|X=x_0]\\) 的 \\(100(1-\\alpha)\\%\\) 置信区间为：</p>
-                        \\[\\hat{Y}_0 \\pm t_{\\alpha/2,\,n-2} \\cdot s\\sqrt{\\frac{1}{n} + \\frac{(x_0 - \\bar{X})^2}{S_{xx}}}\\]
+                        <p>A \\(100(1-\\alpha)\\%\\) confidence interval for \\(\\mathbb{E}[Y|X=x_0]\\) is:</p>
+                        \\[\\hat{Y}_0 \\pm t_{\\alpha/2,\\,n-2} \\cdot s\\sqrt{\\frac{1}{n} + \\frac{(x_0 - \\bar{X})^2}{S_{xx}}}\\]
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>置信区间的宽度取决于 \\((x_0 - \\bar{X})^2/S_{xx}\\)：在 \\(x_0 = \\bar{X}\\) 处最窄，远离均值时逐渐展宽，形成双曲线形的"置信带"。这反映了一个自然现象：我们对数据中心附近的回归线位置最有把握，对外推区域最不确定。</p>
+                        <p>The width of the confidence interval depends on \\((x_0 - \\bar{X})^2/S_{xx}\\): it is narrowest at \\(x_0 = \\bar{X}\\) and gradually widens as we move away from the mean, forming a hyperbolic "confidence band." This reflects a natural phenomenon: we are most certain about the regression line's position near the center of the data, and least certain in the extrapolation region.</p>
                     </div>
                 </div>
 
-                <h3>单个新观测的预测区间</h3>
+                <h3>Prediction Interval for a New Observation 单个新观测的预测区间</h3>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 12.17 (预测区间)</div>
+                    <div class="env-title">Theorem 12.17 (Prediction Interval)</div>
                     <div class="env-body">
-                        <p>对新的独立观测 \\(Y_0 = \\beta_0 + \\beta_1 x_0 + \\varepsilon_0\\)，预测误差 \\(Y_0 - \\hat{Y}_0\\) 的方差为：</p>
+                        <p>For a new independent observation \\(Y_0 = \\beta_0 + \\beta_1 x_0 + \\varepsilon_0\\), the variance of the prediction error \\(Y_0 - \\hat{Y}_0\\) is:</p>
                         \\[\\operatorname{Var}(Y_0 - \\hat{Y}_0) = \\sigma^2 \\left(1 + \\frac{1}{n} + \\frac{(x_0 - \\bar{X})^2}{S_{xx}}\\right)\\]
-                        <p>因此 \\(Y_0\\) 的 \\(100(1-\\alpha)\\%\\) 预测区间为：</p>
-                        \\[\\hat{Y}_0 \\pm t_{\\alpha/2,\,n-2} \\cdot s\\sqrt{1 + \\frac{1}{n} + \\frac{(x_0 - \\bar{X})^2}{S_{xx}}}\\]
+                        <p>Therefore a \\(100(1-\\alpha)\\%\\) prediction interval for \\(Y_0\\) is:</p>
+                        \\[\\hat{Y}_0 \\pm t_{\\alpha/2,\\,n-2} \\cdot s\\sqrt{1 + \\frac{1}{n} + \\frac{(x_0 - \\bar{X})^2}{S_{xx}}}\\]
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>预测误差为 \\(Y_0 - \\hat{Y}_0 = (\\beta_0 + \\beta_1 x_0 + \\varepsilon_0) - (\\hat{\\beta}_0 + \\hat{\\beta}_1 x_0)\\)。</p>
-                        <p>由于 \\(\\varepsilon_0\\) 独立于训练数据，\\(Y_0\\) 与 \\(\\hat{Y}_0\\) 不相关，故：</p>
+                        <p>The prediction error is \\(Y_0 - \\hat{Y}_0 = (\\beta_0 + \\beta_1 x_0 + \\varepsilon_0) - (\\hat{\\beta}_0 + \\hat{\\beta}_1 x_0)\\).</p>
+                        <p>Since \\(\\varepsilon_0\\) is independent of the training data, \\(Y_0\\) and \\(\\hat{Y}_0\\) are uncorrelated, so:</p>
                         \\[\\operatorname{Var}(Y_0 - \\hat{Y}_0) = \\operatorname{Var}(Y_0) + \\operatorname{Var}(\\hat{Y}_0) = \\sigma^2 + \\sigma^2\\left(\\frac{1}{n} + \\frac{(x_0 - \\bar{X})^2}{S_{xx}}\\right)\\]
-                        <p>前面的 \\(\\sigma^2\\) 来自新观测自身的随机性（不可约噪声）。标准化后 \\((Y_0 - \\hat{Y}_0)/\\text{se} \\sim t(n-2)\\)。</p>
+                        <p>The first \\(\\sigma^2\\) comes from the inherent randomness of the new observation (irreducible noise). After standardization, \\((Y_0 - \\hat{Y}_0)/\\text{se} \\sim t(n-2)\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
@@ -1068,14 +1067,14 @@ window.CHAPTERS.push({
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>预测区间总是比置信区间宽，因为预测区间包含了不可约的随机误差 \\(\\sigma^2\\)。即使 \\(n \\to \\infty\\)，预测区间的宽度也不会收缩到零（趋于 \\(\\pm t_{\\alpha/2,\\infty} \\cdot \\sigma \\approx \\pm z_{\\alpha/2} \\cdot \\sigma\\)），而置信区间会趋于零。</p>
+                        <p>The prediction interval is always wider than the confidence interval because it includes the irreducible random error \\(\\sigma^2\\). Even as \\(n \\to \\infty\\), the prediction interval width does not shrink to zero (it approaches \\(\\pm t_{\\alpha/2,\\infty} \\cdot \\sigma \\approx \\pm z_{\\alpha/2} \\cdot \\sigma\\)), whereas the confidence interval does shrink to zero.</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>同时对所有 \\(x_0\\) 的置信带（Working-Hotelling 带）使用 \\(\\sqrt{2F_{\\alpha,2,n-2}}\\) 替代 \\(t_{\\alpha/2,n-2}\\)，以控制同时覆盖概率。Scheffé 方法同样适用。这比逐点置信区间更保守。</p>
+                        <p>For a simultaneous confidence band over all \\(x_0\\) (the Working-Hotelling band), replace \\(t_{\\alpha/2,n-2}\\) with \\(\\sqrt{2F_{\\alpha,2,n-2}}\\) to control the simultaneous coverage probability. The Scheffe method is also applicable. These bands are more conservative than pointwise confidence intervals.</p>
                     </div>
                 </div>
 
@@ -1084,21 +1083,21 @@ window.CHAPTERS.push({
                 <div class="env-block example">
                     <div class="env-title">Example 12.18</div>
                     <div class="env-body">
-                        <p>考虑 Example 12.3 的数据（\\(n=5, \\hat{\\beta}_0=0.05, \\hat{\\beta}_1=1.99, s^2=0.0293, \\bar{X}=3, S_{xx}=10\\)）。在 \\(x_0 = 4\\) 处：</p>
+                        <p>Consider the data from Example 12.3 (\\(n=5, \\hat{\\beta}_0=0.05, \\hat{\\beta}_1=1.99, s^2=0.0293, \\bar{X}=3, S_{xx}=10\\)). At \\(x_0 = 4\\):</p>
                         <ul>
-                            <li>点预测：\\(\\hat{Y}_0 = 0.05 + 1.99 \\times 4 = 8.01\\)</li>
-                            <li>均值 CI（95%，\\(t_{0.025,3}=3.182\\)）：\\(8.01 \\pm 3.182 \\times \\sqrt{0.0293} \\times \\sqrt{0.2+0.1} = 8.01 \\pm 0.30\\)，即 \\([7.71, 8.31]\\)</li>
-                            <li>预测 PI（95%）：\\(8.01 \\pm 3.182 \\times \\sqrt{0.0293} \\times \\sqrt{1.3} = 8.01 \\pm 0.62\\)，即 \\([7.39, 8.63]\\)</li>
+                            <li>Point prediction: \\(\\hat{Y}_0 = 0.05 + 1.99 \\times 4 = 8.01\\)</li>
+                            <li>95% CI for the mean (\\(t_{0.025,3}=3.182\\)): \\(8.01 \\pm 3.182 \\times \\sqrt{0.0293} \\times \\sqrt{0.2+0.1} = 8.01 \\pm 0.30\\), i.e., \\([7.71, 8.31]\\)</li>
+                            <li>95% prediction interval: \\(8.01 \\pm 3.182 \\times \\sqrt{0.0293} \\times \\sqrt{1.3} = 8.01 \\pm 0.62\\), i.e., \\([7.39, 8.63]\\)</li>
                         </ul>
-                        <p>预测区间确实更宽。</p>
+                        <p>The prediction interval is indeed wider.</p>
                     </div>
                 </div>
             `,
             visualizations: [
                 {
                     id: 'confidence-prediction-bands-viz',
-                    title: 'Interactive: 置信带与预测带',
-                    description: '查看回归线的置信带（窄）和预测带（宽），滑动调节样本量和噪声水平',
+                    title: 'Interactive: Confidence Band and Prediction Band 置信带与预测带',
+                    description: 'View the confidence band (narrow) and prediction band (wide) for the regression line; adjust sample size and noise level',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400, scale: 35,
@@ -1243,7 +1242,7 @@ window.CHAPTERS.push({
                             draw();
                         });
 
-                        VizEngine.createButton(controls, '重新采样', function() {
+                        VizEngine.createButton(controls, 'Resample', function() {
                             model = generateAndFit();
                             draw();
                         });
@@ -1254,19 +1253,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '解释为什么预测区间不能随 \\(n \\to \\infty\\) 趋于零宽度，而置信区间可以。这两种区间在实际应用中分别回答什么问题？',
-                    hint: '比较两种方差公式中的项，特别是前面的"1"。',
-                    solution: '置信区间的方差 \\(\\sigma^2(1/n + (x_0-\\bar{X})^2/S_{xx})\\) 中所有项随 \\(n \\to \\infty\\) 趋于零，因为它只反映参数估计的不确定性。预测区间的方差 \\(\\sigma^2(1 + 1/n + (x_0-\\bar{X})^2/S_{xx})\\) 中的"1"来自新观测自身的随机性 \\(\\varepsilon_0\\)，这是不可约的。置信区间回答"回归线在 \\(x_0\\) 处的真实高度是多少"，预测区间回答"下一个在 \\(x_0\\) 处的新观测值会落在哪里"。'
+                    question: 'Explain why the prediction interval cannot shrink to zero width as \\(n \\to \\infty\\), whereas the confidence interval can. What questions do these two types of intervals answer in practice?',
+                    hint: 'Compare the terms in the two variance formulas, especially the leading "1".',
+                    solution: 'All terms in the confidence interval variance \\(\\sigma^2(1/n + (x_0-\\bar{X})^2/S_{xx})\\) vanish as \\(n \\to \\infty\\), since it only reflects uncertainty in parameter estimation. The prediction interval variance \\(\\sigma^2(1 + 1/n + (x_0-\\bar{X})^2/S_{xx})\\) contains an irreducible "1" from the new observation\'s own randomness \\(\\varepsilon_0\\). The confidence interval answers "where is the true height of the regression line at \\(x_0\\)?" while the prediction interval answers "where will the next new observation at \\(x_0\\) fall?"'
                 },
                 {
-                    question: '证明：对所有 \\(x_0\\)，均值响应置信区间在 \\(x_0 = \\bar{X}\\) 处最窄。如果需要在某点做最精确的预测，最优的实验设计是什么？',
-                    hint: '分析 \\(\\operatorname{Var}(\\hat{Y}_0)\\) 关于 \\(x_0\\) 的变化。',
-                    solution: '\\(\\operatorname{Var}(\\hat{Y}_0) = \\sigma^2(1/n + (x_0-\\bar{X})^2/S_{xx})\\) 是 \\(x_0\\) 的二次函数，在 \\(x_0 = \\bar{X}\\) 处取最小值 \\(\\sigma^2/n\\)。如果需要在某特定点 \\(x^*\\) 做最精确预测，应选择设计点使得 \\(\\bar{X} = x^*\\)。同时，为使 \\(1/S_{xx}\\) 最小（即 \\(S_{xx}\\) 最大），应让设计点尽量分散。最优设计（对斜率估计）是将一半观测放在设计空间的两端。'
+                    question: 'Prove that for all \\(x_0\\), the confidence interval for the mean response is narrowest at \\(x_0 = \\bar{X}\\). If one needs the most precise prediction at a particular point, what is the optimal experimental design?',
+                    hint: 'Analyze \\(\\operatorname{Var}(\\hat{Y}_0)\\) as a function of \\(x_0\\).',
+                    solution: '\\(\\operatorname{Var}(\\hat{Y}_0) = \\sigma^2(1/n + (x_0-\\bar{X})^2/S_{xx})\\) is a quadratic function of \\(x_0\\), minimized at \\(x_0 = \\bar{X}\\) with value \\(\\sigma^2/n\\). If one needs the most precise prediction at a specific point \\(x^*\\), the design points should be chosen so that \\(\\bar{X} = x^*\\). Additionally, to minimize \\(1/S_{xx}\\) (i.e., maximize \\(S_{xx}\\)), the design points should be spread as widely as possible. The optimal design (for slope estimation) places half the observations at each end of the design space.'
                 },
                 {
-                    question: '假设在回归分析中，我们错误地使用置信区间而非预测区间来评估单个新观测的覆盖概率。真实的覆盖概率与名义水平 \\(1-\\alpha\\) 相比如何？给出定性论证。',
-                    hint: '置信区间比预测区间窄，覆盖概率意味着新观测落在区间内的概率。',
-                    solution: '置信区间比预测区间窄（缺少 \\(\\sigma^2\\) 的不可约项），因此新观测落在置信区间内的概率小于 \\(1-\\alpha\\)，即真实覆盖概率低于名义水平。具体地，当 \\(n\\) 很大时，置信区间近似为 \\(\\hat{Y}_0 \\pm z_{\\alpha/2}\\sigma/\\sqrt{n}\\)（非常窄），而新观测 \\(Y_0\\) 的波动约为 \\(\\pm z_{\\alpha/2}\\sigma\\)，覆盖概率趋近于 0。这是一个在实践中常见的错误。'
+                    question: 'Suppose in a regression analysis one mistakenly uses the confidence interval instead of the prediction interval to assess the coverage probability of a single new observation. How does the actual coverage probability compare to the nominal level \\(1-\\alpha\\)? Provide a qualitative argument.',
+                    hint: 'The confidence interval is narrower than the prediction interval; coverage probability refers to the probability that the new observation falls within the interval.',
+                    solution: 'The confidence interval is narrower than the prediction interval (it lacks the irreducible \\(\\sigma^2\\) term), so the probability of a new observation falling within the confidence interval is less than \\(1-\\alpha\\), i.e., the actual coverage probability is below the nominal level. Specifically, when \\(n\\) is large, the confidence interval is approximately \\(\\hat{Y}_0 \\pm z_{\\alpha/2}\\sigma/\\sqrt{n}\\) (very narrow), while a new observation \\(Y_0\\) fluctuates by roughly \\(\\pm z_{\\alpha/2}\\sigma\\), so the coverage probability approaches 0. This is a common mistake in practice.'
                 }
             ]
         }

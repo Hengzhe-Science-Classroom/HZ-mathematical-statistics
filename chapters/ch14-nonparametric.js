@@ -2,86 +2,86 @@ window.CHAPTERS = window.CHAPTERS || [];
 window.CHAPTERS.push({
     id: 'ch14',
     number: 14,
-    title: '非参数方法',
+    title: 'Nonparametric Methods',
     subtitle: 'Nonparametric Methods',
     sections: [
-        // ===== Section 1: 秩检验 (Rank-Based Tests) =====
+        // ===== Section 1: Rank-Based Tests =====
         {
             id: 'ch14-sec01',
-            title: '秩检验',
+            title: 'Rank-Based Tests',
             content: `
-                <h2>秩检验 Rank-Based Tests</h2>
+                <h2>Rank-Based Tests 秩检验</h2>
 
-                <p>参数检验（如 \\(t\\) 检验、\\(F\\) 检验）依赖于对总体分布的假设，通常要求正态性。
-                当这些假设不成立时，<strong>非参数方法</strong>提供了一类不依赖分布形式的替代方案。
-                非参数检验的核心思想是用数据的<strong>秩 (rank)</strong>代替原始观测值，从而消除分布假设。</p>
+                <p>Parametric tests (such as the \\(t\\)-test and \\(F\\)-test) rely on assumptions about the population distribution, typically requiring normality.
+                When these assumptions do not hold, <strong>nonparametric methods (非参数方法)</strong> provide alternatives that do not depend on the form of the distribution.
+                The core idea of nonparametric tests is to replace raw observations with their <strong>ranks (秩)</strong>, thereby eliminating distributional assumptions.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 14.1 (秩 Rank)</div>
+                    <div class="env-title">Definition 14.1 (Rank)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n\\) 为一组样本。将其从小到大排列为
-                        \\(X_{(1)} \\leq X_{(2)} \\leq \\cdots \\leq X_{(n)}\\)。
-                        样本 \\(X_i\\) 的<strong>秩</strong> \\(R_i\\) 定义为 \\(X_i\\) 在排列中的位置：</p>
+                        <p>Let \\(X_1, \\ldots, X_n\\) be a sample. Arrange them in increasing order as
+                        \\(X_{(1)} \\leq X_{(2)} \\leq \\cdots \\leq X_{(n)}\\).
+                        The <strong>rank</strong> \\(R_i\\) of sample \\(X_i\\) is defined as the position of \\(X_i\\) in the ordered arrangement:</p>
                         \\[R_i = \\#\\{j : X_j \\leq X_i\\}\\]
-                        <p>当存在<strong>结 (ties)</strong>（即相同值）时，通常取<strong>平均秩</strong>。</p>
+                        <p>When there are <strong>ties (结)</strong> (i.e., equal values), one typically uses <strong>average ranks</strong>.</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>秩保留了数据的顺序信息但丢弃了具体数值。这使得基于秩的统计量对异常值和分布偏斜具有天然的<strong>稳健性 (robustness)</strong>。
-                        正如"名次"比"分数"更能反映相对位置一样，秩反映的是观测值之间的相对大小关系。</p>
+                        <p>Ranks preserve the order information in the data but discard the actual numerical values. This gives rank-based statistics a natural <strong>robustness (稳健性)</strong> against outliers and distributional skewness.
+                        Just as "placement" is more informative about relative position than "raw score," ranks reflect the relative magnitude among observations.</p>
                     </div>
                 </div>
 
-                <h3>符号检验 (Sign Test)</h3>
+                <h3>Sign Test 符号检验</h3>
 
-                <p>符号检验是最简单的非参数检验，用于检验总体中位数。</p>
+                <p>The sign test (符号检验) is the simplest nonparametric test, used to test the population median.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 14.2 (符号检验)</div>
+                    <div class="env-title">Definition 14.2 (Sign Test)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\sim F\\)，检验 \\(H_0: \\operatorname{median}(F) = m_0\\)。
-                        令 \\(S^+ = \\#\\{i : X_i > m_0\\}\\)。在 \\(H_0\\) 下（假设 \\(F\\) 在 \\(m_0\\) 处连续），</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\sim F\\). Test \\(H_0: \\operatorname{median}(F) = m_0\\).
+                        Let \\(S^+ = \\#\\{i : X_i > m_0\\}\\). Under \\(H_0\\) (assuming \\(F\\) is continuous at \\(m_0\\)),</p>
                         \\[S^+ \\sim \\operatorname{Binomial}(n, 1/2)\\]
-                        <p>拒绝域根据备择假设确定：双侧时拒绝当 \\(S^+\\) 太大或太小。</p>
+                        <p>The rejection region is determined by the alternative hypothesis: for a two-sided test, reject when \\(S^+\\) is too large or too small.</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
                     <div class="env-title">Example 14.3</div>
                     <div class="env-body">
-                        <p>10 名学生的考试成绩为 72, 85, 63, 91, 78, 55, 88, 79, 82, 70。
-                        检验中位数是否为 75。正号个数 \\(S^+ = \\#\\{85, 91, 78, 88, 79, 82\\} = 6\\)。
-                        在 \\(H_0\\) 下 \\(S^+ \\sim \\operatorname{Bin}(10, 0.5)\\)，
-                        \\(P(S^+ \\geq 6) = \\sum_{k=6}^{10} \\binom{10}{k} 0.5^{10} \\approx 0.377\\)，
-                        双侧 \\(p\\)-值约 0.754，不拒绝 \\(H_0\\)。</p>
+                        <p>The exam scores of 10 students are 72, 85, 63, 91, 78, 55, 88, 79, 82, 70.
+                        Test whether the median is 75. The number of positive signs is \\(S^+ = \\#\\{85, 91, 78, 88, 79, 82\\} = 6\\).
+                        Under \\(H_0\\), \\(S^+ \\sim \\operatorname{Bin}(10, 0.5)\\),
+                        \\(P(S^+ \\geq 6) = \\sum_{k=6}^{10} \\binom{10}{k} 0.5^{10} \\approx 0.377\\),
+                        so the two-sided \\(p\\)-value is approximately 0.754. We do not reject \\(H_0\\).</p>
                     </div>
                 </div>
 
-                <h3>Wilcoxon 符号秩检验 (Signed-Rank Test)</h3>
+                <h3>Wilcoxon Signed-Rank Test Wilcoxon 符号秩检验</h3>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 14.4 (Wilcoxon 符号秩检验)</div>
+                    <div class="env-title">Definition 14.4 (Wilcoxon Signed-Rank Test)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n\\) 来自关于 \\(m_0\\) 对称的连续分布 \\(F\\)。
-                        检验 \\(H_0: m_0 = 0\\)（即 \\(F\\) 关于 0 对称）。</p>
+                        <p>Let \\(X_1, \\ldots, X_n\\) come from a continuous distribution \\(F\\) that is symmetric about \\(m_0\\).
+                        Test \\(H_0: m_0 = 0\\) (i.e., \\(F\\) is symmetric about 0).</p>
                         <ol>
-                            <li>计算 \\(|X_i|\\) 并对其排秩，得到秩 \\(R_i^*\\)。</li>
-                            <li>Wilcoxon 符号秩统计量为
+                            <li>Compute \\(|X_i|\\) and rank them, obtaining ranks \\(R_i^*\\).</li>
+                            <li>The Wilcoxon signed-rank statistic is
                             \\[W^+ = \\sum_{i: X_i > 0} R_i^*\\]
-                            即正值样本的秩之和。</li>
+                            i.e., the sum of ranks of the positive observations.</li>
                         </ol>
-                        <p>在 \\(H_0\\) 下，\\(\\mathbb{E}[W^+] = n(n+1)/4\\)，\\(\\operatorname{Var}(W^+) = n(n+1)(2n+1)/24\\)。
-                        当 \\(n\\) 较大时，\\(W^+\\) 近似正态。</p>
+                        <p>Under \\(H_0\\), \\(\\mathbb{E}[W^+] = n(n+1)/4\\) and \\(\\operatorname{Var}(W^+) = n(n+1)(2n+1)/24\\).
+                        For large \\(n\\), \\(W^+\\) is approximately normal.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 14.5 (Wilcoxon 符号秩检验的渐近正态性)</div>
+                    <div class="env-title">Theorem 14.5 (Asymptotic Normality of the Wilcoxon Signed-Rank Test)</div>
                     <div class="env-body">
-                        <p>在 \\(H_0\\) 下，当 \\(n \\to \\infty\\) 时，</p>
+                        <p>Under \\(H_0\\), as \\(n \\to \\infty\\),</p>
                         \\[Z = \\frac{W^+ - n(n+1)/4}{\\sqrt{n(n+1)(2n+1)/24}} \\xrightarrow{d} N(0, 1)\\]
                     </div>
                 </div>
@@ -89,45 +89,45 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof (sketch)</div>
                     <div class="env-body">
-                        <p>在 \\(H_0\\) 下，每个 \\(X_i\\) 为正或为负的概率各为 \\(1/2\\)，且符号相互独立。
-                        \\(W^+ = \\sum_{i=1}^n R_i^* \\cdot \\mathbf{1}(X_i > 0)\\) 是独立随机变量之和。
-                        由 Lindeberg CLT，标准化后趋于标准正态分布。</p>
+                        <p>Under \\(H_0\\), each \\(X_i\\) is positive or negative with equal probability \\(1/2\\), and the signs are mutually independent.
+                        \\(W^+ = \\sum_{i=1}^n R_i^* \\cdot \\mathbf{1}(X_i > 0)\\) is a sum of independent random variables.
+                        By the Lindeberg CLT, the standardized version converges to a standard normal distribution.</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
-                <h3>Wilcoxon 秩和检验 (Rank-Sum Test / Mann-Whitney U)</h3>
+                <h3>Wilcoxon Rank-Sum Test (Mann-Whitney U) Wilcoxon 秩和检验</h3>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 14.6 (Wilcoxon 秩和检验)</div>
+                    <div class="env-title">Definition 14.6 (Wilcoxon Rank-Sum Test)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_m \\sim F\\) 和 \\(Y_1, \\ldots, Y_n \\sim G\\) 为两个独立样本。
-                        检验 \\(H_0: F = G\\)。</p>
+                        <p>Let \\(X_1, \\ldots, X_m \\sim F\\) and \\(Y_1, \\ldots, Y_n \\sim G\\) be two independent samples.
+                        Test \\(H_0: F = G\\).</p>
                         <ol>
-                            <li>合并两组数据共 \\(N = m + n\\) 个，对全体排秩。</li>
-                            <li>Wilcoxon 秩和统计量为第一组样本秩的总和：
+                            <li>Combine both groups into \\(N = m + n\\) observations and rank all of them together.</li>
+                            <li>The Wilcoxon rank-sum statistic is the sum of ranks of the first group:
                             \\[W = \\sum_{i=1}^m R_i\\]
-                            其中 \\(R_i\\) 是 \\(X_i\\) 在合并样本中的秩。</li>
+                            where \\(R_i\\) is the rank of \\(X_i\\) in the combined sample.</li>
                         </ol>
-                        <p>在 \\(H_0\\) 下，\\(\\mathbb{E}[W] = m(N+1)/2\\)，\\(\\operatorname{Var}(W) = mn(N+1)/12\\)。</p>
+                        <p>Under \\(H_0\\), \\(\\mathbb{E}[W] = m(N+1)/2\\) and \\(\\operatorname{Var}(W) = mn(N+1)/12\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
-                    <div class="env-title">Remark (Mann-Whitney U 统计量)</div>
+                    <div class="env-title">Remark (Mann-Whitney U Statistic)</div>
                     <div class="env-body">
-                        <p>Mann-Whitney \\(U\\) 统计量与 Wilcoxon 秩和统计量的关系为：</p>
+                        <p>The Mann-Whitney \\(U\\) statistic is related to the Wilcoxon rank-sum statistic by:</p>
                         \\[U = W - \\frac{m(m+1)}{2}\\]
-                        <p>\\(U\\) 等于"第一组的值大于第二组的值"的配对数。两者是等价的检验。</p>
+                        <p>\\(U\\) equals the number of pairs where a value from the first group exceeds a value from the second group. The two tests are equivalent.</p>
                     </div>
                 </div>
 
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>Wilcoxon 秩和检验严格来说检验的是 \\(F = G\\)，而非仅仅"位置相同"。
-                        若两分布有不同的形状或方差，拒绝 \\(H_0\\) 不一定意味着均值（或中位数）不同。
-                        在位置偏移模型 \\(G(x) = F(x - \\Delta)\\) 下，才可解读为 \\(\\Delta \\neq 0\\) 的检验。</p>
+                        <p>Strictly speaking, the Wilcoxon rank-sum test tests \\(F = G\\), not merely "equal locations."
+                        If the two distributions differ in shape or variance, rejecting \\(H_0\\) does not necessarily imply different means (or medians).
+                        Only under the location-shift model \\(G(x) = F(x - \\Delta)\\) can the test be interpreted as testing \\(\\Delta \\neq 0\\).</p>
                     </div>
                 </div>
 
@@ -136,8 +136,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'rank-assignment-viz',
-                    title: 'Interactive: 秩分配与 Wilcoxon 秩和检验',
-                    description: '观察两组数据如何合并排秩，以及秩和统计量的计算过程',
+                    title: 'Interactive: Rank Assignment & Wilcoxon Rank-Sum Test 秩分配与 Wilcoxon 秩和检验',
+                    description: 'Observe how two groups are combined and ranked, and how the rank-sum statistic is computed 观察两组数据如何合并排秩以及秩和统计量的计算过程',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 420,
@@ -266,45 +266,45 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设有样本 3, 7, 2, 9, 5。用符号检验检验 \\(H_0: \\text{median} = 4\\) 对 \\(H_1: \\text{median} > 4\\)。计算 \\(S^+\\) 和 \\(p\\)-值。',
-                    hint: '计算大于 4 的样本个数，然后用 Binomial(5, 0.5) 分布求概率。',
-                    solution: '大于 4 的有 7, 9, 5，故 \\(S^+ = 3\\)。在 \\(H_0\\) 下 \\(S^+ \\sim \\text{Bin}(5, 0.5)\\)。\\(p = P(S^+ \\geq 3) = \\binom{5}{3}(0.5)^5 + \\binom{5}{4}(0.5)^5 + \\binom{5}{5}(0.5)^5 = (10 + 5 + 1)/32 = 0.5\\)。不拒绝 \\(H_0\\)。'
+                    question: 'Given the sample 3, 7, 2, 9, 5, use the sign test to test \\(H_0: \\text{median} = 4\\) against \\(H_1: \\text{median} > 4\\). Compute \\(S^+\\) and the \\(p\\)-value.',
+                    hint: 'Count the number of observations greater than 4, then use the Binomial(5, 0.5) distribution to compute the probability.',
+                    solution: 'The values greater than 4 are 7, 9, 5, so \\(S^+ = 3\\). Under \\(H_0\\), \\(S^+ \\sim \\text{Bin}(5, 0.5)\\). \\(p = P(S^+ \\geq 3) = \\binom{5}{3}(0.5)^5 + \\binom{5}{4}(0.5)^5 + \\binom{5}{5}(0.5)^5 = (10 + 5 + 1)/32 = 0.5\\). We do not reject \\(H_0\\).'
                 },
                 {
-                    question: '解释为什么 Wilcoxon 符号秩检验比符号检验更有效率（power 更高）。',
-                    hint: '考虑两种检验分别使用了数据的哪些信息。',
-                    solution: '符号检验只利用了 \\(X_i - m_0\\) 的正负号（二值信息），而 Wilcoxon 符号秩检验还利用了 \\(|X_i - m_0|\\) 的相对大小（秩信息）。秩信息捕捉了偏离零的程度，因此在对称分布假设下检验功效更高。对于正态分布，Wilcoxon 的渐近相对效率 (ARE) 约为 \\(3/\\pi \\approx 0.955\\)。'
+                    question: 'Explain why the Wilcoxon signed-rank test has higher power than the sign test.',
+                    hint: 'Consider what information each test uses from the data.',
+                    solution: 'The sign test uses only the signs of \\(X_i - m_0\\) (binary information), whereas the Wilcoxon signed-rank test also uses the relative magnitudes of \\(|X_i - m_0|\\) (rank information). Rank information captures the degree of departure from zero, so the test has higher power under symmetric distributions. For normal distributions, the asymptotic relative efficiency (ARE) of the Wilcoxon signed-rank test is approximately \\(3/\\pi \\approx 0.955\\).'
                 },
                 {
-                    question: '两组独立样本 \\(X: 1.2, 3.4, 2.7\\) 和 \\(Y: 4.1, 5.3, 3.8\\)。计算 Wilcoxon 秩和统计量 \\(W\\) 和 Mann-Whitney \\(U\\) 统计量。',
-                    hint: '先合并排秩：1.2, 2.7, 3.4, 3.8, 4.1, 5.3。然后求 X 组的秩之和。',
-                    solution: '合并排序：1.2(X), 2.7(X), 3.4(X), 3.8(Y), 4.1(Y), 5.3(Y)。X 组秩为 1, 2, 3，故 \\(W = 1 + 2 + 3 = 6\\)。Mann-Whitney \\(U = W - m(m+1)/2 = 6 - 3 \\cdot 4/2 = 0\\)。\\(U = 0\\) 意味着 X 的每个值都小于 Y 的每个值，暗示强烈的位置差异。'
+                    question: 'Two independent samples are \\(X: 1.2, 3.4, 2.7\\) and \\(Y: 4.1, 5.3, 3.8\\). Compute the Wilcoxon rank-sum statistic \\(W\\) and the Mann-Whitney \\(U\\) statistic.',
+                    hint: 'First combine and rank: 1.2, 2.7, 3.4, 3.8, 4.1, 5.3. Then sum the ranks of the X group.',
+                    solution: 'Combined sorted: 1.2(X), 2.7(X), 3.4(X), 3.8(Y), 4.1(Y), 5.3(Y). The ranks of the X group are 1, 2, 3, so \\(W = 1 + 2 + 3 = 6\\). Mann-Whitney \\(U = W - m(m+1)/2 = 6 - 3 \\cdot 4/2 = 0\\). \\(U = 0\\) means every value in X is less than every value in Y, suggesting a strong location difference.'
                 }
             ]
         },
 
-        // ===== Section 2: 多样本非参数检验 (Multi-Sample Nonparametric Tests) =====
+        // ===== Section 2: Multi-Sample Nonparametric Tests =====
         {
             id: 'ch14-sec02',
-            title: '多样本非参数检验',
+            title: 'Multi-Sample Nonparametric Tests',
             content: `
-                <h2>多样本非参数检验 Multi-Sample Nonparametric Tests</h2>
+                <h2>Multi-Sample Nonparametric Tests 多样本非参数检验</h2>
 
-                <p>当比较两组以上时，参数方法使用单因素 ANOVA（假设正态和等方差）。
-                非参数替代方案是 <strong>Kruskal-Wallis 检验</strong>（独立样本）和 <strong>Friedman 检验</strong>（配对/重复测量）。</p>
+                <p>When comparing more than two groups, the parametric approach uses one-way ANOVA (assuming normality and equal variances).
+                The nonparametric alternatives are the <strong>Kruskal-Wallis test</strong> (for independent samples) and the <strong>Friedman test</strong> (for paired/repeated measures).</p>
 
-                <h3>Kruskal-Wallis 检验</h3>
+                <h3>Kruskal-Wallis Test Kruskal-Wallis 检验</h3>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 14.7 (Kruskal-Wallis 检验)</div>
+                    <div class="env-title">Definition 14.7 (Kruskal-Wallis Test)</div>
                     <div class="env-body">
-                        <p>设有 \\(k\\) 组独立样本，第 \\(j\\) 组样本量为 \\(n_j\\)，总量 \\(N = \\sum_{j=1}^k n_j\\)。
-                        合并全部数据排秩，设第 \\(j\\) 组的秩和为 \\(R_j = \\sum_{i=1}^{n_j} R_{ji}\\)，
-                        平均秩为 \\(\\bar{R}_j = R_j / n_j\\)。Kruskal-Wallis 统计量为：</p>
+                        <p>Suppose there are \\(k\\) independent groups with sample sizes \\(n_j\\) for the \\(j\\)-th group and total size \\(N = \\sum_{j=1}^k n_j\\).
+                        Combine all data and assign ranks. Let \\(R_j = \\sum_{i=1}^{n_j} R_{ji}\\) be the rank sum of the \\(j\\)-th group
+                        and \\(\\bar{R}_j = R_j / n_j\\) be the mean rank. The Kruskal-Wallis statistic is:</p>
                         \\[H = \\frac{12}{N(N+1)} \\sum_{j=1}^{k} n_j \\left(\\bar{R}_j - \\frac{N+1}{2}\\right)^2\\]
-                        <p>等价形式：</p>
+                        <p>Equivalent form:</p>
                         \\[H = \\frac{12}{N(N+1)} \\sum_{j=1}^{k} \\frac{R_j^2}{n_j} - 3(N+1)\\]
-                        <p>在 \\(H_0: F_1 = F_2 = \\cdots = F_k\\) 下，当各 \\(n_j\\) 充分大时，</p>
+                        <p>Under \\(H_0: F_1 = F_2 = \\cdots = F_k\\), when each \\(n_j\\) is sufficiently large,</p>
                         \\[H \\xrightarrow{d} \\chi^2_{k-1}\\]
                     </div>
                 </div>
@@ -312,54 +312,54 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>Kruskal-Wallis 检验本质上是对秩做单因素 ANOVA。
-                        如果各组的分布相同，那么秩在各组中应该均匀分布，
-                        每组的平均秩应接近总体平均秩 \\((N+1)/2\\)。
-                        \\(H\\) 统计量衡量各组平均秩偏离总平均秩的程度。</p>
+                        <p>The Kruskal-Wallis test is essentially a one-way ANOVA on ranks.
+                        If all groups share the same distribution, then ranks should be evenly spread across groups,
+                        and each group's mean rank should be close to the overall mean rank \\((N+1)/2\\).
+                        The \\(H\\) statistic measures how much the group mean ranks deviate from the overall mean rank.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 14.8 (Kruskal-Wallis 与 ANOVA 的关系)</div>
+                    <div class="env-title">Theorem 14.8 (Relationship Between Kruskal-Wallis and ANOVA)</div>
                     <div class="env-body">
-                        <p>Kruskal-Wallis 统计量 \\(H\\) 等价于对秩数据进行单因素 ANOVA 得到的 \\(F\\) 统计量的单调变换。
-                        具体地，若对秩 \\(R_1, \\ldots, R_N\\) 按组做 ANOVA 得到 \\(F\\) 值，则</p>
+                        <p>The Kruskal-Wallis statistic \\(H\\) is equivalent to a monotone transformation of the \\(F\\) statistic obtained from a one-way ANOVA on the ranks.
+                        Specifically, if one performs ANOVA on the ranks \\(R_1, \\ldots, R_N\\) grouped by treatment and obtains an \\(F\\) value, then</p>
                         \\[H = \\frac{(N-1) \\cdot F}{F \\cdot (k-1)/(N-k) + (N-k)/(k-1)}\\]
-                        <p>（精确关系取决于具体参数化形式，但核心思想成立）。</p>
+                        <p>(The exact relationship depends on the specific parameterization, but the core idea holds.)</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
                     <div class="env-title">Example 14.9</div>
                     <div class="env-body">
-                        <p>三组数据：A = {2.1, 3.4, 1.8}，B = {5.2, 4.7, 6.1}，C = {3.9, 4.0, 3.5}。</p>
-                        <p>合并排序：1.8(A), 2.1(A), 3.4(A), 3.5(C), 3.9(C), 4.0(C), 4.7(B), 5.2(B), 6.1(B)。</p>
-                        <p>秩和：\\(R_A = 1+2+3 = 6\\)，\\(R_B = 7+8+9 = 24\\)，\\(R_C = 4+5+6 = 15\\)。</p>
+                        <p>Three groups: A = {2.1, 3.4, 1.8}, B = {5.2, 4.7, 6.1}, C = {3.9, 4.0, 3.5}.</p>
+                        <p>Combined sorted: 1.8(A), 2.1(A), 3.4(A), 3.5(C), 3.9(C), 4.0(C), 4.7(B), 5.2(B), 6.1(B).</p>
+                        <p>Rank sums: \\(R_A = 1+2+3 = 6\\), \\(R_B = 7+8+9 = 24\\), \\(R_C = 4+5+6 = 15\\).</p>
                         <p>\\(H = \\frac{12}{9 \\cdot 10}\\left(\\frac{36}{3} + \\frac{576}{3} + \\frac{225}{3}\\right) - 30 = \\frac{12}{90} \\cdot 279 - 30 = 37.2 - 30 = 7.2\\)</p>
-                        <p>在 \\(\\chi^2_2\\) 下，\\(P(\\chi^2_2 > 7.2) \\approx 0.027\\)，在 \\(\\alpha = 0.05\\) 下拒绝 \\(H_0\\)。</p>
+                        <p>Under \\(\\chi^2_2\\), \\(P(\\chi^2_2 > 7.2) \\approx 0.027\\). At \\(\\alpha = 0.05\\), we reject \\(H_0\\).</p>
                     </div>
                 </div>
 
-                <h3>Friedman 检验</h3>
+                <h3>Friedman Test Friedman 检验</h3>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 14.10 (Friedman 检验)</div>
+                    <div class="env-title">Definition 14.10 (Friedman Test)</div>
                     <div class="env-body">
-                        <p>设有 \\(n\\) 个区组 (blocks)，每个区组内有 \\(k\\) 个处理。
-                        <strong>在每个区组内</strong>对 \\(k\\) 个观测排秩（秩为 1 到 \\(k\\)）。
-                        设第 \\(j\\) 个处理的秩和为 \\(R_j = \\sum_{i=1}^n R_{ij}\\)。
-                        Friedman 统计量为：</p>
+                        <p>Suppose there are \\(n\\) blocks, each containing \\(k\\) treatments.
+                        <strong>Within each block</strong>, rank the \\(k\\) observations (ranks from 1 to \\(k\\)).
+                        Let \\(R_j = \\sum_{i=1}^n R_{ij}\\) be the rank sum of the \\(j\\)-th treatment.
+                        The Friedman statistic is:</p>
                         \\[Q = \\frac{12}{nk(k+1)} \\sum_{j=1}^{k} R_j^2 - 3n(k+1)\\]
-                        <p>在 \\(H_0\\) 下（各处理效果相同），当 \\(n\\) 充分大时，\\(Q \\xrightarrow{d} \\chi^2_{k-1}\\)。</p>
+                        <p>Under \\(H_0\\) (all treatments have the same effect), when \\(n\\) is sufficiently large, \\(Q \\xrightarrow{d} \\chi^2_{k-1}\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>Friedman 检验是非参数的"重复测量 ANOVA"。它适用于配对或区组设计，
-                        如同一批受试者接受不同处理。
-                        与 Kruskal-Wallis 不同，Friedman 在区组内排秩以消除区组效应。</p>
+                        <p>The Friedman test is the nonparametric counterpart of repeated-measures ANOVA. It is suitable for paired or block designs,
+                        such as when the same set of subjects receives different treatments.
+                        Unlike the Kruskal-Wallis test, the Friedman test ranks within blocks to eliminate the block effect.</p>
                     </div>
                 </div>
 
@@ -368,8 +368,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'kruskal-wallis-viz',
-                    title: 'Interactive: Kruskal-Wallis 检验',
-                    description: '观察多组数据的秩分布和 H 统计量',
+                    title: 'Interactive: Kruskal-Wallis Test Kruskal-Wallis 检验',
+                    description: 'Observe the rank distribution across multiple groups and the H statistic 观察多组数据的秩分布和 H 统计量',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 440,
@@ -554,7 +554,6 @@ window.CHAPTERS.push({
                             viz.screenText('H = ' + result.H.toFixed(3), viz.width / 2, 395, viz.colors.white, 14);
                             var df = result.k - 1;
                             // Approximate p-value using chi-squared
-                            // P(chi2 > H) approximation
                             var pval = 1 - VizEngine.normalCDF(Math.sqrt(2 * result.H) - Math.sqrt(2 * df - 1));
                             if (result.H <= 0) pval = 1;
                             viz.screenText('df = ' + df + ',  approx p-value = ' + pval.toFixed(4), viz.width / 2, 415, viz.colors.text, 12);
@@ -589,131 +588,131 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '证明 Kruskal-Wallis 统计量 \\(H\\) 在只有 \\(k=2\\) 组时与 Wilcoxon 秩和检验等价。',
-                    hint: '当 \\(k=2\\) 时，\\(R_2 = N(N+1)/2 - R_1\\)。将此代入 \\(H\\) 的公式并化简。',
-                    solution: '当 \\(k = 2\\) 时，\\(R_1 + R_2 = N(N+1)/2\\)，所以 \\(R_2\\) 由 \\(R_1\\) 决定。代入 \\(H\\) 的公式后，\\(H\\) 是 \\(R_1\\)（即 Wilcoxon 秩和 \\(W\\)）的单调递增函数。具体地，\\(H = Z^2\\)，其中 \\(Z\\) 是 Wilcoxon 秩和统计量的标准化版本。因此 \\(H \\sim \\chi^2_1\\) 与 \\(Z \\sim N(0,1)\\) 给出的 \\(p\\)-值相同，两检验等价。'
+                    question: 'Prove that the Kruskal-Wallis statistic \\(H\\) is equivalent to the Wilcoxon rank-sum test when there are only \\(k=2\\) groups.',
+                    hint: 'When \\(k=2\\), \\(R_2 = N(N+1)/2 - R_1\\). Substitute this into the formula for \\(H\\) and simplify.',
+                    solution: 'When \\(k = 2\\), \\(R_1 + R_2 = N(N+1)/2\\), so \\(R_2\\) is determined by \\(R_1\\). Substituting into the formula for \\(H\\), we see that \\(H\\) is a monotonically increasing function of \\(R_1\\) (which is the Wilcoxon rank-sum \\(W\\)). Specifically, \\(H = Z^2\\), where \\(Z\\) is the standardized version of the Wilcoxon rank-sum statistic. Therefore \\(H \\sim \\chi^2_1\\) and \\(Z \\sim N(0,1)\\) yield the same \\(p\\)-value, making the two tests equivalent.'
                 },
                 {
-                    question: '为什么 Friedman 检验要在区组内排秩而不是对全体数据排秩？',
-                    hint: '考虑区组效应对全局秩的影响。',
-                    solution: '如果直接对全体数据排秩，则区组间的系统差异会混入秩中，使得处理效应难以识别。在区组内排秩相当于消除了区组效应，只比较同一区组内不同处理的相对表现。这与参数方法中用区组因子消除区组变异的逻辑一致。'
+                    question: 'Why does the Friedman test rank within blocks rather than ranking all data globally?',
+                    hint: 'Consider the effect of block-level systematic differences on the global ranks.',
+                    solution: 'If one ranks all data globally, systematic differences between blocks would be mixed into the ranks, making it difficult to identify treatment effects. Ranking within blocks effectively removes the block effect and compares only the relative performance of different treatments within the same block. This is analogous to how parametric methods use a block factor to remove block variability.'
                 },
                 {
-                    question: '三个处理在 4 个区组中的观测值如下：区组 1: (5.2, 4.8, 6.1), 区组 2: (3.1, 2.7, 3.5), 区组 3: (7.0, 6.2, 7.3), 区组 4: (4.5, 4.1, 5.0)。计算 Friedman 统计量 \\(Q\\)。',
-                    hint: '先在每个区组内排秩（1, 2, 3），然后对每个处理的秩求和，代入公式。',
-                    solution: '区组内排秩：区组 1: (2, 1, 3)，区组 2: (2, 1, 3)，区组 3: (2, 1, 3)，区组 4: (2, 1, 3)。处理秩和：\\(R_1 = 8, R_2 = 4, R_3 = 12\\)。\\(Q = \\frac{12}{4 \\cdot 3 \\cdot 4}(64 + 16 + 144) - 3 \\cdot 4 \\cdot 4 = \\frac{12}{48} \\cdot 224 - 48 = 56 - 48 = 8\\)。在 \\(\\chi^2_2\\) 下 \\(P > 8\\) 约 0.018，拒绝 \\(H_0\\)。'
+                    question: 'Three treatments are observed in 4 blocks as follows: Block 1: (5.2, 4.8, 6.1), Block 2: (3.1, 2.7, 3.5), Block 3: (7.0, 6.2, 7.3), Block 4: (4.5, 4.1, 5.0). Compute the Friedman statistic \\(Q\\).',
+                    hint: 'First rank within each block (1, 2, 3), then sum the ranks for each treatment and substitute into the formula.',
+                    solution: 'Within-block ranks: Block 1: (2, 1, 3), Block 2: (2, 1, 3), Block 3: (2, 1, 3), Block 4: (2, 1, 3). Treatment rank sums: \\(R_1 = 8, R_2 = 4, R_3 = 12\\). \\(Q = \\frac{12}{4 \\cdot 3 \\cdot 4}(64 + 16 + 144) - 3 \\cdot 4 \\cdot 4 = \\frac{12}{48} \\cdot 224 - 48 = 56 - 48 = 8\\). Under \\(\\chi^2_2\\), \\(P > 8\\) is approximately 0.018. We reject \\(H_0\\).'
                 }
             ]
         },
 
-        // ===== Section 3: 核密度估计 (Kernel Density Estimation) =====
+        // ===== Section 3: Kernel Density Estimation =====
         {
             id: 'ch14-sec03',
-            title: '核密度估计',
+            title: 'Kernel Density Estimation',
             content: `
-                <h2>核密度估计 Kernel Density Estimation</h2>
+                <h2>Kernel Density Estimation 核密度估计</h2>
 
-                <p>非参数方法不仅用于检验，也可用于<strong>密度估计</strong>。
-                核密度估计 (KDE) 是一种非参数方法，用于从数据中估计未知的概率密度函数。</p>
+                <p>Nonparametric methods are used not only for testing but also for <strong>density estimation (密度估计)</strong>.
+                Kernel density estimation (KDE, 核密度估计) is a nonparametric method for estimating an unknown probability density function from data.</p>
 
-                <h3>从直方图到 KDE</h3>
+                <h3>From Histograms to KDE 从直方图到 KDE</h3>
 
-                <p>直方图是最简单的密度估计，但它有明显的缺点：不连续、依赖于箱子的起点和宽度。
-                KDE 通过在每个数据点处放置一个核函数来构造一个平滑的密度估计。</p>
+                <p>The histogram is the simplest density estimate, but it has obvious drawbacks: it is discontinuous and depends on the bin origin and width.
+                KDE constructs a smooth density estimate by placing a kernel function at each data point.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 14.11 (核密度估计)</div>
+                    <div class="env-title">Definition 14.11 (Kernel Density Estimator)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n\\) 为来自未知密度 \\(f\\) 的 i.i.d. 样本。
-                        <strong>核密度估计</strong>定义为：</p>
+                        <p>Let \\(X_1, \\ldots, X_n\\) be an i.i.d. sample from an unknown density \\(f\\).
+                        The <strong>kernel density estimator</strong> is defined as:</p>
                         \\[\\hat{f}_h(x) = \\frac{1}{nh} \\sum_{i=1}^{n} K\\left(\\frac{x - X_i}{h}\\right)\\]
-                        <p>其中 \\(K\\) 为<strong>核函数 (kernel)</strong>，满足 \\(\\int K(u)\\,du = 1\\)、\\(K(u) \\geq 0\\)，
-                        \\(h > 0\\) 为<strong>带宽 (bandwidth)</strong>。</p>
+                        <p>where \\(K\\) is a <strong>kernel function (核函数)</strong> satisfying \\(\\int K(u)\\,du = 1\\) and \\(K(u) \\geq 0\\),
+                        and \\(h > 0\\) is the <strong>bandwidth (带宽)</strong>.</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 14.12 (常用核函数)</div>
+                    <div class="env-title">Definition 14.12 (Common Kernel Functions)</div>
                     <div class="env-body">
-                        <p><strong>Gaussian 核</strong>：\\(K(u) = \\frac{1}{\\sqrt{2\\pi}} e^{-u^2/2}\\)</p>
-                        <p><strong>Epanechnikov 核</strong>：\\(K(u) = \\frac{3}{4}(1-u^2) \\cdot \\mathbf{1}(|u| \\leq 1)\\)</p>
-                        <p><strong>Uniform 核</strong>（矩形核）：\\(K(u) = \\frac{1}{2} \\cdot \\mathbf{1}(|u| \\leq 1)\\)</p>
+                        <p><strong>Gaussian kernel</strong>: \\(K(u) = \\frac{1}{\\sqrt{2\\pi}} e^{-u^2/2}\\)</p>
+                        <p><strong>Epanechnikov kernel</strong>: \\(K(u) = \\frac{3}{4}(1-u^2) \\cdot \\mathbf{1}(|u| \\leq 1)\\)</p>
+                        <p><strong>Uniform kernel</strong> (rectangular): \\(K(u) = \\frac{1}{2} \\cdot \\mathbf{1}(|u| \\leq 1)\\)</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>想象在每个数据点处放一个"小山丘"（核函数），高度为 \\(1/(nh)\\)，宽度由 \\(h\\) 控制。
-                        KDE 就是所有小山丘叠加的结果。带宽 \\(h\\) 控制平滑程度：
-                        \\(h\\) 太小时每个数据点产生一个尖峰（<strong>欠平滑 undersmoothing</strong>），
-                        \\(h\\) 太大时所有细节被模糊掉（<strong>过平滑 oversmoothing</strong>）。</p>
+                        <p>Imagine placing a small "bump" (kernel function) at each data point, with height \\(1/(nh)\\) and width controlled by \\(h\\).
+                        The KDE is the sum of all these bumps. The bandwidth \\(h\\) controls the degree of smoothing:
+                        when \\(h\\) is too small, each data point produces a spike (<strong>undersmoothing</strong>);
+                        when \\(h\\) is too large, all detail is blurred out (<strong>oversmoothing</strong>).</p>
                     </div>
                 </div>
 
-                <h3>偏差-方差权衡</h3>
+                <h3>Bias-Variance Tradeoff 偏差-方差权衡</h3>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 14.13 (KDE 的 MSE 分解)</div>
+                    <div class="env-title">Theorem 14.13 (MSE Decomposition of KDE)</div>
                     <div class="env-body">
-                        <p>设 \\(f\\) 二阶可导，\\(K\\) 为对称核且 \\(\\int u^2 K(u)\\,du = \\kappa_2 < \\infty\\)，
-                        \\(\\int K^2(u)\\,du = R(K) < \\infty\\)。则 KDE 在点 \\(x\\) 处的均方误差为：</p>
+                        <p>Let \\(f\\) be twice differentiable, \\(K\\) be a symmetric kernel with \\(\\int u^2 K(u)\\,du = \\kappa_2 < \\infty\\)
+                        and \\(\\int K^2(u)\\,du = R(K) < \\infty\\). Then the mean squared error of the KDE at point \\(x\\) is:</p>
                         \\[\\operatorname{MSE}(\\hat{f}_h(x)) = \\frac{1}{4}\\kappa_2^2 h^4 [f''(x)]^2 + \\frac{R(K)}{nh} f(x) + o(h^4 + (nh)^{-1})\\]
-                        <p>其中第一项是<strong>偏差的平方</strong>（与 \\(h^4\\) 成正比），第二项是<strong>方差</strong>（与 \\((nh)^{-1}\\) 成正比）。</p>
+                        <p>The first term is the <strong>squared bias</strong> (proportional to \\(h^4\\)), and the second term is the <strong>variance</strong> (proportional to \\((nh)^{-1}\\)).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof (sketch)</div>
                     <div class="env-body">
-                        <p><strong>偏差</strong>：\\(\\mathbb{E}[\\hat{f}_h(x)] = \\int \\frac{1}{h} K\\left(\\frac{x-t}{h}\\right) f(t)\\,dt\\)。
-                        令 \\(u = (x-t)/h\\)，Taylor 展开 \\(f(x - uh)\\) 到二阶：</p>
+                        <p><strong>Bias</strong>: \\(\\mathbb{E}[\\hat{f}_h(x)] = \\int \\frac{1}{h} K\\left(\\frac{x-t}{h}\\right) f(t)\\,dt\\).
+                        Substituting \\(u = (x-t)/h\\) and applying a second-order Taylor expansion of \\(f(x - uh)\\):</p>
                         \\[\\mathbb{E}[\\hat{f}_h(x)] \\approx f(x) + \\frac{1}{2}h^2 \\kappa_2 f''(x)\\]
-                        <p>故 \\(\\operatorname{Bias} \\approx \\frac{1}{2} h^2 \\kappa_2 f''(x)\\)。</p>
-                        <p><strong>方差</strong>：\\(\\operatorname{Var}(\\hat{f}_h(x)) = \\frac{1}{n}\\operatorname{Var}\\left(\\frac{1}{h}K\\left(\\frac{x-X_1}{h}\\right)\\right) \\approx \\frac{R(K)}{nh} f(x)\\)。</p>
+                        <p>Hence \\(\\operatorname{Bias} \\approx \\frac{1}{2} h^2 \\kappa_2 f''(x)\\).</p>
+                        <p><strong>Variance</strong>: \\(\\operatorname{Var}(\\hat{f}_h(x)) = \\frac{1}{n}\\operatorname{Var}\\left(\\frac{1}{h}K\\left(\\frac{x-X_1}{h}\\right)\\right) \\approx \\frac{R(K)}{nh} f(x)\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
-                <h3>最优带宽选择</h3>
+                <h3>Optimal Bandwidth Selection 最优带宽选择</h3>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 14.14 (MISE 最优带宽)</div>
+                    <div class="env-title">Theorem 14.14 (MISE-Optimal Bandwidth)</div>
                     <div class="env-body">
-                        <p>最小化积分均方误差 \\(\\operatorname{MISE} = \\int \\operatorname{MSE}(\\hat{f}_h(x))\\,dx\\)，
-                        最优带宽为：</p>
+                        <p>Minimizing the mean integrated squared error \\(\\operatorname{MISE} = \\int \\operatorname{MSE}(\\hat{f}_h(x))\\,dx\\),
+                        the optimal bandwidth is:</p>
                         \\[h^* = \\left(\\frac{R(K)}{\\kappa_2^2 R(f'')}\\right)^{1/5} n^{-1/5}\\]
-                        <p>其中 \\(R(f'') = \\int [f''(x)]^2\\,dx\\)。对应的最优 MISE 收敛速率为 \\(O(n^{-4/5})\\)。</p>
+                        <p>where \\(R(f'') = \\int [f''(x)]^2\\,dx\\). The corresponding optimal MISE converges at rate \\(O(n^{-4/5})\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 14.15 (Silverman 经验法则)</div>
+                    <div class="env-title">Definition 14.15 (Silverman's Rule of Thumb)</div>
                     <div class="env-body">
-                        <p>对 Gaussian 核，假设真实分布为 \\(N(\\mu, \\sigma^2)\\)，Silverman 建议：</p>
+                        <p>For the Gaussian kernel, assuming the true distribution is \\(N(\\mu, \\sigma^2)\\), Silverman suggests:</p>
                         \\[h_{\\text{Silverman}} = 1.06 \\cdot \\hat{\\sigma} \\cdot n^{-1/5}\\]
-                        <p>其中 \\(\\hat{\\sigma}\\) 为样本标准差。更稳健的版本使用
-                        \\(\\hat{\\sigma} = \\min(\\text{sd}, \\text{IQR}/1.34)\\)。</p>
+                        <p>where \\(\\hat{\\sigma}\\) is the sample standard deviation. A more robust version uses
+                        \\(\\hat{\\sigma} = \\min(\\text{sd}, \\text{IQR}/1.34)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>Silverman 法则基于正态参考分布，对多峰分布会过度平滑。
-                        对于复杂分布，应使用交叉验证 (cross-validation) 选择带宽。
-                        留一交叉验证 (LOOCV) 最小化
-                        \\(\\operatorname{CV}(h) = \\int \\hat{f}_h^2 - \\frac{2}{n}\\sum_i \\hat{f}_{h,-i}(X_i)\\)，
-                        其中 \\(\\hat{f}_{h,-i}\\) 是去掉第 \\(i\\) 个点后的 KDE。</p>
+                        <p>Silverman's rule is based on a normal reference distribution and will oversmooth multimodal distributions.
+                        For complex distributions, one should use cross-validation to select the bandwidth.
+                        Leave-one-out cross-validation (LOOCV) minimizes
+                        \\(\\operatorname{CV}(h) = \\int \\hat{f}_h^2 - \\frac{2}{n}\\sum_i \\hat{f}_{h,-i}(X_i)\\),
+                        where \\(\\hat{f}_{h,-i}\\) is the KDE computed without the \\(i\\)-th observation.</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
-                    <div class="env-title">Remark (Epanechnikov 核的最优性)</div>
+                    <div class="env-title">Remark (Optimality of the Epanechnikov Kernel)</div>
                     <div class="env-body">
-                        <p>在最小化 MISE 的意义下，Epanechnikov 核在所有非负核中是渐近最优的。
-                        但不同核之间的效率差异很小（Gaussian 核的效率约为 Epanechnikov 的 95.1%），
-                        因此实践中核的选择远不如带宽的选择重要。</p>
+                        <p>In the sense of minimizing MISE, the Epanechnikov kernel is asymptotically optimal among all nonnegative kernels.
+                        However, the efficiency difference between kernels is small (the Gaussian kernel achieves about 95.1% efficiency relative to Epanechnikov),
+                        so in practice the choice of kernel matters far less than the choice of bandwidth.</p>
                     </div>
                 </div>
 
@@ -722,8 +721,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'kde-bandwidth-viz',
-                    title: 'Interactive: KDE 带宽探索器',
-                    description: '调节带宽 h，观察欠平滑与过平滑的效果',
+                    title: 'Interactive: KDE Bandwidth Explorer KDE 带宽探索器',
+                    description: 'Adjust the bandwidth h to observe the effects of undersmoothing and oversmoothing 调节带宽 h，观察欠平滑与过平滑的效果',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -946,128 +945,128 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '证明 KDE 是一个合法的概率密度函数，即 \\(\\hat{f}_h(x) \\geq 0\\) 且 \\(\\int \\hat{f}_h(x)\\,dx = 1\\)。',
-                    hint: '利用核函数 \\(K\\) 的性质和积分的线性性。',
-                    solution: '由于 \\(K(u) \\geq 0\\)，每个 \\(\\frac{1}{nh} K\\left(\\frac{x - X_i}{h}\\right) \\geq 0\\)，所以 \\(\\hat{f}_h(x) \\geq 0\\)。积分：\\(\\int \\hat{f}_h(x)\\,dx = \\frac{1}{n} \\sum_{i=1}^n \\int \\frac{1}{h} K\\left(\\frac{x - X_i}{h}\\right) dx\\)。令 \\(u = (x - X_i)/h\\)，\\(dx = h\\,du\\)，每项变为 \\(\\int K(u)\\,du = 1\\)。所以 \\(\\int \\hat{f}_h = \\frac{1}{n} \\cdot n = 1\\)。'
+                    question: 'Prove that the KDE is a valid probability density function, i.e., \\(\\hat{f}_h(x) \\geq 0\\) and \\(\\int \\hat{f}_h(x)\\,dx = 1\\).',
+                    hint: 'Use the properties of the kernel function \\(K\\) and the linearity of integration.',
+                    solution: 'Since \\(K(u) \\geq 0\\), each \\(\\frac{1}{nh} K\\left(\\frac{x - X_i}{h}\\right) \\geq 0\\), so \\(\\hat{f}_h(x) \\geq 0\\). For integration: \\(\\int \\hat{f}_h(x)\\,dx = \\frac{1}{n} \\sum_{i=1}^n \\int \\frac{1}{h} K\\left(\\frac{x - X_i}{h}\\right) dx\\). Substituting \\(u = (x - X_i)/h\\), \\(dx = h\\,du\\), each term becomes \\(\\int K(u)\\,du = 1\\). Therefore \\(\\int \\hat{f}_h = \\frac{1}{n} \\cdot n = 1\\).'
                 },
                 {
-                    question: '对于带宽 \\(h\\) 和样本量 \\(n\\)，KDE 的偏差和方差分别如何随 \\(h\\) 变化？由此解释偏差-方差权衡。',
-                    hint: '回顾 Theorem 14.13 中 MSE 的两个组成部分。',
-                    solution: '偏差 \\(\\approx \\frac{1}{2} h^2 \\kappa_2 f\'\'(x)\\)，随 \\(h\\) 增大而增大（过度平滑导致高偏差）。方差 \\(\\approx \\frac{R(K)}{nh} f(x)\\)，随 \\(h\\) 增大而减小（平滑降低了波动）。这构成经典的偏差-方差权衡。MSE 最优带宽 \\(h^* \\propto n^{-1/5}\\) 平衡两者，使 MISE 以 \\(O(n^{-4/5})\\) 的速率收敛。'
+                    question: 'For bandwidth \\(h\\) and sample size \\(n\\), how do the bias and variance of the KDE change with \\(h\\)? Use this to explain the bias-variance tradeoff.',
+                    hint: 'Recall the two components of the MSE in Theorem 14.13.',
+                    solution: 'Bias \\(\\approx \\frac{1}{2} h^2 \\kappa_2 f\'\'(x)\\) increases with \\(h\\) (oversmoothing leads to high bias). Variance \\(\\approx \\frac{R(K)}{nh} f(x)\\) decreases with \\(h\\) (smoothing reduces fluctuations). This constitutes the classical bias-variance tradeoff. The MSE-optimal bandwidth \\(h^* \\propto n^{-1/5}\\) balances the two, yielding an MISE convergence rate of \\(O(n^{-4/5})\\).'
                 },
                 {
-                    question: '对 \\(n = 100\\) 个标准正态样本，计算 Silverman 经验法则给出的带宽，并与 MISE 最优带宽比较。',
-                    hint: '标准正态的标准差为 1，且 \\(R(\\phi\'\') = \\frac{3}{8\\sqrt{\\pi}}\\)（其中 \\(\\phi\\) 是标准正态密度）。',
-                    solution: 'Silverman: \\(h = 1.06 \\cdot 1 \\cdot 100^{-1/5} = 1.06 \\cdot 0.3981 \\approx 0.422\\)。MISE 最优带宽（Gaussian 核估计标准正态）：\\(h^* = \\left(\\frac{R(K)}{\\kappa_2^2 R(f\'\')}\\right)^{1/5} n^{-1/5}\\)。对 Gaussian 核 \\(R(K) = 1/(2\\sqrt{\\pi})\\)，\\(\\kappa_2 = 1\\)，\\(R(f\'\') = 3/(8\\sqrt{\\pi})\\)，代入得 \\(h^* = (4/3)^{1/5} \\cdot 100^{-1/5} \\approx 1.06 \\cdot 0.398 \\approx 0.422\\)。两者一致，因为 Silverman 法则正是基于正态参考分布推导的。'
+                    question: 'For \\(n = 100\\) standard normal samples, compute the bandwidth given by Silverman\'s rule of thumb and compare it with the MISE-optimal bandwidth.',
+                    hint: 'The standard normal has standard deviation 1, and \\(R(\\phi\'\') = \\frac{3}{8\\sqrt{\\pi}}\\) (where \\(\\phi\\) is the standard normal density).',
+                    solution: 'Silverman: \\(h = 1.06 \\cdot 1 \\cdot 100^{-1/5} = 1.06 \\cdot 0.3981 \\approx 0.422\\). MISE-optimal bandwidth (Gaussian kernel estimating a standard normal): \\(h^* = \\left(\\frac{R(K)}{\\kappa_2^2 R(f\'\')}\\right)^{1/5} n^{-1/5}\\). For the Gaussian kernel, \\(R(K) = 1/(2\\sqrt{\\pi})\\), \\(\\kappa_2 = 1\\), \\(R(f\'\') = 3/(8\\sqrt{\\pi})\\). Substituting gives \\(h^* = (4/3)^{1/5} \\cdot 100^{-1/5} \\approx 1.06 \\cdot 0.398 \\approx 0.422\\). The two agree because Silverman\'s rule is derived precisely from the normal reference distribution.'
                 }
             ]
         },
 
-        // ===== Section 4: 排列检验与 Bootstrap 预览 =====
+        // ===== Section 4: Permutation Tests & Bootstrap Preview =====
         {
             id: 'ch14-sec04',
-            title: '排列检验与Bootstrap预览',
+            title: 'Permutation Tests & Bootstrap Preview',
             content: `
-                <h2>排列检验与 Bootstrap 预览 Permutation Tests & Bootstrap Preview</h2>
+                <h2>Permutation Tests & Bootstrap Preview 排列检验与 Bootstrap 预览</h2>
 
-                <p>排列检验（置换检验）是另一类强大的非参数方法。它通过直接枚举或模拟获得零假设下统计量的分布，
-                无需任何分布假设。</p>
+                <p>Permutation tests (排列检验, also called permutation tests) are another powerful class of nonparametric methods. They obtain the distribution of the test statistic under the null hypothesis by direct enumeration or simulation,
+                requiring no distributional assumptions.</p>
 
-                <h3>排列检验的原理</h3>
+                <h3>Principle of Permutation Tests 排列检验的原理</h3>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 14.16 (排列检验)</div>
+                    <div class="env-title">Definition 14.16 (Permutation Test)</div>
                     <div class="env-body">
-                        <p>设两组样本 \\(\\mathbf{X} = (X_1, \\ldots, X_m)\\) 和 \\(\\mathbf{Y} = (Y_1, \\ldots, Y_n)\\)，
-                        检验 \\(H_0: F_X = F_Y\\)。选择检验统计量 \\(T\\)（如两组均值之差 \\(\\bar{X} - \\bar{Y}\\)）。</p>
-                        <p><strong>排列检验</strong>的步骤：</p>
+                        <p>Given two samples \\(\\mathbf{X} = (X_1, \\ldots, X_m)\\) and \\(\\mathbf{Y} = (Y_1, \\ldots, Y_n)\\),
+                        test \\(H_0: F_X = F_Y\\). Choose a test statistic \\(T\\) (e.g., the difference in group means \\(\\bar{X} - \\bar{Y}\\)).</p>
+                        <p>The <strong>permutation test</strong> proceeds as follows:</p>
                         <ol>
-                            <li>计算观测统计量 \\(T_{\\text{obs}}\\)。</li>
-                            <li>在 \\(H_0\\) 下，组标签是可交换的。将 \\(N = m + n\\) 个观测随机分配为大小 \\(m\\) 和 \\(n\\) 的两组。</li>
-                            <li>对每种排列计算 \\(T\\)，得到<strong>排列零分布 (permutation null distribution)</strong>。</li>
-                            <li>\\(p\\)-值 = 排列中 \\(|T| \\geq |T_{\\text{obs}}|\\) 的比例。</li>
+                            <li>Compute the observed statistic \\(T_{\\text{obs}}\\).</li>
+                            <li>Under \\(H_0\\), the group labels are exchangeable. Randomly assign the \\(N = m + n\\) observations into groups of sizes \\(m\\) and \\(n\\).</li>
+                            <li>Compute \\(T\\) for each permutation, obtaining the <strong>permutation null distribution</strong>.</li>
+                            <li>\\(p\\)-value = the proportion of permutations where \\(|T| \\geq |T_{\\text{obs}}|\\).</li>
                         </ol>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 14.17 (排列检验的精确性)</div>
+                    <div class="env-title">Theorem 14.17 (Exactness of the Permutation Test)</div>
                     <div class="env-body">
-                        <p>在 \\(H_0: F_X = F_Y\\) 下，排列检验的 \\(p\\)-值是<strong>精确的</strong>（exact），即对任意 \\(\\alpha \\in (0, 1)\\)，</p>
+                        <p>Under \\(H_0: F_X = F_Y\\), the \\(p\\)-value of the permutation test is <strong>exact</strong>, i.e., for any \\(\\alpha \\in (0, 1)\\),</p>
                         \\[P_{H_0}(p\\text{-value} \\leq \\alpha) \\leq \\alpha\\]
-                        <p>这一性质不依赖任何分布假设，也不依赖渐近近似。</p>
+                        <p>This property does not rely on any distributional assumption or asymptotic approximation.</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>在 \\(H_0\\) 下，所有 \\(N\\) 个观测是 i.i.d. 的，因此
-                        \\((X_1, \\ldots, X_m, Y_1, \\ldots, Y_n)\\) 的联合分布关于任意置换不变。
-                        观测到的分组只是 \\(\\binom{N}{m}\\) 种等概率排列之一，
-                        因此 \\(T_{\\text{obs}}\\) 在排列分布中的位置是均匀随机的，
-                        \\(p\\)-值在 \\([0,1]\\) 上（离散地）均匀分布，从而保证了 Type I 错误率的精确控制。</p>
+                        <p>Under \\(H_0\\), all \\(N\\) observations are i.i.d., so
+                        the joint distribution of \\((X_1, \\ldots, X_m, Y_1, \\ldots, Y_n)\\) is invariant under any permutation.
+                        The observed grouping is just one of the \\(\\binom{N}{m}\\) equally likely permutations,
+                        so \\(T_{\\text{obs}}\\) occupies a uniformly random position in the permutation distribution.
+                        The \\(p\\)-value is therefore (discretely) uniformly distributed on \\([0,1]\\), guaranteeing exact control of the Type I error rate.</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
-                <h3>精确排列与 Monte Carlo 排列</h3>
+                <h3>Exact Permutation vs. Monte Carlo Permutation 精确排列与 Monte Carlo 排列</h3>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p><strong>精确排列检验</strong>：枚举所有 \\(\\binom{N}{m}\\) 种排列，计算每种排列下的统计量。
-                        当 \\(N\\) 小时可行，但组合数增长极快（如 \\(N = 20, m = 10\\) 时有 184,756 种排列）。</p>
-                        <p><strong>Monte Carlo 排列检验</strong>：随机抽取 \\(B\\) 次排列（通常 \\(B = 10000\\)），
-                        用蒙特卡洛比例近似 \\(p\\)-值：</p>
+                        <p><strong>Exact permutation test</strong>: Enumerate all \\(\\binom{N}{m}\\) permutations and compute the statistic for each.
+                        This is feasible when \\(N\\) is small, but the number of combinations grows rapidly (e.g., \\(N = 20, m = 10\\) yields 184,756 permutations).</p>
+                        <p><strong>Monte Carlo permutation test</strong>: Randomly draw \\(B\\) permutations (typically \\(B = 10000\\))
+                        and approximate the \\(p\\)-value by the Monte Carlo proportion:</p>
                         \\[\\hat{p} = \\frac{\\#\\{b : |T^{(b)}| \\geq |T_{\\text{obs}}|\\} + 1}{B + 1}\\]
-                        <p>分子和分母加 1 是为了避免 \\(p = 0\\) 并保证保守性。</p>
+                        <p>Adding 1 to both the numerator and denominator avoids \\(p = 0\\) and ensures conservativeness.</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
                     <div class="env-title">Example 14.18</div>
                     <div class="env-body">
-                        <p>治疗组（5 人）和对照组（5 人）的恢复时间如下：</p>
-                        <p>治疗组：3.2, 2.8, 4.1, 3.0, 2.5</p>
-                        <p>对照组：5.1, 4.8, 6.2, 5.5, 4.3</p>
-                        <p>\\(T_{\\text{obs}} = \\bar{X} - \\bar{Y} = 3.12 - 5.18 = -2.06\\)。</p>
-                        <p>共有 \\(\\binom{10}{5} = 252\\) 种排列。通过枚举，仅 1 种排列的
-                        \\(|T| \\geq 2.06\\)（即当前观测本身），故 \\(p \\approx 1/252 \\approx 0.004\\)。
-                        强烈拒绝 \\(H_0\\)。</p>
+                        <p>The recovery times for a treatment group (5 subjects) and a control group (5 subjects) are:</p>
+                        <p>Treatment: 3.2, 2.8, 4.1, 3.0, 2.5</p>
+                        <p>Control: 5.1, 4.8, 6.2, 5.5, 4.3</p>
+                        <p>\\(T_{\\text{obs}} = \\bar{X} - \\bar{Y} = 3.12 - 5.18 = -2.06\\).</p>
+                        <p>There are \\(\\binom{10}{5} = 252\\) permutations in total. By enumeration, only 1 permutation has
+                        \\(|T| \\geq 2.06\\) (namely the observed partition itself), so \\(p \\approx 1/252 \\approx 0.004\\).
+                        We strongly reject \\(H_0\\).</p>
                     </div>
                 </div>
 
-                <h3>与 Bootstrap 的联系</h3>
+                <h3>Connection to Bootstrap 与 Bootstrap 的联系</h3>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 14.19 (Bootstrap 预览)</div>
+                    <div class="env-title">Definition 14.19 (Bootstrap Preview)</div>
                     <div class="env-body">
-                        <p><strong>Bootstrap</strong>（第 17 章详述）是另一种基于重抽样的方法：</p>
+                        <p>The <strong>Bootstrap</strong> (discussed in detail in Chapter 17) is another resampling-based method:</p>
                         <ul>
-                            <li><strong>排列检验</strong>：在零假设下，对标签进行<strong>无放回</strong>重排列。</li>
-                            <li><strong>Bootstrap</strong>：从经验分布 \\(\\hat{F}_n\\) 中<strong>有放回</strong>重抽样，用于估计统计量的分布。</li>
+                            <li><strong>Permutation test</strong>: Permutes labels <strong>without replacement</strong> under the null hypothesis.</li>
+                            <li><strong>Bootstrap</strong>: Resamples <strong>with replacement</strong> from the empirical distribution \\(\\hat{F}_n\\) to estimate the distribution of a statistic.</li>
                         </ul>
-                        <p>排列检验用于<strong>假设检验</strong>（生成零分布），而 Bootstrap 更多用于<strong>区间估计</strong>（构造置信区间）和<strong>标准误估计</strong>。</p>
+                        <p>Permutation tests are used for <strong>hypothesis testing</strong> (generating a null distribution), while the Bootstrap is primarily used for <strong>interval estimation</strong> (constructing confidence intervals) and <strong>standard error estimation</strong>.</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>排列检验的思想可以这样理解："如果两组真的没有区别，那么打乱组标签应该不影响统计量。"
-                        我们通过大量打乱来看当前观测到的差异有多极端。
-                        Bootstrap 的思想则是："用手头的样本模拟抽样过程，了解统计量本身的不确定性。"
-                        两者都是"让数据自己说话"的非参数哲学的体现。</p>
+                        <p>The idea behind permutation tests can be understood as follows: "If the two groups truly have no difference, then shuffling the group labels should not affect the statistic."
+                        We perform many such shuffles to see how extreme the observed difference is.
+                        The Bootstrap idea is: "Use the sample at hand to simulate the sampling process and learn about the uncertainty of the statistic itself."
+                        Both embody the nonparametric philosophy of "letting the data speak for themselves."</p>
                     </div>
                 </div>
 
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>排列检验虽然"精确"，但它检验的 \\(H_0\\) 是<strong>所有分布特征完全相同</strong>，
-                        不仅是均值或中位数。拒绝 \\(H_0\\) 可能是因为均值不同、方差不同或分布形状不同。
-                        解释结果时需谨慎。</p>
+                        <p>Although the permutation test is "exact," the \\(H_0\\) it tests is that <strong>all distributional characteristics are identical</strong>,
+                        not just the mean or the median. Rejecting \\(H_0\\) could be due to differences in means, variances, or distributional shapes.
+                        One must interpret the results with care.</p>
                     </div>
                 </div>
 
@@ -1078,8 +1077,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'permutation-test-viz',
-                    title: 'Interactive: 排列检验模拟器',
-                    description: '动态生成排列零分布，观察 p-值的计算过程',
+                    title: 'Interactive: Permutation Test Simulator 排列检验模拟器',
+                    description: 'Dynamically generate the permutation null distribution and observe how the p-value is computed 动态生成排列零分布，观察 p 值的计算过程',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 420,
@@ -1264,8 +1263,8 @@ window.CHAPTERS.push({
                 },
                 {
                     id: 'kde-vs-histogram-viz',
-                    title: 'Interactive: 非参数方法总览 — 直方图 vs KDE',
-                    description: '比较直方图和 KDE 对同一组数据的密度估计',
+                    title: 'Interactive: Nonparametric Overview — Histogram vs KDE 非参数方法总览 — 直方图 vs KDE',
+                    description: 'Compare histogram and KDE density estimates for the same data 比较直方图和 KDE 对同一组数据的密度估计',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 380,
@@ -1438,19 +1437,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '说明排列检验与参数 \\(t\\) 检验的主要区别。在什么情况下你会优先选择排列检验？',
-                    hint: '考虑分布假设、样本量和精确性。',
-                    solution: '\\(t\\) 检验假设数据来自正态分布（或依赖大样本 CLT 近似），而排列检验无需任何分布假设，其 \\(p\\)-值是精确的。优先选择排列检验的情况：(1) 样本量很小，CLT 近似不可靠；(2) 数据明显偏离正态；(3) 需要精确的 \\(p\\)-值控制。但当正态假设成立且样本量较大时，\\(t\\) 检验更高效（power 更高）。'
+                    question: 'Describe the main differences between the permutation test and the parametric \\(t\\)-test. In what situations would you prefer the permutation test?',
+                    hint: 'Consider distributional assumptions, sample size, and exactness.',
+                    solution: 'The \\(t\\)-test assumes data come from a normal distribution (or relies on large-sample CLT approximation), whereas the permutation test requires no distributional assumption and its \\(p\\)-value is exact. One would prefer the permutation test when: (1) the sample size is very small so that CLT approximation is unreliable; (2) the data clearly deviate from normality; (3) exact \\(p\\)-value control is needed. However, when the normality assumption holds and the sample size is large, the \\(t\\)-test is more efficient (higher power).'
                 },
                 {
-                    question: '在 Monte Carlo 排列检验中，为什么 \\(p\\)-值公式用 \\((\\#\\{|T^{(b)}| \\geq |T_{\\text{obs}}|\\} + 1)/(B + 1)\\) 而非 \\(\\#/B\\)？',
-                    hint: '考虑观测数据本身也是排列分布的一部分。',
-                    solution: '观测到的数据排列本身就是 \\(H_0\\) 下所有可能排列之一。将其计入分子（+1）和分母（+1）保证了：(1) \\(p\\)-值永远不为 0，这是合理的——即使所有模拟排列的统计量都更小，也不能完全排除 \\(H_0\\)；(2) 保证了保守性，即实际 Type I 错误率不超过名义水平 \\(\\alpha\\)。这相当于把观测本身看作"第 0 次"排列。'
+                    question: 'In a Monte Carlo permutation test, why is the \\(p\\)-value formula \\((\\#\\{|T^{(b)}| \\geq |T_{\\text{obs}}|\\} + 1)/(B + 1)\\) rather than \\(\\#/B\\)?',
+                    hint: 'Consider that the observed data arrangement is itself one member of the permutation distribution.',
+                    solution: 'The observed data arrangement is itself one of the equally likely permutations under \\(H_0\\). Including it in the numerator (+1) and denominator (+1) ensures: (1) the \\(p\\)-value is never zero, which is reasonable since we cannot completely rule out \\(H_0\\) even if all simulated permutation statistics are smaller; (2) conservativeness is guaranteed, so the actual Type I error rate does not exceed the nominal level \\(\\alpha\\). This is equivalent to treating the observation as the "0th" permutation.'
                 },
                 {
-                    question: '排列检验和 Bootstrap 检验的核心区别是什么？各自的重抽样策略是什么？',
-                    hint: '关键区别在于"有放回"与"无放回"以及各自的目标。',
-                    solution: '排列检验：对标签进行<strong>无放回</strong>排列（保持组大小不变），目的是在 \\(H_0\\) 下生成零分布，用于假设检验。Bootstrap：从经验分布中<strong>有放回</strong>重抽样，目的是估计统计量的抽样分布，主要用于标准误估计和置信区间构造。排列检验利用 \\(H_0\\) 下的对称性/可交换性，Bootstrap 则直接模拟抽样过程而不需要 \\(H_0\\) 的结构。'
+                    question: 'What is the core difference between the permutation test and the Bootstrap test? What is the resampling strategy of each?',
+                    hint: 'The key distinction is "with replacement" vs. "without replacement" and their respective goals.',
+                    solution: 'Permutation test: Permutes labels <strong>without replacement</strong> (keeping group sizes fixed). Its purpose is to generate the null distribution under \\(H_0\\) for hypothesis testing. Bootstrap: Resamples <strong>with replacement</strong> from the empirical distribution. Its purpose is to estimate the sampling distribution of a statistic, primarily for standard error estimation and confidence interval construction. The permutation test exploits the symmetry/exchangeability under \\(H_0\\), while the Bootstrap directly simulates the sampling process without requiring the structure of \\(H_0\\).'
                 }
             ]
         }

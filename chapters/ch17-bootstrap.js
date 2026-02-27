@@ -2,72 +2,72 @@ window.CHAPTERS = window.CHAPTERS || [];
 window.CHAPTERS.push({
     id: 'ch17',
     number: 17,
-    title: 'Bootstrap 与重抽样',
+    title: 'Bootstrap & Resampling Methods',
     subtitle: 'Bootstrap & Resampling Methods',
     sections: [
-        // === Section 1: Bootstrap原理 ===
+        // === Section 1: Bootstrap Principle ===
         {
             id: 'ch17-sec01',
-            title: 'Bootstrap 原理',
+            title: 'The Bootstrap Principle',
             content: `
-                <h2>Bootstrap 原理</h2>
+                <h2>The Bootstrap Principle / Bootstrap 原理</h2>
 
-                <p>Bootstrap 是现代统计学中最重要的计算方法之一，由 Bradley Efron 于 1979 年提出。其核心思想极为简洁：<strong>用经验分布 \\(\\hat{F}_n\\) 代替未知的总体分布 \\(F\\)</strong>，通过重抽样来近似统计量的抽样分布。</p>
+                <p>The bootstrap is one of the most important computational methods in modern statistics, introduced by Bradley Efron in 1979. Its core idea is remarkably simple: <strong>replace the unknown population distribution \\(F\\) with the empirical distribution \\(\\hat{F}_n\\)</strong>, and approximate the sampling distribution of a statistic through resampling (重抽样).</p>
 
                 <div class="env-block intuition">
-                    <div class="env-title">Intuition (Bootstrap 世界 vs 真实世界)</div>
+                    <div class="env-title">Intuition (Bootstrap World vs. Real World)</div>
                     <div class="env-body">
-                        <p>在<strong>真实世界</strong>中，我们从未知分布 \\(F\\) 中抽取样本 \\(X_1, \\ldots, X_n\\)，然后计算统计量 \\(\\hat{\\theta}_n = g(X_1, \\ldots, X_n)\\)。我们想知道 \\(\\hat{\\theta}_n\\) 的抽样分布，但 \\(F\\) 未知。</p>
-                        <p>在<strong>Bootstrap 世界</strong>中，经验分布 \\(\\hat{F}_n\\) 扮演 \\(F\\) 的角色。我们从 \\(\\hat{F}_n\\) 中重复抽样（即从原始数据中<strong>有放回地抽样</strong>），得到 Bootstrap 样本 \\(X_1^*, \\ldots, X_n^*\\)，计算 \\(\\hat{\\theta}_n^* = g(X_1^*, \\ldots, X_n^*)\\)。重复 \\(B\\) 次，Bootstrap 统计量的分布就近似了 \\(\\hat{\\theta}_n\\) 的抽样分布。</p>
+                        <p>In the <strong>real world</strong>, we draw a sample \\(X_1, \\ldots, X_n\\) from an unknown distribution \\(F\\), then compute the statistic \\(\\hat{\\theta}_n = g(X_1, \\ldots, X_n)\\). We wish to know the sampling distribution (抽样分布) of \\(\\hat{\\theta}_n\\), but \\(F\\) is unknown.</p>
+                        <p>In the <strong>bootstrap world</strong>, the empirical distribution \\(\\hat{F}_n\\) plays the role of \\(F\\). We repeatedly resample from \\(\\hat{F}_n\\) (i.e., sample <strong>with replacement</strong> from the original data), obtaining bootstrap samples \\(X_1^*, \\ldots, X_n^*\\), and compute \\(\\hat{\\theta}_n^* = g(X_1^*, \\ldots, X_n^*)\\). Repeating \\(B\\) times, the distribution of the bootstrap statistics approximates the sampling distribution of \\(\\hat{\\theta}_n\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 17.1 (经验分布函数)</div>
+                    <div class="env-title">Definition 17.1 (Empirical Distribution Function)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n\\) 是来自分布 \\(F\\) 的随机样本。<strong>经验分布函数</strong> (empirical distribution function) 定义为</p>
+                        <p>Let \\(X_1, \\ldots, X_n\\) be a random sample from distribution \\(F\\). The <strong>empirical distribution function</strong> (经验分布函数) is defined as</p>
                         \\[\\hat{F}_n(x) = \\frac{1}{n} \\sum_{i=1}^{n} \\mathbf{1}(X_i \\le x).\\]
-                        <p>由 Glivenko-Cantelli 定理，\\(\\sup_x |\\hat{F}_n(x) - F(x)| \\xrightarrow{\\text{a.s.}} 0\\)，即 \\(\\hat{F}_n\\) 一致地逼近 \\(F\\)。</p>
+                        <p>By the Glivenko–Cantelli theorem, \\(\\sup_x |\\hat{F}_n(x) - F(x)| \\xrightarrow{\\text{a.s.}} 0\\), i.e., \\(\\hat{F}_n\\) converges uniformly to \\(F\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 17.2 (非参数 Bootstrap)</div>
+                    <div class="env-title">Definition 17.2 (Nonparametric Bootstrap)</div>
                     <div class="env-body">
-                        <p>设 \\(\\mathbf{X} = (X_1, \\ldots, X_n)\\) 为观测数据，\\(\\hat{\\theta}_n = T(\\mathbf{X})\\) 为感兴趣的统计量。<strong>非参数 Bootstrap</strong> 的步骤如下：</p>
-                        <p><strong>Step 1.</strong> 从 \\(\\{X_1, \\ldots, X_n\\}\\) 中<strong>有放回地</strong>抽取 \\(n\\) 个观测值，得到 Bootstrap 样本 \\(\\mathbf{X}^* = (X_1^*, \\ldots, X_n^*)\\)。</p>
-                        <p><strong>Step 2.</strong> 计算 Bootstrap 统计量 \\(\\hat{\\theta}_n^* = T(\\mathbf{X}^*)\\)。</p>
-                        <p><strong>Step 3.</strong> 重复 Steps 1-2 共 \\(B\\) 次，得到 \\(\\hat{\\theta}_n^{*(1)}, \\ldots, \\hat{\\theta}_n^{*(B)}\\)。</p>
-                        <p>这 \\(B\\) 个值的经验分布即为 \\(\\hat{\\theta}_n\\) 的 Bootstrap 近似分布。</p>
+                        <p>Let \\(\\mathbf{X} = (X_1, \\ldots, X_n)\\) be the observed data and \\(\\hat{\\theta}_n = T(\\mathbf{X})\\) the statistic of interest. The <strong>nonparametric bootstrap</strong> (非参数 Bootstrap) proceeds as follows:</p>
+                        <p><strong>Step 1.</strong> Draw \\(n\\) observations <strong>with replacement</strong> from \\(\\{X_1, \\ldots, X_n\\}\\) to obtain the bootstrap sample \\(\\mathbf{X}^* = (X_1^*, \\ldots, X_n^*)\\).</p>
+                        <p><strong>Step 2.</strong> Compute the bootstrap statistic \\(\\hat{\\theta}_n^* = T(\\mathbf{X}^*)\\).</p>
+                        <p><strong>Step 3.</strong> Repeat Steps 1–2 a total of \\(B\\) times to obtain \\(\\hat{\\theta}_n^{*(1)}, \\ldots, \\hat{\\theta}_n^{*(B)}\\).</p>
+                        <p>The empirical distribution of these \\(B\\) values is the bootstrap approximation to the distribution of \\(\\hat{\\theta}_n\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 17.3 (参数 Bootstrap)</div>
+                    <div class="env-title">Definition 17.3 (Parametric Bootstrap)</div>
                     <div class="env-body">
-                        <p>若已知分布族 \\(\\{F_{\\theta} : \\theta \\in \\Theta\\}\\)，先用数据估计参数 \\(\\hat{\\theta}\\)，然后从 \\(F_{\\hat{\\theta}}\\) 中生成 Bootstrap 样本。</p>
-                        <p><strong>Step 1.</strong> 从拟合模型 \\(F_{\\hat{\\theta}}\\) 中生成 \\(X_1^*, \\ldots, X_n^* \\sim F_{\\hat{\\theta}}\\)。</p>
-                        <p><strong>Step 2.</strong> 计算 \\(\\hat{\\theta}^* = T(X_1^*, \\ldots, X_n^*)\\)。</p>
-                        <p><strong>Step 3.</strong> 重复 \\(B\\) 次。</p>
-                        <p>参数 Bootstrap 在模型正确指定时更高效，但在模型错误时可能导致偏差。</p>
+                        <p>If the distribution family \\(\\{F_{\\theta} : \\theta \\in \\Theta\\}\\) is known, first estimate the parameter \\(\\hat{\\theta}\\) from the data, then generate bootstrap samples from \\(F_{\\hat{\\theta}}\\).</p>
+                        <p><strong>Step 1.</strong> Generate \\(X_1^*, \\ldots, X_n^* \\sim F_{\\hat{\\theta}}\\) from the fitted model \\(F_{\\hat{\\theta}}\\).</p>
+                        <p><strong>Step 2.</strong> Compute \\(\\hat{\\theta}^* = T(X_1^*, \\ldots, X_n^*)\\).</p>
+                        <p><strong>Step 3.</strong> Repeat \\(B\\) times.</p>
+                        <p>The parametric bootstrap (参数 Bootstrap) is more efficient when the model is correctly specified, but may introduce bias when the model is misspecified.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 17.4 (Bootstrap 的一致性)</div>
+                    <div class="env-title">Theorem 17.4 (Bootstrap Consistency)</div>
                     <div class="env-body">
-                        <p>设 \\(T_n = \\sqrt{n}(\\hat{\\theta}_n - \\theta)\\) 的分布收敛到某个连续分布。在适当的正则条件下，Bootstrap 分布</p>
+                        <p>Let the distribution of \\(T_n = \\sqrt{n}(\\hat{\\theta}_n - \\theta)\\) converge to some continuous distribution. Under suitable regularity conditions, the bootstrap distribution</p>
                         \\[T_n^* = \\sqrt{n}(\\hat{\\theta}_n^* - \\hat{\\theta}_n)\\]
-                        <p>的条件分布（给定数据）以概率 1 收敛到 \\(T_n\\) 的极限分布。即 Bootstrap 是<strong>一致的</strong> (consistent)。</p>
+                        <p>conditional on the data converges almost surely to the limiting distribution of \\(T_n\\). That is, the bootstrap is <strong>consistent</strong> (一致的).</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 17.5 (Bootstrap 估计均值的标准误)</div>
+                    <div class="env-title">Example 17.5 (Bootstrap Standard Error of the Mean)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\sim F\\)，\\(\\hat{\\theta} = \\bar{X}\\)。Bootstrap 标准误为</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\sim F\\) and \\(\\hat{\\theta} = \\bar{X}\\). The bootstrap standard error is</p>
                         \\[\\text{se}_{\\text{boot}} = \\sqrt{\\frac{1}{B} \\sum_{b=1}^{B} \\left(\\bar{X}^{*(b)} - \\frac{1}{B}\\sum_{b=1}^{B} \\bar{X}^{*(b)}\\right)^2}.\\]
-                        <p>当 \\(B \\to \\infty\\)，\\(\\text{se}_{\\text{boot}} \\to \\hat{\\sigma}/\\sqrt{n}\\)（其中 \\(\\hat{\\sigma}^2\\) 是样本方差的 \\((n-1)/n\\) 倍），这与经典公式一致。</p>
+                        <p>As \\(B \\to \\infty\\), \\(\\text{se}_{\\text{boot}} \\to \\hat{\\sigma}/\\sqrt{n}\\) (where \\(\\hat{\\sigma}^2\\) is \\((n-1)/n\\) times the sample variance), which agrees with the classical formula.</p>
                     </div>
                 </div>
 
@@ -76,8 +76,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'bootstrap-resample-viz',
-                    title: 'Interactive: Bootstrap 重抽样动画',
-                    description: '观察从原始样本有放回抽样的过程，建立Bootstrap统计量的分布',
+                    title: 'Interactive: Bootstrap Resampling Animation / Bootstrap 重抽样动画',
+                    description: 'Observe the process of sampling with replacement from the original sample and build the bootstrap distribution of the statistic',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 420, scale: 1, originX: 60, originY: 210});
                         var n = 15;
@@ -89,15 +89,15 @@ window.CHAPTERS.push({
                         var running = false;
                         var speed = 50;
 
-                        var bSlider = VizEngine.createSlider(controls, 'Bootstrap 次数 B', 50, 500, B, 50, function(v) { B = Math.round(v); });
-                        var speedSlider = VizEngine.createSlider(controls, '速度', 1, 100, speed, 1, function(v) { speed = Math.round(v); });
+                        var bSlider = VizEngine.createSlider(controls, 'Bootstrap Replicates B / 次数 B', 50, 500, B, 50, function(v) { B = Math.round(v); });
+                        var speedSlider = VizEngine.createSlider(controls, 'Speed / 速度', 1, 100, speed, 1, function(v) { speed = Math.round(v); });
 
-                        VizEngine.createButton(controls, '开始 Bootstrap', function() {
+                        VizEngine.createButton(controls, 'Start Bootstrap', function() {
                             bootMeans = [];
                             currentB = 0;
                             running = true;
                         });
-                        VizEngine.createButton(controls, '重置', function() {
+                        VizEngine.createButton(controls, 'Reset', function() {
                             running = false;
                             bootMeans = [];
                             currentB = 0;
@@ -137,7 +137,7 @@ window.CHAPTERS.push({
                             ctx.font = 'bold 14px -apple-system,sans-serif';
                             ctx.textAlign = 'left';
                             ctx.textBaseline = 'top';
-                            ctx.fillText('原始数据 (n=' + n + ')', 20, 10);
+                            ctx.fillText('Original Data (n=' + n + ')', 20, 10);
 
                             // Draw original data as dots
                             var dataMin = 0, dataMax = 10;
@@ -168,7 +168,7 @@ window.CHAPTERS.push({
                                 ctx.fillStyle = viz.colors.white;
                                 ctx.font = 'bold 13px -apple-system,sans-serif';
                                 ctx.textAlign = 'left';
-                                ctx.fillText('Bootstrap 样本 #' + currentB, 20, 100);
+                                ctx.fillText('Bootstrap Sample #' + currentB, 20, 100);
                                 for (var j = 0; j < currentSample.length; j++) {
                                     var bx = 60 + (currentSample[j] - dataMin) * xScale;
                                     ctx.fillStyle = viz.colors.teal + '99';
@@ -185,7 +185,7 @@ window.CHAPTERS.push({
                             ctx.fillStyle = viz.colors.white;
                             ctx.font = 'bold 13px -apple-system,sans-serif';
                             ctx.textAlign = 'left';
-                            ctx.fillText('Bootstrap 均值分布 (' + bootMeans.length + '/' + B + ')', 20, 175);
+                            ctx.fillText('Bootstrap Mean Distribution (' + bootMeans.length + '/' + B + ')', 20, 175);
 
                             if (bootMeans.length > 1) {
                                 var histBins = makeBins(bootMeans, 3, 7, 40);
@@ -257,90 +257,90 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_{20}\\) 是样本，解释为什么从中有放回抽取 20 个观测构成的 Bootstrap 样本中，大约有 \\(1 - (1 - 1/n)^n \\approx 1 - 1/e \\approx 63.2\\%\\) 的原始观测会至少出现一次。',
-                    hint: '考虑某个固定观测 \\(X_i\\) 在一次 Bootstrap 抽样中不被选中的概率是 \\((1 - 1/n)^n\\)。',
-                    solution: '对于固定的 \\(X_i\\)，在 Bootstrap 样本中每次抽样不选中它的概率是 \\(1 - 1/n\\)。由于 \\(n\\) 次抽样独立，\\(X_i\\) 一次都不被选中的概率为 \\((1 - 1/n)^n \\to 1/e \\approx 0.368\\)。因此 \\(X_i\\) 至少出现一次的概率约为 \\(1 - 1/e \\approx 0.632\\)。对所有 \\(n\\) 个观测取平均，预期约 \\(63.2\\%\\) 的不同观测会出现在 Bootstrap 样本中。'
+                    question: 'Let \\(X_1, \\ldots, X_{20}\\) be a sample. Explain why a bootstrap sample of size 20 drawn with replacement contains approximately \\(1 - (1 - 1/n)^n \\approx 1 - 1/e \\approx 63.2\\%\\) of the distinct original observations.',
+                    hint: 'Consider the probability that a fixed observation \\(X_i\\) is not selected in any of the \\(n\\) draws: \\((1 - 1/n)^n\\).',
+                    solution: 'For a fixed \\(X_i\\), the probability of not selecting it in a single draw is \\(1 - 1/n\\). Since the \\(n\\) draws are independent, the probability that \\(X_i\\) is never selected is \\((1 - 1/n)^n \\to 1/e \\approx 0.368\\). Therefore the probability that \\(X_i\\) appears at least once is approximately \\(1 - 1/e \\approx 0.632\\). Averaging over all \\(n\\) observations, we expect about \\(63.2\\%\\) of the distinct observations to appear in the bootstrap sample.'
                 },
                 {
-                    question: '比较参数 Bootstrap 和非参数 Bootstrap 的优缺点。在什么情况下应优先使用参数 Bootstrap？',
-                    hint: '考虑模型假设的角色：当模型正确时和错误时分别会怎样？',
-                    solution: '参数 Bootstrap 在模型正确指定时更高效（方差更小），因为它利用了分布族的结构信息。例如对正态数据，参数 Bootstrap 可以精确模拟正态抽样。但如果模型错误，参数 Bootstrap 的结果可能严重偏差。非参数 Bootstrap 不依赖模型假设，更加稳健，但需要更大的样本量来获得好的近似。当有充分理由相信参数模型时（如物理理论支持），优先使用参数 Bootstrap；否则使用非参数 Bootstrap。'
+                    question: 'Compare the advantages and disadvantages of the parametric bootstrap and the nonparametric bootstrap. When should one prefer the parametric bootstrap?',
+                    hint: 'Consider the role of model assumptions: what happens when the model is correct vs. incorrect?',
+                    solution: 'The parametric bootstrap is more efficient (lower variance) when the model is correctly specified, because it exploits the structural information of the distribution family. For example, for normal data the parametric bootstrap can exactly simulate normal sampling. However, if the model is wrong, the parametric bootstrap may yield seriously biased results. The nonparametric bootstrap does not rely on model assumptions and is more robust, but requires larger sample sizes for a good approximation. When there is strong justification for a parametric model (e.g., supported by physical theory), prefer the parametric bootstrap; otherwise use the nonparametric bootstrap.'
                 },
                 {
-                    question: '证明当 \\(B \\to \\infty\\) 时，Bootstrap 样本均值的标准差收敛于 \\(\\hat{\\sigma}/\\sqrt{n}\\)（其中 \\(\\hat{\\sigma}^2 = \\frac{1}{n}\\sum_{i=1}^{n}(X_i - \\bar{X})^2\\)）。',
-                    hint: '计算 \\(\\operatorname{Var}^*(\\bar{X}^*) = \\operatorname{Var}^*(X_1^*)/n\\)，其中 \\(\\operatorname{Var}^*\\) 是在 Bootstrap 世界（即关于 \\(\\hat{F}_n\\)）中的方差。',
-                    solution: '在 Bootstrap 世界中，\\(X_1^*\\) 从 \\(\\hat{F}_n\\) 中抽取，即等概率取 \\(X_1, \\ldots, X_n\\) 中的一个。因此 \\(E^*(X_1^*) = \\bar{X}\\)，\\(\\operatorname{Var}^*(X_1^*) = \\frac{1}{n}\\sum_{i=1}^{n}(X_i - \\bar{X})^2 = \\hat{\\sigma}^2\\)。由于 Bootstrap 样本中各 \\(X_i^*\\) 条件独立，\\(\\operatorname{Var}^*(\\bar{X}^*) = \\hat{\\sigma}^2/n\\)。当 \\(B \\to \\infty\\) 时，Bootstrap 样本均值的经验方差依大数律收敛于 \\(\\hat{\\sigma}^2/n\\)，故其标准差收敛于 \\(\\hat{\\sigma}/\\sqrt{n}\\)。'
+                    question: 'Show that as \\(B \\to \\infty\\), the standard deviation of the bootstrap sample means converges to \\(\\hat{\\sigma}/\\sqrt{n}\\), where \\(\\hat{\\sigma}^2 = \\frac{1}{n}\\sum_{i=1}^{n}(X_i - \\bar{X})^2\\).',
+                    hint: 'Compute \\(\\operatorname{Var}^*(\\bar{X}^*) = \\operatorname{Var}^*(X_1^*)/n\\), where \\(\\operatorname{Var}^*\\) denotes the variance in the bootstrap world (i.e., with respect to \\(\\hat{F}_n\\)).',
+                    solution: 'In the bootstrap world, \\(X_1^*\\) is drawn from \\(\\hat{F}_n\\), i.e., it equals each \\(X_i\\) with probability \\(1/n\\). Thus \\(E^*(X_1^*) = \\bar{X}\\) and \\(\\operatorname{Var}^*(X_1^*) = \\frac{1}{n}\\sum_{i=1}^{n}(X_i - \\bar{X})^2 = \\hat{\\sigma}^2\\). Since the bootstrap sample elements \\(X_i^*\\) are conditionally independent, \\(\\operatorname{Var}^*(\\bar{X}^*) = \\hat{\\sigma}^2/n\\). As \\(B \\to \\infty\\), the empirical variance of the bootstrap sample means converges by the law of large numbers to \\(\\hat{\\sigma}^2/n\\), so the standard deviation converges to \\(\\hat{\\sigma}/\\sqrt{n}\\).'
                 }
             ]
         },
 
-        // === Section 2: Bootstrap 置信区间 ===
+        // === Section 2: Bootstrap Confidence Intervals ===
         {
             id: 'ch17-sec02',
-            title: 'Bootstrap 置信区间',
+            title: 'Bootstrap Confidence Intervals',
             content: `
-                <h2>Bootstrap 置信区间</h2>
+                <h2>Bootstrap Confidence Intervals / Bootstrap 置信区间</h2>
 
-                <p>Bootstrap 最常见的应用之一是构造置信区间。我们介绍三种主要方法：百分位法、基本 Bootstrap 法和 BCa 法。</p>
+                <p>One of the most common applications of the bootstrap is constructing confidence intervals (置信区间). We introduce three main methods: the percentile method, the basic bootstrap method, and the BCa method.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 17.6 (百分位法置信区间)</div>
+                    <div class="env-title">Definition 17.6 (Percentile Confidence Interval)</div>
                     <div class="env-body">
-                        <p>设 \\(\\hat{\\theta}^{*(1)}, \\ldots, \\hat{\\theta}^{*(B)}\\) 为 \\(B\\) 个 Bootstrap 统计量。<strong>百分位法</strong> (percentile method) 的 \\(1 - \\alpha\\) 置信区间为</p>
+                        <p>Let \\(\\hat{\\theta}^{*(1)}, \\ldots, \\hat{\\theta}^{*(B)}\\) be the \\(B\\) bootstrap statistics. The <strong>percentile method</strong> (百分位法) \\(1 - \\alpha\\) confidence interval is</p>
                         \\[C_{\\text{perc}} = \\left[\\hat{\\theta}^*_{(\\alpha/2)}, \\; \\hat{\\theta}^*_{(1-\\alpha/2)}\\right],\\]
-                        <p>其中 \\(\\hat{\\theta}^*_{(q)}\\) 表示 Bootstrap 统计量的 \\(q\\)-分位数。</p>
+                        <p>where \\(\\hat{\\theta}^*_{(q)}\\) denotes the \\(q\\)-quantile of the bootstrap statistics.</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>百分位法直观简洁，但它假设 Bootstrap 分布的偏差和偏度可以忽略。当估计量有显著偏差时，百分位法的覆盖率可能偏离名义水平。</p>
+                        <p>The percentile method is intuitive and simple, but it assumes that the bias and skewness of the bootstrap distribution are negligible. When the estimator has significant bias, the coverage probability of the percentile method may deviate from the nominal level.</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 17.7 (基本 Bootstrap 置信区间)</div>
+                    <div class="env-title">Definition 17.7 (Basic Bootstrap Confidence Interval)</div>
                     <div class="env-body">
-                        <p><strong>基本 Bootstrap 法</strong> (basic/pivotal bootstrap) 基于 Bootstrap 枢轴量 \\(\\hat{\\theta}^* - \\hat{\\theta}\\) 近似 \\(\\hat{\\theta} - \\theta\\) 的分布，得到</p>
+                        <p>The <strong>basic bootstrap method</strong> (基本 Bootstrap 法, also called the pivotal bootstrap) approximates the distribution of \\(\\hat{\\theta} - \\theta\\) using the bootstrap pivot \\(\\hat{\\theta}^* - \\hat{\\theta}\\), yielding</p>
                         \\[C_{\\text{basic}} = \\left[2\\hat{\\theta} - \\hat{\\theta}^*_{(1-\\alpha/2)}, \\; 2\\hat{\\theta} - \\hat{\\theta}^*_{(\\alpha/2)}\\right].\\]
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 17.8 (基本 Bootstrap 法的动机)</div>
+                    <div class="env-title">Theorem 17.8 (Motivation for the Basic Bootstrap)</div>
                     <div class="env-body">
-                        <p>若存在单调变换 \\(m\\) 使得 \\(m(\\hat{\\theta}) - m(\\theta)\\) 的分布与 \\(\\theta\\) 无关（即为枢轴量），则基本 Bootstrap 法在该变换下给出精确的置信区间。</p>
+                        <p>If there exists a monotone transformation \\(m\\) such that the distribution of \\(m(\\hat{\\theta}) - m(\\theta)\\) does not depend on \\(\\theta\\) (i.e., it is a pivot), then the basic bootstrap method yields an exact confidence interval under that transformation.</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 17.9 (BCa 置信区间)</div>
+                    <div class="env-title">Definition 17.9 (BCa Confidence Interval)</div>
                     <div class="env-body">
-                        <p><strong>BCa 法</strong> (bias-corrected and accelerated) 对百分位法进行偏差和加速度校正。\\(1 - \\alpha\\) BCa 置信区间为</p>
+                        <p>The <strong>BCa method</strong> (bias-corrected and accelerated, 偏差校正加速法) applies bias and acceleration corrections to the percentile method. The \\(1 - \\alpha\\) BCa confidence interval is</p>
                         \\[C_{\\text{BCa}} = \\left[\\hat{\\theta}^*_{(\\alpha_1)}, \\; \\hat{\\theta}^*_{(\\alpha_2)}\\right],\\]
-                        <p>其中</p>
+                        <p>where</p>
                         \\[\\alpha_1 = \\Phi\\!\\left(\\hat{z}_0 + \\frac{\\hat{z}_0 + z_{\\alpha/2}}{1 - \\hat{a}(\\hat{z}_0 + z_{\\alpha/2})}\\right), \\quad \\alpha_2 = \\Phi\\!\\left(\\hat{z}_0 + \\frac{\\hat{z}_0 + z_{1-\\alpha/2}}{1 - \\hat{a}(\\hat{z}_0 + z_{1-\\alpha/2})}\\right),\\]
-                        <p>偏差校正因子 \\(\\hat{z}_0 = \\Phi^{-1}\\!\\left(\\frac{\\#\\{\\hat{\\theta}^{*(b)} < \\hat{\\theta}\\}}{B}\\right)\\)，加速度因子</p>
+                        <p>the bias-correction factor is \\(\\hat{z}_0 = \\Phi^{-1}\\!\\left(\\frac{\\#\\{\\hat{\\theta}^{*(b)} < \\hat{\\theta}\\}}{B}\\right)\\), and the acceleration factor is</p>
                         \\[\\hat{a} = \\frac{\\sum_{i=1}^{n}(\\hat{\\theta}_{(\\cdot)} - \\hat{\\theta}_{(i)})^3}{6\\left[\\sum_{i=1}^{n}(\\hat{\\theta}_{(\\cdot)} - \\hat{\\theta}_{(i)})^2\\right]^{3/2}},\\]
-                        <p>其中 \\(\\hat{\\theta}_{(i)}\\) 是删去第 \\(i\\) 个观测后的估计值，\\(\\hat{\\theta}_{(\\cdot)} = \\frac{1}{n}\\sum_{i}\\hat{\\theta}_{(i)}\\)。</p>
+                        <p>where \\(\\hat{\\theta}_{(i)}\\) is the estimate with the \\(i\\)-th observation deleted, and \\(\\hat{\\theta}_{(\\cdot)} = \\frac{1}{n}\\sum_{i}\\hat{\\theta}_{(i)}\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block warning">
-                    <div class="env-title">Warning (Bootstrap 失效的情形)</div>
+                    <div class="env-title">Warning (When Bootstrap Fails)</div>
                     <div class="env-body">
-                        <p>Bootstrap 并非万能。以下情形中 Bootstrap 可能失效：</p>
-                        <p><strong>1. 不光滑泛函：</strong>对于极值（如 \\(X_{(n)} = \\max_i X_i\\)），Bootstrap 分布的收敛速率不正确。</p>
-                        <p><strong>2. 重尾分布：</strong>当 \\(\\operatorname{Var}(X) = \\infty\\) 时，Bootstrap 对均值的推断不一致。</p>
-                        <p><strong>3. 非独立数据：</strong>简单的 i.i.d. Bootstrap 不适用于时间序列等相依数据（需要 block bootstrap 等变体）。</p>
+                        <p>The bootstrap is not universally valid. It may fail in the following situations:</p>
+                        <p><strong>1. Non-smooth functionals:</strong> For extremes (e.g., \\(X_{(n)} = \\max_i X_i\\)), the convergence rate of the bootstrap distribution is incorrect.</p>
+                        <p><strong>2. Heavy-tailed distributions:</strong> When \\(\\operatorname{Var}(X) = \\infty\\), the bootstrap is inconsistent for inference on the mean.</p>
+                        <p><strong>3. Non-independent data:</strong> The simple i.i.d. bootstrap is not applicable to dependent data such as time series (variants like the block bootstrap are needed).</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 17.10 (三种 Bootstrap CI 的比较)</div>
+                    <div class="env-title">Example 17.10 (Comparison of Three Bootstrap CIs)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_{20} \\sim \\text{Exp}(1)\\)（右偏分布），估计均值 \\(\\theta = 1\\)。使用下面的可视化工具观察三种方法的差异。对于偏态分布，BCa 通常比百分位法有更好的覆盖率。</p>
+                        <p>Let \\(X_1, \\ldots, X_{20} \\sim \\text{Exp}(1)\\) (a right-skewed distribution), and estimate the mean \\(\\theta = 1\\). Use the visualization below to observe the differences among the three methods. For skewed distributions, BCa typically achieves better coverage than the percentile method.</p>
                     </div>
                 </div>
 
@@ -349,17 +349,17 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'bootstrap-ci-viz',
-                    title: 'Interactive: Bootstrap 置信区间比较',
-                    description: '比较百分位法、基本Bootstrap法和BCa法构造的置信区间',
+                    title: 'Interactive: Bootstrap Confidence Interval Comparison / Bootstrap 置信区间比较',
+                    description: 'Compare confidence intervals constructed by the percentile, basic bootstrap, and BCa methods',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 420, scale: 1, originX: 60, originY: 210});
                         var n = 20;
                         var B = 1000;
                         var alpha = 0.05;
 
-                        VizEngine.createSlider(controls, '样本量 n', 10, 50, n, 5, function(v) { n = Math.round(v); runBootstrap(); });
-                        VizEngine.createSlider(controls, '置信水平 1-a', 0.80, 0.99, 1 - alpha, 0.01, function(v) { alpha = +(1 - v).toFixed(2); runBootstrap(); });
-                        VizEngine.createButton(controls, '重新抽样', function() { runBootstrap(); });
+                        VizEngine.createSlider(controls, 'Sample Size n / 样本量 n', 10, 50, n, 5, function(v) { n = Math.round(v); runBootstrap(); });
+                        VizEngine.createSlider(controls, 'Confidence Level 1-a / 置信水平', 0.80, 0.99, 1 - alpha, 0.01, function(v) { alpha = +(1 - v).toFixed(2); runBootstrap(); });
+                        VizEngine.createButton(controls, 'Resample', function() { runBootstrap(); });
 
                         var data, bootMeans, percCI, basicCI, bcaCI, thetaHat;
 
@@ -456,7 +456,7 @@ window.CHAPTERS.push({
                             ctx.font = 'bold 13px -apple-system,sans-serif';
                             ctx.textAlign = 'left';
                             ctx.textBaseline = 'top';
-                            ctx.fillText('Bootstrap 均值分布 (B=' + B + ', n=' + n + ')', plotLeft, 10);
+                            ctx.fillText('Bootstrap Mean Distribution (B=' + B + ', n=' + n + ')', plotLeft, 10);
 
                             for (var k = 0; k < nBins; k++) {
                                 var barX = plotLeft + k * binW * xScale;
@@ -518,7 +518,7 @@ window.CHAPTERS.push({
                             ctx.fillStyle = viz.colors.white;
                             ctx.font = 'bold 13px -apple-system,sans-serif';
                             ctx.textAlign = 'left';
-                            ctx.fillText('置信区间比较 (1-a = ' + (1 - alpha).toFixed(2) + ')', plotLeft, ciY - 5);
+                            ctx.fillText('CI Comparison (1-a = ' + (1 - alpha).toFixed(2) + ')', plotLeft, ciY - 5);
 
                             for (var c = 0; c < ciData.length; c++) {
                                 var cy = ciY + 20 + c * 35;
@@ -567,79 +567,79 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '证明当 Bootstrap 分布关于 \\(\\hat{\\theta}\\) 对称且无偏时，百分位法和基本 Bootstrap 法给出相同的置信区间。',
-                    hint: '对称意味着 \\(\\hat{\\theta}^*_{(\\alpha/2)} = 2\\hat{\\theta} - \\hat{\\theta}^*_{(1-\\alpha/2)}\\)。',
-                    solution: '设 Bootstrap 分布关于 \\(\\hat{\\theta}\\) 对称，则 \\(\\hat{\\theta}^*_{(q)} + \\hat{\\theta}^*_{(1-q)} = 2\\hat{\\theta}\\) 对所有 \\(q\\)。百分位法给出 \\([\\hat{\\theta}^*_{(\\alpha/2)}, \\hat{\\theta}^*_{(1-\\alpha/2)}]\\)。基本法给出 \\([2\\hat{\\theta} - \\hat{\\theta}^*_{(1-\\alpha/2)}, 2\\hat{\\theta} - \\hat{\\theta}^*_{(\\alpha/2)}]\\)。由对称性，\\(2\\hat{\\theta} - \\hat{\\theta}^*_{(1-\\alpha/2)} = \\hat{\\theta}^*_{(\\alpha/2)}\\) 且 \\(2\\hat{\\theta} - \\hat{\\theta}^*_{(\\alpha/2)} = \\hat{\\theta}^*_{(1-\\alpha/2)}\\)，两者一致。'
+                    question: 'Show that when the bootstrap distribution is symmetric about \\(\\hat{\\theta}\\) and unbiased, the percentile method and the basic bootstrap method yield the same confidence interval.',
+                    hint: 'Symmetry implies \\(\\hat{\\theta}^*_{(\\alpha/2)} = 2\\hat{\\theta} - \\hat{\\theta}^*_{(1-\\alpha/2)}\\).',
+                    solution: 'Assume the bootstrap distribution is symmetric about \\(\\hat{\\theta}\\), so \\(\\hat{\\theta}^*_{(q)} + \\hat{\\theta}^*_{(1-q)} = 2\\hat{\\theta}\\) for all \\(q\\). The percentile method gives \\([\\hat{\\theta}^*_{(\\alpha/2)}, \\hat{\\theta}^*_{(1-\\alpha/2)}]\\). The basic method gives \\([2\\hat{\\theta} - \\hat{\\theta}^*_{(1-\\alpha/2)}, 2\\hat{\\theta} - \\hat{\\theta}^*_{(\\alpha/2)}]\\). By symmetry, \\(2\\hat{\\theta} - \\hat{\\theta}^*_{(1-\\alpha/2)} = \\hat{\\theta}^*_{(\\alpha/2)}\\) and \\(2\\hat{\\theta} - \\hat{\\theta}^*_{(\\alpha/2)} = \\hat{\\theta}^*_{(1-\\alpha/2)}\\), so the two intervals are identical.'
                 },
                 {
-                    question: '在 BCa 方法中，偏差校正因子 \\(\\hat{z}_0\\) 的直觉含义是什么？当 \\(\\hat{z}_0 = 0\\) 时，BCa 退化为什么方法？',
-                    hint: '考虑当正好一半的 Bootstrap 复制值小于 \\(\\hat{\\theta}\\) 时，\\(\\hat{z}_0\\) 等于多少。',
-                    solution: '\\(\\hat{z}_0\\) 度量 Bootstrap 分布中位数相对于 \\(\\hat{\\theta}\\) 的偏差。当 \\(\\hat{z}_0 = 0\\) 时，意味着恰好一半的 Bootstrap 复制值小于 \\(\\hat{\\theta}\\)（Bootstrap 分布的中位数等于 \\(\\hat{\\theta}\\)），即无偏差。此时若同时 \\(\\hat{a} = 0\\)（无加速度），则 \\(\\alpha_1 = \\Phi(z_{\\alpha/2}) = \\alpha/2\\)，\\(\\alpha_2 = 1 - \\alpha/2\\)，BCa 退化为百分位法。'
+                    question: 'What is the intuitive meaning of the bias-correction factor \\(\\hat{z}_0\\) in the BCa method? What method does BCa reduce to when \\(\\hat{z}_0 = 0\\)?',
+                    hint: 'Consider what value \\(\\hat{z}_0\\) takes when exactly half of the bootstrap replicates are less than \\(\\hat{\\theta}\\).',
+                    solution: '\\(\\hat{z}_0\\) measures the discrepancy between the median of the bootstrap distribution and \\(\\hat{\\theta}\\). When \\(\\hat{z}_0 = 0\\), exactly half of the bootstrap replicates are less than \\(\\hat{\\theta}\\) (i.e., the bootstrap median equals \\(\\hat{\\theta}\\)), meaning there is no bias. If simultaneously \\(\\hat{a} = 0\\) (no acceleration), then \\(\\alpha_1 = \\Phi(z_{\\alpha/2}) = \\alpha/2\\) and \\(\\alpha_2 = 1 - \\alpha/2\\), so BCa reduces to the percentile method.'
                 },
                 {
-                    question: '解释为什么 Bootstrap 对样本最大值 \\(X_{(n)}\\) 的推断不一致。',
-                    hint: '考虑 \\(n(\\theta - X_{(n)})\\) 的真实极限分布与 Bootstrap 版本 \\(n(X_{(n)} - X^*_{(n)})\\) 的极限分布是否一致（以均匀分布为例）。',
-                    solution: '设 \\(X_1, \\ldots, X_n \\sim \\text{Unif}(0, \\theta)\\)。真实世界中 \\(n(\\theta - X_{(n)}) \\xrightarrow{d} \\text{Exp}(1/\\theta)\\)，收敛率为 \\(n\\)。但在 Bootstrap 世界中，\\(X^*_{(n)} = X_{(n)}\\) 以高概率成立（只要某次抽到了最大观测值）。具体而言，\\(P^*(X^*_{(n)} = X_{(n)}) = 1 - (1-1/n)^n \\to 1 - 1/e\\)，所以 \\(n(X_{(n)} - X^*_{(n)})\\) 的分布在 0 处有质量约 \\(63\\%\\)，与 \\(\\text{Exp}(1/\\theta)\\) 的连续分布不一致。这是因为极值是不光滑泛函。'
+                    question: 'Explain why the bootstrap is inconsistent for inference on the sample maximum \\(X_{(n)}\\).',
+                    hint: 'Consider whether the true limiting distribution of \\(n(\\theta - X_{(n)})\\) and the bootstrap version \\(n(X_{(n)} - X^*_{(n)})\\) agree (use the uniform distribution as an example).',
+                    solution: 'Let \\(X_1, \\ldots, X_n \\sim \\text{Unif}(0, \\theta)\\). In the real world, \\(n(\\theta - X_{(n)}) \\xrightarrow{d} \\text{Exp}(1/\\theta)\\) at rate \\(n\\). But in the bootstrap world, \\(X^*_{(n)} = X_{(n)}\\) with high probability (as long as at least one draw selects the maximum observation). Specifically, \\(P^*(X^*_{(n)} = X_{(n)}) = 1 - (1-1/n)^n \\to 1 - 1/e\\), so \\(n(X_{(n)} - X^*_{(n)})\\) has a point mass of approximately \\(63\\%\\) at 0, which does not match the continuous \\(\\text{Exp}(1/\\theta)\\) distribution. This is because the maximum is a non-smooth functional.'
                 }
             ]
         },
 
-        // === Section 3: Bootstrap 假设检验 ===
+        // === Section 3: Bootstrap Hypothesis Testing ===
         {
             id: 'ch17-sec03',
-            title: 'Bootstrap 假设检验',
+            title: 'Bootstrap Hypothesis Testing',
             content: `
-                <h2>Bootstrap 假设检验</h2>
+                <h2>Bootstrap Hypothesis Testing / Bootstrap 假设检验</h2>
 
-                <p>Bootstrap 不仅用于估计和置信区间，还可以用于假设检验。其核心思想是通过重抽样构造检验统计量在零假设下的分布。</p>
+                <p>The bootstrap is useful not only for estimation and confidence intervals, but also for hypothesis testing (假设检验). The core idea is to construct the null distribution of the test statistic via resampling.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 17.11 (Bootstrap p 值)</div>
+                    <div class="env-title">Definition 17.11 (Bootstrap p-value)</div>
                     <div class="env-body">
-                        <p>设观测到的检验统计量为 \\(T_{\\text{obs}}\\)，在零假设 \\(H_0\\) 下通过 Bootstrap 生成 \\(T^{*(1)}, \\ldots, T^{*(B)}\\)。<strong>Bootstrap p 值</strong>定义为</p>
+                        <p>Let the observed test statistic be \\(T_{\\text{obs}}\\). Under the null hypothesis \\(H_0\\), generate \\(T^{*(1)}, \\ldots, T^{*(B)}\\) via the bootstrap. The <strong>bootstrap p-value</strong> is defined as</p>
                         \\[p_{\\text{boot}} = \\frac{1}{B} \\sum_{b=1}^{B} \\mathbf{1}\\!\\left(T^{*(b)} \\ge T_{\\text{obs}}\\right).\\]
-                        <p>（对于双侧检验，使用 \\(|T^{*(b)}| \\ge |T_{\\text{obs}}|\\)。）</p>
+                        <p>(For a two-sided test, use \\(|T^{*(b)}| \\ge |T_{\\text{obs}}|\\).)</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
-                    <div class="env-title">Remark (零假设下的 Bootstrap)</div>
+                    <div class="env-title">Remark (Bootstrap Under the Null)</div>
                     <div class="env-body">
-                        <p>进行 Bootstrap 假设检验时，关键是要在<strong>零假设下</strong>进行重抽样。例如检验 \\(H_0: \\mu = \\mu_0\\) 时，应将数据中心化为 \\(Y_i = X_i - \\bar{X} + \\mu_0\\)，然后从 \\(Y_1, \\ldots, Y_n\\) 中进行 Bootstrap 抽样。</p>
+                        <p>When performing a bootstrap hypothesis test, it is crucial to resample <strong>under the null hypothesis</strong>. For example, when testing \\(H_0: \\mu = \\mu_0\\), one should center the data as \\(Y_i = X_i - \\bar{X} + \\mu_0\\), and then bootstrap from \\(Y_1, \\ldots, Y_n\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 17.12 (置换检验)</div>
+                    <div class="env-title">Definition 17.12 (Permutation Test)</div>
                     <div class="env-body">
-                        <p>考虑两样本问题：\\(X_1, \\ldots, X_m \\sim F\\)，\\(Y_1, \\ldots, Y_n \\sim G\\)，检验 \\(H_0: F = G\\)。</p>
-                        <p><strong>置换检验</strong> (permutation test) 的步骤：</p>
-                        <p><strong>Step 1.</strong> 计算观测统计量 \\(T_{\\text{obs}}\\)（如两组均值之差 \\(\\bar{X} - \\bar{Y}\\)）。</p>
-                        <p><strong>Step 2.</strong> 将所有 \\(m + n\\) 个观测值混合，随机划分为大小 \\(m\\) 和 \\(n\\) 的两组。</p>
-                        <p><strong>Step 3.</strong> 对每次置换计算统计量 \\(T^{*(b)}\\)。</p>
-                        <p><strong>Step 4.</strong> p 值为 \\(\\frac{1}{B}\\sum_{b=1}^{B} \\mathbf{1}(|T^{*(b)}| \\ge |T_{\\text{obs}}|)\\)。</p>
+                        <p>Consider the two-sample problem: \\(X_1, \\ldots, X_m \\sim F\\), \\(Y_1, \\ldots, Y_n \\sim G\\), testing \\(H_0: F = G\\).</p>
+                        <p>The <strong>permutation test</strong> (置换检验) proceeds as follows:</p>
+                        <p><strong>Step 1.</strong> Compute the observed statistic \\(T_{\\text{obs}}\\) (e.g., the difference of group means \\(\\bar{X} - \\bar{Y}\\)).</p>
+                        <p><strong>Step 2.</strong> Pool all \\(m + n\\) observations and randomly split them into groups of size \\(m\\) and \\(n\\).</p>
+                        <p><strong>Step 3.</strong> Compute the statistic \\(T^{*(b)}\\) for each permutation.</p>
+                        <p><strong>Step 4.</strong> The p-value is \\(\\frac{1}{B}\\sum_{b=1}^{B} \\mathbf{1}(|T^{*(b)}| \\ge |T_{\\text{obs}}|)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 17.13 (置换检验的精确性)</div>
+                    <div class="env-title">Theorem 17.13 (Exactness of the Permutation Test)</div>
                     <div class="env-body">
-                        <p>在 \\(H_0: F = G\\) 下，若使用所有 \\(\\binom{m+n}{m}\\) 种置换，则置换检验是<strong>精确检验</strong>，即对任意 \\(\\alpha\\)，其真实水平恰好等于（或不超过）\\(\\alpha\\)。</p>
+                        <p>Under \\(H_0: F = G\\), if all \\(\\binom{m+n}{m}\\) permutations are used, the permutation test is an <strong>exact test</strong>, i.e., for any \\(\\alpha\\), its true significance level is exactly (or at most) \\(\\alpha\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>在 \\(H_0\\) 下，所有 \\(N = m + n\\) 个观测值来自同一分布。因此数据的任何排列都是等可能的。检验统计量在所有 \\(\\binom{N}{m}\\) 种划分上取值构成了其精确的零分布。p 值等于零分布中不小于观测值的比例，由对称性可知检验水平精确为 \\(\\alpha\\)。</p>
-                        <div class="qed">∎</div>
+                        <p>Under \\(H_0\\), all \\(N = m + n\\) observations come from the same distribution, so every permutation of the data is equally likely. The test statistic evaluated over all \\(\\binom{N}{m}\\) possible splits constitutes its exact null distribution. The p-value equals the proportion of the null distribution that is at least as extreme as the observed value. By symmetry, the test level is exactly \\(\\alpha\\).</p>
+                        <div class="qed">&#8718;</div>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 17.14 (Bootstrap 双样本检验)</div>
+                    <div class="env-title">Example 17.14 (Bootstrap Two-Sample Test)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_{15} \\sim N(\\mu_1, 1)\\)，\\(Y_1, \\ldots, Y_{15} \\sim N(\\mu_2, 1)\\)。检验 \\(H_0: \\mu_1 = \\mu_2\\)。使用下面的可视化工具，调整 \\(\\mu_2\\) 观察 p 值如何变化。当 \\(\\mu_1 = \\mu_2\\) 时，p 值应大致均匀分布在 \\([0,1]\\) 上。</p>
+                        <p>Let \\(X_1, \\ldots, X_{15} \\sim N(\\mu_1, 1)\\) and \\(Y_1, \\ldots, Y_{15} \\sim N(\\mu_2, 1)\\). Test \\(H_0: \\mu_1 = \\mu_2\\). Use the visualization below, adjusting \\(\\mu_2\\) to observe how the p-value changes. When \\(\\mu_1 = \\mu_2\\), the p-value should be approximately uniformly distributed on \\([0,1]\\).</p>
                     </div>
                 </div>
 
@@ -648,8 +648,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'bootstrap-test-viz',
-                    title: 'Interactive: Bootstrap / 置换检验',
-                    description: '通过重抽样构造检验统计量的零分布，计算p值',
+                    title: 'Interactive: Bootstrap / Permutation Test / Bootstrap / 置换检验',
+                    description: 'Construct the null distribution of the test statistic via resampling and compute the p-value',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 420, scale: 1, originX: 60, originY: 210});
                         var m = 15, nY = 15;
@@ -658,9 +658,9 @@ window.CHAPTERS.push({
                         var testType = 'permutation';
 
                         VizEngine.createSlider(controls, 'mu2 - mu1', 0, 2, mu2, 0.1, function(v) { mu2 = v; runTest(); });
-                        VizEngine.createButton(controls, '置换检验', function() { testType = 'permutation'; runTest(); });
-                        VizEngine.createButton(controls, 'Bootstrap 检验', function() { testType = 'bootstrap'; runTest(); });
-                        VizEngine.createButton(controls, '重新抽样', function() { runTest(); });
+                        VizEngine.createButton(controls, 'Permutation Test', function() { testType = 'permutation'; runTest(); });
+                        VizEngine.createButton(controls, 'Bootstrap Test', function() { testType = 'bootstrap'; runTest(); });
+                        VizEngine.createButton(controls, 'Resample', function() { runTest(); });
 
                         var dataX, dataY, Tobs, Tboot, pval;
 
@@ -716,7 +716,7 @@ window.CHAPTERS.push({
                             ctx.font = 'bold 13px -apple-system,sans-serif';
                             ctx.textAlign = 'left';
                             ctx.textBaseline = 'top';
-                            var titleStr = testType === 'permutation' ? '置换检验' : 'Bootstrap 检验';
+                            var titleStr = testType === 'permutation' ? 'Permutation Test' : 'Bootstrap Test';
                             ctx.fillText(titleStr + ': H0: mu1 = mu2', 60, 8);
 
                             // Data points
@@ -763,7 +763,7 @@ window.CHAPTERS.push({
                             ctx.fillStyle = viz.colors.text;
                             ctx.font = '12px -apple-system,sans-serif';
                             ctx.textAlign = 'left';
-                            ctx.fillText('零假设下的统计量分布', plotL, histTop - 10);
+                            ctx.fillText('Null Distribution of Test Statistic', plotL, histTop - 10);
 
                             for (var q = 0; q < nBins; q++) {
                                 var bx1 = plotL + q * binW * tScale;
@@ -816,7 +816,7 @@ window.CHAPTERS.push({
                             ctx.fillText('p-value = ' + pval.toFixed(4), plotL, histBot + 15);
                             ctx.fillStyle = viz.colors.text;
                             ctx.font = '11px -apple-system,sans-serif';
-                            ctx.fillText(pval < 0.05 ? '(在 a=0.05 下拒绝 H0)' : '(在 a=0.05 下不拒绝 H0)', plotL + 170, histBot + 17);
+                            ctx.fillText(pval < 0.05 ? '(Reject H0 at a=0.05)' : '(Fail to reject H0 at a=0.05)', plotL + 170, histBot + 17);
 
                             // mu info
                             ctx.fillStyle = viz.colors.text;
@@ -832,101 +832,101 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '解释为什么在 Bootstrap 假设检验中，必须在零假设下进行重抽样，而不是直接从原始数据进行重抽样。',
-                    hint: '考虑 Bootstrap 重抽样的目的是模拟什么。',
-                    solution: 'p 值的定义是在 H0 为真时观测到至少同样极端的统计量的概率。如果我们直接从原始数据重抽样，Bootstrap 分布反映的是数据生成过程的真实分布，而非零假设下的分布。例如检验 H0: mu = 0 但数据均值为 3 时，直接 Bootstrap 会产生以 3 为中心的分布，导致 p 值估计有偏。正确的做法是将数据中心化到 H0 下的值（减去 x_bar 加上 mu_0 = 0），然后再 Bootstrap，这样重抽样分布才反映 H0 下的情形。'
+                    question: 'Explain why in a bootstrap hypothesis test one must resample under the null hypothesis, rather than directly from the original data.',
+                    hint: 'Consider what the bootstrap resampling is supposed to simulate.',
+                    solution: 'The p-value is defined as the probability of observing a statistic at least as extreme as the one observed, assuming H0 is true. If we resample directly from the original data, the bootstrap distribution reflects the true data-generating process rather than the null distribution. For example, when testing H0: mu = 0 but the sample mean is 3, a naive bootstrap would produce a distribution centered at 3, leading to a biased p-value estimate. The correct approach is to center the data to the null value (subtract the sample mean and add mu_0 = 0), then bootstrap, so the resampling distribution reflects the situation under H0.'
                 },
                 {
-                    question: '置换检验和 Bootstrap 检验的主要区别是什么？什么情况下它们会给出不同的结论？',
-                    hint: '考虑抽样方式的差异：置换是无放回的重排列，Bootstrap 是有放回的重抽样。',
-                    solution: '置换检验将两组数据混合后无放回地重新分配，保持组的大小不变。它检验的精确零假设是 F = G（两个分布完全相同）。Bootstrap 检验则通过有放回抽样在 H0 下构造零分布，检验的可以是更具体的假设（如 mu1 = mu2）。当两组方差不同但均值相同时（H0: mu1 = mu2 但 sigma1 != sigma2），置换检验可能不恰当（因为 F != G），而适当构造的 Bootstrap 检验仍然有效。此外，对于非常小的样本，置换检验提供精确检验，而 Bootstrap 只是近似的。'
+                    question: 'What are the main differences between a permutation test and a bootstrap test? Under what circumstances might they give different conclusions?',
+                    hint: 'Consider the difference in sampling: permutation reshuffles without replacement, while bootstrap resamples with replacement.',
+                    solution: 'The permutation test pools the two groups and reassigns observations without replacement, keeping group sizes fixed. It tests the exact null hypothesis F = G (the two distributions are identical). The bootstrap test constructs the null distribution via sampling with replacement under H0, and can test more specific hypotheses (e.g., mu1 = mu2). When the two groups have different variances but the same mean (H0: mu1 = mu2 but sigma1 != sigma2), the permutation test may be inappropriate (since F != G), while a properly constructed bootstrap test remains valid. Furthermore, for very small samples, the permutation test provides an exact test, whereas the bootstrap is only approximate.'
                 },
                 {
-                    question: '假设你对 \\(n = 100\\) 个数据点用 \\(B = 999\\) 次 Bootstrap 进行单侧检验。得到的 p 值可能取哪些值？为什么通常建议 \\(B\\) 取奇数（如 999 而非 1000）？',
-                    hint: '考虑 Bootstrap p 值的分辨率。',
-                    solution: 'Bootstrap p 值的形式为 k/B（或 (k+1)/(B+1) 的修正形式），其中 k = 0, 1, ..., B。因此可能的 p 值为 0/999, 1/999, ..., 999/999。分辨率为 1/B。取 B = 999 时，若使用修正 p 值 (k+1)/(B+1) = (k+1)/1000，恰好得到千分之一为单位的 p 值，便于解读。若 B = 1000，修正后分母为 1001，p 值不那么"整"。更重要的是，修正公式 (k+1)/(B+1) 确保 p 值不会为 0，这在理论上更合理。'
+                    question: 'Suppose you perform a one-sided bootstrap test on \\(n = 100\\) data points with \\(B = 999\\) bootstrap replicates. What values can the p-value take? Why is it typically recommended that \\(B\\) be odd (e.g., 999 rather than 1000)?',
+                    hint: 'Consider the resolution of the bootstrap p-value.',
+                    solution: 'The bootstrap p-value takes the form k/B (or the corrected form (k+1)/(B+1)), where k = 0, 1, ..., B. Thus the possible values are 0/999, 1/999, ..., 999/999, with a resolution of 1/B. When B = 999 and using the corrected p-value (k+1)/(B+1) = (k+1)/1000, we get p-values in neat thousandths, which are easy to interpret. If B = 1000, the corrected denominator is 1001, producing less "clean" p-values. More importantly, the corrected formula (k+1)/(B+1) ensures the p-value is never exactly 0, which is theoretically more appropriate.'
                 }
             ]
         },
 
-        // === Section 4: Jackknife 与交叉验证 ===
+        // === Section 4: Jackknife and Cross-Validation ===
         {
             id: 'ch17-sec04',
-            title: 'Jackknife 与交叉验证',
+            title: 'Jackknife and Cross-Validation',
             content: `
-                <h2>Jackknife 与交叉验证</h2>
+                <h2>Jackknife and Cross-Validation / Jackknife 与交叉验证</h2>
 
-                <p>Jackknife 是 Bootstrap 的前身，由 Quenouille (1949) 和 Tukey (1958) 发展。它通过系统性地逐个删除观测值来估计偏差和方差。交叉验证则是预测建模中评估模型性能的标准工具。</p>
+                <p>The jackknife (刀切法) is a precursor to the bootstrap, developed by Quenouille (1949) and Tukey (1958). It estimates bias and variance by systematically deleting one observation at a time. Cross-validation (交叉验证) is the standard tool for evaluating model performance in predictive modeling.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 17.15 (Jackknife 估计)</div>
+                    <div class="env-title">Definition 17.15 (Jackknife Estimator)</div>
                     <div class="env-body">
-                        <p>设 \\(\\hat{\\theta} = T(X_1, \\ldots, X_n)\\) 为统计量。记 \\(\\hat{\\theta}_{(i)} = T(X_1, \\ldots, X_{i-1}, X_{i+1}, \\ldots, X_n)\\) 为删去第 \\(i\\) 个观测后的估计值。定义：</p>
-                        <p><strong>Jackknife 偏差估计：</strong></p>
+                        <p>Let \\(\\hat{\\theta} = T(X_1, \\ldots, X_n)\\) be a statistic. Denote by \\(\\hat{\\theta}_{(i)} = T(X_1, \\ldots, X_{i-1}, X_{i+1}, \\ldots, X_n)\\) the estimate with the \\(i\\)-th observation deleted. Define:</p>
+                        <p><strong>Jackknife bias estimate:</strong></p>
                         \\[\\widehat{\\text{Bias}}_{\\text{jack}} = (n-1)\\left(\\hat{\\theta}_{(\\cdot)} - \\hat{\\theta}\\right), \\quad \\hat{\\theta}_{(\\cdot)} = \\frac{1}{n}\\sum_{i=1}^{n} \\hat{\\theta}_{(i)}.\\]
-                        <p><strong>Jackknife 方差估计：</strong></p>
+                        <p><strong>Jackknife variance estimate:</strong></p>
                         \\[\\widehat{\\text{Var}}_{\\text{jack}} = \\frac{n-1}{n} \\sum_{i=1}^{n} \\left(\\hat{\\theta}_{(i)} - \\hat{\\theta}_{(\\cdot)}\\right)^2.\\]
-                        <p><strong>偏差校正 Jackknife 估计：</strong></p>
+                        <p><strong>Bias-corrected jackknife estimate:</strong></p>
                         \\[\\tilde{\\theta}_{\\text{jack}} = \\hat{\\theta} - \\widehat{\\text{Bias}}_{\\text{jack}} = n\\hat{\\theta} - (n-1)\\hat{\\theta}_{(\\cdot)}.\\]
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 17.16 (Jackknife 偏差校正的精度)</div>
+                    <div class="env-title">Theorem 17.16 (Accuracy of Jackknife Bias Correction)</div>
                     <div class="env-body">
-                        <p>若 \\(\\hat{\\theta}\\) 的偏差可以展开为</p>
+                        <p>If the bias of \\(\\hat{\\theta}\\) admits the expansion</p>
                         \\[\\text{Bias}(\\hat{\\theta}) = \\frac{a_1}{n} + \\frac{a_2}{n^2} + \\cdots,\\]
-                        <p>则 Jackknife 偏差校正后的估计量 \\(\\tilde{\\theta}_{\\text{jack}}\\) 的偏差为 \\(O(n^{-2})\\)，即消除了 \\(O(n^{-1})\\) 阶的偏差。</p>
+                        <p>then the bias of the jackknife-corrected estimator \\(\\tilde{\\theta}_{\\text{jack}}\\) is \\(O(n^{-2})\\); that is, it eliminates the \\(O(n^{-1})\\) bias term.</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof (sketch)</div>
                     <div class="env-body">
-                        <p>记 \\(E[\\hat{\\theta}] = \\theta + a_1/n + a_2/n^2 + \\cdots\\)。删去一个观测后样本量为 \\(n-1\\)，因此</p>
+                        <p>Write \\(E[\\hat{\\theta}] = \\theta + a_1/n + a_2/n^2 + \\cdots\\). After deleting one observation the sample size is \\(n-1\\), so</p>
                         \\[E[\\hat{\\theta}_{(i)}] = \\theta + \\frac{a_1}{n-1} + \\frac{a_2}{(n-1)^2} + \\cdots.\\]
-                        <p>于是</p>
+                        <p>Therefore</p>
                         \\[E[\\tilde{\\theta}_{\\text{jack}}] = nE[\\hat{\\theta}] - (n-1)E[\\hat{\\theta}_{(\\cdot)}] = n\\left(\\theta + \\frac{a_1}{n} + \\frac{a_2}{n^2}\\right) - (n-1)\\left(\\theta + \\frac{a_1}{n-1} + \\frac{a_2}{(n-1)^2}\\right) + \\cdots\\]
                         \\[= \\theta + a_1 + \\frac{a_2}{n} - \\theta - a_1 - \\frac{(n-1)a_2}{(n-1)^2} + \\cdots = \\theta + O(n^{-2}).\\]
-                        <div class="qed">∎</div>
+                        <div class="qed">&#8718;</div>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 17.17 (Jackknife 伪值与影响)</div>
+                    <div class="env-title">Definition 17.17 (Jackknife Pseudovalues and Influence)</div>
                     <div class="env-body">
-                        <p>第 \\(i\\) 个观测的 <strong>Jackknife 伪值</strong> (pseudovalue) 定义为</p>
+                        <p>The <strong>jackknife pseudovalue</strong> (伪值) for the \\(i\\)-th observation is defined as</p>
                         \\[\\tilde{\\theta}_i = n\\hat{\\theta} - (n-1)\\hat{\\theta}_{(i)}.\\]
-                        <p>注意 \\(\\tilde{\\theta}_{\\text{jack}} = \\frac{1}{n}\\sum_{i=1}^{n} \\tilde{\\theta}_i\\)。伪值度量了第 \\(i\\) 个观测对整体估计的<strong>影响</strong>。</p>
+                        <p>Note that \\(\\tilde{\\theta}_{\\text{jack}} = \\frac{1}{n}\\sum_{i=1}^{n} \\tilde{\\theta}_i\\). The pseudovalue measures the <strong>influence</strong> (影响) of the \\(i\\)-th observation on the overall estimate.</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 17.18 (交叉验证)</div>
+                    <div class="env-title">Definition 17.18 (Cross-Validation)</div>
                     <div class="env-body">
-                        <p>设数据 \\(\\mathcal{D} = \\{(x_i, y_i)\\}_{i=1}^{n}\\)，模型为 \\(\\hat{f}\\)。<strong>\\(K\\)-折交叉验证</strong> (K-fold cross-validation) 的步骤：</p>
-                        <p><strong>Step 1.</strong> 将数据随机等分为 \\(K\\) 个子集 \\(\\mathcal{D}_1, \\ldots, \\mathcal{D}_K\\)。</p>
-                        <p><strong>Step 2.</strong> 对 \\(k = 1, \\ldots, K\\)：用 \\(\\mathcal{D} \\setminus \\mathcal{D}_k\\) 训练模型 \\(\\hat{f}^{(-k)}\\)，在 \\(\\mathcal{D}_k\\) 上计算预测误差。</p>
-                        <p><strong>Step 3.</strong> 交叉验证误差为</p>
+                        <p>Given data \\(\\mathcal{D} = \\{(x_i, y_i)\\}_{i=1}^{n}\\) and a model \\(\\hat{f}\\), <strong>\\(K\\)-fold cross-validation</strong> (K 折交叉验证) proceeds as follows:</p>
+                        <p><strong>Step 1.</strong> Randomly partition the data into \\(K\\) roughly equal subsets \\(\\mathcal{D}_1, \\ldots, \\mathcal{D}_K\\).</p>
+                        <p><strong>Step 2.</strong> For \\(k = 1, \\ldots, K\\): train the model \\(\\hat{f}^{(-k)}\\) on \\(\\mathcal{D} \\setminus \\mathcal{D}_k\\) and compute the prediction error on \\(\\mathcal{D}_k\\).</p>
+                        <p><strong>Step 3.</strong> The cross-validation error is</p>
                         \\[\\text{CV}(K) = \\frac{1}{n} \\sum_{k=1}^{K} \\sum_{i \\in \\mathcal{D}_k} L(y_i, \\hat{f}^{(-k)}(x_i)),\\]
-                        <p>其中 \\(L\\) 是损失函数（如平方误差 \\(L(y, \\hat{y}) = (y - \\hat{y})^2\\)）。</p>
-                        <p>当 \\(K = n\\) 时为<strong>留一交叉验证</strong> (LOOCV)。</p>
+                        <p>where \\(L\\) is the loss function (e.g., squared error \\(L(y, \\hat{y}) = (y - \\hat{y})^2\\)).</p>
+                        <p>When \\(K = n\\), this is <strong>leave-one-out cross-validation</strong> (LOOCV, 留一交叉验证).</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 17.19 (LOOCV 与 Jackknife 的关系)</div>
+                    <div class="env-title">Theorem 17.19 (Relationship Between LOOCV and Jackknife)</div>
                     <div class="env-body">
-                        <p>对于线性回归模型，LOOCV 等价于</p>
+                        <p>For linear regression models, LOOCV is equivalent to</p>
                         \\[\\text{CV}(n) = \\frac{1}{n} \\sum_{i=1}^{n} \\left(\\frac{y_i - \\hat{y}_i}{1 - h_{ii}}\\right)^2,\\]
-                        <p>其中 \\(h_{ii}\\) 是帽子矩阵 \\(H = X(X^TX)^{-1}X^T\\) 的第 \\(i\\) 个对角元素。因此 LOOCV 可以从一次完整回归中计算，无需反复拟合。</p>
+                        <p>where \\(h_{ii}\\) is the \\(i\\)-th diagonal element of the hat matrix \\(H = X(X^TX)^{-1}X^T\\). Thus LOOCV can be computed from a single full regression fit without refitting repeatedly.</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
-                    <div class="env-title">Remark (Bootstrap 与 Jackknife 的联系)</div>
+                    <div class="env-title">Remark (Connection Between Bootstrap and Jackknife)</div>
                     <div class="env-body">
-                        <p>Jackknife 可以视为 Bootstrap 的线性近似。具体而言，Jackknife 方差估计等于 Bootstrap 方差估计的无穷小版本 (infinitesimal jackknife)。对于光滑统计量，两者渐近等价。但对于不光滑的统计量（如中位数），Jackknife 的表现不如 Bootstrap。</p>
+                        <p>The jackknife can be viewed as a linear approximation to the bootstrap. Specifically, the jackknife variance estimate equals the infinitesimal version of the bootstrap variance estimate (the infinitesimal jackknife). For smooth statistics, the two are asymptotically equivalent. However, for non-smooth statistics (such as the median), the jackknife performs worse than the bootstrap.</p>
                     </div>
                 </div>
 
@@ -937,8 +937,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'jackknife-influence-viz',
-                    title: 'Interactive: Jackknife 影响分析',
-                    description: '逐个删除观测值，观察估计如何变化，识别有影响力的观测',
+                    title: 'Interactive: Jackknife Influence Analysis / Jackknife 影响分析',
+                    description: 'Delete observations one at a time and observe how the estimate changes; identify influential observations',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 400, scale: 1, originX: 60, originY: 200});
                         var n = 15;
@@ -952,8 +952,8 @@ window.CHAPTERS.push({
                             data.sort(function(a, b) { return a - b; });
                         }
 
-                        VizEngine.createSlider(controls, '样本量 n', 8, 25, n, 1, function(v) { n = Math.round(v); generateData(); highlightIdx = -1; draw(); });
-                        VizEngine.createButton(controls, '重新生成', function() { generateData(); highlightIdx = -1; draw(); });
+                        VizEngine.createSlider(controls, 'Sample Size n / 样本量 n', 8, 25, n, 1, function(v) { n = Math.round(v); generateData(); highlightIdx = -1; draw(); });
+                        VizEngine.createButton(controls, 'Regenerate', function() { generateData(); highlightIdx = -1; draw(); });
 
                         generateData();
 
@@ -987,7 +987,7 @@ window.CHAPTERS.push({
                             ctx.font = 'bold 13px -apple-system,sans-serif';
                             ctx.textAlign = 'left';
                             ctx.textBaseline = 'top';
-                            ctx.fillText('Jackknife 影响分析 (n=' + data.length + ')', 20, 8);
+                            ctx.fillText('Jackknife Influence Analysis (n=' + data.length + ')', 20, 8);
 
                             // Data points on a number line
                             var plotL = 60, plotR = 530;
@@ -1033,7 +1033,7 @@ window.CHAPTERS.push({
                             ctx.fillStyle = viz.colors.text;
                             ctx.font = '11px -apple-system,sans-serif';
                             ctx.textAlign = 'left';
-                            ctx.fillText('theta_(i): 删去第 i 个观测后的均值', plotL, barTop - 10);
+                            ctx.fillText('theta_(i): Mean after deleting i-th obs.', plotL, barTop - 10);
 
                             // Reference line at theta hat
                             var refY = barBot - (thetaHat - jMin) * jScale;
@@ -1071,18 +1071,18 @@ window.CHAPTERS.push({
                             ctx.fillStyle = viz.colors.white;
                             ctx.font = '12px -apple-system,sans-serif';
                             ctx.textAlign = 'left';
-                            ctx.fillText('Jackknife 偏差估计: ' + jackBias.toFixed(5), plotL, statsY);
-                            ctx.fillText('Jackknife 标准误: ' + jackSE.toFixed(4), plotL, statsY + 20);
+                            ctx.fillText('Jackknife Bias Estimate: ' + jackBias.toFixed(5), plotL, statsY);
+                            ctx.fillText('Jackknife Std. Error: ' + jackSE.toFixed(4), plotL, statsY + 20);
 
                             if (highlightIdx >= 0) {
                                 ctx.fillStyle = viz.colors.red;
-                                ctx.fillText('删去 X' + (highlightIdx + 1) + ' (' + data[highlightIdx].toFixed(2) + '): theta_(i) = ' + jackVals[highlightIdx].toFixed(4) + ', 伪值 = ' + pseudos[highlightIdx].toFixed(4), plotL, statsY + 40);
+                                ctx.fillText('Delete X' + (highlightIdx + 1) + ' (' + data[highlightIdx].toFixed(2) + '): theta_(i) = ' + jackVals[highlightIdx].toFixed(4) + ', pseudovalue = ' + pseudos[highlightIdx].toFixed(4), plotL, statsY + 40);
                             }
 
                             // Influence bar
                             ctx.fillStyle = viz.colors.text;
                             ctx.font = '11px -apple-system,sans-serif';
-                            ctx.fillText('(点击数据点选中)', plotL + 300, statsY + 40);
+                            ctx.fillText('(Click a data point to select)', plotL + 300, statsY + 40);
                         }
 
                         // Click handler
@@ -1111,8 +1111,8 @@ window.CHAPTERS.push({
                 },
                 {
                     id: 'cv-viz',
-                    title: 'Interactive: K-折交叉验证',
-                    description: '可视化K-fold CV的数据划分和预测误差',
+                    title: 'Interactive: K-Fold Cross-Validation / K 折交叉验证',
+                    description: 'Visualize K-fold CV data partitioning and prediction errors',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 380, scale: 1, originX: 60, originY: 190});
                         var n = 30;
@@ -1131,10 +1131,10 @@ window.CHAPTERS.push({
                         }
                         generateRegData();
 
-                        VizEngine.createSlider(controls, 'K (折数)', 2, n, K, 1, function(v) { K = Math.round(v); currentFold = -1; draw(); });
-                        VizEngine.createButton(controls, '重新生成数据', function() { generateRegData(); currentFold = -1; draw(); });
-                        VizEngine.createButton(controls, '下一折', function() { currentFold = (currentFold + 1) % K; draw(); });
-                        VizEngine.createButton(controls, '显示全部', function() { currentFold = -1; draw(); });
+                        VizEngine.createSlider(controls, 'K (Folds / 折数)', 2, n, K, 1, function(v) { K = Math.round(v); currentFold = -1; draw(); });
+                        VizEngine.createButton(controls, 'Regenerate Data', function() { generateRegData(); currentFold = -1; draw(); });
+                        VizEngine.createButton(controls, 'Next Fold', function() { currentFold = (currentFold + 1) % K; draw(); });
+                        VizEngine.createButton(controls, 'Show All', function() { currentFold = -1; draw(); });
 
                         function linearFit(xs, ys) {
                             var mx = VizEngine.mean(xs), my = VizEngine.mean(ys);
@@ -1167,7 +1167,7 @@ window.CHAPTERS.push({
                             ctx.font = 'bold 13px -apple-system,sans-serif';
                             ctx.textAlign = 'left';
                             ctx.textBaseline = 'top';
-                            var titleStr = K + '-fold 交叉验证';
+                            var titleStr = K + '-Fold Cross-Validation';
                             if (K === n) titleStr = 'LOOCV (K=n=' + n + ')';
                             ctx.fillText(titleStr, plotL, 8);
 
@@ -1244,7 +1244,7 @@ window.CHAPTERS.push({
                             ctx.fillStyle = viz.colors.white;
                             ctx.font = 'bold 11px -apple-system,sans-serif';
                             ctx.textAlign = 'left';
-                            ctx.fillText('各折误差 (MSE)', panelL, panelTop - 15);
+                            ctx.fillText('Fold Errors (MSE)', panelL, panelTop - 15);
 
                             if (cvErrors.length > 0) {
                                 var maxErr = Math.max.apply(null, cvErrors);
@@ -1276,23 +1276,23 @@ window.CHAPTERS.push({
                                 ctx.fillStyle = viz.colors.text;
                                 ctx.font = '10px -apple-system,sans-serif';
                                 ctx.textAlign = 'left';
-                                ctx.fillText('训练集', plotL + 15, legY + 4);
+                                ctx.fillText('Training Set', plotL + 15, legY + 4);
 
                                 ctx.fillStyle = viz.colors.red;
-                                ctx.beginPath(); ctx.arc(plotL + 75, legY, 4, 0, Math.PI * 2); ctx.fill();
+                                ctx.beginPath(); ctx.arc(plotL + 95, legY, 4, 0, Math.PI * 2); ctx.fill();
                                 ctx.fillStyle = viz.colors.text;
-                                ctx.fillText('测试折 (fold ' + (currentFold + 1) + ')', plotL + 85, legY + 4);
+                                ctx.fillText('Test Fold (fold ' + (currentFold + 1) + ')', plotL + 105, legY + 4);
 
                                 ctx.strokeStyle = viz.colors.green;
                                 ctx.lineWidth = 2;
-                                ctx.beginPath(); ctx.moveTo(plotL + 200, legY); ctx.lineTo(plotL + 220, legY); ctx.stroke();
+                                ctx.beginPath(); ctx.moveTo(plotL + 240, legY); ctx.lineTo(plotL + 260, legY); ctx.stroke();
                                 ctx.fillStyle = viz.colors.text;
-                                ctx.fillText('训练集拟合', plotL + 225, legY + 4);
+                                ctx.fillText('Training Fit', plotL + 265, legY + 4);
                             } else {
                                 ctx.fillStyle = viz.colors.text;
                                 ctx.font = '10px -apple-system,sans-serif';
                                 ctx.textAlign = 'left';
-                                ctx.fillText('各颜色代表不同的折 (fold)', plotL, legY + 4);
+                                ctx.fillText('Each color represents a different fold', plotL, legY + 4);
                             }
                         }
 
@@ -1303,19 +1303,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(\\hat{\\theta} = \\bar{X}^2\\) 是 \\(\\mu^2\\) 的估计量（其中 \\(X_i \\sim N(\\mu, \\sigma^2)\\)）。求 \\(\\hat{\\theta}\\) 的偏差，并说明 Jackknife 偏差校正如何减小它。',
-                    hint: '\\(E[\\bar{X}^2] = \\mu^2 + \\sigma^2/n\\)。偏差是 \\(\\sigma^2/n\\)，形式为 \\(a_1/n\\)。',
-                    solution: '\\(E[\\bar{X}^2] = \\operatorname{Var}(\\bar{X}) + (E[\\bar{X}])^2 = \\sigma^2/n + \\mu^2\\)。因此偏差为 \\(\\sigma^2/n\\)，确实是 \\(O(1/n)\\) 的形式。Jackknife 偏差估计为 \\((n-1)(\\hat{\\theta}_{(\\cdot)} - \\hat{\\theta})\\)。每个 \\(\\hat{\\theta}_{(i)} = \\bar{X}_{(i)}^2\\) 的期望为 \\(\\mu^2 + \\sigma^2/(n-1)\\)。因此 Jackknife 偏差估计的期望为 \\((n-1)(\\sigma^2/(n-1) - \\sigma^2/n) = \\sigma^2/n\\)，正确估计了偏差。校正后 \\(\\tilde{\\theta}_{\\text{jack}} = \\bar{X}^2 - S^2/n\\)（近似），偏差降为 \\(O(n^{-2})\\)。'
+                    question: 'Let \\(\\hat{\\theta} = \\bar{X}^2\\) be an estimator of \\(\\mu^2\\) where \\(X_i \\sim N(\\mu, \\sigma^2)\\). Find the bias of \\(\\hat{\\theta}\\) and explain how the jackknife bias correction reduces it.',
+                    hint: '\\(E[\\bar{X}^2] = \\mu^2 + \\sigma^2/n\\). The bias is \\(\\sigma^2/n\\), which has the form \\(a_1/n\\).',
+                    solution: '\\(E[\\bar{X}^2] = \\operatorname{Var}(\\bar{X}) + (E[\\bar{X}])^2 = \\sigma^2/n + \\mu^2\\). So the bias is \\(\\sigma^2/n\\), which indeed has the \\(O(1/n)\\) form. The jackknife bias estimate is \\((n-1)(\\hat{\\theta}_{(\\cdot)} - \\hat{\\theta})\\). Each \\(\\hat{\\theta}_{(i)} = \\bar{X}_{(i)}^2\\) has expectation \\(\\mu^2 + \\sigma^2/(n-1)\\). Thus the expected jackknife bias estimate is \\((n-1)(\\sigma^2/(n-1) - \\sigma^2/n) = \\sigma^2/n\\), which correctly estimates the bias. After correction, \\(\\tilde{\\theta}_{\\text{jack}} = \\bar{X}^2 - S^2/n\\) (approximately), and the bias is reduced to \\(O(n^{-2})\\).'
                 },
                 {
-                    question: '解释为什么 Jackknife 对中位数的方差估计不一致，而 Bootstrap 可以一致估计中位数的方差。',
-                    hint: '考虑删去一个观测对中位数的影响——中位数是不光滑统计量。',
-                    solution: '中位数是不光滑 (non-smooth) 泛函。删去一个观测时，样本中位数只可能变为相邻的次序统计量，因此 Jackknife 值 \\(\\hat{\\theta}_{(i)}\\) 只能取少数几个不同的值。具体而言，大多数 \\(\\hat{\\theta}_{(i)}\\) 等于 \\(\\hat{\\theta}\\) 或非常接近，导致 Jackknife 方差估计中 \\((\\hat{\\theta}_{(i)} - \\hat{\\theta}_{(\\cdot)})^2\\) 的求和低估了真实方差。乘以 \\((n-1)/n\\) 的放大因子也无法补偿这种阶梯效应。而 Bootstrap 通过有放回抽样可以产生连续范围的中位数值，能更好地近似其抽样分布。'
+                    question: 'Explain why the jackknife variance estimate for the median is inconsistent, while the bootstrap can consistently estimate the variance of the median.',
+                    hint: 'Consider the effect of deleting a single observation on the median -- the median is a non-smooth statistic.',
+                    solution: 'The median is a non-smooth functional. When one observation is deleted, the sample median can only shift to an adjacent order statistic, so the jackknife values \\(\\hat{\\theta}_{(i)}\\) take only a few distinct values. Specifically, most \\(\\hat{\\theta}_{(i)}\\) equal or are very close to \\(\\hat{\\theta}\\), causing the sum of squared deviations \\((\\hat{\\theta}_{(i)} - \\hat{\\theta}_{(\\cdot)})^2\\) to underestimate the true variance. The multiplicative factor \\((n-1)/n\\) cannot compensate for this step-function effect. The bootstrap, by sampling with replacement, can produce a continuous range of median values and thus better approximates the sampling distribution.'
                 },
                 {
-                    question: '在 K-折交叉验证中，讨论 K 的选择对偏差-方差权衡的影响。LOOCV (K=n) 与 5-fold CV 各有什么优缺点？',
-                    hint: '考虑训练集大小对模型偏差的影响，以及不同折之间的相关性对方差的影响。',
-                    solution: '当 K 增大（如 LOOCV，K=n）：训练集大小接近 n，模型偏差小（近似全样本训练），但各折的训练集高度重叠（共享 n-2 个观测），导致 CV 估计的方差大。当 K 小（如 5-fold）：训练集只有 4n/5，偏差略大，但各折训练集重叠较少，CV 估计方差较小。此外 LOOCV 计算开销为 O(n) 次模型拟合（除非有如帽子矩阵的简化公式），而 5-fold 只需 5 次。实践中 K=5 或 K=10 通常是偏差与方差的良好折中。LOOCV 适用于小样本或可以廉价计算的模型。'
+                    question: 'Discuss the bias-variance tradeoff in the choice of \\(K\\) for K-fold cross-validation. What are the pros and cons of LOOCV (\\(K=n\\)) versus 5-fold CV?',
+                    hint: 'Consider the effect of training set size on model bias and the effect of overlap between folds on variance.',
+                    solution: 'When K is large (e.g., LOOCV with K=n): the training set size is close to n, so model bias is small (nearly a full-sample fit), but the training sets across folds overlap heavily (sharing n-2 observations), leading to high variance in the CV estimate. When K is small (e.g., 5-fold): the training set has only 4n/5 observations, so bias is slightly larger, but training sets across folds overlap less, yielding lower variance. Additionally, LOOCV requires O(n) model fits (unless shortcuts like the hat matrix formula are available), while 5-fold requires only 5 fits. In practice, K=5 or K=10 usually provides a good bias-variance tradeoff. LOOCV is suitable for small samples or models that can be computed cheaply.'
                 }
             ]
         }

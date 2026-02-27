@@ -1,100 +1,101 @@
+// Chapter 5: Sufficient Statistics & Completeness
 window.CHAPTERS = window.CHAPTERS || [];
 window.CHAPTERS.push({
     id: 'ch05',
     number: 5,
-    title: '充分统计量与完备性',
+    title: 'Sufficient Statistics & Completeness',
     subtitle: 'Sufficiency & Completeness',
     sections: [
         // ============================================================
-        //  Section 1: 充分统计量
+        //  Section 1: Sufficient Statistics
         // ============================================================
         {
             id: 'ch05-sec01',
-            title: '充分统计量',
+            title: 'Sufficient Statistics',
             content: `
-                <h2>充分统计量</h2>
+                <h2>Sufficient Statistics &mdash; 充分统计量</h2>
 
-                <p>统计推断的核心问题之一是：给定一组观测数据 \\(X_1, \\ldots, X_n\\)，如何在不丢失关于参数 \\(\\theta\\) 信息的前提下对数据进行"压缩"？
-                充分统计量正是回答这一问题的关键概念——它提取了数据中关于参数的全部信息。</p>
+                <p>One of the central questions in statistical inference is: given observed data \\(X_1, \\ldots, X_n\\), how can we "compress" the data without losing any information about the parameter \\(\\theta\\)?
+                The sufficient statistic (充分统计量) is the key concept that answers this question &mdash; it extracts all the information the data carry about the parameter.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 5.1 (充分统计量 / Sufficient Statistic)</div>
+                    <div class="env-title">Definition 5.1 (Sufficient Statistic)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n\\) 是来自参数族 \\(\\{f(x; \\theta) : \\theta \\in \\Theta\\}\\) 的随机样本。
-                        统计量 \\(T = T(X_1, \\ldots, X_n)\\) 称为 \\(\\theta\\) 的<strong>充分统计量</strong>，
-                        如果给定 \\(T = t\\) 后，样本 \\((X_1, \\ldots, X_n)\\) 的条件分布不依赖于 \\(\\theta\\)：</p>
+                        <p>Let \\(X_1, \\ldots, X_n\\) be a random sample from the parametric family \\(\\{f(x; \\theta) : \\theta \\in \\Theta\\}\\).
+                        A statistic \\(T = T(X_1, \\ldots, X_n)\\) is called a <strong>sufficient statistic</strong> (充分统计量) for \\(\\theta\\)
+                        if the conditional distribution of the sample \\((X_1, \\ldots, X_n)\\) given \\(T = t\\) does not depend on \\(\\theta\\):</p>
                         \\[P(X_1 \\in A_1, \\ldots, X_n \\in A_n \\mid T = t) \\perp \\theta, \\quad \\forall t, \\forall A_i.\\]
-                        <p>即条件分布与 \\(\\theta\\) 无关。</p>
+                        <p>That is, the conditional distribution is free of \\(\\theta\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>可以把数据看作一段"信号"，参数 \\(\\theta\\) 是隐藏的"真相"。
-                        充分统计量是对信号进行无损压缩的结果——虽然数据的维度降低了，
-                        但关于 \\(\\theta\\) 的所有信息被完整保留。
-                        一旦知道了 \\(T\\) 的值，原始数据的剩余变异就纯粹是"噪声"（与 \\(\\theta\\) 无关）。</p>
+                        <p>Think of the data as a "signal" and the parameter \\(\\theta\\) as the hidden "truth."
+                        A sufficient statistic is the result of lossless compression (无损压缩) of that signal &mdash; although the dimensionality of the data is reduced,
+                        all information about \\(\\theta\\) is perfectly preserved.
+                        Once we know the value of \\(T\\), the remaining variation in the raw data is pure "noise" (unrelated to \\(\\theta\\)).</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 5.2 (Bernoulli 样本)</div>
+                    <div class="env-title">Example 5.2 (Bernoulli Sample)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} \\operatorname{Bernoulli}(p)\\)。
-                        令 \\(T = \\sum_{i=1}^n X_i\\)。
-                        给定 \\(T = t\\) 后，样本 \\((X_1, \\ldots, X_n)\\) 的条件分布为所有使得
-                        \\(\\sum x_i = t\\) 的 0-1 序列上的均匀分布（即从 \\(\\binom{n}{t}\\) 个序列中等概率选取），
-                        这与 \\(p\\) 无关。因此 \\(T = \\sum X_i\\) 是 \\(p\\) 的充分统计量。</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} \\operatorname{Bernoulli}(p)\\).
+                        Set \\(T = \\sum_{i=1}^n X_i\\).
+                        Given \\(T = t\\), the conditional distribution of \\((X_1, \\ldots, X_n)\\) is the uniform distribution over all 0&ndash;1 sequences satisfying
+                        \\(\\sum x_i = t\\) (i.e., each of the \\(\\binom{n}{t}\\) sequences is equally likely),
+                        which does not depend on \\(p\\). Therefore \\(T = \\sum X_i\\) is a sufficient statistic for \\(p\\).</p>
                     </div>
                 </div>
 
-                <p>直接验证定义往往比较困难。Fisher-Neyman 因子分解定理提供了一个优美且实用的判定准则。</p>
+                <p>Directly verifying the definition is often difficult. The Fisher&ndash;Neyman factorization theorem (因子分解定理) provides an elegant and practical criterion.</p>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 5.3 (Fisher-Neyman 因子分解定理)</div>
+                    <div class="env-title">Theorem 5.3 (Fisher&ndash;Neyman Factorization Theorem)</div>
                     <div class="env-body">
-                        <p>设总体的密度（或质量）函数为 \\(f(\\mathbf{x}; \\theta)\\)。
-                        统计量 \\(T(\\mathbf{X})\\) 是 \\(\\theta\\) 的充分统计量，当且仅当存在非负函数 \\(g(t; \\theta)\\)
-                        和 \\(h(\\mathbf{x})\\)（不依赖 \\(\\theta\\)），使得</p>
+                        <p>Let the population density (or mass) function be \\(f(\\mathbf{x}; \\theta)\\).
+                        The statistic \\(T(\\mathbf{X})\\) is a sufficient statistic for \\(\\theta\\) if and only if there exist nonnegative functions \\(g(t; \\theta)\\)
+                        and \\(h(\\mathbf{x})\\) (not depending on \\(\\theta\\)) such that</p>
                         \\[f(\\mathbf{x}; \\theta) = g\\bigl(T(\\mathbf{x}); \\theta\\bigr) \\cdot h(\\mathbf{x}), \\quad \\forall \\mathbf{x}, \\forall \\theta.\\]
                     </div>
                 </div>
 
                 <div class="env-block proof">
-                    <div class="env-title">Proof (离散情形概要)</div>
+                    <div class="env-title">Proof (Outline for the Discrete Case)</div>
                     <div class="env-body">
-                        <p><strong>充分性 (\\(\\Rightarrow\\))：</strong>
-                        若 \\(T\\) 充分，令 \\(g(t; \\theta) = P_\\theta(T = t)\\)，
-                        \\(h(\\mathbf{x}) = P(\\mathbf{X} = \\mathbf{x} \\mid T = T(\\mathbf{x}))\\)（不依赖 \\(\\theta\\)）。
-                        则 \\(f(\\mathbf{x}; \\theta) = P_\\theta(\\mathbf{X} = \\mathbf{x}) = P_\\theta(T = T(\\mathbf{x})) \\cdot P(\\mathbf{X} = \\mathbf{x} \\mid T = T(\\mathbf{x})) = g(T(\\mathbf{x}); \\theta) \\cdot h(\\mathbf{x})\\)。</p>
-                        <p><strong>必要性 (\\(\\Leftarrow\\))：</strong>
-                        若因子分解成立，则
-                        \\(P_\\theta(\\mathbf{X} = \\mathbf{x} \\mid T = t) = \\frac{f(\\mathbf{x}; \\theta)}{P_\\theta(T = t)} \\cdot \\mathbf{1}\\{T(\\mathbf{x}) = t\\}\\)。
-                        分子 \\(= g(t; \\theta) h(\\mathbf{x})\\)，分母 \\(P_\\theta(T = t) = \\sum_{\\mathbf{y}: T(\\mathbf{y}) = t} g(t; \\theta) h(\\mathbf{y}) = g(t; \\theta) \\sum_{\\mathbf{y}: T(\\mathbf{y}) = t} h(\\mathbf{y})\\)，
-                        故条件概率 \\(= h(\\mathbf{x}) / \\sum_{\\mathbf{y}: T(\\mathbf{y}) = t} h(\\mathbf{y})\\)，与 \\(\\theta\\) 无关。</p>
+                        <p><strong>Sufficiency (\\(\\Rightarrow\\)):</strong>
+                        If \\(T\\) is sufficient, set \\(g(t; \\theta) = P_\\theta(T = t)\\) and
+                        \\(h(\\mathbf{x}) = P(\\mathbf{X} = \\mathbf{x} \\mid T = T(\\mathbf{x}))\\) (which does not depend on \\(\\theta\\)).
+                        Then \\(f(\\mathbf{x}; \\theta) = P_\\theta(\\mathbf{X} = \\mathbf{x}) = P_\\theta(T = T(\\mathbf{x})) \\cdot P(\\mathbf{X} = \\mathbf{x} \\mid T = T(\\mathbf{x})) = g(T(\\mathbf{x}); \\theta) \\cdot h(\\mathbf{x})\\).</p>
+                        <p><strong>Necessity (\\(\\Leftarrow\\)):</strong>
+                        If the factorization holds, then
+                        \\(P_\\theta(\\mathbf{X} = \\mathbf{x} \\mid T = t) = \\frac{f(\\mathbf{x}; \\theta)}{P_\\theta(T = t)} \\cdot \\mathbf{1}\\{T(\\mathbf{x}) = t\\}\\).
+                        The numerator equals \\(g(t; \\theta) h(\\mathbf{x})\\), and the denominator is \\(P_\\theta(T = t) = \\sum_{\\mathbf{y}: T(\\mathbf{y}) = t} g(t; \\theta) h(\\mathbf{y}) = g(t; \\theta) \\sum_{\\mathbf{y}: T(\\mathbf{y}) = t} h(\\mathbf{y})\\).
+                        Hence the conditional probability equals \\(h(\\mathbf{x}) / \\sum_{\\mathbf{y}: T(\\mathbf{y}) = t} h(\\mathbf{y})\\), which is free of \\(\\theta\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 5.4 (正态充分统计量)</div>
+                    <div class="env-title">Example 5.4 (Normal Sufficient Statistic)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} N(\\mu, \\sigma^2)\\)，\\(\\theta = (\\mu, \\sigma^2)\\)。
-                        联合密度为</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} N(\\mu, \\sigma^2)\\) with \\(\\theta = (\\mu, \\sigma^2)\\).
+                        The joint density is</p>
                         \\[f(\\mathbf{x}; \\mu, \\sigma^2) = \\frac{1}{(2\\pi\\sigma^2)^{n/2}} \\exp\\!\\left(-\\frac{1}{2\\sigma^2} \\sum_{i=1}^n (x_i - \\mu)^2\\right).\\]
-                        <p>将指数部分展开：\\(\\sum(x_i - \\mu)^2 = \\sum x_i^2 - 2\\mu \\sum x_i + n\\mu^2\\)。
-                        因此密度可分解为 \\(g\\bigl(\\sum x_i, \\sum x_i^2; \\mu, \\sigma^2\\bigr) \\cdot 1\\)。
-                        故 \\(T = \\bigl(\\sum X_i, \\sum X_i^2\\bigr)\\) 是 \\((\\mu, \\sigma^2)\\) 的充分统计量，
-                        等价地，\\(T = (\\bar{X}, S^2)\\) 也是充分统计量。</p>
+                        <p>Expanding the exponent: \\(\\sum(x_i - \\mu)^2 = \\sum x_i^2 - 2\\mu \\sum x_i + n\\mu^2\\).
+                        Thus the density factors as \\(g\\bigl(\\sum x_i, \\sum x_i^2; \\mu, \\sigma^2\\bigr) \\cdot 1\\).
+                        Therefore \\(T = \\bigl(\\sum X_i, \\sum X_i^2\\bigr)\\) is a sufficient statistic for \\((\\mu, \\sigma^2)\\);
+                        equivalently, \\(T = (\\bar{X}, S^2)\\) is also sufficient.</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>因子分解定理的关键在于：似然函数中依赖 \\(\\theta\\) 的部分仅通过 \\(T(\\mathbf{x})\\) 与数据产生联系。
-                        在实际应用中，写出似然函数后，识别哪些数据摘要出现在 \\(\\theta\\) 相关项中即可判定充分统计量。</p>
+                        <p>The key insight of the factorization theorem is that the part of the likelihood depending on \\(\\theta\\) connects to the data only through \\(T(\\mathbf{x})\\).
+                        In practice, once you write down the likelihood, identify which data summaries appear in the \\(\\theta\\)-dependent terms to determine the sufficient statistic.</p>
                     </div>
                 </div>
 
@@ -103,8 +104,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'data-compression-viz',
-                    title: 'Interactive: 数据压缩与充分统计量',
-                    description: '观察如何通过充分统计量将 n 个数据点压缩为低维摘要而不丢失参数信息',
+                    title: 'Interactive: Data Compression via Sufficient Statistics (数据压缩与充分统计量)',
+                    description: 'Observe how a sufficient statistic compresses n data points into a low-dimensional summary without losing parameter information',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 420,
@@ -343,94 +344,94 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} \\operatorname{Poisson}(\\lambda)\\)。利用因子分解定理证明 \\(T = \\sum_{i=1}^n X_i\\) 是 \\(\\lambda\\) 的充分统计量。',
-                    hint: '写出联合质量函数 \\(\\prod_{i=1}^n \\frac{\\lambda^{x_i} e^{-\\lambda}}{x_i!}\\)，然后将其分解为只通过 \\(\\sum x_i\\) 依赖 \\(\\lambda\\) 的部分和不依赖 \\(\\lambda\\) 的部分。',
-                    solution: '联合质量函数为 \\(f(\\mathbf{x}; \\lambda) = \\prod_{i=1}^n \\frac{\\lambda^{x_i} e^{-\\lambda}}{x_i!} = \\frac{\\lambda^{\\sum x_i} e^{-n\\lambda}}{\\prod_{i=1}^n x_i!} = \\underbrace{\\lambda^{t} e^{-n\\lambda}}_{g(t; \\lambda)} \\cdot \\underbrace{\\frac{1}{\\prod_{i=1}^n x_i!}}_{h(\\mathbf{x})}\\)，其中 \\(t = \\sum x_i\\)。由因子分解定理，\\(T = \\sum X_i\\) 是 \\(\\lambda\\) 的充分统计量。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} \\operatorname{Poisson}(\\lambda)\\). Use the factorization theorem to prove that \\(T = \\sum_{i=1}^n X_i\\) is a sufficient statistic for \\(\\lambda\\).',
+                    hint: 'Write out the joint mass function \\(\\prod_{i=1}^n \\frac{\\lambda^{x_i} e^{-\\lambda}}{x_i!}\\), then factor it into a part that depends on \\(\\lambda\\) only through \\(\\sum x_i\\) and a part that does not depend on \\(\\lambda\\).',
+                    solution: 'The joint mass function is \\(f(\\mathbf{x}; \\lambda) = \\prod_{i=1}^n \\frac{\\lambda^{x_i} e^{-\\lambda}}{x_i!} = \\frac{\\lambda^{\\sum x_i} e^{-n\\lambda}}{\\prod_{i=1}^n x_i!} = \\underbrace{\\lambda^{t} e^{-n\\lambda}}_{g(t; \\lambda)} \\cdot \\underbrace{\\frac{1}{\\prod_{i=1}^n x_i!}}_{h(\\mathbf{x})}\\), where \\(t = \\sum x_i\\). By the factorization theorem, \\(T = \\sum X_i\\) is a sufficient statistic for \\(\\lambda\\).'
                 },
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} \\operatorname{Uniform}(0, \\theta)\\)。证明 \\(T = X_{(n)} = \\max(X_1, \\ldots, X_n)\\) 是 \\(\\theta\\) 的充分统计量。',
-                    hint: '联合密度为 \\(f(\\mathbf{x}; \\theta) = \\theta^{-n} \\prod_{i=1}^n \\mathbf{1}(0 \\le x_i \\le \\theta) = \\theta^{-n} \\mathbf{1}(x_{(n)} \\le \\theta) \\prod_{i=1}^n \\mathbf{1}(x_i \\ge 0)\\)。',
-                    solution: '联合密度为 \\(f(\\mathbf{x}; \\theta) = \\theta^{-n} \\prod_{i=1}^n \\mathbf{1}(0 \\le x_i \\le \\theta) = \\underbrace{\\theta^{-n} \\mathbf{1}(x_{(n)} \\le \\theta)}_{g(x_{(n)}; \\theta)} \\cdot \\underbrace{\\prod_{i=1}^n \\mathbf{1}(x_i \\ge 0)}_{h(\\mathbf{x})}\\)。由因子分解定理，\\(T = X_{(n)}\\) 是 \\(\\theta\\) 的充分统计量。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} \\operatorname{Uniform}(0, \\theta)\\). Prove that \\(T = X_{(n)} = \\max(X_1, \\ldots, X_n)\\) is a sufficient statistic for \\(\\theta\\).',
+                    hint: 'The joint density is \\(f(\\mathbf{x}; \\theta) = \\theta^{-n} \\prod_{i=1}^n \\mathbf{1}(0 \\le x_i \\le \\theta) = \\theta^{-n} \\mathbf{1}(x_{(n)} \\le \\theta) \\prod_{i=1}^n \\mathbf{1}(x_i \\ge 0)\\).',
+                    solution: 'The joint density is \\(f(\\mathbf{x}; \\theta) = \\theta^{-n} \\prod_{i=1}^n \\mathbf{1}(0 \\le x_i \\le \\theta) = \\underbrace{\\theta^{-n} \\mathbf{1}(x_{(n)} \\le \\theta)}_{g(x_{(n)}; \\theta)} \\cdot \\underbrace{\\prod_{i=1}^n \\mathbf{1}(x_i \\ge 0)}_{h(\\mathbf{x})}\\). By the factorization theorem, \\(T = X_{(n)}\\) is a sufficient statistic for \\(\\theta\\).'
                 },
                 {
-                    question: '证明充分统计量的函数一般不是充分统计量：给出一个例子说明若 \\(T\\) 是充分统计量，\\(g(T)\\) 不一定充分。',
-                    hint: '考虑正态样本 \\(N(\\mu, \\sigma^2)\\) 中 \\(T = (\\bar{X}, S^2)\\) 充分，但只取 \\(g(T) = \\bar{X} + S^2\\) 是否仍然充分？',
-                    solution: '设 \\(X_1, \\ldots, X_n \\sim N(\\mu, \\sigma^2)\\)，其中 \\(\\mu, \\sigma^2\\) 均未知。\\(T = (\\bar{X}, S^2)\\) 是 \\((\\mu, \\sigma^2)\\) 的充分统计量。但 \\(g(T) = \\bar{X} + S^2\\) 不是充分的，因为从 \\(g(T)\\) 的值无法同时还原 \\(\\bar{X}\\) 和 \\(S^2\\)，因此联合密度无法分解为仅通过 \\(g(T)\\) 依赖参数的形式。一般地，只有 \\(T\\) 的可逆函数才保持充分性。'
+                    question: 'Show that a function of a sufficient statistic need not be sufficient: give an example where \\(T\\) is sufficient but \\(g(T)\\) is not.',
+                    hint: 'Consider a normal sample \\(N(\\mu, \\sigma^2)\\) where \\(T = (\\bar{X}, S^2)\\) is sufficient. Is \\(g(T) = \\bar{X} + S^2\\) still sufficient?',
+                    solution: 'Let \\(X_1, \\ldots, X_n \\sim N(\\mu, \\sigma^2)\\) with both \\(\\mu, \\sigma^2\\) unknown. Then \\(T = (\\bar{X}, S^2)\\) is a sufficient statistic for \\((\\mu, \\sigma^2)\\). However, \\(g(T) = \\bar{X} + S^2\\) is not sufficient because from the value of \\(g(T)\\) alone one cannot recover both \\(\\bar{X}\\) and \\(S^2\\), so the joint density cannot be factored to depend on the parameter only through \\(g(T)\\). In general, only invertible functions of \\(T\\) preserve sufficiency.'
                 }
             ]
         },
 
         // ============================================================
-        //  Section 2: 最小充分统计量
+        //  Section 2: Minimal Sufficient Statistics
         // ============================================================
         {
             id: 'ch05-sec02',
-            title: '最小充分统计量',
+            title: 'Minimal Sufficient Statistics',
             content: `
-                <h2>最小充分统计量</h2>
+                <h2>Minimal Sufficient Statistics &mdash; 最小充分统计量</h2>
 
-                <p>充分统计量并非唯一的：整个样本 \\((X_1, \\ldots, X_n)\\) 本身就是一个（平凡的）充分统计量。
-                我们自然希望找到"最精简"的充分统计量——最小充分统计量——它实现了数据的最大程度压缩。</p>
+                <p>Sufficient statistics are not unique: the entire sample \\((X_1, \\ldots, X_n)\\) itself is a (trivial) sufficient statistic.
+                We naturally seek the "most parsimonious" sufficient statistic &mdash; the minimal sufficient statistic (最小充分统计量) &mdash; which achieves maximum data compression.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 5.5 (最小充分统计量 / Minimal Sufficient Statistic)</div>
+                    <div class="env-title">Definition 5.5 (Minimal Sufficient Statistic)</div>
                     <div class="env-body">
-                        <p>充分统计量 \\(T\\) 称为<strong>最小充分统计量</strong>，如果对任何其他充分统计量 \\(T'\\)，
-                        存在函数 \\(g\\) 使得 \\(T = g(T')\\)（几乎处处成立）。</p>
-                        <p>等价地，\\(T\\) 是所有充分统计量的函数——它是"最粗"的充分压缩。</p>
+                        <p>A sufficient statistic \\(T\\) is called a <strong>minimal sufficient statistic</strong> (最小充分统计量) if for every other sufficient statistic \\(T'\\),
+                        there exists a function \\(g\\) such that \\(T = g(T')\\) (almost surely).</p>
+                        <p>Equivalently, \\(T\\) is a function of every sufficient statistic &mdash; it is the "coarsest" sufficient compression.</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>将所有统计量按"信息粗细"排序：原始数据最细，常数最粗。
-                        充分统计量位于"不丢信息"的边界以上。
-                        最小充分统计量就是这条边界上最粗的那一个——再粗就会丢失关于 \\(\\theta\\) 的信息。
-                        你可以将其想象为"有损压缩的极限"——达到最大压缩率且零信息损失。</p>
+                        <p>Rank all statistics by "information granularity": raw data is the finest, a constant is the coarsest.
+                        Sufficient statistics lie above the "no information loss" boundary.
+                        The minimal sufficient statistic is the coarsest one on that boundary &mdash; any coarser and you would lose information about \\(\\theta\\).
+                        Think of it as "the limit of lossy compression" &mdash; maximum compression rate with zero information loss.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 5.6 (Lehmann-Scheffe 判定定理)</div>
+                    <div class="env-title">Theorem 5.6 (Lehmann&ndash;Scheff&eacute; Characterization Theorem)</div>
                     <div class="env-body">
-                        <p>设总体密度为 \\(f(x; \\theta)\\)。统计量 \\(T(\\mathbf{X})\\) 是最小充分统计量，
-                        如果且仅如果对任意两个样本点 \\(\\mathbf{x}\\) 和 \\(\\mathbf{y}\\)，</p>
+                        <p>Let the population density be \\(f(x; \\theta)\\). The statistic \\(T(\\mathbf{X})\\) is a minimal sufficient statistic
+                        if and only if for any two sample points \\(\\mathbf{x}\\) and \\(\\mathbf{y}\\),</p>
                         \\[\\frac{f(\\mathbf{x}; \\theta)}{f(\\mathbf{y}; \\theta)} \\text{ does not depend on } \\theta \\quad \\Longleftrightarrow \\quad T(\\mathbf{x}) = T(\\mathbf{y}).\\]
                     </div>
                 </div>
 
                 <div class="env-block proof">
-                    <div class="env-title">Proof (思路概要)</div>
+                    <div class="env-title">Proof (Sketch)</div>
                     <div class="env-body">
-                        <p>定义等价关系 \\(\\mathbf{x} \\sim \\mathbf{y}\\) 当且仅当似然比 \\(f(\\mathbf{x}; \\theta)/f(\\mathbf{y}; \\theta)\\) 不依赖 \\(\\theta\\)。
-                        等价类上定义的映射自然给出一个统计量。可以验证：</p>
-                        <p>(1) 这个统计量是充分的（由因子分解定理：在同一等价类中，似然之间仅差不依赖 \\(\\theta\\) 的常数）。</p>
-                        <p>(2) 它是最小的：若 \\(T'\\) 也充分，则 \\(T'(\\mathbf{x}) = T'(\\mathbf{y})\\) 蕴含
-                        \\(f(\\mathbf{x}; \\theta)/f(\\mathbf{y}; \\theta)\\) 不依赖 \\(\\theta\\)（因子分解给出这一点），
-                        故 \\(T(\\mathbf{x}) = T(\\mathbf{y})\\)，即 \\(T\\) 是 \\(T'\\) 的函数。</p>
+                        <p>Define an equivalence relation \\(\\mathbf{x} \\sim \\mathbf{y}\\) iff the likelihood ratio \\(f(\\mathbf{x}; \\theta)/f(\\mathbf{y}; \\theta)\\) does not depend on \\(\\theta\\).
+                        The mapping defined on equivalence classes naturally yields a statistic. One verifies:</p>
+                        <p>(1) This statistic is sufficient (by the factorization theorem: within the same equivalence class, likelihoods differ only by a \\(\\theta\\)-free constant).</p>
+                        <p>(2) It is minimal: if \\(T'\\) is also sufficient, then \\(T'(\\mathbf{x}) = T'(\\mathbf{y})\\) implies
+                        \\(f(\\mathbf{x}; \\theta)/f(\\mathbf{y}; \\theta)\\) is free of \\(\\theta\\) (the factorization gives this),
+                        so \\(T(\\mathbf{x}) = T(\\mathbf{y})\\), meaning \\(T\\) is a function of \\(T'\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 5.7 (正态分布的最小充分统计量)</div>
+                    <div class="env-title">Example 5.7 (Minimal Sufficient Statistic for the Normal Distribution)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\sim N(\\mu, \\sigma^2)\\)，参数 \\((\\mu, \\sigma^2)\\) 均未知。对两个样本点 \\(\\mathbf{x}, \\mathbf{y}\\)，
-                        似然比为</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\sim N(\\mu, \\sigma^2)\\) with both \\((\\mu, \\sigma^2)\\) unknown. For two sample points \\(\\mathbf{x}, \\mathbf{y}\\),
+                        the likelihood ratio is</p>
                         \\[\\frac{f(\\mathbf{x}; \\mu, \\sigma^2)}{f(\\mathbf{y}; \\mu, \\sigma^2)} = \\exp\\!\\left(-\\frac{1}{2\\sigma^2}\\bigl[\\sum x_i^2 - \\sum y_i^2 - 2\\mu(\\sum x_i - \\sum y_i)\\bigr]\\right).\\]
-                        <p>此比值不依赖 \\((\\mu, \\sigma^2)\\) 当且仅当 \\(\\sum x_i = \\sum y_i\\) 且 \\(\\sum x_i^2 = \\sum y_i^2\\)。
-                        因此 \\(T = \\bigl(\\sum X_i, \\sum X_i^2\\bigr)\\) 是最小充分统计量。</p>
+                        <p>This ratio is free of \\((\\mu, \\sigma^2)\\) if and only if \\(\\sum x_i = \\sum y_i\\) and \\(\\sum x_i^2 = \\sum y_i^2\\).
+                        Therefore \\(T = \\bigl(\\sum X_i, \\sum X_i^2\\bigr)\\) is the minimal sufficient statistic.</p>
                     </div>
                 </div>
 
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>并非所有参数族都存在维度低于样本量的最小充分统计量。
-                        例如，Cauchy 分布 \\(\\operatorname{Cauchy}(\\theta, 1)\\) 的最小充分统计量是整个顺序统计量
-                        \\((X_{(1)}, \\ldots, X_{(n)})\\)——无法进一步压缩。
-                        只有指数族才保证最小充分统计量的维度等于参数维度。</p>
+                        <p>Not every parametric family admits a minimal sufficient statistic whose dimension is lower than the sample size.
+                        For example, the Cauchy distribution \\(\\operatorname{Cauchy}(\\theta, 1)\\) has the full set of order statistics
+                        \\((X_{(1)}, \\ldots, X_{(n)})\\) as its minimal sufficient statistic &mdash; no further compression is possible.
+                        Only exponential families guarantee that the dimension of the minimal sufficient statistic equals the parameter dimension.</p>
                     </div>
                 </div>
 
@@ -439,8 +440,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'statistics-hierarchy-viz',
-                    title: 'Interactive: 统计量的信息层次',
-                    description: '展示从原始数据到常数之间，各类统计量在"信息保留"维度上的层次关系',
+                    title: 'Interactive: Information Hierarchy of Statistics (统计量的信息层次)',
+                    description: 'Displays the hierarchy of statistics between raw data and constants in terms of information retention',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -566,137 +567,136 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} \\operatorname{Exp}(\\lambda)\\)。利用 Lehmann-Scheffe 定理找出 \\(\\lambda\\) 的最小充分统计量。',
-                    hint: '写出似然比 \\(\\frac{f(\\mathbf{x}; \\lambda)}{f(\\mathbf{y}; \\lambda)} = \\exp\\bigl(-\\lambda(\\sum x_i - \\sum y_i)\\bigr)\\)，分析何时不依赖 \\(\\lambda\\)。',
-                    solution: '似然比为 \\(\\frac{f(\\mathbf{x}; \\lambda)}{f(\\mathbf{y}; \\lambda)} = \\frac{\\lambda^n e^{-\\lambda \\sum x_i}}{\\lambda^n e^{-\\lambda \\sum y_i}} = e^{-\\lambda(\\sum x_i - \\sum y_i)}\\)。此式不依赖 \\(\\lambda\\) 当且仅当 \\(\\sum x_i = \\sum y_i\\)。由 Lehmann-Scheffe 定理，\\(T = \\sum_{i=1}^n X_i\\) 是最小充分统计量。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} \\operatorname{Exp}(\\lambda)\\). Use the Lehmann\\u2013Scheff\\u00e9 theorem to find the minimal sufficient statistic for \\(\\lambda\\).',
+                    hint: 'Write out the likelihood ratio \\(\\frac{f(\\mathbf{x}; \\lambda)}{f(\\mathbf{y}; \\lambda)} = \\exp\\bigl(-\\lambda(\\sum x_i - \\sum y_i)\\bigr)\\) and determine when it does not depend on \\(\\lambda\\).',
+                    solution: 'The likelihood ratio is \\(\\frac{f(\\mathbf{x}; \\lambda)}{f(\\mathbf{y}; \\lambda)} = \\frac{\\lambda^n e^{-\\lambda \\sum x_i}}{\\lambda^n e^{-\\lambda \\sum y_i}} = e^{-\\lambda(\\sum x_i - \\sum y_i)}\\). This is free of \\(\\lambda\\) if and only if \\(\\sum x_i = \\sum y_i\\). By the Lehmann\\u2013Scheff\\u00e9 theorem, \\(T = \\sum_{i=1}^n X_i\\) is the minimal sufficient statistic.'
                 },
                 {
-                    question: '证明最小充分统计量在几乎处处意义下是唯一的：若 \\(T_1\\) 和 \\(T_2\\) 都是最小充分统计量，则存在一一映射 \\(g\\) 使得 \\(T_1 = g(T_2)\\) a.s.',
-                    hint: '由最小性，\\(T_1\\) 是 \\(T_2\\) 的函数，\\(T_2\\) 也是 \\(T_1\\) 的函数。',
-                    solution: '由最小充分性的定义，\\(T_1\\) 充分且 \\(T_2\\) 也充分。因为 \\(T_1\\) 最小，存在函数 \\(g_1\\) 使得 \\(T_1 = g_1(T_2)\\) a.s.。因为 \\(T_2\\) 最小，存在函数 \\(g_2\\) 使得 \\(T_2 = g_2(T_1)\\) a.s.。故 \\(T_1 = g_1(g_2(T_1))\\) a.s.，即 \\(g_1 \\circ g_2 = \\mathrm{id}\\) a.s.，同理 \\(g_2 \\circ g_1 = \\mathrm{id}\\) a.s.，所以 \\(g_1\\) 是一一映射（\\(g_2\\) 为其逆）。'
+                    question: 'Prove that the minimal sufficient statistic is unique in the almost-sure sense: if \\(T_1\\) and \\(T_2\\) are both minimal sufficient, then there exists a one-to-one mapping \\(g\\) such that \\(T_1 = g(T_2)\\) a.s.',
+                    hint: 'By minimality, \\(T_1\\) is a function of \\(T_2\\), and \\(T_2\\) is also a function of \\(T_1\\).',
+                    solution: 'By the definition of minimal sufficiency, since \\(T_1\\) is minimal and \\(T_2\\) is sufficient, there exists a function \\(g_1\\) with \\(T_1 = g_1(T_2)\\) a.s. Since \\(T_2\\) is minimal and \\(T_1\\) is sufficient, there exists \\(g_2\\) with \\(T_2 = g_2(T_1)\\) a.s. Therefore \\(T_1 = g_1(g_2(T_1))\\) a.s., i.e., \\(g_1 \\circ g_2 = \\mathrm{id}\\) a.s., and similarly \\(g_2 \\circ g_1 = \\mathrm{id}\\) a.s. Hence \\(g_1\\) is a bijection (with inverse \\(g_2\\)).'
                 },
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} \\operatorname{Uniform}(\\alpha, \\beta)\\)，\\(\\alpha < \\beta\\) 均未知。求最小充分统计量。',
-                    hint: '似然比涉及指示函数 \\(\\mathbf{1}(\\alpha \\le x_{(1)}) \\mathbf{1}(x_{(n)} \\le \\beta)\\)，对所有 \\(\\alpha, \\beta\\) 不依赖参数需要 \\(x_{(1)} = y_{(1)}\\) 且 \\(x_{(n)} = y_{(n)}\\)。',
-                    solution: '联合密度为 \\(f(\\mathbf{x}; \\alpha, \\beta) = (\\beta - \\alpha)^{-n} \\mathbf{1}(\\alpha \\le x_{(1)}) \\mathbf{1}(x_{(n)} \\le \\beta)\\)。似然比 \\(\\frac{f(\\mathbf{x})}{f(\\mathbf{y})} = \\frac{\\mathbf{1}(\\alpha \\le x_{(1)}) \\mathbf{1}(x_{(n)} \\le \\beta)}{\\mathbf{1}(\\alpha \\le y_{(1)}) \\mathbf{1}(y_{(n)} \\le \\beta)}\\)。此比对所有 \\((\\alpha, \\beta)\\) 不依赖参数当且仅当 \\(x_{(1)} = y_{(1)}\\) 且 \\(x_{(n)} = y_{(n)}\\)。故最小充分统计量为 \\(T = (X_{(1)}, X_{(n)})\\)。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} \\operatorname{Uniform}(\\alpha, \\beta)\\) with both \\(\\alpha < \\beta\\) unknown. Find the minimal sufficient statistic.',
+                    hint: 'The likelihood ratio involves indicator functions \\(\\mathbf{1}(\\alpha \\le x_{(1)}) \\mathbf{1}(x_{(n)} \\le \\beta)\\). For it not to depend on \\(\\alpha, \\beta\\), we need \\(x_{(1)} = y_{(1)}\\) and \\(x_{(n)} = y_{(n)}\\).',
+                    solution: 'The joint density is \\(f(\\mathbf{x}; \\alpha, \\beta) = (\\beta - \\alpha)^{-n} \\mathbf{1}(\\alpha \\le x_{(1)}) \\mathbf{1}(x_{(n)} \\le \\beta)\\). The likelihood ratio \\(\\frac{f(\\mathbf{x})}{f(\\mathbf{y})} = \\frac{\\mathbf{1}(\\alpha \\le x_{(1)}) \\mathbf{1}(x_{(n)} \\le \\beta)}{\\mathbf{1}(\\alpha \\le y_{(1)}) \\mathbf{1}(y_{(n)} \\le \\beta)}\\). This is free of \\((\\alpha, \\beta)\\) for all parameter values if and only if \\(x_{(1)} = y_{(1)}\\) and \\(x_{(n)} = y_{(n)}\\). Hence the minimal sufficient statistic is \\(T = (X_{(1)}, X_{(n)})\\).'
                 }
             ]
         },
 
         // ============================================================
-        //  Section 3: 完备性与指数族
+        //  Section 3: Completeness & Exponential Families
         // ============================================================
         {
             id: 'ch05-sec03',
-            title: '完备性与指数族',
+            title: 'Completeness & Exponential Families',
             content: `
-                <h2>完备性与指数族</h2>
+                <h2>Completeness & Exponential Families &mdash; 完备性与指数族</h2>
 
-                <p>完备性是充分性的一个强化概念。直观上，如果一个充分统计量是"完备的"，
-                那么不存在基于它的非平凡无偏估计能恒等于零——这排除了"冗余信息"的存在。
-                完备充分统计量在 Rao-Blackwell 定理和 Lehmann-Scheffe 定理中扮演核心角色。</p>
+                <p>Completeness (完备性) is a strengthening of sufficiency. Intuitively, if a sufficient statistic is "complete,"
+                then no nontrivial unbiased estimator based on it can be identically zero &mdash; this rules out the existence of "redundant information."
+                Complete sufficient statistics play a central role in the Rao&ndash;Blackwell theorem and the Lehmann&ndash;Scheff&eacute; theorem.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 5.8 (完备统计量 / Complete Statistic)</div>
+                    <div class="env-title">Definition 5.8 (Complete Statistic)</div>
                     <div class="env-body">
-                        <p>设 \\(T\\) 是一个统计量，其分布族为 \\(\\{f_T(t; \\theta) : \\theta \\in \\Theta\\}\\)。
-                        称 \\(T\\) 是<strong>完备的</strong>，如果对任意可测函数 \\(g\\)，</p>
+                        <p>Let \\(T\\) be a statistic whose distribution family is \\(\\{f_T(t; \\theta) : \\theta \\in \\Theta\\}\\).
+                        We say \\(T\\) is <strong>complete</strong> (完备的) if for every measurable function \\(g\\),</p>
                         \\[E_\\theta[g(T)] = 0 \\; \\forall \\theta \\in \\Theta \\quad \\Longrightarrow \\quad P_\\theta(g(T) = 0) = 1 \\; \\forall \\theta.\\]
-                        <p>即"零期望函数只能是零函数"。</p>
+                        <p>In other words, "a zero-expectation function must be the zero function."</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>完备性意味着 \\(T\\) 的分布族足够"丰富"，
-                        以至于没有非平凡函数 \\(g(T)\\) 能够在所有参数值下同时取期望为零。
-                        这可以理解为 \\(T\\) 的分布族中没有"隐藏的约束"——
-                        参数空间足够大，能够"区分"不同的函数 \\(g\\)。</p>
+                        <p>Completeness means the distribution family of \\(T\\) is "rich" enough
+                        that no nontrivial function \\(g(T)\\) can have expectation zero simultaneously for all parameter values.
+                        This can be understood as saying there are no "hidden constraints" in the distribution family of \\(T\\) &mdash;
+                        the parameter space is large enough to "distinguish" different functions \\(g\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 5.9 (完备充分统计量的唯一性)</div>
+                    <div class="env-title">Theorem 5.9 (Complete Sufficient Implies Minimal Sufficient)</div>
                     <div class="env-body">
-                        <p>若 \\(T\\) 是完备充分统计量，则 \\(T\\) 是最小充分统计量。</p>
+                        <p>If \\(T\\) is a complete sufficient statistic, then \\(T\\) is a minimal sufficient statistic.</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>设 \\(T'\\) 是任一充分统计量。需证 \\(T\\) 是 \\(T'\\) 的函数。
-                        因为 \\(T\\) 充分，\\(E_\\theta[T \\mid T']\\) 不依赖 \\(\\theta\\)（记为 \\(h(T')\\)）。
-                        考虑 \\(g(T) = T - E[T \\mid T'] = T - h(T')\\)。由全期望定理，
-                        \\(E_\\theta[T - h(T')] = E_\\theta[T] - E_\\theta[h(T')]\\)。
-                        但事实上 \\(E_\\theta[T - h(T') \\mid T'] = E_\\theta[T \\mid T'] - h(T') = h(T') - h(T') = 0\\) a.s.，
-                        故 \\(E_\\theta[T - h(T')] = 0\\)。但需要更精确的论证：定义 \\(U = T - h(T')\\)，
-                        则 \\(E_\\theta[U \\mid T'] = 0\\) a.s.。
-                        这意味着 \\(E_\\theta[U] = 0\\)。如果将问题限制在 \\(T\\) 的函数上，
-                        由于 \\(h(T')\\) 可以被视为 \\(T\\) 的（通过 \\(T' = T'(\\mathbf{X})\\)）间接函数，
-                        完备性保证 \\(T = h(T')\\) a.s.。</p>
-                        <p>更标准的证法：设 \\(T_0\\) 是由 Lehmann-Scheffe 定理给出的最小充分统计量。
-                        则 \\(T\\) 是 \\(T_0\\) 的函数（\\(T = \\varphi(T_0)\\)，因为 \\(T\\) 充分）。
-                        反过来，\\(T_0 = \\psi(T)\\)（因为 \\(T_0\\) 最小充分且 \\(T\\) 充分），
-                        但我们需要证这一点。
-                        利用完备性：对任意 \\(T_0\\) 的可测函数 \\(g\\)，
-                        若 \\(E_\\theta[g(T_0)] = 0\\) 对所有 \\(\\theta\\)，
-                        因为 \\(T_0 = \\psi(T)\\) 所以 \\(g(T_0) = g(\\psi(T))\\)，
-                        由 \\(T\\) 的完备性得 \\(g(\\psi(T)) = 0\\) a.s.，
-                        即 \\(g(T_0) = 0\\) a.s.。这说明 \\(T_0\\) 也完备，从而 \\(T\\) 是最小充分的。</p>
+                        <p>Let \\(T'\\) be any sufficient statistic. We need to show \\(T\\) is a function of \\(T'\\).
+                        Since \\(T\\) is sufficient, \\(E_\\theta[T \\mid T']\\) does not depend on \\(\\theta\\) (denote it \\(h(T')\\)).
+                        Consider \\(g(T) = T - E[T \\mid T'] = T - h(T')\\). By the tower property,
+                        \\(E_\\theta[T - h(T')] = E_\\theta[T] - E_\\theta[h(T')]\\).
+                        In fact, \\(E_\\theta[T - h(T') \\mid T'] = E_\\theta[T \\mid T'] - h(T') = h(T') - h(T') = 0\\) a.s.,
+                        so \\(E_\\theta[T - h(T')] = 0\\). For a more precise argument: define \\(U = T - h(T')\\),
+                        then \\(E_\\theta[U \\mid T'] = 0\\) a.s.,
+                        which gives \\(E_\\theta[U] = 0\\). Restricting to functions of \\(T\\),
+                        since \\(h(T')\\) can be viewed as an indirect function of \\(T\\) (through \\(T' = T'(\\mathbf{X})\\)),
+                        completeness guarantees \\(T = h(T')\\) a.s.</p>
+                        <p>A more standard proof: let \\(T_0\\) be the minimal sufficient statistic given by the Lehmann&ndash;Scheff&eacute; theorem.
+                        Then \\(T\\) is a function of \\(T_0\\) (\\(T = \\varphi(T_0)\\), since \\(T\\) is sufficient).
+                        Conversely, \\(T_0 = \\psi(T)\\) (since \\(T_0\\) is minimal sufficient and \\(T\\) is sufficient).
+                        Using completeness: for any measurable function \\(g\\) of \\(T_0\\),
+                        if \\(E_\\theta[g(T_0)] = 0\\) for all \\(\\theta\\),
+                        then since \\(T_0 = \\psi(T)\\) we have \\(g(T_0) = g(\\psi(T))\\),
+                        and by the completeness of \\(T\\), \\(g(\\psi(T)) = 0\\) a.s.,
+                        i.e., \\(g(T_0) = 0\\) a.s. This shows \\(T_0\\) is also complete, hence \\(T\\) is minimal sufficient.</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
-                <p>完备性看似抽象，但指数族为我们提供了一个重要的通用判定方法。</p>
+                <p>Completeness may seem abstract, but the exponential family (指数族) provides an important general criterion for verifying it.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 5.10 (指数族 / Exponential Family)</div>
+                    <div class="env-title">Definition 5.10 (Exponential Family)</div>
                     <div class="env-body">
-                        <p>参数族 \\(\\{f(x; \\theta) : \\theta \\in \\Theta\\}\\) 称为<strong>k-参数指数族</strong>，
-                        若密度可以写成</p>
+                        <p>A parametric family \\(\\{f(x; \\theta) : \\theta \\in \\Theta\\}\\) is called a <strong>k-parameter exponential family</strong> (k-参数指数族)
+                        if its density can be written as</p>
                         \\[f(x; \\boldsymbol{\\eta}) = h(x) \\exp\\!\\left(\\sum_{j=1}^k \\eta_j T_j(x) - A(\\boldsymbol{\\eta})\\right),\\]
-                        <p>其中 \\(\\boldsymbol{\\eta} = (\\eta_1, \\ldots, \\eta_k)\\) 是<strong>自然参数</strong>，
-                        \\(T_1(x), \\ldots, T_k(x)\\) 是<strong>充分统计量</strong>，
-                        \\(A(\\boldsymbol{\\eta})\\) 是<strong>对数配分函数</strong>（log-partition function），
-                        \\(h(x) \\ge 0\\) 是基底测度。</p>
+                        <p>where \\(\\boldsymbol{\\eta} = (\\eta_1, \\ldots, \\eta_k)\\) is the <strong>natural parameter</strong> (自然参数),
+                        \\(T_1(x), \\ldots, T_k(x)\\) are the <strong>sufficient statistics</strong> (充分统计量),
+                        \\(A(\\boldsymbol{\\eta})\\) is the <strong>log-partition function</strong> (对数配分函数),
+                        and \\(h(x) \\ge 0\\) is the base measure.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 5.11 (指数族的完备充分统计量)</div>
+                    <div class="env-title">Theorem 5.11 (Complete Sufficient Statistics for Exponential Families)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n\\) 是来自 \\(k\\)-参数指数族的 iid 样本，
-                        且自然参数空间 \\(\\mathcal{H} = \\{\\boldsymbol{\\eta} : A(\\boldsymbol{\\eta}) < \\infty\\}\\)
-                        包含 \\(\\mathbb{R}^k\\) 中的一个开集。则</p>
+                        <p>Let \\(X_1, \\ldots, X_n\\) be an iid sample from a \\(k\\)-parameter exponential family
+                        whose natural parameter space \\(\\mathcal{H} = \\{\\boldsymbol{\\eta} : A(\\boldsymbol{\\eta}) < \\infty\\}\\)
+                        contains an open set in \\(\\mathbb{R}^k\\). Then</p>
                         \\[T = \\left(\\sum_{i=1}^n T_1(X_i), \\ldots, \\sum_{i=1}^n T_k(X_i)\\right)\\]
-                        <p>是 \\(\\boldsymbol{\\eta}\\) 的<strong>完备充分统计量</strong>。</p>
+                        <p>is a <strong>complete sufficient statistic</strong> (完备充分统计量) for \\(\\boldsymbol{\\eta}\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
                     <div class="env-title">Example 5.12</div>
                     <div class="env-body">
-                        <p>常见指数族及其完备充分统计量：</p>
-                        <p>(i) \\(\\operatorname{Poisson}(\\lambda)\\)：自然参数 \\(\\eta = \\log \\lambda\\)，
-                        充分统计量 \\(T(x) = x\\)。
-                        iid 样本的完备充分统计量为 \\(\\sum X_i\\)。</p>
-                        <p>(ii) \\(N(\\mu, \\sigma^2)\\)（两参数）：自然参数 \\(\\eta_1 = \\mu/\\sigma^2, \\eta_2 = -1/(2\\sigma^2)\\)，
-                        充分统计量 \\(T_1(x) = x, T_2(x) = x^2\\)。
-                        完备充分统计量为 \\((\\sum X_i, \\sum X_i^2)\\)。</p>
-                        <p>(iii) \\(\\operatorname{Gamma}(\\alpha, \\beta)\\)：
-                        完备充分统计量为 \\((\\sum \\log X_i, \\sum X_i)\\)。</p>
+                        <p>Common exponential families and their complete sufficient statistics:</p>
+                        <p>(i) \\(\\operatorname{Poisson}(\\lambda)\\): natural parameter \\(\\eta = \\log \\lambda\\),
+                        sufficient statistic \\(T(x) = x\\).
+                        The complete sufficient statistic for an iid sample is \\(\\sum X_i\\).</p>
+                        <p>(ii) \\(N(\\mu, \\sigma^2)\\) (two parameters): natural parameters \\(\\eta_1 = \\mu/\\sigma^2, \\eta_2 = -1/(2\\sigma^2)\\),
+                        sufficient statistics \\(T_1(x) = x, T_2(x) = x^2\\).
+                        The complete sufficient statistic is \\((\\sum X_i, \\sum X_i^2)\\).</p>
+                        <p>(iii) \\(\\operatorname{Gamma}(\\alpha, \\beta)\\):
+                        the complete sufficient statistic is \\((\\sum \\log X_i, \\sum X_i)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>自然参数空间包含开集的条件很关键。若参数空间受限（如已知 \\(\\sigma^2\\) 时的正态分布），
-                        充分统计量可能不完备。例如 \\(X \\sim N(\\theta, \\theta)\\)（\\(\\theta > 0\\)）
-                        虽属于指数族，但由于 \\(\\eta_1, \\eta_2\\) 之间存在约束关系（曲线指数族），
-                        \\((\\sum X_i, \\sum X_i^2)\\) 充分但不完备。</p>
+                        <p>The condition that the natural parameter space contains an open set is crucial. If the parameter space is restricted (e.g., the normal distribution with known \\(\\sigma^2\\)),
+                        the sufficient statistic may not be complete. For instance, \\(X \\sim N(\\theta, \\theta)\\) (\\(\\theta > 0\\))
+                        belongs to an exponential family, but because \\(\\eta_1, \\eta_2\\) are constrained (a curved exponential family),
+                        \\((\\sum X_i, \\sum X_i^2)\\) is sufficient but not complete.</p>
                     </div>
                 </div>
 
@@ -705,8 +705,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'expfamily-morphing-viz',
-                    title: 'Interactive: 指数族 PDF 变形',
-                    description: '通过调节自然参数观察指数族密度如何平滑变形，并展示充分统计量维度',
+                    title: 'Interactive: Exponential Family PDF Morphing (指数族 PDF 变形)',
+                    description: 'Adjust the natural parameters to observe how exponential family densities smoothly morph, and see the dimension of the sufficient statistic',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -910,41 +910,41 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '证明 Bernoulli(p) 分布属于指数族，并写出其自然参数和充分统计量。',
-                    hint: '将 \\(p^x (1-p)^{1-x}\\) 写成 \\(\\exp(x \\log \\frac{p}{1-p} + \\log(1-p))\\)。',
-                    solution: '\\(f(x; p) = p^x(1-p)^{1-x} = \\exp\\bigl(x \\log \\frac{p}{1-p} + \\log(1-p)\\bigr)\\)。这是指数族形式，其中自然参数 \\(\\eta = \\log \\frac{p}{1-p}\\)（logit），充分统计量 \\(T(x) = x\\)，对数配分函数 \\(A(\\eta) = -\\log(1-p) = \\log(1 + e^\\eta)\\)，基底测度 \\(h(x) = 1\\)。对 iid 样本，\\(\\sum X_i\\) 是完备充分统计量。'
+                    question: 'Prove that the Bernoulli(p) distribution belongs to the exponential family, and write down its natural parameter and sufficient statistic.',
+                    hint: 'Write \\(p^x (1-p)^{1-x}\\) as \\(\\exp(x \\log \\frac{p}{1-p} + \\log(1-p))\\).',
+                    solution: '\\(f(x; p) = p^x(1-p)^{1-x} = \\exp\\bigl(x \\log \\frac{p}{1-p} + \\log(1-p)\\bigr)\\). This is in exponential family form with natural parameter \\(\\eta = \\log \\frac{p}{1-p}\\) (the logit), sufficient statistic \\(T(x) = x\\), log-partition function \\(A(\\eta) = -\\log(1-p) = \\log(1 + e^\\eta)\\), and base measure \\(h(x) = 1\\). For an iid sample, \\(\\sum X_i\\) is the complete sufficient statistic.'
                 },
                 {
-                    question: '设 \\(T\\) 是完备充分统计量，\\(g(T)\\) 是 \\(\\tau(\\theta)\\) 的无偏估计。证明 \\(g(T)\\) 是 \\(\\tau(\\theta)\\) 的唯一无偏估计（基于 \\(T\\)）。',
-                    hint: '若 \\(g_1(T)\\) 和 \\(g_2(T)\\) 都是 \\(\\tau(\\theta)\\) 的无偏估计，考虑 \\(g_1(T) - g_2(T)\\) 的期望。',
-                    solution: '设 \\(g_1(T), g_2(T)\\) 都是 \\(\\tau(\\theta)\\) 的无偏估计。则 \\(E_\\theta[g_1(T) - g_2(T)] = \\tau(\\theta) - \\tau(\\theta) = 0\\) 对所有 \\(\\theta\\)。令 \\(u(T) = g_1(T) - g_2(T)\\)，由完备性得 \\(P_\\theta(u(T) = 0) = 1\\) 对所有 \\(\\theta\\)，即 \\(g_1(T) = g_2(T)\\) a.s. 对所有 \\(\\theta\\)。这正是 Lehmann-Scheffe 定理的核心——完备充分统计量上的无偏估计唯一且为 UMVUE。'
+                    question: 'Let \\(T\\) be a complete sufficient statistic, and let \\(g(T)\\) be an unbiased estimator of \\(\\tau(\\theta)\\). Prove that \\(g(T)\\) is the unique unbiased estimator of \\(\\tau(\\theta)\\) based on \\(T\\).',
+                    hint: 'If both \\(g_1(T)\\) and \\(g_2(T)\\) are unbiased estimators of \\(\\tau(\\theta)\\), consider the expectation of \\(g_1(T) - g_2(T)\\).',
+                    solution: 'Suppose \\(g_1(T), g_2(T)\\) are both unbiased estimators of \\(\\tau(\\theta)\\). Then \\(E_\\theta[g_1(T) - g_2(T)] = \\tau(\\theta) - \\tau(\\theta) = 0\\) for all \\(\\theta\\). Let \\(u(T) = g_1(T) - g_2(T)\\). By completeness, \\(P_\\theta(u(T) = 0) = 1\\) for all \\(\\theta\\), i.e., \\(g_1(T) = g_2(T)\\) a.s. for all \\(\\theta\\). This is the core of the Lehmann\\u2013Scheff\\u00e9 theorem: an unbiased estimator based on a complete sufficient statistic is unique and is the UMVUE.'
                 },
                 {
-                    question: '证明 \\(\\operatorname{Cauchy}(\\theta, 1)\\) 分布不属于指数族。',
-                    hint: '指数族的支撑集不依赖参数，且其矩母函数在原点附近存在。考虑 Cauchy 分布的矩。',
-                    solution: 'Cauchy 分布的密度为 \\(f(x; \\theta) = \\frac{1}{\\pi(1 + (x - \\theta)^2)}\\)。指数族的一个关键性质是：自然参数空间的内部非空时，所有阶矩存在。但 Cauchy 分布连一阶矩都不存在（\\(E|X| = \\infty\\)）。此外，无法将 \\(\\frac{1}{1 + (x-\\theta)^2}\\) 写成 \\(\\exp(\\eta(\\theta) T(x) - A(\\theta)) h(x)\\) 的形式（因为 \\(\\theta\\) 和 \\(x\\) 在分母中非线性耦合）。因此 Cauchy 分布不属于指数族。'
+                    question: 'Prove that the \\(\\operatorname{Cauchy}(\\theta, 1)\\) distribution does not belong to the exponential family.',
+                    hint: 'The support of an exponential family does not depend on the parameter, and its moment generating function exists in a neighborhood of the origin. Consider the moments of the Cauchy distribution.',
+                    solution: 'The Cauchy density is \\(f(x; \\theta) = \\frac{1}{\\pi(1 + (x - \\theta)^2)}\\). A key property of exponential families is: when the interior of the natural parameter space is nonempty, all moments exist. But the Cauchy distribution does not even have a finite first moment (\\(E|X| = \\infty\\)). Moreover, \\(\\frac{1}{1 + (x-\\theta)^2}\\) cannot be written in the form \\(\\exp(\\eta(\\theta) T(x) - A(\\theta)) h(x)\\) because \\(\\theta\\) and \\(x\\) are nonlinearly coupled in the denominator. Therefore the Cauchy distribution does not belong to the exponential family.'
                 }
             ]
         },
 
         // ============================================================
-        //  Section 4: 辅助统计量与 Basu 定理
+        //  Section 4: Ancillary Statistics & Basu's Theorem
         // ============================================================
         {
             id: 'ch05-sec04',
-            title: '辅助统计量与Basu定理',
+            title: 'Ancillary Statistics & Basu\'s Theorem',
             content: `
-                <h2>辅助统计量与 Basu 定理</h2>
+                <h2>Ancillary Statistics & Basu's Theorem &mdash; 辅助统计量与 Basu 定理</h2>
 
-                <p>与充分统计量相对的是<strong>辅助统计量</strong>（ancillary statistic）——
-                其分布完全不含参数信息。Basu 定理建立了完备充分统计量与辅助统计量之间的深刻联系：
-                它们是独立的。这一看似简单的结果在理论和应用中都有重要意义。</p>
+                <p>In contrast to sufficient statistics, an <strong>ancillary statistic</strong> (辅助统计量) is one whose distribution carries no information about the parameter at all.
+                Basu's theorem establishes a deep connection between complete sufficient statistics and ancillary statistics:
+                they are independent. This seemingly simple result has far-reaching implications in both theory and practice.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 5.13 (辅助统计量 / Ancillary Statistic)</div>
+                    <div class="env-title">Definition 5.13 (Ancillary Statistic)</div>
                     <div class="env-body">
-                        <p>统计量 \\(V = V(X_1, \\ldots, X_n)\\) 称为<strong>辅助统计量</strong>，
-                        如果 \\(V\\) 的分布不依赖于参数 \\(\\theta\\)：</p>
+                        <p>A statistic \\(V = V(X_1, \\ldots, X_n)\\) is called an <strong>ancillary statistic</strong> (辅助统计量)
+                        if the distribution of \\(V\\) does not depend on the parameter \\(\\theta\\):</p>
                         \\[P_\\theta(V \\in B) = P(V \\in B) \\quad \\forall \\theta \\in \\Theta, \\; \\forall B.\\]
                     </div>
                 </div>
@@ -952,80 +952,80 @@ window.CHAPTERS.push({
                 <div class="env-block example">
                     <div class="env-title">Example 5.14</div>
                     <div class="env-body">
-                        <p>(i) 设 \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} N(\\mu, 1)\\)。
-                        则样本方差 \\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2 \\sim \\frac{\\chi^2_{n-1}}{n-1}\\)，
-                        其分布不依赖 \\(\\mu\\)。因此 \\(S^2\\) 是 \\(\\mu\\) 的辅助统计量。</p>
-                        <p>(ii) 设 \\(X_1, X_2 \\stackrel{\\mathrm{iid}}{\\sim} \\operatorname{Exp}(\\lambda)\\)。
-                        则比值 \\(V = X_1 / (X_1 + X_2) \\sim \\operatorname{Uniform}(0, 1)\\)，
-                        不依赖 \\(\\lambda\\)。因此 \\(V\\) 是辅助统计量。</p>
+                        <p>(i) Let \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} N(\\mu, 1)\\).
+                        Then the sample variance \\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2 \\sim \\frac{\\chi^2_{n-1}}{n-1}\\),
+                        whose distribution does not depend on \\(\\mu\\). Therefore \\(S^2\\) is an ancillary statistic for \\(\\mu\\).</p>
+                        <p>(ii) Let \\(X_1, X_2 \\stackrel{\\mathrm{iid}}{\\sim} \\operatorname{Exp}(\\lambda)\\).
+                        Then the ratio \\(V = X_1 / (X_1 + X_2) \\sim \\operatorname{Uniform}(0, 1)\\),
+                        which does not depend on \\(\\lambda\\). Therefore \\(V\\) is an ancillary statistic.</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>如果充分统计量捕获了数据中关于 \\(\\theta\\) 的全部信息，
-                        那么辅助统计量则完全不含 \\(\\theta\\) 的信息——它只反映数据的"形状"或"配置"，
-                        而不反映"位置"或"尺度"。
-                        二者是信息谱的两个极端。</p>
+                        <p>If a sufficient statistic captures all the information in the data about \\(\\theta\\),
+                        then an ancillary statistic contains none of it &mdash; it reflects only the "shape" or "configuration" of the data,
+                        not its "location" or "scale."
+                        The two sit at opposite ends of the information spectrum.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 5.15 (Basu 定理)</div>
+                    <div class="env-title">Theorem 5.15 (Basu's Theorem)</div>
                     <div class="env-body">
-                        <p>若 \\(T\\) 是 \\(\\theta\\) 的<strong>完备充分统计量</strong>，
-                        \\(V\\) 是<strong>辅助统计量</strong>，
-                        则 \\(T\\) 与 \\(V\\) 相互独立（对所有 \\(\\theta\\)）。</p>
+                        <p>If \\(T\\) is a <strong>complete sufficient statistic</strong> for \\(\\theta\\)
+                        and \\(V\\) is an <strong>ancillary statistic</strong>,
+                        then \\(T\\) and \\(V\\) are mutually independent (for all \\(\\theta\\)).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>对任意 Borel 集 \\(B\\)，定义 \\(g(t) = P_\\theta(V \\in B \\mid T = t) - P(V \\in B)\\)。
-                        因为 \\(V\\) 辅助，\\(P_\\theta(V \\in B) = P(V \\in B)\\) 不依赖 \\(\\theta\\)。
-                        因此</p>
+                        <p>For any Borel set \\(B\\), define \\(g(t) = P_\\theta(V \\in B \\mid T = t) - P(V \\in B)\\).
+                        Since \\(V\\) is ancillary, \\(P_\\theta(V \\in B) = P(V \\in B)\\) does not depend on \\(\\theta\\).
+                        Therefore</p>
                         \\[E_\\theta[g(T)] = E_\\theta[P_\\theta(V \\in B \\mid T)] - P(V \\in B) = P_\\theta(V \\in B) - P(V \\in B) = 0\\]
-                        <p>对所有 \\(\\theta\\) 成立。由 \\(T\\) 的完备性，
-                        \\(g(T) = 0\\) a.s.，即</p>
+                        <p>for all \\(\\theta\\). By the completeness of \\(T\\),
+                        \\(g(T) = 0\\) a.s., i.e.,</p>
                         \\[P_\\theta(V \\in B \\mid T = t) = P(V \\in B) \\quad \\text{a.s.}\\]
-                        <p>这正意味着 \\(V\\) 和 \\(T\\) 独立。</p>
+                        <p>This is precisely the statement that \\(V\\) and \\(T\\) are independent.</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 5.16 (Basu 定理的经典应用)</div>
+                    <div class="env-title">Example 5.16 (A Classic Application of Basu's Theorem)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} N(\\mu, \\sigma^2)\\)，\\(\\sigma^2\\) 已知。</p>
-                        <p>(a) \\(\\bar{X}\\) 是 \\(\\mu\\) 的完备充分统计量（一维正态指数族）。</p>
-                        <p>(b) \\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2\\) 是辅助统计量（其分布 \\(\\frac{\\sigma^2}{n-1} \\chi^2_{n-1}\\) 不依赖 \\(\\mu\\)）。</p>
-                        <p>由 Basu 定理：\\(\\bar{X}\\) 与 \\(S^2\\) 独立。</p>
-                        <p>这是一个非常优雅的独立性证明——无需任何矩母函数或分布计算！
-                        传统证法需要利用正态分布的特殊性质（Cochran 定理），
-                        而 Basu 定理仅需验证充分性、完备性和辅助性。</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} N(\\mu, \\sigma^2)\\) with \\(\\sigma^2\\) known.</p>
+                        <p>(a) \\(\\bar{X}\\) is a complete sufficient statistic for \\(\\mu\\) (one-dimensional normal exponential family).</p>
+                        <p>(b) \\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2\\) is ancillary (its distribution \\(\\frac{\\sigma^2}{n-1} \\chi^2_{n-1}\\) does not depend on \\(\\mu\\)).</p>
+                        <p>By Basu's theorem: \\(\\bar{X}\\) and \\(S^2\\) are independent.</p>
+                        <p>This is an extremely elegant proof of independence &mdash; no moment generating functions or distributional calculations needed!
+                        The traditional proof requires special properties of the normal distribution (Cochran's theorem),
+                        whereas Basu's theorem only requires verifying sufficiency, completeness, and ancillarity.</p>
                     </div>
                 </div>
 
                 <div class="env-block corollary">
                     <div class="env-title">Corollary 5.17</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} \\operatorname{Exp}(\\lambda)\\)。
-                        则 \\(T = \\sum X_i\\) 是完备充分统计量，
-                        而 \\(V_i = X_i / \\sum X_j\\)（各比例分量）是辅助的。
-                        由 Basu 定理，\\(\\sum X_i\\) 与 \\((X_1/\\sum X_j, \\ldots, X_n/\\sum X_j)\\) 独立。</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} \\operatorname{Exp}(\\lambda)\\).
+                        Then \\(T = \\sum X_i\\) is a complete sufficient statistic,
+                        and \\(V_i = X_i / \\sum X_j\\) (each ratio component) is ancillary.
+                        By Basu's theorem, \\(\\sum X_i\\) and \\((X_1/\\sum X_j, \\ldots, X_n/\\sum X_j)\\) are independent.</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
-                    <div class="env-title">Remark (Basu 定理的应用场景)</div>
+                    <div class="env-title">Remark (Applications of Basu's Theorem)</div>
                     <div class="env-body">
-                        <p>Basu 定理的力量在于：一旦确认了完备充分统计量和辅助统计量的身份，
-                        就能免费获得独立性结论。这在以下场景特别有用：</p>
-                        <p>(1) 简化方差计算：若 \\(T \\perp V\\)，则 \\(\\operatorname{Var}(aT + bV) = a^2\\operatorname{Var}(T) + b^2\\operatorname{Var}(V)\\)。</p>
-                        <p>(2) 构造枢轴量：独立性保证了枢轴量的分布不依赖参数。</p>
-                        <p>(3) 证明估计量的最优性：在 UMVUE 理论中，独立性是关键技术工具。</p>
+                        <p>The power of Basu's theorem lies in the fact that once a complete sufficient statistic and an ancillary statistic are identified,
+                        independence follows for free. This is especially useful in the following scenarios:</p>
+                        <p>(1) Simplifying variance calculations: if \\(T \\perp V\\), then \\(\\operatorname{Var}(aT + bV) = a^2\\operatorname{Var}(T) + b^2\\operatorname{Var}(V)\\).</p>
+                        <p>(2) Constructing pivotal quantities: independence ensures the pivot's distribution is parameter-free.</p>
+                        <p>(3) Proving optimality of estimators: independence is a key technical tool in UMVUE theory.</p>
                     </div>
                 </div>
 
@@ -1034,8 +1034,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'sufficient-ancillary-scatter-viz',
-                    title: 'Interactive: 充分统计量 vs 辅助统计量散点图',
-                    description: '通过 Monte Carlo 模拟展示完备充分统计量与辅助统计量的独立性 (Basu 定理)',
+                    title: 'Interactive: Sufficient vs. Ancillary Statistic Scatter Plot (充分统计量 vs 辅助统计量)',
+                    description: 'Monte Carlo simulation demonstrating the independence of a complete sufficient statistic and an ancillary statistic (Basu\'s theorem)',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 420,
@@ -1209,19 +1209,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, X_2 \\stackrel{\\mathrm{iid}}{\\sim} N(\\mu, 1)\\)。利用 Basu 定理证明 \\(\\bar{X} = (X_1 + X_2)/2\\) 与 \\(X_1 - X_2\\) 独立。',
-                    hint: '\\(\\bar{X}\\) 是 \\(\\mu\\) 的完备充分统计量。验证 \\(X_1 - X_2\\) 是辅助统计量（其分布是什么？）',
-                    solution: '(1) \\(\\bar{X}\\) 是 \\(\\mu\\) 的完备充分统计量（\\(N(\\mu, 1)\\) 是一维指数族）。(2) \\(X_1 - X_2 \\sim N(0, 2)\\)（均值为 \\(\\mu - \\mu = 0\\)），其分布不依赖 \\(\\mu\\)，故 \\(X_1 - X_2\\) 是辅助统计量。由 Basu 定理，\\(\\bar{X}\\) 与 \\(X_1 - X_2\\) 独立。'
+                    question: 'Let \\(X_1, X_2 \\stackrel{\\mathrm{iid}}{\\sim} N(\\mu, 1)\\). Use Basu\'s theorem to prove that \\(\\bar{X} = (X_1 + X_2)/2\\) and \\(X_1 - X_2\\) are independent.',
+                    hint: '\\(\\bar{X}\\) is the complete sufficient statistic for \\(\\mu\\). Verify that \\(X_1 - X_2\\) is ancillary (what is its distribution?).',
+                    solution: '(1) \\(\\bar{X}\\) is a complete sufficient statistic for \\(\\mu\\) (\\(N(\\mu, 1)\\) is a one-dimensional exponential family). (2) \\(X_1 - X_2 \\sim N(0, 2)\\) (mean \\(\\mu - \\mu = 0\\)), so its distribution does not depend on \\(\\mu\\); hence \\(X_1 - X_2\\) is ancillary. By Basu\'s theorem, \\(\\bar{X}\\) and \\(X_1 - X_2\\) are independent.'
                 },
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} \\operatorname{Uniform}(0, \\theta)\\)。(a) 证明 \\(X_{(n)}\\) 是完备充分统计量。(b) 证明 \\(X_{(1)}/X_{(n)}\\) 是辅助统计量。(c) 由 Basu 定理推出什么？',
-                    hint: '对 (a)，利用指数族判据或直接验证。对 (b)，令 \\(U_i = X_i/\\theta\\)，则 \\(U_i \\sim \\operatorname{Uniform}(0,1)\\)，考虑 \\(U_{(1)}/U_{(n)}\\)。',
-                    solution: '(a) \\(X_{(n)}\\) 的密度为 \\(f_{X_{(n)}}(t; \\theta) = n t^{n-1}/\\theta^n \\cdot \\mathbf{1}(0 < t < \\theta)\\)。设 \\(E_\\theta[g(X_{(n)})] = 0\\) 对所有 \\(\\theta > 0\\)，即 \\(\\int_0^\\theta g(t) n t^{n-1}/\\theta^n \\, dt = 0\\) 对所有 \\(\\theta > 0\\)。两边对 \\(\\theta\\) 微分并整理可得 \\(g(\\theta) = 0\\) a.e.，故完备。(b) 令 \\(U_i = X_i/\\theta\\)，则 \\(U_i \\sim U(0,1)\\)，故 \\(X_{(1)}/X_{(n)} = U_{(1)}/U_{(n)}\\)，其分布不依赖 \\(\\theta\\)。(c) 由 Basu 定理，\\(X_{(n)} \\perp X_{(1)}/X_{(n)}\\)。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\stackrel{\\mathrm{iid}}{\\sim} \\operatorname{Uniform}(0, \\theta)\\). (a) Prove that \\(X_{(n)}\\) is a complete sufficient statistic. (b) Prove that \\(X_{(1)}/X_{(n)}\\) is ancillary. (c) What does Basu\'s theorem give us?',
+                    hint: 'For (a), use the exponential family criterion or verify directly. For (b), let \\(U_i = X_i/\\theta\\), then \\(U_i \\sim \\operatorname{Uniform}(0,1)\\); consider \\(U_{(1)}/U_{(n)}\\).',
+                    solution: '(a) The density of \\(X_{(n)}\\) is \\(f_{X_{(n)}}(t; \\theta) = n t^{n-1}/\\theta^n \\cdot \\mathbf{1}(0 < t < \\theta)\\). Suppose \\(E_\\theta[g(X_{(n)})] = 0\\) for all \\(\\theta > 0\\), i.e., \\(\\int_0^\\theta g(t) n t^{n-1}/\\theta^n \\, dt = 0\\) for all \\(\\theta > 0\\). Differentiating both sides with respect to \\(\\theta\\) and simplifying yields \\(g(\\theta) = 0\\) a.e., so completeness holds. (b) Let \\(U_i = X_i/\\theta\\), then \\(U_i \\sim U(0,1)\\), so \\(X_{(1)}/X_{(n)} = U_{(1)}/U_{(n)}\\), whose distribution does not depend on \\(\\theta\\). (c) By Basu\'s theorem, \\(X_{(n)} \\perp X_{(1)}/X_{(n)}\\).'
                 },
                 {
-                    question: '给出一个辅助统计量不唯一的例子，并解释为什么 Basu 定理不要求辅助统计量的唯一性。',
-                    hint: '在位置族 \\(f(x - \\theta)\\) 中，任何"样本间差值"都是辅助的。',
-                    solution: '设 \\(X_1, X_2, X_3 \\sim N(\\mu, 1)\\)。则 \\(V_1 = X_1 - X_2\\), \\(V_2 = X_2 - X_3\\), \\(V_3 = X_1 - X_3\\) 都是辅助统计量（它们的分布均不依赖 \\(\\mu\\)），且 \\(S^2\\) 也是辅助统计量。辅助统计量有无穷多个。Basu 定理的陈述是对所有辅助统计量成立的——任何一个辅助统计量都与完备充分统计量独立。定理不需要辅助统计量的唯一性，因为其证明仅利用了"辅助"这一性质（分布不依赖参数），而非辅助统计量的具体形式。'
+                    question: 'Give an example showing that ancillary statistics are not unique, and explain why Basu\'s theorem does not require uniqueness of the ancillary statistic.',
+                    hint: 'In a location family \\(f(x - \\theta)\\), any "inter-sample difference" is ancillary.',
+                    solution: 'Let \\(X_1, X_2, X_3 \\sim N(\\mu, 1)\\). Then \\(V_1 = X_1 - X_2\\), \\(V_2 = X_2 - X_3\\), \\(V_3 = X_1 - X_3\\) are all ancillary statistics (their distributions do not depend on \\(\\mu\\)), and \\(S^2\\) is also ancillary. There are infinitely many ancillary statistics. Basu\'s theorem applies to every ancillary statistic &mdash; each one is independent of the complete sufficient statistic. The theorem does not need uniqueness because its proof only uses the "ancillary" property (distribution free of the parameter), not the specific form of the ancillary statistic.'
                 }
             ]
         }

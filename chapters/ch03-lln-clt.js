@@ -2,24 +2,24 @@ window.CHAPTERS = window.CHAPTERS || [];
 window.CHAPTERS.push({
     id: 'ch03',
     number: 3,
-    title: '大数定律与中心极限定理',
+    title: 'Law of Large Numbers & Central Limit Theorem',
     subtitle: 'Laws of Large Numbers & the Central Limit Theorem',
     sections: [
         // ================================================================
-        // Section 1: 收敛性概念
+        // Section 1: Modes of Convergence
         // ================================================================
         {
             id: 'ch03-sec01',
-            title: '收敛性概念',
+            title: 'Modes of Convergence',
             content: `
-                <h2>收敛性概念 Modes of Convergence</h2>
+                <h2>Modes of Convergence 收敛性概念</h2>
 
-                <p>在研究大样本行为之前，我们必须严格定义随机变量序列 \\(\{X_n\}\) 的各种收敛方式。这些概念构成了渐近理论的基石，对理解大数定律和中心极限定理至关重要。</p>
+                <p>Before studying large-sample behavior, we must rigorously define the various modes of convergence for a sequence of random variables \\(\\{X_n\\}\\). These concepts form the cornerstone of asymptotic theory and are essential for understanding the law of large numbers and the central limit theorem.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 3.1 (依概率收敛 / Convergence in Probability)</div>
+                    <div class="env-title">Definition 3.1 (Convergence in Probability)</div>
                     <div class="env-body">
-                        <p>称随机变量序列 \\(\{X_n\}\) <strong>依概率收敛</strong>于 \\(X\)，记为 \\(X_n \\xrightarrow{P} X\)，若对任意 \\(\\varepsilon > 0\)，</p>
+                        <p>A sequence of random variables \\(\\{X_n\\}\\) is said to <strong>converge in probability</strong> (依概率收敛) to \\(X\\), written \\(X_n \\xrightarrow{P} X\\), if for every \\(\\varepsilon > 0\\),</p>
                         \\[\\lim_{n \\to \\infty} P(|X_n - X| > \\varepsilon) = 0.\\]
                     </div>
                 </div>
@@ -27,85 +27,85 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>依概率收敛的直觉：随着 \\(n\) 增大，\\(X_n\) 的分布越来越集中在 \\(X\) 附近。对任意给定的 "管道宽度" \\(\\varepsilon\)，\\(X_n\) 跑到管道外面的概率趋于零。但注意，它<em>不保证</em>每条样本路径都最终留在管道内——偶尔的 "逃逸" 是被允许的，只要逃逸频率趋于零。</p>
+                        <p>The intuition behind convergence in probability: as \\(n\\) grows, the distribution of \\(X_n\\) concentrates increasingly around \\(X\\). For any given "tube width" \\(\\varepsilon\\), the probability that \\(X_n\\) falls outside the tube tends to zero. However, this does <em>not guarantee</em> that every sample path eventually stays inside the tube — occasional "escapes" are permitted, as long as the escape frequency tends to zero.</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 3.2 (几乎必然收敛 / Almost Sure Convergence)</div>
+                    <div class="env-title">Definition 3.2 (Almost Sure Convergence)</div>
                     <div class="env-body">
-                        <p>称 \\(\{X_n\}\) <strong>几乎必然收敛</strong>（a.s. 收敛）于 \\(X\)，记为 \\(X_n \\xrightarrow{a.s.} X\)，若</p>
+                        <p>The sequence \\(\\{X_n\\}\\) is said to <strong>converge almost surely</strong> (几乎必然收敛, a.s. convergence) to \\(X\\), written \\(X_n \\xrightarrow{a.s.} X\\), if</p>
                         \\[P\\!\\left(\\lim_{n \\to \\infty} X_n = X\\right) = 1.\\]
-                        <p>等价地，对任意 \\(\\varepsilon > 0\)，</p>
-                        \\[P\\!\\left(\\bigcap_{m=1}^{\\infty} \\bigcup_{n=m}^{\\infty} \\{|X_n - X| > \\varepsilon\}\\right) = 0.\\]
+                        <p>Equivalently, for every \\(\\varepsilon > 0\\),</p>
+                        \\[P\\!\\left(\\bigcap_{m=1}^{\\infty} \\bigcup_{n=m}^{\\infty} \\{|X_n - X| > \\varepsilon\\}\\right) = 0.\\]
                     </div>
                 </div>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>几乎必然收敛要求：以概率 1，样本路径最终永远停留在 \\(\\varepsilon\)-管道内。这比依概率收敛严格得多——不仅逃逸概率趋于零，而且几乎每条路径只有有限次逃逸。</p>
+                        <p>Almost sure convergence requires that, with probability 1, the sample path eventually remains inside the \\(\\varepsilon\\)-tube permanently. This is strictly stronger than convergence in probability — not only does the escape probability tend to zero, but almost every path has only finitely many escapes.</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 3.3 (依分布收敛 / Convergence in Distribution)</div>
+                    <div class="env-title">Definition 3.3 (Convergence in Distribution)</div>
                     <div class="env-body">
-                        <p>称 \\(\{X_n\}\) <strong>依分布收敛</strong>于 \\(X\)，记为 \\(X_n \\xrightarrow{d} X\)，若对 \\(F_X\) 的每个连续点 \\(x\)，</p>
+                        <p>The sequence \\(\\{X_n\\}\\) is said to <strong>converge in distribution</strong> (依分布收敛) to \\(X\\), written \\(X_n \\xrightarrow{d} X\\), if at every continuity point \\(x\\) of \\(F_X\\),</p>
                         \\[\\lim_{n \\to \\infty} F_{X_n}(x) = F_X(x).\\]
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 3.4 (\\(L^p\) 收敛 / Convergence in \\(L^p\))</div>
+                    <div class="env-title">Definition 3.4 (Convergence in \\(L^p\\))</div>
                     <div class="env-body">
-                        <p>对 \\(p \\geq 1\)，称 \\(\{X_n\}\) <strong>在 \\(L^p\) 中收敛</strong>于 \\(X\)，记为 \\(X_n \\xrightarrow{L^p} X\)，若</p>
+                        <p>For \\(p \\geq 1\\), the sequence \\(\\{X_n\\}\\) is said to <strong>converge in \\(L^p\\)</strong> (\\(L^p\\) 收敛) to \\(X\\), written \\(X_n \\xrightarrow{L^p} X\\), if</p>
                         \\[\\lim_{n \\to \\infty} \\mathbb{E}[|X_n - X|^p] = 0.\\]
-                        <p>当 \\(p = 2\) 时，又称为<strong>均方收敛</strong>（mean-square convergence）。</p>
+                        <p>When \\(p = 2\\), this is also called <strong>mean-square convergence</strong> (均方收敛).</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 3.5 (收敛方式的层次关系)</div>
+                    <div class="env-title">Theorem 3.5 (Hierarchy of Convergence Modes)</div>
                     <div class="env-body">
-                        <p>设 \\(\{X_n\}\) 为随机变量序列，\\(p \\geq 1\)。下列蕴含关系成立：</p>
+                        <p>Let \\(\\{X_n\\}\\) be a sequence of random variables and \\(p \\geq 1\\). The following implications hold:</p>
                         \\[X_n \\xrightarrow{a.s.} X \\implies X_n \\xrightarrow{P} X \\implies X_n \\xrightarrow{d} X,\\]
                         \\[X_n \\xrightarrow{L^p} X \\implies X_n \\xrightarrow{P} X.\\]
-                        <p>反之均不成立。此外，若 \\(X_n \\xrightarrow{d} c\)（常数），则 \\(X_n \\xrightarrow{P} c\)。</p>
+                        <p>None of the converses hold in general. Furthermore, if \\(X_n \\xrightarrow{d} c\\) (a constant), then \\(X_n \\xrightarrow{P} c\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
-                    <div class="env-title">Proof (\\(L^p \\Rightarrow P\)，Markov 不等式)</div>
+                    <div class="env-title">Proof (\\(L^p \\Rightarrow P\\), via Markov's inequality)</div>
                     <div class="env-body">
-                        <p>由 Markov 不等式，对 \\(\\varepsilon > 0\)，</p>
+                        <p>By Markov's inequality, for \\(\\varepsilon > 0\\),</p>
                         \\[P(|X_n - X| > \\varepsilon) = P(|X_n - X|^p > \\varepsilon^p) \\leq \\frac{\\mathbb{E}[|X_n - X|^p]}{\\varepsilon^p} \\to 0.\\]
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block warning">
-                    <div class="env-title">Warning: 反例很重要</div>
+                    <div class="env-title">Warning: Counterexamples Matter</div>
                     <div class="env-body">
-                        <p><strong>依概率收敛 \\(\\not\\Rightarrow\\) 几乎必然收敛</strong>：经典反例是 "typewriter sequence"。在 \\([0,1]\) 上取均匀概率空间，定义 \\(X_n = \\mathbf{1}_{[a_n, b_n]}\)，其中区间在 \\([0,1]\) 上循环移动且长度趋于零。则 \\(X_n \\xrightarrow{P} 0\)，但对每个 \\(\\omega \\in [0,1]\)，\\(X_n(\\omega) = 1\) 无限次发生。</p>
+                        <p><strong>Convergence in probability \\(\\not\\Rightarrow\\) almost sure convergence</strong>: The classic counterexample is the "typewriter sequence." On the probability space \\([0,1]\\) with uniform measure, define \\(X_n = \\mathbf{1}_{[a_n, b_n]}\\), where the intervals cycle through \\([0,1]\\) with lengths tending to zero. Then \\(X_n \\xrightarrow{P} 0\\), but for every \\(\\omega \\in [0,1]\\), the event \\(X_n(\\omega) = 1\\) occurs infinitely often.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 3.6 (Slutsky 引理)</div>
+                    <div class="env-title">Theorem 3.6 (Slutsky's Lemma)</div>
                     <div class="env-body">
-                        <p>若 \\(X_n \\xrightarrow{d} X\) 且 \\(Y_n \\xrightarrow{P} c\)（常数），则：</p>
+                        <p>If \\(X_n \\xrightarrow{d} X\\) and \\(Y_n \\xrightarrow{P} c\\) (a constant), then:</p>
                         \\[X_n + Y_n \\xrightarrow{d} X + c, \\qquad X_n Y_n \\xrightarrow{d} cX, \\qquad \\frac{X_n}{Y_n} \\xrightarrow{d} \\frac{X}{c} \\;(c \\neq 0).\\]
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 3.7 (连续映射定理 / Continuous Mapping Theorem)</div>
+                    <div class="env-title">Theorem 3.7 (Continuous Mapping Theorem)</div>
                     <div class="env-body">
-                        <p>设 \\(g: \\mathbb{R} \\to \\mathbb{R}\) 在 \\(P(X \\in D_g) = 0\) 处连续（\\(D_g\) 为 \\(g\) 的不连续点集）。则：</p>
-                        <p>(a) \\(X_n \\xrightarrow{d} X \\implies g(X_n) \\xrightarrow{d} g(X)\)；</p>
-                        <p>(b) \\(X_n \\xrightarrow{P} X \\implies g(X_n) \\xrightarrow{P} g(X)\)；</p>
-                        <p>(c) \\(X_n \\xrightarrow{a.s.} X \\implies g(X_n) \\xrightarrow{a.s.} g(X)\)。</p>
+                        <p>Let \\(g: \\mathbb{R} \\to \\mathbb{R}\\) be continuous except possibly on a set \\(D_g\\) with \\(P(X \\in D_g) = 0\\). Then:</p>
+                        <p>(a) \\(X_n \\xrightarrow{d} X \\implies g(X_n) \\xrightarrow{d} g(X)\\);</p>
+                        <p>(b) \\(X_n \\xrightarrow{P} X \\implies g(X_n) \\xrightarrow{P} g(X)\\);</p>
+                        <p>(c) \\(X_n \\xrightarrow{a.s.} X \\implies g(X_n) \\xrightarrow{a.s.} g(X)\\).</p>
                     </div>
                 </div>
 
@@ -114,7 +114,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'convergence-modes-viz',
-                    title: 'Interactive: 收敛方式对比',
+                    title: 'Modes of Convergence 收敛方式对比',
                     description: 'Compare convergence in probability vs almost sure convergence with simulated paths',
                     setup: function(container, controls) {
                         const viz = new VizEngine(container, {
@@ -251,8 +251,8 @@ window.CHAPTERS.push({
             exercises: [
                 {
                     question: 'Prove that almost sure convergence implies convergence in probability.',
-                    hint: 'Use the definition via the event \\(A_m = \\bigcup_{n \\geq m} \\{|X_n - X| > \\varepsilon\}\\) and the fact that \\(A_m \\downarrow\\).',
-                    solution: 'Fix \\(\\varepsilon > 0\\). Define \\(A_m = \\bigcup_{n=m}^{\\infty} \\{|X_n - X| > \\varepsilon\}\\). Since \\(X_n \\xrightarrow{a.s.} X\\), we have \\(P(\\bigcap_m A_m) = 0\\). Since \\(A_m \\downarrow \\bigcap_m A_m\\), by continuity of probability \\(P(A_m) \\to 0\\). But \\(P(|X_n - X| > \\varepsilon) \\leq P(A_n) \\to 0\\), so \\(X_n \\xrightarrow{P} X\\).'
+                    hint: 'Use the definition via the event \\(A_m = \\bigcup_{n \\geq m} \\{|X_n - X| > \\varepsilon\\}\\) and the fact that \\(A_m \\downarrow\\).',
+                    solution: 'Fix \\(\\varepsilon > 0\\). Define \\(A_m = \\bigcup_{n=m}^{\\infty} \\{|X_n - X| > \\varepsilon\\}\\). Since \\(X_n \\xrightarrow{a.s.} X\\), we have \\(P(\\bigcap_m A_m) = 0\\). Since \\(A_m \\downarrow \\bigcap_m A_m\\), by continuity of probability \\(P(A_m) \\to 0\\). But \\(P(|X_n - X| > \\varepsilon) \\leq P(A_n) \\to 0\\), so \\(X_n \\xrightarrow{P} X\\).'
                 },
                 {
                     question: 'Let \\(X_n \\xrightarrow{d} X\\) and \\(Y_n \\xrightarrow{P} 0\\). Show that \\(X_n + Y_n \\xrightarrow{d} X\\) (a special case of Slutsky).',
@@ -268,20 +268,20 @@ window.CHAPTERS.push({
         },
 
         // ================================================================
-        // Section 2: 大数定律
+        // Section 2: Laws of Large Numbers
         // ================================================================
         {
             id: 'ch03-sec02',
-            title: '大数定律',
+            title: 'Laws of Large Numbers',
             content: `
-                <h2>大数定律 Laws of Large Numbers</h2>
+                <h2>Laws of Large Numbers 大数定律</h2>
 
-                <p>大数定律是概率论与统计学的基石之一。它告诉我们：在适当条件下，样本均值会收敛到总体均值。这是频率学派解释概率的数学基础，也是蒙特卡洛方法的理论保证。</p>
+                <p>The law of large numbers is one of the cornerstones of probability theory and statistics. It tells us that, under appropriate conditions, the sample mean converges to the population mean. This provides the mathematical foundation for the frequentist interpretation of probability and the theoretical guarantee for Monte Carlo methods.</p>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 3.8 (弱大数定律 / Weak Law of Large Numbers — Chebyshev)</div>
+                    <div class="env-title">Theorem 3.8 (Weak Law of Large Numbers — Chebyshev)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, X_2, \\ldots\\) 为<strong>两两不相关</strong>的随机变量序列，满足 \\(\\mathbb{E}[X_i] = \\mu\\) 且 \\(\\operatorname{Var}(X_i) \\leq C < \\infty\\) 对所有 \\(i\\)。令 \\(\\bar{X}_n = \\frac{1}{n}\\sum_{i=1}^n X_i\\)。则</p>
+                        <p>Let \\(X_1, X_2, \\ldots\\) be a sequence of <strong>pairwise uncorrelated</strong> (两两不相关) random variables satisfying \\(\\mathbb{E}[X_i] = \\mu\\) and \\(\\operatorname{Var}(X_i) \\leq C < \\infty\\) for all \\(i\\). Let \\(\\bar{X}_n = \\frac{1}{n}\\sum_{i=1}^n X_i\\). Then</p>
                         \\[\\bar{X}_n \\xrightarrow{P} \\mu.\\]
                     </div>
                 </div>
@@ -289,9 +289,9 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>计算样本均值的方差。由两两不相关性：</p>
+                        <p>Compute the variance of the sample mean. By pairwise uncorrelatedness:</p>
                         \\[\\operatorname{Var}(\\bar{X}_n) = \\frac{1}{n^2} \\sum_{i=1}^n \\operatorname{Var}(X_i) \\leq \\frac{nC}{n^2} = \\frac{C}{n}.\\]
-                        <p>由 Chebyshev 不等式，对任意 \\(\\varepsilon > 0\)：</p>
+                        <p>By Chebyshev's inequality, for any \\(\\varepsilon > 0\\):</p>
                         \\[P(|\\bar{X}_n - \\mu| \\geq \\varepsilon) \\leq \\frac{\\operatorname{Var}(\\bar{X}_n)}{\\varepsilon^2} \\leq \\frac{C}{n\\varepsilon^2} \\to 0.\\]
                         <div class="qed">∎</div>
                     </div>
@@ -300,14 +300,14 @@ window.CHAPTERS.push({
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>Chebyshev 的证明之美在于其简洁和弱假设——只需两两不相关和方差有界，不需要独立性或同分布。但它只给出依概率收敛。Chebyshev 不等式给出的收敛速率为 \\(O(1/n)\)，这虽不是最优的（Hoeffding 不等式可以给出指数衰减），但对很多应用已经足够。</p>
+                        <p>The beauty of Chebyshev's proof lies in its simplicity and weak assumptions — only pairwise uncorrelatedness and bounded variance are needed, with no requirement for independence or identical distribution. However, it only yields convergence in probability. The convergence rate from Chebyshev's inequality is \\(O(1/n)\\), which, while not optimal (Hoeffding's inequality can give exponential decay), is sufficient for many applications.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 3.9 (Khintchine 弱大数定律)</div>
+                    <div class="env-title">Theorem 3.9 (Khintchine's Weak Law of Large Numbers)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, X_2, \\ldots\\) 为 i.i.d. 随机变量，\\(\\mathbb{E}[X_1] = \\mu\\)（只需一阶矩存在，不需方差有限）。则</p>
+                        <p>Let \\(X_1, X_2, \\ldots\\) be i.i.d. random variables with \\(\\mathbb{E}[X_1] = \\mu\\) (only the first moment is required; finite variance is not needed). Then</p>
                         \\[\\bar{X}_n \\xrightarrow{P} \\mu.\\]
                     </div>
                 </div>
@@ -315,42 +315,42 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof sketch (via characteristic functions)</div>
                     <div class="env-body">
-                        <p>令 \\(\\varphi(t) = \\mathbb{E}[e^{itX_1}]\\) 为 \\(X_1\\) 的特征函数。由 \\(\\mathbb{E}[X_1] = \\mu\\) 存在，\\(\\varphi(t) = 1 + i\\mu t + o(t)\\) 当 \\(t \\to 0\\)。</p>
-                        <p>则 \\(\\bar{X}_n\\) 的特征函数为</p>
+                        <p>Let \\(\\varphi(t) = \\mathbb{E}[e^{itX_1}]\\) be the characteristic function (特征函数) of \\(X_1\\). Since \\(\\mathbb{E}[X_1] = \\mu\\) exists, \\(\\varphi(t) = 1 + i\\mu t + o(t)\\) as \\(t \\to 0\\).</p>
+                        <p>The characteristic function of \\(\\bar{X}_n\\) is</p>
                         \\[\\varphi_{\\bar{X}_n}(t) = \\left[\\varphi\\!\\left(\\frac{t}{n}\\right)\\right]^n = \\left[1 + \\frac{i\\mu t}{n} + o\\!\\left(\\frac{1}{n}\\right)\\right]^n \\to e^{i\\mu t},\\]
-                        <p>即 \\(\\bar{X}_n \\xrightarrow{d} \\mu\\)（退化分布）。由退化极限，\\(\\bar{X}_n \\xrightarrow{P} \\mu\\)。</p>
+                        <p>which is the characteristic function of the degenerate distribution at \\(\\mu\\), i.e., \\(\\bar{X}_n \\xrightarrow{d} \\mu\\). Since the limit is a constant, \\(\\bar{X}_n \\xrightarrow{P} \\mu\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 3.10 (强大数定律 / Strong Law of Large Numbers — Kolmogorov)</div>
+                    <div class="env-title">Theorem 3.10 (Strong Law of Large Numbers — Kolmogorov)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, X_2, \\ldots\\) 为 i.i.d. 随机变量。则</p>
-                        \\[\\bar{X}_n \\xrightarrow{a.s.} \\mu \\quad \\Longleftrightarrow \\quad \\mathbb{E}[|X_1|] < \\infty \\;\;(\\mu = \\mathbb{E}[X_1]).\\]
+                        <p>Let \\(X_1, X_2, \\ldots\\) be i.i.d. random variables. Then</p>
+                        \\[\\bar{X}_n \\xrightarrow{a.s.} \\mu \\quad \\Longleftrightarrow \\quad \\mathbb{E}[|X_1|] < \\infty \\;\\;(\\mu = \\mathbb{E}[X_1]).\\]
                     </div>
                 </div>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>Kolmogorov 强大数定律的深刻之处在于它的等价性：一阶矩存在是强大数定律成立的充要条件。证明的核心工具是 Kolmogorov 三级数定理和截断技术。当 \\(\\mathbb{E}[|X_1|] = \\infty\\) 时（如 Cauchy 分布），\\(\\bar{X}_n\\) 几乎必然不收敛到任何常数。</p>
+                        <p>The profound aspect of Kolmogorov's strong law of large numbers (强大数定律) is the equivalence: the existence of the first moment is both necessary and sufficient for the SLLN to hold. The core tools in the proof are the Kolmogorov three-series theorem and truncation techniques. When \\(\\mathbb{E}[|X_1|] = \\infty\\) (e.g., the Cauchy distribution), \\(\\bar{X}_n\\) almost surely does not converge to any constant.</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 3.11 (Cauchy 分布 — SLLN 失败)</div>
+                    <div class="env-title">Example 3.11 (Cauchy Distribution — SLLN Fails)</div>
                     <div class="env-body">
-                        <p>设 \\(X_i \\overset{\\text{i.i.d.}}{\\sim} \\text{Cauchy}(0,1)\\)，即 \\(f(x) = \\frac{1}{\\pi(1+x^2)}\\)。由于 \\(\\mathbb{E}[|X_1|] = \\int_{-\\infty}^{\\infty} \\frac{|x|}{\\pi(1+x^2)} dx = \\infty\\)，SLLN 不适用。事实上，\\(\\bar{X}_n\\) 本身也服从 \\(\\text{Cauchy}(0,1)\\)（通过特征函数验证），样本均值的分布完全不收缩。</p>
+                        <p>Let \\(X_i \\overset{\\text{i.i.d.}}{\\sim} \\text{Cauchy}(0,1)\\), i.e., \\(f(x) = \\frac{1}{\\pi(1+x^2)}\\). Since \\(\\mathbb{E}[|X_1|] = \\int_{-\\infty}^{\\infty} \\frac{|x|}{\\pi(1+x^2)} dx = \\infty\\), the SLLN does not apply. In fact, \\(\\bar{X}_n\\) itself follows a \\(\\text{Cauchy}(0,1)\\) distribution (verified via characteristic functions), so the distribution of the sample mean does not shrink at all.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 3.12 (Glivenko-Cantelli 定理)</div>
+                    <div class="env-title">Theorem 3.12 (Glivenko-Cantelli Theorem)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, X_2, \\ldots \\overset{\\text{i.i.d.}}{\\sim} F\\)，定义经验分布函数 \\(\\hat{F}_n(x) = \\frac{1}{n} \\sum_{i=1}^n \\mathbf{1}\\{X_i \\leq x\}\\)。则</p>
+                        <p>Let \\(X_1, X_2, \\ldots \\overset{\\text{i.i.d.}}{\\sim} F\\), and define the empirical distribution function (经验分布函数) \\(\\hat{F}_n(x) = \\frac{1}{n} \\sum_{i=1}^n \\mathbf{1}\\{X_i \\leq x\\}\\). Then</p>
                         \\[\\sup_{x \\in \\mathbb{R}} |\\hat{F}_n(x) - F(x)| \\xrightarrow{a.s.} 0.\\]
-                        <p>即经验分布函数以概率 1 一致收敛到真实 CDF。此定理有时被称为 "统计学的基本定理"。</p>
+                        <p>That is, the empirical CDF converges uniformly to the true CDF with probability 1. This theorem is sometimes called the "fundamental theorem of statistics."</p>
                     </div>
                 </div>
 
@@ -359,7 +359,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'lln-simulator-viz',
-                    title: 'Interactive: 大数定律模拟器',
+                    title: 'LLN Simulator 大数定律模拟器',
                     description: 'Watch the running average converge to the population mean for different distributions',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -534,7 +534,7 @@ window.CHAPTERS.push({
                     solution: 'Since \\(\\operatorname{Var}(X_i) = p(1-p) \\leq 1/4\\), by Chebyshev: \\(P(|\\bar{X}_n - p| > \\varepsilon) \\leq \\frac{p(1-p)}{n\\varepsilon^2} \\leq \\frac{1}{4n\\varepsilon^2}\\). This converges to 0, confirming \\(\\bar{X}_n \\xrightarrow{P} p\\). For example, with \\(n = 10000\\) and \\(\\varepsilon = 0.01\\), the bound gives \\(P(|\\bar{X}_n - p| > 0.01) \\leq 250\\), which is vacuous — illustrating that Chebyshev bounds can be loose. Hoeffding gives the tighter bound \\(2e^{-2n\\varepsilon^2} = 2e^{-2} \\approx 0.27\\).'
                 },
                 {
-                    question: 'Suppose \\(X_1, X_2, \\ldots\\) are independent (but not identically distributed) with \\(\\mathbb{E}[X_i] = 0\\) and \\(\\operatorname{Var}(X_i) = \\sigma_i^2\\). Under what condition on \\(\\{\\sigma_i^2\}\\) does the WLLN hold for \\(\\bar{X}_n\\)?',
+                    question: 'Suppose \\(X_1, X_2, \\ldots\\) are independent (but not identically distributed) with \\(\\mathbb{E}[X_i] = 0\\) and \\(\\operatorname{Var}(X_i) = \\sigma_i^2\\). Under what condition on \\(\\{\\sigma_i^2\\}\\) does the WLLN hold for \\(\\bar{X}_n\\)?',
                     hint: 'You need \\(\\operatorname{Var}(\\bar{X}_n) \\to 0\\). What does that require of \\(\\sum \\sigma_i^2 / n^2\\)?',
                     solution: 'We need \\(\\operatorname{Var}(\\bar{X}_n) = \\frac{1}{n^2} \\sum_{i=1}^n \\sigma_i^2 \\to 0\\). This holds if and only if \\(\\frac{1}{n^2} \\sum_{i=1}^n \\sigma_i^2 \\to 0\\). A sufficient condition is \\(\\sup_i \\sigma_i^2 < \\infty\\) (bounded variances), which gives the classical Chebyshev WLLN. More generally, it suffices that \\(\\frac{1}{n} \\sum_{i=1}^n \\sigma_i^2 = o(n)\\), i.e., the Cesaro mean of the variances grows sublinearly.'
                 },
@@ -547,36 +547,36 @@ window.CHAPTERS.push({
         },
 
         // ================================================================
-        // Section 3: 中心极限定理
+        // Section 3: The Central Limit Theorem
         // ================================================================
         {
             id: 'ch03-sec03',
-            title: '中心极限定理',
+            title: 'The Central Limit Theorem',
             content: `
-                <h2>中心极限定理 The Central Limit Theorem</h2>
+                <h2>The Central Limit Theorem 中心极限定理</h2>
 
-                <p>大数定律告诉我们 \\(\\bar{X}_n \\to \\mu\\)，但没有刻画收敛的速度和波动的精细结构。中心极限定理 (CLT) 回答的是更深层的问题：\\(\\bar{X}_n\\) 围绕 \\(\\mu\\) 的波动在适当尺度上服从什么分布？</p>
+                <p>The law of large numbers tells us that \\(\\bar{X}_n \\to \\mu\\), but it does not characterize the rate of convergence or the fine structure of the fluctuations. The central limit theorem (CLT, 中心极限定理) answers a deeper question: what distribution do the fluctuations of \\(\\bar{X}_n\\) around \\(\\mu\\) follow at the appropriate scale?</p>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 3.13 (经典 CLT / Lindeberg-Levy CLT)</div>
+                    <div class="env-title">Theorem 3.13 (Lindeberg-Levy CLT)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, X_2, \\ldots\\) 为 i.i.d. 随机变量，\\(\\mathbb{E}[X_1] = \\mu\\)，\\(\\operatorname{Var}(X_1) = \\sigma^2 \\in (0, \\infty)\\)。则</p>
+                        <p>Let \\(X_1, X_2, \\ldots\\) be i.i.d. random variables with \\(\\mathbb{E}[X_1] = \\mu\\) and \\(\\operatorname{Var}(X_1) = \\sigma^2 \\in (0, \\infty)\\). Then</p>
                         \\[\\frac{\\bar{X}_n - \\mu}{\\sigma / \\sqrt{n}} = \\frac{\\sum_{i=1}^n (X_i - \\mu)}{\\sigma \\sqrt{n}} \\xrightarrow{d} N(0, 1).\\]
-                        <p>等价地，\\(\\sqrt{n}(\\bar{X}_n - \\mu) \\xrightarrow{d} N(0, \\sigma^2)\\)。</p>
+                        <p>Equivalently, \\(\\sqrt{n}(\\bar{X}_n - \\mu) \\xrightarrow{d} N(0, \\sigma^2)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof (via characteristic functions)</div>
                     <div class="env-body">
-                        <p>不失一般性，设 \\(\\mu = 0\\)，\\(\\sigma = 1\\)（否则考虑 \\(Y_i = (X_i - \\mu)/\\sigma\\)）。令 \\(\\varphi(t) = \\mathbb{E}[e^{itX_1}]\\) 为 \\(X_1\\) 的特征函数。</p>
-                        <p>由 \\(\\mathbb{E}[X_1] = 0\\)，\\(\\mathbb{E}[X_1^2] = 1\\)，Taylor 展开得</p>
+                        <p>Without loss of generality, assume \\(\\mu = 0\\) and \\(\\sigma = 1\\) (otherwise consider \\(Y_i = (X_i - \\mu)/\\sigma\\)). Let \\(\\varphi(t) = \\mathbb{E}[e^{itX_1}]\\) be the characteristic function of \\(X_1\\).</p>
+                        <p>Since \\(\\mathbb{E}[X_1] = 0\\) and \\(\\mathbb{E}[X_1^2] = 1\\), Taylor expansion gives</p>
                         \\[\\varphi(t) = 1 - \\frac{t^2}{2} + o(t^2), \\quad t \\to 0.\\]
-                        <p>标准化和 \\(S_n = \\frac{1}{\\sqrt{n}} \\sum_{i=1}^n X_i\\) 的特征函数为</p>
+                        <p>The characteristic function of the standardized sum \\(S_n = \\frac{1}{\\sqrt{n}} \\sum_{i=1}^n X_i\\) is</p>
                         \\[\\varphi_{S_n}(t) = \\left[\\varphi\\!\\left(\\frac{t}{\\sqrt{n}}\\right)\\right]^n = \\left[1 - \\frac{t^2}{2n} + o\\!\\left(\\frac{1}{n}\\right)\\right]^n.\\]
-                        <p>取对数：</p>
+                        <p>Taking the logarithm:</p>
                         \\[n \\log\\!\\left(1 - \\frac{t^2}{2n} + o\\!\\left(\\frac{1}{n}\\right)\\right) = n\\left(-\\frac{t^2}{2n} + o\\!\\left(\\frac{1}{n}\\right)\\right) \\to -\\frac{t^2}{2}.\\]
-                        <p>因此 \\(\\varphi_{S_n}(t) \\to e^{-t^2/2}\\)，即标准正态分布的特征函数。由 Levy 连续性定理，\\(S_n \\xrightarrow{d} N(0,1)\\)。</p>
+                        <p>Therefore \\(\\varphi_{S_n}(t) \\to e^{-t^2/2}\\), which is the characteristic function of the standard normal distribution. By Levy's continuity theorem, \\(S_n \\xrightarrow{d} N(0,1)\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
@@ -584,39 +584,39 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>CLT 的直觉：无论原始分布是什么形状（可以是离散的、偏斜的、多峰的），只要方差有限，大量独立随机变量的标准化和总会趋向正态。这是因为求和过程 "平滑" 了分布的高阶特征——卷积趋向高斯。正态分布在卷积下的 "吸引" 作用是概率论中最深刻的现象之一。</p>
+                        <p>The intuition behind the CLT: regardless of the shape of the original distribution (it can be discrete, skewed, or multimodal), as long as the variance is finite, the standardized sum of a large number of independent random variables always tends toward the normal distribution. This is because the summation process "smooths out" the higher-order features of the distribution — convolution tends toward the Gaussian. The "attracting" property of the normal distribution under convolution is one of the most profound phenomena in probability theory.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 3.14 (Berry-Esseen 定理)</div>
+                    <div class="env-title">Theorem 3.14 (Berry-Esseen Theorem)</div>
                     <div class="env-body">
-                        <p>在 Lindeberg-Levy CLT 的条件下，若还有 \\(\\mathbb{E}[|X_1|^3] = \\rho < \\infty\\)，则存在绝对常数 \\(C > 0\\) 使得</p>
+                        <p>Under the conditions of the Lindeberg-Levy CLT, if additionally \\(\\mathbb{E}[|X_1|^3] = \\rho < \\infty\\), then there exists an absolute constant \\(C > 0\\) such that</p>
                         \\[\\sup_{x \\in \\mathbb{R}} \\left|P\\!\\left(\\frac{\\bar{X}_n - \\mu}{\\sigma/\\sqrt{n}} \\leq x\\right) - \\Phi(x)\\right| \\leq \\frac{C \\rho}{\\sigma^3 \\sqrt{n}},\\]
-                        <p>其中 \\(\\Phi\\) 为标准正态 CDF。目前已知最佳常数为 \\(C \\leq 0.4748\\) (Shevtsova, 2011)。</p>
+                        <p>where \\(\\Phi\\) is the standard normal CDF. The best known constant is \\(C \\leq 0.4748\\) (Shevtsova, 2011).</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>Berry-Esseen 定理量化了正态近似的精度：收敛速率为 \\(O(1/\\sqrt{n})\\)。这意味着 CDF 的一致逼近误差以 \\(1/\\sqrt{n}\\) 的速度衰减。对对称分布，实际收敛往往更快。</p>
+                        <p>The Berry-Esseen theorem quantifies the accuracy of the normal approximation: the convergence rate is \\(O(1/\\sqrt{n})\\). This means the uniform approximation error for the CDF decays at rate \\(1/\\sqrt{n}\\). For symmetric distributions, convergence is often faster in practice.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 3.15 (Lindeberg-Feller CLT)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, X_2, \\ldots\\) 为独立（<em>不要求同分布</em>）的随机变量，\\(\\mathbb{E}[X_i] = \\mu_i\\)，\\(\\operatorname{Var}(X_i) = \\sigma_i^2\\)。令 \\(s_n^2 = \\sum_{i=1}^n \\sigma_i^2\\)。若 Lindeberg 条件成立：对任意 \\(\\varepsilon > 0\\)，</p>
-                        \\[\\frac{1}{s_n^2} \\sum_{i=1}^n \\mathbb{E}\\left[(X_i - \\mu_i)^2 \\cdot \\mathbf{1}\\{|X_i - \\mu_i| > \\varepsilon s_n\}\\right] \\to 0,\\]
-                        <p>则 \\(\\frac{\\sum_{i=1}^n (X_i - \\mu_i)}{s_n} \\xrightarrow{d} N(0, 1)\\)。</p>
+                        <p>Let \\(X_1, X_2, \\ldots\\) be independent (<em>not necessarily identically distributed</em>) random variables with \\(\\mathbb{E}[X_i] = \\mu_i\\) and \\(\\operatorname{Var}(X_i) = \\sigma_i^2\\). Let \\(s_n^2 = \\sum_{i=1}^n \\sigma_i^2\\). If the Lindeberg condition holds: for every \\(\\varepsilon > 0\\),</p>
+                        \\[\\frac{1}{s_n^2} \\sum_{i=1}^n \\mathbb{E}\\left[(X_i - \\mu_i)^2 \\cdot \\mathbf{1}\\{|X_i - \\mu_i| > \\varepsilon s_n\\}\\right] \\to 0,\\]
+                        <p>then \\(\\frac{\\sum_{i=1}^n (X_i - \\mu_i)}{s_n} \\xrightarrow{d} N(0, 1)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>Lindeberg 条件的含义：没有单个 \\(X_i\\) 对总和的波动贡献占主导地位。当所有 \\(X_i\\) 同分布时，Lindeberg 条件自动满足（只需方差有限），回到经典 CLT。Feller 还证明了在附加条件 \\(\\max_i \\sigma_i^2 / s_n^2 \\to 0\\) 下，Lindeberg 条件也是必要的。</p>
+                        <p>The meaning of the Lindeberg condition: no single \\(X_i\\) dominates the overall fluctuation of the sum. When all \\(X_i\\) are identically distributed, the Lindeberg condition is automatically satisfied (provided the variance is finite), reducing to the classical CLT. Feller further showed that under the additional condition \\(\\max_i \\sigma_i^2 / s_n^2 \\to 0\\), the Lindeberg condition is also necessary.</p>
                     </div>
                 </div>
 
@@ -625,7 +625,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'clt-demo-viz',
-                    title: 'Interactive: CLT — 不同源分布的收敛',
+                    title: 'CLT Demo: Convergence from Different Sources CLT — 不同源分布的收敛',
                     description: 'See how the standardized sample mean converges to a normal distribution regardless of the source',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -798,7 +798,7 @@ window.CHAPTERS.push({
                 {
                     question: 'Verify the Lindeberg condition for the i.i.d. case: Show that when \\(X_i\\) are i.i.d. with mean \\(\\mu\\) and finite variance \\(\\sigma^2\\), the Lindeberg condition of Theorem 3.15 is automatically satisfied.',
                     hint: 'In the i.i.d. case, \\(s_n^2 = n\\sigma^2\\), so \\(\\varepsilon s_n = \\varepsilon \\sigma \\sqrt{n}\\). The sum has \\(n\\) identical terms.',
-                    solution: 'With \\(s_n^2 = n\\sigma^2\\), the Lindeberg sum becomes \\(\\frac{1}{n\\sigma^2} \\sum_{i=1}^n \\mathbb{E}[(X_i - \\mu)^2 \\mathbf{1}\\{|X_i - \\mu| > \\varepsilon\\sigma\\sqrt{n}\}]\\). Since all \\(X_i\\) are identically distributed, this equals \\(\\frac{1}{\\sigma^2} \\mathbb{E}[(X_1 - \\mu)^2 \\mathbf{1}\\{|X_1 - \\mu| > \\varepsilon\\sigma\\sqrt{n}\}]\\). As \\(n \\to \\infty\\), the indicator \\(\\mathbf{1}\\{|X_1 - \\mu| > \\varepsilon\\sigma\\sqrt{n}\} \\to 0\\) a.s. Since \\((X_1 - \\mu)^2\\) is integrable, by dominated convergence the expectation tends to 0.'
+                    solution: 'With \\(s_n^2 = n\\sigma^2\\), the Lindeberg sum becomes \\(\\frac{1}{n\\sigma^2} \\sum_{i=1}^n \\mathbb{E}[(X_i - \\mu)^2 \\mathbf{1}\\{|X_i - \\mu| > \\varepsilon\\sigma\\sqrt{n}\\}]\\). Since all \\(X_i\\) are identically distributed, this equals \\(\\frac{1}{\\sigma^2} \\mathbb{E}[(X_1 - \\mu)^2 \\mathbf{1}\\{|X_1 - \\mu| > \\varepsilon\\sigma\\sqrt{n}\\}]\\). As \\(n \\to \\infty\\), the indicator \\(\\mathbf{1}\\{|X_1 - \\mu| > \\varepsilon\\sigma\\sqrt{n}\\} \\to 0\\) a.s. Since \\((X_1 - \\mu)^2\\) is integrable, by dominated convergence the expectation tends to 0.'
                 },
                 {
                     question: 'The Berry-Esseen bound for \\(X_i \\overset{\\text{i.i.d.}}{\\sim} \\text{Bernoulli}(1/2)\\) is \\(C \\rho / (\\sigma^3 \\sqrt{n})\\). Compute \\(\\rho/\\sigma^3\\) and estimate how large \\(n\\) must be for the sup-norm error to be at most 0.01.',
@@ -809,58 +809,58 @@ window.CHAPTERS.push({
         },
 
         // ================================================================
-        // Section 4: CLT的应用
+        // Section 4: Applications of the CLT
         // ================================================================
         {
             id: 'ch03-sec04',
-            title: 'CLT的应用',
+            title: 'Applications of the CLT',
             content: `
-                <h2>CLT的应用 Applications of the CLT</h2>
+                <h2>Applications of the CLT CLT的应用</h2>
 
-                <p>CLT 不仅是一个理论上的极限定理，更是统计推断的实用工具。本节讨论最常见的应用：正态近似、连续性修正以及 Delta 方法。</p>
+                <p>The CLT is not merely a theoretical limit theorem — it is a practical tool for statistical inference. This section discusses its most common applications: normal approximation, continuity correction, and the Delta method.</p>
 
-                <h3>正态近似</h3>
+                <h3>Normal Approximation 正态近似</h3>
 
-                <p>CLT 的最直接应用是将复杂分布的概率计算化归为标准正态分布。对于 i.i.d. 样本 \\(X_1, \\ldots, X_n\\)（\\(\\mu, \\sigma^2\\) 已知），当 \\(n\\) 足够大时：</p>
+                <p>The most direct application of the CLT is to reduce probability calculations for complex distributions to the standard normal distribution. For an i.i.d. sample \\(X_1, \\ldots, X_n\\) (with known \\(\\mu, \\sigma^2\\)), when \\(n\\) is sufficiently large:</p>
                 \\[P(\\bar{X}_n \\leq x) \\approx \\Phi\\!\\left(\\frac{x - \\mu}{\\sigma / \\sqrt{n}}\\right).\\]
 
                 <div class="env-block example">
-                    <div class="env-title">Example 3.16 (保险理赔)</div>
+                    <div class="env-title">Example 3.16 (Insurance Claims)</div>
                     <div class="env-body">
-                        <p>一家保险公司有 \\(n = 10000\\) 份独立保单。每份保单的理赔额 \\(X_i\\) 满足 \\(\\mathbb{E}[X_i] = 500\\) 元，\\(\\operatorname{Var}(X_i) = 100^2\\)。总理赔额 \\(S_n = \\sum X_i\\) 的均值为 \\(5{,}000{,}000\\) 元，标准差为 \\(100\\sqrt{10000} = 10{,}000\\) 元。</p>
-                        <p>公司准备了 5,020,000 元的储备金。则</p>
+                        <p>An insurance company holds \\(n = 10000\\) independent policies. Each policy's claim amount \\(X_i\\) satisfies \\(\\mathbb{E}[X_i] = 500\\) yuan and \\(\\operatorname{Var}(X_i) = 100^2\\). The total claims \\(S_n = \\sum X_i\\) have mean \\(5{,}000{,}000\\) yuan and standard deviation \\(100\\sqrt{10000} = 10{,}000\\) yuan.</p>
+                        <p>The company has prepared a reserve of 5,020,000 yuan. Then</p>
                         \\[P(S_n > 5{,}020{,}000) \\approx 1 - \\Phi\\!\\left(\\frac{5{,}020{,}000 - 5{,}000{,}000}{10{,}000}\\right) = 1 - \\Phi(2) \\approx 0.0228.\\]
                     </div>
                 </div>
 
-                <h3>二项分布的正态近似与连续性修正</h3>
+                <h3>Normal Approximation to the Binomial & Continuity Correction 二项分布的正态近似与连续性修正</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 3.17 (De Moivre-Laplace CLT)</div>
                     <div class="env-body">
-                        <p>设 \\(S_n \\sim \\text{Bin}(n, p)\\)。则当 \\(n \\to \\infty\\) 时，</p>
+                        <p>Let \\(S_n \\sim \\text{Bin}(n, p)\\). Then as \\(n \\to \\infty\\),</p>
                         \\[\\frac{S_n - np}{\\sqrt{np(1-p)}} \\xrightarrow{d} N(0,1).\\]
                     </div>
                 </div>
 
                 <div class="env-block warning">
-                    <div class="env-title">Warning: 连续性修正 Continuity Correction</div>
+                    <div class="env-title">Warning: Continuity Correction</div>
                     <div class="env-body">
-                        <p>当用连续分布（正态）近似离散分布（二项）时，<strong>连续性修正</strong>可以显著提高精度。基本原则：对整数值 \\(k\\) 的概率，将离散事件 "展宽" 半个单位：</p>
+                        <p>When approximating a discrete distribution (binomial) with a continuous one (normal), a <strong>continuity correction</strong> (连续性修正) can significantly improve accuracy. The basic principle: for the probability of an integer value \\(k\\), "widen" the discrete event by half a unit:</p>
                         \\[P(S_n \\leq k) \\approx \\Phi\\!\\left(\\frac{k + 0.5 - np}{\\sqrt{np(1-p)}}\\right),\\]
                         \\[P(S_n = k) \\approx \\Phi\\!\\left(\\frac{k + 0.5 - np}{\\sqrt{np(1-p)}}\\right) - \\Phi\\!\\left(\\frac{k - 0.5 - np}{\\sqrt{np(1-p)}}\\right).\\]
-                        <p>经验法则：当 \\(np \\geq 5\\) 且 \\(n(1-p) \\geq 5\\) 时，正态近似通常足够准确。</p>
+                        <p>Rule of thumb: the normal approximation is usually sufficiently accurate when \\(np \\geq 5\\) and \\(n(1-p) \\geq 5\\).</p>
                     </div>
                 </div>
 
                 <div class="viz-placeholder" data-viz="binomial-normal-viz"></div>
 
-                <h3>Delta 方法预览</h3>
+                <h3>Delta Method Preview Delta 方法预览</h3>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 3.18 (Delta 方法 / Delta Method)</div>
+                    <div class="env-title">Theorem 3.18 (Delta Method)</div>
                     <div class="env-body">
-                        <p>设 \\(\\sqrt{n}(Y_n - \\theta) \\xrightarrow{d} N(0, \\sigma^2)\\)，且 \\(g\\) 在 \\(\\theta\\) 处可微，\\(g'(\\theta) \\neq 0\\)。则</p>
+                        <p>Suppose \\(\\sqrt{n}(Y_n - \\theta) \\xrightarrow{d} N(0, \\sigma^2)\\), and \\(g\\) is differentiable at \\(\\theta\\) with \\(g'(\\theta) \\neq 0\\). Then</p>
                         \\[\\sqrt{n}(g(Y_n) - g(\\theta)) \\xrightarrow{d} N(0, \\sigma^2 [g'(\\theta)]^2).\\]
                     </div>
                 </div>
@@ -868,30 +868,30 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>由 Taylor 展开：\\(g(Y_n) = g(\\theta) + g'(\\theta)(Y_n - \\theta) + o(Y_n - \\theta)\\)。因此</p>
+                        <p>By Taylor expansion: \\(g(Y_n) = g(\\theta) + g'(\\theta)(Y_n - \\theta) + o(Y_n - \\theta)\\). Therefore</p>
                         \\[\\sqrt{n}(g(Y_n) - g(\\theta)) = g'(\\theta) \\cdot \\sqrt{n}(Y_n - \\theta) + \\sqrt{n} \\cdot o(Y_n - \\theta).\\]
-                        <p>由 \\(Y_n \\xrightarrow{P} \\theta\\)，余项 \\(\\sqrt{n} \\cdot o(Y_n - \\theta) \\xrightarrow{P} 0\\)。由 Slutsky 引理，</p>
+                        <p>Since \\(Y_n \\xrightarrow{P} \\theta\\), the remainder \\(\\sqrt{n} \\cdot o(Y_n - \\theta) \\xrightarrow{P} 0\\). By Slutsky's lemma,</p>
                         \\[\\sqrt{n}(g(Y_n) - g(\\theta)) \\xrightarrow{d} g'(\\theta) \\cdot N(0, \\sigma^2) = N(0, \\sigma^2 [g'(\\theta)]^2).\\]
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 3.19 (方差稳定化变换)</div>
+                    <div class="env-title">Example 3.19 (Variance-Stabilizing Transformation)</div>
                     <div class="env-body">
-                        <p>设 \\(X_i \\overset{\\text{i.i.d.}}{\\sim} \\text{Poisson}(\\lambda)\\)。CLT 给出 \\(\\sqrt{n}(\\bar{X}_n - \\lambda) \\xrightarrow{d} N(0, \\lambda)\\)，渐近方差依赖于未知参数 \\(\\lambda\\)。</p>
-                        <p>取 \\(g(x) = \\sqrt{x}\\)，则 \\(g'(\\lambda) = 1/(2\\sqrt{\\lambda})\\)。由 Delta 方法：</p>
+                        <p>Let \\(X_i \\overset{\\text{i.i.d.}}{\\sim} \\text{Poisson}(\\lambda)\\). The CLT gives \\(\\sqrt{n}(\\bar{X}_n - \\lambda) \\xrightarrow{d} N(0, \\lambda)\\), where the asymptotic variance depends on the unknown parameter \\(\\lambda\\).</p>
+                        <p>Take \\(g(x) = \\sqrt{x}\\), so \\(g'(\\lambda) = 1/(2\\sqrt{\\lambda})\\). By the Delta method:</p>
                         \\[\\sqrt{n}(\\sqrt{\\bar{X}_n} - \\sqrt{\\lambda}) \\xrightarrow{d} N\\!\\left(0, \\lambda \\cdot \\frac{1}{4\\lambda}\\right) = N\\!\\left(0, \\frac{1}{4}\\right).\\]
-                        <p>变换后的渐近方差 \\(1/4\\) 不再依赖 \\(\\lambda\\)——这就是 <strong>方差稳定化变换</strong> (variance-stabilizing transformation)。</p>
+                        <p>The transformed asymptotic variance \\(1/4\\) no longer depends on \\(\\lambda\\) — this is the <strong>variance-stabilizing transformation</strong> (方差稳定化变换).</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 3.20 (二阶 Delta 方法)</div>
+                    <div class="env-title">Example 3.20 (Second-Order Delta Method)</div>
                     <div class="env-body">
-                        <p>当 \\(g'(\\theta) = 0\\) 但 \\(g''(\\theta) \\neq 0\\) 时，一阶 Delta 方法退化。此时需要二阶展开：</p>
+                        <p>When \\(g'(\\theta) = 0\\) but \\(g''(\\theta) \\neq 0\\), the first-order Delta method degenerates. In this case, a second-order expansion is needed:</p>
                         \\[n(g(Y_n) - g(\\theta)) \\xrightarrow{d} \\frac{\\sigma^2 g''(\\theta)}{2} \\chi^2_1.\\]
-                        <p>这在统计检验中有重要应用，例如检验方差是否等于某个特定值。</p>
+                        <p>This has important applications in statistical testing, for example when testing whether a variance equals a specific value.</p>
                     </div>
                 </div>
 
@@ -900,7 +900,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'binomial-normal-viz',
-                    title: 'Interactive: 二项分布的正态近似',
+                    title: 'Normal Approximation to the Binomial 二项分布的正态近似',
                     description: 'Compare Binomial PMF with normal approximation, with and without continuity correction',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -1026,7 +1026,7 @@ window.CHAPTERS.push({
                 },
                 {
                     id: 'delta-method-viz',
-                    title: 'Interactive: Delta 方法 — 变换后的分布',
+                    title: 'Delta Method: Transformed Distribution Delta 方法 — 变换后的分布',
                     description: 'Visualize how the Delta method predicts the distribution of g(X-bar)',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {

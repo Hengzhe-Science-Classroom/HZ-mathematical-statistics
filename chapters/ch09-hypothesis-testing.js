@@ -1,62 +1,62 @@
-// Chapter 9: 假设检验基础 (Hypothesis Testing Fundamentals)
+// Chapter 9: Hypothesis Testing Fundamentals
 window.CHAPTERS = window.CHAPTERS || [];
 window.CHAPTERS.push({
     id: 'ch09',
     number: 9,
-    title: '假设检验基础',
+    title: 'Hypothesis Testing Fundamentals',
     subtitle: 'Hypothesis Testing Fundamentals',
     sections: [
         // ============================================================
-        // Section 1: 检验的基本框架
+        // Section 1: Basic Framework of Hypothesis Testing
         // ============================================================
         {
             id: 'ch09-sec01',
-            title: '检验的基本框架',
+            title: 'Basic Framework of Hypothesis Testing',
             content: `
-                <h2>检验的基本框架 Basic Framework of Hypothesis Testing</h2>
+                <h2>Basic Framework of Hypothesis Testing 检验的基本框架</h2>
 
-                <p>在统计推断中，我们经常需要在两种对立的假设之间作出抉择。假设检验 (hypothesis testing) 提供了一种系统化的决策框架：给定观测数据，我们判断数据是否与某个特定的假设相容。</p>
+                <p>In statistical inference, we often need to choose between two opposing hypotheses. Hypothesis testing (假设检验) provides a systematic decision framework: given observed data, we determine whether the data is compatible with a specific hypothesis.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 9.1 (统计假设 Statistical Hypothesis)</div>
+                    <div class="env-title">Definition 9.1 (Statistical Hypothesis)</div>
                     <div class="env-body">
-                        <p>设样本 \\(X_1, \\ldots, X_n\\) 来自参数族 \\(\\{f(x; \\theta) : \\theta \\in \\Theta\\}\\)。一个<strong>统计假设</strong>是关于参数 \\(\\theta\\) 的论断，即 \\(\\Theta\\) 的一个子集。</p>
-                        <p>假设检验问题由一对假设组成：</p>
+                        <p>Let the sample \\(X_1, \\ldots, X_n\\) come from a parametric family \\(\\{f(x; \\theta) : \\theta \\in \\Theta\\}\\). A <strong>statistical hypothesis</strong> (统计假设) is a statement about the parameter \\(\\theta\\), i.e., a subset of \\(\\Theta\\).</p>
+                        <p>A hypothesis testing problem consists of a pair of hypotheses:</p>
                         <ul>
-                            <li><strong>原假设 (null hypothesis)</strong>: \\(H_0: \\theta \\in \\Theta_0\\)</li>
-                            <li><strong>备择假设 (alternative hypothesis)</strong>: \\(H_1: \\theta \\in \\Theta_1\\)</li>
+                            <li><strong>Null hypothesis</strong> (原假设): \\(H_0: \\theta \\in \\Theta_0\\)</li>
+                            <li><strong>Alternative hypothesis</strong> (备择假设): \\(H_1: \\theta \\in \\Theta_1\\)</li>
                         </ul>
-                        <p>其中 \\(\\Theta_0 \\cap \\Theta_1 = \\emptyset\\)，通常 \\(\\Theta_0 \\cup \\Theta_1 = \\Theta\\)。</p>
+                        <p>where \\(\\Theta_0 \\cap \\Theta_1 = \\emptyset\\), and usually \\(\\Theta_0 \\cup \\Theta_1 = \\Theta\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 9.2 (简单假设与复合假设)</div>
+                    <div class="env-title">Definition 9.2 (Simple and Composite Hypotheses)</div>
                     <div class="env-body">
-                        <p>若 \\(\\Theta_0\\) 仅包含一个点 (即 \\(\\Theta_0 = \\{\\theta_0\\}\\))，则称 \\(H_0\\) 为<strong>简单假设 (simple hypothesis)</strong>；若 \\(\\Theta_0\\) 包含多个点，则称之为<strong>复合假设 (composite hypothesis)</strong>。对 \\(H_1\\) 亦然。</p>
+                        <p>If \\(\\Theta_0\\) contains only a single point (i.e., \\(\\Theta_0 = \\{\\theta_0\\}\\)), then \\(H_0\\) is called a <strong>simple hypothesis</strong> (简单假设); if \\(\\Theta_0\\) contains more than one point, it is called a <strong>composite hypothesis</strong> (复合假设). The same applies to \\(H_1\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
                     <div class="env-title">Example 9.3</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\stackrel{iid}{\\sim} N(\\mu, \\sigma^2)\\)，其中 \\(\\sigma^2\\) 已知。</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\stackrel{iid}{\\sim} N(\\mu, \\sigma^2)\\), where \\(\\sigma^2\\) is known.</p>
                         <ul>
-                            <li>\\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu \\neq \\mu_0\\)：简单 vs 复合（双侧检验）</li>
-                            <li>\\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu > \\mu_0\\)：简单 vs 复合（单侧检验）</li>
-                            <li>\\(H_0: \\mu \\leq \\mu_0\\) vs \\(H_1: \\mu > \\mu_0\\)：复合 vs 复合</li>
+                            <li>\\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu \\neq \\mu_0\\): simple vs composite (two-sided test)</li>
+                            <li>\\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu > \\mu_0\\): simple vs composite (one-sided test)</li>
+                            <li>\\(H_0: \\mu \\leq \\mu_0\\) vs \\(H_1: \\mu > \\mu_0\\): composite vs composite</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 9.4 (检验统计量与拒绝域)</div>
+                    <div class="env-title">Definition 9.4 (Test Statistic and Rejection Region)</div>
                     <div class="env-body">
-                        <p>一个<strong>假设检验</strong>由以下三个要素构成：</p>
+                        <p>A <strong>hypothesis test</strong> (假设检验) consists of three components:</p>
                         <ol>
-                            <li><strong>检验统计量 (test statistic)</strong>: 一个统计量 \\(T(X_1, \\ldots, X_n)\\)，用于概括数据中关于假设的信息。</li>
-                            <li><strong>拒绝域 (rejection region / critical region)</strong>: \\(T\\) 值域的一个子集 \\(R\\)。</li>
-                            <li><strong>决策规则 (decision rule)</strong>: 若 \\(T \\in R\\)，则拒绝 \\(H_0\\)；否则不拒绝 \\(H_0\\)。</li>
+                            <li><strong>Test statistic</strong> (检验统计量): A statistic \\(T(X_1, \\ldots, X_n)\\) that summarizes the information in the data relevant to the hypotheses.</li>
+                            <li><strong>Rejection region</strong> (拒绝域, also called critical region): A subset \\(R\\) of the range of \\(T\\).</li>
+                            <li><strong>Decision rule</strong> (决策规则): If \\(T \\in R\\), reject \\(H_0\\); otherwise, do not reject \\(H_0\\).</li>
                         </ol>
                     </div>
                 </div>
@@ -64,26 +64,26 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>假设检验的基本逻辑类似于"反证法"：我们先假设 \\(H_0\\) 为真，然后看数据在 \\(H_0\\) 下是否"极端"。如果数据落在拒绝域中——一个在 \\(H_0\\) 下概率很小的区域——我们就有理由怀疑 \\(H_0\\) 并拒绝它。</p>
+                        <p>The basic logic of hypothesis testing resembles a "proof by contradiction": we first assume \\(H_0\\) is true, then examine whether the data is "extreme" under \\(H_0\\). If the data falls in the rejection region — a region with very small probability under \\(H_0\\) — we have reason to doubt \\(H_0\\) and reject it.</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 9.5 (Z-检验)</div>
+                    <div class="env-title">Example 9.5 (Z-test)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\stackrel{iid}{\\sim} N(\\mu, \\sigma^2)\\)，\\(\\sigma^2\\) 已知，检验 \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu \\neq \\mu_0\\)。</p>
-                        <p>检验统计量：</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\stackrel{iid}{\\sim} N(\\mu, \\sigma^2)\\) with \\(\\sigma^2\\) known. Test \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu \\neq \\mu_0\\).</p>
+                        <p>Test statistic:</p>
                         \\[Z = \\frac{\\bar{X} - \\mu_0}{\\sigma / \\sqrt{n}}\\]
-                        <p>在 \\(H_0\\) 下，\\(Z \\sim N(0,1)\\)。对于显著性水平 \\(\\alpha\\)，拒绝域为：</p>
+                        <p>Under \\(H_0\\), \\(Z \\sim N(0,1)\\). For significance level (显著性水平) \\(\\alpha\\), the rejection region is:</p>
                         \\[R = \\{z : |z| > z_{\\alpha/2}\\}\\]
-                        <p>其中 \\(z_{\\alpha/2}\\) 是标准正态分布的上 \\(\\alpha/2\\) 分位数。</p>
+                        <p>where \\(z_{\\alpha/2}\\) is the upper \\(\\alpha/2\\) quantile of the standard normal distribution.</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>注意"不拒绝 \\(H_0\\)"与"接受 \\(H_0\\)"是不同的。不拒绝仅意味着数据不足以反驳 \\(H_0\\)，并不意味着 \\(H_0\\) 为真。这类似于法律中的"无罪推定"：证据不足以定罪（拒绝 \\(H_0\\)）不等于证明无辜（\\(H_0\\) 为真）。</p>
+                        <p>Note that "failing to reject \\(H_0\\)" is different from "accepting \\(H_0\\)." Failing to reject merely means the data is insufficient to refute \\(H_0\\), not that \\(H_0\\) is true. This is analogous to the "presumption of innocence" in law: insufficient evidence to convict (reject \\(H_0\\)) does not prove innocence (\\(H_0\\) is true).</p>
                     </div>
                 </div>
 
@@ -92,8 +92,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'rejection-region-viz',
-                    title: 'Interactive: 拒绝域与检验决策',
-                    description: '标准正态分布下的拒绝域，拖动观测值查看检验决策',
+                    title: 'Interactive: Rejection Region and Test Decision 拒绝域与检验决策',
+                    description: 'Rejection region under the standard normal distribution; drag the observed value to see the test decision 标准正态分布下的拒绝域，拖动观测值查看检验决策',
                     setup: function(container, controls) {
                         const viz = new VizEngine(container, {
                             width: 560, height: 380,
@@ -178,76 +178,76 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_{25} \\stackrel{iid}{\\sim} N(\\mu, 4)\\)，检验 \\(H_0: \\mu = 10\\) vs \\(H_1: \\mu \\neq 10\\)。若 \\(\\bar{x} = 10.8\\)，在 \\(\\alpha = 0.05\\) 下作出决策。',
-                    hint: '计算 \\(Z = \\frac{\\bar{X} - \\mu_0}{\\sigma / \\sqrt{n}}\\)，并与 \\(z_{0.025} = 1.96\\) 比较。',
-                    solution: '\\(Z = \\frac{10.8 - 10}{2/\\sqrt{25}} = \\frac{0.8}{0.4} = 2.0\\)。因为 \\(|Z| = 2.0 > 1.96 = z_{0.025}\\)，故在 \\(\\alpha = 0.05\\) 水平下拒绝 \\(H_0\\)。'
+                    question: 'Let \\(X_1, \\ldots, X_{25} \\stackrel{iid}{\\sim} N(\\mu, 4)\\). Test \\(H_0: \\mu = 10\\) vs \\(H_1: \\mu \\neq 10\\). If \\(\\bar{x} = 10.8\\), make a decision at \\(\\alpha = 0.05\\).',
+                    hint: 'Compute \\(Z = \\frac{\\bar{X} - \\mu_0}{\\sigma / \\sqrt{n}}\\) and compare with \\(z_{0.025} = 1.96\\).',
+                    solution: '\\(Z = \\frac{10.8 - 10}{2/\\sqrt{25}} = \\frac{0.8}{0.4} = 2.0\\). Since \\(|Z| = 2.0 > 1.96 = z_{0.025}\\), we reject \\(H_0\\) at the \\(\\alpha = 0.05\\) level.'
                 },
                 {
-                    question: '解释为什么在假设检验中我们说"不拒绝 \\(H_0\\)" 而不说"接受 \\(H_0\\)"。',
-                    hint: '考虑 \\(H_0\\) 和 \\(H_1\\) 在检验框架中的不对称角色。',
-                    solution: '假设检验的逻辑是：在假设 \\(H_0\\) 为真的条件下考察数据的极端性。不拒绝 \\(H_0\\) 意味着数据与 \\(H_0\\) 不矛盾，但这不排除数据也可能与某些 \\(H_1\\) 中的参数值相容。此外，Type II 错误的存在意味着我们可能在 \\(H_1\\) 为真时也未拒绝 \\(H_0\\)。因此"不拒绝"更准确地反映了推断的不确定性。'
+                    question: 'Explain why in hypothesis testing we say "fail to reject \\(H_0\\)" rather than "accept \\(H_0\\)."',
+                    hint: 'Consider the asymmetric roles of \\(H_0\\) and \\(H_1\\) in the testing framework.',
+                    solution: 'The logic of hypothesis testing is to examine the extremeness of the data under the assumption that \\(H_0\\) is true. Failing to reject \\(H_0\\) means the data is not inconsistent with \\(H_0\\), but this does not rule out that the data may also be compatible with some parameter values in \\(H_1\\). Moreover, the existence of Type II error means we may fail to reject \\(H_0\\) even when \\(H_1\\) is true. Therefore, "fail to reject" more accurately reflects the uncertainty of the inference.'
                 },
                 {
-                    question: '对于单侧检验 \\(H_0: \\mu \\leq \\mu_0\\) vs \\(H_1: \\mu > \\mu_0\\)，写出拒绝域并解释为何拒绝域只在右尾。',
-                    hint: '考虑哪些 \\(\\bar{X}\\) 值提供了反对 \\(H_0\\)、支持 \\(H_1\\) 的证据。',
-                    solution: '拒绝域为 \\(R = \\{z : z > z_{\\alpha}\\}\\)。因为 \\(H_1: \\mu > \\mu_0\\)，所以只有当样本均值显著大于 \\(\\mu_0\\)（即 \\(Z\\) 取大正值）时，数据才提供了支持 \\(H_1\\) 的证据。小的 \\(Z\\) 值与 \\(H_0\\) 一致，不提供反对 \\(H_0\\) 的证据。'
+                    question: 'For the one-sided test \\(H_0: \\mu \\leq \\mu_0\\) vs \\(H_1: \\mu > \\mu_0\\), write out the rejection region and explain why it lies only in the right tail.',
+                    hint: 'Consider which values of \\(\\bar{X}\\) provide evidence against \\(H_0\\) and in favor of \\(H_1\\).',
+                    solution: 'The rejection region is \\(R = \\{z : z > z_{\\alpha}\\}\\). Since \\(H_1: \\mu > \\mu_0\\), only when the sample mean is significantly larger than \\(\\mu_0\\) (i.e., \\(Z\\) takes a large positive value) does the data provide evidence supporting \\(H_1\\). Small values of \\(Z\\) are consistent with \\(H_0\\) and do not provide evidence against it.'
                 }
             ]
         },
 
         // ============================================================
-        // Section 2: 两类错误与显著性水平
+        // Section 2: Type I/II Errors and Significance Level
         // ============================================================
         {
             id: 'ch09-sec02',
-            title: '两类错误与显著性水平',
+            title: 'Type I/II Errors and Significance Level',
             content: `
-                <h2>两类错误与显著性水平 Type I/II Errors and Significance Level</h2>
+                <h2>Type I/II Errors and Significance Level 两类错误与显著性水平</h2>
 
-                <p>任何假设检验都可能犯两类错误。理解并控制这些错误是假设检验理论的核心。</p>
+                <p>Any hypothesis test can commit two types of errors. Understanding and controlling these errors is at the core of hypothesis testing theory.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 9.6 (两类错误 Type I and Type II Errors)</div>
+                    <div class="env-title">Definition 9.6 (Type I and Type II Errors)</div>
                     <div class="env-body">
-                        <p>给定检验 \\(H_0\\) vs \\(H_1\\)：</p>
+                        <p>Given a test of \\(H_0\\) vs \\(H_1\\):</p>
                         <ul>
-                            <li><strong>第一类错误 (Type I error)</strong>: 当 \\(H_0\\) 为真时拒绝 \\(H_0\\)（"弃真"）。其概率为
+                            <li><strong>Type I error</strong> (第一类错误): Rejecting \\(H_0\\) when \\(H_0\\) is true ("false positive"). Its probability is
                             \\[\\alpha(\\theta) = P_{\\theta}(\\text{Reject } H_0), \\quad \\theta \\in \\Theta_0\\]</li>
-                            <li><strong>第二类错误 (Type II error)</strong>: 当 \\(H_1\\) 为真时不拒绝 \\(H_0\\)（"取伪"）。其概率为
+                            <li><strong>Type II error</strong> (第二类错误): Failing to reject \\(H_0\\) when \\(H_1\\) is true ("false negative"). Its probability is
                             \\[\\beta(\\theta) = P_{\\theta}(\\text{Fail to reject } H_0), \\quad \\theta \\in \\Theta_1\\]</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 9.7 (检验的大小与水平)</div>
+                    <div class="env-title">Definition 9.7 (Size and Level of a Test)</div>
                     <div class="env-body">
-                        <p>检验的<strong>大小 (size)</strong>定义为：</p>
+                        <p>The <strong>size</strong> (大小) of a test is defined as:</p>
                         \\[\\alpha^* = \\sup_{\\theta \\in \\Theta_0} \\alpha(\\theta) = \\sup_{\\theta \\in \\Theta_0} P_{\\theta}(\\text{Reject } H_0)\\]
-                        <p>若 \\(\\alpha^* \\leq \\alpha\\)，则称该检验为<strong>水平 (level) \\(\\alpha\\) 检验</strong>。当 \\(H_0\\) 为简单假设时，大小等于 Type I 错误概率：\\(\\alpha^* = P_{\\theta_0}(\\text{Reject } H_0)\\)。</p>
+                        <p>If \\(\\alpha^* \\leq \\alpha\\), the test is called a <strong>level</strong> (水平) \\(\\alpha\\) <strong>test</strong>. When \\(H_0\\) is a simple hypothesis, the size equals the Type I error probability: \\(\\alpha^* = P_{\\theta_0}(\\text{Reject } H_0)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>在 Neyman-Pearson 框架中，\\(\\alpha\\) 和 \\(\\beta\\) 之间存在根本的 trade-off：对于给定的样本量 \\(n\\)，降低 \\(\\alpha\\) 必然导致 \\(\\beta\\) 增大（即检验变得更保守，不易拒绝 \\(H_0\\)，但更容易遗漏真实效应）。同时降低 \\(\\alpha\\) 和 \\(\\beta\\) 的唯一途径是增加样本量 \\(n\\)。</p>
+                        <p>In the Neyman-Pearson framework, there is a fundamental trade-off between \\(\\alpha\\) and \\(\\beta\\): for a given sample size \\(n\\), reducing \\(\\alpha\\) necessarily increases \\(\\beta\\) (i.e., the test becomes more conservative, harder to reject \\(H_0\\), but more likely to miss a real effect). The only way to simultaneously reduce both \\(\\alpha\\) and \\(\\beta\\) is to increase the sample size \\(n\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 9.8 (\\(\\alpha\\)-\\(\\beta\\) Trade-off)</div>
                     <div class="env-body">
-                        <p>设检验统计量 \\(T\\) 的分布在 \\(H_0\\) 和 \\(H_1\\) 下分别为 \\(F_0\\) 和 \\(F_1\\)，拒绝域为 \\(R_c = \\{T > c\\}\\)。则：</p>
+                        <p>Let the test statistic \\(T\\) have distributions \\(F_0\\) and \\(F_1\\) under \\(H_0\\) and \\(H_1\\) respectively, with rejection region \\(R_c = \\{T > c\\}\\). Then:</p>
                         \\[\\alpha(c) = 1 - F_0(c), \\quad \\beta(c) = F_1(c)\\]
-                        <p>当 \\(c\\) 增大时，\\(\\alpha\\) 减小而 \\(\\beta\\) 增大；当 \\(c\\) 减小时反之。</p>
+                        <p>As \\(c\\) increases, \\(\\alpha\\) decreases while \\(\\beta\\) increases; as \\(c\\) decreases, the reverse holds.</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>由定义，\\(\\alpha(c) = P_{H_0}(T > c) = 1 - F_0(c)\\)，\\(\\beta(c) = P_{H_1}(T \\leq c) = F_1(c)\\)。因为 CDF \\(F_0, F_1\\) 为非递减函数，\\(c\\) 增大时 \\(F_0(c)\\) 增大故 \\(\\alpha(c)\\) 减小，而 \\(F_1(c)\\) 增大故 \\(\\beta(c)\\) 增大。</p>
+                        <p>By definition, \\(\\alpha(c) = P_{H_0}(T > c) = 1 - F_0(c)\\) and \\(\\beta(c) = P_{H_1}(T \\leq c) = F_1(c)\\). Since the CDFs \\(F_0, F_1\\) are non-decreasing, as \\(c\\) increases, \\(F_0(c)\\) increases so \\(\\alpha(c)\\) decreases, while \\(F_1(c)\\) increases so \\(\\beta(c)\\) increases.</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
@@ -255,18 +255,18 @@ window.CHAPTERS.push({
                 <div class="env-block example">
                     <div class="env-title">Example 9.9</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\stackrel{iid}{\\sim} N(\\mu, 1)\\)，检验 \\(H_0: \\mu = 0\\) vs \\(H_1: \\mu = 1\\)。</p>
-                        <p>检验统计量 \\(Z = \\sqrt{n} \\bar{X}\\)，在 \\(H_0\\) 下 \\(Z \\sim N(0,1)\\)，在 \\(H_1\\) 下 \\(Z \\sim N(\\sqrt{n}, 1)\\)。</p>
-                        <p>对拒绝域 \\(\\{Z > c\\}\\)：</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\stackrel{iid}{\\sim} N(\\mu, 1)\\). Test \\(H_0: \\mu = 0\\) vs \\(H_1: \\mu = 1\\).</p>
+                        <p>Test statistic \\(Z = \\sqrt{n} \\bar{X}\\): under \\(H_0\\), \\(Z \\sim N(0,1)\\); under \\(H_1\\), \\(Z \\sim N(\\sqrt{n}, 1)\\).</p>
+                        <p>For rejection region \\(\\{Z > c\\}\\):</p>
                         \\[\\alpha = 1 - \\Phi(c), \\quad \\beta = \\Phi(c - \\sqrt{n})\\]
-                        <p>取 \\(n = 9, c = 1.645\\)：\\(\\alpha = 0.05\\)，\\(\\beta = \\Phi(1.645 - 3) = \\Phi(-1.355) \\approx 0.088\\)。</p>
+                        <p>Taking \\(n = 9, c = 1.645\\): \\(\\alpha = 0.05\\), \\(\\beta = \\Phi(1.645 - 3) = \\Phi(-1.355) \\approx 0.088\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>想象两个重叠的钟形曲线：一个以 \\(H_0\\) 下的参数为中心，另一个以 \\(H_1\\) 下的参数为中心。阈值 \\(c\\) 划分了决策边界。左移 \\(c\\) 会让更多 \\(H_0\\) 的面积进入拒绝域（\\(\\alpha\\) 增大），但也让更少 \\(H_1\\) 的面积留在非拒绝域（\\(\\beta\\) 减小）。这就是 \\(\\alpha\\)-\\(\\beta\\) trade-off 的几何直觉。</p>
+                        <p>Imagine two overlapping bell curves: one centered at the parameter under \\(H_0\\), the other at the parameter under \\(H_1\\). The threshold \\(c\\) defines the decision boundary. Shifting \\(c\\) to the left causes more of the \\(H_0\\) area to enter the rejection region (\\(\\alpha\\) increases), but also leaves less of the \\(H_1\\) area in the non-rejection region (\\(\\beta\\) decreases). This is the geometric intuition behind the \\(\\alpha\\)-\\(\\beta\\) trade-off.</p>
                     </div>
                 </div>
 
@@ -275,8 +275,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'alpha-beta-tradeoff-viz',
-                    title: 'Interactive: Type I/II 错误的 Trade-off',
-                    description: '拖动阈值观察 alpha 和 beta 如何反向变化',
+                    title: 'Interactive: Type I/II Error Trade-off 两类错误的权衡',
+                    description: 'Drag the threshold to observe how alpha and beta change inversely 拖动阈值观察 alpha 和 beta 如何反向变化',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -349,103 +349,103 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_{16} \\stackrel{iid}{\\sim} N(\\mu, 4)\\)，检验 \\(H_0: \\mu = 5\\) vs \\(H_1: \\mu = 7\\)，拒绝域为 \\(\\{\\bar{X} > 6\\}\\)。计算 \\(\\alpha\\) 和 \\(\\beta\\)。',
-                    hint: '将拒绝域转换为标准化统计量 \\(Z\\) 的条件。在 \\(H_0\\) 下 \\(\\bar{X} \\sim N(5, 1/4)\\)，在 \\(H_1\\) 下 \\(\\bar{X} \\sim N(7, 1/4)\\)。',
-                    solution: '在 \\(H_0\\) 下 \\(\\bar{X} \\sim N(5, 4/16) = N(5, 0.25)\\)，故 \\(\\alpha = P(\\bar{X} > 6 | \\mu=5) = P(Z > (6-5)/0.5) = P(Z > 2) = 1 - \\Phi(2) \\approx 0.0228\\)。在 \\(H_1\\) 下 \\(\\bar{X} \\sim N(7, 0.25)\\)，故 \\(\\beta = P(\\bar{X} \\leq 6 | \\mu=7) = P(Z \\leq (6-7)/0.5) = P(Z \\leq -2) = \\Phi(-2) \\approx 0.0228\\)。'
+                    question: 'Let \\(X_1, \\ldots, X_{16} \\stackrel{iid}{\\sim} N(\\mu, 4)\\). Test \\(H_0: \\mu = 5\\) vs \\(H_1: \\mu = 7\\) with rejection region \\(\\{\\bar{X} > 6\\}\\). Compute \\(\\alpha\\) and \\(\\beta\\).',
+                    hint: 'Convert the rejection region to a condition on the standardized statistic \\(Z\\). Under \\(H_0\\), \\(\\bar{X} \\sim N(5, 1/4)\\); under \\(H_1\\), \\(\\bar{X} \\sim N(7, 1/4)\\).',
+                    solution: 'Under \\(H_0\\), \\(\\bar{X} \\sim N(5, 4/16) = N(5, 0.25)\\), so \\(\\alpha = P(\\bar{X} > 6 | \\mu=5) = P(Z > (6-5)/0.5) = P(Z > 2) = 1 - \\Phi(2) \\approx 0.0228\\). Under \\(H_1\\), \\(\\bar{X} \\sim N(7, 0.25)\\), so \\(\\beta = P(\\bar{X} \\leq 6 | \\mu=7) = P(Z \\leq (6-7)/0.5) = P(Z \\leq -2) = \\Phi(-2) \\approx 0.0228\\).'
                 },
                 {
-                    question: '证明：对于简单 vs 简单假设检验，若拒绝域从 \\(\\{T > c_1\\}\\) 变为 \\(\\{T > c_2\\}\\) 且 \\(c_2 > c_1\\)，则 \\(\\alpha\\) 减小而 \\(\\beta\\) 增大（假设检验统计量在 \\(H_0\\) 和 \\(H_1\\) 下的分布均为连续分布）。',
-                    hint: '利用 CDF 的单调非递减性。',
-                    solution: '设 \\(F_0, F_1\\) 分别为 \\(T\\) 在 \\(H_0\\) 和 \\(H_1\\) 下的 CDF。则 \\(\\alpha(c) = P_{H_0}(T > c) = 1 - F_0(c)\\)，\\(\\beta(c) = P_{H_1}(T \\leq c) = F_1(c)\\)。因为 CDF 单调非递减，\\(c_2 > c_1\\) 意味着 \\(F_0(c_2) \\geq F_0(c_1)\\)，故 \\(\\alpha(c_2) = 1 - F_0(c_2) \\leq 1 - F_0(c_1) = \\alpha(c_1)\\)。同理 \\(\\beta(c_2) = F_1(c_2) \\geq F_1(c_1) = \\beta(c_1)\\)。'
+                    question: 'Prove: for a simple vs simple hypothesis test, if the rejection region changes from \\(\\{T > c_1\\}\\) to \\(\\{T > c_2\\}\\) with \\(c_2 > c_1\\), then \\(\\alpha\\) decreases while \\(\\beta\\) increases (assuming the test statistic has continuous distributions under both \\(H_0\\) and \\(H_1\\)).',
+                    hint: 'Use the monotone non-decreasing property of CDFs.',
+                    solution: 'Let \\(F_0, F_1\\) be the CDFs of \\(T\\) under \\(H_0\\) and \\(H_1\\) respectively. Then \\(\\alpha(c) = P_{H_0}(T > c) = 1 - F_0(c)\\) and \\(\\beta(c) = P_{H_1}(T \\leq c) = F_1(c)\\). Since CDFs are monotone non-decreasing, \\(c_2 > c_1\\) implies \\(F_0(c_2) \\geq F_0(c_1)\\), so \\(\\alpha(c_2) = 1 - F_0(c_2) \\leq 1 - F_0(c_1) = \\alpha(c_1)\\). Similarly, \\(\\beta(c_2) = F_1(c_2) \\geq F_1(c_1) = \\beta(c_1)\\).'
                 },
                 {
-                    question: '一个检验的大小为 \\(\\alpha^* = 0.03\\)。该检验是否是水平 0.05 检验？是否是水平 0.01 检验？',
-                    hint: '回顾水平 \\(\\alpha\\) 检验的定义：大小不超过 \\(\\alpha\\)。',
-                    solution: '由于 \\(\\alpha^* = 0.03 \\leq 0.05\\)，该检验是水平 0.05 检验。但 \\(\\alpha^* = 0.03 > 0.01\\)，所以它不是水平 0.01 检验。'
+                    question: 'A test has size \\(\\alpha^* = 0.03\\). Is it a level 0.05 test? Is it a level 0.01 test?',
+                    hint: 'Recall the definition of a level \\(\\alpha\\) test: the size does not exceed \\(\\alpha\\).',
+                    solution: 'Since \\(\\alpha^* = 0.03 \\leq 0.05\\), the test is a level 0.05 test. But \\(\\alpha^* = 0.03 > 0.01\\), so it is not a level 0.01 test.'
                 }
             ]
         },
 
         // ============================================================
-        // Section 3: p 值
+        // Section 3: The p-Value
         // ============================================================
         {
             id: 'ch09-sec03',
-            title: 'p值',
+            title: 'The p-Value',
             content: `
-                <h2>p值 The p-Value</h2>
+                <h2>The p-Value p值</h2>
 
-                <p>p 值 (p-value) 是假设检验中最常用也是最常被误解的概念之一。它将检验统计量的观测值转化为一个概率度量，避免了预先固定显著性水平的需要。</p>
+                <p>The p-value (p值) is one of the most commonly used — and most commonly misunderstood — concepts in hypothesis testing. It converts the observed value of the test statistic into a probability measure, avoiding the need to fix the significance level in advance.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 9.10 (p 值)</div>
+                    <div class="env-title">Definition 9.10 (p-Value)</div>
                     <div class="env-body">
-                        <p>给定检验统计量 \\(T\\) 和观测值 \\(t_{obs}\\)，<strong>p 值</strong>定义为在 \\(H_0\\) 下观测到与 \\(t_{obs}\\) 一样极端或更极端的检验统计量值的概率：</p>
+                        <p>Given a test statistic \\(T\\) and observed value \\(t_{obs}\\), the <strong>p-value</strong> is defined as the probability, under \\(H_0\\), of observing a test statistic value as extreme as or more extreme than \\(t_{obs}\\):</p>
                         \\[p = P_{H_0}(T \\geq t_{obs})\\]
-                        <p>（对于右尾检验。双尾检验和左尾检验类似定义。）</p>
-                        <p>等价地，p 值是使得 \\(t_{obs}\\) 恰好落在拒绝域边界上的最小显著性水平：</p>
+                        <p>(for a right-tailed test; two-tailed and left-tailed tests are defined similarly.)</p>
+                        <p>Equivalently, the p-value is the smallest significance level at which \\(t_{obs}\\) would just fall on the boundary of the rejection region:</p>
                         \\[p = \\inf\\{\\alpha : t_{obs} \\in R_\\alpha\\}\\]
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 9.11 (p 值作为决策规则)</div>
+                    <div class="env-title">Theorem 9.11 (p-Value as a Decision Rule)</div>
                     <div class="env-body">
-                        <p>一个水平 \\(\\alpha\\) 检验可以等价地表述为：当且仅当 \\(p \\leq \\alpha\\) 时拒绝 \\(H_0\\)。</p>
+                        <p>A level \\(\\alpha\\) test can be equivalently stated as: reject \\(H_0\\) if and only if \\(p \\leq \\alpha\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>设拒绝域为 \\(R_\\alpha = \\{T > c_\\alpha\\}\\)，其中 \\(c_\\alpha\\) 满足 \\(P_{H_0}(T > c_\\alpha) = \\alpha\\)。则 \\(t_{obs} \\in R_\\alpha \\iff t_{obs} > c_\\alpha \\iff P_{H_0}(T \\geq t_{obs}) \\leq \\alpha \\iff p \\leq \\alpha\\)。</p>
+                        <p>Let the rejection region be \\(R_\\alpha = \\{T > c_\\alpha\\}\\), where \\(c_\\alpha\\) satisfies \\(P_{H_0}(T > c_\\alpha) = \\alpha\\). Then \\(t_{obs} \\in R_\\alpha \\iff t_{obs} > c_\\alpha \\iff P_{H_0}(T \\geq t_{obs}) \\leq \\alpha \\iff p \\leq \\alpha\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 9.12 (p 值在 \\(H_0\\) 下的分布)</div>
+                    <div class="env-title">Theorem 9.12 (Distribution of the p-Value under \\(H_0\\))</div>
                     <div class="env-body">
-                        <p>若检验统计量 \\(T\\) 在 \\(H_0\\) 下具有连续分布，则 p 值在 \\(H_0\\) 下服从 \\(\\text{Uniform}(0, 1)\\) 分布。</p>
+                        <p>If the test statistic \\(T\\) has a continuous distribution under \\(H_0\\), then the p-value follows a \\(\\text{Uniform}(0, 1)\\) distribution under \\(H_0\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>设 \\(F_0\\) 为 \\(T\\) 在 \\(H_0\\) 下的 CDF。对于右尾检验，\\(p = 1 - F_0(T)\\)。由概率积分变换 (probability integral transform)，若 \\(T\\) 有连续分布 \\(F_0\\)，则 \\(F_0(T) \\sim \\text{Uniform}(0,1)\\)，从而 \\(p = 1 - F_0(T) \\sim \\text{Uniform}(0,1)\\)。</p>
+                        <p>Let \\(F_0\\) be the CDF of \\(T\\) under \\(H_0\\). For a right-tailed test, \\(p = 1 - F_0(T)\\). By the probability integral transform, if \\(T\\) has continuous distribution \\(F_0\\), then \\(F_0(T) \\sim \\text{Uniform}(0,1)\\), and hence \\(p = 1 - F_0(T) \\sim \\text{Uniform}(0,1)\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block warning">
-                    <div class="env-title">Warning: 常见的 p 值误解</div>
+                    <div class="env-title">Warning: Common Misconceptions about p-Values</div>
                     <div class="env-body">
-                        <p>以下说法均为<strong>错误的</strong>：</p>
+                        <p>The following statements are all <strong>incorrect</strong>:</p>
                         <ol>
-                            <li>"p 值是 \\(H_0\\) 为真的概率。" —— p 值是在 \\(H_0\\) 为真的假设下，数据极端性的概率，不是假设本身的概率。</li>
-                            <li>"1 - p 是 \\(H_1\\) 为真的概率。" —— 同上，p 值不是关于假设的后验概率。</li>
-                            <li>"p = 0.05 意味着有 5% 的概率犯了错误的拒绝。" —— 犯错概率取决于检验的 size，不是单个 p 值。</li>
-                            <li>"不显著的 p 值意味着效应不存在。" —— 可能是样本量不够（检验功效不足）。</li>
+                            <li>"The p-value is the probability that \\(H_0\\) is true." — The p-value is the probability of data extremeness assuming \\(H_0\\) is true, not the probability of the hypothesis itself.</li>
+                            <li>"\\(1 - p\\) is the probability that \\(H_1\\) is true." — Same as above; the p-value is not a posterior probability of the hypotheses.</li>
+                            <li>"\\(p = 0.05\\) means there is a 5% chance of having made an incorrect rejection." — The error probability depends on the test's size, not on a single p-value.</li>
+                            <li>"A non-significant p-value means the effect does not exist." — It may be that the sample size is too small (insufficient power).</li>
                         </ol>
-                        <p>正确的解读：p 值衡量的是数据与 \\(H_0\\) 的不兼容程度。p 值越小，数据越不支持 \\(H_0\\)。</p>
+                        <p>Correct interpretation: the p-value measures the degree of incompatibility between the data and \\(H_0\\). The smaller the p-value, the less the data supports \\(H_0\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
-                    <div class="env-title">Remark (关于 p 值的争论)</div>
+                    <div class="env-title">Remark (The Debate over p-Values)</div>
                     <div class="env-body">
-                        <p>2016 年，美国统计协会 (ASA) 发布了关于 p 值的声明，强调 p 值不应作为科学结论的唯一依据。2019 年，《The American Statistician》特刊更是呼吁"退休统计显著性"（retire statistical significance）。然而 p 值仍然是强大的工具——问题在于误用，而非工具本身。</p>
+                        <p>In 2016, the American Statistical Association (ASA) released a statement on p-values, emphasizing that p-values should not serve as the sole basis for scientific conclusions. In 2019, a special issue of <em>The American Statistician</em> went further, calling to "retire statistical significance." Nevertheless, the p-value remains a powerful tool — the problem lies in its misuse, not in the tool itself.</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
                     <div class="env-title">Example 9.13</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_{25} \\stackrel{iid}{\\sim} N(\\mu, 1)\\)，检验 \\(H_0: \\mu = 0\\) vs \\(H_1: \\mu \\neq 0\\)（双侧）。观测 \\(\\bar{x} = 0.45\\)。</p>
-                        <p>检验统计量 \\(Z = \\sqrt{25} \\cdot 0.45 = 2.25\\)。双侧 p 值：</p>
+                        <p>Let \\(X_1, \\ldots, X_{25} \\stackrel{iid}{\\sim} N(\\mu, 1)\\). Test \\(H_0: \\mu = 0\\) vs \\(H_1: \\mu \\neq 0\\) (two-sided). Observed \\(\\bar{x} = 0.45\\).</p>
+                        <p>Test statistic \\(Z = \\sqrt{25} \\cdot 0.45 = 2.25\\). Two-sided p-value:</p>
                         \\[p = 2 \\cdot P(Z \\geq 2.25) = 2(1 - \\Phi(2.25)) \\approx 2 \\times 0.0122 = 0.0244\\]
-                        <p>在 \\(\\alpha = 0.05\\) 下拒绝 \\(H_0\\)，在 \\(\\alpha = 0.01\\) 下不拒绝。</p>
+                        <p>Reject \\(H_0\\) at \\(\\alpha = 0.05\\); fail to reject at \\(\\alpha = 0.01\\).</p>
                     </div>
                 </div>
 
@@ -454,8 +454,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'pvalue-histogram-viz',
-                    title: 'Interactive: p 值分布 — H₀ vs H₁ 下的直方图',
-                    description: '模拟多次检验，观察 p 值在 H₀ 下均匀分布、在 H₁ 下偏左',
+                    title: 'Interactive: p-Value Distribution — Histogram under H\u2080 vs H\u2081 p值分布',
+                    description: 'Simulate many tests to observe that p-values are uniform under H\u2080 and skewed left under H\u2081 模拟多次检验，观察p值在H\u2080下均匀分布、在H\u2081下偏左',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -603,76 +603,76 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '证明：若检验统计量 \\(T\\) 在 \\(H_0\\) 下有连续 CDF \\(F_0\\)，则右尾 p 值 \\(p = 1 - F_0(T)\\) 满足 \\(p \\sim \\text{Uniform}(0,1)\\)。',
-                    hint: '利用概率积分变换 (probability integral transform): 若 \\(X\\) 有连续 CDF \\(F\\)，则 \\(F(X) \\sim \\text{Uniform}(0,1)\\)。',
-                    solution: '由概率积分变换，\\(U = F_0(T) \\sim \\text{Uniform}(0,1)\\)。因此 \\(p = 1 - U\\)，而 \\(1 - U\\) 仍服从 \\(\\text{Uniform}(0,1)\\)（因为 \\(P(1-U \\leq x) = P(U \\geq 1-x) = x\\) 对 \\(x \\in [0,1]\\)）。'
+                    question: 'Prove: if the test statistic \\(T\\) has a continuous CDF \\(F_0\\) under \\(H_0\\), then the right-tailed p-value \\(p = 1 - F_0(T)\\) satisfies \\(p \\sim \\text{Uniform}(0,1)\\).',
+                    hint: 'Use the probability integral transform: if \\(X\\) has continuous CDF \\(F\\), then \\(F(X) \\sim \\text{Uniform}(0,1)\\).',
+                    solution: 'By the probability integral transform, \\(U = F_0(T) \\sim \\text{Uniform}(0,1)\\). Therefore \\(p = 1 - U\\), and \\(1 - U\\) still follows \\(\\text{Uniform}(0,1)\\) (since \\(P(1-U \\leq x) = P(U \\geq 1-x) = x\\) for \\(x \\in [0,1]\\)).'
                 },
                 {
-                    question: '设 \\(X_1, \\ldots, X_{36} \\stackrel{iid}{\\sim} N(\\mu, 9)\\)，检验 \\(H_0: \\mu = 20\\) vs \\(H_1: \\mu > 20\\)。若 \\(\\bar{x} = 21.2\\)，计算 p 值。',
-                    hint: '这是单侧（右尾）检验。计算 \\(Z\\) 统计量后求 \\(P(Z \\geq z_{obs})\\)。',
-                    solution: '\\(Z = \\frac{21.2 - 20}{3/\\sqrt{36}} = \\frac{1.2}{0.5} = 2.4\\)。右尾 p 值 \\(p = P(Z \\geq 2.4) = 1 - \\Phi(2.4) \\approx 0.0082\\)。'
+                    question: 'Let \\(X_1, \\ldots, X_{36} \\stackrel{iid}{\\sim} N(\\mu, 9)\\). Test \\(H_0: \\mu = 20\\) vs \\(H_1: \\mu > 20\\). If \\(\\bar{x} = 21.2\\), compute the p-value.',
+                    hint: 'This is a one-sided (right-tailed) test. Compute the \\(Z\\) statistic and then find \\(P(Z \\geq z_{obs})\\).',
+                    solution: '\\(Z = \\frac{21.2 - 20}{3/\\sqrt{36}} = \\frac{1.2}{0.5} = 2.4\\). Right-tailed p-value: \\(p = P(Z \\geq 2.4) = 1 - \\Phi(2.4) \\approx 0.0082\\).'
                 },
                 {
-                    question: '某研究报告 p = 0.048。以下解读哪些是正确的？(a) \\(H_0\\) 为真的概率是 4.8%。(b) 在 \\(\\alpha = 0.05\\) 下拒绝 \\(H_0\\)。(c) 如果重复实验，有 4.8% 的概率得到同样的结果。(d) 在 \\(H_0\\) 下，获得如此极端或更极端数据的概率是 4.8%。',
-                    hint: '回顾 p 值的定义和常见误解。',
-                    solution: '(b) 和 (d) 是正确的。(a) 错误：p 值不是 \\(H_0\\) 为真的后验概率。(c) 错误：p 值衡量的是在 \\(H_0\\) 下的极端性，不是重复实验得到同一结果的概率。(b) 正确：\\(p = 0.048 < 0.05 = \\alpha\\)，故拒绝 \\(H_0\\)。(d) 正确：这是 p 值的定义。'
+                    question: 'A study reports p = 0.048. Which of the following interpretations are correct? (a) The probability that \\(H_0\\) is true is 4.8%. (b) Reject \\(H_0\\) at \\(\\alpha = 0.05\\). (c) If the experiment is repeated, there is a 4.8% chance of getting the same result. (d) Under \\(H_0\\), the probability of obtaining data this extreme or more extreme is 4.8%.',
+                    hint: 'Review the definition and common misconceptions of p-values.',
+                    solution: '(b) and (d) are correct. (a) Incorrect: the p-value is not the posterior probability that \\(H_0\\) is true. (c) Incorrect: the p-value measures extremeness under \\(H_0\\), not the probability of replicating the same result. (b) Correct: \\(p = 0.048 < 0.05 = \\alpha\\), so reject \\(H_0\\). (d) Correct: this is the definition of the p-value.'
                 }
             ]
         },
 
         // ============================================================
-        // Section 4: 检验功效
+        // Section 4: Power of a Test
         // ============================================================
         {
             id: 'ch09-sec04',
-            title: '检验功效',
+            title: 'Power of a Test',
             content: `
-                <h2>检验功效 Power of a Test</h2>
+                <h2>Power of a Test 检验功效</h2>
 
-                <p>功效 (power) 衡量了检验在备择假设为真时正确拒绝原假设的能力。高功效意味着如果真正存在效应，检验有较大概率检测到它。</p>
+                <p>Power (功效) measures the ability of a test to correctly reject the null hypothesis when the alternative hypothesis is true. High power means that if an effect truly exists, the test has a high probability of detecting it.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 9.14 (功效函数 Power Function)</div>
+                    <div class="env-title">Definition 9.14 (Power Function)</div>
                     <div class="env-body">
-                        <p>检验的<strong>功效函数</strong>定义为：</p>
+                        <p>The <strong>power function</strong> (功效函数) of a test is defined as:</p>
                         \\[\\pi(\\theta) = P_{\\theta}(\\text{Reject } H_0), \\quad \\theta \\in \\Theta\\]
-                        <p>功效函数完整刻画了检验在所有参数值下的表现：</p>
+                        <p>The power function completely characterizes the test's performance across all parameter values:</p>
                         <ul>
-                            <li>当 \\(\\theta \\in \\Theta_0\\) 时，\\(\\pi(\\theta)\\) 即为 Type I 错误概率（应尽可能小）</li>
-                            <li>当 \\(\\theta \\in \\Theta_1\\) 时，\\(\\pi(\\theta)\\) 即为<strong>功效 (power)</strong>（应尽可能大）</li>
+                            <li>When \\(\\theta \\in \\Theta_0\\), \\(\\pi(\\theta)\\) is the Type I error probability (should be as small as possible)</li>
+                            <li>When \\(\\theta \\in \\Theta_1\\), \\(\\pi(\\theta)\\) is the <strong>power</strong> (should be as large as possible)</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 9.15 (功效 Power)</div>
+                    <div class="env-title">Definition 9.15 (Power)</div>
                     <div class="env-body">
-                        <p>对于特定的备择参数 \\(\\theta_1 \\in \\Theta_1\\)，检验在 \\(\\theta_1\\) 处的<strong>功效</strong>为：</p>
+                        <p>For a specific alternative parameter \\(\\theta_1 \\in \\Theta_1\\), the <strong>power</strong> of the test at \\(\\theta_1\\) is:</p>
                         \\[\\text{Power}(\\theta_1) = \\pi(\\theta_1) = 1 - \\beta(\\theta_1)\\]
-                        <p>其中 \\(\\beta(\\theta_1)\\) 是在 \\(\\theta = \\theta_1\\) 时的 Type II 错误概率。</p>
+                        <p>where \\(\\beta(\\theta_1)\\) is the Type II error probability at \\(\\theta = \\theta_1\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 9.16 (正态均值的功效函数)</div>
+                    <div class="env-title">Example 9.16 (Power Function for the Normal Mean)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\stackrel{iid}{\\sim} N(\\mu, \\sigma^2)\\)，\\(\\sigma^2\\) 已知，检验 \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu \\neq \\mu_0\\)，拒绝域 \\(|Z| > z_{\\alpha/2}\\)。</p>
-                        <p>功效函数为：</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\stackrel{iid}{\\sim} N(\\mu, \\sigma^2)\\) with \\(\\sigma^2\\) known. Test \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu \\neq \\mu_0\\) with rejection region \\(|Z| > z_{\\alpha/2}\\).</p>
+                        <p>The power function is:</p>
                         \\[\\pi(\\mu) = P_{\\mu}(|Z| > z_{\\alpha/2})\\]
-                        <p>其中 \\(Z = \\frac{\\bar{X} - \\mu_0}{\\sigma/\\sqrt{n}} \\sim N\\left(\\frac{\\mu - \\mu_0}{\\sigma/\\sqrt{n}}, 1\\right)\\) 在真实参数 \\(\\mu\\) 下。令 \\(\\delta = \\frac{\\mu - \\mu_0}{\\sigma/\\sqrt{n}}\\)（非中心参数），则：</p>
+                        <p>where \\(Z = \\frac{\\bar{X} - \\mu_0}{\\sigma/\\sqrt{n}} \\sim N\\left(\\frac{\\mu - \\mu_0}{\\sigma/\\sqrt{n}}, 1\\right)\\) under the true parameter \\(\\mu\\). Let \\(\\delta = \\frac{\\mu - \\mu_0}{\\sigma/\\sqrt{n}}\\) (the noncentrality parameter), then:</p>
                         \\[\\pi(\\mu) = 1 - \\Phi(z_{\\alpha/2} - \\delta) + \\Phi(-z_{\\alpha/2} - \\delta)\\]
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 9.17 (影响功效的因素)</div>
+                    <div class="env-title">Theorem 9.17 (Factors Affecting Power)</div>
                     <div class="env-body">
-                        <p>对于 Z-检验 \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu \\neq \\mu_0\\)，功效 \\(\\pi(\\mu)\\) 在以下条件下增大：</p>
+                        <p>For the Z-test of \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu \\neq \\mu_0\\), the power \\(\\pi(\\mu)\\) increases when:</p>
                         <ol>
-                            <li><strong>效应量 (effect size)</strong> \\(|\\mu - \\mu_0|\\) 增大：真实参数离 \\(H_0\\) 越远，越容易检测。</li>
-                            <li><strong>样本量 \\(n\\)</strong> 增大：更多数据提供更多信息。</li>
-                            <li><strong>显著性水平 \\(\\alpha\\)</strong> 增大：拒绝域扩大，更容易拒绝 \\(H_0\\)。</li>
-                            <li><strong>方差 \\(\\sigma^2\\)</strong> 减小：噪声更小，信号更清晰。</li>
+                            <li><strong>Effect size</strong> (效应量) \\(|\\mu - \\mu_0|\\) increases: the farther the true parameter is from \\(H_0\\), the easier it is to detect.</li>
+                            <li><strong>Sample size \\(n\\)</strong> increases: more data provides more information.</li>
+                            <li><strong>Significance level \\(\\alpha\\)</strong> increases: the rejection region expands, making it easier to reject \\(H_0\\).</li>
+                            <li><strong>Variance \\(\\sigma^2\\)</strong> decreases: less noise makes the signal clearer.</li>
                         </ol>
                     </div>
                 </div>
@@ -680,40 +680,40 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof (sketch)</div>
                     <div class="env-body">
-                        <p>功效的主要项为 \\(1 - \\Phi(z_{\\alpha/2} - \\delta)\\)，其中 \\(\\delta = \\sqrt{n}|\\mu - \\mu_0|/\\sigma\\)。由于 \\(\\Phi\\) 为递增函数，\\(\\delta\\) 增大使得 \\(z_{\\alpha/2} - \\delta\\) 减小，\\(\\Phi(z_{\\alpha/2} - \\delta)\\) 减小，从而功效增大。而 \\(\\delta\\) 随 \\(|\\mu - \\mu_0|\\)、\\(n\\) 的增大和 \\(\\sigma\\) 的减小而增大。\\(\\alpha\\) 增大使 \\(z_{\\alpha/2}\\) 减小，同样使功效增大。</p>
+                        <p>The dominant term of the power is \\(1 - \\Phi(z_{\\alpha/2} - \\delta)\\), where \\(\\delta = \\sqrt{n}|\\mu - \\mu_0|/\\sigma\\). Since \\(\\Phi\\) is increasing, as \\(\\delta\\) increases, \\(z_{\\alpha/2} - \\delta\\) decreases, \\(\\Phi(z_{\\alpha/2} - \\delta)\\) decreases, and hence the power increases. Moreover, \\(\\delta\\) increases with \\(|\\mu - \\mu_0|\\) and \\(n\\), and decreases with \\(\\sigma\\). An increase in \\(\\alpha\\) decreases \\(z_{\\alpha/2}\\), which similarly increases the power.</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 9.18 (指数族功效函数的单调性)</div>
+                    <div class="env-title">Theorem 9.18 (Monotonicity of Power Functions in Exponential Families)</div>
                     <div class="env-body">
-                        <p>对于单参数指数族 \\(f(x|\\theta) = h(x) \\exp(\\eta(\\theta) T(x) - A(\\theta))\\) 中的单侧检验，若 \\(\\eta(\\theta)\\) 是 \\(\\theta\\) 的严格递增函数，则对于检验 \\(H_0: \\theta \\leq \\theta_0\\) vs \\(H_1: \\theta > \\theta_0\\)（使用拒绝域 \\(T > c\\)），功效函数 \\(\\pi(\\theta)\\) 是 \\(\\theta\\) 的严格递增函数。</p>
+                        <p>For one-sided tests in a one-parameter exponential family \\(f(x|\\theta) = h(x) \\exp(\\eta(\\theta) T(x) - A(\\theta))\\), if \\(\\eta(\\theta)\\) is a strictly increasing function of \\(\\theta\\), then for the test \\(H_0: \\theta \\leq \\theta_0\\) vs \\(H_1: \\theta > \\theta_0\\) (using rejection region \\(T > c\\)), the power function \\(\\pi(\\theta)\\) is a strictly increasing function of \\(\\theta\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof (Sketch)</div>
                     <div class="env-body">
-                        <p>指数族具有<strong>单调似然比</strong>（monotone likelihood ratio, MLR）性质：对 \\(\\theta_2 > \\theta_1\\)，似然比 \\(f(x|\\theta_2)/f(x|\\theta_1)\\) 是 \\(T(x)\\) 的递增函数。这意味着 \\(T\\) 越大，越"支持"更大的 \\(\\theta\\)。</p>
-                        <p>形式地，利用 Neyman-Pearson 引理（第 10 章详述），当 \\(\\eta(\\theta)\\) 递增时，对任何 \\(\\theta_2 > \\theta_1\\)，\\(P_{\\theta_2}(T > c) > P_{\\theta_1}(T > c)\\)，即 \\(\\pi(\\theta_2) > \\pi(\\theta_1)\\)。</p>
+                        <p>Exponential families possess the <strong>monotone likelihood ratio</strong> (MLR, 单调似然比) property: for \\(\\theta_2 > \\theta_1\\), the likelihood ratio \\(f(x|\\theta_2)/f(x|\\theta_1)\\) is an increasing function of \\(T(x)\\). This means the larger \\(T\\) is, the more it "supports" a larger \\(\\theta\\).</p>
+                        <p>Formally, using the Neyman-Pearson lemma (detailed in Chapter 10), when \\(\\eta(\\theta)\\) is increasing, for any \\(\\theta_2 > \\theta_1\\) we have \\(P_{\\theta_2}(T > c) > P_{\\theta_1}(T > c)\\), i.e., \\(\\pi(\\theta_2) > \\pi(\\theta_1)\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 9.19 (无偏检验 Unbiased Test)</div>
+                    <div class="env-title">Definition 9.19 (Unbiased Test)</div>
                     <div class="env-body">
-                        <p>检验 \\(\\delta\\) 称为<strong>无偏的</strong>（unbiased），若对所有 \\(\\theta \\in \\Theta_1\\)：</p>
+                        <p>A test \\(\\delta\\) is called <strong>unbiased</strong> (无偏的) if for all \\(\\theta \\in \\Theta_1\\):</p>
                         \\[\\pi(\\theta) \\geq \\sup_{\\theta' \\in \\Theta_0} \\pi(\\theta') = \\alpha^*\\]
-                        <p>即：在备择假设下拒绝的概率不低于在原假设下拒绝的最大概率。无偏检验保证"检验至少不比随机猜测差"。</p>
+                        <p>That is, the probability of rejection under the alternative is no less than the maximum probability of rejection under the null. An unbiased test guarantees that "the test is at least as good as random guessing."</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>功效可以理解为检验的"灵敏度"。一个功效为 0.8 的检验意味着：如果真正存在该效应，我们在 100 次独立实验中大约有 80 次能够检测到它。通常要求功效不低于 0.8（Cohen 的建议），在关键应用中可能要求 0.9 或更高。</p>
+                        <p>Power can be understood as the "sensitivity" of a test. A test with power 0.8 means: if the effect truly exists, we will detect it in approximately 80 out of 100 independent experiments. It is generally required that power be at least 0.8 (Cohen's recommendation), and in critical applications, 0.9 or higher may be required.</p>
                     </div>
                 </div>
 
@@ -724,8 +724,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'power-function-viz',
-                    title: 'Interactive: 功效函数 pi(mu)',
-                    description: '观察功效函数如何随样本量和显著性水平变化',
+                    title: 'Interactive: Power Function pi(mu) 功效函数',
+                    description: 'Observe how the power function changes with sample size and significance level 观察功效函数如何随样本量和显著性水平变化',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 380,
@@ -805,8 +805,8 @@ window.CHAPTERS.push({
                 },
                 {
                     id: 'power-factors-viz',
-                    title: 'Interactive: 功效的四大影响因素',
-                    description: '调节 n, alpha, effect size, sigma 观察功效的变化',
+                    title: 'Interactive: Four Factors Affecting Power 功效的四大影响因素',
+                    description: 'Adjust n, alpha, effect size, and sigma to observe how power changes 调节n, alpha, 效应量, sigma观察功效的变化',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 380,
@@ -899,40 +899,40 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '写出检验 \\(H_0: \\mu = 0\\) vs \\(H_1: \\mu > 0\\)（\\(X_i \\stackrel{iid}{\\sim} N(\\mu, 1)\\)，拒绝域 \\(\\{\\sqrt{n}\\bar{X} > z_\\alpha\\}\\)）的功效函数 \\(\\pi(\\mu)\\)。',
-                    hint: '在 \\(\\mu\\) 下，\\(\\sqrt{n}\\bar{X} \\sim N(\\sqrt{n}\\mu, 1)\\)。',
-                    solution: '\\(\\pi(\\mu) = P_\\mu(\\sqrt{n}\\bar{X} > z_\\alpha) = P(N(\\sqrt{n}\\mu, 1) > z_\\alpha) = 1 - \\Phi(z_\\alpha - \\sqrt{n}\\mu)\\)。当 \\(\\mu = 0\\) 时 \\(\\pi(0) = 1 - \\Phi(z_\\alpha) = \\alpha\\)。当 \\(\\mu > 0\\) 时 \\(\\pi(\\mu) > \\alpha\\)，且 \\(\\mu \\to \\infty\\) 时 \\(\\pi(\\mu) \\to 1\\)。'
+                    question: 'Write down the power function \\(\\pi(\\mu)\\) for the test \\(H_0: \\mu = 0\\) vs \\(H_1: \\mu > 0\\) (where \\(X_i \\stackrel{iid}{\\sim} N(\\mu, 1)\\), rejection region \\(\\{\\sqrt{n}\\bar{X} > z_\\alpha\\}\\)).',
+                    hint: 'Under \\(\\mu\\), \\(\\sqrt{n}\\bar{X} \\sim N(\\sqrt{n}\\mu, 1)\\).',
+                    solution: '\\(\\pi(\\mu) = P_\\mu(\\sqrt{n}\\bar{X} > z_\\alpha) = P(N(\\sqrt{n}\\mu, 1) > z_\\alpha) = 1 - \\Phi(z_\\alpha - \\sqrt{n}\\mu)\\). When \\(\\mu = 0\\), \\(\\pi(0) = 1 - \\Phi(z_\\alpha) = \\alpha\\). When \\(\\mu > 0\\), \\(\\pi(\\mu) > \\alpha\\), and as \\(\\mu \\to \\infty\\), \\(\\pi(\\mu) \\to 1\\).'
                 },
                 {
-                    question: '对于上述检验，若 \\(\\alpha = 0.05\\)，\\(n = 25\\)，计算在 \\(\\mu = 0.5\\) 处的功效。',
-                    hint: '代入 \\(\\pi(\\mu) = 1 - \\Phi(z_{0.05} - \\sqrt{n} \\mu)\\)，其中 \\(z_{0.05} = 1.645\\)。',
-                    solution: '\\(\\pi(0.5) = 1 - \\Phi(1.645 - \\sqrt{25} \\times 0.5) = 1 - \\Phi(1.645 - 2.5) = 1 - \\Phi(-0.855) = \\Phi(0.855) \\approx 0.804\\)。功效约为 80.4%。'
+                    question: 'For the above test, if \\(\\alpha = 0.05\\) and \\(n = 25\\), compute the power at \\(\\mu = 0.5\\).',
+                    hint: 'Substitute into \\(\\pi(\\mu) = 1 - \\Phi(z_{0.05} - \\sqrt{n} \\mu)\\), where \\(z_{0.05} = 1.645\\).',
+                    solution: '\\(\\pi(0.5) = 1 - \\Phi(1.645 - \\sqrt{25} \\times 0.5) = 1 - \\Phi(1.645 - 2.5) = 1 - \\Phi(-0.855) = \\Phi(0.855) \\approx 0.804\\). The power is approximately 80.4%.'
                 },
                 {
-                    question: '解释为什么理想的功效函数在 \\(\\Theta_0\\) 上等于 \\(\\alpha\\)（而非更小），在 \\(\\Theta_1\\) 上尽可能接近 1。',
-                    hint: '考虑如果检验在 \\(\\Theta_0\\) 上的功效远小于 \\(\\alpha\\)，对 \\(\\Theta_1\\) 上的功效有何影响。',
-                    solution: '由 \\(\\alpha\\)-\\(\\beta\\) trade-off，检验越保守（\\(\\Theta_0\\) 上功效越小），在 \\(\\Theta_1\\) 上的功效也越低。因此理想检验应当"用足"显著性水平预算：在 \\(\\Theta_0\\) 边界上达到 \\(\\alpha\\)（大小恰好等于 \\(\\alpha\\)），从而在 \\(\\Theta_1\\) 上获得最大功效。这正是 Neyman-Pearson 引理中最优检验的特征。'
+                    question: 'Explain why the ideal power function equals \\(\\alpha\\) on \\(\\Theta_0\\) (rather than being smaller) and is as close to 1 as possible on \\(\\Theta_1\\).',
+                    hint: 'Consider how having power much smaller than \\(\\alpha\\) on \\(\\Theta_0\\) affects the power on \\(\\Theta_1\\).',
+                    solution: 'By the \\(\\alpha\\)-\\(\\beta\\) trade-off, the more conservative the test (smaller power on \\(\\Theta_0\\)), the lower the power on \\(\\Theta_1\\). Therefore, the ideal test should "spend" the full significance level budget: achieve \\(\\alpha\\) at the boundary of \\(\\Theta_0\\) (size exactly equal to \\(\\alpha\\)), thereby obtaining the maximum power on \\(\\Theta_1\\). This is precisely the characteristic of the optimal test in the Neyman-Pearson lemma.'
                 }
             ]
         },
 
         // ============================================================
-        // Section 5: 样本量确定
+        // Section 5: Sample Size Determination
         // ============================================================
         {
             id: 'ch09-sec05',
-            title: '样本量确定',
+            title: 'Sample Size Determination',
             content: `
-                <h2>样本量确定 Sample Size Determination</h2>
+                <h2>Sample Size Determination 样本量确定</h2>
 
-                <p>在实验设计阶段，一个关键问题是：需要多少样本才能以足够的功效检测到感兴趣的效应？功效分析 (power analysis) 通过联系 \\(\\alpha\\)、功效 \\(1 - \\beta\\)、效应量和样本量来回答这个问题。</p>
+                <p>At the experimental design stage, a key question is: how many samples are needed to detect an effect of interest with sufficient power? Power analysis (功效分析) answers this question by linking \\(\\alpha\\), power \\(1 - \\beta\\), effect size (效应量), and sample size.</p>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 9.20 (Z-检验的样本量公式)</div>
+                    <div class="env-title">Theorem 9.20 (Sample Size Formula for the Z-test)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\stackrel{iid}{\\sim} N(\\mu, \\sigma^2)\\)，\\(\\sigma^2\\) 已知。检验 \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu = \\mu_1\\)（单侧，\\(\\mu_1 > \\mu_0\\)），要求 Type I 错误率不超过 \\(\\alpha\\)，在 \\(\\mu_1\\) 处的功效不低于 \\(1 - \\beta\\)。则所需样本量为：</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\stackrel{iid}{\\sim} N(\\mu, \\sigma^2)\\) with \\(\\sigma^2\\) known. Test \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu = \\mu_1\\) (one-sided, \\(\\mu_1 > \\mu_0\\)), requiring Type I error rate no greater than \\(\\alpha\\) and power at \\(\\mu_1\\) no less than \\(1 - \\beta\\). The required sample size is:</p>
                         \\[n = \\left\\lceil \\frac{(z_\\alpha + z_\\beta)^2 \\sigma^2}{(\\mu_1 - \\mu_0)^2} \\right\\rceil\\]
-                        <p>对于双侧检验，将 \\(z_\\alpha\\) 替换为 \\(z_{\\alpha/2}\\)：</p>
+                        <p>For a two-sided test, replace \\(z_\\alpha\\) with \\(z_{\\alpha/2}\\):</p>
                         \\[n = \\left\\lceil \\frac{(z_{\\alpha/2} + z_\\beta)^2 \\sigma^2}{(\\mu_1 - \\mu_0)^2} \\right\\rceil\\]
                     </div>
                 </div>
@@ -940,26 +940,26 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>对于单侧检验 \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu > \\mu_0\\)，拒绝域为 \\(\\{\\bar{X} > \\mu_0 + z_\\alpha \\sigma / \\sqrt{n}\\}\\)。</p>
-                        <p>在 \\(\\mu = \\mu_1\\) 下，要求功效 \\(\\geq 1 - \\beta\\)：</p>
+                        <p>For the one-sided test \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu > \\mu_0\\), the rejection region is \\(\\{\\bar{X} > \\mu_0 + z_\\alpha \\sigma / \\sqrt{n}\\}\\).</p>
+                        <p>Under \\(\\mu = \\mu_1\\), we require power \\(\\geq 1 - \\beta\\):</p>
                         \\[P_{\\mu_1}(\\bar{X} > \\mu_0 + z_\\alpha \\sigma / \\sqrt{n}) \\geq 1 - \\beta\\]
-                        <p>标准化：\\(\\bar{X} \\sim N(\\mu_1, \\sigma^2/n)\\)，得</p>
+                        <p>Standardizing: \\(\\bar{X} \\sim N(\\mu_1, \\sigma^2/n)\\), we get</p>
                         \\[P\\left(Z > \\frac{\\mu_0 + z_\\alpha \\sigma/\\sqrt{n} - \\mu_1}{\\sigma/\\sqrt{n}}\\right) \\geq 1 - \\beta\\]
                         \\[P\\left(Z > z_\\alpha - \\frac{(\\mu_1 - \\mu_0)\\sqrt{n}}{\\sigma}\\right) \\geq 1 - \\beta\\]
-                        <p>即 \\(z_\\alpha - \\frac{(\\mu_1 - \\mu_0)\\sqrt{n}}{\\sigma} \\leq -z_\\beta\\)，解得：</p>
+                        <p>That is, \\(z_\\alpha - \\frac{(\\mu_1 - \\mu_0)\\sqrt{n}}{\\sigma} \\leq -z_\\beta\\), which gives:</p>
                         \\[\\sqrt{n} \\geq \\frac{(z_\\alpha + z_\\beta)\\sigma}{\\mu_1 - \\mu_0}\\]
-                        <p>两边平方取整即得结论。</p>
+                        <p>Squaring both sides and taking the ceiling yields the result.</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 9.21 (Cohen's d — 标准化效应量)</div>
+                    <div class="env-title">Definition 9.21 (Cohen's d — Standardized Effect Size)</div>
                     <div class="env-body">
-                        <p>标准化效应量 (standardized effect size) 定义为：</p>
+                        <p>The standardized effect size (标准化效应量) is defined as:</p>
                         \\[d = \\frac{|\\mu_1 - \\mu_0|}{\\sigma}\\]
-                        <p>Cohen 建议的参考标准：\\(d = 0.2\\) 为小效应，\\(d = 0.5\\) 为中等效应，\\(d = 0.8\\) 为大效应。</p>
-                        <p>用 \\(d\\) 表示样本量公式：</p>
+                        <p>Cohen's benchmarks: \\(d = 0.2\\) is a small effect, \\(d = 0.5\\) is a medium effect, \\(d = 0.8\\) is a large effect.</p>
+                        <p>The sample size formula in terms of \\(d\\):</p>
                         \\[n = \\left\\lceil \\frac{(z_{\\alpha/2} + z_\\beta)^2}{d^2} \\right\\rceil\\]
                     </div>
                 </div>
@@ -967,25 +967,25 @@ window.CHAPTERS.push({
                 <div class="env-block example">
                     <div class="env-title">Example 9.22</div>
                     <div class="env-body">
-                        <p>设计一个实验检测药物效果。已知 \\(\\sigma = 10\\)，希望在 \\(\\alpha = 0.05\\)（双侧）下检测到 \\(\\delta = \\mu_1 - \\mu_0 = 3\\) 的效应，要求功效 \\(1 - \\beta = 0.80\\)。</p>
-                        <p>\\(z_{0.025} = 1.96\\)，\\(z_{0.20} = 0.842\\)。</p>
+                        <p>Design an experiment to detect a drug effect. Known \\(\\sigma = 10\\), wish to detect an effect of \\(\\delta = \\mu_1 - \\mu_0 = 3\\) at \\(\\alpha = 0.05\\) (two-sided) with power \\(1 - \\beta = 0.80\\).</p>
+                        <p>\\(z_{0.025} = 1.96\\), \\(z_{0.20} = 0.842\\).</p>
                         \\[n = \\left\\lceil \\frac{(1.96 + 0.842)^2 \\times 10^2}{3^2} \\right\\rceil = \\left\\lceil \\frac{7.8488 \\times 100}{9} \\right\\rceil = \\left\\lceil 87.21 \\right\\rceil = 88\\]
-                        <p>即每组需要至少 88 个样本。</p>
+                        <p>At least 88 samples per group are needed.</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
-                    <div class="env-title">Remark (t-检验的功效分析)</div>
+                    <div class="env-title">Remark (Power Analysis for the t-test)</div>
                     <div class="env-body">
-                        <p>当 \\(\\sigma\\) 未知时使用 t-检验，功效分析变得更复杂：检验统计量在 \\(H_1\\) 下服从非中心 t 分布 (noncentral t-distribution)。精确计算需要数值方法。实践中常用 Z-检验公式作为近似，对大样本 (\\(n > 30\\)) 准确度很高。</p>
-                        <p>非中心参数为 \\(\\lambda = \\frac{\\mu_1 - \\mu_0}{\\sigma/\\sqrt{n}} = d\\sqrt{n}\\)，t 统计量在 \\(H_1\\) 下近似服从 \\(t_{n-1}(\\lambda)\\)。</p>
+                        <p>When \\(\\sigma\\) is unknown and the t-test is used, power analysis becomes more complex: the test statistic follows a noncentral t-distribution (非中心t分布) under \\(H_1\\). Exact computation requires numerical methods. In practice, the Z-test formula is often used as an approximation, which is quite accurate for large samples (\\(n > 30\\)).</p>
+                        <p>The noncentrality parameter is \\(\\lambda = \\frac{\\mu_1 - \\mu_0}{\\sigma/\\sqrt{n}} = d\\sqrt{n}\\), and the t-statistic approximately follows \\(t_{n-1}(\\lambda)\\) under \\(H_1\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>功效分析必须在实验<strong>开始前</strong>进行 (a priori)。在观察到数据后进行的"事后功效分析" (post hoc power analysis) 是无意义的，因为观测到的效应量和 p 值之间存在确定性关系，事后功效分析不能提供额外信息。</p>
+                        <p>Power analysis must be conducted <strong>before</strong> the experiment begins (a priori). "Post hoc power analysis" performed after observing the data is meaningless, because there is a deterministic relationship between the observed effect size and the p-value, so post hoc power analysis provides no additional information.</p>
                     </div>
                 </div>
 
@@ -994,8 +994,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'sample-size-calc-viz',
-                    title: 'Interactive: 样本量计算器',
-                    description: '输入 alpha、目标功效、效应量，计算所需样本量并显示功效曲线',
+                    title: 'Interactive: Sample Size Calculator 样本量计算器',
+                    description: 'Enter alpha, target power, and effect size to compute the required sample size and display the power curve 输入alpha、目标功效、效应量，计算所需样本量并显示功效曲线',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -1173,19 +1173,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '推导双侧 Z-检验的样本量公式 \\(n = \\lceil (z_{\\alpha/2} + z_\\beta)^2 \\sigma^2 / \\delta^2 \\rceil\\)。',
-                    hint: '从功效条件出发：\\(P_{\\mu_1}(|Z| > z_{\\alpha/2}) \\geq 1 - \\beta\\)。对于 \\(\\mu_1 > \\mu_0\\)，右尾贡献主要功效。',
-                    solution: '在 \\(\\mu_1 > \\mu_0\\) 下，\\(Z = (\\bar{X} - \\mu_0)/(\\sigma/\\sqrt{n}) \\sim N(\\delta\\sqrt{n}/\\sigma, 1)\\)，记 \\(\\lambda = \\delta\\sqrt{n}/\\sigma\\)。功效约为 \\(1 - \\Phi(z_{\\alpha/2} - \\lambda)\\)（忽略左尾小概率项）。要求 \\(1 - \\Phi(z_{\\alpha/2} - \\lambda) \\geq 1 - \\beta\\)，即 \\(\\Phi(z_{\\alpha/2} - \\lambda) \\leq \\beta\\)，即 \\(z_{\\alpha/2} - \\lambda \\leq -z_\\beta\\)。解得 \\(\\lambda \\geq z_{\\alpha/2} + z_\\beta\\)，即 \\(\\delta\\sqrt{n}/\\sigma \\geq z_{\\alpha/2} + z_\\beta\\)，两边平方得 \\(n \\geq (z_{\\alpha/2} + z_\\beta)^2 \\sigma^2/\\delta^2\\)。'
+                    question: 'Derive the sample size formula for the two-sided Z-test: \\(n = \\lceil (z_{\\alpha/2} + z_\\beta)^2 \\sigma^2 / \\delta^2 \\rceil\\).',
+                    hint: 'Start from the power condition: \\(P_{\\mu_1}(|Z| > z_{\\alpha/2}) \\geq 1 - \\beta\\). For \\(\\mu_1 > \\mu_0\\), the right tail contributes the dominant power.',
+                    solution: 'Under \\(\\mu_1 > \\mu_0\\), \\(Z = (\\bar{X} - \\mu_0)/(\\sigma/\\sqrt{n}) \\sim N(\\delta\\sqrt{n}/\\sigma, 1)\\); let \\(\\lambda = \\delta\\sqrt{n}/\\sigma\\). The power is approximately \\(1 - \\Phi(z_{\\alpha/2} - \\lambda)\\) (ignoring the small left-tail probability). Requiring \\(1 - \\Phi(z_{\\alpha/2} - \\lambda) \\geq 1 - \\beta\\) gives \\(\\Phi(z_{\\alpha/2} - \\lambda) \\leq \\beta\\), i.e., \\(z_{\\alpha/2} - \\lambda \\leq -z_\\beta\\). Solving yields \\(\\lambda \\geq z_{\\alpha/2} + z_\\beta\\), i.e., \\(\\delta\\sqrt{n}/\\sigma \\geq z_{\\alpha/2} + z_\\beta\\). Squaring gives \\(n \\geq (z_{\\alpha/2} + z_\\beta)^2 \\sigma^2/\\delta^2\\).'
                 },
                 {
-                    question: '检测 Cohen \\(d = 0.2\\) 的小效应（双侧 \\(\\alpha = 0.05\\)，功效 0.80）需要多少样本？',
-                    hint: '代入 \\(n = \\lceil (z_{0.025} + z_{0.20})^2 / d^2 \\rceil\\)。',
-                    solution: '\\(n = \\lceil (1.96 + 0.842)^2 / 0.2^2 \\rceil = \\lceil 7.8488 / 0.04 \\rceil = \\lceil 196.22 \\rceil = 197\\)。检测小效应需要近 200 个样本，远多于检测中等效应 (\\(d=0.5\\)) 所需的约 32 个或大效应 (\\(d=0.8\\)) 所需的约 13 个。'
+                    question: 'How many samples are needed to detect a small effect of Cohen \\(d = 0.2\\) (two-sided \\(\\alpha = 0.05\\), power 0.80)?',
+                    hint: 'Substitute into \\(n = \\lceil (z_{0.025} + z_{0.20})^2 / d^2 \\rceil\\).',
+                    solution: '\\(n = \\lceil (1.96 + 0.842)^2 / 0.2^2 \\rceil = \\lceil 7.8488 / 0.04 \\rceil = \\lceil 196.22 \\rceil = 197\\). Detecting a small effect requires nearly 200 samples, far more than the approximately 32 needed for a medium effect (\\(d=0.5\\)) or approximately 13 for a large effect (\\(d=0.8\\)).'
                 },
                 {
-                    question: '一项临床试验计划以 \\(\\alpha = 0.01\\)（双侧）检测血压降低 \\(\\delta = 5\\) mmHg 的效应，已知 \\(\\sigma = 12\\) mmHg，要求功效 0.90。计算所需样本量。',
-                    hint: '\\(z_{0.005} \\approx 2.576\\)，\\(z_{0.10} \\approx 1.282\\)。',
-                    solution: '\\(n = \\lceil (2.576 + 1.282)^2 \\times 12^2 / 5^2 \\rceil = \\lceil 14.888 \\times 144 / 25 \\rceil = \\lceil 85.79 \\rceil = 86\\)。每组需要至少 86 名受试者。'
+                    question: 'A clinical trial plans to detect a blood pressure reduction of \\(\\delta = 5\\) mmHg at \\(\\alpha = 0.01\\) (two-sided), with known \\(\\sigma = 12\\) mmHg and required power 0.90. Compute the required sample size.',
+                    hint: '\\(z_{0.005} \\approx 2.576\\), \\(z_{0.10} \\approx 1.282\\).',
+                    solution: '\\(n = \\lceil (2.576 + 1.282)^2 \\times 12^2 / 5^2 \\rceil = \\lceil 14.888 \\times 144 / 25 \\rceil = \\lceil 85.79 \\rceil = 86\\). At least 86 subjects per group are needed.'
                 }
             ]
         }

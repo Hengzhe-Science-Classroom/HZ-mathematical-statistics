@@ -2,104 +2,104 @@ window.CHAPTERS = window.CHAPTERS || [];
 window.CHAPTERS.push({
     id: 'ch16',
     number: 16,
-    title: '渐近理论',
+    title: 'Asymptotic Theory',
     subtitle: 'Asymptotic Theory',
     sections: [
         // ============================================================
-        // SECTION 1: 相合性 (Consistency)
+        // SECTION 1: Consistency
         // ============================================================
         {
             id: 'ch16-sec01',
-            title: '相合性',
+            title: 'Consistency',
             content: `
-                <h2>相合性 · Consistency</h2>
+                <h2>Consistency 相合性</h2>
 
-                <p>渐近理论 (asymptotic theory) 研究的是统计推断在样本量 \\(n \\to \\infty\\) 时的行为。本章是整个数理统计课程的核心章节之一：我们将严格证明最大似然估计 (MLE) 的渐近正态性——这一结果是现代统计推断的基石。</p>
+                <p>Asymptotic theory (渐近理论) studies the behavior of statistical inference as the sample size \\(n \\to \\infty\\). This chapter is one of the core chapters of the entire mathematical statistics course: we will rigorously prove the asymptotic normality (渐近正态性) of the maximum likelihood estimator (MLE) — a result that serves as the cornerstone of modern statistical inference.</p>
 
-                <p>我们首先从最基本的大样本性质——<strong>相合性 (consistency)</strong>——开始。</p>
+                <p>We begin with the most fundamental large-sample property — <strong>consistency (相合性)</strong>.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 16.1 (相合估计量 · Consistent Estimator)</div>
+                    <div class="env-title">Definition 16.1 (Consistent Estimator)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, X_2, \\ldots\\) 是来自分布 \\(P_\\theta\\) 的随机样本，\\(\\hat{\\theta}_n = \\hat{\\theta}_n(X_1, \\ldots, X_n)\\) 是参数 \\(\\theta\\) 的一个估计量序列。若对所有 \\(\\theta \\in \\Theta\\)，</p>
+                        <p>Let \\(X_1, X_2, \\ldots\\) be a random sample from \\(P_\\theta\\), and let \\(\\hat{\\theta}_n = \\hat{\\theta}_n(X_1, \\ldots, X_n)\\) be a sequence of estimators for the parameter \\(\\theta\\). If for all \\(\\theta \\in \\Theta\\),</p>
                         \\[\\hat{\\theta}_n \\xrightarrow{P} \\theta, \\quad \\text{i.e.} \\quad \\forall \\varepsilon > 0, \\quad \\lim_{n \\to \\infty} P_\\theta\\bigl(|\\hat{\\theta}_n - \\theta| > \\varepsilon\\bigr) = 0,\\]
-                        <p>则称 \\(\\hat{\\theta}_n\\) 是 \\(\\theta\\) 的<strong>相合估计量</strong> (consistent estimator)。</p>
+                        <p>then \\(\\hat{\\theta}_n\\) is called a <strong>consistent estimator</strong> (相合估计量) of \\(\\theta\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>相合性是对估计量的最低要求：当数据量足够大时，估计量应该"收敛"到真实参数值。一个不相合的估计量即使拥有无穷多数据，也无法"找到"真参数——这显然不可接受。</p>
+                        <p>Consistency is the minimum requirement for an estimator: when the amount of data is sufficiently large, the estimator should "converge" to the true parameter value. An inconsistent estimator cannot "find" the true parameter even with infinitely many data — this is clearly unacceptable.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 16.2 (相合性的充分条件)</div>
+                    <div class="env-title">Theorem 16.2 (Sufficient Conditions for Consistency)</div>
                     <div class="env-body">
-                        <p>若估计量序列 \\(\\hat{\\theta}_n\\) 满足：</p>
-                        <p>(1) \\(\\lim_{n \\to \\infty} \\operatorname{Bias}(\\hat{\\theta}_n) = \\lim_{n \\to \\infty} [E_\\theta(\\hat{\\theta}_n) - \\theta] = 0\\)；</p>
-                        <p>(2) \\(\\lim_{n \\to \\infty} \\operatorname{Var}_\\theta(\\hat{\\theta}_n) = 0\\)。</p>
-                        <p>则 \\(\\hat{\\theta}_n\\) 是 \\(\\theta\\) 的相合估计量。</p>
+                        <p>If the estimator sequence \\(\\hat{\\theta}_n\\) satisfies:</p>
+                        <p>(1) \\(\\lim_{n \\to \\infty} \\operatorname{Bias}(\\hat{\\theta}_n) = \\lim_{n \\to \\infty} [E_\\theta(\\hat{\\theta}_n) - \\theta] = 0\\);</p>
+                        <p>(2) \\(\\lim_{n \\to \\infty} \\operatorname{Var}_\\theta(\\hat{\\theta}_n) = 0\\).</p>
+                        <p>Then \\(\\hat{\\theta}_n\\) is a consistent estimator of \\(\\theta\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>由 Chebyshev 不等式，对任意 \\(\\varepsilon > 0\\)：</p>
+                        <p>By Chebyshev's inequality, for any \\(\\varepsilon > 0\\):</p>
                         \\[P_\\theta(|\\hat{\\theta}_n - \\theta| > \\varepsilon) = P_\\theta(|\\hat{\\theta}_n - E(\\hat{\\theta}_n) + E(\\hat{\\theta}_n) - \\theta| > \\varepsilon).\\]
-                        <p>令 \\(b_n = E(\\hat{\\theta}_n) - \\theta\\) 为偏差。当 \\(n\\) 足够大时 \\(|b_n| < \\varepsilon/2\\)，于是：</p>
+                        <p>Let \\(b_n = E(\\hat{\\theta}_n) - \\theta\\) be the bias. When \\(n\\) is sufficiently large, \\(|b_n| < \\varepsilon/2\\), so:</p>
                         \\[P_\\theta(|\\hat{\\theta}_n - \\theta| > \\varepsilon) \\le P_\\theta(|\\hat{\\theta}_n - E(\\hat{\\theta}_n)| > \\varepsilon/2) \\le \\frac{\\operatorname{Var}(\\hat{\\theta}_n)}{(\\varepsilon/2)^2} = \\frac{4\\operatorname{Var}(\\hat{\\theta}_n)}{\\varepsilon^2} \\to 0.\\]
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 16.3 (样本均值的相合性)</div>
+                    <div class="env-title">Example 16.3 (Consistency of the Sample Mean)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} (\\mu, \\sigma^2)\\)，则 \\(\\bar{X}_n = \\frac{1}{n}\\sum_{i=1}^n X_i\\) 是 \\(\\mu\\) 的相合估计量。</p>
-                        <p>验证：\\(E(\\bar{X}_n) = \\mu\\)（无偏），\\(\\operatorname{Var}(\\bar{X}_n) = \\sigma^2/n \\to 0\\)。由 Theorem 16.2 即得。</p>
-                        <p>事实上，大数定律给出了更强的结论：\\(\\bar{X}_n \\xrightarrow{\\text{a.s.}} \\mu\\)。</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} (\\mu, \\sigma^2)\\). Then \\(\\bar{X}_n = \\frac{1}{n}\\sum_{i=1}^n X_i\\) is a consistent estimator of \\(\\mu\\).</p>
+                        <p>Verification: \\(E(\\bar{X}_n) = \\mu\\) (unbiased), \\(\\operatorname{Var}(\\bar{X}_n) = \\sigma^2/n \\to 0\\). The result follows from Theorem 16.2.</p>
+                        <p>In fact, the law of large numbers gives an even stronger conclusion: \\(\\bar{X}_n \\xrightarrow{\\text{a.s.}} \\mu\\).</p>
                     </div>
                 </div>
 
-                <h3>MLE 的相合性</h3>
+                <h3>Consistency of MLE MLE的相合性</h3>
 
-                <p>最大似然估计量在什么条件下是相合的？下面的定理给出了经典的回答。其核心思想是：MLE 最大化的是对数似然函数 \\(\\ell_n(\\theta)\\)，而 \\(\\ell_n(\\theta)/n\\) 在大样本下趋近于 KL 散度的负值，后者在真参数处取得唯一最大值。</p>
+                <p>Under what conditions is the maximum likelihood estimator consistent? The following theorem provides the classical answer. The core idea is: the MLE maximizes the log-likelihood function \\(\\ell_n(\\theta)\\), and \\(\\ell_n(\\theta)/n\\) converges in large samples to the negative of the KL divergence, which achieves its unique maximum at the true parameter.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 16.4 (KL 散度 · Kullback-Leibler Divergence)</div>
+                    <div class="env-title">Definition 16.4 (Kullback-Leibler Divergence)</div>
                     <div class="env-body">
-                        <p>设 \\(f\\) 和 \\(g\\) 是两个密度函数，从 \\(f\\) 到 \\(g\\) 的 KL 散度定义为：</p>
+                        <p>Let \\(f\\) and \\(g\\) be two density functions. The KL divergence (KL散度) from \\(f\\) to \\(g\\) is defined as:</p>
                         \\[D_{\\text{KL}}(f \\| g) = E_f\\left[\\log \\frac{f(X)}{g(X)}\\right] = \\int f(x) \\log \\frac{f(x)}{g(x)} \\, dx.\\]
-                        <p>KL 散度满足 \\(D_{\\text{KL}}(f \\| g) \\ge 0\\)，等号成立当且仅当 \\(f = g\\) a.e.（Gibbs 不等式）。</p>
+                        <p>The KL divergence satisfies \\(D_{\\text{KL}}(f \\| g) \\ge 0\\), with equality if and only if \\(f = g\\) a.e. (Gibbs' inequality).</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 16.5 (MLE 的相合性)</div>
+                    <div class="env-title">Theorem 16.5 (Consistency of MLE)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} f(x; \\theta_0)\\)，其中 \\(\\theta_0 \\in \\Theta\\) 为真参数。若满足：</p>
-                        <p>(R1) <strong>可辨识性</strong>：\\(\\theta \\ne \\theta'\\) 蕴含 \\(f(\\cdot; \\theta) \\ne f(\\cdot; \\theta')\\)；</p>
-                        <p>(R2) 参数空间 \\(\\Theta\\) 是紧集（compact）；</p>
-                        <p>(R3) \\(\\log f(x; \\theta)\\) 关于 \\(\\theta\\) 连续；</p>
-                        <p>(R4) \\(E_{\\theta_0}[\\sup_{\\theta \\in \\Theta} |\\log f(X; \\theta)|] < \\infty\\)。</p>
-                        <p>则 MLE \\(\\hat{\\theta}_n \\xrightarrow{P} \\theta_0\\)。</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} f(x; \\theta_0)\\), where \\(\\theta_0 \\in \\Theta\\) is the true parameter. If the following conditions hold:</p>
+                        <p>(R1) <strong>Identifiability (可辨识性)</strong>: \\(\\theta \\ne \\theta'\\) implies \\(f(\\cdot; \\theta) \\ne f(\\cdot; \\theta')\\);</p>
+                        <p>(R2) The parameter space \\(\\Theta\\) is compact (紧集);</p>
+                        <p>(R3) \\(\\log f(x; \\theta)\\) is continuous in \\(\\theta\\);</p>
+                        <p>(R4) \\(E_{\\theta_0}[\\sup_{\\theta \\in \\Theta} |\\log f(X; \\theta)|] < \\infty\\).</p>
+                        <p>Then the MLE satisfies \\(\\hat{\\theta}_n \\xrightarrow{P} \\theta_0\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof (sketch)</div>
                     <div class="env-body">
-                        <p>令 \\(M_n(\\theta) = \\frac{1}{n} \\ell_n(\\theta) = \\frac{1}{n} \\sum_{i=1}^n \\log f(X_i; \\theta)\\) 为归一化对数似然。MLE 满足 \\(\\hat{\\theta}_n = \\arg\\max_{\\theta} M_n(\\theta)\\)。</p>
-                        <p><strong>Step 1.</strong> 由大数定律，对每个 \\(\\theta\\)：</p>
+                        <p>Let \\(M_n(\\theta) = \\frac{1}{n} \\ell_n(\\theta) = \\frac{1}{n} \\sum_{i=1}^n \\log f(X_i; \\theta)\\) be the normalized log-likelihood. The MLE satisfies \\(\\hat{\\theta}_n = \\arg\\max_{\\theta} M_n(\\theta)\\).</p>
+                        <p><strong>Step 1.</strong> By the law of large numbers, for each \\(\\theta\\):</p>
                         \\[M_n(\\theta) \\xrightarrow{P} M(\\theta) := E_{\\theta_0}[\\log f(X; \\theta)].\\]
-                        <p>在条件 (R2)-(R4) 下，收敛是关于 \\(\\theta\\) 一致的（一致大数定律）：\\(\\sup_{\\theta} |M_n(\\theta) - M(\\theta)| \\xrightarrow{P} 0\\)。</p>
-                        <p><strong>Step 2.</strong> 函数 \\(M(\\theta)\\) 在 \\(\\theta_0\\) 处取得唯一最大值。这是因为：</p>
+                        <p>Under conditions (R2)-(R4), the convergence is uniform in \\(\\theta\\) (uniform law of large numbers): \\(\\sup_{\\theta} |M_n(\\theta) - M(\\theta)| \\xrightarrow{P} 0\\).</p>
+                        <p><strong>Step 2.</strong> The function \\(M(\\theta)\\) achieves its unique maximum at \\(\\theta_0\\). This is because:</p>
                         \\[M(\\theta_0) - M(\\theta) = E_{\\theta_0}\\left[\\log \\frac{f(X; \\theta_0)}{f(X; \\theta)}\\right] = D_{\\text{KL}}(f_{\\theta_0} \\| f_\\theta) \\ge 0,\\]
-                        <p>等号成立当且仅当 \\(f_\\theta = f_{\\theta_0}\\) a.e.，由可辨识性 (R1) 知此时 \\(\\theta = \\theta_0\\)。</p>
-                        <p><strong>Step 3.</strong> 由 \\(M\\)-estimator 的一般理论，一致收敛 + 极限函数在 \\(\\theta_0\\) 处取唯一极大值 蕴含 \\(\\hat{\\theta}_n \\xrightarrow{P} \\theta_0\\)。</p>
+                        <p>with equality if and only if \\(f_\\theta = f_{\\theta_0}\\) a.e., which by identifiability (R1) implies \\(\\theta = \\theta_0\\).</p>
+                        <p><strong>Step 3.</strong> By the general theory of \\(M\\)-estimators, uniform convergence plus a unique maximizer of the limit function imply \\(\\hat{\\theta}_n \\xrightarrow{P} \\theta_0\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
@@ -107,7 +107,7 @@ window.CHAPTERS.push({
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>紧性条件 (R2) 可以放松。Wald 给出了用"开集包含 \\(\\theta_0\\)"代替紧性的版本；对非紧参数空间，通常需要 tail 条件来排除估计量"逃逸到无穷"的可能。</p>
+                        <p>The compactness condition (R2) can be relaxed. Wald gave a version that replaces compactness with "an open set containing \\(\\theta_0\\)"; for non-compact parameter spaces, tail conditions are usually needed to rule out the possibility that the estimator "escapes to infinity."</p>
                     </div>
                 </div>
 
@@ -116,8 +116,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'consistency-animation',
-                    title: 'Interactive: 相合性动画 — 估计量的分布随 n 增大而集中',
-                    description: '观察当样本量 n 增大时，MLE 的分布如何集中到真参数值 θ₀ 附近',
+                    title: 'Interactive: Consistency Animation — Estimator Distribution Concentrates as n Grows',
+                    description: 'Observe how the distribution of the MLE concentrates around the true parameter value \u03B8\u2080 as the sample size n increases',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 380,
@@ -192,6 +192,7 @@ window.CHAPTERS.push({
                             viz.screenText('Mean = ' + sampleMean.toFixed(3) + ',  SD = ' + sampleStd.toFixed(3), 280, 50, viz.colors.teal, 12, 'center');
                         }
 
+                        // Slider: sample size index
                         var nSlider = VizEngine.createSlider(controls, 'n index', 0, nValues.length - 1, currentIdx, 1, function(v) {
                             currentIdx = Math.round(v);
                             draw();
@@ -211,144 +212,144 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Uniform}(0, \\theta)\\)。证明 \\(X_{(n)} = \\max_i X_i\\) 是 \\(\\theta\\) 的相合估计量。',
-                    hint: '计算 \\(P(|X_{(n)} - \\theta| > \\varepsilon)\\)。注意 \\(X_{(n)} \\le \\theta\\)，所以 \\(P(\\theta - X_{(n)} > \\varepsilon) = P(X_{(n)} < \\theta - \\varepsilon)\\)。',
-                    solution: '由于 \\(X_{(n)} \\le \\theta\\) a.s.，我们有 \\(P(|X_{(n)} - \\theta| > \\varepsilon) = P(X_{(n)} < \\theta - \\varepsilon)\\)。当 \\(\\varepsilon < \\theta\\) 时，\\(P(X_{(n)} < \\theta - \\varepsilon) = \\left(\\frac{\\theta - \\varepsilon}{\\theta}\\right)^n = \\left(1 - \\frac{\\varepsilon}{\\theta}\\right)^n \\to 0\\)。当 \\(\\varepsilon \\ge \\theta\\) 时概率显然为 0。故 \\(X_{(n)} \\xrightarrow{P} \\theta\\)。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Uniform}(0, \\theta)\\). Prove that \\(X_{(n)} = \\max_i X_i\\) is a consistent estimator of \\(\\theta\\).',
+                    hint: 'Compute \\(P(|X_{(n)} - \\theta| > \\varepsilon)\\). Note that \\(X_{(n)} \\le \\theta\\), so \\(P(\\theta - X_{(n)} > \\varepsilon) = P(X_{(n)} < \\theta - \\varepsilon)\\).',
+                    solution: 'Since \\(X_{(n)} \\le \\theta\\) a.s., we have \\(P(|X_{(n)} - \\theta| > \\varepsilon) = P(X_{(n)} < \\theta - \\varepsilon)\\). When \\(\\varepsilon < \\theta\\), \\(P(X_{(n)} < \\theta - \\varepsilon) = \\left(\\frac{\\theta - \\varepsilon}{\\theta}\\right)^n = \\left(1 - \\frac{\\varepsilon}{\\theta}\\right)^n \\to 0\\). When \\(\\varepsilon \\ge \\theta\\), the probability is trivially 0. Therefore \\(X_{(n)} \\xrightarrow{P} \\theta\\).'
                 },
                 {
-                    question: '给出一个无偏但不相合的估计量的例子。',
-                    hint: '考虑只使用第一个观测值 \\(X_1\\) 的估计量。',
-                    solution: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)，取 \\(\\hat{\\mu}_n = X_1\\)。则 \\(E(\\hat{\\mu}_n) = \\mu\\)（无偏），但 \\(\\operatorname{Var}(\\hat{\\mu}_n) = \\sigma^2\\) 不随 \\(n\\) 趋于 0。因此对任意 \\(\\varepsilon < \\sigma\\)，\\(P(|\\hat{\\mu}_n - \\mu| > \\varepsilon) = P(|Z| > \\varepsilon/\\sigma)\\) 不趋于 0，即 \\(\\hat{\\mu}_n\\) 不相合。'
+                    question: 'Give an example of an unbiased but inconsistent estimator.',
+                    hint: 'Consider an estimator that uses only the first observation \\(X_1\\).',
+                    solution: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\), and take \\(\\hat{\\mu}_n = X_1\\). Then \\(E(\\hat{\\mu}_n) = \\mu\\) (unbiased), but \\(\\operatorname{Var}(\\hat{\\mu}_n) = \\sigma^2\\) does not tend to 0 as \\(n \\to \\infty\\). Therefore for any \\(\\varepsilon < \\sigma\\), \\(P(|\\hat{\\mu}_n - \\mu| > \\varepsilon) = P(|Z| > \\varepsilon/\\sigma)\\) does not tend to 0, so \\(\\hat{\\mu}_n\\) is not consistent.'
                 },
                 {
-                    question: '证明 KL 散度的非负性 (Gibbs 不等式): \\(D_{\\text{KL}}(f \\| g) \\ge 0\\)，等号当且仅当 \\(f = g\\) a.e.',
-                    hint: '利用 Jensen 不等式和 \\(-\\log\\) 的严格凸性。',
-                    solution: '\\(D_{\\text{KL}}(f \\| g) = E_f\\left[-\\log \\frac{g(X)}{f(X)}\\right] \\ge -\\log E_f\\left[\\frac{g(X)}{f(X)}\\right] = -\\log \\int g(x) \\, dx = -\\log 1 = 0\\)。第一个不等号用了 Jensen 不等式（\\(-\\log\\) 为严格凸函数）。等号成立当且仅当 \\(g(X)/f(X)\\) 为常数 a.s.，即 \\(f = g\\) a.e.'
+                    question: 'Prove the non-negativity of KL divergence (Gibbs\\\' inequality): \\(D_{\\text{KL}}(f \\| g) \\ge 0\\), with equality if and only if \\(f = g\\) a.e.',
+                    hint: 'Use Jensen\\\'s inequality and the strict convexity of \\(-\\log\\).',
+                    solution: '\\(D_{\\text{KL}}(f \\| g) = E_f\\left[-\\log \\frac{g(X)}{f(X)}\\right] \\ge -\\log E_f\\left[\\frac{g(X)}{f(X)}\\right] = -\\log \\int g(x) \\, dx = -\\log 1 = 0\\). The first inequality uses Jensen\\\'s inequality (\\(-\\log\\) is strictly convex). Equality holds if and only if \\(g(X)/f(X)\\) is constant a.s., i.e., \\(f = g\\) a.e.'
                 }
             ]
         },
 
         // ============================================================
-        // SECTION 2: MLE的渐近正态性 (Asymptotic Normality of MLE)
+        // SECTION 2: Asymptotic Normality of MLE
         // ============================================================
         {
             id: 'ch16-sec02',
-            title: 'MLE的渐近正态性',
+            title: 'Asymptotic Normality of MLE',
             content: `
-                <h2>MLE的渐近正态性 · Asymptotic Normality of MLE</h2>
+                <h2>Asymptotic Normality of MLE MLE的渐近正态性</h2>
 
-                <p>本节是整个数理统计课程的<strong>核心定理</strong>。我们将完整证明：在正则条件下，最大似然估计量具有渐近正态分布，且其渐近方差达到 Cram&eacute;r-Rao 下界——即 MLE 是渐近有效的。</p>
+                <p>This section contains the <strong>core theorem</strong> of the entire mathematical statistics course. We will give a complete proof that, under regularity conditions, the maximum likelihood estimator has an asymptotic normal distribution, and its asymptotic variance attains the Cram&eacute;r-Rao lower bound — that is, the MLE is asymptotically efficient (渐近有效).</p>
 
-                <h3>正则条件 (Regularity Conditions)</h3>
+                <h3>Regularity Conditions 正则条件</h3>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 16.6 (正则条件)</div>
+                    <div class="env-title">Definition 16.6 (Regularity Conditions)</div>
                     <div class="env-body">
-                        <p>设 \\(\\{f(x; \\theta) : \\theta \\in \\Theta\\}\\) 为参数族，\\(\\Theta \\subset \\mathbb{R}\\) 为开区间。以下条件统称为<strong>正则条件</strong> (regularity conditions)：</p>
-                        <p><strong>(R1) 可辨识性 (Identifiability):</strong> \\(\\theta \\ne \\theta'\\) 蕴含 \\(f(\\cdot; \\theta) \\ne f(\\cdot; \\theta')\\)。</p>
-                        <p><strong>(R2) 支撑不依赖于参数 (Common Support):</strong> 集合 \\(\\{x : f(x; \\theta) > 0\\}\\) 不依赖于 \\(\\theta\\)。</p>
-                        <p><strong>(R3) 三阶光滑性 (Smoothness):</strong> \\(\\log f(x; \\theta)\\) 关于 \\(\\theta\\) 三次可微，且第三阶导数在 \\(\\theta_0\\) 的某邻域内一致可积。</p>
-                        <p><strong>(R4) 正则 Fisher 信息 (Fisher Information):</strong></p>
+                        <p>Let \\(\\{f(x; \\theta) : \\theta \\in \\Theta\\}\\) be a parametric family, with \\(\\Theta \\subset \\mathbb{R}\\) an open interval. The following conditions are collectively called <strong>regularity conditions</strong> (正则条件):</p>
+                        <p><strong>(R1) Identifiability (可辨识性):</strong> \\(\\theta \\ne \\theta'\\) implies \\(f(\\cdot; \\theta) \\ne f(\\cdot; \\theta')\\).</p>
+                        <p><strong>(R2) Common Support (支撑不依赖于参数):</strong> The set \\(\\{x : f(x; \\theta) > 0\\}\\) does not depend on \\(\\theta\\).</p>
+                        <p><strong>(R3) Smoothness (三阶光滑性):</strong> \\(\\log f(x; \\theta)\\) is three times differentiable in \\(\\theta\\), and the third derivative is uniformly integrable in a neighborhood of \\(\\theta_0\\).</p>
+                        <p><strong>(R4) Fisher Information (正则Fisher信息):</strong></p>
                         \\[0 < I(\\theta_0) = E_{\\theta_0}\\left[\\left(\\frac{\\partial}{\\partial \\theta}\\log f(X; \\theta_0)\\right)^2\\right] = -E_{\\theta_0}\\left[\\frac{\\partial^2}{\\partial \\theta^2}\\log f(X; \\theta_0)\\right] < \\infty.\\]
-                        <p><strong>(R5) MLE 存在且相合:</strong> 存在相合的 MLE 序列 \\(\\hat{\\theta}_n \\xrightarrow{P} \\theta_0\\)。</p>
+                        <p><strong>(R5) MLE Existence and Consistency:</strong> There exists a consistent MLE sequence \\(\\hat{\\theta}_n \\xrightarrow{P} \\theta_0\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block warning">
-                    <div class="env-title">Warning: 正则条件不可或缺</div>
+                    <div class="env-title">Warning: Regularity Conditions Are Indispensable</div>
                     <div class="env-body">
-                        <p>条件 (R2) 排除了如 \\(\\text{Uniform}(0, \\theta)\\) 这样支撑依赖于参数的分布。对此类分布，MLE 存在但不具有 \\(\\sqrt{n}\\) 收敛速度——事实上 \\(X_{(n)}\\) 以 \\(n\\) 的速度收敛（即 \\(n(\\theta - X_{(n)}) \\to \\text{Exp}(1)\\)），这是超效率的例子。</p>
+                        <p>Condition (R2) excludes distributions such as \\(\\text{Uniform}(0, \\theta)\\) whose support depends on the parameter. For such distributions, the MLE exists but does not converge at the \\(\\sqrt{n}\\) rate — in fact \\(X_{(n)}\\) converges at rate \\(n\\) (i.e., \\(n(\\theta - X_{(n)}) \\to \\text{Exp}(1)\\)), which is an example of super-efficiency (超效率).</p>
                     </div>
                 </div>
 
-                <h3>主定理：MLE 的渐近正态性</h3>
+                <h3>Main Theorem: Asymptotic Normality of MLE 主定理</h3>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 16.7 (MLE 的渐近正态性)</div>
+                    <div class="env-title">Theorem 16.7 (Asymptotic Normality of MLE)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} f(x; \\theta_0)\\)，正则条件 (R1)-(R5) 成立。则：</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} f(x; \\theta_0)\\), and suppose the regularity conditions (R1)-(R5) hold. Then:</p>
                         \\[\\sqrt{n}\\bigl(\\hat{\\theta}_n - \\theta_0\\bigr) \\xrightarrow{d} N\\!\\left(0, \\frac{1}{I(\\theta_0)}\\right).\\]
-                        <p>等价地，\\(\\hat{\\theta}_n\\) 近似服从 \\(N\\!\\left(\\theta_0, \\dfrac{1}{nI(\\theta_0)}\\right)\\)。</p>
+                        <p>Equivalently, \\(\\hat{\\theta}_n\\) is approximately distributed as \\(N\\!\\left(\\theta_0, \\dfrac{1}{nI(\\theta_0)}\\right)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
-                    <div class="env-title">Proof (完整证明)</div>
+                    <div class="env-title">Proof (complete)</div>
                     <div class="env-body">
-                        <p>这是本课程最重要的证明。我们分四步完成。</p>
+                        <p>This is the most important proof in this course. We proceed in four steps.</p>
 
-                        <p><strong>记号.</strong> 令 \\(\\ell_n(\\theta) = \\sum_{i=1}^n \\log f(X_i; \\theta)\\) 为对数似然函数，\\(\\ell_n'(\\theta), \\ell_n''(\\theta)\\) 分别为关于 \\(\\theta\\) 的一阶和二阶导数。</p>
+                        <p><strong>Notation.</strong> Let \\(\\ell_n(\\theta) = \\sum_{i=1}^n \\log f(X_i; \\theta)\\) be the log-likelihood function, and \\(\\ell_n'(\\theta), \\ell_n''(\\theta)\\) its first and second derivatives with respect to \\(\\theta\\).</p>
 
-                        <p><strong>Step 1: 在真参数处 Taylor 展开 score 函数.</strong></p>
-                        <p>MLE \\(\\hat{\\theta}_n\\) 满足似然方程 \\(\\ell_n'(\\hat{\\theta}_n) = 0\\)（一阶条件）。将 \\(\\ell_n'(\\hat{\\theta}_n)\\) 在 \\(\\theta_0\\) 处 Taylor 展开：</p>
+                        <p><strong>Step 1: Taylor expansion of the score function at the true parameter.</strong></p>
+                        <p>The MLE \\(\\hat{\\theta}_n\\) satisfies the likelihood equation \\(\\ell_n'(\\hat{\\theta}_n) = 0\\) (first-order condition). Expanding \\(\\ell_n'(\\hat{\\theta}_n)\\) in a Taylor series around \\(\\theta_0\\):</p>
                         \\[0 = \\ell_n'(\\hat{\\theta}_n) = \\ell_n'(\\theta_0) + \\ell_n''(\\tilde{\\theta}_n)(\\hat{\\theta}_n - \\theta_0),\\]
-                        <p>其中 \\(\\tilde{\\theta}_n\\) 是 \\(\\hat{\\theta}_n\\) 与 \\(\\theta_0\\) 之间的某个值（由 Taylor 余项中的中值定理保证存在）。</p>
+                        <p>where \\(\\tilde{\\theta}_n\\) is some value between \\(\\hat{\\theta}_n\\) and \\(\\theta_0\\) (guaranteed to exist by the mean value theorem in the Taylor remainder).</p>
 
-                        <p><strong>Step 2: 求解并标准化.</strong></p>
-                        <p>从上式解出：</p>
+                        <p><strong>Step 2: Solve and standardize.</strong></p>
+                        <p>Solving the above equation:</p>
                         \\[\\hat{\\theta}_n - \\theta_0 = -\\frac{\\ell_n'(\\theta_0)}{\\ell_n''(\\tilde{\\theta}_n)}.\\]
-                        <p>两边乘以 \\(\\sqrt{n}\\)：</p>
+                        <p>Multiplying both sides by \\(\\sqrt{n}\\):</p>
                         \\[\\sqrt{n}(\\hat{\\theta}_n - \\theta_0) = -\\frac{\\ell_n'(\\theta_0)/\\sqrt{n}}{\\ell_n''(\\tilde{\\theta}_n)/n} = \\frac{\\frac{1}{\\sqrt{n}}\\ell_n'(\\theta_0)}{-\\frac{1}{n}\\ell_n''(\\tilde{\\theta}_n)}.\\]
 
-                        <p><strong>Step 3: 分析分子 (CLT).</strong></p>
-                        <p>分子为 \\(\\frac{1}{\\sqrt{n}}\\ell_n'(\\theta_0) = \\frac{1}{\\sqrt{n}}\\sum_{i=1}^n \\frac{\\partial}{\\partial\\theta}\\log f(X_i; \\theta_0)\\)。</p>
-                        <p>令 \\(S_i = \\frac{\\partial}{\\partial\\theta}\\log f(X_i; \\theta_0)\\)（score）。则 \\(S_1, S_2, \\ldots\\) 是 iid 随机变量，满足：</p>
-                        <p>(a) \\(E_{\\theta_0}[S_i] = 0\\)（score 的期望为零——这是正则条件下的标准结论）；</p>
-                        <p>(b) \\(\\operatorname{Var}_{\\theta_0}(S_i) = I(\\theta_0)\\)（Fisher 信息的定义）。</p>
-                        <p>由<strong>中心极限定理</strong>：</p>
+                        <p><strong>Step 3: Analyze the numerator (CLT).</strong></p>
+                        <p>The numerator is \\(\\frac{1}{\\sqrt{n}}\\ell_n'(\\theta_0) = \\frac{1}{\\sqrt{n}}\\sum_{i=1}^n \\frac{\\partial}{\\partial\\theta}\\log f(X_i; \\theta_0)\\).</p>
+                        <p>Let \\(S_i = \\frac{\\partial}{\\partial\\theta}\\log f(X_i; \\theta_0)\\) (score). Then \\(S_1, S_2, \\ldots\\) are iid random variables satisfying:</p>
+                        <p>(a) \\(E_{\\theta_0}[S_i] = 0\\) (the expected score is zero — a standard result under regularity conditions);</p>
+                        <p>(b) \\(\\operatorname{Var}_{\\theta_0}(S_i) = I(\\theta_0)\\) (the definition of Fisher information).</p>
+                        <p>By the <strong>Central Limit Theorem</strong>:</p>
                         \\[\\frac{1}{\\sqrt{n}}\\sum_{i=1}^n S_i = \\frac{1}{\\sqrt{n}}\\ell_n'(\\theta_0) \\xrightarrow{d} N(0, I(\\theta_0)). \\quad \\cdots (*)\\]
 
-                        <p><strong>Step 4: 分析分母 (LLN).</strong></p>
-                        <p>分母为 \\(-\\frac{1}{n}\\ell_n''(\\tilde{\\theta}_n)\\)。首先考虑 \\(-\\frac{1}{n}\\ell_n''(\\theta_0) = -\\frac{1}{n}\\sum_{i=1}^n \\frac{\\partial^2}{\\partial\\theta^2}\\log f(X_i; \\theta_0)\\)。</p>
-                        <p>由<strong>大数定律</strong>：</p>
+                        <p><strong>Step 4: Analyze the denominator (LLN).</strong></p>
+                        <p>The denominator is \\(-\\frac{1}{n}\\ell_n''(\\tilde{\\theta}_n)\\). First consider \\(-\\frac{1}{n}\\ell_n''(\\theta_0) = -\\frac{1}{n}\\sum_{i=1}^n \\frac{\\partial^2}{\\partial\\theta^2}\\log f(X_i; \\theta_0)\\).</p>
+                        <p>By the <strong>Law of Large Numbers</strong>:</p>
                         \\[-\\frac{1}{n}\\ell_n''(\\theta_0) \\xrightarrow{P} -E_{\\theta_0}\\left[\\frac{\\partial^2}{\\partial\\theta^2}\\log f(X; \\theta_0)\\right] = I(\\theta_0). \\quad \\cdots (**)\\]
-                        <p>最后一步等号用了 Fisher 信息的第二种表示。</p>
-                        <p>由于 \\(\\hat{\\theta}_n \\xrightarrow{P} \\theta_0\\)（条件 R5），而 \\(\\tilde{\\theta}_n\\) 在 \\(\\hat{\\theta}_n\\) 与 \\(\\theta_0\\) 之间，故 \\(\\tilde{\\theta}_n \\xrightarrow{P} \\theta_0\\)。在正则条件 (R3) 的光滑性下（三阶导数一致有界），可以将 \\((**)\\) 中的 \\(\\theta_0\\) 替换为 \\(\\tilde{\\theta}_n\\)：</p>
+                        <p>The last equality uses the second representation of Fisher information.</p>
+                        <p>Since \\(\\hat{\\theta}_n \\xrightarrow{P} \\theta_0\\) (condition R5), and \\(\\tilde{\\theta}_n\\) lies between \\(\\hat{\\theta}_n\\) and \\(\\theta_0\\), we have \\(\\tilde{\\theta}_n \\xrightarrow{P} \\theta_0\\). Under the smoothness of regularity condition (R3) (uniformly bounded third derivative), we can replace \\(\\theta_0\\) in \\((**)\\) with \\(\\tilde{\\theta}_n\\):</p>
                         \\[-\\frac{1}{n}\\ell_n''(\\tilde{\\theta}_n) \\xrightarrow{P} I(\\theta_0). \\quad \\cdots (***)\\]
 
-                        <p><strong>合并 Steps 3 & 4.</strong> 由 Slutsky 定理，(*) 和 (***) 联合给出：</p>
+                        <p><strong>Combining Steps 3 & 4.</strong> By Slutsky's theorem, (*) and (***) together give:</p>
                         \\[\\sqrt{n}(\\hat{\\theta}_n - \\theta_0) = \\frac{\\frac{1}{\\sqrt{n}}\\ell_n'(\\theta_0)}{-\\frac{1}{n}\\ell_n''(\\tilde{\\theta}_n)} \\xrightarrow{d} \\frac{N(0, I(\\theta_0))}{I(\\theta_0)} = N\\!\\left(0, \\frac{I(\\theta_0)}{I(\\theta_0)^2}\\right) = N\\!\\left(0, \\frac{1}{I(\\theta_0)}\\right).\\]
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
-                    <div class="env-title">Intuition: 证明的三根支柱</div>
+                    <div class="env-title">Intuition: Three Pillars of the Proof</div>
                     <div class="env-body">
-                        <p>这个证明的结构极其优美，本质上依赖三个工具：</p>
-                        <p><strong>1. Taylor 展开</strong>：将非线性问题线性化——这是把 MLE 的一阶条件"翻译"成 score 和 Hessian 的商。</p>
-                        <p><strong>2. 中心极限定理 (CLT)</strong>：score 是 iid 求和，CLT 给出分子的极限分布。</p>
-                        <p><strong>3. 大数定律 (LLN)</strong>：Hessian 是 iid 平均，LLN 让分母收敛到 Fisher 信息。</p>
-                        <p>最后，Slutsky 定理把"分子收敛到正态"和"分母收敛到常数"组合在一起。</p>
+                        <p>The structure of this proof is remarkably elegant, relying essentially on three tools:</p>
+                        <p><strong>1. Taylor Expansion</strong>: Linearizes the nonlinear problem — it "translates" the MLE's first-order condition into a ratio of the score and the Hessian.</p>
+                        <p><strong>2. Central Limit Theorem (CLT)</strong>: The score is an iid sum, and the CLT gives the limiting distribution of the numerator.</p>
+                        <p><strong>3. Law of Large Numbers (LLN)</strong>: The Hessian is an iid average, and the LLN makes the denominator converge to the Fisher information.</p>
+                        <p>Finally, Slutsky's theorem combines "numerator converges to normal" and "denominator converges to a constant."</p>
                     </div>
                 </div>
 
-                <h3>渐近效率</h3>
+                <h3>Asymptotic Efficiency 渐近效率</h3>
 
                 <div class="env-block corollary">
-                    <div class="env-title">Corollary 16.8 (MLE 的渐近效率 · Asymptotic Efficiency)</div>
+                    <div class="env-title">Corollary 16.8 (Asymptotic Efficiency of MLE)</div>
                     <div class="env-body">
-                        <p>在正则条件下，MLE 的渐近方差为 \\(1/[nI(\\theta_0)]\\)，恰好等于 Cram&eacute;r-Rao 下界。因此 MLE 是<strong>渐近有效的</strong> (asymptotically efficient)：在所有渐近正态的正则估计量中，MLE 的渐近方差最小。</p>
+                        <p>Under regularity conditions, the asymptotic variance of the MLE is \\(1/[nI(\\theta_0)]\\), which is exactly the Cram&eacute;r-Rao lower bound. Therefore the MLE is <strong>asymptotically efficient</strong> (渐近有效): among all asymptotically normal regular estimators, the MLE has the smallest asymptotic variance.</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 16.9 (Bernoulli MLE 的渐近分布)</div>
+                    <div class="env-title">Example 16.9 (Asymptotic Distribution of Bernoulli MLE)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Bernoulli}(p)\\)。</p>
-                        <p>MLE: \\(\\hat{p} = \\bar{X}\\)。Fisher 信息: \\(I(p) = \\frac{1}{p(1-p)}\\)。</p>
-                        <p>由 Theorem 16.7:</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Bernoulli}(p)\\).</p>
+                        <p>MLE: \\(\\hat{p} = \\bar{X}\\). Fisher information: \\(I(p) = \\frac{1}{p(1-p)}\\).</p>
+                        <p>By Theorem 16.7:</p>
                         \\[\\sqrt{n}(\\hat{p} - p) \\xrightarrow{d} N\\!\\left(0, p(1-p)\\right).\\]
-                        <p>即 \\(\\hat{p} \\approx N\\!\\left(p, \\dfrac{p(1-p)}{n}\\right)\\)，这正是我们熟知的二项比例的正态近似。</p>
+                        <p>That is, \\(\\hat{p} \\approx N\\!\\left(p, \\dfrac{p(1-p)}{n}\\right)\\), which is precisely the familiar normal approximation for the binomial proportion.</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 16.10 (Poisson MLE 的渐近分布)</div>
+                    <div class="env-title">Example 16.10 (Asymptotic Distribution of Poisson MLE)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Poisson}(\\lambda)\\)。</p>
-                        <p>MLE: \\(\\hat{\\lambda} = \\bar{X}\\)。Fisher 信息: \\(I(\\lambda) = 1/\\lambda\\)。</p>
-                        <p>由 Theorem 16.7:</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Poisson}(\\lambda)\\).</p>
+                        <p>MLE: \\(\\hat{\\lambda} = \\bar{X}\\). Fisher information: \\(I(\\lambda) = 1/\\lambda\\).</p>
+                        <p>By Theorem 16.7:</p>
                         \\[\\sqrt{n}(\\hat{\\lambda} - \\lambda) \\xrightarrow{d} N(0, \\lambda).\\]
                     </div>
                 </div>
@@ -358,8 +359,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'mle-asymptotic-normality',
-                    title: 'Interactive: MLE 渐近正态性 — √n(θ̂ - θ₀) 的分布',
-                    description: '选择不同的分布族和样本量 n，观察 √n(θ̂ₘₗₑ - θ₀) 的直方图如何收敛到 N(0, 1/I(θ₀))',
+                    title: 'Interactive: MLE Asymptotic Normality — Distribution of \u221An(\u03B8\u0302 - \u03B8\u2080)',
+                    description: 'Choose different distribution families and sample sizes n, and observe how the histogram of \u221An(\u03B8\u0302_MLE - \u03B8\u2080) converges to N(0, 1/I(\u03B8\u2080))',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 600, height: 400,
@@ -498,38 +499,38 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Exp}(\\lambda)\\)，密度 \\(f(x; \\lambda) = \\lambda e^{-\\lambda x}\\)。求 MLE 及其渐近分布。',
-                    hint: '先求 Fisher 信息 \\(I(\\lambda) = -E[\\ell\'\'(\\lambda)]\\)，其中 \\(\\ell(\\lambda) = n\\log\\lambda - \\lambda \\sum X_i\\)。',
-                    solution: 'MLE: \\(\\hat{\\lambda} = 1/\\bar{X}\\)。Score: \\(\\ell\'(\\lambda) = n/\\lambda - \\sum X_i\\)。二阶导: \\(\\ell\'\'(\\lambda) = -n/\\lambda^2\\)。Fisher 信息: \\(I(\\lambda) = 1/\\lambda^2\\)。由 Theorem 16.7: \\(\\sqrt{n}(\\hat{\\lambda} - \\lambda) \\xrightarrow{d} N(0, \\lambda^2)\\)。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Exp}(\\lambda)\\) with density \\(f(x; \\lambda) = \\lambda e^{-\\lambda x}\\). Find the MLE and its asymptotic distribution.',
+                    hint: 'First compute the Fisher information \\(I(\\lambda) = -E[\\ell\'\'(\\lambda)]\\), where \\(\\ell(\\lambda) = n\\log\\lambda - \\lambda \\sum X_i\\).',
+                    solution: 'MLE: \\(\\hat{\\lambda} = 1/\\bar{X}\\). Score: \\(\\ell\'(\\lambda) = n/\\lambda - \\sum X_i\\). Second derivative: \\(\\ell\'\'(\\lambda) = -n/\\lambda^2\\). Fisher information: \\(I(\\lambda) = 1/\\lambda^2\\). By Theorem 16.7: \\(\\sqrt{n}(\\hat{\\lambda} - \\lambda) \\xrightarrow{d} N(0, \\lambda^2)\\).'
                 },
                 {
-                    question: '在 MLE 渐近正态性的证明中，为什么需要条件 (R2) "支撑不依赖于参数"？给出一个反例说明违反此条件时结论不成立。',
-                    hint: '考虑 \\(\\text{Uniform}(0, \\theta)\\) 的 MLE。',
-                    solution: '对 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Uniform}(0, \\theta)\\)，MLE 为 \\(\\hat{\\theta}_n = X_{(n)}\\)。可以证明 \\(n(\\theta - \\hat{\\theta}_n) \\xrightarrow{d} \\text{Exp}(1/\\theta)\\)。收敛速度为 \\(n\\) 而非 \\(\\sqrt{n}\\)，极限分布为指数分布而非正态分布。这是因为支撑 \\([0, \\theta]\\) 依赖于参数，违反了 (R2)，导致对数似然在边界处不可微。'
+                    question: 'In the proof of asymptotic normality of the MLE, why is condition (R2) "common support" needed? Give a counterexample showing the conclusion fails when this condition is violated.',
+                    hint: 'Consider the MLE for \\(\\text{Uniform}(0, \\theta)\\).',
+                    solution: 'For \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Uniform}(0, \\theta)\\), the MLE is \\(\\hat{\\theta}_n = X_{(n)}\\). One can show that \\(n(\\theta - \\hat{\\theta}_n) \\xrightarrow{d} \\text{Exp}(1/\\theta)\\). The convergence rate is \\(n\\) rather than \\(\\sqrt{n}\\), and the limit distribution is exponential rather than normal. This is because the support \\([0, \\theta]\\) depends on the parameter, violating (R2), which causes the log-likelihood to be non-differentiable at the boundary.'
                 },
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)，其中 \\(\\sigma^2\\) 已知。验证 MLE \\(\\hat{\\mu} = \\bar{X}\\) 的精确分布 \\(N(\\mu, \\sigma^2/n)\\) 与渐近分布 \\(N(\\mu, 1/(nI(\\mu)))\\) 完全一致。',
-                    hint: '计算正态分布关于 \\(\\mu\\) 的 Fisher 信息。',
-                    solution: '\\(\\log f(x; \\mu) = -\\frac{1}{2}\\log(2\\pi\\sigma^2) - \\frac{(x-\\mu)^2}{2\\sigma^2}\\)。\\(\\frac{\\partial}{\\partial\\mu}\\log f = \\frac{x-\\mu}{\\sigma^2}\\)，\\(\\frac{\\partial^2}{\\partial\\mu^2}\\log f = -\\frac{1}{\\sigma^2}\\)。于是 \\(I(\\mu) = 1/\\sigma^2\\)。渐近方差 \\(1/(nI(\\mu)) = \\sigma^2/n\\)，恰好等于精确方差。正态分布是渐近近似恰好等于精确分布的少有例子之一。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\) with \\(\\sigma^2\\) known. Verify that the exact distribution of the MLE \\(\\hat{\\mu} = \\bar{X}\\), namely \\(N(\\mu, \\sigma^2/n)\\), coincides exactly with its asymptotic distribution \\(N(\\mu, 1/(nI(\\mu)))\\).',
+                    hint: 'Compute the Fisher information of the normal distribution with respect to \\(\\mu\\).',
+                    solution: '\\(\\log f(x; \\mu) = -\\frac{1}{2}\\log(2\\pi\\sigma^2) - \\frac{(x-\\mu)^2}{2\\sigma^2}\\). \\(\\frac{\\partial}{\\partial\\mu}\\log f = \\frac{x-\\mu}{\\sigma^2}\\), \\(\\frac{\\partial^2}{\\partial\\mu^2}\\log f = -\\frac{1}{\\sigma^2}\\). Thus \\(I(\\mu) = 1/\\sigma^2\\). The asymptotic variance \\(1/(nI(\\mu)) = \\sigma^2/n\\), which is exactly the exact variance. The normal distribution is one of the rare cases where the asymptotic approximation coincides exactly with the exact distribution.'
                 }
             ]
         },
 
         // ============================================================
-        // SECTION 3: Delta方法 (The Delta Method)
+        // SECTION 3: The Delta Method
         // ============================================================
         {
             id: 'ch16-sec03',
-            title: 'Delta方法',
+            title: 'The Delta Method',
             content: `
-                <h2>Delta方法 · The Delta Method</h2>
+                <h2>The Delta Method Delta方法</h2>
 
-                <p>MLE 的渐近正态性告诉我们 \\(\\hat{\\theta}_n\\) 近似服从正态分布。但在实际中，我们往往关心的是参数的某个<strong>变换</strong> \\(g(\\theta)\\)——例如，我们估计了 \\(\\lambda\\)，但想要 \\(1/\\lambda\\)（均值）或 \\(\\log\\lambda\\) 的渐近分布。Delta 方法正是为此而生。</p>
+                <p>The asymptotic normality of the MLE tells us that \\(\\hat{\\theta}_n\\) is approximately normally distributed. However, in practice we often care about some <strong>transformation</strong> \\(g(\\theta)\\) of the parameter — for example, having estimated \\(\\lambda\\), we may want the asymptotic distribution of \\(1/\\lambda\\) (the mean) or \\(\\log\\lambda\\). The Delta method (Delta方法) is precisely designed for this purpose.</p>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 16.11 (Delta 方法 · Delta Method)</div>
+                    <div class="env-title">Theorem 16.11 (Delta Method)</div>
                     <div class="env-body">
-                        <p>设 \\(\\sqrt{n}(X_n - \\mu) \\xrightarrow{d} N(0, \\sigma^2)\\)。若函数 \\(g\\) 在 \\(\\mu\\) 处可微且 \\(g'(\\mu) \\ne 0\\)，则：</p>
+                        <p>Suppose \\(\\sqrt{n}(X_n - \\mu) \\xrightarrow{d} N(0, \\sigma^2)\\). If the function \\(g\\) is differentiable at \\(\\mu\\) with \\(g'(\\mu) \\ne 0\\), then:</p>
                         \\[\\sqrt{n}\\bigl(g(X_n) - g(\\mu)\\bigr) \\xrightarrow{d} N\\!\\left(0, \\sigma^2 [g'(\\mu)]^2\\right).\\]
                     </div>
                 </div>
@@ -537,34 +538,34 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>将 \\(g(X_n)\\) 在 \\(\\mu\\) 处 Taylor 展开：</p>
+                        <p>Expand \\(g(X_n)\\) in a Taylor series around \\(\\mu\\):</p>
                         \\[g(X_n) = g(\\mu) + g'(\\mu)(X_n - \\mu) + \\frac{1}{2}g''(\\xi_n)(X_n - \\mu)^2,\\]
-                        <p>其中 \\(\\xi_n\\) 在 \\(X_n\\) 与 \\(\\mu\\) 之间。于是：</p>
+                        <p>where \\(\\xi_n\\) lies between \\(X_n\\) and \\(\\mu\\). Therefore:</p>
                         \\[\\sqrt{n}(g(X_n) - g(\\mu)) = g'(\\mu) \\cdot \\sqrt{n}(X_n - \\mu) + \\frac{1}{2}g''(\\xi_n) \\cdot \\sqrt{n}(X_n - \\mu)^2.\\]
-                        <p>因为 \\(\\sqrt{n}(X_n - \\mu) = O_P(1)\\)，所以 \\((X_n - \\mu) = O_P(1/\\sqrt{n})\\)，从而：</p>
+                        <p>Since \\(\\sqrt{n}(X_n - \\mu) = O_P(1)\\), we have \\((X_n - \\mu) = O_P(1/\\sqrt{n})\\), and thus:</p>
                         \\[\\sqrt{n}(X_n - \\mu)^2 = \\frac{[\\sqrt{n}(X_n - \\mu)]^2}{\\sqrt{n}} = \\frac{O_P(1)}{\\sqrt{n}} \\xrightarrow{P} 0.\\]
-                        <p>余项消失，由 Slutsky 定理：</p>
+                        <p>The remainder vanishes, and by Slutsky's theorem:</p>
                         \\[\\sqrt{n}(g(X_n) - g(\\mu)) = g'(\\mu) \\cdot \\sqrt{n}(X_n - \\mu) + o_P(1) \\xrightarrow{d} g'(\\mu) \\cdot N(0, \\sigma^2) = N(0, \\sigma^2[g'(\\mu)]^2).\\]
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 16.12 (指数分布均值的渐近分布)</div>
+                    <div class="env-title">Example 16.12 (Asymptotic Distribution of the Exponential Mean)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Exp}(\\lambda)\\)，MLE 为 \\(\\hat{\\lambda} = 1/\\bar{X}\\)。我们知道 \\(\\sqrt{n}(\\hat{\\lambda} - \\lambda) \\xrightarrow{d} N(0, \\lambda^2)\\)。</p>
-                        <p>均值参数为 \\(\\mu = g(\\lambda) = 1/\\lambda\\)，\\(g'(\\lambda) = -1/\\lambda^2\\)。由 Delta 方法：</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Exp}(\\lambda)\\), with MLE \\(\\hat{\\lambda} = 1/\\bar{X}\\). We know \\(\\sqrt{n}(\\hat{\\lambda} - \\lambda) \\xrightarrow{d} N(0, \\lambda^2)\\).</p>
+                        <p>The mean parameter is \\(\\mu = g(\\lambda) = 1/\\lambda\\), with \\(g'(\\lambda) = -1/\\lambda^2\\). By the Delta method:</p>
                         \\[\\sqrt{n}(\\bar{X} - 1/\\lambda) \\xrightarrow{d} N\\!\\left(0, \\lambda^2 \\cdot \\frac{1}{\\lambda^4}\\right) = N\\!\\left(0, \\frac{1}{\\lambda^2}\\right).\\]
-                        <p>即 \\(\\bar{X} \\approx N(1/\\lambda, 1/(n\\lambda^2))\\)。当然这也可以直接由 CLT 得到（因为 \\(\\bar{X}\\) 本身就是样本均值），但 Delta 方法的价值在于可以处理更复杂的变换。</p>
+                        <p>That is, \\(\\bar{X} \\approx N(1/\\lambda, 1/(n\\lambda^2))\\). Of course this can also be obtained directly from the CLT (since \\(\\bar{X}\\) is itself a sample mean), but the value of the Delta method lies in handling more complex transformations.</p>
                     </div>
                 </div>
 
-                <h3>二阶 Delta 方法</h3>
+                <h3>Second-Order Delta Method 二阶Delta方法</h3>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 16.13 (二阶 Delta 方法)</div>
+                    <div class="env-title">Theorem 16.13 (Second-Order Delta Method)</div>
                     <div class="env-body">
-                        <p>设 \\(\\sqrt{n}(X_n - \\mu) \\xrightarrow{d} N(0, \\sigma^2)\\)，且 \\(g'(\\mu) = 0\\) 但 \\(g''(\\mu) \\ne 0\\)。则：</p>
+                        <p>Suppose \\(\\sqrt{n}(X_n - \\mu) \\xrightarrow{d} N(0, \\sigma^2)\\), and \\(g'(\\mu) = 0\\) but \\(g''(\\mu) \\ne 0\\). Then:</p>
                         \\[n\\bigl(g(X_n) - g(\\mu)\\bigr) \\xrightarrow{d} \\frac{\\sigma^2 g''(\\mu)}{2} \\chi^2_1.\\]
                     </div>
                 </div>
@@ -572,31 +573,31 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>由 Taylor 展开（\\(g'(\\mu) = 0\\)）：</p>
+                        <p>By Taylor expansion (with \\(g'(\\mu) = 0\\)):</p>
                         \\[g(X_n) - g(\\mu) = \\frac{g''(\\mu)}{2}(X_n - \\mu)^2 + o((X_n - \\mu)^2).\\]
-                        <p>乘以 \\(n\\)：</p>
+                        <p>Multiplying by \\(n\\):</p>
                         \\[n(g(X_n) - g(\\mu)) = \\frac{g''(\\mu)}{2} [\\sqrt{n}(X_n - \\mu)]^2 + o_P(1).\\]
-                        <p>由连续映射定理，\\([\\sqrt{n}(X_n - \\mu)]^2 \\xrightarrow{d} \\sigma^2 \\chi^2_1\\)，故 \\(n(g(X_n) - g(\\mu)) \\xrightarrow{d} \\frac{\\sigma^2 g''(\\mu)}{2} \\chi^2_1\\)。</p>
+                        <p>By the continuous mapping theorem, \\([\\sqrt{n}(X_n - \\mu)]^2 \\xrightarrow{d} \\sigma^2 \\chi^2_1\\), so \\(n(g(X_n) - g(\\mu)) \\xrightarrow{d} \\frac{\\sigma^2 g''(\\mu)}{2} \\chi^2_1\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
-                <h3>多元 Delta 方法</h3>
+                <h3>Multivariate Delta Method 多元Delta方法</h3>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 16.14 (多元 Delta 方法 · Multivariate Delta Method)</div>
+                    <div class="env-title">Theorem 16.14 (Multivariate Delta Method)</div>
                     <div class="env-body">
-                        <p>设 \\(\\sqrt{n}(\\mathbf{X}_n - \\boldsymbol{\\mu}) \\xrightarrow{d} N(\\mathbf{0}, \\boldsymbol{\\Sigma})\\)，其中 \\(\\mathbf{X}_n \\in \\mathbb{R}^k\\)。若 \\(g: \\mathbb{R}^k \\to \\mathbb{R}\\) 在 \\(\\boldsymbol{\\mu}\\) 处可微，梯度 \\(\\nabla g(\\boldsymbol{\\mu}) \\ne \\mathbf{0}\\)，则：</p>
+                        <p>Suppose \\(\\sqrt{n}(\\mathbf{X}_n - \\boldsymbol{\\mu}) \\xrightarrow{d} N(\\mathbf{0}, \\boldsymbol{\\Sigma})\\), where \\(\\mathbf{X}_n \\in \\mathbb{R}^k\\). If \\(g: \\mathbb{R}^k \\to \\mathbb{R}\\) is differentiable at \\(\\boldsymbol{\\mu}\\) with gradient \\(\\nabla g(\\boldsymbol{\\mu}) \\ne \\mathbf{0}\\), then:</p>
                         \\[\\sqrt{n}(g(\\mathbf{X}_n) - g(\\boldsymbol{\\mu})) \\xrightarrow{d} N\\!\\left(0, \\nabla g(\\boldsymbol{\\mu})^T \\boldsymbol{\\Sigma} \\, \\nabla g(\\boldsymbol{\\mu})\\right).\\]
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 16.15 (比率的渐近分布)</div>
+                    <div class="env-title">Example 16.15 (Asymptotic Distribution of a Ratio)</div>
                     <div class="env-body">
-                        <p>设 \\(\\bar{X}_n \\xrightarrow{P} \\mu_X\\)，\\(\\bar{Y}_n \\xrightarrow{P} \\mu_Y \\ne 0\\)，且</p>
+                        <p>Let \\(\\bar{X}_n \\xrightarrow{P} \\mu_X\\), \\(\\bar{Y}_n \\xrightarrow{P} \\mu_Y \\ne 0\\), and</p>
                         \\[\\sqrt{n}\\begin{pmatrix} \\bar{X}_n - \\mu_X \\\\ \\bar{Y}_n - \\mu_Y \\end{pmatrix} \\xrightarrow{d} N\\!\\left(\\mathbf{0}, \\begin{pmatrix} \\sigma_X^2 & \\sigma_{XY} \\\\ \\sigma_{XY} & \\sigma_Y^2 \\end{pmatrix}\\right).\\]
-                        <p>取 \\(g(x, y) = x/y\\)，\\(\\nabla g = (1/\\mu_Y, -\\mu_X/\\mu_Y^2)^T\\)。由多元 Delta 方法：</p>
+                        <p>Taking \\(g(x, y) = x/y\\), \\(\\nabla g = (1/\\mu_Y, -\\mu_X/\\mu_Y^2)^T\\). By the multivariate Delta method:</p>
                         \\[\\sqrt{n}\\left(\\frac{\\bar{X}_n}{\\bar{Y}_n} - \\frac{\\mu_X}{\\mu_Y}\\right) \\xrightarrow{d} N\\!\\left(0, \\frac{\\sigma_X^2}{\\mu_Y^2} - \\frac{2\\mu_X \\sigma_{XY}}{\\mu_Y^3} + \\frac{\\mu_X^2 \\sigma_Y^2}{\\mu_Y^4}\\right).\\]
                     </div>
                 </div>
@@ -606,8 +607,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'delta-method-viz',
-                    title: 'Interactive: Delta 方法可视化',
-                    description: '选择变换 g(x)，观察渐近分布如何被变换函数的导数所"缩放"',
+                    title: 'Interactive: Delta Method Visualization',
+                    description: 'Choose a transformation g(x) and observe how the asymptotic distribution is "scaled" by the derivative of the transformation function',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 600, height: 420,
@@ -726,40 +727,40 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Bernoulli}(p)\\)。利用 Delta 方法求 \\(\\log\\frac{p}{1-p}\\)（log-odds）的渐近分布。',
-                    hint: '先写出 \\(\\bar{X}\\) 的渐近分布，然后取 \\(g(x) = \\log\\frac{x}{1-x}\\)，计算 \\(g\'(p)\\)。',
-                    solution: '\\(\\sqrt{n}(\\bar{X} - p) \\xrightarrow{d} N(0, p(1-p))\\)。取 \\(g(x) = \\log(x/(1-x))\\)，则 \\(g\'(x) = 1/(x(1-x))\\)，于是 \\(g\'(p) = 1/(p(1-p))\\)。由 Delta 方法: \\(\\sqrt{n}\\left(\\log\\frac{\\hat{p}}{1-\\hat{p}} - \\log\\frac{p}{1-p}\\right) \\xrightarrow{d} N\\left(0, \\frac{p(1-p)}{p^2(1-p)^2}\\right) = N\\left(0, \\frac{1}{p(1-p)}\\right)\\)。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Bernoulli}(p)\\). Use the Delta method to find the asymptotic distribution of \\(\\log\\frac{p}{1-p}\\) (log-odds).',
+                    hint: 'First write down the asymptotic distribution of \\(\\bar{X}\\), then take \\(g(x) = \\log\\frac{x}{1-x}\\) and compute \\(g\'(p)\\).',
+                    solution: '\\(\\sqrt{n}(\\bar{X} - p) \\xrightarrow{d} N(0, p(1-p))\\). Take \\(g(x) = \\log(x/(1-x))\\), then \\(g\'(x) = 1/(x(1-x))\\), so \\(g\'(p) = 1/(p(1-p))\\). By the Delta method: \\(\\sqrt{n}\\left(\\log\\frac{\\hat{p}}{1-\\hat{p}} - \\log\\frac{p}{1-p}\\right) \\xrightarrow{d} N\\left(0, \\frac{p(1-p)}{p^2(1-p)^2}\\right) = N\\left(0, \\frac{1}{p(1-p)}\\right)\\).'
                 },
                 {
-                    question: '设 \\(\\sqrt{n}(\\hat{\\sigma}^2 - \\sigma^2) \\xrightarrow{d} N(0, 2\\sigma^4)\\)（正态分布下样本方差的渐近分布）。利用 Delta 方法求 \\(\\hat{\\sigma} = \\sqrt{\\hat{\\sigma}^2}\\) 的渐近分布。',
-                    hint: '取 \\(g(x) = \\sqrt{x}\\)，则 \\(g\'(x) = 1/(2\\sqrt{x})\\)。',
-                    solution: '取 \\(g(x) = \\sqrt{x}\\)，\\(g\'(\\sigma^2) = \\frac{1}{2\\sigma}\\)。由 Delta 方法: \\(\\sqrt{n}(\\hat{\\sigma} - \\sigma) \\xrightarrow{d} N\\left(0, 2\\sigma^4 \\cdot \\frac{1}{4\\sigma^2}\\right) = N\\left(0, \\frac{\\sigma^2}{2}\\right)\\)。'
+                    question: 'Suppose \\(\\sqrt{n}(\\hat{\\sigma}^2 - \\sigma^2) \\xrightarrow{d} N(0, 2\\sigma^4)\\) (asymptotic distribution of the sample variance under normality). Use the Delta method to find the asymptotic distribution of \\(\\hat{\\sigma} = \\sqrt{\\hat{\\sigma}^2}\\).',
+                    hint: 'Take \\(g(x) = \\sqrt{x}\\), so \\(g\'(x) = 1/(2\\sqrt{x})\\).',
+                    solution: 'Take \\(g(x) = \\sqrt{x}\\), \\(g\'(\\sigma^2) = \\frac{1}{2\\sigma}\\). By the Delta method: \\(\\sqrt{n}(\\hat{\\sigma} - \\sigma) \\xrightarrow{d} N\\left(0, 2\\sigma^4 \\cdot \\frac{1}{4\\sigma^2}\\right) = N\\left(0, \\frac{\\sigma^2}{2}\\right)\\).'
                 },
                 {
-                    question: '证明 Theorem 16.13（二阶 Delta 方法）的完整细节。特别说明为什么收敛速度变为 \\(n\\) 而非 \\(\\sqrt{n}\\)。',
-                    hint: '当 \\(g\'(\\mu) = 0\\) 时，一阶项消失，二阶项主导。利用连续映射定理处理 \\([\\sqrt{n}(X_n - \\mu)]^2\\)。',
-                    solution: 'Taylor 展开到二阶: \\(g(X_n) - g(\\mu) = \\frac{g\'\'(\\mu)}{2}(X_n - \\mu)^2 + o((X_n - \\mu)^2)\\)（因为 \\(g\'(\\mu) = 0\\)）。乘以 \\(n\\): \\(n(g(X_n) - g(\\mu)) = \\frac{g\'\'(\\mu)}{2}[\\sqrt{n}(X_n - \\mu)]^2 + o_P(1)\\)。由假设 \\(\\sqrt{n}(X_n - \\mu) \\xrightarrow{d} Z \\sim N(0, \\sigma^2)\\)，由连续映射定理 \\(Z^2 \\sim \\sigma^2 \\chi^2_1\\)，故 \\(n(g(X_n) - g(\\mu)) \\xrightarrow{d} \\frac{\\sigma^2 g\'\'(\\mu)}{2} \\chi^2_1\\)。收敛速度为 \\(n\\) 因为 \\(g\\) 在 \\(\\mu\\) 处的一阶导为零，变换在该点"平坦"，需要二阶信息才能看到变化。'
+                    question: 'Prove Theorem 16.13 (second-order Delta method) in full detail. In particular, explain why the convergence rate becomes \\(n\\) instead of \\(\\sqrt{n}\\).',
+                    hint: 'When \\(g\'(\\mu) = 0\\), the first-order term vanishes and the second-order term dominates. Use the continuous mapping theorem to handle \\([\\sqrt{n}(X_n - \\mu)]^2\\).',
+                    solution: 'Taylor expand to second order: \\(g(X_n) - g(\\mu) = \\frac{g\'\'(\\mu)}{2}(X_n - \\mu)^2 + o((X_n - \\mu)^2)\\) (since \\(g\'(\\mu) = 0\\)). Multiply by \\(n\\): \\(n(g(X_n) - g(\\mu)) = \\frac{g\'\'(\\mu)}{2}[\\sqrt{n}(X_n - \\mu)]^2 + o_P(1)\\). By assumption \\(\\sqrt{n}(X_n - \\mu) \\xrightarrow{d} Z \\sim N(0, \\sigma^2)\\). By the continuous mapping theorem \\(Z^2 \\sim \\sigma^2 \\chi^2_1\\), so \\(n(g(X_n) - g(\\mu)) \\xrightarrow{d} \\frac{\\sigma^2 g\'\'(\\mu)}{2} \\chi^2_1\\). The convergence rate is \\(n\\) because the first derivative of \\(g\\) at \\(\\mu\\) is zero, making the transformation "flat" at that point, so second-order information is needed to detect the change.'
                 }
             ]
         },
 
         // ============================================================
-        // SECTION 4: 渐近相对效率 (Asymptotic Relative Efficiency)
+        // SECTION 4: Asymptotic Relative Efficiency
         // ============================================================
         {
             id: 'ch16-sec04',
-            title: '渐近相对效率',
+            title: 'Asymptotic Relative Efficiency',
             content: `
-                <h2>渐近相对效率 · Asymptotic Relative Efficiency</h2>
+                <h2>Asymptotic Relative Efficiency 渐近相对效率</h2>
 
-                <p>我们已经知道 MLE 是渐近有效的。但如何比较两个不同的估计量？如果估计量 A 的渐近方差小于估计量 B，那么 A"在大样本下更好"。<strong>渐近相对效率</strong> (ARE) 精确量化了这种比较。</p>
+                <p>We already know that the MLE is asymptotically efficient. But how do we compare two different estimators? If estimator A has a smaller asymptotic variance than estimator B, then A is "better in large samples." <strong>Asymptotic relative efficiency</strong> (ARE, 渐近相对效率) precisely quantifies this comparison.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 16.16 (渐近相对效率 · Asymptotic Relative Efficiency)</div>
+                    <div class="env-title">Definition 16.16 (Asymptotic Relative Efficiency)</div>
                     <div class="env-body">
-                        <p>设 \\(T_n\\) 和 \\(U_n\\) 是参数 \\(\\theta\\) 的两个渐近正态估计量：</p>
+                        <p>Let \\(T_n\\) and \\(U_n\\) be two asymptotically normal estimators of \\(\\theta\\):</p>
                         \\[\\sqrt{n}(T_n - \\theta) \\xrightarrow{d} N(0, v_T(\\theta)), \\quad \\sqrt{n}(U_n - \\theta) \\xrightarrow{d} N(0, v_U(\\theta)).\\]
-                        <p>\\(U_n\\) 相对于 \\(T_n\\) 的<strong>渐近相对效率</strong>定义为：</p>
+                        <p>The <strong>asymptotic relative efficiency</strong> of \\(U_n\\) relative to \\(T_n\\) is defined as:</p>
                         \\[\\text{ARE}(U_n, T_n) = \\frac{v_T(\\theta)}{v_U(\\theta)}.\\]
                     </div>
                 </div>
@@ -767,17 +768,17 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>ARE 的直观解释：若 \\(\\text{ARE}(U, T) = 2\\)，意味着用 \\(T\\) 达到与 \\(U\\) 相同的精度，需要大约 2 倍的样本量。换言之，\\(U\\) "更有效"，因为它用更少的数据就能达到同样的估计精度。</p>
-                        <p>更精确地说：若 \\(\\text{ARE}(U, T) = c\\)，则 \\(T\\) 基于 \\(n\\) 个样本的渐近精度，\\(U\\) 只需约 \\(n/c\\) 个样本即可达到。</p>
+                        <p>The intuitive interpretation of ARE: if \\(\\text{ARE}(U, T) = 2\\), it means that for \\(T\\) to achieve the same precision as \\(U\\), approximately twice the sample size is needed. In other words, \\(U\\) is "more efficient" because it achieves the same estimation precision with less data.</p>
+                        <p>More precisely: if \\(\\text{ARE}(U, T) = c\\), then the asymptotic precision of \\(T\\) based on \\(n\\) samples can be achieved by \\(U\\) with only about \\(n/c\\) samples.</p>
                     </div>
                 </div>
 
-                <h3>经典例子：样本均值 vs. 样本中位数</h3>
+                <h3>Classical Example: Sample Mean vs. Sample Median 样本均值与样本中位数</h3>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 16.17 (正态分布下样本中位数的渐近分布)</div>
+                    <div class="env-title">Theorem 16.17 (Asymptotic Distribution of the Sample Median under Normality)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} f\\)，其中 \\(f\\) 是关于 \\(\\mu\\) 对称的连续密度。设 \\(M_n\\) 为样本中位数。则：</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} f\\), where \\(f\\) is a continuous density symmetric about \\(\\mu\\). Let \\(M_n\\) be the sample median. Then:</p>
                         \\[\\sqrt{n}(M_n - \\mu) \\xrightarrow{d} N\\!\\left(0, \\frac{1}{4[f(\\mu)]^2}\\right).\\]
                     </div>
                 </div>
@@ -785,54 +786,54 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof (sketch)</div>
                     <div class="env-body">
-                        <p>设 \\(F\\) 为 CDF，\\(m = F^{-1}(1/2) = \\mu\\)（对称分布的中位数等于均值）。样本中位数 \\(M_n\\) 本质上是 \\(F^{-1}(1/2)\\) 的估计。</p>
-                        <p>样本分位数 \\(\\hat{q}_p\\) 的一般渐近理论给出：</p>
+                        <p>Let \\(F\\) be the CDF and \\(m = F^{-1}(1/2) = \\mu\\) (the median of a symmetric distribution equals the mean). The sample median \\(M_n\\) is essentially an estimator of \\(F^{-1}(1/2)\\).</p>
+                        <p>The general asymptotic theory of sample quantiles (样本分位数) gives:</p>
                         \\[\\sqrt{n}(\\hat{q}_p - q_p) \\xrightarrow{d} N\\!\\left(0, \\frac{p(1-p)}{[f(q_p)]^2}\\right).\\]
-                        <p>取 \\(p = 1/2\\)：渐近方差为 \\(\\frac{(1/2)(1/2)}{[f(\\mu)]^2} = \\frac{1}{4[f(\\mu)]^2}\\)。</p>
+                        <p>Taking \\(p = 1/2\\): the asymptotic variance is \\(\\frac{(1/2)(1/2)}{[f(\\mu)]^2} = \\frac{1}{4[f(\\mu)]^2}\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 16.18 (正态分布: 样本均值 vs. 样本中位数)</div>
+                    <div class="env-title">Example 16.18 (Normal Distribution: Sample Mean vs. Sample Median)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)。</p>
-                        <p><strong>样本均值:</strong> \\(\\sqrt{n}(\\bar{X} - \\mu) \\xrightarrow{d} N(0, \\sigma^2)\\)，渐近方差 \\(v_{\\bar{X}} = \\sigma^2\\)。</p>
-                        <p><strong>样本中位数:</strong> \\(f(\\mu) = \\frac{1}{\\sqrt{2\\pi}\\sigma}\\)，渐近方差 \\(v_M = \\frac{1}{4 \\cdot \\frac{1}{2\\pi\\sigma^2}} = \\frac{\\pi\\sigma^2}{2}\\)。</p>
-                        <p>因此：</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\).</p>
+                        <p><strong>Sample mean:</strong> \\(\\sqrt{n}(\\bar{X} - \\mu) \\xrightarrow{d} N(0, \\sigma^2)\\), asymptotic variance \\(v_{\\bar{X}} = \\sigma^2\\).</p>
+                        <p><strong>Sample median:</strong> \\(f(\\mu) = \\frac{1}{\\sqrt{2\\pi}\\sigma}\\), asymptotic variance \\(v_M = \\frac{1}{4 \\cdot \\frac{1}{2\\pi\\sigma^2}} = \\frac{\\pi\\sigma^2}{2}\\).</p>
+                        <p>Therefore:</p>
                         \\[\\text{ARE}(\\bar{X}, M_n) = \\frac{v_M}{v_{\\bar{X}}} = \\frac{\\pi\\sigma^2 / 2}{\\sigma^2} = \\frac{\\pi}{2} \\approx 1.571.\\]
-                        <p>样本均值比样本中位数高效约 57%。等价地说，样本中位数需要约 \\(\\pi n/2\\) 个观测才能达到样本均值用 \\(n\\) 个观测的同等精度。</p>
+                        <p>The sample mean is about 57% more efficient than the sample median. Equivalently, the sample median requires about \\(\\pi n/2\\) observations to achieve the same precision as the sample mean with \\(n\\) observations.</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
-                    <div class="env-title">Remark: 中位数的鲁棒性优势</div>
+                    <div class="env-title">Remark: Robustness Advantage of the Median</div>
                     <div class="env-body">
-                        <p>虽然在正态分布下样本均值更高效，但在重尾分布（如 Cauchy 分布）下，样本均值的方差可能不存在，而样本中位数仍有有限的渐近方差。在存在离群值的情况下，中位数的鲁棒性远超均值。效率与鲁棒性的权衡是统计学的核心话题之一。</p>
+                        <p>Although the sample mean is more efficient under the normal distribution, for heavy-tailed distributions (such as the Cauchy distribution) the variance of the sample mean may not even exist, whereas the sample median still has finite asymptotic variance. In the presence of outliers (离群值), the robustness (鲁棒性) of the median far exceeds that of the mean. The trade-off between efficiency and robustness is one of the central topics in statistics.</p>
                     </div>
                 </div>
 
-                <h3>Pitman 渐近相对效率</h3>
+                <h3>Pitman Asymptotic Relative Efficiency Pitman渐近相对效率</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 16.19 (Pitman ARE)</div>
                     <div class="env-body">
-                        <p>在假设检验的语境中，Pitman ARE 比较两个检验在<strong>局部备择假设</strong>下的检验功效。设检验 \\(T_n\\) 基于 \\(n_T\\) 个样本，检验 \\(U_n\\) 基于 \\(n_U\\) 个样本，二者在相同的局部备择假设序列下达到相同的渐近功效。Pitman ARE 定义为：</p>
+                        <p>In the context of hypothesis testing, Pitman ARE compares the power of two tests under <strong>local alternatives</strong> (局部备择假设). Suppose test \\(T_n\\) is based on \\(n_T\\) samples and test \\(U_n\\) on \\(n_U\\) samples, and both achieve the same asymptotic power under the same sequence of local alternatives. The Pitman ARE is defined as:</p>
                         \\[e(U, T) = \\lim_{n \\to \\infty} \\frac{n_T}{n_U}.\\]
-                        <p>对于位置参数问题中的渐近正态估计量，Pitman ARE 与 Definition 16.16 中的 ARE 一致。</p>
+                        <p>For asymptotically normal estimators in location parameter problems, the Pitman ARE coincides with the ARE in Definition 16.16.</p>
                     </div>
                 </div>
 
-                <h3>MLE vs. 矩估计的 ARE</h3>
+                <h3>ARE of MLE vs. Method of Moments MLE与矩估计的ARE</h3>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 16.20 (Gamma 分布: MLE vs. 矩估计)</div>
+                    <div class="env-title">Example 16.20 (Gamma Distribution: MLE vs. Method of Moments)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Gamma}(\\alpha, \\beta)\\)，密度 \\(f(x) = \\frac{\\beta^\\alpha}{\\Gamma(\\alpha)} x^{\\alpha-1} e^{-\\beta x}\\)。</p>
-                        <p><strong>矩估计</strong>利用 \\(E[X] = \\alpha/\\beta\\) 和 \\(\\operatorname{Var}(X) = \\alpha/\\beta^2\\) 得到：</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Gamma}(\\alpha, \\beta)\\) with density \\(f(x) = \\frac{\\beta^\\alpha}{\\Gamma(\\alpha)} x^{\\alpha-1} e^{-\\beta x}\\).</p>
+                        <p>The <strong>method of moments</strong> (矩估计) estimator uses \\(E[X] = \\alpha/\\beta\\) and \\(\\operatorname{Var}(X) = \\alpha/\\beta^2\\) to obtain:</p>
                         \\[\\hat{\\alpha}_{\\text{MOM}} = \\frac{\\bar{X}^2}{S^2}, \\quad \\hat{\\beta}_{\\text{MOM}} = \\frac{\\bar{X}}{S^2}.\\]
-                        <p><strong>MLE</strong> 需要数值求解似然方程，其渐近方差达到 Fisher 信息矩阵的逆。矩估计的渐近方差可通过多元 Delta 方法计算，通常严格大于 CRLB。</p>
-                        <p>例如，当 \\(\\alpha = 1\\)（即指数分布）时，MLE 和矩估计对 \\(\\beta\\) 的估计一致。但当 \\(\\alpha\\) 较大时，矩估计的效率损失可能显著。</p>
+                        <p>The <strong>MLE</strong> requires numerically solving the likelihood equations, and its asymptotic variance attains the inverse of the Fisher information matrix. The asymptotic variance of the moment estimator can be computed via the multivariate Delta method, and it is typically strictly larger than the CRLB.</p>
+                        <p>For instance, when \\(\\alpha = 1\\) (i.e., the exponential distribution), the MLE and the moment estimator for \\(\\beta\\) coincide. However, when \\(\\alpha\\) is large, the efficiency loss of the moment estimator can be substantial.</p>
                     </div>
                 </div>
 
@@ -843,8 +844,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'are-comparison',
-                    title: 'Interactive: ARE 比较 — 两个估计量的渐近分布',
-                    description: '比较样本均值和样本中位数在不同分布下的渐近效率',
+                    title: 'Interactive: ARE Comparison — Asymptotic Distributions of Two Estimators',
+                    description: 'Compare the asymptotic efficiency of the sample mean and sample median under different distributions',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 600, height: 380,
@@ -942,8 +943,8 @@ window.CHAPTERS.push({
                 },
                 {
                     id: 'mean-vs-median-are',
-                    title: 'Interactive: 不同分布下的 ARE',
-                    description: '比较样本均值与中位数在正态分布和重尾分布下的表现',
+                    title: 'Interactive: ARE under Different Distributions',
+                    description: 'Compare the performance of sample mean vs. median under normal and heavy-tailed distributions',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 600, height: 380,
@@ -1077,19 +1078,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Laplace}(\\mu, b)\\)，密度 \\(f(x) = \\frac{1}{2b}e^{-|x-\\mu|/b}\\)。计算样本均值和样本中位数对 \\(\\mu\\) 的 ARE。',
-                    hint: 'Laplace 分布: \\(\\operatorname{Var}(X) = 2b^2\\)，\\(f(\\mu) = 1/(2b)\\)。',
-                    solution: '样本均值: 渐近方差 \\(v_{\\bar{X}} = 2b^2\\)。样本中位数: \\(f(\\mu) = 1/(2b)\\)，渐近方差 \\(v_M = \\frac{1}{4 \\cdot (1/(2b))^2} = b^2\\)。ARE(Median, Mean) = \\(v_{\\bar{X}}/v_M = 2b^2/b^2 = 2\\)。样本中位数是样本均值效率的两倍！这与正态分布的结论完全相反——在 Laplace（重尾）分布下，中位数比均值更高效。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Laplace}(\\mu, b)\\) with density \\(f(x) = \\frac{1}{2b}e^{-|x-\\mu|/b}\\). Compute the ARE of the sample mean and the sample median for estimating \\(\\mu\\).',
+                    hint: 'Laplace distribution: \\(\\operatorname{Var}(X) = 2b^2\\), \\(f(\\mu) = 1/(2b)\\).',
+                    solution: 'Sample mean: asymptotic variance \\(v_{\\bar{X}} = 2b^2\\). Sample median: \\(f(\\mu) = 1/(2b)\\), asymptotic variance \\(v_M = \\frac{1}{4 \\cdot (1/(2b))^2} = b^2\\). ARE(Median, Mean) = \\(v_{\\bar{X}}/v_M = 2b^2/b^2 = 2\\). The sample median is twice as efficient as the sample mean! This is the complete opposite of the normal distribution result — under the Laplace (heavy-tailed) distribution, the median is more efficient than the mean.'
                 },
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)。比较两个 \\(\\sigma^2\\) 的估计量: (1) MLE \\(\\hat{\\sigma}^2_{\\text{MLE}} = \\frac{1}{n}\\sum(X_i - \\bar{X})^2\\); (2) 无偏估计 \\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2\\)。求它们的 ARE。',
-                    hint: '两者都是渐近正态的，渐近方差分别由 \\(\\frac{2\\sigma^4}{n}\\) 的系数决定。注意 \\(\\hat{\\sigma}^2_{\\text{MLE}} = \\frac{n-1}{n} S^2\\)。',
-                    solution: '由于 \\(\\hat{\\sigma}^2_{\\text{MLE}} = \\frac{n-1}{n} S^2\\)，当 \\(n \\to \\infty\\) 时两者之比趋于 1。具体地，二者都有 \\(\\sqrt{n}(\\hat{\\sigma}^2 - \\sigma^2) \\xrightarrow{d} N(0, 2\\sigma^4)\\)（相同的渐近方差）。因此 ARE = 1。它们在大样本下渐近等价，虽然在有限样本中 \\(S^2\\) 是无偏的而 MLE 有偏。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\). Compare two estimators of \\(\\sigma^2\\): (1) the MLE \\(\\hat{\\sigma}^2_{\\text{MLE}} = \\frac{1}{n}\\sum(X_i - \\bar{X})^2\\); (2) the unbiased estimator \\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2\\). Find their ARE.',
+                    hint: 'Both are asymptotically normal, with asymptotic variances determined by the coefficient of \\(\\frac{2\\sigma^4}{n}\\). Note that \\(\\hat{\\sigma}^2_{\\text{MLE}} = \\frac{n-1}{n} S^2\\).',
+                    solution: 'Since \\(\\hat{\\sigma}^2_{\\text{MLE}} = \\frac{n-1}{n} S^2\\), their ratio tends to 1 as \\(n \\to \\infty\\). Specifically, both have \\(\\sqrt{n}(\\hat{\\sigma}^2 - \\sigma^2) \\xrightarrow{d} N(0, 2\\sigma^4)\\) (the same asymptotic variance). Therefore ARE = 1. They are asymptotically equivalent in large samples, although in finite samples \\(S^2\\) is unbiased while the MLE is biased.'
                 },
                 {
-                    question: '解释为什么 ARE 是大样本理论的概念，可能无法准确反映有限样本的表现。给出一个 ARE = 1 但有限样本行为差异显著的例子。',
-                    hint: '考虑两个估计量可能有相同的渐近方差但不同的偏差或高阶项。',
-                    solution: 'ARE 只比较渐近方差的一阶项（\\(1/n\\) 的系数），忽略了高阶项（\\(1/n^2\\) 等）和有限样本偏差。例如，正态分布下估计 \\(\\sigma^2\\) 时，MLE \\(\\hat{\\sigma}^2 = \\frac{1}{n}\\sum(X_i - \\bar{X})^2\\) 和 \\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2\\) 有 ARE = 1，但对小 \\(n\\)（如 \\(n=5\\)），MLE 的偏差 \\(-\\sigma^2/n\\) 导致其 MSE 为 \\(\\frac{2(n-1)}{n^2}\\sigma^4\\)，而 \\(S^2\\) 的 MSE 为 \\(\\frac{2}{n-1}\\sigma^4\\)。当 \\(n=5\\) 时，这两个值分别为 \\(0.32\\sigma^4\\) 和 \\(0.50\\sigma^4\\)，差异超过 50%。'
+                    question: 'Explain why ARE is a large-sample concept that may not accurately reflect finite-sample performance. Give an example where ARE = 1 but the finite-sample behavior differs significantly.',
+                    hint: 'Consider that two estimators may have the same asymptotic variance but different bias or higher-order terms.',
+                    solution: 'ARE only compares the leading term (coefficient of \\(1/n\\)) of the asymptotic variance, ignoring higher-order terms (\\(1/n^2\\), etc.) and finite-sample bias. For example, when estimating \\(\\sigma^2\\) under the normal distribution, the MLE \\(\\hat{\\sigma}^2 = \\frac{1}{n}\\sum(X_i - \\bar{X})^2\\) and \\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2\\) have ARE = 1, but for small \\(n\\) (e.g., \\(n=5\\)), the bias of the MLE \\(-\\sigma^2/n\\) leads to MSE \\(\\frac{2(n-1)}{n^2}\\sigma^4\\), while \\(S^2\\) has MSE \\(\\frac{2}{n-1}\\sigma^4\\). When \\(n=5\\), these are \\(0.32\\sigma^4\\) and \\(0.50\\sigma^4\\) respectively, a difference exceeding 50%.'
                 }
             ]
         }

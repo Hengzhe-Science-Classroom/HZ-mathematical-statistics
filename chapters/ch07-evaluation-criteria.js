@@ -2,78 +2,78 @@ window.CHAPTERS = window.CHAPTERS || [];
 window.CHAPTERS.push({
     id: 'ch07',
     number: 7,
-    title: '评估准则',
+    title: 'Evaluation Criteria',
     subtitle: 'Evaluation Criteria for Estimators',
     sections: [
-        // ===== Section 1: 无偏性 =====
+        // ===== Section 1: Unbiasedness =====
         {
             id: 'ch07-sec01',
-            title: '无偏性',
+            title: 'Unbiasedness',
             content: `
-                <h2>无偏性 (Unbiasedness)</h2>
+                <h2>Unbiasedness / 无偏性</h2>
 
-                <p>在上一章中，我们学习了如何构造点估计（矩估计、极大似然估计等）。一个自然的问题是：如何评价不同估计量的优劣？本章介绍统计学中最核心的几个评估准则，从最基本的无偏性开始。</p>
+                <p>In the previous chapter, we learned how to construct point estimators (method of moments, maximum likelihood estimation, etc.). A natural question arises: how do we evaluate the quality of different estimators? This chapter introduces several core evaluation criteria in statistics, starting with the most fundamental one — unbiasedness (无偏性).</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 7.1 (偏差与无偏估计量)</div>
+                    <div class="env-title">Definition 7.1 (Bias and Unbiased Estimator)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n\\) 是来自总体 \\(f(x; \\theta)\\) 的随机样本，\\(W = W(X_1, \\ldots, X_n)\\) 是参数 \\(\\tau(\\theta)\\) 的估计量。</p>
-                        <p><strong>偏差 (Bias)</strong> 定义为</p>
+                        <p>Let \\(X_1, \\ldots, X_n\\) be a random sample from the population \\(f(x; \\theta)\\), and let \\(W = W(X_1, \\ldots, X_n)\\) be an estimator of the parameter \\(\\tau(\\theta)\\).</p>
+                        <p>The <strong>bias (偏差)</strong> is defined as</p>
                         \\[\\operatorname{Bias}_{\\theta}(W) = \\mathbb{E}_{\\theta}[W] - \\tau(\\theta).\\]
-                        <p>若对所有 \\(\\theta \\in \\Theta\\) 均有 \\(\\operatorname{Bias}_{\\theta}(W) = 0\\)，即 \\(\\mathbb{E}_{\\theta}[W] = \\tau(\\theta)\\)，则称 \\(W\\) 是 \\(\\tau(\\theta)\\) 的<strong>无偏估计量 (unbiased estimator)</strong>。</p>
+                        <p>If \\(\\operatorname{Bias}_{\\theta}(W) = 0\\) for all \\(\\theta \\in \\Theta\\), i.e., \\(\\mathbb{E}_{\\theta}[W] = \\tau(\\theta)\\), then \\(W\\) is called an <strong>unbiased estimator (无偏估计量)</strong> of \\(\\tau(\\theta)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>无偏性意味着：如果我们重复进行抽样实验无限次，估计量的平均值恰好等于真实参数值。偏差衡量的是估计量的"系统性偏移"——就像一把尺子的零刻度偏了一样。</p>
+                        <p>Unbiasedness means: if we were to repeat the sampling experiment infinitely many times, the average of the estimator would equal exactly the true parameter value. Bias measures the "systematic deviation" of the estimator — like a ruler whose zero mark is off.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 7.2 (样本均值的无偏性)</div>
+                    <div class="env-title">Theorem 7.2 (Unbiasedness of the Sample Mean)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} F\\)，且 \\(\\mathbb{E}[X_1] = \\mu\\)。则样本均值</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} F\\) with \\(\\mathbb{E}[X_1] = \\mu\\). Then the sample mean</p>
                         \\[\\bar{X} = \\frac{1}{n}\\sum_{i=1}^{n} X_i\\]
-                        <p>是 \\(\\mu\\) 的无偏估计量。</p>
+                        <p>is an unbiased estimator of \\(\\mu\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>由期望的线性性，</p>
+                        <p>By linearity of expectation,</p>
                         \\[\\mathbb{E}[\\bar{X}] = \\mathbb{E}\\left[\\frac{1}{n}\\sum_{i=1}^{n} X_i\\right] = \\frac{1}{n}\\sum_{i=1}^{n} \\mathbb{E}[X_i] = \\frac{1}{n} \\cdot n\\mu = \\mu.\\]
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 7.3 (样本方差的两种形式)</div>
+                    <div class="env-title">Example 7.3 (Two Forms of Sample Variance)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\sim (\\mu, \\sigma^2)\\)。考虑两个估计量：</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\sim (\\mu, \\sigma^2)\\). Consider two estimators:</p>
                         \\[S_n^2 = \\frac{1}{n}\\sum_{i=1}^{n}(X_i - \\bar{X})^2, \\quad S^2 = \\frac{1}{n-1}\\sum_{i=1}^{n}(X_i - \\bar{X})^2.\\]
-                        <p>利用恒等式 \\(\\sum(X_i - \\bar{X})^2 = \\sum X_i^2 - n\\bar{X}^2\\)，可得</p>
+                        <p>Using the identity \\(\\sum(X_i - \\bar{X})^2 = \\sum X_i^2 - n\\bar{X}^2\\), we obtain</p>
                         \\[\\mathbb{E}\\left[\\sum_{i=1}^{n}(X_i - \\bar{X})^2\\right] = n\\sigma^2 + n\\mu^2 - n\\left(\\frac{\\sigma^2}{n} + \\mu^2\\right) = (n-1)\\sigma^2.\\]
-                        <p>因此 \\(\\mathbb{E}[S_n^2] = \\frac{n-1}{n}\\sigma^2 \\neq \\sigma^2\\)（有偏），而 \\(\\mathbb{E}[S^2] = \\sigma^2\\)（无偏）。分母用 \\(n-1\\) 正是为了修正偏差。</p>
+                        <p>Therefore \\(\\mathbb{E}[S_n^2] = \\frac{n-1}{n}\\sigma^2 \\neq \\sigma^2\\) (biased), while \\(\\mathbb{E}[S^2] = \\sigma^2\\) (unbiased). Dividing by \\(n-1\\) instead of \\(n\\) is precisely the bias correction.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 7.4 (无偏性的局限)</div>
+                    <div class="env-title">Theorem 7.4 (Limitations of Unbiasedness)</div>
                     <div class="env-body">
-                        <p>无偏性并非总是最佳准则，存在以下局限：</p>
-                        <p>(a) 某些参数不存在无偏估计量。例如，对于 \\(X \\sim \\text{Bernoulli}(p)\\)，\\(1/p\\) 没有无偏估计量。</p>
-                        <p>(b) 无偏估计量可能不唯一。例如 \\(X_1\\) 和 \\(\\bar{X}\\) 都是 \\(\\mu\\) 的无偏估计量，但后者更好。</p>
-                        <p>(c) 无偏估计量可能给出不合理的值。例如对均匀分布 \\(U(0, \\theta)\\)，\\(\\frac{n+1}{n}X_{(n)}\\) 虽无偏，但可能超出参数空间。</p>
+                        <p>Unbiasedness is not always the best criterion. It has the following limitations:</p>
+                        <p>(a) For some parameters, no unbiased estimator exists. For example, for \\(X \\sim \\text{Bernoulli}(p)\\), there is no unbiased estimator of \\(1/p\\).</p>
+                        <p>(b) Unbiased estimators may not be unique. For example, both \\(X_1\\) and \\(\\bar{X}\\) are unbiased estimators of \\(\\mu\\), but the latter is better.</p>
+                        <p>(c) Unbiased estimators can yield unreasonable values. For the uniform distribution \\(U(0, \\theta)\\), although \\(\\frac{n+1}{n}X_{(n)}\\) is unbiased, it may exceed the parameter space.</p>
                     </div>
                 </div>
 
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>无偏性是关于<strong>期望</strong>的性质，不保证单次估计的准确性。一个有偏但方差极小的估计量往往比无偏但方差很大的估计量更实用。这正是我们需要MSE准则的原因。</p>
+                        <p>Unbiasedness is a property concerning the <strong>expectation</strong> and does not guarantee the accuracy of any single estimate. A biased estimator with very small variance is often more practical than an unbiased estimator with very large variance. This is precisely why we need the MSE criterion.</p>
                     </div>
                 </div>
 
@@ -82,8 +82,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'bias-repeated-samples',
-                    title: 'Interactive: 偏差可视化 — 重复抽样',
-                    description: '观察有偏和无偏估计量在重复抽样下的表现差异',
+                    title: 'Interactive: Bias Visualization — Repeated Sampling / 偏差可视化 — 重复抽样',
+                    description: 'Observe the difference in performance between biased and unbiased estimators under repeated sampling / 观察有偏和无偏估计量在重复抽样下的表现差异',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 420,
@@ -222,36 +222,36 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\sim \\text{Poisson}(\\lambda)\\)。证明 \\(\\bar{X}\\) 是 \\(\\lambda\\) 的无偏估计量，并说明 \\(\\bar{X}^2\\) 是否是 \\(\\lambda^2\\) 的无偏估计量。',
-                    hint: '对于无偏性，计算 \\(\\mathbb{E}[\\bar{X}]\\)。对于 \\(\\bar{X}^2\\)，利用 \\(\\mathbb{E}[\\bar{X}^2] = \\operatorname{Var}(\\bar{X}) + (\\mathbb{E}[\\bar{X}])^2\\)。',
-                    solution: '由于 \\(\\mathbb{E}[X_i] = \\lambda\\)，故 \\(\\mathbb{E}[\\bar{X}] = \\lambda\\)，即 \\(\\bar{X}\\) 是无偏的。然而 \\(\\mathbb{E}[\\bar{X}^2] = \\operatorname{Var}(\\bar{X}) + \\lambda^2 = \\lambda/n + \\lambda^2 \\neq \\lambda^2\\)，所以 \\(\\bar{X}^2\\) 不是 \\(\\lambda^2\\) 的无偏估计量。无偏估计为 \\(\\bar{X}^2 - \\bar{X}/n\\)。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\sim \\text{Poisson}(\\lambda)\\). Prove that \\(\\bar{X}\\) is an unbiased estimator of \\(\\lambda\\), and determine whether \\(\\bar{X}^2\\) is an unbiased estimator of \\(\\lambda^2\\).',
+                    hint: 'For unbiasedness, compute \\(\\mathbb{E}[\\bar{X}]\\). For \\(\\bar{X}^2\\), use \\(\\mathbb{E}[\\bar{X}^2] = \\operatorname{Var}(\\bar{X}) + (\\mathbb{E}[\\bar{X}])^2\\).',
+                    solution: 'Since \\(\\mathbb{E}[X_i] = \\lambda\\), we have \\(\\mathbb{E}[\\bar{X}] = \\lambda\\), so \\(\\bar{X}\\) is unbiased. However, \\(\\mathbb{E}[\\bar{X}^2] = \\operatorname{Var}(\\bar{X}) + \\lambda^2 = \\lambda/n + \\lambda^2 \\neq \\lambda^2\\), so \\(\\bar{X}^2\\) is not an unbiased estimator of \\(\\lambda^2\\). An unbiased estimator is \\(\\bar{X}^2 - \\bar{X}/n\\).'
                 },
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\sim U(0, \\theta)\\)。验证 \\(2\\bar{X}\\) 和 \\(\\frac{n+1}{n}X_{(n)}\\) 都是 \\(\\theta\\) 的无偏估计量，其中 \\(X_{(n)} = \\max_i X_i\\)。',
-                    hint: '\\(X_{(n)}\\) 的PDF为 \\(f_{X_{(n)}}(x) = \\frac{n x^{n-1}}{\\theta^n}\\)，\\(0 < x < \\theta\\)。',
-                    solution: '\\(\\mathbb{E}[2\\bar{X}] = 2 \\cdot \\theta/2 = \\theta\\)。对于 \\(X_{(n)}\\)：\\(\\mathbb{E}[X_{(n)}] = \\int_0^{\\theta} x \\cdot \\frac{nx^{n-1}}{\\theta^n} dx = \\frac{n}{\\theta^n} \\cdot \\frac{\\theta^{n+1}}{n+1} = \\frac{n\\theta}{n+1}\\)。因此 \\(\\mathbb{E}\\left[\\frac{n+1}{n}X_{(n)}\\right] = \\theta\\)。两者均无偏。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\sim U(0, \\theta)\\). Verify that both \\(2\\bar{X}\\) and \\(\\frac{n+1}{n}X_{(n)}\\) are unbiased estimators of \\(\\theta\\), where \\(X_{(n)} = \\max_i X_i\\).',
+                    hint: 'The PDF of \\(X_{(n)}\\) is \\(f_{X_{(n)}}(x) = \\frac{n x^{n-1}}{\\theta^n}\\), \\(0 < x < \\theta\\).',
+                    solution: '\\(\\mathbb{E}[2\\bar{X}] = 2 \\cdot \\theta/2 = \\theta\\). For \\(X_{(n)}\\): \\(\\mathbb{E}[X_{(n)}] = \\int_0^{\\theta} x \\cdot \\frac{nx^{n-1}}{\\theta^n} dx = \\frac{n}{\\theta^n} \\cdot \\frac{\\theta^{n+1}}{n+1} = \\frac{n\\theta}{n+1}\\). Therefore \\(\\mathbb{E}\\left[\\frac{n+1}{n}X_{(n)}\\right] = \\theta\\). Both are unbiased.'
                 },
                 {
-                    question: '证明：若 \\(W\\) 是 \\(\\tau(\\theta)\\) 的无偏估计量，且 \\(g\\) 是非线性函数，则 \\(g(W)\\) 一般不是 \\(g(\\tau(\\theta))\\) 的无偏估计量。以 \\(g(x) = x^2\\) 为例说明。',
-                    hint: '利用 Jensen 不等式：若 \\(g\\) 是严格凸函数，则 \\(\\mathbb{E}[g(W)] > g(\\mathbb{E}[W])\\)。',
-                    solution: '取 \\(g(x) = x^2\\)（严格凸）。由 Jensen 不等式，\\(\\mathbb{E}[W^2] \\geq (\\mathbb{E}[W])^2 = \\tau(\\theta)^2\\)，当 \\(\\operatorname{Var}(W) > 0\\) 时严格不等式成立。因此 \\(\\operatorname{Bias}(W^2) = \\mathbb{E}[W^2] - \\tau(\\theta)^2 = \\operatorname{Var}(W) > 0\\)，\\(W^2\\) 正偏于 \\(\\tau(\\theta)^2\\)。'
+                    question: 'Prove that if \\(W\\) is an unbiased estimator of \\(\\tau(\\theta)\\) and \\(g\\) is a nonlinear function, then \\(g(W)\\) is generally not an unbiased estimator of \\(g(\\tau(\\theta))\\). Illustrate with \\(g(x) = x^2\\).',
+                    hint: 'Use Jensen\'s inequality: if \\(g\\) is strictly convex, then \\(\\mathbb{E}[g(W)] > g(\\mathbb{E}[W])\\).',
+                    solution: 'Take \\(g(x) = x^2\\) (strictly convex). By Jensen\'s inequality, \\(\\mathbb{E}[W^2] \\geq (\\mathbb{E}[W])^2 = \\tau(\\theta)^2\\), with strict inequality when \\(\\operatorname{Var}(W) > 0\\). Therefore \\(\\operatorname{Bias}(W^2) = \\mathbb{E}[W^2] - \\tau(\\theta)^2 = \\operatorname{Var}(W) > 0\\), so \\(W^2\\) is positively biased for \\(\\tau(\\theta)^2\\).'
                 }
             ]
         },
 
-        // ===== Section 2: 均方误差 =====
+        // ===== Section 2: Mean Squared Error =====
         {
             id: 'ch07-sec02',
-            title: '均方误差',
+            title: 'Mean Squared Error',
             content: `
-                <h2>均方误差 (Mean Squared Error)</h2>
+                <h2>Mean Squared Error / 均方误差</h2>
 
-                <p>无偏性只关注估计量的"中心"位置，忽略了其波动程度。均方误差 (MSE) 综合考虑偏差和方差，是评价估计量最常用的准则。</p>
+                <p>Unbiasedness only concerns the "center" of an estimator, ignoring its variability. The mean squared error (MSE, 均方误差) jointly accounts for bias and variance, making it the most commonly used criterion for evaluating estimators.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 7.5 (均方误差)</div>
+                    <div class="env-title">Definition 7.5 (Mean Squared Error)</div>
                     <div class="env-body">
-                        <p>估计量 \\(W\\) 对参数 \\(\\tau(\\theta)\\) 的<strong>均方误差 (Mean Squared Error, MSE)</strong> 定义为</p>
+                        <p>The <strong>mean squared error (MSE, 均方误差)</strong> of an estimator \\(W\\) for the parameter \\(\\tau(\\theta)\\) is defined as</p>
                         \\[\\operatorname{MSE}_{\\theta}(W) = \\mathbb{E}_{\\theta}\\left[(W - \\tau(\\theta))^2\\right].\\]
                     </div>
                 </div>
@@ -259,7 +259,7 @@ window.CHAPTERS.push({
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 7.6 (Bias-Variance Decomposition)</div>
                     <div class="env-body">
-                        <p>对任意估计量 \\(W\\)，其MSE可分解为</p>
+                        <p>For any estimator \\(W\\), its MSE can be decomposed as</p>
                         \\[\\operatorname{MSE}_{\\theta}(W) = \\operatorname{Var}_{\\theta}(W) + \\left[\\operatorname{Bias}_{\\theta}(W)\\right]^2.\\]
                     </div>
                 </div>
@@ -267,7 +267,7 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>令 \\(b = \\operatorname{Bias}_{\\theta}(W) = \\mathbb{E}[W] - \\tau(\\theta)\\)。则</p>
+                        <p>Let \\(b = \\operatorname{Bias}_{\\theta}(W) = \\mathbb{E}[W] - \\tau(\\theta)\\). Then</p>
                         \\[\\begin{aligned}
                         \\operatorname{MSE}(W) &= \\mathbb{E}[(W - \\tau(\\theta))^2] \\\\
                         &= \\mathbb{E}[(W - \\mathbb{E}[W] + b)^2] \\\\
@@ -281,26 +281,26 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>把打靶做类比：偏差是瞄准点偏离靶心的距离，方差是弹着点的分散程度。MSE综合衡量了"打得准不准"。一个完美的射手（小偏差+小方差）优于只瞄得准但手抖（无偏+大方差）的射手，也优于手稳但瞄歪了（有偏+小方差）的射手。</p>
+                        <p>Consider a target-shooting analogy: bias is the distance from the aim point to the bullseye, and variance is the spread of the shots. MSE comprehensively measures "how accurately one shoots." A perfect marksman (small bias + small variance) is better than one who aims well but has shaky hands (unbiased + large variance), and also better than one with steady hands but a misaligned sight (biased + small variance).</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
                     <div class="env-title">Example 7.7 (Bias-Variance Tradeoff)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\sim N(\\mu, \\sigma^2)\\)，考虑估计 \\(\\sigma^2\\) 的一族估计量</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\sim N(\\mu, \\sigma^2)\\). Consider the family of estimators for \\(\\sigma^2\\):</p>
                         \\[W_c = \\frac{1}{c}\\sum_{i=1}^{n}(X_i - \\bar{X})^2, \\quad c > 0.\\]
-                        <p>可以验证：\\(\\mathbb{E}[W_c] = \\frac{n-1}{c}\\sigma^2\\)，\\(\\operatorname{Var}(W_c) = \\frac{2(n-1)}{c^2}\\sigma^4\\)。</p>
-                        <p>于是 \\(\\operatorname{MSE}(W_c) = \\frac{2(n-1)}{c^2}\\sigma^4 + \\left(\\frac{n-1}{c} - 1\\right)^2 \\sigma^4\\)。</p>
-                        <p>令 \\(\\frac{d}{dc}\\operatorname{MSE}(W_c) = 0\\)，得到MSE最优的 \\(c^* = n + 1\\)。</p>
-                        <p>这意味着<strong>最小MSE估计量是 \\(W_{n+1}\\)，而非无偏的 \\(W_{n-1} = S^2\\)</strong>。为了降低MSE，值得牺牲少量偏差来换取更小的方差。</p>
+                        <p>One can verify: \\(\\mathbb{E}[W_c] = \\frac{n-1}{c}\\sigma^2\\), \\(\\operatorname{Var}(W_c) = \\frac{2(n-1)}{c^2}\\sigma^4\\).</p>
+                        <p>Thus \\(\\operatorname{MSE}(W_c) = \\frac{2(n-1)}{c^2}\\sigma^4 + \\left(\\frac{n-1}{c} - 1\\right)^2 \\sigma^4\\).</p>
+                        <p>Setting \\(\\frac{d}{dc}\\operatorname{MSE}(W_c) = 0\\) yields the MSE-optimal \\(c^* = n + 1\\).</p>
+                        <p>This means the <strong>minimum MSE estimator is \\(W_{n+1}\\), not the unbiased \\(W_{n-1} = S^2\\)</strong>. It is worthwhile to sacrifice a small amount of bias in exchange for a smaller variance to reduce the MSE.</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>MSE准则虽然直观有用，但它是"逐点"（对每个 \\(\\theta\\) 值）的评价。不存在在整个参数空间上MSE一致最优的估计量（否则统计学就太简单了）。这导致了一系列更精细的准则，如minimax、Bayes risk等。</p>
+                        <p>Although the MSE criterion is intuitive and useful, it is a "pointwise" evaluation (for each value of \\(\\theta\\)). There is no estimator that is uniformly MSE-optimal over the entire parameter space (otherwise statistics would be too simple). This leads to a series of more refined criteria, such as minimax and Bayes risk.</p>
                     </div>
                 </div>
 
@@ -309,8 +309,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'mse-decomposition',
-                    title: 'Interactive: MSE = Bias\u00B2 + Variance 分解',
-                    description: '调节偏差和方差，观察MSE如何变化',
+                    title: 'Interactive: MSE = Bias\u00B2 + Variance Decomposition / MSE 分解',
+                    description: 'Adjust bias and variance to observe how MSE changes / 调节偏差和方差，观察MSE如何变化',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -463,92 +463,92 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X \\sim N(\\theta, 1)\\)，考虑估计量 \\(W_a = aX\\)（\\(0 < a < 1\\)）估计 \\(\\theta\\)。求使 \\(\\operatorname{MSE}(W_a)\\) 最小的 \\(a\\) 值（作为 \\(\\theta\\) 的函数）。',
-                    hint: '\\(\\operatorname{Bias}(W_a) = (a-1)\\theta\\)，\\(\\operatorname{Var}(W_a) = a^2\\)。',
-                    solution: '\\(\\operatorname{MSE}(W_a) = a^2 + (a-1)^2\\theta^2\\)。对 \\(a\\) 求导令其为零：\\(2a + 2(a-1)\\theta^2 = 0\\)，得 \\(a^* = \\frac{\\theta^2}{1+\\theta^2}\\)。当 \\(|\\theta|\\) 很大时 \\(a^* \\to 1\\)，当 \\(\\theta = 0\\) 时 \\(a^* = 0\\)。注意最优的 \\(a\\) 依赖于未知参数 \\(\\theta\\)，因此这个结果理论上有意义但无法直接使用。'
+                    question: 'Let \\(X \\sim N(\\theta, 1)\\) and consider the estimator \\(W_a = aX\\) (\\(0 < a < 1\\)) for estimating \\(\\theta\\). Find the value of \\(a\\) that minimizes \\(\\operatorname{MSE}(W_a)\\) (as a function of \\(\\theta\\)).',
+                    hint: '\\(\\operatorname{Bias}(W_a) = (a-1)\\theta\\), \\(\\operatorname{Var}(W_a) = a^2\\).',
+                    solution: '\\(\\operatorname{MSE}(W_a) = a^2 + (a-1)^2\\theta^2\\). Differentiating with respect to \\(a\\) and setting it to zero: \\(2a + 2(a-1)\\theta^2 = 0\\), yielding \\(a^* = \\frac{\\theta^2}{1+\\theta^2}\\). When \\(|\\theta|\\) is large, \\(a^* \\to 1\\); when \\(\\theta = 0\\), \\(a^* = 0\\). Note that the optimal \\(a\\) depends on the unknown parameter \\(\\theta\\), so this result is theoretically meaningful but cannot be directly used.'
                 },
                 {
-                    question: '证明：在 \\(X_1, \\ldots, X_n \\sim N(\\mu, \\sigma^2)\\) 中，估计 \\(\\sigma^2\\) 时使MSE最小的除数是 \\(n+1\\)，而非 \\(n-1\\)（无偏）或 \\(n\\)（MLE）。',
-                    hint: '利用 \\(\\sum(X_i - \\bar{X})^2 / \\sigma^2 \\sim \\chi^2_{n-1}\\)，以及卡方分布的方差为 \\(2(n-1)\\)。',
-                    solution: '设 \\(Q = \\sum(X_i - \\bar{X})^2\\)，则 \\(Q/\\sigma^2 \\sim \\chi^2_{n-1}\\)。对 \\(W_c = Q/c\\)：\\(\\operatorname{MSE}(W_c) = \\frac{\\sigma^4}{c^2}[2(n-1) + (n-1-c)^2]\\)。令 \\(\\frac{d}{dc}\\operatorname{MSE} = 0\\)，化简得 \\(c = n+1\\)。此时 \\(\\operatorname{MSE}(W_{n+1}) = \\frac{2(n-1)}{(n+1)^2}\\sigma^4 < \\frac{2}{n-1}\\sigma^4 = \\operatorname{MSE}(S^2)\\)。'
+                    question: 'Prove that when estimating \\(\\sigma^2\\) with \\(X_1, \\ldots, X_n \\sim N(\\mu, \\sigma^2)\\), the divisor that minimizes MSE is \\(n+1\\), rather than \\(n-1\\) (unbiased) or \\(n\\) (MLE).',
+                    hint: 'Use \\(\\sum(X_i - \\bar{X})^2 / \\sigma^2 \\sim \\chi^2_{n-1}\\) and the fact that the variance of a chi-squared distribution is \\(2(n-1)\\).',
+                    solution: 'Let \\(Q = \\sum(X_i - \\bar{X})^2\\), then \\(Q/\\sigma^2 \\sim \\chi^2_{n-1}\\). For \\(W_c = Q/c\\): \\(\\operatorname{MSE}(W_c) = \\frac{\\sigma^4}{c^2}[2(n-1) + (n-1-c)^2]\\). Setting \\(\\frac{d}{dc}\\operatorname{MSE} = 0\\) and simplifying gives \\(c = n+1\\). Then \\(\\operatorname{MSE}(W_{n+1}) = \\frac{2(n-1)}{(n+1)^2}\\sigma^4 < \\frac{2}{n-1}\\sigma^4 = \\operatorname{MSE}(S^2)\\).'
                 }
             ]
         },
 
-        // ===== Section 3: Cramer-Rao 下界 =====
+        // ===== Section 3: Cramer-Rao Lower Bound =====
         {
             id: 'ch07-sec03',
-            title: 'Cramer-Rao下界',
+            title: 'Cramer-Rao Lower Bound',
             content: `
-                <h2>Cramer-Rao 下界 (Cramer-Rao Lower Bound)</h2>
+                <h2>Cramer-Rao Lower Bound / Cramer-Rao 下界</h2>
 
-                <p>上一节我们看到，在无偏估计量中，方差越小越好。一个自然的问题是：无偏估计量的方差能小到什么程度？Cramer-Rao不等式给出了一个漂亮的下界。</p>
+                <p>In the previous section, we saw that among unbiased estimators, smaller variance is better. A natural question is: how small can the variance of an unbiased estimator be? The Cramer-Rao inequality provides an elegant lower bound.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 7.8 (Fisher 信息量)</div>
+                    <div class="env-title">Definition 7.8 (Fisher Information)</div>
                     <div class="env-body">
-                        <p>设 \\(X \\sim f(x; \\theta)\\)，满足正则条件（支撑集不依赖于 \\(\\theta\\)，可在积分号下求导）。<strong>Fisher 信息量 (Fisher information)</strong> 定义为</p>
+                        <p>Let \\(X \\sim f(x; \\theta)\\) satisfy regularity conditions (the support does not depend on \\(\\theta\\), and differentiation under the integral sign is permitted). The <strong>Fisher information (Fisher 信息量)</strong> is defined as</p>
                         \\[I(\\theta) = \\mathbb{E}_{\\theta}\\left[\\left(\\frac{\\partial}{\\partial\\theta} \\log f(X; \\theta)\\right)^2\\right] = \\operatorname{Var}_{\\theta}\\left(\\frac{\\partial}{\\partial\\theta} \\log f(X; \\theta)\\right).\\]
-                        <p>等价地，在进一步的正则条件下，</p>
+                        <p>Equivalently, under further regularity conditions,</p>
                         \\[I(\\theta) = -\\mathbb{E}_{\\theta}\\left[\\frac{\\partial^2}{\\partial\\theta^2} \\log f(X; \\theta)\\right].\\]
-                        <p>对于 \\(n\\) 个iid样本，总信息量为 \\(I_n(\\theta) = nI(\\theta)\\)。</p>
+                        <p>For \\(n\\) iid samples, the total information is \\(I_n(\\theta) = nI(\\theta)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>Fisher信息量衡量的是数据中关于参数 \\(\\theta\\) 的"信息含量"。如果对数似然函数 \\(\\log f(x;\\theta)\\) 关于 \\(\\theta\\) 的曲率（负二阶导数）越大，说明似然函数在真值附近越"尖锐"，参数越容易被精确估计——这对应更高的Fisher信息量。</p>
+                        <p>Fisher information measures the "information content" in the data about the parameter \\(\\theta\\). If the curvature (negative second derivative) of the log-likelihood \\(\\log f(x;\\theta)\\) with respect to \\(\\theta\\) is large, it means the likelihood function is more "peaked" around the true value, and the parameter is easier to estimate precisely — this corresponds to higher Fisher information.</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 7.9 (常见分布的Fisher信息量)</div>
+                    <div class="env-title">Example 7.9 (Fisher Information for Common Distributions)</div>
                     <div class="env-body">
-                        <p><strong>(a) 正态分布 \\(N(\\mu, \\sigma^2)\\)</strong>（\\(\\sigma^2\\) 已知，估计 \\(\\mu\\)）：</p>
+                        <p><strong>(a) Normal distribution \\(N(\\mu, \\sigma^2)\\)</strong> (\\(\\sigma^2\\) known, estimating \\(\\mu\\)):</p>
                         \\[\\log f = -\\frac{(x-\\mu)^2}{2\\sigma^2} + \\text{const}, \\quad \\frac{\\partial^2}{\\partial\\mu^2}\\log f = -\\frac{1}{\\sigma^2}, \\quad I(\\mu) = \\frac{1}{\\sigma^2}.\\]
-                        <p><strong>(b) Poisson(\\(\\lambda\\))</strong>：</p>
+                        <p><strong>(b) Poisson(\\(\\lambda\\))</strong>:</p>
                         \\[\\log f = x\\log\\lambda - \\lambda + \\text{const}, \\quad \\frac{\\partial^2}{\\partial\\lambda^2}\\log f = -\\frac{x}{\\lambda^2}, \\quad I(\\lambda) = \\frac{1}{\\lambda}.\\]
-                        <p><strong>(c) Bernoulli(\\(p\\))</strong>：</p>
+                        <p><strong>(c) Bernoulli(\\(p\\))</strong>:</p>
                         \\[I(p) = \\frac{1}{p(1-p)}.\\]
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 7.10 (Cramer-Rao 不等式)</div>
+                    <div class="env-title">Theorem 7.10 (Cramer-Rao Inequality)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\sim f(x;\\theta)\\) 满足正则条件，\\(W = W(X_1, \\ldots, X_n)\\) 是任意统计量且 \\(\\mathbb{E}_{\\theta}[W] = m(\\theta)\\) 可微。则</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\sim f(x;\\theta)\\) satisfy regularity conditions, and let \\(W = W(X_1, \\ldots, X_n)\\) be any statistic with \\(\\mathbb{E}_{\\theta}[W] = m(\\theta)\\) differentiable. Then</p>
                         \\[\\operatorname{Var}_{\\theta}(W) \\geq \\frac{[m'(\\theta)]^2}{nI(\\theta)}.\\]
-                        <p>特别地，若 \\(W\\) 是 \\(\\theta\\) 的无偏估计量（即 \\(m(\\theta) = \\theta\\)，\\(m'(\\theta) = 1\\)），则</p>
+                        <p>In particular, if \\(W\\) is an unbiased estimator of \\(\\theta\\) (i.e., \\(m(\\theta) = \\theta\\), \\(m'(\\theta) = 1\\)), then</p>
                         \\[\\operatorname{Var}_{\\theta}(W) \\geq \\frac{1}{nI(\\theta)}.\\]
-                        <p>右端 \\(1/(nI(\\theta))\\) 称为 <strong>Cramer-Rao 下界 (CRLB)</strong>。</p>
+                        <p>The quantity \\(1/(nI(\\theta))\\) is called the <strong>Cramer-Rao lower bound (CRLB)</strong>.</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof (sketch)</div>
                     <div class="env-body">
-                        <p>令 \\(S_n = \\sum_{i=1}^{n} \\frac{\\partial}{\\partial\\theta}\\log f(X_i; \\theta)\\) 为得分函数之和。注意 \\(\\mathbb{E}[S_n] = 0\\)，\\(\\operatorname{Var}(S_n) = nI(\\theta)\\)。</p>
-                        <p>由 \\(\\mathbb{E}[W] = m(\\theta)\\)，对 \\(\\theta\\) 求导（正则条件允许交换积分与微分）：</p>
+                        <p>Let \\(S_n = \\sum_{i=1}^{n} \\frac{\\partial}{\\partial\\theta}\\log f(X_i; \\theta)\\) be the sum of score functions. Note that \\(\\mathbb{E}[S_n] = 0\\) and \\(\\operatorname{Var}(S_n) = nI(\\theta)\\).</p>
+                        <p>From \\(\\mathbb{E}[W] = m(\\theta)\\), differentiating with respect to \\(\\theta\\) (the regularity conditions allow interchange of integration and differentiation):</p>
                         \\[m'(\\theta) = \\mathbb{E}[W \\cdot S_n] = \\operatorname{Cov}(W, S_n).\\]
-                        <p>最后一步用了 \\(\\mathbb{E}[S_n] = 0\\)。由 Cauchy-Schwarz 不等式：</p>
+                        <p>The last step uses \\(\\mathbb{E}[S_n] = 0\\). By the Cauchy-Schwarz inequality:</p>
                         \\[[m'(\\theta)]^2 = [\\operatorname{Cov}(W, S_n)]^2 \\leq \\operatorname{Var}(W) \\cdot \\operatorname{Var}(S_n) = \\operatorname{Var}(W) \\cdot nI(\\theta).\\]
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 7.11 (有效估计量与效率)</div>
+                    <div class="env-title">Definition 7.11 (Efficient Estimator and Efficiency)</div>
                     <div class="env-body">
-                        <p>若无偏估计量 \\(W\\) 的方差恰好等于CRLB，即 \\(\\operatorname{Var}_{\\theta}(W) = \\frac{1}{nI(\\theta)}\\) 对所有 \\(\\theta\\) 成立，则称 \\(W\\) 为<strong>有效估计量 (efficient estimator)</strong>。</p>
-                        <p>估计量的<strong>效率 (efficiency)</strong> 定义为 \\(e(W) = \\frac{1/(nI(\\theta))}{\\operatorname{Var}(W)}\\)，满足 \\(0 < e(W) \\leq 1\\)。</p>
+                        <p>If an unbiased estimator \\(W\\) has variance exactly equal to the CRLB, i.e., \\(\\operatorname{Var}_{\\theta}(W) = \\frac{1}{nI(\\theta)}\\) for all \\(\\theta\\), then \\(W\\) is called an <strong>efficient estimator (有效估计量)</strong>.</p>
+                        <p>The <strong>efficiency (效率)</strong> of an estimator is defined as \\(e(W) = \\frac{1/(nI(\\theta))}{\\operatorname{Var}(W)}\\), satisfying \\(0 < e(W) \\leq 1\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>CRLB的成立需要正则条件，特别是支撑集不依赖于参数。对于 \\(U(0, \\theta)\\) 等分布，CRLB不适用！此时 \\(X_{(n)}\\) 的方差可以以 \\(O(1/n^2)\\) 速度趋于零，快于正则情形的 \\(O(1/n)\\)。</p>
+                        <p>The CRLB requires regularity conditions, in particular that the support does not depend on the parameter. For distributions like \\(U(0, \\theta)\\), the CRLB does not apply! In that case, the variance of \\(X_{(n)}\\) can converge to zero at rate \\(O(1/n^2)\\), faster than the \\(O(1/n)\\) rate in the regular case.</p>
                     </div>
                 </div>
 
@@ -557,8 +557,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'crlb-variance-plot',
-                    title: 'Interactive: CRLB vs 实际方差',
-                    description: '比较不同估计量的方差与Cramer-Rao下界',
+                    title: 'Interactive: CRLB vs Actual Variance / CRLB vs 实际方差',
+                    description: 'Compare the variance of different estimators with the Cramer-Rao lower bound / 比较不同估计量的方差与Cramer-Rao下界',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -824,52 +824,52 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '计算 Bernoulli(\\(p\\)) 分布中 \\(p\\) 的Fisher信息量，并由此得到 \\(\\hat{p} = \\bar{X}\\) 的CRLB。验证 \\(\\bar{X}\\) 是有效估计量。',
-                    hint: '\\(\\log f(x;p) = x\\log p + (1-x)\\log(1-p)\\)，对 \\(p\\) 求二阶导。',
-                    solution: '\\(\\frac{\\partial^2}{\\partial p^2}\\log f = -\\frac{x}{p^2} - \\frac{1-x}{(1-p)^2}\\)。取期望：\\(I(p) = \\frac{1}{p(1-p)}\\)。CRLB = \\(\\frac{1}{nI(p)} = \\frac{p(1-p)}{n}\\)。而 \\(\\operatorname{Var}(\\bar{X}) = \\frac{p(1-p)}{n}\\) 恰好等于CRLB，因此 \\(\\bar{X}\\) 是有效估计量。'
+                    question: 'Compute the Fisher information of \\(p\\) for the Bernoulli(\\(p\\)) distribution, and derive the CRLB for \\(\\hat{p} = \\bar{X}\\). Verify that \\(\\bar{X}\\) is an efficient estimator.',
+                    hint: '\\(\\log f(x;p) = x\\log p + (1-x)\\log(1-p)\\). Take the second derivative with respect to \\(p\\).',
+                    solution: '\\(\\frac{\\partial^2}{\\partial p^2}\\log f = -\\frac{x}{p^2} - \\frac{1-x}{(1-p)^2}\\). Taking the expectation: \\(I(p) = \\frac{1}{p(1-p)}\\). CRLB = \\(\\frac{1}{nI(p)} = \\frac{p(1-p)}{n}\\). Since \\(\\operatorname{Var}(\\bar{X}) = \\frac{p(1-p)}{n}\\) equals the CRLB exactly, \\(\\bar{X}\\) is an efficient estimator.'
                 },
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\sim N(0, \\sigma^2)\\)（均值已知为0）。求 \\(\\sigma^2\\) 的Fisher信息量和CRLB，并验证 \\(\\frac{1}{n}\\sum X_i^2\\) 是否为有效估计量。',
-                    hint: '\\(\\log f = -\\frac{1}{2}\\log(2\\pi\\sigma^2) - \\frac{x^2}{2\\sigma^2}\\)，令 \\(\\eta = \\sigma^2\\) 后对 \\(\\eta\\) 求导。',
-                    solution: '以 \\(\\eta = \\sigma^2\\) 为参数：\\(\\frac{\\partial}{\\partial\\eta}\\log f = -\\frac{1}{2\\eta} + \\frac{x^2}{2\\eta^2}\\)。\\(\\frac{\\partial^2}{\\partial\\eta^2}\\log f = \\frac{1}{2\\eta^2} - \\frac{x^2}{\\eta^3}\\)。取期望：\\(I(\\eta) = -\\frac{1}{2\\eta^2} + \\frac{\\eta}{\\eta^3} = \\frac{1}{2\\sigma^4}\\)。CRLB = \\(\\frac{2\\sigma^4}{n}\\)。而 \\(W = \\frac{1}{n}\\sum X_i^2\\) 有 \\(\\operatorname{Var}(W) = \\frac{2\\sigma^4}{n}\\)（因为 \\(nW/\\sigma^2 \\sim \\chi^2_n\\)），恰等于CRLB，所以 \\(W\\) 是有效估计量。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\sim N(0, \\sigma^2)\\) (mean known to be 0). Find the Fisher information and CRLB for \\(\\sigma^2\\), and verify whether \\(\\frac{1}{n}\\sum X_i^2\\) is an efficient estimator.',
+                    hint: '\\(\\log f = -\\frac{1}{2}\\log(2\\pi\\sigma^2) - \\frac{x^2}{2\\sigma^2}\\). Let \\(\\eta = \\sigma^2\\) and differentiate with respect to \\(\\eta\\).',
+                    solution: 'With \\(\\eta = \\sigma^2\\) as the parameter: \\(\\frac{\\partial}{\\partial\\eta}\\log f = -\\frac{1}{2\\eta} + \\frac{x^2}{2\\eta^2}\\). \\(\\frac{\\partial^2}{\\partial\\eta^2}\\log f = \\frac{1}{2\\eta^2} - \\frac{x^2}{\\eta^3}\\). Taking the expectation: \\(I(\\eta) = -\\frac{1}{2\\eta^2} + \\frac{\\eta}{\\eta^3} = \\frac{1}{2\\sigma^4}\\). CRLB = \\(\\frac{2\\sigma^4}{n}\\). The estimator \\(W = \\frac{1}{n}\\sum X_i^2\\) has \\(\\operatorname{Var}(W) = \\frac{2\\sigma^4}{n}\\) (since \\(nW/\\sigma^2 \\sim \\chi^2_n\\)), which equals the CRLB exactly, so \\(W\\) is an efficient estimator.'
                 },
                 {
-                    question: '为什么CRLB不适用于均匀分布 \\(U(0, \\theta)\\)？对该分布，\\(X_{(n)}\\) 的方差衰减速率如何？',
-                    hint: '检查正则条件：支撑集 \\([0, \\theta]\\) 是否依赖于参数？',
-                    solution: 'CRLB要求支撑集不依赖于 \\(\\theta\\)，但 \\(U(0,\\theta)\\) 的支撑集 \\([0,\\theta]\\) 随 \\(\\theta\\) 变化，违反正则条件。\\(X_{(n)}\\) 的方差为 \\(\\operatorname{Var}(X_{(n)}) = \\frac{n\\theta^2}{(n+1)^2(n+2)} = O(1/n^2)\\)，远快于正则情形的 \\(O(1/n)\\)。这说明非正则分布可以实现"超效率"。'
+                    question: 'Why does the CRLB not apply to the uniform distribution \\(U(0, \\theta)\\)? For this distribution, at what rate does the variance of \\(X_{(n)}\\) decay?',
+                    hint: 'Check the regularity condition: does the support \\([0, \\theta]\\) depend on the parameter?',
+                    solution: 'The CRLB requires that the support does not depend on \\(\\theta\\), but for \\(U(0,\\theta)\\) the support \\([0,\\theta]\\) varies with \\(\\theta\\), violating the regularity condition. The variance of \\(X_{(n)}\\) is \\(\\operatorname{Var}(X_{(n)}) = \\frac{n\\theta^2}{(n+1)^2(n+2)} = O(1/n^2)\\), much faster than the \\(O(1/n)\\) rate in the regular case. This shows that non-regular distributions can achieve "super-efficiency."'
                 }
             ]
         },
 
-        // ===== Section 4: Rao-Blackwell 定理 =====
+        // ===== Section 4: Rao-Blackwell Theorem =====
         {
             id: 'ch07-sec04',
-            title: 'Rao-Blackwell定理',
+            title: 'Rao-Blackwell Theorem',
             content: `
-                <h2>Rao-Blackwell 定理</h2>
+                <h2>Rao-Blackwell Theorem / Rao-Blackwell 定理</h2>
 
-                <p>Rao-Blackwell定理提供了一种系统性地改进估计量的方法：对任意无偏估计量，通过对充分统计量求条件期望，可以得到一个方差不增的无偏估计量。</p>
+                <p>The Rao-Blackwell theorem provides a systematic method for improving estimators: for any unbiased estimator, by conditioning on a sufficient statistic (充分统计量), one obtains an unbiased estimator with no greater variance.</p>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 7.12 (Rao-Blackwell)</div>
                     <div class="env-body">
-                        <p>设 \\(W\\) 是 \\(\\tau(\\theta)\\) 的无偏估计量，\\(T\\) 是 \\(\\theta\\) 的充分统计量。令</p>
+                        <p>Let \\(W\\) be an unbiased estimator of \\(\\tau(\\theta)\\), and let \\(T\\) be a sufficient statistic for \\(\\theta\\). Define</p>
                         \\[\\phi(T) = \\mathbb{E}[W \\mid T].\\]
-                        <p>则：</p>
-                        <p>(a) \\(\\phi(T)\\) 是 \\(\\tau(\\theta)\\) 的无偏估计量：\\(\\mathbb{E}[\\phi(T)] = \\tau(\\theta)\\)；</p>
-                        <p>(b) \\(\\phi(T)\\) 的方差不超过 \\(W\\) 的方差：\\(\\operatorname{Var}(\\phi(T)) \\leq \\operatorname{Var}(W)\\)；</p>
-                        <p>(c) 更强地，\\(\\operatorname{MSE}(\\phi(T)) \\leq \\operatorname{MSE}(W)\\)。</p>
+                        <p>Then:</p>
+                        <p>(a) \\(\\phi(T)\\) is an unbiased estimator of \\(\\tau(\\theta)\\): \\(\\mathbb{E}[\\phi(T)] = \\tau(\\theta)\\);</p>
+                        <p>(b) The variance of \\(\\phi(T)\\) does not exceed that of \\(W\\): \\(\\operatorname{Var}(\\phi(T)) \\leq \\operatorname{Var}(W)\\);</p>
+                        <p>(c) More strongly, \\(\\operatorname{MSE}(\\phi(T)) \\leq \\operatorname{MSE}(W)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p><strong>(a)</strong> 由迭代期望：\\(\\mathbb{E}[\\phi(T)] = \\mathbb{E}[\\mathbb{E}[W|T]] = \\mathbb{E}[W] = \\tau(\\theta)\\)。</p>
-                        <p><strong>(b)</strong> 由全方差公式 (Eve's law)：</p>
+                        <p><strong>(a)</strong> By the tower property (iterated expectation): \\(\\mathbb{E}[\\phi(T)] = \\mathbb{E}[\\mathbb{E}[W|T]] = \\mathbb{E}[W] = \\tau(\\theta)\\).</p>
+                        <p><strong>(b)</strong> By the law of total variance (Eve's law):</p>
                         \\[\\operatorname{Var}(W) = \\mathbb{E}[\\operatorname{Var}(W|T)] + \\operatorname{Var}(\\mathbb{E}[W|T]) = \\mathbb{E}[\\operatorname{Var}(W|T)] + \\operatorname{Var}(\\phi(T)).\\]
-                        <p>由于 \\(\\mathbb{E}[\\operatorname{Var}(W|T)] \\geq 0\\)，即得 \\(\\operatorname{Var}(\\phi(T)) \\leq \\operatorname{Var}(W)\\)。等号成立当且仅当 \\(W\\) 已经是 \\(T\\) 的函数。</p>
-                        <p><strong>(c)</strong> 对于MSE的情况，取 \\(L(w) = (w - \\tau(\\theta))^2\\)，利用条件Jensen不等式 \\(\\mathbb{E}[L(W)|T] \\geq L(\\mathbb{E}[W|T])\\)（\\(L\\) 是凸函数），取期望即得结论。</p>
+                        <p>Since \\(\\mathbb{E}[\\operatorname{Var}(W|T)] \\geq 0\\), it follows that \\(\\operatorname{Var}(\\phi(T)) \\leq \\operatorname{Var}(W)\\). Equality holds if and only if \\(W\\) is already a function of \\(T\\).</p>
+                        <p><strong>(c)</strong> For the MSE case, take \\(L(w) = (w - \\tau(\\theta))^2\\). By the conditional Jensen inequality \\(\\mathbb{E}[L(W)|T] \\geq L(\\mathbb{E}[W|T])\\) (since \\(L\\) is convex), taking expectations yields the result.</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
@@ -877,26 +877,26 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>Rao-Blackwell过程可以这样理解：充分统计量 \\(T\\) 已经包含了数据中关于 \\(\\theta\\) 的所有信息。给定 \\(T\\)，\\(W\\) 的随机波动中没有任何关于 \\(\\theta\\) 的信息——这部分纯粹是"噪声"。条件期望 \\(\\mathbb{E}[W|T]\\) 正好去除了这些噪声，保留了有用信号。</p>
+                        <p>The Rao-Blackwell process can be understood as follows: the sufficient statistic \\(T\\) already captures all the information in the data about \\(\\theta\\). Given \\(T\\), the random fluctuation of \\(W\\) contains no information about \\(\\theta\\) — it is pure "noise." The conditional expectation \\(\\mathbb{E}[W|T]\\) removes exactly this noise while preserving the useful signal.</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 7.13 (Bernoulli中的Rao-Blackwellization)</div>
+                    <div class="env-title">Example 7.13 (Rao-Blackwellization in the Bernoulli Model)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\sim \\text{Bernoulli}(p)\\)。估计 \\(p\\)。</p>
-                        <p><strong>初始估计量</strong>：\\(W = X_1\\)，显然无偏但方差大：\\(\\operatorname{Var}(W) = p(1-p)\\)。</p>
-                        <p><strong>充分统计量</strong>：\\(T = \\sum_{i=1}^{n} X_i \\sim \\text{Binomial}(n, p)\\)。</p>
-                        <p><strong>Rao-Blackwellization</strong>：</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\sim \\text{Bernoulli}(p)\\). Estimate \\(p\\).</p>
+                        <p><strong>Initial estimator</strong>: \\(W = X_1\\), clearly unbiased but with large variance: \\(\\operatorname{Var}(W) = p(1-p)\\).</p>
+                        <p><strong>Sufficient statistic</strong>: \\(T = \\sum_{i=1}^{n} X_i \\sim \\text{Binomial}(n, p)\\).</p>
+                        <p><strong>Rao-Blackwellization</strong>:</p>
                         \\[\\phi(T) = \\mathbb{E}[X_1 | T = t] = P(X_1 = 1 | T = t) = \\frac{\\binom{n-1}{t-1}}{\\binom{n}{t}} = \\frac{t}{n} = \\bar{X}.\\]
-                        <p>因此 \\(\\phi(T) = \\bar{X}\\)，其方差 \\(\\operatorname{Var}(\\bar{X}) = p(1-p)/n\\)，比 \\(\\operatorname{Var}(X_1) = p(1-p)\\) 小了 \\(n\\) 倍！</p>
+                        <p>Therefore \\(\\phi(T) = \\bar{X}\\), with variance \\(\\operatorname{Var}(\\bar{X}) = p(1-p)/n\\), which is \\(n\\) times smaller than \\(\\operatorname{Var}(X_1) = p(1-p)\\)!</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>Rao-Blackwell定理保证了改进，但不一定达到最优。若充分统计量 \\(T\\) 不完备，可能存在多个不同的 \\(\\phi(T)\\)（取决于初始估计量 \\(W\\) 的选取）。要确保唯一性和最优性，需要完备性条件——这正是下一节UMVUE理论的核心。</p>
+                        <p>The Rao-Blackwell theorem guarantees improvement, but does not necessarily achieve optimality. If the sufficient statistic \\(T\\) is not complete, there may exist multiple different \\(\\phi(T)\\) (depending on the choice of initial estimator \\(W\\)). To ensure uniqueness and optimality, a completeness condition is needed — this is the core of the UMVUE theory in the next section.</p>
                     </div>
                 </div>
 
@@ -905,8 +905,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'rao-blackwell-demo',
-                    title: 'Interactive: Rao-Blackwellization 效果对比',
-                    description: '比较Rao-Blackwell前后估计量的方差缩减',
+                    title: 'Interactive: Rao-Blackwellization Effect Comparison / Rao-Blackwellization 效果对比',
+                    description: 'Compare the variance reduction before and after Rao-Blackwellization / 比较Rao-Blackwell前后估计量的方差缩减',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 420,
@@ -1073,19 +1073,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\sim \\text{Poisson}(\\lambda)\\)。以 \\(W = \\mathbf{1}_{\\{X_1 = 0\\}}\\) 作为 \\(e^{-\\lambda}\\) 的初始无偏估计量，对充分统计量 \\(T = \\sum X_i\\) 进行Rao-Blackwellization。',
-                    hint: '需要计算 \\(P(X_1 = 0 | T = t) = P(X_1 = 0, \\sum_{i=2}^n X_i = t) / P(T = t)\\)。利用Poisson分布的加法性质。',
-                    solution: '\\(P(X_1 = 0 | T = t) = \\frac{P(X_1 = 0) P(\\sum_{i=2}^n X_i = t)}{P(T = t)} = \\frac{e^{-\\lambda} \\cdot \\frac{((n-1)\\lambda)^t e^{-(n-1)\\lambda}}{t!}}{\\frac{(n\\lambda)^t e^{-n\\lambda}}{t!}} = \\left(\\frac{n-1}{n}\\right)^t = \\left(1 - \\frac{1}{n}\\right)^t\\). 因此 \\(\\phi(T) = \\left(1 - 1/n\\right)^T\\) 是 \\(e^{-\\lambda}\\) 的改进无偏估计量。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\sim \\text{Poisson}(\\lambda)\\). Using \\(W = \\mathbf{1}_{\\{X_1 = 0\\}}\\) as an initial unbiased estimator of \\(e^{-\\lambda}\\), perform Rao-Blackwellization with the sufficient statistic \\(T = \\sum X_i\\).',
+                    hint: 'Compute \\(P(X_1 = 0 | T = t) = P(X_1 = 0, \\sum_{i=2}^n X_i = t) / P(T = t)\\). Use the additive property of the Poisson distribution.',
+                    solution: '\\(P(X_1 = 0 | T = t) = \\frac{P(X_1 = 0) P(\\sum_{i=2}^n X_i = t)}{P(T = t)} = \\frac{e^{-\\lambda} \\cdot \\frac{((n-1)\\lambda)^t e^{-(n-1)\\lambda}}{t!}}{\\frac{(n\\lambda)^t e^{-n\\lambda}}{t!}} = \\left(\\frac{n-1}{n}\\right)^t = \\left(1 - \\frac{1}{n}\\right)^t\\). Therefore \\(\\phi(T) = \\left(1 - 1/n\\right)^T\\) is the improved unbiased estimator of \\(e^{-\\lambda}\\).'
                 },
                 {
-                    question: '在Example 7.13中，说明对于估计 \\(p^2\\)，以 \\(W = X_1 X_2\\) 为初始估计量进行Rao-Blackwellization的结果。',
-                    hint: '计算 \\(\\mathbb{E}[X_1 X_2 | T = t]\\)，利用 \\(P(X_1 = 1, X_2 = 1 | T = t) = \\binom{n-2}{t-2}/\\binom{n}{t}\\)。',
-                    solution: '\\(\\phi(T) = \\mathbb{E}[X_1 X_2 | T = t] = P(X_1 = 1, X_2 = 1 | T = t) = \\frac{\\binom{n-2}{t-2}}{\\binom{n}{t}} = \\frac{t(t-1)}{n(n-1)}\\)。因此 \\(\\phi(T) = \\frac{T(T-1)}{n(n-1)}\\)。可以验证 \\(\\mathbb{E}[\\phi(T)] = p^2\\)，且 \\(\\operatorname{Var}(\\phi(T)) \\leq \\operatorname{Var}(X_1 X_2) = p^2(1-p^2)\\)。'
+                    question: 'In Example 7.13, determine the result of Rao-Blackwellization for estimating \\(p^2\\) using \\(W = X_1 X_2\\) as the initial estimator.',
+                    hint: 'Compute \\(\\mathbb{E}[X_1 X_2 | T = t]\\), using \\(P(X_1 = 1, X_2 = 1 | T = t) = \\binom{n-2}{t-2}/\\binom{n}{t}\\).',
+                    solution: '\\(\\phi(T) = \\mathbb{E}[X_1 X_2 | T = t] = P(X_1 = 1, X_2 = 1 | T = t) = \\frac{\\binom{n-2}{t-2}}{\\binom{n}{t}} = \\frac{t(t-1)}{n(n-1)}\\). Therefore \\(\\phi(T) = \\frac{T(T-1)}{n(n-1)}\\). One can verify that \\(\\mathbb{E}[\\phi(T)] = p^2\\) and \\(\\operatorname{Var}(\\phi(T)) \\leq \\operatorname{Var}(X_1 X_2) = p^2(1-p^2)\\).'
                 },
                 {
-                    question: '证明：若 \\(W\\) 已经是充分统计量 \\(T\\) 的函数，即 \\(W = g(T)\\)，则Rao-Blackwellization不会进一步改进估计量。',
-                    hint: '条件期望的性质：若 \\(W = g(T)\\)，则 \\(\\mathbb{E}[W|T] = ?\\)',
-                    solution: '若 \\(W = g(T)\\)，则 \\(\\mathbb{E}[W|T] = \\mathbb{E}[g(T)|T] = g(T) = W\\)。因此 \\(\\phi(T) = W\\)，方差不变。这也可以从全方差公式看出：\\(\\operatorname{Var}(W) = \\operatorname{Var}(\\phi(T)) + \\mathbb{E}[\\operatorname{Var}(W|T)]\\)，而 \\(\\operatorname{Var}(g(T)|T) = 0\\)，所以 \\(\\operatorname{Var}(W) = \\operatorname{Var}(\\phi(T))\\)。'
+                    question: 'Prove that if \\(W\\) is already a function of the sufficient statistic \\(T\\), i.e., \\(W = g(T)\\), then Rao-Blackwellization does not further improve the estimator.',
+                    hint: 'Property of conditional expectation: if \\(W = g(T)\\), then \\(\\mathbb{E}[W|T] = ?\\)',
+                    solution: 'If \\(W = g(T)\\), then \\(\\mathbb{E}[W|T] = \\mathbb{E}[g(T)|T] = g(T) = W\\). Therefore \\(\\phi(T) = W\\) and the variance is unchanged. This can also be seen from the law of total variance: \\(\\operatorname{Var}(W) = \\operatorname{Var}(\\phi(T)) + \\mathbb{E}[\\operatorname{Var}(W|T)]\\), and \\(\\operatorname{Var}(g(T)|T) = 0\\), so \\(\\operatorname{Var}(W) = \\operatorname{Var}(\\phi(T))\\).'
                 }
             ]
         },
@@ -1095,102 +1095,101 @@ window.CHAPTERS.push({
             id: 'ch07-sec05',
             title: 'UMVUE',
             content: `
-                <h2>一致最小方差无偏估计量 (UMVUE)</h2>
+                <h2>Uniformly Minimum Variance Unbiased Estimator (UMVUE) / 一致最小方差无偏估计量</h2>
 
-                <p>Rao-Blackwell定理告诉我们如何改进估计量，但最终是否能达到"最优"？Lehmann-Scheffe定理给出了一个完美的答案：当充分统计量是完备的，Rao-Blackwellization直接产生UMVUE。</p>
+                <p>The Rao-Blackwell theorem tells us how to improve estimators, but can we ultimately achieve "optimality"? The Lehmann-Scheffe theorem provides a definitive answer: when the sufficient statistic is complete (完备的), Rao-Blackwellization directly yields the UMVUE.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 7.14 (UMVUE)</div>
                     <div class="env-body">
-                        <p>估计量 \\(W^*\\) 称为 \\(\\tau(\\theta)\\) 的<strong>一致最小方差无偏估计量 (Uniformly Minimum Variance Unbiased Estimator, UMVUE)</strong>，若</p>
-                        <p>(a) \\(\\mathbb{E}_{\\theta}[W^*] = \\tau(\\theta)\\) 对所有 \\(\\theta \\in \\Theta\\)；</p>
-                        <p>(b) 对任意其他无偏估计量 \\(W\\)，\\(\\operatorname{Var}_{\\theta}(W^*) \\leq \\operatorname{Var}_{\\theta}(W)\\) 对所有 \\(\\theta \\in \\Theta\\)。</p>
+                        <p>An estimator \\(W^*\\) is called the <strong>uniformly minimum variance unbiased estimator (UMVUE, 一致最小方差无偏估计量)</strong> of \\(\\tau(\\theta)\\) if</p>
+                        <p>(a) \\(\\mathbb{E}_{\\theta}[W^*] = \\tau(\\theta)\\) for all \\(\\theta \\in \\Theta\\);</p>
+                        <p>(b) For any other unbiased estimator \\(W\\), \\(\\operatorname{Var}_{\\theta}(W^*) \\leq \\operatorname{Var}_{\\theta}(W)\\) for all \\(\\theta \\in \\Theta\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 7.15 (完备统计量)</div>
+                    <div class="env-title">Definition 7.15 (Complete Statistic)</div>
                     <div class="env-body">
-                        <p>设 \\(T\\) 是统计量。若对任意函数 \\(g\\)，</p>
-                        \\[\\mathbb{E}_{\\theta}[g(T)] = 0 \\quad \\forall \\theta \\in \\Theta \\implies g(T) = 0 \\text{ a.s. for all } \\theta,\\]
-                        <p>则称 \\(T\\) 为<strong>完备统计量 (complete statistic)</strong>。</p>
+                        <p>A statistic \\(T\\) is called a <strong>complete statistic (完备统计量)</strong> if for any function \\(g\\),</p>
+                        \\[\\mathbb{E}_{\\theta}[g(T)] = 0 \\quad \\forall \\theta \\in \\Theta \\implies g(T) = 0 \\text{ a.s. for all } \\theta.\\]
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>完备性是关键。它保证了"基于充分统计量的无偏估计是唯一的"。如果充分统计量不完备，不同的初始估计量 \\(W\\) 可能Rao-Blackwell出不同的结果 \\(\\phi(T)\\)，就无法保证最优性。完备性消除了这种多义性。</p>
+                        <p>Completeness (完备性) is the key. It guarantees that "an unbiased estimator based on the sufficient statistic is unique." If the sufficient statistic is not complete, different initial estimators \\(W\\) may yield different Rao-Blackwell results \\(\\phi(T)\\), and optimality cannot be guaranteed. Completeness eliminates this ambiguity.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 7.16 (Lehmann-Scheffe)</div>
                     <div class="env-body">
-                        <p>设 \\(T\\) 是 \\(\\theta\\) 的<strong>完备充分统计量 (complete sufficient statistic)</strong>。</p>
-                        <p>(a) 若 \\(\\phi(T)\\) 是 \\(\\tau(\\theta)\\) 的任意无偏估计量且是 \\(T\\) 的函数，则 \\(\\phi(T)\\) 是 \\(\\tau(\\theta)\\) 的UMVUE。</p>
-                        <p>(b) 等价地，若 \\(W\\) 是 \\(\\tau(\\theta)\\) 的任意无偏估计量，则 \\(\\phi(T) = \\mathbb{E}[W|T]\\) 是 \\(\\tau(\\theta)\\) 的UMVUE。</p>
+                        <p>Let \\(T\\) be a <strong>complete sufficient statistic (完备充分统计量)</strong> for \\(\\theta\\).</p>
+                        <p>(a) If \\(\\phi(T)\\) is any unbiased estimator of \\(\\tau(\\theta)\\) that is a function of \\(T\\), then \\(\\phi(T)\\) is the UMVUE of \\(\\tau(\\theta)\\).</p>
+                        <p>(b) Equivalently, if \\(W\\) is any unbiased estimator of \\(\\tau(\\theta)\\), then \\(\\phi(T) = \\mathbb{E}[W|T]\\) is the UMVUE of \\(\\tau(\\theta)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p><strong>(a)</strong> 设 \\(W\\) 是 \\(\\tau(\\theta)\\) 的任意无偏估计量。由Rao-Blackwell定理，\\(W' = \\mathbb{E}[W|T]\\) 也是无偏的且 \\(\\operatorname{Var}(W') \\leq \\operatorname{Var}(W)\\)。</p>
-                        <p>现在 \\(\\phi(T)\\) 和 \\(W'\\) 都是 \\(T\\) 的函数且都无偏估计 \\(\\tau(\\theta)\\)。因此</p>
+                        <p><strong>(a)</strong> Let \\(W\\) be any unbiased estimator of \\(\\tau(\\theta)\\). By the Rao-Blackwell theorem, \\(W' = \\mathbb{E}[W|T]\\) is also unbiased and \\(\\operatorname{Var}(W') \\leq \\operatorname{Var}(W)\\).</p>
+                        <p>Now both \\(\\phi(T)\\) and \\(W'\\) are functions of \\(T\\) and both unbiasedly estimate \\(\\tau(\\theta)\\). Therefore</p>
                         \\[\\mathbb{E}[\\phi(T) - W'] = \\tau(\\theta) - \\tau(\\theta) = 0 \\quad \\forall\\, \\theta.\\]
-                        <p>由 \\(T\\) 的<strong>完备性</strong>，\\(\\phi(T) - W' = 0\\) a.s.，即 \\(\\phi(T) = W'\\) a.s. 因此</p>
+                        <p>By the <strong>completeness</strong> of \\(T\\), \\(\\phi(T) - W' = 0\\) a.s., i.e., \\(\\phi(T) = W'\\) a.s. Therefore</p>
                         \\[\\operatorname{Var}(\\phi(T)) = \\operatorname{Var}(W') \\leq \\operatorname{Var}(W).\\]
-                        <p>由 \\(W\\) 的任意性，\\(\\phi(T)\\) 是UMVUE。</p>
-                        <p><strong>(b)</strong> 由(a)和Rao-Blackwell定理直接得到。</p>
+                        <p>Since \\(W\\) was arbitrary, \\(\\phi(T)\\) is the UMVUE.</p>
+                        <p><strong>(b)</strong> Follows directly from (a) and the Rao-Blackwell theorem.</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Corollary 7.17 (UMVUE的唯一性)</div>
+                    <div class="env-title">Corollary 7.17 (Uniqueness of the UMVUE)</div>
                     <div class="env-body">
-                        <p>若UMVUE存在，则它几乎处处唯一。</p>
+                        <p>If a UMVUE exists, it is almost surely unique.</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>设 \\(W_1, W_2\\) 都是UMVUE。则对所有 \\(\\theta\\)，\\(\\operatorname{Var}(W_1) = \\operatorname{Var}(W_2)\\)。令 \\(W_3 = (W_1 + W_2)/2\\)，则 \\(W_3\\) 也是无偏的，且</p>
+                        <p>Suppose \\(W_1, W_2\\) are both UMVUEs. Then for all \\(\\theta\\), \\(\\operatorname{Var}(W_1) = \\operatorname{Var}(W_2)\\). Let \\(W_3 = (W_1 + W_2)/2\\). Then \\(W_3\\) is also unbiased, and</p>
                         \\[\\operatorname{Var}(W_3) = \\frac{1}{4}\\operatorname{Var}(W_1) + \\frac{1}{4}\\operatorname{Var}(W_2) + \\frac{1}{2}\\operatorname{Cov}(W_1, W_2).\\]
-                        <p>由Cauchy-Schwarz，\\(\\operatorname{Cov}(W_1, W_2) \\leq \\sqrt{\\operatorname{Var}(W_1)\\operatorname{Var}(W_2)} = \\operatorname{Var}(W_1)\\)，故 \\(\\operatorname{Var}(W_3) \\leq \\operatorname{Var}(W_1)\\)。</p>
-                        <p>但 \\(W_1\\) 是UMVUE，所以等号必须成立，这要求 \\(W_1 = W_2\\) a.s.</p>
+                        <p>By Cauchy-Schwarz, \\(\\operatorname{Cov}(W_1, W_2) \\leq \\sqrt{\\operatorname{Var}(W_1)\\operatorname{Var}(W_2)} = \\operatorname{Var}(W_1)\\), so \\(\\operatorname{Var}(W_3) \\leq \\operatorname{Var}(W_1)\\).</p>
+                        <p>But \\(W_1\\) is a UMVUE, so equality must hold, which requires \\(W_1 = W_2\\) a.s.</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 7.18 (寻找UMVUE的策略)</div>
+                    <div class="env-title">Example 7.18 (Strategies for Finding the UMVUE)</div>
                     <div class="env-body">
-                        <p>寻找 \\(\\tau(\\theta)\\) 的UMVUE有两种基本方法：</p>
-                        <p><strong>方法一（直接法）</strong>：找到完备充分统计量 \\(T\\)，然后直接构造 \\(T\\) 的函数 \\(\\phi(T)\\) 使得 \\(\\mathbb{E}[\\phi(T)] = \\tau(\\theta)\\)。</p>
-                        <p><strong>方法二（Rao-Blackwell法）</strong>：(i) 找任意无偏估计量 \\(W\\)；(ii) 找完备充分统计量 \\(T\\)；(iii) 计算 \\(\\phi(T) = \\mathbb{E}[W|T]\\)。</p>
-                        <p>在指数族中，方法一通常更简洁；对于更复杂的问题，方法二可能更系统。</p>
+                        <p>There are two basic methods for finding the UMVUE of \\(\\tau(\\theta)\\):</p>
+                        <p><strong>Method 1 (Direct method)</strong>: Find a complete sufficient statistic \\(T\\), then directly construct a function \\(\\phi(T)\\) of \\(T\\) such that \\(\\mathbb{E}[\\phi(T)] = \\tau(\\theta)\\).</p>
+                        <p><strong>Method 2 (Rao-Blackwell method)</strong>: (i) Find any unbiased estimator \\(W\\); (ii) Find a complete sufficient statistic \\(T\\); (iii) Compute \\(\\phi(T) = \\mathbb{E}[W|T]\\).</p>
+                        <p>In exponential families, Method 1 is usually more concise; for more complex problems, Method 2 may be more systematic.</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 7.19 (常见分布的UMVUE)</div>
+                    <div class="env-title">Example 7.19 (UMVUEs for Common Distributions)</div>
                     <div class="env-body">
-                        <p><strong>正态分布</strong> \\(N(\\mu, \\sigma^2)\\)（两参数均未知）：完备充分统计量为 \\((\\sum X_i, \\sum X_i^2)\\)。</p>
-                        <p>&bull; \\(\\mu\\) 的 UMVUE：\\(\\bar{X}\\)</p>
-                        <p>&bull; \\(\\sigma^2\\) 的 UMVUE：\\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2\\)</p>
-                        <p><strong>Poisson</strong> \\(\\text{Poisson}(\\lambda)\\)：完备充分统计量为 \\(T = \\sum X_i\\)。</p>
-                        <p>&bull; \\(\\lambda\\) 的 UMVUE：\\(\\bar{X}\\)</p>
-                        <p>&bull; \\(P(X = 0) = e^{-\\lambda}\\) 的 UMVUE：\\(\\left(1 - \\frac{1}{n}\\right)^T\\)</p>
+                        <p><strong>Normal distribution</strong> \\(N(\\mu, \\sigma^2)\\) (both parameters unknown): the complete sufficient statistic is \\((\\sum X_i, \\sum X_i^2)\\).</p>
+                        <p>&bull; UMVUE of \\(\\mu\\): \\(\\bar{X}\\)</p>
+                        <p>&bull; UMVUE of \\(\\sigma^2\\): \\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2\\)</p>
+                        <p><strong>Poisson</strong> \\(\\text{Poisson}(\\lambda)\\): the complete sufficient statistic is \\(T = \\sum X_i\\).</p>
+                        <p>&bull; UMVUE of \\(\\lambda\\): \\(\\bar{X}\\)</p>
+                        <p>&bull; UMVUE of \\(P(X = 0) = e^{-\\lambda}\\): \\(\\left(1 - \\frac{1}{n}\\right)^T\\)</p>
                     </div>
                 </div>
 
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>UMVUE并非万能。(1) 它仅在无偏估计量的类中最优——有偏估计量（如James-Stein估计量）可以有更小的MSE。(2) 不是所有参数都存在UMVUE。(3) UMVUE可能不是可容许的 (admissible)，特别是在高维问题中。</p>
+                        <p>The UMVUE is not a panacea. (1) It is optimal only within the class of unbiased estimators — biased estimators (such as the James-Stein estimator) can have smaller MSE. (2) Not every parameter has a UMVUE. (3) The UMVUE may not be admissible (可容许的), especially in high-dimensional problems.</p>
                     </div>
                 </div>
 
@@ -1199,8 +1198,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'umvue-flowchart',
-                    title: 'Interactive: UMVUE 寻找决策流程',
-                    description: '可视化寻找UMVUE的逻辑流程与实例演示',
+                    title: 'Interactive: UMVUE Decision Flowchart / UMVUE 寻找决策流程',
+                    description: 'Visualize the logical flow for finding the UMVUE with example demonstrations / 可视化寻找UMVUE的逻辑流程与实例演示',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 450,
@@ -1365,19 +1364,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\sim \\text{Exp}(\\lambda)\\)（参数为速率）。找到 \\(1/\\lambda\\)（即均值）的UMVUE。',
-                    hint: '指数分布族的完备充分统计量是 \\(T = \\sum X_i\\)。找 \\(T\\) 的函数使期望等于 \\(1/\\lambda\\)。',
-                    solution: '完备充分统计量为 \\(T = \\sum X_i\\)，\\(T \\sim \\text{Gamma}(n, \\lambda)\\)，\\(\\mathbb{E}[T] = n/\\lambda\\)。因此 \\(\\phi(T) = T/n = \\bar{X}\\) 满足 \\(\\mathbb{E}[\\bar{X}] = 1/\\lambda\\)。由Lehmann-Scheffe定理，\\(\\bar{X}\\) 是 \\(1/\\lambda\\) 的UMVUE。其方差为 \\(\\operatorname{Var}(\\bar{X}) = 1/(n\\lambda^2)\\)。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\sim \\text{Exp}(\\lambda)\\) (rate parameterization). Find the UMVUE of \\(1/\\lambda\\) (the mean).',
+                    hint: 'The complete sufficient statistic for the exponential family is \\(T = \\sum X_i\\). Find a function of \\(T\\) whose expectation equals \\(1/\\lambda\\).',
+                    solution: 'The complete sufficient statistic is \\(T = \\sum X_i\\), where \\(T \\sim \\text{Gamma}(n, \\lambda)\\) with \\(\\mathbb{E}[T] = n/\\lambda\\). Therefore \\(\\phi(T) = T/n = \\bar{X}\\) satisfies \\(\\mathbb{E}[\\bar{X}] = 1/\\lambda\\). By the Lehmann-Scheffe theorem, \\(\\bar{X}\\) is the UMVUE of \\(1/\\lambda\\). Its variance is \\(\\operatorname{Var}(\\bar{X}) = 1/(n\\lambda^2)\\).'
                 },
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\sim N(\\mu, \\sigma^2)\\)（两个参数均未知）。证明 \\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2\\) 是 \\(\\sigma^2\\) 的UMVUE。',
-                    hint: '正态分布族中 \\((\\bar{X}, \\sum(X_i - \\bar{X})^2)\\) 是完备充分统计量。',
-                    solution: '正态分布属于二参数指数族，完备充分统计量为 \\(T = (\\bar{X}, \\sum(X_i - \\bar{X})^2)\\)。\\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2\\) 是 \\(T\\) 的函数，且 \\(\\mathbb{E}[S^2] = \\sigma^2\\)（无偏）。由Lehmann-Scheffe定理，\\(S^2\\) 是 \\(\\sigma^2\\) 的UMVUE。注意UMVUE并非MSE最优：\\(\\operatorname{MSE}(S^2) = 2\\sigma^4/(n-1) > 2(n-1)\\sigma^4/(n+1)^2 = \\operatorname{MSE}(W_{n+1})\\)。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\sim N(\\mu, \\sigma^2)\\) (both parameters unknown). Prove that \\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2\\) is the UMVUE of \\(\\sigma^2\\).',
+                    hint: 'In the normal family, \\((\\bar{X}, \\sum(X_i - \\bar{X})^2)\\) is a complete sufficient statistic.',
+                    solution: 'The normal distribution belongs to a two-parameter exponential family, with complete sufficient statistic \\(T = (\\bar{X}, \\sum(X_i - \\bar{X})^2)\\). Since \\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2\\) is a function of \\(T\\) and \\(\\mathbb{E}[S^2] = \\sigma^2\\) (unbiased), by the Lehmann-Scheffe theorem, \\(S^2\\) is the UMVUE of \\(\\sigma^2\\). Note that the UMVUE is not MSE-optimal: \\(\\operatorname{MSE}(S^2) = 2\\sigma^4/(n-1) > 2(n-1)\\sigma^4/(n+1)^2 = \\operatorname{MSE}(W_{n+1})\\).'
                 },
                 {
-                    question: '(Lehmann-Scheffe的应用) 设 \\(X_1, \\ldots, X_n \\sim \\text{Bernoulli}(p)\\)。找到 \\(\\tau(p) = p(1-p)\\)（即方差）的UMVUE。',
-                    hint: '完备充分统计量 \\(T = \\sum X_i \\sim \\text{Bin}(n, p)\\)。需要找 \\(g(T)\\) 使 \\(\\mathbb{E}[g(T)] = p(1-p)\\) 对所有 \\(p\\)。可以从 \\(\\mathbb{E}[T(n-T)] = ?\\) 入手。',
-                    solution: '\\(\\mathbb{E}[T] = np\\)，\\(\\mathbb{E}[T^2] = np(1-p) + n^2p^2\\)。因此 \\(\\mathbb{E}[T(n-T)] = n\\mathbb{E}[T] - \\mathbb{E}[T^2] = n^2p - np(1-p) - n^2p^2 = n(n-1)p(1-p)\\)。故 \\(\\phi(T) = \\frac{T(n-T)}{n(n-1)} = \\frac{\\bar{X}(1-\\bar{X})}{1-1/n}\\) 满足 \\(\\mathbb{E}[\\phi(T)] = p(1-p)\\)。由Lehmann-Scheffe，这是 \\(p(1-p)\\) 的UMVUE。注意这正是 \\(S^2 = \\frac{n}{n-1}\\bar{X}(1-\\bar{X})\\) 的另一种写法。'
+                    question: '(Application of Lehmann-Scheffe) Let \\(X_1, \\ldots, X_n \\sim \\text{Bernoulli}(p)\\). Find the UMVUE of \\(\\tau(p) = p(1-p)\\) (the variance).',
+                    hint: 'The complete sufficient statistic is \\(T = \\sum X_i \\sim \\text{Bin}(n, p)\\). Find \\(g(T)\\) such that \\(\\mathbb{E}[g(T)] = p(1-p)\\) for all \\(p\\). Start from \\(\\mathbb{E}[T(n-T)] = ?\\)',
+                    solution: '\\(\\mathbb{E}[T] = np\\), \\(\\mathbb{E}[T^2] = np(1-p) + n^2p^2\\). Therefore \\(\\mathbb{E}[T(n-T)] = n\\mathbb{E}[T] - \\mathbb{E}[T^2] = n^2p - np(1-p) - n^2p^2 = n(n-1)p(1-p)\\). Hence \\(\\phi(T) = \\frac{T(n-T)}{n(n-1)} = \\frac{\\bar{X}(1-\\bar{X})}{1-1/n}\\) satisfies \\(\\mathbb{E}[\\phi(T)] = p(1-p)\\). By Lehmann-Scheffe, this is the UMVUE of \\(p(1-p)\\). Note this is another way of writing \\(S^2 = \\frac{n}{n-1}\\bar{X}(1-\\bar{X})\\).'
                 }
             ]
         }

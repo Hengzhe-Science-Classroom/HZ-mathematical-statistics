@@ -1,39 +1,39 @@
-// Chapter 4: 随机样本与统计量 — Version B
+// Chapter 4: Random Samples & Statistics
 window.CHAPTERS = window.CHAPTERS || [];
 window.CHAPTERS.push({
     id: 'ch04',
     number: 4,
-    title: '随机样本与统计量',
+    title: 'Random Samples & Statistics',
     subtitle: 'Random Samples & Statistics',
     sections: [
-        // ========== SECTION 1: 随机样本 ==========
+        // ========== SECTION 1: Random Samples ==========
         {
             id: 'ch04-sec01',
-            title: '随机样本',
+            title: 'Random Samples',
             content: `
-                <h2>随机样本</h2>
-                <p>统计推断的核心在于从<strong>总体</strong>（population）中抽取<strong>样本</strong>（sample），并通过样本来推断总体的性质。本节严格定义随机样本的概念，阐明独立同分布（iid）假设的数学含义。</p>
+                <h2>Random Samples &#8201;|&#8201; 随机样本</h2>
+                <p>The core of statistical inference lies in drawing a <strong>sample</strong> (样本) from a <strong>population</strong> (总体) and using the sample to infer properties of the population. This section rigorously defines the concept of a random sample and clarifies the mathematical meaning of the independent and identically distributed (iid) assumption.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 4.1 (总体与个体)</div>
+                    <div class="env-title">Definition 4.1 (Population and Individual)</div>
                     <div class="env-body">
-                        <p>设 \\(X\\) 为一个具有分布函数 \\(F(x; \\theta)\\) 的随机变量，其中 \\(\\theta \\in \\Theta\\) 为未知参数。我们称 \\(F\\) 所代表的概率分布为<strong>总体</strong>（population），而 \\(X\\) 的每次独立观测值称为<strong>个体</strong>（individual）。</p>
+                        <p>Let \\(X\\) be a random variable with distribution function \\(F(x; \\theta)\\), where \\(\\theta \\in \\Theta\\) is an unknown parameter. We call the probability distribution represented by \\(F\\) the <strong>population</strong> (总体), and each independent observation of \\(X\\) is called an <strong>individual</strong> (个体).</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 4.2 (随机样本)</div>
+                    <div class="env-title">Definition 4.2 (Random Sample)</div>
                     <div class="env-body">
-                        <p>设总体 \\(X\\) 的分布函数为 \\(F\\)。若随机变量 \\(X_1, X_2, \\ldots, X_n\\) 满足：</p>
+                        <p>Let the population \\(X\\) have distribution function \\(F\\). If the random variables \\(X_1, X_2, \\ldots, X_n\\) satisfy:</p>
                         <ol>
-                            <li><strong>独立性</strong>：\\(X_1, X_2, \\ldots, X_n\\) 相互独立；</li>
-                            <li><strong>同分布性</strong>：每个 \\(X_i\\) 均与 \\(X\\) 同分布，即 \\(X_i \\sim F\\)，\\(i = 1, 2, \\ldots, n\\)。</li>
+                            <li><strong>Independence</strong>: \\(X_1, X_2, \\ldots, X_n\\) are mutually independent;</li>
+                            <li><strong>Identical distribution</strong>: each \\(X_i\\) has the same distribution as \\(X\\), i.e., \\(X_i \\sim F\\), \\(i = 1, 2, \\ldots, n\\).</li>
                         </ol>
-                        <p>则称 \\(X_1, X_2, \\ldots, X_n\\) 为来自总体 \\(F\\) 的容量为 \\(n\\) 的<strong>随机样本</strong>（random sample），简称样本。记为</p>
+                        <p>then \\(X_1, X_2, \\ldots, X_n\\) is called a <strong>random sample</strong> (随机样本) of size \\(n\\) from the population \\(F\\), or simply a sample. We write</p>
                         \\[X_1, X_2, \\ldots, X_n \\overset{\\text{iid}}{\\sim} F.\\]
-                        <p>此时，样本的联合分布函数为</p>
+                        <p>In this case, the joint distribution function of the sample is</p>
                         \\[F_{X_1, \\ldots, X_n}(x_1, \\ldots, x_n) = \\prod_{i=1}^{n} F(x_i).\\]
-                        <p>若 \\(F\\) 具有密度 \\(f\\)，则联合密度为</p>
+                        <p>If \\(F\\) has density \\(f\\), then the joint density is</p>
                         \\[f_{X_1, \\ldots, X_n}(x_1, \\ldots, x_n) = \\prod_{i=1}^{n} f(x_i).\\]
                     </div>
                 </div>
@@ -41,32 +41,32 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>可以将抽样过程想象为从一个"无限大的罐子"中逐一取球。每次取球前罐子的状态不变（独立性），且每个球上标注的数字服从相同的分布（同分布性）。有限总体中的有放回抽样正好满足 iid 条件，而无放回抽样则打破独立性。</p>
+                        <p>Think of the sampling process as drawing balls one by one from an "infinitely large urn." Before each draw the urn's composition remains unchanged (independence), and the number written on each ball follows the same distribution (identical distribution). Sampling with replacement from a finite population satisfies the iid condition exactly, whereas sampling without replacement breaks independence.</p>
                     </div>
                 </div>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>需要区分<strong>样本</strong>（sample，随机变量 \\(X_1, \\ldots, X_n\\)）与<strong>样本观测值</strong>（sample observation，实现值 \\(x_1, \\ldots, x_n\\)）。统计量是关于样本的函数，其本身也是随机变量；一旦观测到具体数据，统计量便取确定的值。</p>
+                        <p>It is important to distinguish between the <strong>sample</strong> (the random variables \\(X_1, \\ldots, X_n\\)) and the <strong>sample observation</strong> (样本观测值, the realized values \\(x_1, \\ldots, x_n\\)). A statistic is a function of the sample and is itself a random variable; once specific data are observed, the statistic takes on a definite value.</p>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 4.1 (正态总体的联合密度)</div>
+                    <div class="env-title">Example 4.1 (Joint Density of a Normal Population)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)，则联合密度为</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\). The joint density is</p>
                         \\[f(x_1, \\ldots, x_n) = \\prod_{i=1}^{n} \\frac{1}{\\sqrt{2\\pi}\\sigma} \\exp\\!\\left(-\\frac{(x_i - \\mu)^2}{2\\sigma^2}\\right) = \\frac{1}{(2\\pi\\sigma^2)^{n/2}} \\exp\\!\\left(-\\frac{1}{2\\sigma^2}\\sum_{i=1}^{n}(x_i - \\mu)^2\\right).\\]
-                        <p>这个联合密度是后续讨论充分统计量和极大似然估计的基础。</p>
+                        <p>This joint density is fundamental to subsequent discussions of sufficient statistics and maximum likelihood estimation.</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 4.3 (经验分布函数)</div>
+                    <div class="env-title">Definition 4.3 (Empirical Distribution Function)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n\\) 为来自总体 \\(F\\) 的随机样本。<strong>经验分布函数</strong>（empirical distribution function，EDF）定义为</p>
+                        <p>Let \\(X_1, \\ldots, X_n\\) be a random sample from population \\(F\\). The <strong>empirical distribution function</strong> (经验分布函数, EDF) is defined as</p>
                         \\[\\hat{F}_n(x) = \\frac{1}{n}\\sum_{i=1}^{n} \\mathbf{1}(X_i \\le x),\\]
-                        <p>其中 \\(\\mathbf{1}(\\cdot)\\) 为示性函数。由 Glivenko-Cantelli 定理，\\(\\hat{F}_n(x) \\to F(x)\\) 几乎处处一致收敛。</p>
+                        <p>where \\(\\mathbf{1}(\\cdot)\\) is the indicator function. By the Glivenko-Cantelli theorem, \\(\\hat{F}_n(x) \\to F(x)\\) uniformly almost surely.</p>
                     </div>
                 </div>
 
@@ -75,15 +75,15 @@ window.CHAPTERS.push({
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>在实际应用中，iid 假设常常只是近似成立。例如时间序列数据中相邻观测往往存在相关性，聚类抽样中同一组内的个体可能高度相似。违反 iid 假设可能导致推断结论严重偏差，这也是为什么在实践中需要仔细检验 iid 假设。</p>
+                        <p>In practice, the iid assumption is often only approximately satisfied. For example, adjacent observations in time series data are often correlated, and individuals within the same cluster may be highly similar in cluster sampling. Violating the iid assumption can lead to severely biased inference, which is why the assumption must be carefully verified in practice.</p>
                     </div>
                 </div>
             `,
             visualizations: [
                 {
                     id: 'population-sampling-sim',
-                    title: 'Interactive: 从总体中抽样模拟器',
-                    description: '选择总体分布，观察样本的经验分布如何逼近总体分布（Glivenko-Cantelli 定理的直观展示）',
+                    title: 'Interactive: Sampling from a Population (从总体中抽样)',
+                    description: 'Choose a population distribution and observe how the empirical distribution converges to the true distribution (visual demonstration of the Glivenko-Cantelli theorem)',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400, scale: 50,
@@ -252,67 +252,67 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Exp}(\\lambda)\\)，写出样本的联合密度函数，并证明 \\(T = \\sum_{i=1}^n X_i\\) 是充分统计量（提示：利用因子分解定理）。',
-                    hint: '联合密度为 \\(f(x_1, \\ldots, x_n) = \\lambda^n \\exp(-\\lambda \\sum x_i) \\cdot \\mathbf{1}(\\min_i x_i \\ge 0)\\)。注意它可以分解为只依赖 \\(\\sum x_i\\) 的部分和不依赖 \\(\\lambda\\) 的部分。',
-                    solution: '联合密度为 \\(f(\\mathbf{x}|\\lambda) = \\lambda^n e^{-\\lambda \\sum_{i=1}^n x_i} \\prod_{i=1}^n \\mathbf{1}(x_i \\ge 0)\\)。令 \\(g(T|\\lambda) = \\lambda^n e^{-\\lambda T}\\)，\\(h(\\mathbf{x}) = \\prod_{i=1}^n \\mathbf{1}(x_i \\ge 0)\\)，则 \\(f(\\mathbf{x}|\\lambda) = g(T(\\mathbf{x})|\\lambda) \\cdot h(\\mathbf{x})\\)。由 Fisher-Neyman 因子分解定理，\\(T = \\sum_{i=1}^n X_i\\) 是 \\(\\lambda\\) 的充分统计量。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Exp}(\\lambda)\\). Write down the joint density of the sample and prove that \\(T = \\sum_{i=1}^n X_i\\) is a sufficient statistic. (Hint: use the factorization theorem.)',
+                    hint: 'The joint density is \\(f(x_1, \\ldots, x_n) = \\lambda^n \\exp(-\\lambda \\sum x_i) \\cdot \\mathbf{1}(\\min_i x_i \\ge 0)\\). Note that it factors into a part depending only on \\(\\sum x_i\\) and a part independent of \\(\\lambda\\).',
+                    solution: 'The joint density is \\(f(\\mathbf{x}|\\lambda) = \\lambda^n e^{-\\lambda \\sum_{i=1}^n x_i} \\prod_{i=1}^n \\mathbf{1}(x_i \\ge 0)\\). Let \\(g(T|\\lambda) = \\lambda^n e^{-\\lambda T}\\) and \\(h(\\mathbf{x}) = \\prod_{i=1}^n \\mathbf{1}(x_i \\ge 0)\\). Then \\(f(\\mathbf{x}|\\lambda) = g(T(\\mathbf{x})|\\lambda) \\cdot h(\\mathbf{x})\\). By the Fisher-Neyman factorization theorem, \\(T = \\sum_{i=1}^n X_i\\) is a sufficient statistic for \\(\\lambda\\).'
                 },
                 {
-                    question: '设 \\(X_1, \\ldots, X_n\\) 为来自总体 \\(F\\) 的 iid 样本，经验分布函数为 \\(\\hat{F}_n(x)\\)。证明对固定的 \\(x\\)，\\(n\\hat{F}_n(x) \\sim \\text{Binomial}(n, F(x))\\)。',
-                    hint: '注意 \\(\\mathbf{1}(X_i \\le x)\\) 是独立的 Bernoulli 随机变量。',
-                    solution: '对固定的 \\(x\\)，令 \\(Y_i = \\mathbf{1}(X_i \\le x)\\)。则 \\(Y_i \\overset{\\text{iid}}{\\sim} \\text{Bernoulli}(p)\\)，其中 \\(p = P(X_i \\le x) = F(x)\\)。因此 \\(n\\hat{F}_n(x) = \\sum_{i=1}^n Y_i \\sim \\text{Binomial}(n, F(x))\\)。特别地，\\(\\mathbb{E}[\\hat{F}_n(x)] = F(x)\\)，\\(\\operatorname{Var}(\\hat{F}_n(x)) = F(x)(1 - F(x))/n\\)。'
+                    question: 'Let \\(X_1, \\ldots, X_n\\) be an iid sample from population \\(F\\), and let \\(\\hat{F}_n(x)\\) be the empirical distribution function. Prove that for fixed \\(x\\), \\(n\\hat{F}_n(x) \\sim \\text{Binomial}(n, F(x))\\).',
+                    hint: 'Note that \\(\\mathbf{1}(X_i \\le x)\\) are independent Bernoulli random variables.',
+                    solution: 'For fixed \\(x\\), let \\(Y_i = \\mathbf{1}(X_i \\le x)\\). Then \\(Y_i \\overset{\\text{iid}}{\\sim} \\text{Bernoulli}(p)\\) where \\(p = P(X_i \\le x) = F(x)\\). Therefore \\(n\\hat{F}_n(x) = \\sum_{i=1}^n Y_i \\sim \\text{Binomial}(n, F(x))\\). In particular, \\(\\mathbb{E}[\\hat{F}_n(x)] = F(x)\\) and \\(\\operatorname{Var}(\\hat{F}_n(x)) = F(x)(1 - F(x))/n\\).'
                 },
                 {
-                    question: '解释为什么有限总体中的无放回抽样（simple random sampling without replacement）不满足 iid 假设，但当总体远大于样本时可以近似为 iid。',
-                    hint: '考虑超几何分布与二项分布的关系。',
-                    solution: '无放回抽样中，\\(X_i\\) 的条件分布依赖于先前的抽取结果，即 \\(P(X_{i+1} | X_1, \\ldots, X_i) \\ne P(X_{i+1})\\)，因此不满足独立性。然而，当总体容量 \\(N \\gg n\\) 时，已抽取的元素对剩余总体的影响可忽略。形式上，超几何分布 \\(\\text{Hypergeometric}(N, K, n)\\) 在 \\(N \\to \\infty\\)，\\(K/N \\to p\\) 时收敛于 \\(\\text{Binomial}(n, p)\\)，后者正是 iid Bernoulli 样本之和的分布。通常认为当 \\(n/N < 0.05\\) 时 iid 近似已相当精确。'
+                    question: 'Explain why simple random sampling without replacement from a finite population does not satisfy the iid assumption, but can be approximated as iid when the population is much larger than the sample.',
+                    hint: 'Consider the relationship between the hypergeometric distribution and the binomial distribution.',
+                    solution: 'Under sampling without replacement, the conditional distribution of \\(X_i\\) depends on previous draws, i.e., \\(P(X_{i+1} | X_1, \\ldots, X_i) \\ne P(X_{i+1})\\), so independence fails. However, when the population size \\(N \\gg n\\), the effect of previously drawn elements on the remaining population is negligible. Formally, the hypergeometric distribution \\(\\text{Hypergeometric}(N, K, n)\\) converges to \\(\\text{Binomial}(n, p)\\) as \\(N \\to \\infty\\) with \\(K/N \\to p\\), which is exactly the distribution of a sum of iid Bernoulli samples. It is generally accepted that the iid approximation is quite accurate when \\(n/N < 0.05\\).'
                 }
             ]
         },
 
-        // ========== SECTION 2: 统计量与抽样分布 ==========
+        // ========== SECTION 2: Statistics and Sampling Distributions ==========
         {
             id: 'ch04-sec02',
-            title: '统计量与抽样分布',
+            title: 'Statistics and Sampling Distributions',
             content: `
-                <h2>统计量与抽样分布</h2>
-                <p>有了随机样本的概念，我们接下来定义<strong>统计量</strong>（statistic）：样本的可计算函数。统计量是推断总体参数的桥梁。</p>
+                <h2>Statistics and Sampling Distributions &#8201;|&#8201; 统计量与抽样分布</h2>
+                <p>With the concept of a random sample in hand, we now define a <strong>statistic</strong> (统计量): a computable function of the sample. Statistics serve as the bridge for inferring population parameters.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 4.4 (统计量)</div>
+                    <div class="env-title">Definition 4.4 (Statistic)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n\\) 为随机样本。若函数 \\(T = T(X_1, \\ldots, X_n)\\) <strong>不依赖于任何未知参数</strong>，则称 \\(T\\) 为一个<strong>统计量</strong>（statistic）。统计量的分布称为<strong>抽样分布</strong>（sampling distribution）。</p>
+                        <p>Let \\(X_1, \\ldots, X_n\\) be a random sample. If a function \\(T = T(X_1, \\ldots, X_n)\\) <strong>does not depend on any unknown parameters</strong>, then \\(T\\) is called a <strong>statistic</strong> (统计量). The distribution of a statistic is called a <strong>sampling distribution</strong> (抽样分布).</p>
                     </div>
                 </div>
 
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>注意 \\(\\bar{X} = \\frac{1}{n}\\sum_{i=1}^n X_i\\) 是统计量，但 \\(\\frac{\\bar{X} - \\mu}{\\sigma/\\sqrt{n}}\\) 在 \\(\\mu, \\sigma\\) 未知时<strong>不是</strong>统计量（因为它依赖于未知参数）。必须用样本量替代未知参数才能得到统计量，如 \\(\\frac{\\bar{X} - \\mu_0}{S/\\sqrt{n}}\\)（这里 \\(\\mu_0\\) 为假设中的已知值）。</p>
+                        <p>Note that \\(\\bar{X} = \\frac{1}{n}\\sum_{i=1}^n X_i\\) is a statistic, but \\(\\frac{\\bar{X} - \\mu}{\\sigma/\\sqrt{n}}\\) is <strong>not</strong> a statistic when \\(\\mu, \\sigma\\) are unknown (because it depends on unknown parameters). One must replace unknown parameters with sample-based quantities to obtain a statistic, e.g., \\(\\frac{\\bar{X} - \\mu_0}{S/\\sqrt{n}}\\) (where \\(\\mu_0\\) is a known value specified in the hypothesis).</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 4.5 (常用统计量)</div>
+                    <div class="env-title">Definition 4.5 (Common Statistics)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n\\) 为随机样本，定义以下统计量：</p>
+                        <p>Let \\(X_1, \\ldots, X_n\\) be a random sample. The following statistics are defined:</p>
                         <ol>
-                            <li><strong>样本均值</strong>：\\(\\bar{X} = \\frac{1}{n}\\sum_{i=1}^{n} X_i\\)</li>
-                            <li><strong>样本方差</strong>：\\(S^2 = \\frac{1}{n-1}\\sum_{i=1}^{n} (X_i - \\bar{X})^2\\)</li>
-                            <li><strong>样本标准差</strong>：\\(S = \\sqrt{S^2}\\)</li>
-                            <li><strong>样本 \\(k\\) 阶矩</strong>：\\(M_k = \\frac{1}{n}\\sum_{i=1}^{n} X_i^k\\)</li>
-                            <li><strong>样本 \\(k\\) 阶中心矩</strong>：\\(M_k^* = \\frac{1}{n}\\sum_{i=1}^{n} (X_i - \\bar{X})^k\\)</li>
+                            <li><strong>Sample mean</strong> (样本均值): \\(\\bar{X} = \\frac{1}{n}\\sum_{i=1}^{n} X_i\\)</li>
+                            <li><strong>Sample variance</strong> (样本方差): \\(S^2 = \\frac{1}{n-1}\\sum_{i=1}^{n} (X_i - \\bar{X})^2\\)</li>
+                            <li><strong>Sample standard deviation</strong> (样本标准差): \\(S = \\sqrt{S^2}\\)</li>
+                            <li><strong>Sample \\(k\\)-th moment</strong> (样本 \\(k\\) 阶矩): \\(M_k = \\frac{1}{n}\\sum_{i=1}^{n} X_i^k\\)</li>
+                            <li><strong>Sample \\(k\\)-th central moment</strong> (样本 \\(k\\) 阶中心矩): \\(M_k^* = \\frac{1}{n}\\sum_{i=1}^{n} (X_i - \\bar{X})^k\\)</li>
                         </ol>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 4.1 (样本均值与方差的基本性质)</div>
+                    <div class="env-title">Theorem 4.1 (Basic Properties of Sample Mean and Variance)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} F\\)，其中 \\(\\mathbb{E}[X] = \\mu\\)，\\(\\operatorname{Var}(X) = \\sigma^2 < \\infty\\)。则：</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} F\\), where \\(\\mathbb{E}[X] = \\mu\\) and \\(\\operatorname{Var}(X) = \\sigma^2 < \\infty\\). Then:</p>
                         <ol>
-                            <li>\\(\\mathbb{E}[\\bar{X}] = \\mu\\)（无偏性）</li>
-                            <li>\\(\\operatorname{Var}(\\bar{X}) = \\frac{\\sigma^2}{n}\\)（方差衰减）</li>
-                            <li>\\(\\mathbb{E}[S^2] = \\sigma^2\\)（无偏性）</li>
+                            <li>\\(\\mathbb{E}[\\bar{X}] = \\mu\\) (unbiasedness)</li>
+                            <li>\\(\\operatorname{Var}(\\bar{X}) = \\frac{\\sigma^2}{n}\\) (variance reduction)</li>
+                            <li>\\(\\mathbb{E}[S^2] = \\sigma^2\\) (unbiasedness)</li>
                         </ol>
                     </div>
                 </div>
@@ -320,13 +320,13 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>(1) 由线性性，\\(\\mathbb{E}[\\bar{X}] = \\frac{1}{n}\\sum_{i=1}^n \\mathbb{E}[X_i] = \\mu\\)。</p>
-                        <p>(2) 由独立性，\\(\\operatorname{Var}(\\bar{X}) = \\frac{1}{n^2}\\sum_{i=1}^n \\operatorname{Var}(X_i) = \\frac{\\sigma^2}{n}\\)。</p>
-                        <p>(3) 利用恒等式 \\(\\sum_{i=1}^n (X_i - \\bar{X})^2 = \\sum_{i=1}^n X_i^2 - n\\bar{X}^2\\)：</p>
+                        <p>(1) By linearity, \\(\\mathbb{E}[\\bar{X}] = \\frac{1}{n}\\sum_{i=1}^n \\mathbb{E}[X_i] = \\mu\\).</p>
+                        <p>(2) By independence, \\(\\operatorname{Var}(\\bar{X}) = \\frac{1}{n^2}\\sum_{i=1}^n \\operatorname{Var}(X_i) = \\frac{\\sigma^2}{n}\\).</p>
+                        <p>(3) Using the identity \\(\\sum_{i=1}^n (X_i - \\bar{X})^2 = \\sum_{i=1}^n X_i^2 - n\\bar{X}^2\\):</p>
                         \\[\\mathbb{E}\\left[\\sum_{i=1}^n (X_i - \\bar{X})^2\\right] = \\sum_{i=1}^n \\mathbb{E}[X_i^2] - n\\mathbb{E}[\\bar{X}^2].\\]
-                        <p>由于 \\(\\mathbb{E}[X_i^2] = \\sigma^2 + \\mu^2\\)，\\(\\mathbb{E}[\\bar{X}^2] = \\frac{\\sigma^2}{n} + \\mu^2\\)，代入得</p>
+                        <p>Since \\(\\mathbb{E}[X_i^2] = \\sigma^2 + \\mu^2\\) and \\(\\mathbb{E}[\\bar{X}^2] = \\frac{\\sigma^2}{n} + \\mu^2\\), substituting gives</p>
                         \\[\\mathbb{E}\\left[\\sum_{i=1}^n (X_i - \\bar{X})^2\\right] = n(\\sigma^2 + \\mu^2) - n\\left(\\frac{\\sigma^2}{n} + \\mu^2\\right) = (n-1)\\sigma^2.\\]
-                        <p>因此 \\(\\mathbb{E}[S^2] = \\frac{1}{n-1}(n-1)\\sigma^2 = \\sigma^2\\)。</p>
+                        <p>Therefore \\(\\mathbb{E}[S^2] = \\frac{1}{n-1}(n-1)\\sigma^2 = \\sigma^2\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
@@ -334,20 +334,20 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>样本方差除以 \\(n-1\\) 而不是 \\(n\\) 的原因在于"自由度损失"：\\(n\\) 个偏差 \\(X_i - \\bar{X}\\) 之和恒为零，因此只有 \\(n-1\\) 个偏差是自由的。用 \\(n\\) 作除数会<strong>系统性地低估</strong>总体方差。下面的可视化将直观展示这一点。</p>
+                        <p>The reason for dividing by \\(n-1\\) instead of \\(n\\) in the sample variance is the "loss of degrees of freedom" (自由度损失): the \\(n\\) deviations \\(X_i - \\bar{X}\\) always sum to zero, so only \\(n-1\\) of them are free. Using \\(n\\) as the divisor would <strong>systematically underestimate</strong> the population variance. The visualization below demonstrates this point intuitively.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 4.2 (样本均值与方差的独立性——正态情形)</div>
+                    <div class="env-title">Theorem 4.2 (Independence of Sample Mean and Variance &mdash; Normal Case)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)。则：</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\). Then:</p>
                         <ol>
-                            <li>\\(\\bar{X}\\) 与 \\(S^2\\) 相互独立；</li>
-                            <li>\\(\\bar{X} \\sim N\\!\\left(\\mu, \\frac{\\sigma^2}{n}\\right)\\)；</li>
-                            <li>\\(\\frac{(n-1)S^2}{\\sigma^2} \\sim \\chi^2(n-1)\\)。</li>
+                            <li>\\(\\bar{X}\\) and \\(S^2\\) are independent;</li>
+                            <li>\\(\\bar{X} \\sim N\\!\\left(\\mu, \\frac{\\sigma^2}{n}\\right)\\);</li>
+                            <li>\\(\\frac{(n-1)S^2}{\\sigma^2} \\sim \\chi^2(n-1)\\).</li>
                         </ol>
-                        <p>这一定理由 Cochran 在 1934 年给出严格证明，是正态总体推断的基石。</p>
+                        <p>This theorem was rigorously proved by Cochran in 1934 and is a cornerstone of inference for normal populations.</p>
                     </div>
                 </div>
 
@@ -356,8 +356,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'sampling-dist-xbar',
-                    title: 'Interactive: 样本均值的抽样分布',
-                    description: '反复从总体抽样，观察样本均值的分布如何随 n 增大而集中于总体均值',
+                    title: 'Interactive: Sampling Distribution of the Sample Mean (样本均值的抽样分布)',
+                    description: 'Repeatedly draw samples from the population and observe how the distribution of the sample mean concentrates around the population mean as n increases',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 420, scale: 80,
@@ -500,46 +500,46 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} F\\)，其中 \\(\\mathbb{E}[X^4] < \\infty\\)。计算 \\(\\operatorname{Var}(S^2)\\) 并说明其与总体四阶矩的关系。',
-                    hint: '利用 \\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2\\) 和恒等式 \\((n-1)S^2 = \\sum X_i^2 - n\\bar{X}^2\\)，计算 \\(\\operatorname{Var}(\\sum X_i^2 - n\\bar{X}^2)\\)。',
-                    solution: '设 \\(\\mu_k = \\mathbb{E}[(X - \\mu)^k]\\) 为 \\(k\\) 阶中心矩。经过仔细计算可得 \\(\\operatorname{Var}(S^2) = \\frac{1}{n}\\left(\\mu_4 - \\frac{n-3}{n-1}\\sigma^4\\right)\\)。对正态总体，\\(\\mu_4 = 3\\sigma^4\\)，代入得 \\(\\operatorname{Var}(S^2) = \\frac{2\\sigma^4}{n-1}\\)，这与 \\(\\frac{(n-1)S^2}{\\sigma^2} \\sim \\chi^2(n-1)\\) 的方差 \\(2(n-1)\\) 一致。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} F\\) with \\(\\mathbb{E}[X^4] < \\infty\\). Compute \\(\\operatorname{Var}(S^2)\\) and explain its relationship with the fourth moment of the population.',
+                    hint: 'Use \\(S^2 = \\frac{1}{n-1}\\sum(X_i - \\bar{X})^2\\) and the identity \\((n-1)S^2 = \\sum X_i^2 - n\\bar{X}^2\\) to compute \\(\\operatorname{Var}(\\sum X_i^2 - n\\bar{X}^2)\\).',
+                    solution: 'Let \\(\\mu_k = \\mathbb{E}[(X - \\mu)^k]\\) denote the \\(k\\)-th central moment. After careful calculation, \\(\\operatorname{Var}(S^2) = \\frac{1}{n}\\left(\\mu_4 - \\frac{n-3}{n-1}\\sigma^4\\right)\\). For a normal population, \\(\\mu_4 = 3\\sigma^4\\), which gives \\(\\operatorname{Var}(S^2) = \\frac{2\\sigma^4}{n-1}\\), consistent with the variance \\(2(n-1)\\) of \\(\\frac{(n-1)S^2}{\\sigma^2} \\sim \\chi^2(n-1)\\).'
                 },
                 {
-                    question: '证明样本均值 \\(\\bar{X}\\) 在均方误差意义下是 \\(\\mu\\) 的最优线性无偏估计（BLUE），即在所有形如 \\(\\sum a_i X_i\\) 且 \\(\\mathbb{E}[\\sum a_i X_i] = \\mu\\) 的估计中，\\(\\bar{X}\\) 的方差最小。',
-                    hint: '无偏性要求 \\(\\sum a_i = 1\\)。利用 Cauchy-Schwarz 不等式或 Lagrange 乘数法。',
-                    solution: '设 \\(T = \\sum_{i=1}^n a_i X_i\\) 满足 \\(\\mathbb{E}[T] = \\mu\\)，即 \\(\\sum a_i = 1\\)。则 \\(\\operatorname{Var}(T) = \\sigma^2 \\sum a_i^2\\)。由 Cauchy-Schwarz 不等式，\\(1 = (\\sum a_i)^2 = (\\sum a_i \\cdot 1)^2 \\le (\\sum a_i^2)(n)\\)，故 \\(\\sum a_i^2 \\ge 1/n\\)，等号当且仅当 \\(a_1 = \\cdots = a_n = 1/n\\)，即 \\(T = \\bar{X}\\)。因此 \\(\\operatorname{Var}(T) \\ge \\sigma^2/n = \\operatorname{Var}(\\bar{X})\\)。'
+                    question: 'Prove that the sample mean \\(\\bar{X}\\) is the Best Linear Unbiased Estimator (BLUE) of \\(\\mu\\) in the mean-squared-error sense, i.e., among all estimators of the form \\(\\sum a_i X_i\\) satisfying \\(\\mathbb{E}[\\sum a_i X_i] = \\mu\\), \\(\\bar{X}\\) has the smallest variance.',
+                    hint: 'Unbiasedness requires \\(\\sum a_i = 1\\). Use the Cauchy-Schwarz inequality or Lagrange multipliers.',
+                    solution: 'Let \\(T = \\sum_{i=1}^n a_i X_i\\) satisfy \\(\\mathbb{E}[T] = \\mu\\), i.e., \\(\\sum a_i = 1\\). Then \\(\\operatorname{Var}(T) = \\sigma^2 \\sum a_i^2\\). By the Cauchy-Schwarz inequality, \\(1 = (\\sum a_i)^2 = (\\sum a_i \\cdot 1)^2 \\le (\\sum a_i^2)(n)\\), so \\(\\sum a_i^2 \\ge 1/n\\), with equality if and only if \\(a_1 = \\cdots = a_n = 1/n\\), i.e., \\(T = \\bar{X}\\). Therefore \\(\\operatorname{Var}(T) \\ge \\sigma^2/n = \\operatorname{Var}(\\bar{X})\\).'
                 },
                 {
-                    question: '样本中位数和样本均值作为位置参数的估计各有什么优劣？从稳健性和效率两个角度讨论。',
-                    hint: '考虑正态总体下二者的渐近方差，以及存在离群值时的表现。',
-                    solution: '对 \\(N(\\mu, \\sigma^2)\\) 总体：(1) \\(\\bar{X}\\) 的渐近方差为 \\(\\sigma^2/n\\)；(2) 样本中位数的渐近方差为 \\(\\pi\\sigma^2/(2n)\\)，即渐近相对效率（ARE）为 \\(2/\\pi \\approx 63.7\\%\\)。因此在正态总体下，均值效率更高。然而对厚尾分布（如 Cauchy），均值甚至不收敛，而中位数仍以 \\(\\sqrt{n}\\) 速率收敛且有有界影响函数（bounded influence function），稳健性远优于均值。在存在离群值的场景中，中位数是更安全的选择。'
+                    question: 'What are the relative advantages and disadvantages of the sample median and the sample mean as estimators of a location parameter? Discuss from both the robustness and efficiency perspectives.',
+                    hint: 'Consider their asymptotic variances under a normal population and their behavior in the presence of outliers.',
+                    solution: 'For the \\(N(\\mu, \\sigma^2)\\) population: (1) \\(\\bar{X}\\) has asymptotic variance \\(\\sigma^2/n\\); (2) the sample median has asymptotic variance \\(\\pi\\sigma^2/(2n)\\), giving an asymptotic relative efficiency (ARE) of \\(2/\\pi \\approx 63.7\\%\\). Thus under normality, the mean is more efficient. However, for heavy-tailed distributions (e.g., Cauchy), the mean does not even converge, while the median still converges at rate \\(\\sqrt{n}\\) and has a bounded influence function, offering far superior robustness. In scenarios with outliers, the median is the safer choice.'
                 }
             ]
         },
 
-        // ========== SECTION 3: 正态总体的抽样分布 ==========
+        // ========== SECTION 3: Sampling Distributions from Normal Populations ==========
         {
             id: 'ch04-sec03',
-            title: '正态总体的抽样分布',
+            title: 'Sampling Distributions from Normal Populations',
             content: `
-                <h2>正态总体的抽样分布</h2>
-                <p>正态总体是统计理论中最核心的模型。本节系统推导三大抽样分布——\\(\\chi^2\\) 分布、\\(t\\) 分布和 \\(F\\) 分布——以及它们如何从正态样本中自然产生。</p>
+                <h2>Sampling Distributions from Normal Populations &#8201;|&#8201; 正态总体的抽样分布</h2>
+                <p>The normal population is the most central model in statistical theory. This section systematically derives the three major sampling distributions &mdash; the \\(\\chi^2\\) distribution, the \\(t\\) distribution, and the \\(F\\) distribution &mdash; and shows how they arise naturally from normal samples.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 4.6 (\\(\\chi^2\\) 分布)</div>
+                    <div class="env-title">Definition 4.6 (\\(\\chi^2\\) Distribution)</div>
                     <div class="env-body">
-                        <p>设 \\(Z_1, \\ldots, Z_k \\overset{\\text{iid}}{\\sim} N(0, 1)\\)，则</p>
+                        <p>Let \\(Z_1, \\ldots, Z_k \\overset{\\text{iid}}{\\sim} N(0, 1)\\). Then</p>
                         \\[Q = \\sum_{i=1}^{k} Z_i^2 \\sim \\chi^2(k),\\]
-                        <p>称 \\(Q\\) 服从自由度为 \\(k\\) 的 \\(\\chi^2\\) 分布。其密度为</p>
+                        <p>and we say \\(Q\\) follows a <strong>chi-squared distribution</strong> (卡方分布) with \\(k\\) degrees of freedom. Its density is</p>
                         \\[f_Q(x) = \\frac{1}{2^{k/2}\\Gamma(k/2)} x^{k/2 - 1} e^{-x/2}, \\quad x > 0.\\]
-                        <p>基本性质：\\(\\mathbb{E}[Q] = k\\)，\\(\\operatorname{Var}(Q) = 2k\\)。</p>
+                        <p>Basic properties: \\(\\mathbb{E}[Q] = k\\), \\(\\operatorname{Var}(Q) = 2k\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 4.3 (\\(\\chi^2\\) 分布的可加性)</div>
+                    <div class="env-title">Theorem 4.3 (Additivity of the \\(\\chi^2\\) Distribution)</div>
                     <div class="env-body">
-                        <p>若 \\(Q_1 \\sim \\chi^2(k_1)\\)，\\(Q_2 \\sim \\chi^2(k_2)\\)，且 \\(Q_1 \\perp Q_2\\)（独立），则</p>
+                        <p>If \\(Q_1 \\sim \\chi^2(k_1)\\), \\(Q_2 \\sim \\chi^2(k_2)\\), and \\(Q_1 \\perp Q_2\\) (independent), then</p>
                         \\[Q_1 + Q_2 \\sim \\chi^2(k_1 + k_2).\\]
                     </div>
                 </div>
@@ -547,19 +547,19 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>利用矩生成函数（mgf）。\\(\\chi^2(k)\\) 的 mgf 为 \\(M(t) = (1 - 2t)^{-k/2}\\)，\\(t < 1/2\\)。由独立性，</p>
+                        <p>We use moment generating functions (mgf). The mgf of \\(\\chi^2(k)\\) is \\(M(t) = (1 - 2t)^{-k/2}\\) for \\(t < 1/2\\). By independence,</p>
                         \\[M_{Q_1 + Q_2}(t) = M_{Q_1}(t)M_{Q_2}(t) = (1-2t)^{-k_1/2}(1-2t)^{-k_2/2} = (1-2t)^{-(k_1+k_2)/2},\\]
-                        <p>这正是 \\(\\chi^2(k_1 + k_2)\\) 的 mgf。由 mgf 唯一性定理，\\(Q_1 + Q_2 \\sim \\chi^2(k_1 + k_2)\\)。</p>
+                        <p>which is the mgf of \\(\\chi^2(k_1 + k_2)\\). By the uniqueness theorem for moment generating functions, \\(Q_1 + Q_2 \\sim \\chi^2(k_1 + k_2)\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 4.7 (Student's \\(t\\) 分布)</div>
+                    <div class="env-title">Definition 4.7 (Student's \\(t\\) Distribution)</div>
                     <div class="env-body">
-                        <p>设 \\(Z \\sim N(0,1)\\)，\\(V \\sim \\chi^2(\\nu)\\)，且 \\(Z \\perp V\\)。定义</p>
+                        <p>Let \\(Z \\sim N(0,1)\\), \\(V \\sim \\chi^2(\\nu)\\), and \\(Z \\perp V\\). Define</p>
                         \\[T = \\frac{Z}{\\sqrt{V/\\nu}} \\sim t(\\nu),\\]
-                        <p>称 \\(T\\) 服从自由度为 \\(\\nu\\) 的 Student \\(t\\) 分布。其密度为</p>
+                        <p>and we say \\(T\\) follows a <strong>Student's \\(t\\) distribution</strong> (\\(t\\) 分布) with \\(\\nu\\) degrees of freedom. Its density is</p>
                         \\[f_T(x) = \\frac{\\Gamma\\!\\left(\\frac{\\nu+1}{2}\\right)}{\\sqrt{\\nu\\pi}\\;\\Gamma\\!\\left(\\frac{\\nu}{2}\\right)} \\left(1 + \\frac{x^2}{\\nu}\\right)^{\\!-(\\nu+1)/2}.\\]
                     </div>
                 </div>
@@ -567,28 +567,28 @@ window.CHAPTERS.push({
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>当 \\(\\nu \\to \\infty\\) 时，\\(t(\\nu) \\to N(0,1)\\)。\\(t\\) 分布相较于正态分布有更厚的尾巴，自由度越小尾巴越厚。对于 \\(\\nu = 1\\)，\\(t(1)\\) 即 Cauchy 分布，甚至没有有限均值。</p>
+                        <p>As \\(\\nu \\to \\infty\\), \\(t(\\nu) \\to N(0,1)\\). The \\(t\\) distribution has heavier tails than the normal distribution, and the smaller the degrees of freedom, the heavier the tails. When \\(\\nu = 1\\), \\(t(1)\\) is the Cauchy distribution, which does not even have a finite mean.</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 4.8 (\\(F\\) 分布)</div>
+                    <div class="env-title">Definition 4.8 (\\(F\\) Distribution)</div>
                     <div class="env-body">
-                        <p>设 \\(U \\sim \\chi^2(d_1)\\)，\\(V \\sim \\chi^2(d_2)\\)，且 \\(U \\perp V\\)。定义</p>
+                        <p>Let \\(U \\sim \\chi^2(d_1)\\), \\(V \\sim \\chi^2(d_2)\\), and \\(U \\perp V\\). Define</p>
                         \\[W = \\frac{U/d_1}{V/d_2} \\sim F(d_1, d_2),\\]
-                        <p>称 \\(W\\) 服从自由度为 \\((d_1, d_2)\\) 的 \\(F\\) 分布。注意 \\(T \\sim t(\\nu)\\) 意味着 \\(T^2 \\sim F(1, \\nu)\\)。</p>
+                        <p>and we say \\(W\\) follows an <strong>\\(F\\) distribution</strong> (\\(F\\) 分布) with degrees of freedom \\((d_1, d_2)\\). Note that \\(T \\sim t(\\nu)\\) implies \\(T^2 \\sim F(1, \\nu)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 4.4 (单个正态总体的核心结果)</div>
+                    <div class="env-title">Theorem 4.4 (Key Results for a Single Normal Population)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)。则：</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\). Then:</p>
                         <ol>
-                            <li>\\(\\bar{X} \\sim N\\!\\left(\\mu, \\frac{\\sigma^2}{n}\\right)\\)，即 \\(\\frac{\\bar{X} - \\mu}{\\sigma / \\sqrt{n}} \\sim N(0,1)\\)；</li>
-                            <li>\\(\\frac{(n-1)S^2}{\\sigma^2} \\sim \\chi^2(n-1)\\)；</li>
-                            <li>\\(\\bar{X}\\) 与 \\(S^2\\) 相互独立；</li>
-                            <li>\\(\\frac{\\bar{X} - \\mu}{S / \\sqrt{n}} \\sim t(n-1)\\)。</li>
+                            <li>\\(\\bar{X} \\sim N\\!\\left(\\mu, \\frac{\\sigma^2}{n}\\right)\\), i.e., \\(\\frac{\\bar{X} - \\mu}{\\sigma / \\sqrt{n}} \\sim N(0,1)\\);</li>
+                            <li>\\(\\frac{(n-1)S^2}{\\sigma^2} \\sim \\chi^2(n-1)\\);</li>
+                            <li>\\(\\bar{X}\\) and \\(S^2\\) are independent;</li>
+                            <li>\\(\\frac{\\bar{X} - \\mu}{S / \\sqrt{n}} \\sim t(n-1)\\).</li>
                         </ol>
                     </div>
                 </div>
@@ -596,20 +596,20 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof (of (4))</div>
                     <div class="env-body">
-                        <p>由 (1)，\\(Z = \\frac{\\bar{X} - \\mu}{\\sigma/\\sqrt{n}} \\sim N(0,1)\\)。由 (2)，\\(V = \\frac{(n-1)S^2}{\\sigma^2} \\sim \\chi^2(n-1)\\)。由 (3)，\\(Z \\perp V\\)。于是</p>
+                        <p>By (1), \\(Z = \\frac{\\bar{X} - \\mu}{\\sigma/\\sqrt{n}} \\sim N(0,1)\\). By (2), \\(V = \\frac{(n-1)S^2}{\\sigma^2} \\sim \\chi^2(n-1)\\). By (3), \\(Z \\perp V\\). Therefore</p>
                         \\[\\frac{Z}{\\sqrt{V/(n-1)}} = \\frac{\\bar{X} - \\mu}{\\sigma/\\sqrt{n}} \\cdot \\frac{1}{\\sqrt{\\frac{(n-1)S^2}{\\sigma^2(n-1)}}} = \\frac{\\bar{X} - \\mu}{\\sigma/\\sqrt{n}} \\cdot \\frac{\\sigma}{S} = \\frac{\\bar{X} - \\mu}{S/\\sqrt{n}} \\sim t(n-1).\\]
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 4.5 (双正态总体)</div>
+                    <div class="env-title">Theorem 4.5 (Two Normal Populations)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_m \\overset{\\text{iid}}{\\sim} N(\\mu_1, \\sigma^2)\\) 与 \\(Y_1, \\ldots, Y_n \\overset{\\text{iid}}{\\sim} N(\\mu_2, \\sigma^2)\\) 独立，共同方差为 \\(\\sigma^2\\)。则：</p>
+                        <p>Let \\(X_1, \\ldots, X_m \\overset{\\text{iid}}{\\sim} N(\\mu_1, \\sigma^2)\\) and \\(Y_1, \\ldots, Y_n \\overset{\\text{iid}}{\\sim} N(\\mu_2, \\sigma^2)\\) be independent, with common variance \\(\\sigma^2\\). Then:</p>
                         <ol>
-                            <li>\\(\\bar{X} - \\bar{Y} \\sim N\\!\\left(\\mu_1 - \\mu_2, \\sigma^2\\left(\\frac{1}{m} + \\frac{1}{n}\\right)\\right)\\)；</li>
-                            <li>合并样本方差 \\(S_p^2 = \\frac{(m-1)S_X^2 + (n-1)S_Y^2}{m+n-2}\\) 满足 \\(\\frac{(m+n-2)S_p^2}{\\sigma^2} \\sim \\chi^2(m+n-2)\\)；</li>
-                            <li>\\(\\frac{(\\bar{X} - \\bar{Y}) - (\\mu_1 - \\mu_2)}{S_p\\sqrt{1/m + 1/n}} \\sim t(m+n-2)\\)（两样本 \\(t\\) 统计量）。</li>
+                            <li>\\(\\bar{X} - \\bar{Y} \\sim N\\!\\left(\\mu_1 - \\mu_2, \\sigma^2\\left(\\frac{1}{m} + \\frac{1}{n}\\right)\\right)\\);</li>
+                            <li>The pooled sample variance \\(S_p^2 = \\frac{(m-1)S_X^2 + (n-1)S_Y^2}{m+n-2}\\) satisfies \\(\\frac{(m+n-2)S_p^2}{\\sigma^2} \\sim \\chi^2(m+n-2)\\);</li>
+                            <li>\\(\\frac{(\\bar{X} - \\bar{Y}) - (\\mu_1 - \\mu_2)}{S_p\\sqrt{1/m + 1/n}} \\sim t(m+n-2)\\) (two-sample \\(t\\) statistic).</li>
                         </ol>
                     </div>
                 </div>
@@ -619,8 +619,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 't-distribution-emergence',
-                    title: 'Interactive: t 分布的诞生',
-                    description: '可视化 chi-squared、t、F 分布如何从正态样本中产生，并展示 t 分布如何随自由度趋近正态分布',
+                    title: 'Interactive: Birth of the t Distribution (t 分布的诞生)',
+                    description: 'Visualize how the chi-squared, t, and F distributions arise from normal samples, and how the t distribution approaches the normal as degrees of freedom increase',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400, scale: 60,
@@ -914,49 +914,49 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\)。证明 \\(\\frac{(n-1)S^2}{\\sigma^2} \\sim \\chi^2(n-1)\\)。',
-                    hint: '利用恒等式 \\(\\sum(X_i - \\bar{X})^2 = \\sum X_i^2 - n\\bar{X}^2\\)，以及正交变换（Helmert 矩阵）将 \\((X_1, \\ldots, X_n)\\) 变换为独立分量。',
-                    solution: '令 \\(Z_i = (X_i - \\mu)/\\sigma \\overset{\\text{iid}}{\\sim} N(0,1)\\)。考虑正交变换 \\(\\mathbf{Y} = H\\mathbf{Z}\\)，其中 \\(H\\) 为 Helmert 矩阵，使得 \\(Y_1 = \\sqrt{n}\\bar{Z}\\)，而 \\(Y_2, \\ldots, Y_n\\) 为剩余 \\(n-1\\) 个正交分量。由于正交变换保持标准正态的联合分布不变（旋转不变性），\\(Y_1, \\ldots, Y_n \\overset{\\text{iid}}{\\sim} N(0,1)\\)。又 \\(\\sum Z_i^2 = \\sum Y_i^2 = Y_1^2 + \\sum_{i=2}^n Y_i^2\\)，故 \\(\\sum(Z_i - \\bar{Z})^2 = \\sum Z_i^2 - n\\bar{Z}^2 = \\sum_{i=2}^n Y_i^2 \\sim \\chi^2(n-1)\\)。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\). Prove that \\(\\frac{(n-1)S^2}{\\sigma^2} \\sim \\chi^2(n-1)\\).',
+                    hint: 'Use the identity \\(\\sum(X_i - \\bar{X})^2 = \\sum X_i^2 - n\\bar{X}^2\\) and an orthogonal transformation (Helmert matrix) to transform \\((X_1, \\ldots, X_n)\\) into independent components.',
+                    solution: 'Let \\(Z_i = (X_i - \\mu)/\\sigma \\overset{\\text{iid}}{\\sim} N(0,1)\\). Consider the orthogonal transformation \\(\\mathbf{Y} = H\\mathbf{Z}\\), where \\(H\\) is the Helmert matrix, so that \\(Y_1 = \\sqrt{n}\\bar{Z}\\) and \\(Y_2, \\ldots, Y_n\\) are the remaining \\(n-1\\) orthogonal components. Since orthogonal transformations preserve the joint distribution of standard normals (rotational invariance), \\(Y_1, \\ldots, Y_n \\overset{\\text{iid}}{\\sim} N(0,1)\\). Also \\(\\sum Z_i^2 = \\sum Y_i^2 = Y_1^2 + \\sum_{i=2}^n Y_i^2\\), so \\(\\sum(Z_i - \\bar{Z})^2 = \\sum Z_i^2 - n\\bar{Z}^2 = \\sum_{i=2}^n Y_i^2 \\sim \\chi^2(n-1)\\).'
                 },
                 {
-                    question: '设 \\(X_1, \\ldots, X_m \\overset{\\text{iid}}{\\sim} N(\\mu_1, \\sigma_1^2)\\) 与 \\(Y_1, \\ldots, Y_n \\overset{\\text{iid}}{\\sim} N(\\mu_2, \\sigma_2^2)\\) 独立。证明 \\(\\frac{S_X^2 / \\sigma_1^2}{S_Y^2 / \\sigma_2^2} \\sim F(m-1, n-1)\\)。',
-                    hint: '利用 \\(\\frac{(m-1)S_X^2}{\\sigma_1^2} \\sim \\chi^2(m-1)\\) 和 \\(F\\) 分布的定义。',
-                    solution: '由 Theorem 4.4，\\(U = \\frac{(m-1)S_X^2}{\\sigma_1^2} \\sim \\chi^2(m-1)\\)，\\(V = \\frac{(n-1)S_Y^2}{\\sigma_2^2} \\sim \\chi^2(n-1)\\)，且由两样本独立性，\\(U \\perp V\\)。因此 \\(\\frac{U/(m-1)}{V/(n-1)} = \\frac{S_X^2/\\sigma_1^2}{S_Y^2/\\sigma_2^2} \\sim F(m-1, n-1)\\)。当 \\(\\sigma_1^2 = \\sigma_2^2\\) 时，此即 \\(S_X^2/S_Y^2 \\sim F(m-1, n-1)\\)，可用于方差齐性检验。'
+                    question: 'Let \\(X_1, \\ldots, X_m \\overset{\\text{iid}}{\\sim} N(\\mu_1, \\sigma_1^2)\\) and \\(Y_1, \\ldots, Y_n \\overset{\\text{iid}}{\\sim} N(\\mu_2, \\sigma_2^2)\\) be independent. Prove that \\(\\frac{S_X^2 / \\sigma_1^2}{S_Y^2 / \\sigma_2^2} \\sim F(m-1, n-1)\\).',
+                    hint: 'Use \\(\\frac{(m-1)S_X^2}{\\sigma_1^2} \\sim \\chi^2(m-1)\\) and the definition of the \\(F\\) distribution.',
+                    solution: 'By Theorem 4.4, \\(U = \\frac{(m-1)S_X^2}{\\sigma_1^2} \\sim \\chi^2(m-1)\\) and \\(V = \\frac{(n-1)S_Y^2}{\\sigma_2^2} \\sim \\chi^2(n-1)\\), and by the independence of the two samples, \\(U \\perp V\\). Therefore \\(\\frac{U/(m-1)}{V/(n-1)} = \\frac{S_X^2/\\sigma_1^2}{S_Y^2/\\sigma_2^2} \\sim F(m-1, n-1)\\). When \\(\\sigma_1^2 = \\sigma_2^2\\), this reduces to \\(S_X^2/S_Y^2 \\sim F(m-1, n-1)\\), which can be used for testing equality of variances.'
                 },
                 {
-                    question: '证明当 \\(\\nu \\to \\infty\\) 时，\\(t(\\nu) \\xrightarrow{d} N(0,1)\\)。',
-                    hint: '利用大数定律：\\(V/\\nu \\xrightarrow{P} 1\\)，其中 \\(V \\sim \\chi^2(\\nu)\\)，然后结合 Slutsky 定理。',
-                    solution: '设 \\(T = Z / \\sqrt{V/\\nu}\\)，其中 \\(Z \\sim N(0,1)\\)，\\(V \\sim \\chi^2(\\nu)\\)。将 \\(V = \\sum_{i=1}^\\nu Z_i^2\\)，由大数定律 \\(V/\\nu = \\frac{1}{\\nu}\\sum_{i=1}^\\nu Z_i^2 \\xrightarrow{P} \\mathbb{E}[Z^2] = 1\\)。由 Slutsky 定理，\\(\\sqrt{V/\\nu} \\xrightarrow{P} 1\\)，故 \\(T = Z / \\sqrt{V/\\nu} \\xrightarrow{d} Z \\sim N(0,1)\\)。也可通过直接验证 \\(t(\\nu)\\) 的特征函数逐点收敛到 \\(N(0,1)\\) 的特征函数来证明。'
+                    question: 'Prove that as \\(\\nu \\to \\infty\\), \\(t(\\nu) \\xrightarrow{d} N(0,1)\\).',
+                    hint: 'Use the law of large numbers: \\(V/\\nu \\xrightarrow{P} 1\\) where \\(V \\sim \\chi^2(\\nu)\\), then apply Slutsky\'s theorem.',
+                    solution: 'Let \\(T = Z / \\sqrt{V/\\nu}\\), where \\(Z \\sim N(0,1)\\) and \\(V \\sim \\chi^2(\\nu)\\). Write \\(V = \\sum_{i=1}^\\nu Z_i^2\\). By the law of large numbers, \\(V/\\nu = \\frac{1}{\\nu}\\sum_{i=1}^\\nu Z_i^2 \\xrightarrow{P} \\mathbb{E}[Z^2] = 1\\). By Slutsky\'s theorem, \\(\\sqrt{V/\\nu} \\xrightarrow{P} 1\\), so \\(T = Z / \\sqrt{V/\\nu} \\xrightarrow{d} Z \\sim N(0,1)\\). This can also be proved by directly verifying that the characteristic function of \\(t(\\nu)\\) converges pointwise to that of \\(N(0,1)\\).'
                 }
             ]
         },
 
-        // ========== SECTION 4: 顺序统计量 ==========
+        // ========== SECTION 4: Order Statistics ==========
         {
             id: 'ch04-sec04',
-            title: '顺序统计量',
+            title: 'Order Statistics',
             content: `
-                <h2>顺序统计量</h2>
-                <p>将样本按大小排序后得到的统计量称为<strong>顺序统计量</strong>（order statistics）。它们是非参数统计的基础，也为分位数估计、极值分析等提供核心工具。</p>
+                <h2>Order Statistics &#8201;|&#8201; 顺序统计量</h2>
+                <p>The statistics obtained by sorting a sample in increasing order are called <strong>order statistics</strong> (顺序统计量). They form the foundation of nonparametric statistics and provide key tools for quantile estimation, extreme value analysis, and more.</p>
 
                 <div class="env-block definition">
-                    <div class="env-title">Definition 4.9 (顺序统计量)</div>
+                    <div class="env-title">Definition 4.9 (Order Statistics)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n\\) 为来自连续分布 \\(F\\) 的随机样本。将样本值从小到大排列：</p>
+                        <p>Let \\(X_1, \\ldots, X_n\\) be a random sample from a continuous distribution \\(F\\). Arrange the sample values in increasing order:</p>
                         \\[X_{(1)} \\le X_{(2)} \\le \\cdots \\le X_{(n)},\\]
-                        <p>则 \\(X_{(k)}\\) 称为第 \\(k\\) 个<strong>顺序统计量</strong>（\\(k\\)-th order statistic）。特别地：</p>
+                        <p>then \\(X_{(k)}\\) is called the \\(k\\)-th <strong>order statistic</strong> (第 \\(k\\) 个顺序统计量). In particular:</p>
                         <ul>
-                            <li>\\(X_{(1)} = \\min_i X_i\\)：最小顺序统计量</li>
-                            <li>\\(X_{(n)} = \\max_i X_i\\)：最大顺序统计量</li>
-                            <li>\\(R = X_{(n)} - X_{(1)}\\)：样本极差（range）</li>
+                            <li>\\(X_{(1)} = \\min_i X_i\\): the minimum order statistic</li>
+                            <li>\\(X_{(n)} = \\max_i X_i\\): the maximum order statistic</li>
+                            <li>\\(R = X_{(n)} - X_{(1)}\\): the sample range (样本极差)</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 4.6 (单个顺序统计量的密度)</div>
+                    <div class="env-title">Theorem 4.6 (Density of a Single Order Statistic)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} F\\)，其中 \\(F\\) 具有密度 \\(f\\)。则第 \\(k\\) 个顺序统计量 \\(X_{(k)}\\) 的密度为</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} F\\), where \\(F\\) has density \\(f\\). Then the density of the \\(k\\)-th order statistic \\(X_{(k)}\\) is</p>
                         \\[f_{X_{(k)}}(x) = \\frac{n!}{(k-1)!(n-k)!} [F(x)]^{k-1} [1-F(x)]^{n-k} f(x).\\]
                     </div>
                 </div>
@@ -964,64 +964,64 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>考虑事件 \\(\\{x < X_{(k)} \\le x + dx\\}\\)。需要恰好 \\(k-1\\) 个观测值 \\(\\le x\\)，1 个在 \\((x, x+dx]\\) 中，\\(n-k\\) 个 \\(> x+dx\\)。由多项分布：</p>
+                        <p>Consider the event \\(\\{x < X_{(k)} \\le x + dx\\}\\). This requires exactly \\(k-1\\) observations \\(\\le x\\), one in \\((x, x+dx]\\), and \\(n-k\\) observations \\(> x+dx\\). By the multinomial distribution:</p>
                         \\[P(x < X_{(k)} \\le x+dx) \\approx \\frac{n!}{(k-1)! \\cdot 1! \\cdot (n-k)!} [F(x)]^{k-1} \\cdot f(x)dx \\cdot [1-F(x)]^{n-k}.\\]
-                        <p>令 \\(dx \\to 0\\) 即得密度公式。</p>
+                        <p>Taking \\(dx \\to 0\\) yields the density formula.</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block corollary">
-                    <div class="env-title">Corollary 4.1 (极值的分布)</div>
+                    <div class="env-title">Corollary 4.1 (Distributions of Extremes)</div>
                     <div class="env-body">
-                        <p>作为 Theorem 4.6 的特例：</p>
+                        <p>As special cases of Theorem 4.6:</p>
                         <ul>
-                            <li>最小值：\\(f_{X_{(1)}}(x) = n[1-F(x)]^{n-1}f(x)\\)</li>
-                            <li>最大值：\\(f_{X_{(n)}}(x) = n[F(x)]^{n-1}f(x)\\)</li>
+                            <li>Minimum: \\(f_{X_{(1)}}(x) = n[1-F(x)]^{n-1}f(x)\\)</li>
+                            <li>Maximum: \\(f_{X_{(n)}}(x) = n[F(x)]^{n-1}f(x)\\)</li>
                         </ul>
-                        <p>CDF 形式更直观：\\(F_{X_{(n)}}(x) = [F(x)]^n\\)（全部 \\(\\le x\\)），\\(F_{X_{(1)}}(x) = 1 - [1-F(x)]^n\\)（至少一个 \\(\\le x\\)）。</p>
+                        <p>The CDF form is more intuitive: \\(F_{X_{(n)}}(x) = [F(x)]^n\\) (all \\(\\le x\\)), and \\(F_{X_{(1)}}(x) = 1 - [1-F(x)]^n\\) (at least one \\(\\le x\\)).</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 4.7 (顺序统计量的联合密度)</div>
+                    <div class="env-title">Theorem 4.7 (Joint Density of Order Statistics)</div>
                     <div class="env-body">
-                        <p>\\((X_{(1)}, \\ldots, X_{(n)})\\) 的联合密度为</p>
+                        <p>The joint density of \\((X_{(1)}, \\ldots, X_{(n)})\\) is</p>
                         \\[f_{X_{(1)}, \\ldots, X_{(n)}}(x_1, \\ldots, x_n) = n! \\prod_{i=1}^n f(x_i), \\quad x_1 < x_2 < \\cdots < x_n.\\]
-                        <p>因子 \\(n!\\) 来源于将 \\(n\\) 个不可区分的样本排列为有序序列的置换数。</p>
+                        <p>The factor \\(n!\\) arises from the number of permutations needed to arrange \\(n\\) indistinguishable samples into an ordered sequence.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
-                    <div class="env-title">Theorem 4.8 (概率积分变换与顺序统计量)</div>
+                    <div class="env-title">Theorem 4.8 (Probability Integral Transform and Order Statistics)</div>
                     <div class="env-body">
-                        <p>设 \\(X \\sim F\\) 且 \\(F\\) 连续。令 \\(U = F(X)\\)，则 \\(U \\sim \\text{Uniform}(0,1)\\)。因此若 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} F\\)，则 \\(U_{(k)} = F(X_{(k)})\\) 服从 \\(\\text{Beta}(k, n-k+1)\\) 分布。</p>
+                        <p>Let \\(X \\sim F\\) where \\(F\\) is continuous. Set \\(U = F(X)\\); then \\(U \\sim \\text{Uniform}(0,1)\\). Consequently, if \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} F\\), then \\(U_{(k)} = F(X_{(k)})\\) follows a \\(\\text{Beta}(k, n-k+1)\\) distribution.</p>
                     </div>
                 </div>
 
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>\\(U_i = F(X_i) \\overset{\\text{iid}}{\\sim} U(0,1)\\)。将 Theorem 4.6 应用于 \\(U(0,1)\\) 分布（\\(f(u) = 1\\)，\\(F(u) = u\\)），得</p>
+                        <p>Since \\(U_i = F(X_i) \\overset{\\text{iid}}{\\sim} U(0,1)\\), applying Theorem 4.6 to the \\(U(0,1)\\) distribution (\\(f(u) = 1\\), \\(F(u) = u\\)) gives</p>
                         \\[f_{U_{(k)}}(u) = \\frac{n!}{(k-1)!(n-k)!} u^{k-1}(1-u)^{n-k} = \\frac{u^{k-1}(1-u)^{(n-k+1)-1}}{B(k, n-k+1)},\\]
-                        <p>这正是 \\(\\text{Beta}(k, n-k+1)\\) 的密度。</p>
+                        <p>which is the density of \\(\\text{Beta}(k, n-k+1)\\).</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
                 <div class="env-block example">
-                    <div class="env-title">Example 4.2 (样本中位数的渐近分布)</div>
+                    <div class="env-title">Example 4.2 (Asymptotic Distribution of the Sample Median)</div>
                     <div class="env-body">
-                        <p>设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} F\\)，\\(F\\) 在 \\(\\xi_p = F^{-1}(p)\\) 处有正密度 \\(f(\\xi_p) > 0\\)。则第 \\(\\lfloor np \\rfloor\\) 个顺序统计量 \\(X_{(\\lfloor np \\rfloor)}\\) 满足</p>
+                        <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} F\\), where \\(F\\) has positive density \\(f(\\xi_p) > 0\\) at \\(\\xi_p = F^{-1}(p)\\). Then the \\(\\lfloor np \\rfloor\\)-th order statistic \\(X_{(\\lfloor np \\rfloor)}\\) satisfies</p>
                         \\[\\sqrt{n}(X_{(\\lfloor np \\rfloor)} - \\xi_p) \\xrightarrow{d} N\\!\\left(0, \\frac{p(1-p)}{[f(\\xi_p)]^2}\\right).\\]
-                        <p>对中位数（\\(p = 1/2\\)），渐近方差为 \\(\\frac{1}{4[f(\\xi_{1/2})]^2 n}\\)。</p>
+                        <p>For the median (\\(p = 1/2\\)), the asymptotic variance is \\(\\frac{1}{4[f(\\xi_{1/2})]^2 n}\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>顺序统计量的渐近方差与总体密度在分位数处的值成反比。直觉上，如果密度在分位数处很"陡"（值大），则微小的位置偏移便引起概率的显著变化，相应的分位数估计也会更精确。相反，在密度平坦（值小）处估计分位数则困难得多。</p>
+                        <p>The asymptotic variance of an order statistic is inversely proportional to the population density at the quantile. Intuitively, if the density is "steep" (large) at the quantile, a small shift in position causes a significant change in probability, making the quantile estimate more precise. Conversely, estimating a quantile where the density is flat (small) is much harder.</p>
                     </div>
                 </div>
 
@@ -1030,8 +1030,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'order-stats-pdf',
-                    title: 'Interactive: 顺序统计量的密度',
-                    description: '选择总体分布和顺序统计量的阶数 k，观察 X_(k) 的理论密度与模拟直方图',
+                    title: 'Interactive: Density of Order Statistics (顺序统计量的密度)',
+                    description: 'Choose the sample size and order k to observe the theoretical density of X_(k) and compare with a simulation histogram',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400, scale: 50,
@@ -1187,19 +1187,19 @@ window.CHAPTERS.push({
             ],
             exercises: [
                 {
-                    question: '设 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} U(0, \\theta)\\)。求 \\(X_{(n)}\\) 的密度和 \\(\\mathbb{E}[X_{(n)}]\\)，并说明如何用 \\(X_{(n)}\\) 估计 \\(\\theta\\)。',
-                    hint: '\\(F(x) = x/\\theta\\) for \\(0 \\le x \\le \\theta\\)。代入最大值顺序统计量的密度公式。',
-                    solution: '\\(F_{X_{(n)}}(x) = (x/\\theta)^n\\)，\\(0 \\le x \\le \\theta\\)。密度 \\(f_{X_{(n)}}(x) = \\frac{n x^{n-1}}{\\theta^n}\\)。\\(\\mathbb{E}[X_{(n)}] = \\int_0^\\theta \\frac{n x^n}{\\theta^n} dx = \\frac{n}{n+1}\\theta\\)。因此 \\(X_{(n)}\\) 有偏（系统性低估 \\(\\theta\\)），无偏估计为 \\(\\hat{\\theta} = \\frac{n+1}{n}X_{(n)}\\)。但注意 \\(X_{(n)}\\) 本身是 \\(\\theta\\) 的极大似然估计（MLE），尽管有偏，它的均方误差 \\(\\text{MSE}(X_{(n)}) = \\frac{2\\theta^2}{(n+1)(n+2)}\\)，以 \\(O(1/n^2)\\) 速率趋于零（快于一般的 \\(O(1/n)\\) 速率）。'
+                    question: 'Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} U(0, \\theta)\\). Find the density of \\(X_{(n)}\\) and \\(\\mathbb{E}[X_{(n)}]\\), and explain how to use \\(X_{(n)}\\) to estimate \\(\\theta\\).',
+                    hint: '\\(F(x) = x/\\theta\\) for \\(0 \\le x \\le \\theta\\). Substitute into the density formula for the maximum order statistic.',
+                    solution: '\\(F_{X_{(n)}}(x) = (x/\\theta)^n\\) for \\(0 \\le x \\le \\theta\\). The density is \\(f_{X_{(n)}}(x) = \\frac{n x^{n-1}}{\\theta^n}\\). Then \\(\\mathbb{E}[X_{(n)}] = \\int_0^\\theta \\frac{n x^n}{\\theta^n} dx = \\frac{n}{n+1}\\theta\\). So \\(X_{(n)}\\) is biased (systematically underestimates \\(\\theta\\)), and the unbiased estimator is \\(\\hat{\\theta} = \\frac{n+1}{n}X_{(n)}\\). However, note that \\(X_{(n)}\\) itself is the maximum likelihood estimator (MLE) of \\(\\theta\\). Despite the bias, its mean squared error \\(\\text{MSE}(X_{(n)}) = \\frac{2\\theta^2}{(n+1)(n+2)}\\) converges to zero at rate \\(O(1/n^2)\\), faster than the typical \\(O(1/n)\\) rate.'
                 },
                 {
-                    question: '设 \\(U_1, \\ldots, U_n \\overset{\\text{iid}}{\\sim} U(0,1)\\)。证明样本极差 \\(R = U_{(n)} - U_{(1)}\\) 的密度为 \\(f_R(r) = n(n-1)r^{n-2}(1-r)\\)，\\(0 < r < 1\\)。',
-                    hint: '先求 \\((U_{(1)}, U_{(n)})\\) 的联合密度，然后做变量替换 \\((U_{(1)}, R) = (U_{(1)}, U_{(n)} - U_{(1)})\\)，对 \\(U_{(1)}\\) 积分。',
-                    solution: '由 Theorem 4.6 的推广，\\((U_{(1)}, U_{(n)})\\) 的联合密度为 \\(f(u, v) = n(n-1)(v-u)^{n-2}\\)，\\(0 < u < v < 1\\)。令 \\(s = u\\)，\\(r = v - u\\)，则 Jacobian 为 1，联合密度变为 \\(g(s, r) = n(n-1)r^{n-2}\\)，积分域为 \\(0 < s < 1-r\\)，\\(0 < r < 1\\)。对 \\(s\\) 积分：\\(f_R(r) = \\int_0^{1-r} n(n-1)r^{n-2} ds = n(n-1)r^{n-2}(1-r)\\)。'
+                    question: 'Let \\(U_1, \\ldots, U_n \\overset{\\text{iid}}{\\sim} U(0,1)\\). Prove that the sample range \\(R = U_{(n)} - U_{(1)}\\) has density \\(f_R(r) = n(n-1)r^{n-2}(1-r)\\) for \\(0 < r < 1\\).',
+                    hint: 'First find the joint density of \\((U_{(1)}, U_{(n)})\\), then apply the change of variables \\((U_{(1)}, R) = (U_{(1)}, U_{(n)} - U_{(1)})\\), and integrate over \\(U_{(1)}\\).',
+                    solution: 'By an extension of Theorem 4.6, the joint density of \\((U_{(1)}, U_{(n)})\\) is \\(f(u, v) = n(n-1)(v-u)^{n-2}\\) for \\(0 < u < v < 1\\). Let \\(s = u\\) and \\(r = v - u\\); the Jacobian is 1. The joint density becomes \\(g(s, r) = n(n-1)r^{n-2}\\) over the region \\(0 < s < 1-r\\), \\(0 < r < 1\\). Integrating over \\(s\\): \\(f_R(r) = \\int_0^{1-r} n(n-1)r^{n-2} ds = n(n-1)r^{n-2}(1-r)\\).'
                 },
                 {
-                    question: '利用概率积分变换和 Beta 分布的性质，证明对 \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} F\\)（\\(F\\) 连续），\\(\\mathbb{E}[X_{(k)}]\\) 可以表示为 \\(\\mathbb{E}[X_{(k)}] = \\int_0^1 F^{-1}(u) \\cdot \\frac{u^{k-1}(1-u)^{n-k}}{B(k, n-k+1)} du\\)。',
-                    hint: '利用 \\(U_{(k)} = F(X_{(k)}) \\sim \\text{Beta}(k, n-k+1)\\) 和 \\(X_{(k)} = F^{-1}(U_{(k)})\\)。',
-                    solution: '由概率积分变换，\\(U_i = F(X_i) \\overset{\\text{iid}}{\\sim} U(0,1)\\)，因此 \\(U_{(k)} = F(X_{(k)})\\)，即 \\(X_{(k)} = F^{-1}(U_{(k)})\\)。由 Theorem 4.8，\\(U_{(k)} \\sim \\text{Beta}(k, n-k+1)\\)。因此 \\(\\mathbb{E}[X_{(k)}] = \\mathbb{E}[F^{-1}(U_{(k)})] = \\int_0^1 F^{-1}(u) \\cdot \\frac{u^{k-1}(1-u)^{n-k}}{B(k, n-k+1)} du\\)。这一公式将任意连续分布的顺序统计量期望化为一维积分，在理论分析中非常有用。'
+                    question: 'Using the probability integral transform and properties of the Beta distribution, prove that for \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} F\\) (\\(F\\) continuous), \\(\\mathbb{E}[X_{(k)}]\\) can be expressed as \\(\\mathbb{E}[X_{(k)}] = \\int_0^1 F^{-1}(u) \\cdot \\frac{u^{k-1}(1-u)^{n-k}}{B(k, n-k+1)} du\\).',
+                    hint: 'Use \\(U_{(k)} = F(X_{(k)}) \\sim \\text{Beta}(k, n-k+1)\\) and \\(X_{(k)} = F^{-1}(U_{(k)})\\).',
+                    solution: 'By the probability integral transform, \\(U_i = F(X_i) \\overset{\\text{iid}}{\\sim} U(0,1)\\), so \\(U_{(k)} = F(X_{(k)})\\), i.e., \\(X_{(k)} = F^{-1}(U_{(k)})\\). By Theorem 4.8, \\(U_{(k)} \\sim \\text{Beta}(k, n-k+1)\\). Therefore \\(\\mathbb{E}[X_{(k)}] = \\mathbb{E}[F^{-1}(U_{(k)})] = \\int_0^1 F^{-1}(u) \\cdot \\frac{u^{k-1}(1-u)^{n-k}}{B(k, n-k+1)} du\\). This formula reduces the expected value of an order statistic from any continuous distribution to a one-dimensional integral, which is very useful in theoretical analysis.'
                 }
             ]
         }
