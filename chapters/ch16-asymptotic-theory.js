@@ -12,18 +12,18 @@ window.CHAPTERS.push({
             id: 'ch16-sec01',
             title: 'Consistency',
             content: `
-                <h2>Consistency 相合性</h2>
+ <h2>Consistency</h2>
 
-                <p>Asymptotic theory (渐近理论) studies the behavior of statistical inference as the sample size \\(n \\to \\infty\\). This chapter is one of the core chapters of the entire mathematical statistics course: we will rigorously prove the asymptotic normality (渐近正态性) of the maximum likelihood estimator (MLE) — a result that serves as the cornerstone of modern statistical inference.</p>
+ <p>Asymptotic theory studies the behavior of statistical inference as the sample size \\(n \\to \\infty\\). This chapter is one of the core chapters of the entire mathematical statistics course: we will rigorously prove the asymptotic normality of the maximum likelihood estimator (MLE) — a result that serves as the cornerstone of modern statistical inference.</p>
 
-                <p>We begin with the most fundamental large-sample property — <strong>consistency (相合性)</strong>.</p>
+ <p>We begin with the most fundamental large-sample property — <strong>consistency </strong>.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 16.1 (Consistent Estimator)</div>
                     <div class="env-body">
                         <p>Let \\(X_1, X_2, \\ldots\\) be a random sample from \\(P_\\theta\\), and let \\(\\hat{\\theta}_n = \\hat{\\theta}_n(X_1, \\ldots, X_n)\\) be a sequence of estimators for the parameter \\(\\theta\\). If for all \\(\\theta \\in \\Theta\\),</p>
                         \\[\\hat{\\theta}_n \\xrightarrow{P} \\theta, \\quad \\text{i.e.} \\quad \\forall \\varepsilon > 0, \\quad \\lim_{n \\to \\infty} P_\\theta\\bigl(|\\hat{\\theta}_n - \\theta| > \\varepsilon\\bigr) = 0,\\]
-                        <p>then \\(\\hat{\\theta}_n\\) is called a <strong>consistent estimator</strong> (相合估计量) of \\(\\theta\\).</p>
+ <p>then \\(\\hat{\\theta}_n\\) is called a <strong>consistent estimator</strong> of \\(\\theta\\).</p>
                     </div>
                 </div>
 
@@ -64,14 +64,14 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Consistency of MLE MLE的相合性</h3>
+ <h3>Consistency of MLE MLE</h3>
 
                 <p>Under what conditions is the maximum likelihood estimator consistent? The following theorem provides the classical answer. The core idea is: the MLE maximizes the log-likelihood function \\(\\ell_n(\\theta)\\), and \\(\\ell_n(\\theta)/n\\) converges in large samples to the negative of the KL divergence, which achieves its unique maximum at the true parameter.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 16.4 (Kullback-Leibler Divergence)</div>
                     <div class="env-body">
-                        <p>Let \\(f\\) and \\(g\\) be two density functions. The KL divergence (KL散度) from \\(f\\) to \\(g\\) is defined as:</p>
+ <p>Let \\(f\\) and \\(g\\) be two density functions. The KL divergence (KL) from \\(f\\) to \\(g\\) is defined as:</p>
                         \\[D_{\\text{KL}}(f \\| g) = E_f\\left[\\log \\frac{f(X)}{g(X)}\\right] = \\int f(x) \\log \\frac{f(x)}{g(x)} \\, dx.\\]
                         <p>The KL divergence satisfies \\(D_{\\text{KL}}(f \\| g) \\ge 0\\), with equality if and only if \\(f = g\\) a.e. (Gibbs' inequality).</p>
                     </div>
@@ -81,8 +81,8 @@ window.CHAPTERS.push({
                     <div class="env-title">Theorem 16.5 (Consistency of MLE)</div>
                     <div class="env-body">
                         <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} f(x; \\theta_0)\\), where \\(\\theta_0 \\in \\Theta\\) is the true parameter. If the following conditions hold:</p>
-                        <p>(R1) <strong>Identifiability (可辨识性)</strong>: \\(\\theta \\ne \\theta'\\) implies \\(f(\\cdot; \\theta) \\ne f(\\cdot; \\theta')\\);</p>
-                        <p>(R2) The parameter space \\(\\Theta\\) is compact (紧集);</p>
+ <p>(R1) <strong>Identifiability </strong>: \\(\\theta \\ne \\theta'\\) implies \\(f(\\cdot; \\theta) \\ne f(\\cdot; \\theta')\\);</p>
+ <p>(R2) The parameter space \\(\\Theta\\) is compact;</p>
                         <p>(R3) \\(\\log f(x; \\theta)\\) is continuous in \\(\\theta\\);</p>
                         <p>(R4) \\(E_{\\theta_0}[\\sup_{\\theta \\in \\Theta} |\\log f(X; \\theta)|] < \\infty\\).</p>
                         <p>Then the MLE satisfies \\(\\hat{\\theta}_n \\xrightarrow{P} \\theta_0\\).</p>
@@ -189,7 +189,7 @@ window.CHAPTERS.push({
 
                             viz.screenText('n = ' + n, 90, 30, viz.colors.white, 18, 'center');
                             viz.screenText('2000 simulations of Exp(\u03B8\u2080) MLE', 280, 30, viz.colors.text, 12, 'center');
-                            viz.screenText('Mean = ' + sampleMean.toFixed(3) + ',  SD = ' + sampleStd.toFixed(3), 280, 50, viz.colors.teal, 12, 'center');
+                            viz.screenText('Mean = ' + sampleMean.toFixed(3) + ', SD = ' + sampleStd.toFixed(3), 280, 50, viz.colors.teal, 12, 'center');
                         }
 
                         // Slider: sample size index
@@ -236,20 +236,20 @@ window.CHAPTERS.push({
             id: 'ch16-sec02',
             title: 'Asymptotic Normality of MLE',
             content: `
-                <h2>Asymptotic Normality of MLE MLE的渐近正态性</h2>
+ <h2>Asymptotic Normality of MLE MLE</h2>
 
-                <p>This section contains the <strong>core theorem</strong> of the entire mathematical statistics course. We will give a complete proof that, under regularity conditions, the maximum likelihood estimator has an asymptotic normal distribution, and its asymptotic variance attains the Cram&eacute;r-Rao lower bound — that is, the MLE is asymptotically efficient (渐近有效).</p>
+ <p>This section contains the <strong>core theorem</strong> of the entire mathematical statistics course. We will give a complete proof that, under regularity conditions, the maximum likelihood estimator has an asymptotic normal distribution, and its asymptotic variance attains the Cram&eacute;r-Rao lower bound — that is, the MLE is asymptotically efficient.</p>
 
-                <h3>Regularity Conditions 正则条件</h3>
+ <h3>Regularity Conditions</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 16.6 (Regularity Conditions)</div>
                     <div class="env-body">
-                        <p>Let \\(\\{f(x; \\theta) : \\theta \\in \\Theta\\}\\) be a parametric family, with \\(\\Theta \\subset \\mathbb{R}\\) an open interval. The following conditions are collectively called <strong>regularity conditions</strong> (正则条件):</p>
-                        <p><strong>(R1) Identifiability (可辨识性):</strong> \\(\\theta \\ne \\theta'\\) implies \\(f(\\cdot; \\theta) \\ne f(\\cdot; \\theta')\\).</p>
-                        <p><strong>(R2) Common Support (支撑不依赖于参数):</strong> The set \\(\\{x : f(x; \\theta) > 0\\}\\) does not depend on \\(\\theta\\).</p>
-                        <p><strong>(R3) Smoothness (三阶光滑性):</strong> \\(\\log f(x; \\theta)\\) is three times differentiable in \\(\\theta\\), and the third derivative is uniformly integrable in a neighborhood of \\(\\theta_0\\).</p>
-                        <p><strong>(R4) Fisher Information (正则Fisher信息):</strong></p>
+ <p>Let \\(\\{f(x; \\theta) : \\theta \\in \\Theta\\}\\) be a parametric family, with \\(\\Theta \\subset \\mathbb{R}\\) an open interval. The following conditions are collectively called <strong>regularity conditions</strong>:</p>
+ <p><strong>(R1) Identifiability :</strong> \\(\\theta \\ne \\theta'\\) implies \\(f(\\cdot; \\theta) \\ne f(\\cdot; \\theta')\\).</p>
+ <p><strong>(R2) Common Support :</strong> The set \\(\\{x : f(x; \\theta)> 0\\}\\) does not depend on \\(\\theta\\).</p>
+ <p><strong>(R3) Smoothness :</strong> \\(\\log f(x; \\theta)\\) is three times differentiable in \\(\\theta\\), and the third derivative is uniformly integrable in a neighborhood of \\(\\theta_0\\).</p>
+ <p><strong>(R4) Fisher Information (Fisher):</strong></p>
                         \\[0 < I(\\theta_0) = E_{\\theta_0}\\left[\\left(\\frac{\\partial}{\\partial \\theta}\\log f(X; \\theta_0)\\right)^2\\right] = -E_{\\theta_0}\\left[\\frac{\\partial^2}{\\partial \\theta^2}\\log f(X; \\theta_0)\\right] < \\infty.\\]
                         <p><strong>(R5) MLE Existence and Consistency:</strong> There exists a consistent MLE sequence \\(\\hat{\\theta}_n \\xrightarrow{P} \\theta_0\\).</p>
                     </div>
@@ -258,11 +258,11 @@ window.CHAPTERS.push({
                 <div class="env-block warning">
                     <div class="env-title">Warning: Regularity Conditions Are Indispensable</div>
                     <div class="env-body">
-                        <p>Condition (R2) excludes distributions such as \\(\\text{Uniform}(0, \\theta)\\) whose support depends on the parameter. For such distributions, the MLE exists but does not converge at the \\(\\sqrt{n}\\) rate — in fact \\(X_{(n)}\\) converges at rate \\(n\\) (i.e., \\(n(\\theta - X_{(n)}) \\to \\text{Exp}(1)\\)), which is an example of super-efficiency (超效率).</p>
+ <p>Condition (R2) excludes distributions such as \\(\\text{Uniform}(0, \\theta)\\) whose support depends on the parameter. For such distributions, the MLE exists but does not converge at the \\(\\sqrt{n}\\) rate — in fact \\(X_{(n)}\\) converges at rate \\(n\\) (i.e., \\(n(\\theta - X_{(n)}) \\to \\text{Exp}(1)\\)), which is an example of super-efficiency.</p>
                     </div>
                 </div>
 
-                <h3>Main Theorem: Asymptotic Normality of MLE 主定理</h3>
+ <h3>Main Theorem: Asymptotic Normality of MLE</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 16.7 (Asymptotic Normality of MLE)</div>
@@ -324,12 +324,12 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Asymptotic Efficiency 渐近效率</h3>
+ <h3>Asymptotic Efficiency</h3>
 
                 <div class="env-block corollary">
                     <div class="env-title">Corollary 16.8 (Asymptotic Efficiency of MLE)</div>
                     <div class="env-body">
-                        <p>Under regularity conditions, the asymptotic variance of the MLE is \\(1/[nI(\\theta_0)]\\), which is exactly the Cram&eacute;r-Rao lower bound. Therefore the MLE is <strong>asymptotically efficient</strong> (渐近有效): among all asymptotically normal regular estimators, the MLE has the smallest asymptotic variance.</p>
+ <p>Under regularity conditions, the asymptotic variance of the MLE is \\(1/[nI(\\theta_0)]\\), which is exactly the Cram&eacute;r-Rao lower bound. Therefore the MLE is <strong>asymptotically efficient</strong> : among all asymptotically normal regular estimators, the MLE has the smallest asymptotic variance.</p>
                     </div>
                 </div>
 
@@ -460,7 +460,7 @@ window.CHAPTERS.push({
                             }
 
                             var theta0 = trueParam(currentDist);
-                            viz.screenText(distributions[currentDist] + '(\u03B8\u2080 = ' + theta0 + '),  n = ' + currentN, 300, 25, viz.colors.white, 15, 'center');
+                            viz.screenText(distributions[currentDist] + '(\u03B8\u2080 = ' + theta0 + '), n = ' + currentN, 300, 25, viz.colors.white, 15, 'center');
                             viz.screenText('\u221An(\u03B8\u0302 - \u03B8\u2080) histogram vs N(0, 1/I(\u03B8\u2080))', 300, 45, viz.colors.text, 12, 'center');
                             viz.screenText('I(\u03B8\u2080) = ' + Itheta.toFixed(3) + ', 1/I(\u03B8\u2080) = ' + asympVar.toFixed(3), 300, 63, viz.colors.teal, 11, 'center');
 
@@ -523,9 +523,9 @@ window.CHAPTERS.push({
             id: 'ch16-sec03',
             title: 'The Delta Method',
             content: `
-                <h2>The Delta Method Delta方法</h2>
+ <h2>The Delta Method Delta</h2>
 
-                <p>The asymptotic normality of the MLE tells us that \\(\\hat{\\theta}_n\\) is approximately normally distributed. However, in practice we often care about some <strong>transformation</strong> \\(g(\\theta)\\) of the parameter — for example, having estimated \\(\\lambda\\), we may want the asymptotic distribution of \\(1/\\lambda\\) (the mean) or \\(\\log\\lambda\\). The Delta method (Delta方法) is precisely designed for this purpose.</p>
+ <p>The asymptotic normality of the MLE tells us that \\(\\hat{\\theta}_n\\) is approximately normally distributed. However, in practice we often care about some <strong>transformation</strong> \\(g(\\theta)\\) of the parameter — for example, having estimated \\(\\lambda\\), we may want the asymptotic distribution of \\(1/\\lambda\\) (the mean) or \\(\\log\\lambda\\). The Delta method (Delta) is precisely designed for this purpose.</p>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 16.11 (Delta Method)</div>
@@ -560,7 +560,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Second-Order Delta Method 二阶Delta方法</h3>
+ <h3>Second-Order Delta MethodDelta</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 16.13 (Second-Order Delta Method)</div>
@@ -582,7 +582,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Multivariate Delta Method 多元Delta方法</h3>
+ <h3>Multivariate Delta MethodDelta</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 16.14 (Multivariate Delta Method)</div>
@@ -692,8 +692,8 @@ window.CHAPTERS.push({
 
                             viz.drawSegment(xMin * scaleX, 0, xMax * scaleX, 0, viz.colors.axis, 1);
 
-                            viz.screenText(g.name + ',  \u03BC = ' + mu.toFixed(1) + ',  n = ' + currentN, 300, 22, viz.colors.white, 14, 'center');
-                            viz.screenText("g'(\u03BC) = " + gPrimeMu.toFixed(3) + ',  asymptotic var = \u03C3\u00B2[g\'(\u03BC)]\u00B2 = ' + asympVar.toFixed(3), 300, 42, viz.colors.teal, 11, 'center');
+                            viz.screenText(g.name + ', \u03BC = ' + mu.toFixed(1) + ', n = ' + currentN, 300, 22, viz.colors.white, 14, 'center');
+                            viz.screenText("g'(\u03BC) = " + gPrimeMu.toFixed(3) + ', asymptotic var = \u03C3\u00B2[g\'(\u03BC)]\u00B2 = ' + asympVar.toFixed(3), 300, 42, viz.colors.teal, 11, 'center');
 
                             var empirVar = VizEngine.variance(samples);
                             viz.screenText('Empirical var of \u221An(g(X\u0304) - g(\u03BC)): ' + empirVar.toFixed(3), 300, 60, viz.colors.yellow, 11, 'center');
@@ -751,9 +751,9 @@ window.CHAPTERS.push({
             id: 'ch16-sec04',
             title: 'Asymptotic Relative Efficiency',
             content: `
-                <h2>Asymptotic Relative Efficiency 渐近相对效率</h2>
+ <h2>Asymptotic Relative Efficiency</h2>
 
-                <p>We already know that the MLE is asymptotically efficient. But how do we compare two different estimators? If estimator A has a smaller asymptotic variance than estimator B, then A is "better in large samples." <strong>Asymptotic relative efficiency</strong> (ARE, 渐近相对效率) precisely quantifies this comparison.</p>
+ <p>We already know that the MLE is asymptotically efficient. But how do we compare two different estimators? If estimator A has a smaller asymptotic variance than estimator B, then A is "better in large samples." <strong>Asymptotic relative efficiency</strong> (ARE) precisely quantifies this comparison.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 16.16 (Asymptotic Relative Efficiency)</div>
@@ -773,7 +773,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Classical Example: Sample Mean vs. Sample Median 样本均值与样本中位数</h3>
+ <h3>Classical Example: Sample Mean vs. Sample Median</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 16.17 (Asymptotic Distribution of the Sample Median under Normality)</div>
@@ -787,7 +787,7 @@ window.CHAPTERS.push({
                     <div class="env-title">Proof (sketch)</div>
                     <div class="env-body">
                         <p>Let \\(F\\) be the CDF and \\(m = F^{-1}(1/2) = \\mu\\) (the median of a symmetric distribution equals the mean). The sample median \\(M_n\\) is essentially an estimator of \\(F^{-1}(1/2)\\).</p>
-                        <p>The general asymptotic theory of sample quantiles (样本分位数) gives:</p>
+ <p>The general asymptotic theory of sample quantiles gives:</p>
                         \\[\\sqrt{n}(\\hat{q}_p - q_p) \\xrightarrow{d} N\\!\\left(0, \\frac{p(1-p)}{[f(q_p)]^2}\\right).\\]
                         <p>Taking \\(p = 1/2\\): the asymptotic variance is \\(\\frac{(1/2)(1/2)}{[f(\\mu)]^2} = \\frac{1}{4[f(\\mu)]^2}\\).</p>
                         <div class="qed">∎</div>
@@ -809,28 +809,28 @@ window.CHAPTERS.push({
                 <div class="env-block remark">
                     <div class="env-title">Remark: Robustness Advantage of the Median</div>
                     <div class="env-body">
-                        <p>Although the sample mean is more efficient under the normal distribution, for heavy-tailed distributions (such as the Cauchy distribution) the variance of the sample mean may not even exist, whereas the sample median still has finite asymptotic variance. In the presence of outliers (离群值), the robustness (鲁棒性) of the median far exceeds that of the mean. The trade-off between efficiency and robustness is one of the central topics in statistics.</p>
+ <p>Although the sample mean is more efficient under the normal distribution, for heavy-tailed distributions (such as the Cauchy distribution) the variance of the sample mean may not even exist, whereas the sample median still has finite asymptotic variance. In the presence of outliers, the robustness of the median far exceeds that of the mean. The trade-off between efficiency and robustness is one of the central topics in statistics.</p>
                     </div>
                 </div>
 
-                <h3>Pitman Asymptotic Relative Efficiency Pitman渐近相对效率</h3>
+ <h3>Pitman Asymptotic Relative Efficiency Pitman</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 16.19 (Pitman ARE)</div>
                     <div class="env-body">
-                        <p>In the context of hypothesis testing, Pitman ARE compares the power of two tests under <strong>local alternatives</strong> (局部备择假设). Suppose test \\(T_n\\) is based on \\(n_T\\) samples and test \\(U_n\\) on \\(n_U\\) samples, and both achieve the same asymptotic power under the same sequence of local alternatives. The Pitman ARE is defined as:</p>
+ <p>In the context of hypothesis testing, Pitman ARE compares the power of two tests under <strong>local alternatives</strong>. Suppose test \\(T_n\\) is based on \\(n_T\\) samples and test \\(U_n\\) on \\(n_U\\) samples, and both achieve the same asymptotic power under the same sequence of local alternatives. The Pitman ARE is defined as:</p>
                         \\[e(U, T) = \\lim_{n \\to \\infty} \\frac{n_T}{n_U}.\\]
                         <p>For asymptotically normal estimators in location parameter problems, the Pitman ARE coincides with the ARE in Definition 16.16.</p>
                     </div>
                 </div>
 
-                <h3>ARE of MLE vs. Method of Moments MLE与矩估计的ARE</h3>
+ <h3>ARE of MLE vs. Method of Moments MLEARE</h3>
 
                 <div class="env-block example">
                     <div class="env-title">Example 16.20 (Gamma Distribution: MLE vs. Method of Moments)</div>
                     <div class="env-body">
                         <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} \\text{Gamma}(\\alpha, \\beta)\\) with density \\(f(x) = \\frac{\\beta^\\alpha}{\\Gamma(\\alpha)} x^{\\alpha-1} e^{-\\beta x}\\).</p>
-                        <p>The <strong>method of moments</strong> (矩估计) estimator uses \\(E[X] = \\alpha/\\beta\\) and \\(\\operatorname{Var}(X) = \\alpha/\\beta^2\\) to obtain:</p>
+ <p>The <strong>method of moments</strong> estimator uses \\(E[X] = \\alpha/\\beta\\) and \\(\\operatorname{Var}(X) = \\alpha/\\beta^2\\) to obtain:</p>
                         \\[\\hat{\\alpha}_{\\text{MOM}} = \\frac{\\bar{X}^2}{S^2}, \\quad \\hat{\\beta}_{\\text{MOM}} = \\frac{\\bar{X}}{S^2}.\\]
                         <p>The <strong>MLE</strong> requires numerically solving the likelihood equations, and its asymptotic variance attains the inverse of the Fisher information matrix. The asymptotic variance of the moment estimator can be computed via the multivariate Delta method, and it is typically strictly larger than the CRLB.</p>
                         <p>For instance, when \\(\\alpha = 1\\) (i.e., the exponential distribution), the MLE and the moment estimator for \\(\\beta\\) coincide. However, when \\(\\alpha\\) is large, the efficiency loss of the moment estimator can be substantial.</p>
@@ -918,7 +918,7 @@ window.CHAPTERS.push({
 
                             viz.drawSegment(xMin, 0, xMax, 0, viz.colors.axis, 1);
 
-                            viz.screenText('n = ' + currentN + ',  Normal(\u03BC, \u03C3\u00B2)', 300, 22, viz.colors.white, 14, 'center');
+                            viz.screenText('n = ' + currentN + ', Normal(\u03BC, \u03C3\u00B2)', 300, 22, viz.colors.white, 14, 'center');
 
                             viz.screenText('\u25A0', 150, 45, viz.colors.blue, 12, 'center');
                             viz.screenText(' Mean: var = ' + VizEngine.variance(meanResults).toFixed(3) + ' (theory: ' + varMean.toFixed(3) + ')', 240, 45, viz.colors.blue, 11, 'left');
@@ -1044,7 +1044,7 @@ window.CHAPTERS.push({
                             viz.screenText(' Median: MSE \u2248 ' + (medianVar * currentN).toFixed(3), 425, 42, viz.colors.purple, 11, 'left');
 
                             var interpretation = are > 1 ? 'Median wins!' : (are < 1 ? 'Mean wins!' : 'Tie');
-                            viz.screenText('ARE(Median, Mean) = ' + are.toFixed(3) + '  ' + interpretation, 300, 62, viz.colors.orange, 12, 'center');
+                            viz.screenText('ARE(Median, Mean) = ' + are.toFixed(3) + ' ' + interpretation, 300, 62, viz.colors.orange, 12, 'center');
                         }
 
                         var distBtns = document.createElement('div');

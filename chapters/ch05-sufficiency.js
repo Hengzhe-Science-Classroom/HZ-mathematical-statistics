@@ -7,22 +7,22 @@ window.CHAPTERS.push({
     subtitle: 'Sufficiency & Completeness',
     sections: [
         // ============================================================
-        //  Section 1: Sufficient Statistics
+        // Section 1: Sufficient Statistics
         // ============================================================
         {
             id: 'ch05-sec01',
             title: 'Sufficient Statistics',
             content: `
-                <h2>Sufficient Statistics &mdash; 充分统计量</h2>
+ <h2>Sufficient Statistics &mdash;</h2>
 
                 <p>One of the central questions in statistical inference is: given observed data \\(X_1, \\ldots, X_n\\), how can we "compress" the data without losing any information about the parameter \\(\\theta\\)?
-                The sufficient statistic (充分统计量) is the key concept that answers this question &mdash; it extracts all the information the data carry about the parameter.</p>
+ The sufficient statistic is the key concept that answers this question &mdash; it extracts all the information the data carry about the parameter.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 5.1 (Sufficient Statistic)</div>
                     <div class="env-body">
                         <p>Let \\(X_1, \\ldots, X_n\\) be a random sample from the parametric family \\(\\{f(x; \\theta) : \\theta \\in \\Theta\\}\\).
-                        A statistic \\(T = T(X_1, \\ldots, X_n)\\) is called a <strong>sufficient statistic</strong> (充分统计量) for \\(\\theta\\)
+ A statistic \\(T = T(X_1, \\ldots, X_n)\\) is called a <strong>sufficient statistic</strong> for \\(\\theta\\)
                         if the conditional distribution of the sample \\((X_1, \\ldots, X_n)\\) given \\(T = t\\) does not depend on \\(\\theta\\):</p>
                         \\[P(X_1 \\in A_1, \\ldots, X_n \\in A_n \\mid T = t) \\perp \\theta, \\quad \\forall t, \\forall A_i.\\]
                         <p>That is, the conditional distribution is free of \\(\\theta\\).</p>
@@ -33,7 +33,7 @@ window.CHAPTERS.push({
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
                         <p>Think of the data as a "signal" and the parameter \\(\\theta\\) as the hidden "truth."
-                        A sufficient statistic is the result of lossless compression (无损压缩) of that signal &mdash; although the dimensionality of the data is reduced,
+ A sufficient statistic is the result of lossless compression of that signal &mdash; although the dimensionality of the data is reduced,
                         all information about \\(\\theta\\) is perfectly preserved.
                         Once we know the value of \\(T\\), the remaining variation in the raw data is pure "noise" (unrelated to \\(\\theta\\)).</p>
                     </div>
@@ -50,7 +50,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <p>Directly verifying the definition is often difficult. The Fisher&ndash;Neyman factorization theorem (因子分解定理) provides an elegant and practical criterion.</p>
+ <p>Directly verifying the definition is often difficult. The Fisher&ndash;Neyman factorization theorem provides an elegant and practical criterion.</p>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 5.3 (Fisher&ndash;Neyman Factorization Theorem)</div>
@@ -104,7 +104,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'data-compression-viz',
-                    title: 'Interactive: Data Compression via Sufficient Statistics (数据压缩与充分统计量)',
+ title:'Interactive: Data Compression via Sufficient Statistics',
                     description: 'Observe how a sufficient statistic compresses n data points into a low-dimensional summary without losing parameter information',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -362,21 +362,21 @@ window.CHAPTERS.push({
         },
 
         // ============================================================
-        //  Section 2: Minimal Sufficient Statistics
+        // Section 2: Minimal Sufficient Statistics
         // ============================================================
         {
             id: 'ch05-sec02',
             title: 'Minimal Sufficient Statistics',
             content: `
-                <h2>Minimal Sufficient Statistics &mdash; 最小充分统计量</h2>
+ <h2>Minimal Sufficient Statistics &mdash;</h2>
 
                 <p>Sufficient statistics are not unique: the entire sample \\((X_1, \\ldots, X_n)\\) itself is a (trivial) sufficient statistic.
-                We naturally seek the "most parsimonious" sufficient statistic &mdash; the minimal sufficient statistic (最小充分统计量) &mdash; which achieves maximum data compression.</p>
+ We naturally seek the "most parsimonious" sufficient statistic &mdash; the minimal sufficient statistic &mdash; which achieves maximum data compression.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 5.5 (Minimal Sufficient Statistic)</div>
                     <div class="env-body">
-                        <p>A sufficient statistic \\(T\\) is called a <strong>minimal sufficient statistic</strong> (最小充分统计量) if for every other sufficient statistic \\(T'\\),
+ <p>A sufficient statistic \\(T\\) is called a <strong>minimal sufficient statistic</strong> if for every other sufficient statistic \\(T'\\),
                         there exists a function \\(g\\) such that \\(T = g(T')\\) (almost surely).</p>
                         <p>Equivalently, \\(T\\) is a function of every sufficient statistic &mdash; it is the "coarsest" sufficient compression.</p>
                     </div>
@@ -440,7 +440,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'statistics-hierarchy-viz',
-                    title: 'Interactive: Information Hierarchy of Statistics (统计量的信息层次)',
+ title:'Interactive: Information Hierarchy of Statistics',
                     description: 'Displays the hierarchy of statistics between raw data and constants in terms of information retention',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -459,12 +459,12 @@ window.CHAPTERS.push({
 
                             // Hierarchy levels (top = most information, bottom = least)
                             var levels = [
-                                { y: 60,  label: 'Raw Data (X1, ..., Xn)',       color: viz.colors.blue,   desc: 'All information, no compression' },
+                                { y: 60, label: 'Raw Data (X1, ..., Xn)', color: viz.colors.blue, desc: 'All information, no compression' },
                                 { y: 120, label: 'Order Statistics (X(1),...,X(n))', color: viz.colors.teal, desc: 'Loses only labeling' },
-                                { y: 180, label: 'Sufficient Statistic T(X)',    color: viz.colors.green,  desc: 'No information loss about theta' },
-                                { y: 240, label: 'Minimal Sufficient T*(X)',     color: viz.colors.orange, desc: 'Maximum compression, zero loss' },
+                                { y: 180, label: 'Sufficient Statistic T(X)', color: viz.colors.green, desc: 'No information loss about theta' },
+                                { y: 240, label: 'Minimal Sufficient T*(X)', color: viz.colors.orange, desc: 'Maximum compression, zero loss' },
                                 { y: 300, label: 'Non-sufficient (e.g. median)', color: viz.colors.purple, desc: 'Some information lost!' },
-                                { y: 355, label: 'Constant',                     color: viz.colors.text,   desc: 'All information lost' }
+                                { y: 355, label: 'Constant', color: viz.colors.text, desc: 'All information lost' }
                             ];
 
                             // Arrows showing inclusion
@@ -531,7 +531,7 @@ window.CHAPTERS.push({
                             ctx.fillStyle = viz.colors.text;
                             ctx.font = '11px -apple-system,sans-serif';
                             ctx.textAlign = 'center';
-                            ctx.fillText('Information about theta  -->', 0, 0);
+                            ctx.fillText('Information about theta -->', 0, 0);
                             ctx.restore();
 
                             // Compression axis label
@@ -541,7 +541,7 @@ window.CHAPTERS.push({
                             ctx.fillStyle = viz.colors.text;
                             ctx.font = '11px -apple-system,sans-serif';
                             ctx.textAlign = 'center';
-                            ctx.fillText('Compression  -->', 0, 0);
+                            ctx.fillText('Compression -->', 0, 0);
                             ctx.restore();
                         }
 
@@ -585,15 +585,15 @@ window.CHAPTERS.push({
         },
 
         // ============================================================
-        //  Section 3: Completeness & Exponential Families
+        // Section 3: Completeness & Exponential Families
         // ============================================================
         {
             id: 'ch05-sec03',
             title: 'Completeness & Exponential Families',
             content: `
-                <h2>Completeness & Exponential Families &mdash; 完备性与指数族</h2>
+ <h2>Completeness & Exponential Families &mdash;</h2>
 
-                <p>Completeness (完备性) is a strengthening of sufficiency. Intuitively, if a sufficient statistic is "complete,"
+ <p>Completeness is a strengthening of sufficiency. Intuitively, if a sufficient statistic is "complete,"
                 then no nontrivial unbiased estimator based on it can be identically zero &mdash; this rules out the existence of "redundant information."
                 Complete sufficient statistics play a central role in the Rao&ndash;Blackwell theorem and the Lehmann&ndash;Scheff&eacute; theorem.</p>
 
@@ -601,7 +601,7 @@ window.CHAPTERS.push({
                     <div class="env-title">Definition 5.8 (Complete Statistic)</div>
                     <div class="env-body">
                         <p>Let \\(T\\) be a statistic whose distribution family is \\(\\{f_T(t; \\theta) : \\theta \\in \\Theta\\}\\).
-                        We say \\(T\\) is <strong>complete</strong> (完备的) if for every measurable function \\(g\\),</p>
+ We say \\(T\\) is <strong>complete</strong> if for every measurable function \\(g\\),</p>
                         \\[E_\\theta[g(T)] = 0 \\; \\forall \\theta \\in \\Theta \\quad \\Longrightarrow \\quad P_\\theta(g(T) = 0) = 1 \\; \\forall \\theta.\\]
                         <p>In other words, "a zero-expectation function must be the zero function."</p>
                     </div>
@@ -649,17 +649,17 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <p>Completeness may seem abstract, but the exponential family (指数族) provides an important general criterion for verifying it.</p>
+ <p>Completeness may seem abstract, but the exponential family provides an important general criterion for verifying it.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 5.10 (Exponential Family)</div>
                     <div class="env-body">
-                        <p>A parametric family \\(\\{f(x; \\theta) : \\theta \\in \\Theta\\}\\) is called a <strong>k-parameter exponential family</strong> (k-参数指数族)
+ <p>A parametric family \\(\\{f(x; \\theta) : \\theta \\in \\Theta\\}\\) is called a <strong>k-parameter exponential family</strong> (k-)
                         if its density can be written as</p>
                         \\[f(x; \\boldsymbol{\\eta}) = h(x) \\exp\\!\\left(\\sum_{j=1}^k \\eta_j T_j(x) - A(\\boldsymbol{\\eta})\\right),\\]
-                        <p>where \\(\\boldsymbol{\\eta} = (\\eta_1, \\ldots, \\eta_k)\\) is the <strong>natural parameter</strong> (自然参数),
-                        \\(T_1(x), \\ldots, T_k(x)\\) are the <strong>sufficient statistics</strong> (充分统计量),
-                        \\(A(\\boldsymbol{\\eta})\\) is the <strong>log-partition function</strong> (对数配分函数),
+ <p>where \\(\\boldsymbol{\\eta} = (\\eta_1, \\ldots, \\eta_k)\\) is the <strong>natural parameter</strong>,
+ \\(T_1(x), \\ldots, T_k(x)\\) are the <strong>sufficient statistics</strong>,
+ \\(A(\\boldsymbol{\\eta})\\) is the <strong>log-partition function</strong>,
                         and \\(h(x) \\ge 0\\) is the base measure.</p>
                     </div>
                 </div>
@@ -671,7 +671,7 @@ window.CHAPTERS.push({
                         whose natural parameter space \\(\\mathcal{H} = \\{\\boldsymbol{\\eta} : A(\\boldsymbol{\\eta}) < \\infty\\}\\)
                         contains an open set in \\(\\mathbb{R}^k\\). Then</p>
                         \\[T = \\left(\\sum_{i=1}^n T_1(X_i), \\ldots, \\sum_{i=1}^n T_k(X_i)\\right)\\]
-                        <p>is a <strong>complete sufficient statistic</strong> (完备充分统计量) for \\(\\boldsymbol{\\eta}\\).</p>
+ <p>is a <strong>complete sufficient statistic</strong> for \\(\\boldsymbol{\\eta}\\).</p>
                     </div>
                 </div>
 
@@ -705,7 +705,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'expfamily-morphing-viz',
-                    title: 'Interactive: Exponential Family PDF Morphing (指数族 PDF 变形)',
+ title:'Interactive: Exponential Family PDF Morphing (PDF)',
                     description: 'Adjust the natural parameters to observe how exponential family densities smoothly morph, and see the dimension of the sufficient statistic',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -900,7 +900,7 @@ window.CHAPTERS.push({
 
                             viz.screenText('Natural param: ' + info.eta, plotLeft + plotW / 2, infoY + 12, viz.colors.green, 11, 'center', 'top');
                             viz.screenText('Sufficient stat: ' + info.T, plotLeft + plotW / 2, infoY + 26, viz.colors.orange, 11, 'center', 'top');
-                            viz.screenText('Dimension of T: ' + info.dim + '  (complete sufficient for iid sample)', plotLeft + plotW / 2, infoY + 40, viz.colors.text, 10, 'center', 'top');
+                            viz.screenText('Dimension of T: ' + info.dim + ' (complete sufficient for iid sample)', plotLeft + plotW / 2, infoY + 40, viz.colors.text, 10, 'center', 'top');
                         }
 
                         draw();
@@ -928,22 +928,22 @@ window.CHAPTERS.push({
         },
 
         // ============================================================
-        //  Section 4: Ancillary Statistics & Basu's Theorem
+        // Section 4: Ancillary Statistics & Basu's Theorem
         // ============================================================
         {
             id: 'ch05-sec04',
             title: 'Ancillary Statistics & Basu\'s Theorem',
             content: `
-                <h2>Ancillary Statistics & Basu's Theorem &mdash; 辅助统计量与 Basu 定理</h2>
+ <h2>Ancillary Statistics & Basu's Theorem &mdash; Basu</h2>
 
-                <p>In contrast to sufficient statistics, an <strong>ancillary statistic</strong> (辅助统计量) is one whose distribution carries no information about the parameter at all.
+ <p>In contrast to sufficient statistics, an <strong>ancillary statistic</strong> is one whose distribution carries no information about the parameter at all.
                 Basu's theorem establishes a deep connection between complete sufficient statistics and ancillary statistics:
                 they are independent. This seemingly simple result has far-reaching implications in both theory and practice.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 5.13 (Ancillary Statistic)</div>
                     <div class="env-body">
-                        <p>A statistic \\(V = V(X_1, \\ldots, X_n)\\) is called an <strong>ancillary statistic</strong> (辅助统计量)
+ <p>A statistic \\(V = V(X_1, \\ldots, X_n)\\) is called an <strong>ancillary statistic</strong>
                         if the distribution of \\(V\\) does not depend on the parameter \\(\\theta\\):</p>
                         \\[P_\\theta(V \\in B) = P(V \\in B) \\quad \\forall \\theta \\in \\Theta, \\; \\forall B.\\]
                     </div>
@@ -1034,7 +1034,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'sufficient-ancillary-scatter-viz',
-                    title: 'Interactive: Sufficient vs. Ancillary Statistic Scatter Plot (充分统计量 vs 辅助统计量)',
+ title:'Interactive: Sufficient vs. Ancillary Statistic Scatter Plot (vs)',
                     description: 'Monte Carlo simulation demonstrating the independence of a complete sufficient statistic and an ancillary statistic (Basu\'s theorem)',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -1121,7 +1121,7 @@ window.CHAPTERS.push({
                                 var tsx = plotLeft + plotW * tx / nTickX;
                                 ctx.fillText(tv.toFixed(1), tsx, plotBottom + 4);
                             }
-                            viz.screenText('T = sum(Xi)  [Sufficient]', (plotLeft + plotRight) / 2, plotBottom + 20, viz.colors.green, 11, 'center', 'top');
+                            viz.screenText('T = sum(Xi) [Sufficient]', (plotLeft + plotRight) / 2, plotBottom + 20, viz.colors.green, 11, 'center', 'top');
 
                             // Y axis labels (V = X1/sum)
                             ctx.textAlign = 'right';
@@ -1137,7 +1137,7 @@ window.CHAPTERS.push({
                             ctx.fillStyle = viz.colors.orange;
                             ctx.font = '11px -apple-system,sans-serif';
                             ctx.textAlign = 'center';
-                            ctx.fillText('V = X1/sum(Xi)  [Ancillary]', 0, 0);
+                            ctx.fillText('V = X1/sum(Xi) [Ancillary]', 0, 0);
                             ctx.restore();
 
                             // Plot points

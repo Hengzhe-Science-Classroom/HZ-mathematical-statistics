@@ -12,14 +12,14 @@ window.CHAPTERS.push({
             id: 'ch13-sec01',
             title: 'The Multiple Linear Model',
             content: `
-                <h2>The Multiple Linear Model 多元线性模型</h2>
+ <h2>The Multiple Linear Model</h2>
 
-                <p>In simple linear regression we studied the relationship between a single predictor and a response. In practice, the response variable is often jointly influenced by multiple explanatory variables. <strong>Multiple linear regression (多元线性回归)</strong> extends the model to \(p\) predictors, using matrix notation for an elegant theoretical formulation.</p>
+ <p>In simple linear regression we studied the relationship between a single predictor and a response. In practice, the response variable is often jointly influenced by multiple explanatory variables. <strong>Multiple linear regression </strong> extends the model to \(p\) predictors, using matrix notation for an elegant theoretical formulation.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.1 (Multiple Linear Model)</div>
                     <div class="env-body">
-                        <p>Given observed data \((y_i, x_{i1}, \ldots, x_{ip})\), \(i = 1, \ldots, n\). The <strong>multiple linear model (多元线性模型)</strong> is</p>
+ <p>Given observed data \((y_i, x_{i1}, \ldots, x_{ip})\), \(i = 1, \ldots, n\). The <strong>multiple linear model </strong> is</p>
                         \[y_i = \beta_0 + \beta_1 x_{i1} + \cdots + \beta_p x_{ip} + \varepsilon_i, \quad i = 1, \ldots, n,\]
                         <p>where \(\varepsilon_1, \ldots, \varepsilon_n\) are i.i.d. with \(\mathbb{E}[\varepsilon_i] = 0\) and \(\operatorname{Var}(\varepsilon_i) = \sigma^2\).</p>
                     </div>
@@ -28,7 +28,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.2 (Matrix Form)</div>
                     <div class="env-body">
-                        <p>Define the \(n \times (p+1)\) design matrix (设计矩阵) \(\mathbf{X}\), response vector \(\mathbf{y}\), and parameter vector \(\boldsymbol{\beta}\):</p>
+ <p>Define the \(n \times (p+1)\) design matrix \(\mathbf{X}\), response vector \(\mathbf{y}\), and parameter vector \(\boldsymbol{\beta}\):</p>
                         \[\mathbf{X} = \begin{pmatrix} 1 & x_{11} & \cdots & x_{1p} \\ 1 & x_{21} & \cdots & x_{2p} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{n1} & \cdots & x_{np} \end{pmatrix}, \quad \mathbf{y} = \begin{pmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{pmatrix}, \quad \boldsymbol{\beta} = \begin{pmatrix} \beta_0 \\ \beta_1 \\ \vdots \\ \beta_p \end{pmatrix}.\]
                         <p>The model is written compactly as \(\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}\), where \(\boldsymbol{\varepsilon} \sim (\mathbf{0}, \sigma^2 \mathbf{I}_n)\).</p>
                     </div>
@@ -37,9 +37,9 @@ window.CHAPTERS.push({
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 13.3 (OLS Estimator)</div>
                     <div class="env-body">
-                        <p>If \(\mathbf{X}^\top \mathbf{X}\) is invertible, the ordinary least squares estimator (最小二乘估计量) is</p>
+ <p>If \(\mathbf{X}^\top \mathbf{X}\) is invertible, the ordinary least squares estimator is</p>
                         \[\hat{\boldsymbol{\beta}} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}.\]
-                        <p>The fitted values are \(\hat{\mathbf{y}} = \mathbf{H} \mathbf{y}\), where \(\mathbf{H} = \mathbf{X}(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top\) is the <strong>hat matrix (帽子矩阵)</strong>.</p>
+ <p>The fitted values are \(\hat{\mathbf{y}} = \mathbf{H} \mathbf{y}\), where \(\mathbf{H} = \mathbf{X}(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top\) is the <strong>hat matrix </strong>.</p>
                     </div>
                 </div>
 
@@ -56,7 +56,7 @@ window.CHAPTERS.push({
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 13.4 (Properties of the Hat Matrix)</div>
                     <div class="env-body">
-                        <p>The hat matrix \(\mathbf{H}\) satisfies: (i) \(\mathbf{H}^2 = \mathbf{H}\) (idempotent); (ii) \(\mathbf{H}^\top = \mathbf{H}\) (symmetric); (iii) \(\operatorname{tr}(\mathbf{H}) = p + 1\); (iv) the diagonal elements \(0 \leq h_{ii} \leq 1\) are called the <strong>leverage (杠杆值)</strong> of the \(i\)-th observation.</p>
+ <p>The hat matrix \(\mathbf{H}\) satisfies: (i) \(\mathbf{H}^2 = \mathbf{H}\) (idempotent); (ii) \(\mathbf{H}^\top = \mathbf{H}\) (symmetric); (iii) \(\operatorname{tr}(\mathbf{H}) = p + 1\); (iv) the diagonal elements \(0 \leq h_{ii} \leq 1\) are called the <strong>leverage </strong> of the \(i\)-th observation.</p>
                     </div>
                 </div>
 
@@ -70,9 +70,9 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.5 (Unbiased Estimator of \\(\\sigma^2\\))</div>
                     <div class="env-body">
-                        <p>An unbiased estimator (无偏估计) of \(\sigma^2\) is</p>
+ <p>An unbiased estimator of \(\sigma^2\) is</p>
                         \[s^2 = \frac{\text{RSS}}{n - p - 1} = \frac{\mathbf{e}^\top \mathbf{e}}{n - p - 1},\]
-                        <p>where \(\text{RSS} = \sum_{i=1}^n (y_i - \hat{y}_i)^2\) is the residual sum of squares and \(n - p - 1\) is the degrees of freedom (自由度).</p>
+ <p>where \(\text{RSS} = \sum_{i=1}^n (y_i - \hat{y}_i)^2\) is the residual sum of squares and \(n - p - 1\) is the degrees of freedom.</p>
                     </div>
                 </div>
 
@@ -81,8 +81,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'regression-plane-viz',
-                    title: 'Interactive: 3D Regression Plane (2D Projection) 3D回归平面(2D投影)',
-                    description: 'Drag data points to observe how the regression surface fits -- the projection shows the joint influence of two variables on the response 拖动数据点观察回归面如何拟合',
+ title:'Interactive: 3D Regression Plane (2D Projection) 3D(2D)',
+ description:'Drag data points to observe how the regression surface fits -- the projection shows the joint influence of two variables on the response',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 580, height: 420, scale: 35, originX: 290, originY: 350});
 
@@ -135,7 +135,7 @@ window.CHAPTERS.push({
                         }
 
                         var viewAngle = 0.6;
-                        var angleSlider = VizEngine.createSlider(controls, 'View angle 视角', 0, Math.PI, viewAngle, 0.05, function(v) {
+ var angleSlider = VizEngine.createSlider(controls,'View angle', 0, Math.PI, viewAngle, 0.05, function(v) {
                             viewAngle = v;
                         });
 
@@ -192,7 +192,7 @@ window.CHAPTERS.push({
                             var r2 = 1 - rss / tss;
 
                             viz.screenText('Projected view of Y = b0 + b1*X1 + b2*X2', viz.width/2, 18, viz.colors.white, 13);
-                            viz.screenText('b0=' + b0.toFixed(2) + '  b1=' + b1.toFixed(2) + '  b2=' + b2.toFixed(2) + '  R\u00B2=' + r2.toFixed(3), viz.width/2, 38, viz.colors.teal, 12);
+                            viz.screenText('b0=' + b0.toFixed(2) + ' b1=' + b1.toFixed(2) + ' b2=' + b2.toFixed(2) + ' R\u00B2=' + r2.toFixed(3), viz.width/2, 38, viz.colors.teal, 12);
                         }
 
                         viz.animate(draw);
@@ -225,7 +225,7 @@ window.CHAPTERS.push({
             id: 'ch13-sec02',
             title: 'Inference and Testing',
             content: `
-                <h2>Inference and Testing 推断与检验</h2>
+ <h2>Inference and Testing</h2>
 
                 <p>In multiple regression, we typically ask: (1) whether a single coefficient is significant (t-test), (2) whether a group of coefficients are simultaneously zero (F-test), and (3) how well the model fits overall. These inferential tools form the foundation for model interpretation and variable screening.</p>
 
@@ -251,7 +251,7 @@ window.CHAPTERS.push({
                 <div class="env-block warning">
                     <div class="env-title">Warning: Conditional Nature of the t-Test</div>
                     <div class="env-body">
-                        <p>The t-test conclusion is <strong>conditional on all other variables being in the model</strong>. When \(x_j\) and \(x_k\) are highly correlated, both individual t-tests may be non-significant, yet the joint F-test can be highly significant -- this is the effect of <strong>multicollinearity (多重共线性)</strong>.</p>
+ <p>The t-test conclusion is <strong>conditional on all other variables being in the model</strong>. When \(x_j\) and \(x_k\) are highly correlated, both individual t-tests may be non-significant, yet the joint F-test can be highly significant -- this is the effect of <strong>multicollinearity </strong>.</p>
                     </div>
                 </div>
 
@@ -275,7 +275,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.10 (Coefficient of Determination)</div>
                     <div class="env-body">
-                        <p>\(R^2 = 1 - \frac{\text{RSS}}{\text{TSS}}\) measures the proportion of variance explained by the model. The adjusted \(R^2\) (调整决定系数) is</p>
+ <p>\(R^2 = 1 - \frac{\text{RSS}}{\text{TSS}}\) measures the proportion of variance explained by the model. The adjusted \(R^2\) is</p>
                         \[R^2_{\text{adj}} = 1 - \frac{\text{RSS}/(n-p-1)}{\text{TSS}/(n-1)}.\]
                         <p>\(R^2\) is non-decreasing as variables are added, while \(R^2_{\text{adj}}\) penalizes model complexity.</p>
                     </div>
@@ -295,8 +295,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'coefficient-significance-viz',
-                    title: 'Interactive: Coefficient Significance (t-statistics) 系数显著性',
-                    description: 'Adjust sample size and error variance to observe how t-statistics and confidence intervals change 调整样本量和误差方差观察系数t统计量变化',
+ title:'Interactive: Coefficient Significance (t-statistics)',
+ description:'Adjust sample size and error variance to observe how t-statistics and confidence intervals changet',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 580, height: 400, scale: 30, originX: 290, originY: 200});
 
@@ -409,8 +409,8 @@ window.CHAPTERS.push({
                             viz.drawSegment(-7, 0, 7, 0, viz.colors.text + '80', 1, true);
 
                             viz.screenText('Coefficient estimates with 95% CI', viz.width/2, 16, viz.colors.white, 13);
-                            viz.screenText('Green = |t| > 2 (sig at 5%),  Red = not significant', viz.width/2, 34, viz.colors.text, 11);
-                            viz.screenText('Dashed = true value,  n=' + sampleN + ', sigma=' + noiseSD.toFixed(1), viz.width/2, 50, viz.colors.text, 11);
+                            viz.screenText('Green = |t| > 2 (sig at 5%), Red = not significant', viz.width/2, 34, viz.colors.text, 11);
+                            viz.screenText('Dashed = true value, n=' + sampleN + ', sigma=' + noiseSD.toFixed(1), viz.width/2, 50, viz.colors.text, 11);
                         }
 
                         viz.animate(draw);
@@ -443,16 +443,16 @@ window.CHAPTERS.push({
             id: 'ch13-sec03',
             title: 'Regression Diagnostics',
             content: `
-                <h2>Regression Diagnostics 模型诊断</h2>
+ <h2>Regression Diagnostics</h2>
 
-                <p>After fitting a model, one must check whether the model assumptions are reasonable and whether anomalous observations exist. <strong>Regression diagnostics (模型诊断)</strong> use residual analysis, leverage values, and influence measures to assess model reliability.</p>
+ <p>After fitting a model, one must check whether the model assumptions are reasonable and whether anomalous observations exist. <strong>Regression diagnostics </strong> use residual analysis, leverage values, and influence measures to assess model reliability.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.12 (Standardized and Studentized Residuals)</div>
                     <div class="env-body">
-                        <p>The <strong>standardized residual (标准化残差)</strong> for the \(i\)-th observation is</p>
+ <p>The <strong>standardized residual </strong> for the \(i\)-th observation is</p>
                         \[r_i = \frac{e_i}{s\sqrt{1 - h_{ii}}},\]
-                        <p>where \(h_{ii}\) is the leverage. The <strong>externally studentized residual (外学生化残差)</strong> is</p>
+ <p>where \(h_{ii}\) is the leverage. The <strong>externally studentized residual </strong> is</p>
                         \[t_i = \frac{e_i}{s_{(i)}\sqrt{1 - h_{ii}}},\]
                         <p>where \(s_{(i)}^2\) is the residual variance estimate computed with the \(i\)-th observation deleted. Under normality, \(t_i \sim t_{n-p-2}\).</p>
                     </div>
@@ -461,7 +461,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.13 (Variance Inflation Factor, VIF)</div>
                     <div class="env-body">
-                        <p>The <strong>variance inflation factor (方差膨胀因子)</strong> for the \(j\)-th variable is</p>
+ <p>The <strong>variance inflation factor </strong> for the \(j\)-th variable is</p>
                         \[\text{VIF}_j = \frac{1}{1 - R_j^2},\]
                         <p>where \(R_j^2\) is the \(R^2\) from regressing \(x_j\) on all other predictors. \(\text{VIF}_j\) measures the factor by which collinearity inflates the variance of \(\hat{\beta}_j\).</p>
                     </div>
@@ -486,7 +486,7 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>Cook's distance decomposes as "outlyingness" \(\times\) "leverage effect." A high-leverage point (at the periphery of the predictor space) that also has a large residual is an <strong>influential point (影响点)</strong>. Rules of thumb: \(D_i > 4/n\) or \(D_i > 1\) indicates significant influence.</p>
+ <p>Cook's distance decomposes as "outlyingness" \(\times\)"leverage effect." A high-leverage point (at the periphery of the predictor space) that also has a large residual is an <strong>influential point </strong>. Rules of thumb: \(D_i> 4/n\) or \(D_i> 1\) indicates significant influence.</p>
                     </div>
                 </div>
 
@@ -504,8 +504,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'leverage-cook-viz',
-                    title: 'Interactive: Leverage vs Cook\'s Distance 杠杆值与Cook距离',
-                    description: 'Drag the outlier point to observe how leverage and Cook\'s distance change 拖动异常点观察杠杆值和Cook距离变化',
+ title:'Interactive: Leverage vs Cook\'s DistanceCook',
+ description:'Drag the outlier point to observe how leverage and Cook\'s distance changeCook',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 580, height: 420, scale: 1, originX: 70, originY: 370});
                         viz.scale = 1;
@@ -716,9 +716,9 @@ window.CHAPTERS.push({
             id: 'ch13-sec04',
             title: 'Model Selection',
             content: `
-                <h2>Model Selection 模型选择</h2>
+ <h2>Model Selection</h2>
 
-                <p>When many candidate variables are available, how do we choose the "best" subset? The trade-off between overfitting (过拟合) and underfitting (欠拟合) is a central problem in statistical modeling. <strong>Model selection (模型选择)</strong> seeks a balance between model complexity and goodness of fit through information criteria or cross-validation.</p>
+ <p>When many candidate variables are available, how do we choose the "best" subset? The trade-off between overfitting and underfitting is a central problem in statistical modeling. <strong>Model selection </strong> seeks a balance between model complexity and goodness of fit through information criteria or cross-validation.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.16 (AIC -- Akaike Information Criterion)</div>
@@ -750,7 +750,7 @@ window.CHAPTERS.push({
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 13.19 (Consistency of BIC)</div>
                     <div class="env-body">
-                        <p>If the true model belongs to the candidate set, then BIC selects the true model with probability 1 as \(n \to \infty\) (<strong>selection consistency (选择一致性)</strong>). AIC does not possess this property -- it asymptotically tends to over-select.</p>
+ <p>If the true model belongs to the candidate set, then BIC selects the true model with probability 1 as \(n \to \infty\) (<strong>selection consistency </strong>). AIC does not possess this property -- it asymptotically tends to over-select.</p>
                     </div>
                 </div>
 
@@ -766,14 +766,14 @@ window.CHAPTERS.push({
                 <div class="env-block remark">
                     <div class="env-title">Remark (Stepwise Regression)</div>
                     <div class="env-body">
-                        <p><strong>Forward selection (前向选择)</strong>: starting from the null model, add the variable that most improves a criterion at each step. <strong>Backward elimination (后向消除)</strong>: starting from the full model, remove the least significant variable at each step. <strong>Stepwise (逐步法)</strong>: a combination of forward and backward. These greedy strategies are computationally fast but do not guarantee global optimality; when \(p\) is small, <strong>best subset selection (最优子集选择)</strong>, which enumerates all \(2^p\) subsets, is more reliable.</p>
+ <p><strong>Forward selection </strong>: starting from the null model, add the variable that most improves a criterion at each step. <strong>Backward elimination </strong>: starting from the full model, remove the least significant variable at each step. <strong>Stepwise </strong>: a combination of forward and backward. These greedy strategies are computationally fast but do not guarantee global optimality; when \(p\) is small, <strong>best subset selection </strong>, which enumerates all \(2^p\) subsets, is more reliable.</p>
                     </div>
                 </div>
 
                 <div class="env-block warning">
                     <div class="env-title">Warning: Over-Searching and Inference Failure</div>
                     <div class="env-body">
-                        <p>After model selection, the p-values and confidence intervals of the selected variables are no longer valid -- they ignore the uncertainty introduced by the selection process. This is known as the <strong>post-selection inference (选择后推断)</strong> problem. Recent research (e.g., selective inference, data splitting) attempts to correct this bias.</p>
+ <p>After model selection, the p-values and confidence intervals of the selected variables are no longer valid -- they ignore the uncertainty introduced by the selection process. This is known as the <strong>post-selection inference </strong> problem. Recent research (e.g., selective inference, data splitting) attempts to correct this bias.</p>
                     </div>
                 </div>
 
@@ -782,8 +782,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'model-selection-viz',
-                    title: 'Interactive: AIC/BIC vs Model Complexity AIC/BIC与模型复杂度',
-                    description: 'Adjust the true number of variables and sample size to observe how AIC/BIC select the optimal model 调整真实变量数和样本量观察AIC/BIC选择',
+ title:'Interactive: AIC/BIC vs Model Complexity AIC/BIC',
+ description:'Adjust the true number of variables and sample size to observe how AIC/BIC select the optimal modelAIC',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 580, height: 400, scale: 1, originX: 70, originY: 350});
 
@@ -995,14 +995,14 @@ window.CHAPTERS.push({
             id: 'ch13-sec05',
             title: 'Regularization Methods',
             content: `
-                <h2>Regularization Methods 正则化方法</h2>
+ <h2>Regularization Methods</h2>
 
-                <p>When \(p\) is large or strong collinearity exists among the variables, OLS can have very large variance. <strong>Regularization (正则化)</strong> imposes constraints or penalties on the coefficients, trading bias for variance to achieve better predictive performance.</p>
+ <p>When \(p\) is large or strong collinearity exists among the variables, OLS can have very large variance. <strong>Regularization </strong> imposes constraints or penalties on the coefficients, trading bias for variance to achieve better predictive performance.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.21 (Ridge Regression)</div>
                     <div class="env-body">
-                        <p><strong>Ridge regression (岭回归)</strong> adds an \(L_2\) penalty to the OLS objective:</p>
+ <p><strong>Ridge regression </strong> adds an \(L_2\) penalty to the OLS objective:</p>
                         \[\hat{\boldsymbol{\beta}}^{\text{ridge}} = \arg\min_{\boldsymbol{\beta}} \left\{ \|\mathbf{y} - \mathbf{X}\boldsymbol{\beta}\|^2 + \lambda \|\boldsymbol{\beta}\|^2 \right\} = (\mathbf{X}^\top\mathbf{X} + \lambda\mathbf{I})^{-1}\mathbf{X}^\top\mathbf{y}.\]
                         <p>Ridge performs uniform shrinkage on all coefficients but does not produce sparse solutions.</p>
                     </div>
@@ -1022,7 +1022,7 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p><strong>Lasso</strong> (Least Absolute Shrinkage and Selection Operator) uses an \(L_1\) penalty:</p>
                         \[\hat{\boldsymbol{\beta}}^{\text{lasso}} = \arg\min_{\boldsymbol{\beta}} \left\{ \frac{1}{2n}\|\mathbf{y} - \mathbf{X}\boldsymbol{\beta}\|^2 + \lambda \|\boldsymbol{\beta}\|_1 \right\}.\]
-                        <p>The geometric property of the \(L_1\) penalty causes Lasso to produce <strong>sparse solutions (稀疏解)</strong> -- some coefficients are set exactly to zero, achieving automatic variable selection.</p>
+ <p>The geometric property of the \(L_1\) penalty causes Lasso to produce <strong>sparse solutions </strong> -- some coefficients are set exactly to zero, achieving automatic variable selection.</p>
                     </div>
                 </div>
 
@@ -1036,7 +1036,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 13.24 (Elastic Net)</div>
                     <div class="env-body">
-                        <p><strong>Elastic Net (弹性网)</strong> combines \(L_1\) and \(L_2\) penalties:</p>
+ <p><strong>Elastic Net </strong> combines \(L_1\) and \(L_2\) penalties:</p>
                         \[\hat{\boldsymbol{\beta}}^{\text{EN}} = \arg\min_{\boldsymbol{\beta}} \left\{ \frac{1}{2n}\|\mathbf{y} - \mathbf{X}\boldsymbol{\beta}\|^2 + \lambda\left(\alpha\|\boldsymbol{\beta}\|_1 + \frac{1-\alpha}{2}\|\boldsymbol{\beta}\|^2\right) \right\},\]
                         <p>where \(\alpha \in [0, 1]\) controls the mixing ratio. \(\alpha = 1\) gives Lasso, \(\alpha = 0\) gives Ridge. Elastic Net tends to select or exclude highly correlated variables together -- the grouping effect.</p>
                     </div>
@@ -1063,8 +1063,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'coefficient-path-viz',
-                    title: 'Interactive: Coefficient Shrinkage Paths (Ridge vs Lasso) 系数收缩路径',
-                    description: 'Adjust the regularization strength lambda to observe how coefficients are shrunk -- notice Lasso produces sparse solutions 调整lambda观察系数收缩',
+ title:'Interactive: Coefficient Shrinkage Paths (Ridge vs Lasso)',
+ description:'Adjust the regularization strength lambda to observe how coefficients are shrunk -- notice Lasso produces sparse solutionslambda',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 580, height: 420, scale: 1, originX: 70, originY: 210});
 

@@ -12,13 +12,13 @@ window.CHAPTERS.push({
             id: 'ch02-sec01',
             title: 'Joint and Marginal Distributions',
             content: `
-                <h2>Joint Distributions and Marginal Distributions 联合分布与边际分布</h2>
-                <p>The distribution of a single random variable describes uncertainty in one dimension. However, in practice, we often need to study the joint behavior of multiple random variables simultaneously — for example, height and weight, income and consumption, temperature and atmospheric pressure. The theory of <strong>multivariate random variables</strong> (多维随机变量, also called random vectors) provides a rigorous mathematical framework for this purpose.</p>
+ <h2>Joint Distributions and Marginal Distributions</h2>
+ <p>The distribution of a single random variable describes uncertainty in one dimension. However, in practice, we often need to study the joint behavior of multiple random variables simultaneously — for example, height and weight, income and consumption, temperature and atmospheric pressure. The theory of <strong>multivariate random variables</strong> (also called random vectors) provides a rigorous mathematical framework for this purpose.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 2.1 (Joint Cumulative Distribution Function)</div>
                     <div class="env-body">
-                        <p>Let \\(X\\) and \\(Y\\) be two random variables defined on the same probability space \\((\\Omega, \\mathcal{F}, P)\\). Their <strong>joint cumulative distribution function</strong> (联合累积分布函数, joint CDF) is defined as</p>
+ <p>Let \\(X\\) and \\(Y\\) be two random variables defined on the same probability space \\((\\Omega, \\mathcal{F}, P)\\). Their <strong>joint cumulative distribution function</strong> (joint CDF) is defined as</p>
                         \\[F_{X,Y}(x, y) = P(X \\leq x, Y \\leq y), \\quad (x, y) \\in \\mathbb{R}^2.\\]
                     </div>
                 </div>
@@ -36,35 +36,35 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Discrete Case: Joint Probability Mass Function 离散情形：联合概率质量函数</h3>
+ <h3>Discrete Case: Joint Probability Mass Function</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 2.3 (Joint PMF)</div>
                     <div class="env-body">
-                        <p>If \\((X, Y)\\) is a discrete random vector, its <strong>joint probability mass function</strong> (联合概率质量函数) is</p>
+ <p>If \\((X, Y)\\) is a discrete random vector, its <strong>joint probability mass function</strong> is</p>
                         \\[p_{X,Y}(x, y) = P(X = x, Y = y).\\]
                         <p>It satisfies \\(p_{X,Y}(x,y) \\geq 0\\) and \\(\\sum_x \\sum_y p_{X,Y}(x,y) = 1\\).</p>
                     </div>
                 </div>
 
-                <h3>Continuous Case: Joint Probability Density Function 连续情形：联合概率密度函数</h3>
+ <h3>Continuous Case: Joint Probability Density Function</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 2.4 (Joint PDF)</div>
                     <div class="env-body">
                         <p>If there exists a non-negative integrable function \\(f_{X,Y}\\) such that</p>
                         \\[F_{X,Y}(x,y) = \\int_{-\\infty}^{x} \\int_{-\\infty}^{y} f_{X,Y}(s,t) \\, dt \\, ds,\\]
-                        <p>then \\((X,Y)\\) is called a continuous random vector and \\(f_{X,Y}\\) is its <strong>joint probability density function</strong> (联合概率密度函数).</p>
+ <p>then \\((X,Y)\\) is called a continuous random vector and \\(f_{X,Y}\\) is its <strong>joint probability density function</strong>.</p>
                         <p>It satisfies \\(f_{X,Y}(x,y) \\geq 0\\) and \\(\\int_{-\\infty}^{\\infty}\\int_{-\\infty}^{\\infty} f_{X,Y}(x,y) \\, dx \\, dy = 1\\).</p>
                     </div>
                 </div>
 
-                <h3>Marginal Distributions 边际分布</h3>
+ <h3>Marginal Distributions</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 2.5 (Marginal Distribution)</div>
                     <div class="env-body">
-                        <p>By "integrating out" one variable from the joint distribution, we obtain the individual distribution of the other variable, called the <strong>marginal distribution</strong> (边际分布).</p>
+ <p>By "integrating out" one variable from the joint distribution, we obtain the individual distribution of the other variable, called the <strong>marginal distribution</strong>.</p>
                         <p><strong>Discrete case:</strong></p>
                         \\[p_X(x) = \\sum_{y} p_{X,Y}(x, y), \\qquad p_Y(y) = \\sum_{x} p_{X,Y}(x, y).\\]
                         <p><strong>Continuous case:</strong></p>
@@ -298,15 +298,15 @@ window.CHAPTERS.push({
             id: 'ch02-sec02',
             title: 'Conditional Distributions and Independence',
             content: `
-                <h2>Conditional Distributions and Independence 条件分布与独立性</h2>
-                <p>The joint distribution tells us everything about two variables. But we often need to answer questions like: <em>Given \\(Y = y\\), what is the distribution of \\(X\\)?</em> This leads to the concept of conditional distributions (条件分布).</p>
+ <h2>Conditional Distributions and Independence</h2>
+ <p>The joint distribution tells us everything about two variables. But we often need to answer questions like: <em>Given \\(Y = y\\), what is the distribution of \\(X\\)?</em> This leads to the concept of conditional distributions.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 2.7 (Conditional Distribution)</div>
                     <div class="env-body">
-                        <p><strong>Discrete case:</strong> If \\(p_Y(y) > 0\\), the <strong>conditional PMF</strong> (条件概率质量函数) of \\(X\\) given \\(Y = y\\) is</p>
+ <p><strong>Discrete case:</strong> If \\(p_Y(y)> 0\\), the <strong>conditional PMF</strong> of \\(X\\) given \\(Y = y\\) is</p>
                         \\[p_{X|Y}(x|y) = \\frac{p_{X,Y}(x,y)}{p_Y(y)}.\\]
-                        <p><strong>Continuous case:</strong> If \\(f_Y(y) > 0\\), the <strong>conditional PDF</strong> (条件概率密度函数) of \\(X\\) given \\(Y = y\\) is</p>
+ <p><strong>Continuous case:</strong> If \\(f_Y(y)> 0\\), the <strong>conditional PDF</strong> of \\(X\\) given \\(Y = y\\) is</p>
                         \\[f_{X|Y}(x|y) = \\frac{f_{X,Y}(x,y)}{f_Y(y)}.\\]
                     </div>
                 </div>
@@ -334,12 +334,12 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Independence 独立性</h3>
+ <h3>Independence</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 2.9 (Independent Random Variables)</div>
                     <div class="env-body">
-                        <p>Random variables \\(X\\) and \\(Y\\) are said to be <strong>(statistically) independent</strong> (独立) if for all \\((x, y) \\in \\mathbb{R}^2\\):</p>
+ <p>Random variables \\(X\\) and \\(Y\\) are said to be <strong>(statistically) independent</strong> if for all \\((x, y) \\in \\mathbb{R}^2\\):</p>
                         \\[F_{X,Y}(x,y) = F_X(x) \\cdot F_Y(y).\\]
                         <p>Equivalently:</p>
                         <ul>
@@ -508,13 +508,13 @@ window.CHAPTERS.push({
             id: 'ch02-sec03',
             title: 'Covariance and Correlation',
             content: `
-                <h2>Covariance and Correlation 协方差与相关系数</h2>
-                <p>Marginal and conditional distributions describe the probabilistic behavior of individual variables. But what we often care about most is a concise measure: <em>the strength and direction of the linear association between two variables</em>. Covariance (协方差) and the correlation coefficient (相关系数) are designed precisely for this purpose.</p>
+ <h2>Covariance and Correlation</h2>
+ <p>Marginal and conditional distributions describe the probabilistic behavior of individual variables. But what we often care about most is a concise measure: <em>the strength and direction of the linear association between two variables</em>. Covariance and the correlation coefficient are designed precisely for this purpose.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 2.12 (Covariance)</div>
                     <div class="env-body">
-                        <p>If the expectations of \\(X\\) and \\(Y\\) are finite, their <strong>covariance</strong> (协方差) is defined as</p>
+ <p>If the expectations of \\(X\\) and \\(Y\\) are finite, their <strong>covariance</strong> is defined as</p>
                         \\[\\operatorname{Cov}(X, Y) = \\mathbb{E}[(X - \\mathbb{E}[X])(Y - \\mathbb{E}[Y])] = \\mathbb{E}[XY] - \\mathbb{E}[X]\\mathbb{E}[Y].\\]
                     </div>
                 </div>
@@ -544,7 +544,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 2.14 (Correlation Coefficient)</div>
                     <div class="env-body">
-                        <p>If \\(\\operatorname{Var}(X) > 0\\) and \\(\\operatorname{Var}(Y) > 0\\), the <strong>Pearson correlation coefficient</strong> (Pearson 相关系数) is</p>
+ <p>If \\(\\operatorname{Var}(X)> 0\\) and \\(\\operatorname{Var}(Y)> 0\\), the <strong>Pearson correlation coefficient</strong> (Pearson) is</p>
                         \\[\\rho(X, Y) = \\frac{\\operatorname{Cov}(X, Y)}{\\sqrt{\\operatorname{Var}(X)} \\cdot \\sqrt{\\operatorname{Var}(Y)}} = \\frac{\\operatorname{Cov}(X,Y)}{\\sigma_X \\sigma_Y}.\\]
                     </div>
                 </div>
@@ -695,15 +695,15 @@ window.CHAPTERS.push({
             id: 'ch02-sec04',
             title: 'Multivariate Normal Distribution',
             content: `
-                <h2>Multivariate Normal Distribution 多维正态分布</h2>
-                <p>The normal distribution is the most important distribution family in probability theory and statistics. Its multivariate generalization — the <strong>multivariate normal distribution</strong> (多维正态分布, MVN) — plays a central role in statistical inference because it is closed under linear transformations, and its marginal and conditional distributions are also normal.</p>
+ <h2>Multivariate Normal Distribution</h2>
+ <p>The normal distribution is the most important distribution family in probability theory and statistics. Its multivariate generalization — the <strong>multivariate normal distribution</strong> (MVN) — plays a central role in statistical inference because it is closed under linear transformations, and its marginal and conditional distributions are also normal.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 2.16 (Bivariate Normal Distribution)</div>
                     <div class="env-body">
-                        <p>The random vector \\((X, Y)^T\\) follows a <strong>bivariate normal distribution</strong> (二维正态分布), written \\((X,Y)^T \\sim N_2(\\boldsymbol{\\mu}, \\boldsymbol{\\Sigma})\\), if its joint PDF is</p>
+ <p>The random vector \\((X, Y)^T\\) follows a <strong>bivariate normal distribution</strong>, written \\((X,Y)^T \\sim N_2(\\boldsymbol{\\mu}, \\boldsymbol{\\Sigma})\\), if its joint PDF is</p>
                         \\[f(x,y) = \\frac{1}{2\\pi \\sigma_1 \\sigma_2 \\sqrt{1-\\rho^2}} \\exp\\left(-\\frac{1}{2(1-\\rho^2)}\\left[\\frac{(x-\\mu_1)^2}{\\sigma_1^2} - 2\\rho\\frac{(x-\\mu_1)(y-\\mu_2)}{\\sigma_1 \\sigma_2} + \\frac{(y-\\mu_2)^2}{\\sigma_2^2}\\right]\\right),\\]
-                        <p>where \\(\\boldsymbol{\\mu} = (\\mu_1, \\mu_2)^T\\) is the mean vector (均值向量) and \\(\\boldsymbol{\\Sigma} = \\begin{pmatrix} \\sigma_1^2 & \\rho\\sigma_1\\sigma_2 \\\\ \\rho\\sigma_1\\sigma_2 & \\sigma_2^2 \\end{pmatrix}\\) is the covariance matrix (协方差矩阵).</p>
+ <p>where \\(\\boldsymbol{\\mu} = (\\mu_1, \\mu_2)^T\\) is the mean vector and \\(\\boldsymbol{\\Sigma} = \\begin{pmatrix} \\sigma_1^2 & \\rho\\sigma_1\\sigma_2 \\\\ \\rho\\sigma_1\\sigma_2 & \\sigma_2^2 \\end{pmatrix}\\) is the covariance matrix.</p>
                     </div>
                 </div>
 
@@ -882,10 +882,10 @@ window.CHAPTERS.push({
             id: 'ch02-sec05',
             title: 'Transformations of Random Variables',
             content: `
-                <h2>Transformations of Random Variables 随机变量的变换</h2>
-                <p>In probability theory and statistics, we frequently need to study the distribution of a random variable after it undergoes some function transformation. For example: if \\(X \\sim N(0,1)\\), what is the distribution of \\(X^2\\)? If \\(X, Y\\) are independent, what is the distribution of \\(X + Y\\)? The systematic answer to these questions relies on the <strong>change of variables</strong> (变量变换) technique.</p>
+ <h2>Transformations of Random Variables</h2>
+ <p>In probability theory and statistics, we frequently need to study the distribution of a random variable after it undergoes some function transformation. For example: if \\(X \\sim N(0,1)\\), what is the distribution of \\(X^2\\)? If \\(X, Y\\) are independent, what is the distribution of \\(X + Y\\)? The systematic answer to these questions relies on the <strong>change of variables</strong> technique.</p>
 
-                <h3>CDF Method CDF 方法</h3>
+ <h3>CDF Method CDF</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 2.21 (CDF Method)</div>
@@ -907,7 +907,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>PDF Transformation Theorem (Jacobian Method) PDF 变换定理（Jacobian 方法）</h3>
+ <h3>PDF Transformation Theorem (Jacobian Method) PDFJacobian</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 2.23 (Univariate Change of Variables)</div>
@@ -920,7 +920,7 @@ window.CHAPTERS.push({
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 2.24 (Bivariate Change of Variables — Jacobian)</div>
                     <div class="env-body">
-                        <p>Let \\((X_1, X_2)\\) have joint PDF \\(f_{X_1, X_2}\\), and let the transformation \\((Y_1, Y_2) = (g_1(X_1,X_2), g_2(X_1,X_2))\\) be a one-to-one, continuously differentiable mapping. Let the inverse transformation be \\((X_1,X_2) = (h_1(Y_1,Y_2), h_2(Y_1,Y_2))\\), and the <strong>Jacobian determinant</strong> (Jacobian 行列式) be</p>
+ <p>Let \\((X_1, X_2)\\) have joint PDF \\(f_{X_1, X_2}\\), and let the transformation \\((Y_1, Y_2) = (g_1(X_1,X_2), g_2(X_1,X_2))\\) be a one-to-one, continuously differentiable mapping. Let the inverse transformation be \\((X_1,X_2) = (h_1(Y_1,Y_2), h_2(Y_1,Y_2))\\), and the <strong>Jacobian determinant</strong> (Jacobian) be</p>
                         \\[J = \\det \\begin{pmatrix} \\frac{\\partial h_1}{\\partial y_1} & \\frac{\\partial h_1}{\\partial y_2} \\\\ \\frac{\\partial h_2}{\\partial y_1} & \\frac{\\partial h_2}{\\partial y_2} \\end{pmatrix}.\\]
                         <p>Then</p>
                         \\[f_{Y_1, Y_2}(y_1, y_2) = f_{X_1, X_2}(h_1(y_1,y_2), h_2(y_1,y_2)) \\cdot |J|.\\]
@@ -936,7 +936,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Convolution Formula 卷积公式</h3>
+ <h3>Convolution Formula</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 2.26 (Distribution of the Sum of Independent Random Variables)</div>
@@ -956,12 +956,12 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Order Statistics 顺序统计量</h3>
+ <h3>Order Statistics</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 2.27 (Order Statistics)</div>
                     <div class="env-body">
-                        <p>Let \\(X_1, \\ldots, X_n\\) be iid random variables. Arranging them in non-decreasing order \\(X_{(1)} \\leq X_{(2)} \\leq \\cdots \\leq X_{(n)}\\), where \\(X_{(k)}\\) is called the \\(k\\)-th <strong>order statistic</strong> (顺序统计量).</p>
+ <p>Let \\(X_1, \\ldots, X_n\\) be iid random variables. Arranging them in non-decreasing order \\(X_{(1)} \\leq X_{(2)} \\leq \\cdots \\leq X_{(n)}\\), where \\(X_{(k)}\\) is called the \\(k\\)-th <strong>order statistic</strong>.</p>
                     </div>
                 </div>
 

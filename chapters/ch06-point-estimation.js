@@ -10,18 +10,18 @@ window.CHAPTERS.push({
             id: 'ch06-sec01',
             title: 'Estimators and Estimates',
             content: `
-                <h2>Estimators and Estimates / 估计量与估计值</h2>
+ <h2>Estimators and Estimates</h2>
 
-                <p>One of the central tasks of statistical inference (统计推断) is to infer unknown population parameters from observed data. The goal of <strong>point estimation</strong> (点估计) is to use the value of a statistic to "guess" the true value of the parameter.</p>
+ <p>One of the central tasks of statistical inference is to infer unknown population parameters from observed data. The goal of <strong>point estimation</strong> is to use the value of a statistic to "guess" the true value of the parameter.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 6.1 (Statistical Model and Parameter Space)</div>
                     <div class="env-body">
                         <p>Suppose the observed data \\(X_1, \\ldots, X_n\\) come from a family of distributions \\(\\{P_\\theta : \\theta \\in \\Theta\\}\\), where:</p>
                         <ul>
-                            <li>\\(\\Theta \\subseteq \\mathbb{R}^k\\) is called the <strong>parameter space</strong> (参数空间);</li>
-                            <li>\\(\\theta\\) is the unknown <strong>true parameter</strong> (真参数);</li>
-                            <li>The triple \\((\\mathcal{X}, \\{P_\\theta\\}, \\Theta)\\) constitutes a <strong>parametric statistical model</strong> (参数统计模型).</li>
+ <li>\\(\\Theta \\subseteq \\mathbb{R}^k\\) is called the <strong>parameter space</strong>;</li>
+ <li>\\(\\theta\\) is the unknown <strong>true parameter</strong>;</li>
+ <li>The triple \\((\\mathcal{X}, \\{P_\\theta\\}, \\Theta)\\) constitutes a <strong>parametric statistical model</strong>.</li>
                         </ul>
                         <p>Examples: Bernoulli distribution \\(\\Theta = (0, 1)\\); Normal distribution \\(N(\\mu, \\sigma^2)\\): \\(\\Theta = \\mathbb{R} \\times (0, \\infty)\\); Uniform distribution \\(U(0, \\theta)\\): \\(\\Theta = (0, \\infty)\\).</p>
                     </div>
@@ -30,8 +30,8 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 6.2 (Estimator and Estimate)</div>
                     <div class="env-body">
-                        <p>Let \\(g(\\theta)\\) be some function of the parameter (called the <strong>estimation target</strong> (估计目标)). An <strong>estimator</strong> (估计量) is a measurable function of the sample \\(\\hat{g} = T(X_1, \\ldots, X_n)\\), where \\(T\\) does not depend on the unknown parameter \\(\\theta\\).</p>
-                        <p>After observing specific sample values \\(x_1, \\ldots, x_n\\), the number \\(T(x_1, \\ldots, x_n)\\) is called an <strong>estimate</strong> (估计值).</p>
+ <p>Let \\(g(\\theta)\\) be some function of the parameter (called the <strong>estimation target</strong>). An <strong>estimator</strong> is a measurable function of the sample \\(\\hat{g} = T(X_1, \\ldots, X_n)\\), where \\(T\\) does not depend on the unknown parameter \\(\\theta\\).</p>
+ <p>After observing specific sample values \\(x_1, \\ldots, x_n\\), the number \\(T(x_1, \\ldots, x_n)\\) is called an <strong>estimate</strong>.</p>
                     </div>
                 </div>
 
@@ -65,7 +65,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'estimation-concept-viz',
-                    title: 'Interactive: Randomness of an Estimator / 估计量的随机性',
+ title:'Interactive: Randomness of an Estimator',
                     description: 'Each sample yields a different estimate -- observe how estimator values fluctuate around the true parameter',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 400, scale: 50, originX: 280, originY: 340});
@@ -164,7 +164,7 @@ window.CHAPTERS.push({
                             if (estimates.length > 0) {
                                 var eMean = VizEngine.mean(estimates);
                                 var eStd = estimates.length > 1 ? Math.sqrt(VizEngine.variance(estimates)) : 0;
-                                viz.screenText('Samples drawn: ' + estimates.length + '  |  Mean of estimates: ' + eMean.toFixed(3) + '  |  SD: ' + eStd.toFixed(3), viz.width / 2, viz.height - 10, viz.colors.text, 11);
+                                viz.screenText('Samples drawn: ' + estimates.length + ' | Mean of estimates: ' + eMean.toFixed(3) + ' | SD: ' + eStd.toFixed(3), viz.width / 2, viz.height - 10, viz.colors.text, 11);
                             }
                         }
 
@@ -226,24 +226,24 @@ window.CHAPTERS.push({
             id: 'ch06-sec02',
             title: 'Method of Moments',
             content: `
-                <h2>Method of Moments / 矩估计法</h2>
+ <h2>Method of Moments</h2>
 
-                <p>The <strong>method of moments</strong> (矩估计法, MoM) is one of the oldest and most intuitive parameter estimation methods, proposed by Karl Pearson in 1894. Its basic idea is remarkably simple: replace population moments with sample moments and solve the resulting system of equations for the parameter estimates.</p>
+ <p>The <strong>method of moments</strong> (MoM) is one of the oldest and most intuitive parameter estimation methods, proposed by Karl Pearson in 1894. Its basic idea is remarkably simple: replace population moments with sample moments and solve the resulting system of equations for the parameter estimates.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 6.4 (Population and Sample Moments)</div>
                     <div class="env-body">
                         <p>Let \\(X\\) have distribution \\(f(x; \\theta)\\), \\(\\theta \\in \\Theta \\subseteq \\mathbb{R}^k\\).</p>
-                        <p>The \\(j\\)-th <strong>population moment</strong> (总体矩): \\(\\mu_j(\\theta) = \\mathbb{E}_{\\theta}[X^j]\\).</p>
-                        <p>The \\(j\\)-th <strong>sample moment</strong> (样本矩): \\(m_j = \\frac{1}{n}\\sum_{i=1}^n X_i^j\\).</p>
-                        <p>Similarly, <strong>central moments</strong> (中心矩): the population central moment \\(\\mu_j' = \\mathbb{E}[(X - \\mathbb{E}[X])^j]\\), the sample central moment \\(m_j' = \\frac{1}{n}\\sum(X_i - \\bar{X})^j\\).</p>
+ <p>The \\(j\\)-th <strong>population moment</strong> : \\(\\mu_j(\\theta) = \\mathbb{E}_{\\theta}[X^j]\\).</p>
+ <p>The \\(j\\)-th <strong>sample moment</strong> : \\(m_j = \\frac{1}{n}\\sum_{i=1}^n X_i^j\\).</p>
+ <p>Similarly, <strong>central moments</strong> : the population central moment \\(\\mu_j' = \\mathbb{E}[(X - \\mathbb{E}[X])^j]\\), the sample central moment \\(m_j' = \\frac{1}{n}\\sum(X_i - \\bar{X})^j\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 6.5 (Method of Moments Estimator)</div>
                     <div class="env-body">
-                        <p>Suppose the parameter \\(\\theta = (\\theta_1, \\ldots, \\theta_k)\\) has \\(k\\) components. The <strong>method of moments estimator</strong> (矩估计量) is the solution \\(\\tilde{\\theta}_{\\text{MoM}}\\) of the system of equations</p>
+ <p>Suppose the parameter \\(\\theta = (\\theta_1, \\ldots, \\theta_k)\\) has \\(k\\) components. The <strong>method of moments estimator</strong> is the solution \\(\\tilde{\\theta}_{\\text{MoM}}\\) of the system of equations</p>
                         \\[\\mu_j(\\theta) = m_j, \\quad j = 1, 2, \\ldots, k\\]
                         <p>That is, set the first \\(k\\) population moments equal to the corresponding sample moments, and solve for the estimate of \\(\\theta\\).</p>
                     </div>
@@ -252,7 +252,7 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>The logic of the method of moments is straightforward: the law of large numbers guarantees \\(m_j \\xrightarrow{\\text{a.s.}} \\mu_j(\\theta)\\), so replacing \\(\\mu_j(\\theta)\\) with \\(m_j\\) and solving for \\(\\tilde{\\theta}\\) should yield an estimate close to the true \\(\\theta\\) for large samples. This is a direct application of the Continuous Mapping Theorem (连续映射定理).</p>
+ <p>The logic of the method of moments is straightforward: the law of large numbers guarantees \\(m_j \\xrightarrow{\\text{a.s.}} \\mu_j(\\theta)\\), so replacing \\(\\mu_j(\\theta)\\) with \\(m_j\\) and solving for \\(\\tilde{\\theta}\\) should yield an estimate close to the true \\(\\theta\\) for large samples. This is a direct application of the Continuous Mapping Theorem.</p>
                     </div>
                 </div>
 
@@ -305,7 +305,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'moment-matching-viz',
-                    title: 'Interactive: Moment Matching / 矩匹配',
+ title:'Interactive: Moment Matching',
                     description: 'Adjust parameters to match the theoretical moments with sample moments -- observe the fit between histogram and density curve',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 400, scale: 60, originX: 60, originY: 340});
@@ -473,16 +473,16 @@ window.CHAPTERS.push({
             id: 'ch06-sec03',
             title: 'Maximum Likelihood Estimation',
             content: `
-                <h2>Maximum Likelihood Estimation / 最大似然估计</h2>
+ <h2>Maximum Likelihood Estimation</h2>
 
-                <p><strong>Maximum likelihood estimation</strong> (最大似然估计, MLE) is the most important and widely used estimation method in modern statistical inference. It was systematically developed by R.A. Fisher in the 1920s. Its core principle is: choose the parameter value that maximizes the probability of the observed data.</p>
+ <p><strong>Maximum likelihood estimation</strong> (MLE) is the most important and widely used estimation method in modern statistical inference. It was systematically developed by R.A. Fisher in the 1920s. Its core principle is: choose the parameter value that maximizes the probability of the observed data.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 6.9 (Likelihood Function)</div>
                     <div class="env-body">
-                        <p>Let \\(X_1, \\ldots, X_n\\) be a random sample from a density (or mass) function \\(f(x; \\theta)\\). The <strong>likelihood function</strong> (似然函数) is defined as the joint density viewed as a function of \\(\\theta\\):</p>
+ <p>Let \\(X_1, \\ldots, X_n\\) be a random sample from a density (or mass) function \\(f(x; \\theta)\\). The <strong>likelihood function</strong> is defined as the joint density viewed as a function of \\(\\theta\\):</p>
                         \\[L(\\theta \\mid \\mathbf{x}) = \\prod_{i=1}^n f(x_i; \\theta), \\quad \\theta \\in \\Theta.\\]
-                        <p><strong>Log-likelihood function</strong> (对数似然函数): \\(\\ell(\\theta \\mid \\mathbf{x}) = \\log L(\\theta \\mid \\mathbf{x}) = \\sum_{i=1}^n \\log f(x_i; \\theta)\\).</p>
+ <p><strong>Log-likelihood function</strong> : \\(\\ell(\\theta \\mid \\mathbf{x}) = \\log L(\\theta \\mid \\mathbf{x}) = \\sum_{i=1}^n \\log f(x_i; \\theta)\\).</p>
                     </div>
                 </div>
 
@@ -496,7 +496,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 6.10 (Maximum Likelihood Estimator)</div>
                     <div class="env-body">
-                        <p>The <strong>maximum likelihood estimator</strong> (最大似然估计量, MLE) is the parameter value that maximizes the likelihood function:</p>
+ <p>The <strong>maximum likelihood estimator</strong> (MLE) is the parameter value that maximizes the likelihood function:</p>
                         \\[\\hat{\\theta}_{\\text{MLE}} = \\underset{\\theta \\in \\Theta}{\\arg\\max} \; L(\\theta \\mid \\mathbf{x}) = \\underset{\\theta \\in \\Theta}{\\arg\\max} \; \\ell(\\theta \\mid \\mathbf{x}).\\]
                     </div>
                 </div>
@@ -504,11 +504,11 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 6.11 (Score Function and Fisher Information)</div>
                     <div class="env-body">
-                        <p><strong>Score function</strong> (得分函数): \\(S(\\theta) = \\frac{\\partial}{\\partial \\theta} \\ell(\\theta \\mid \\mathbf{x}) = \\sum_{i=1}^n \\frac{\\partial}{\\partial \\theta} \\log f(x_i; \\theta)\\).</p>
-                        <p>The MLE typically satisfies the <strong>score equation</strong> (似然方程): \\(S(\\hat{\\theta}) = 0\\).</p>
+ <p><strong>Score function</strong> : \\(S(\\theta) = \\frac{\\partial}{\\partial \\theta} \\ell(\\theta \\mid \\mathbf{x}) = \\sum_{i=1}^n \\frac{\\partial}{\\partial \\theta} \\log f(x_i; \\theta)\\).</p>
+ <p>The MLE typically satisfies the <strong>score equation</strong> : \\(S(\\hat{\\theta}) = 0\\).</p>
                         <p><strong>Fisher information</strong> (single observation):</p>
                         \\[I(\\theta) = \\operatorname{Var}_{\\theta}\\left[\\frac{\\partial}{\\partial\\theta}\\log f(X;\\theta)\\right] = -\\mathbb{E}_{\\theta}\\left[\\frac{\\partial^2}{\\partial\\theta^2}\\log f(X;\\theta)\\right]\\]
-                        <p><strong>Observed information</strong> (观测信息): \\(J(\\theta) = -\\frac{\\partial^2}{\\partial \\theta^2} \\ell(\\theta \\mid \\mathbf{x})\\). At the MLE, \\(J(\\hat{\\theta}) > 0\\) indicates that the likelihood indeed attains a maximum there.</p>
+ <p><strong>Observed information</strong> : \\(J(\\theta) = -\\frac{\\partial^2}{\\partial \\theta^2} \\ell(\\theta \\mid \\mathbf{x})\\). At the MLE, \\(J(\\hat{\\theta})> 0\\) indicates that the likelihood indeed attains a maximum there.</p>
                     </div>
                 </div>
 
@@ -559,7 +559,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'likelihood-surface-viz',
-                    title: 'Interactive: Likelihood Function and MLE / 似然函数与MLE',
+ title:'Interactive: Likelihood Function and MLEMLE',
                     description: 'Adjust parameters to observe the shape of the log-likelihood curve, with MLE marked at the peak',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 400, scale: 1, originX: 60, originY: 360});
@@ -815,7 +815,7 @@ window.CHAPTERS.push({
             id: 'ch06-sec04',
             title: 'Properties of MLE',
             content: `
-                <h2>Properties of MLE / MLE的性质</h2>
+ <h2>Properties of MLE</h2>
 
                 <p>Maximum likelihood estimation is highly regarded because it possesses a series of excellent theoretical properties under large samples. This section discusses four core properties of MLE: invariance, consistency, asymptotic normality, and asymptotic efficiency.</p>
 
@@ -875,7 +875,7 @@ window.CHAPTERS.push({
                 <div class="env-block remark">
                     <div class="env-title">Remark (Asymptotic Efficiency)</div>
                     <div class="env-body">
-                        <p>The asymptotic normality theorem tells us that the asymptotic variance of the MLE is \\(1/(nI(\\theta_0))\\), which exactly achieves the Cramer-Rao lower bound. This means that the MLE is <strong>asymptotically efficient</strong> (渐近有效) -- under regularity conditions, no other consistent estimator can have a smaller asymptotic variance than the MLE. This is what Fisher called the "asymptotic efficiency" of the MLE.</p>
+ <p>The asymptotic normality theorem tells us that the asymptotic variance of the MLE is \\(1/(nI(\\theta_0))\\), which exactly achieves the Cramer-Rao lower bound. This means that the MLE is <strong>asymptotically efficient</strong> -- under regularity conditions, no other consistent estimator can have a smaller asymptotic variance than the MLE. This is what Fisher called the "asymptotic efficiency" of the MLE.</p>
                     </div>
                 </div>
 
@@ -892,7 +892,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'mle-convergence-viz',
-                    title: 'Interactive: MLE Convergence and Asymptotic Normality / MLE收敛性与渐近正态性',
+ title:'Interactive: MLE Convergence and Asymptotic Normality',
                     description: 'As sample size increases, the sampling distribution of MLE concentrates around the true parameter and approaches normality',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 400, originX: 280, originY: 340, scale: 80});
@@ -1002,17 +1002,17 @@ window.CHAPTERS.push({
             id: 'ch06-sec05',
             title: 'The EM Algorithm',
             content: `
-                <h2>The EM Algorithm / EM算法</h2>
+ <h2>The EM Algorithm</h2>
 
-                <p>In many practical problems, direct maximization of the likelihood function is difficult -- perhaps because of <strong>latent variables</strong> (潜变量) or <strong>missing data</strong> (缺失数据), or because the analytical form of the likelihood is overly complex. The <strong>EM algorithm</strong> (Expectation-Maximization Algorithm, Dempster, Laird & Rubin, 1977) provides an elegant iterative solution framework.</p>
+ <p>In many practical problems, direct maximization of the likelihood function is difficult -- perhaps because of <strong>latent variables</strong> or <strong>missing data</strong>, or because the analytical form of the likelihood is overly complex. The <strong>EM algorithm</strong> (Expectation-Maximization Algorithm, Dempster, Laird & Rubin, 1977) provides an elegant iterative solution framework.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 6.21 (Incomplete and Complete Data)</div>
                     <div class="env-body">
                         <p>Let the <strong>observed data</strong> (incomplete data) be \\(\\mathbf{X}\\), the <strong>latent variables</strong> be \\(\\mathbf{Z}\\), and the <strong>complete data</strong> be \\((\\mathbf{X}, \\mathbf{Z})\\).</p>
                         <ul>
-                            <li><strong>Complete-data likelihood</strong> (完全数据似然): \\(L_c(\\theta) = f(\\mathbf{X}, \\mathbf{Z}; \\theta)\\), which usually has a simple form.</li>
-                            <li><strong>Incomplete-data likelihood</strong> (不完全数据似然): \\(L(\\theta) = f(\\mathbf{X}; \\theta) = \\int f(\\mathbf{X}, \\mathbf{Z}; \\theta)\\,d\\mathbf{Z}\\), often intractable due to integration (or summation).</li>
+ <li><strong>Complete-data likelihood</strong> : \\(L_c(\\theta) = f(\\mathbf{X}, \\mathbf{Z}; \\theta)\\), which usually has a simple form.</li>
+ <li><strong>Incomplete-data likelihood</strong> : \\(L(\\theta) = f(\\mathbf{X}; \\theta) = \\int f(\\mathbf{X}, \\mathbf{Z}; \\theta)\\,d\\mathbf{Z}\\), often intractable due to integration (or summation).</li>
                         </ul>
                     </div>
                 </div>
@@ -1082,7 +1082,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'em-gaussian-mixture-viz',
-                    title: 'Interactive: EM Algorithm -- Gaussian Mixture Model / EM算法 -- 高斯混合模型',
+ title:'Interactive: EM Algorithm -- Gaussian Mixture Model',
                     description: 'Observe how E-step and M-step alternate, progressively separating the two Gaussian components',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 420, scale: 50, originX: 60, originY: 370});
@@ -1167,7 +1167,7 @@ window.CHAPTERS.push({
                             var H = viz.height;
 
                             viz.screenText('EM for 2-Component Gaussian Mixture', W / 2, 16, viz.colors.white, 14);
-                            viz.screenText('Iteration: ' + iteration + '  |  log L = ' + computeLogLik().toFixed(1), W / 2, 34, viz.colors.text, 11);
+                            viz.screenText('Iteration: ' + iteration + ' | log L = ' + computeLogLik().toFixed(1), W / 2, 34, viz.colors.text, 11);
 
                             // Build histogram
                             var xMin = -1, xMax = 7;

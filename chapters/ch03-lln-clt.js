@@ -12,14 +12,14 @@ window.CHAPTERS.push({
             id: 'ch03-sec01',
             title: 'Modes of Convergence',
             content: `
-                <h2>Modes of Convergence 收敛性概念</h2>
+ <h2>Modes of Convergence</h2>
 
                 <p>Before studying large-sample behavior, we must rigorously define the various modes of convergence for a sequence of random variables \\(\\{X_n\\}\\). These concepts form the cornerstone of asymptotic theory and are essential for understanding the law of large numbers and the central limit theorem.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 3.1 (Convergence in Probability)</div>
                     <div class="env-body">
-                        <p>A sequence of random variables \\(\\{X_n\\}\\) is said to <strong>converge in probability</strong> (依概率收敛) to \\(X\\), written \\(X_n \\xrightarrow{P} X\\), if for every \\(\\varepsilon > 0\\),</p>
+ <p>A sequence of random variables \\(\\{X_n\\}\\) is said to <strong>converge in probability</strong> to \\(X\\), written \\(X_n \\xrightarrow{P} X\\), if for every \\(\\varepsilon> 0\\),</p>
                         \\[\\lim_{n \\to \\infty} P(|X_n - X| > \\varepsilon) = 0.\\]
                     </div>
                 </div>
@@ -34,7 +34,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 3.2 (Almost Sure Convergence)</div>
                     <div class="env-body">
-                        <p>The sequence \\(\\{X_n\\}\\) is said to <strong>converge almost surely</strong> (几乎必然收敛, a.s. convergence) to \\(X\\), written \\(X_n \\xrightarrow{a.s.} X\\), if</p>
+ <p>The sequence \\(\\{X_n\\}\\) is said to <strong>converge almost surely</strong> (a.s. convergence) to \\(X\\), written \\(X_n \\xrightarrow{a.s.} X\\), if</p>
                         \\[P\\!\\left(\\lim_{n \\to \\infty} X_n = X\\right) = 1.\\]
                         <p>Equivalently, for every \\(\\varepsilon > 0\\),</p>
                         \\[P\\!\\left(\\bigcap_{m=1}^{\\infty} \\bigcup_{n=m}^{\\infty} \\{|X_n - X| > \\varepsilon\\}\\right) = 0.\\]
@@ -51,7 +51,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 3.3 (Convergence in Distribution)</div>
                     <div class="env-body">
-                        <p>The sequence \\(\\{X_n\\}\\) is said to <strong>converge in distribution</strong> (依分布收敛) to \\(X\\), written \\(X_n \\xrightarrow{d} X\\), if at every continuity point \\(x\\) of \\(F_X\\),</p>
+ <p>The sequence \\(\\{X_n\\}\\) is said to <strong>converge in distribution</strong> to \\(X\\), written \\(X_n \\xrightarrow{d} X\\), if at every continuity point \\(x\\) of \\(F_X\\),</p>
                         \\[\\lim_{n \\to \\infty} F_{X_n}(x) = F_X(x).\\]
                     </div>
                 </div>
@@ -59,9 +59,9 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 3.4 (Convergence in \\(L^p\\))</div>
                     <div class="env-body">
-                        <p>For \\(p \\geq 1\\), the sequence \\(\\{X_n\\}\\) is said to <strong>converge in \\(L^p\\)</strong> (\\(L^p\\) 收敛) to \\(X\\), written \\(X_n \\xrightarrow{L^p} X\\), if</p>
+ <p>For \\(p \\geq 1\\), the sequence \\(\\{X_n\\}\\) is said to <strong>converge in \\(L^p\\)</strong> (\\(L^p\\)) to \\(X\\), written \\(X_n \\xrightarrow{L^p} X\\), if</p>
                         \\[\\lim_{n \\to \\infty} \\mathbb{E}[|X_n - X|^p] = 0.\\]
-                        <p>When \\(p = 2\\), this is also called <strong>mean-square convergence</strong> (均方收敛).</p>
+ <p>When \\(p = 2\\), this is also called <strong>mean-square convergence</strong>.</p>
                     </div>
                 </div>
 
@@ -114,7 +114,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'convergence-modes-viz',
-                    title: 'Modes of Convergence 收敛方式对比',
+ title:'Modes of Convergence',
                     description: 'Compare convergence in probability vs almost sure convergence with simulated paths',
                     setup: function(container, controls) {
                         const viz = new VizEngine(container, {
@@ -274,14 +274,14 @@ window.CHAPTERS.push({
             id: 'ch03-sec02',
             title: 'Laws of Large Numbers',
             content: `
-                <h2>Laws of Large Numbers 大数定律</h2>
+ <h2>Laws of Large Numbers</h2>
 
                 <p>The law of large numbers is one of the cornerstones of probability theory and statistics. It tells us that, under appropriate conditions, the sample mean converges to the population mean. This provides the mathematical foundation for the frequentist interpretation of probability and the theoretical guarantee for Monte Carlo methods.</p>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 3.8 (Weak Law of Large Numbers — Chebyshev)</div>
                     <div class="env-body">
-                        <p>Let \\(X_1, X_2, \\ldots\\) be a sequence of <strong>pairwise uncorrelated</strong> (两两不相关) random variables satisfying \\(\\mathbb{E}[X_i] = \\mu\\) and \\(\\operatorname{Var}(X_i) \\leq C < \\infty\\) for all \\(i\\). Let \\(\\bar{X}_n = \\frac{1}{n}\\sum_{i=1}^n X_i\\). Then</p>
+ <p>Let \\(X_1, X_2, \\ldots\\) be a sequence of <strong>pairwise uncorrelated</strong> random variables satisfying \\(\\mathbb{E}[X_i] = \\mu\\) and \\(\\operatorname{Var}(X_i) \\leq C < \\infty\\) for all \\(i\\). Let \\(\\bar{X}_n = \\frac{1}{n}\\sum_{i=1}^n X_i\\). Then</p>
                         \\[\\bar{X}_n \\xrightarrow{P} \\mu.\\]
                     </div>
                 </div>
@@ -315,7 +315,7 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof sketch (via characteristic functions)</div>
                     <div class="env-body">
-                        <p>Let \\(\\varphi(t) = \\mathbb{E}[e^{itX_1}]\\) be the characteristic function (特征函数) of \\(X_1\\). Since \\(\\mathbb{E}[X_1] = \\mu\\) exists, \\(\\varphi(t) = 1 + i\\mu t + o(t)\\) as \\(t \\to 0\\).</p>
+ <p>Let \\(\\varphi(t) = \\mathbb{E}[e^{itX_1}]\\) be the characteristic function of \\(X_1\\). Since \\(\\mathbb{E}[X_1] = \\mu\\) exists, \\(\\varphi(t) = 1 + i\\mu t + o(t)\\) as \\(t \\to 0\\).</p>
                         <p>The characteristic function of \\(\\bar{X}_n\\) is</p>
                         \\[\\varphi_{\\bar{X}_n}(t) = \\left[\\varphi\\!\\left(\\frac{t}{n}\\right)\\right]^n = \\left[1 + \\frac{i\\mu t}{n} + o\\!\\left(\\frac{1}{n}\\right)\\right]^n \\to e^{i\\mu t},\\]
                         <p>which is the characteristic function of the degenerate distribution at \\(\\mu\\), i.e., \\(\\bar{X}_n \\xrightarrow{d} \\mu\\). Since the limit is a constant, \\(\\bar{X}_n \\xrightarrow{P} \\mu\\).</p>
@@ -334,7 +334,7 @@ window.CHAPTERS.push({
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>The profound aspect of Kolmogorov's strong law of large numbers (强大数定律) is the equivalence: the existence of the first moment is both necessary and sufficient for the SLLN to hold. The core tools in the proof are the Kolmogorov three-series theorem and truncation techniques. When \\(\\mathbb{E}[|X_1|] = \\infty\\) (e.g., the Cauchy distribution), \\(\\bar{X}_n\\) almost surely does not converge to any constant.</p>
+ <p>The profound aspect of Kolmogorov's strong law of large numbers is the equivalence: the existence of the first moment is both necessary and sufficient for the SLLN to hold. The core tools in the proof are the Kolmogorov three-series theorem and truncation techniques. When \\(\\mathbb{E}[|X_1|] = \\infty\\) (e.g., the Cauchy distribution), \\(\\bar{X}_n\\) almost surely does not converge to any constant.</p>
                     </div>
                 </div>
 
@@ -348,7 +348,7 @@ window.CHAPTERS.push({
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 3.12 (Glivenko-Cantelli Theorem)</div>
                     <div class="env-body">
-                        <p>Let \\(X_1, X_2, \\ldots \\overset{\\text{i.i.d.}}{\\sim} F\\), and define the empirical distribution function (经验分布函数) \\(\\hat{F}_n(x) = \\frac{1}{n} \\sum_{i=1}^n \\mathbf{1}\\{X_i \\leq x\\}\\). Then</p>
+ <p>Let \\(X_1, X_2, \\ldots \\overset{\\text{i.i.d.}}{\\sim} F\\), and define the empirical distribution function \\(\\hat{F}_n(x) = \\frac{1}{n} \\sum_{i=1}^n \\mathbf{1}\\{X_i \\leq x\\}\\). Then</p>
                         \\[\\sup_{x \\in \\mathbb{R}} |\\hat{F}_n(x) - F(x)| \\xrightarrow{a.s.} 0.\\]
                         <p>That is, the empirical CDF converges uniformly to the true CDF with probability 1. This theorem is sometimes called the "fundamental theorem of statistics."</p>
                     </div>
@@ -359,7 +359,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'lln-simulator-viz',
-                    title: 'LLN Simulator 大数定律模拟器',
+ title:'LLN Simulator',
                     description: 'Watch the running average converge to the population mean for different distributions',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -553,9 +553,9 @@ window.CHAPTERS.push({
             id: 'ch03-sec03',
             title: 'The Central Limit Theorem',
             content: `
-                <h2>The Central Limit Theorem 中心极限定理</h2>
+ <h2>The Central Limit Theorem</h2>
 
-                <p>The law of large numbers tells us that \\(\\bar{X}_n \\to \\mu\\), but it does not characterize the rate of convergence or the fine structure of the fluctuations. The central limit theorem (CLT, 中心极限定理) answers a deeper question: what distribution do the fluctuations of \\(\\bar{X}_n\\) around \\(\\mu\\) follow at the appropriate scale?</p>
+ <p>The law of large numbers tells us that \\(\\bar{X}_n \\to \\mu\\), but it does not characterize the rate of convergence or the fine structure of the fluctuations. The central limit theorem (CLT) answers a deeper question: what distribution do the fluctuations of \\(\\bar{X}_n\\) around \\(\\mu\\) follow at the appropriate scale?</p>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 3.13 (Lindeberg-Levy CLT)</div>
@@ -625,7 +625,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'clt-demo-viz',
-                    title: 'CLT Demo: Convergence from Different Sources CLT — 不同源分布的收敛',
+ title:'CLT Demo: Convergence from Different Sources CLT',
                     description: 'See how the standardized sample mean converges to a normal distribution regardless of the source',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -815,11 +815,11 @@ window.CHAPTERS.push({
             id: 'ch03-sec04',
             title: 'Applications of the CLT',
             content: `
-                <h2>Applications of the CLT CLT的应用</h2>
+ <h2>Applications of the CLT CLT</h2>
 
                 <p>The CLT is not merely a theoretical limit theorem — it is a practical tool for statistical inference. This section discusses its most common applications: normal approximation, continuity correction, and the Delta method.</p>
 
-                <h3>Normal Approximation 正态近似</h3>
+ <h3>Normal Approximation</h3>
 
                 <p>The most direct application of the CLT is to reduce probability calculations for complex distributions to the standard normal distribution. For an i.i.d. sample \\(X_1, \\ldots, X_n\\) (with known \\(\\mu, \\sigma^2\\)), when \\(n\\) is sufficiently large:</p>
                 \\[P(\\bar{X}_n \\leq x) \\approx \\Phi\\!\\left(\\frac{x - \\mu}{\\sigma / \\sqrt{n}}\\right).\\]
@@ -833,7 +833,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Normal Approximation to the Binomial & Continuity Correction 二项分布的正态近似与连续性修正</h3>
+ <h3>Normal Approximation to the Binomial & Continuity Correction</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 3.17 (De Moivre-Laplace CLT)</div>
@@ -846,7 +846,7 @@ window.CHAPTERS.push({
                 <div class="env-block warning">
                     <div class="env-title">Warning: Continuity Correction</div>
                     <div class="env-body">
-                        <p>When approximating a discrete distribution (binomial) with a continuous one (normal), a <strong>continuity correction</strong> (连续性修正) can significantly improve accuracy. The basic principle: for the probability of an integer value \\(k\\), "widen" the discrete event by half a unit:</p>
+ <p>When approximating a discrete distribution (binomial) with a continuous one (normal), a <strong>continuity correction</strong> can significantly improve accuracy. The basic principle: for the probability of an integer value \\(k\\),"widen" the discrete event by half a unit:</p>
                         \\[P(S_n \\leq k) \\approx \\Phi\\!\\left(\\frac{k + 0.5 - np}{\\sqrt{np(1-p)}}\\right),\\]
                         \\[P(S_n = k) \\approx \\Phi\\!\\left(\\frac{k + 0.5 - np}{\\sqrt{np(1-p)}}\\right) - \\Phi\\!\\left(\\frac{k - 0.5 - np}{\\sqrt{np(1-p)}}\\right).\\]
                         <p>Rule of thumb: the normal approximation is usually sufficiently accurate when \\(np \\geq 5\\) and \\(n(1-p) \\geq 5\\).</p>
@@ -855,7 +855,7 @@ window.CHAPTERS.push({
 
                 <div class="viz-placeholder" data-viz="binomial-normal-viz"></div>
 
-                <h3>Delta Method Preview Delta 方法预览</h3>
+ <h3>Delta Method Preview Delta</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 3.18 (Delta Method)</div>
@@ -882,7 +882,7 @@ window.CHAPTERS.push({
                         <p>Let \\(X_i \\overset{\\text{i.i.d.}}{\\sim} \\text{Poisson}(\\lambda)\\). The CLT gives \\(\\sqrt{n}(\\bar{X}_n - \\lambda) \\xrightarrow{d} N(0, \\lambda)\\), where the asymptotic variance depends on the unknown parameter \\(\\lambda\\).</p>
                         <p>Take \\(g(x) = \\sqrt{x}\\), so \\(g'(\\lambda) = 1/(2\\sqrt{\\lambda})\\). By the Delta method:</p>
                         \\[\\sqrt{n}(\\sqrt{\\bar{X}_n} - \\sqrt{\\lambda}) \\xrightarrow{d} N\\!\\left(0, \\lambda \\cdot \\frac{1}{4\\lambda}\\right) = N\\!\\left(0, \\frac{1}{4}\\right).\\]
-                        <p>The transformed asymptotic variance \\(1/4\\) no longer depends on \\(\\lambda\\) — this is the <strong>variance-stabilizing transformation</strong> (方差稳定化变换).</p>
+ <p>The transformed asymptotic variance \\(1/4\\) no longer depends on \\(\\lambda\\) — this is the <strong>variance-stabilizing transformation</strong>.</p>
                     </div>
                 </div>
 
@@ -900,7 +900,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'binomial-normal-viz',
-                    title: 'Normal Approximation to the Binomial 二项分布的正态近似',
+ title:'Normal Approximation to the Binomial',
                     description: 'Compare Binomial PMF with normal approximation, with and without continuity correction',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -1026,7 +1026,7 @@ window.CHAPTERS.push({
                 },
                 {
                     id: 'delta-method-viz',
-                    title: 'Delta Method: Transformed Distribution Delta 方法 — 变换后的分布',
+ title:'Delta Method: Transformed Distribution Delta',
                     description: 'Visualize how the Delta method predicts the distribution of g(X-bar)',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {

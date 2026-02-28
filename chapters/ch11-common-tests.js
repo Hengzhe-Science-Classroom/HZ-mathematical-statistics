@@ -12,16 +12,16 @@ window.CHAPTERS.push({
             id: 'ch11-sec01',
             title: 'z-Tests and t-Tests',
             content: `
-                <h2>z-Tests and t-Tests (z检验与t检验)</h2>
+ <h2>z-Tests and t-Tests (zt)</h2>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>With the theoretical framework of hypothesis testing established, we now turn to the most commonly used specific test methods. The z-test and t-test are fundamental tools for testing the mean of a normal population (正态总体均值检验): the z-test is used when the population variance is known, and the t-test when it is unknown. They are the most frequently used tests in statistical practice.</p>
+ <p>With the theoretical framework of hypothesis testing established, we now turn to the most commonly used specific test methods. The z-test and t-test are fundamental tools for testing the mean of a normal population : the z-test is used when the population variance is known, and the t-test when it is unknown. They are the most frequently used tests in statistical practice.</p>
                     </div>
                 </div>
 
-                <h3>One-Sample z-Test (单样本z检验, \\(\\sigma\\) Known)</h3>
+ <h3>One-Sample z-Test (z, \\(\\sigma\\) Known)</h3>
 
                 <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\), where \\(\\sigma^2\\) is known. Consider the testing problem:</p>
                 \\[H_0: \\mu = \\mu_0 \\quad \\text{vs} \\quad H_1: \\mu \\neq \\mu_0\\]
@@ -29,7 +29,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 11.1 (z-Test Statistic)</div>
                     <div class="env-body">
-                        <p>The z-test statistic (z检验统计量) is defined as</p>
+ <p>The z-test statistic (z) is defined as</p>
                         \\[Z = \\frac{\\bar{X} - \\mu_0}{\\sigma / \\sqrt{n}}\\]
                         <p>Under \\(H_0\\), \\(Z \\sim N(0,1)\\).</p>
                     </div>
@@ -38,9 +38,9 @@ window.CHAPTERS.push({
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 11.2 (Rejection Region of the z-Test)</div>
                     <div class="env-body">
-                        <p>For a two-sided test (双侧检验) at significance level \\(\\alpha\\), the rejection region (拒绝域) is</p>
+ <p>For a two-sided test at significance level \\(\\alpha\\), the rejection region is</p>
                         \\[|Z| > z_{\\alpha/2}\\]
-                        <p>where \\(z_{\\alpha/2}\\) is the upper \\(\\alpha/2\\) quantile of the standard normal distribution. For one-sided tests (单侧检验):</p>
+ <p>where \\(z_{\\alpha/2}\\) is the upper \\(\\alpha/2\\) quantile of the standard normal distribution. For one-sided tests:</p>
                         <ul>
                             <li>When \\(H_1: \\mu > \\mu_0\\), the rejection region is \\(Z > z_\\alpha\\)</li>
                             <li>When \\(H_1: \\mu < \\mu_0\\), the rejection region is \\(Z < -z_\\alpha\\)</li>
@@ -51,21 +51,21 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof</div>
                     <div class="env-body">
-                        <p>Under \\(H_0: \\mu = \\mu_0\\), \\(\\bar{X} \\sim N(\\mu_0, \\sigma^2/n)\\), so \\(Z = (\\bar{X} - \\mu_0)/(\\sigma/\\sqrt{n}) \\sim N(0,1)\\). For the probability of Type I error (第一类错误) to be exactly \\(\\alpha\\), we need</p>
+ <p>Under \\(H_0: \\mu = \\mu_0\\), \\(\\bar{X} \\sim N(\\mu_0, \\sigma^2/n)\\), so \\(Z = (\\bar{X} - \\mu_0)/(\\sigma/\\sqrt{n}) \\sim N(0,1)\\). For the probability of Type I error to be exactly \\(\\alpha\\), we need</p>
                         \\[P_{\\mu_0}(|Z| > c) = \\alpha\\]
                         <p>By symmetry of the standard normal distribution, \\(c = z_{\\alpha/2}\\) satisfies the requirement. The one-sided cases follow similarly.</p>
                         <div class="qed">∎</div>
                     </div>
                 </div>
 
-                <h3>One-Sample t-Test (单样本t检验, \\(\\sigma\\) Unknown)</h3>
+ <h3>One-Sample t-Test (t, \\(\\sigma\\) Unknown)</h3>
 
                 <p>In practice, the population standard deviation \\(\\sigma\\) is usually unknown. In this case, we replace \\(\\sigma\\) with the sample standard deviation \\(S = \\sqrt{\\frac{1}{n-1}\\sum_{i=1}^n (X_i - \\bar{X})^2}\\).</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 11.3 (One-Sample t-Statistic)</div>
                     <div class="env-body">
-                        <p>The one-sample t-statistic (单样本t统计量) is defined as</p>
+ <p>The one-sample t-statistic (t) is defined as</p>
                         \\[T = \\frac{\\bar{X} - \\mu_0}{S / \\sqrt{n}}\\]
                         <p>Under \\(H_0: \\mu = \\mu_0\\), \\(T \\sim t(n-1)\\) (Student's t-distribution with \\(n-1\\) degrees of freedom).</p>
                     </div>
@@ -89,14 +89,14 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Two-Sample t-Test (两样本t检验)</h3>
+ <h3>Two-Sample t-Test (t)</h3>
 
                 <p>Let \\(X_1, \\ldots, X_m \\overset{\\text{iid}}{\\sim} N(\\mu_1, \\sigma_1^2)\\) and \\(Y_1, \\ldots, Y_n \\overset{\\text{iid}}{\\sim} N(\\mu_2, \\sigma_2^2)\\) be independent. We test \\(H_0: \\mu_1 = \\mu_2\\).</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 11.5 (Pooled Two-Sample t-Test)</div>
                     <div class="env-body">
-                        <p>When \\(\\sigma_1^2 = \\sigma_2^2 = \\sigma^2\\) (the equal variance assumption, 等方差假设), the pooled sample variance (合并样本方差) is</p>
+ <p>When \\(\\sigma_1^2 = \\sigma_2^2 = \\sigma^2\\) (the equal variance assumption), the pooled sample variance is</p>
                         \\[S_p^2 = \\frac{(m-1)S_1^2 + (n-1)S_2^2}{m + n - 2}\\]
                         <p>The test statistic is</p>
                         \\[T = \\frac{\\bar{X} - \\bar{Y}}{S_p\\sqrt{\\frac{1}{m} + \\frac{1}{n}}} \\sim t(m+n-2)\\]
@@ -113,12 +113,12 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Paired t-Test (配对t检验)</h3>
+ <h3>Paired t-Test (t)</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 11.7 (Paired t-Test)</div>
                     <div class="env-body">
-                        <p>Suppose the observations are paired data (配对数据) \\((X_1, Y_1), \\ldots, (X_n, Y_n)\\). Let the differences be \\(D_i = X_i - Y_i\\). Assume \\(D_i \\overset{\\text{iid}}{\\sim} N(\\mu_D, \\sigma_D^2)\\), and test \\(H_0: \\mu_D = 0\\). The test statistic is</p>
+ <p>Suppose the observations are paired data \\((X_1, Y_1), \\ldots, (X_n, Y_n)\\). Let the differences be \\(D_i = X_i - Y_i\\). Assume \\(D_i \\overset{\\text{iid}}{\\sim} N(\\mu_D, \\sigma_D^2)\\), and test \\(H_0: \\mu_D = 0\\). The test statistic is</p>
                         \\[T = \\frac{\\bar{D}}{S_D / \\sqrt{n}} \\sim t(n-1)\\]
                         <p>where \\(\\bar{D} = \\frac{1}{n}\\sum D_i\\) and \\(S_D^2 = \\frac{1}{n-1}\\sum(D_i - \\bar{D})^2\\).</p>
                     </div>
@@ -127,7 +127,7 @@ window.CHAPTERS.push({
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>The paired t-test is essentially a one-sample t-test applied to the difference sequence \\(D_1, \\ldots, D_n\\). By eliminating individual differences, it improves test power (检验功效) and is very important in experimental design.</p>
+ <p>The paired t-test is essentially a one-sample t-test applied to the difference sequence \\(D_1, \\ldots, D_n\\). By eliminating individual differences, it improves test power and is very important in experimental design.</p>
                     </div>
                 </div>
 
@@ -136,14 +136,14 @@ window.CHAPTERS.push({
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>The t-test relies on the normality assumption. For large samples, by the Central Limit Theorem, the t-test remains approximately valid for non-normal populations. However, for small samples with severely skewed distributions, one should consider nonparametric methods (非参数方法) such as the Wilcoxon test.</p>
+ <p>The t-test relies on the normality assumption. For large samples, by the Central Limit Theorem, the t-test remains approximately valid for non-normal populations. However, for small samples with severely skewed distributions, one should consider nonparametric methods such as the Wilcoxon test.</p>
                     </div>
                 </div>
             `,
             visualizations: [
                 {
                     id: 'test-selector-viz',
-                    title: 'Interactive: z/t Test Selector (z/t检验选择器)',
+ title:'Interactive: z/t Test Selector (z/t)',
                     description: 'Switch between different test types and observe the distribution of the test statistic and the rejection region',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -278,16 +278,16 @@ window.CHAPTERS.push({
             id: 'ch11-sec02',
             title: 'Variance Tests',
             content: `
-                <h2>Variance Tests (方差检验)</h2>
+ <h2>Variance Tests </h2>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>Besides the mean, the variance (方差) is also an important population parameter. In quality control, the variance of a product specification directly reflects the stability of the production process. Variance tests address the core question: does the variability of a population meet expectations? Is the variability the same across two populations?</p>
+ <p>Besides the mean, the variance is also an important population parameter. In quality control, the variance of a product specification directly reflects the stability of the production process. Variance tests address the core question: does the variability of a population meet expectations? Is the variability the same across two populations?</p>
                     </div>
                 </div>
 
-                <h3>One-Sample \\(\\chi^2\\) Variance Test (单样本\\(\\chi^2\\)方差检验)</h3>
+ <h3>One-Sample \\(\\chi^2\\) Variance Test (\\(\\chi^2\\))</h3>
 
                 <p>Let \\(X_1, \\ldots, X_n \\overset{\\text{iid}}{\\sim} N(\\mu, \\sigma^2)\\). We test \\(H_0: \\sigma^2 = \\sigma_0^2\\).</p>
 
@@ -316,14 +316,14 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>F-Test: Comparing Two Population Variances (F检验：两总体方差比较)</h3>
+ <h3>F-Test: Comparing Two Population Variances (F)</h3>
 
                 <p>Let \\(X_1,\\ldots,X_m \\overset{\\text{iid}}{\\sim} N(\\mu_1,\\sigma_1^2)\\) and \\(Y_1,\\ldots,Y_n \\overset{\\text{iid}}{\\sim} N(\\mu_2,\\sigma_2^2)\\) be independent. We test \\(H_0: \\sigma_1^2 = \\sigma_2^2\\).</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 11.10 (F-Test Statistic)</div>
                     <div class="env-body">
-                        <p>The F-test statistic (F检验统计量) is</p>
+ <p>The F-test statistic (F) is</p>
                         \\[F = \\frac{S_1^2}{S_2^2}\\]
                         <p>Under \\(H_0\\), \\(F \\sim F(m-1, n-1)\\).</p>
                     </div>
@@ -347,7 +347,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Bartlett's Test: Homogeneity of Variances for k Populations (Bartlett检验：k个总体方差齐性)</h3>
+ <h3>Bartlett's Test: Homogeneity of Variances for k Populations (Bartlettk)</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 11.12 (Bartlett's Test)</div>
@@ -370,7 +370,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'f-distribution-viz',
-                    title: 'Interactive: F-Distribution and Rejection Region (F分布与拒绝域)',
+ title:'Interactive: F-Distribution and Rejection Region (F)',
                     description: 'Adjust degrees of freedom and significance level to observe changes in the F-distribution shape and rejection region',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -491,18 +491,18 @@ window.CHAPTERS.push({
             id: 'ch11-sec03',
             title: 'Goodness-of-Fit Tests',
             content: `
-                <h2>Goodness-of-Fit Tests (拟合优度检验)</h2>
+ <h2>Goodness-of-Fit Tests </h2>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>The previous tests focus on parameters (mean, variance). Goodness-of-fit tests (拟合优度检验) address a more fundamental question: does the data come from a specific distribution? For example, is a die fair? Do genotype proportions conform to Mendel's laws of heredity? This is the first step from parametric testing toward nonparametric thinking.</p>
+ <p>The previous tests focus on parameters (mean, variance). Goodness-of-fit tests address a more fundamental question: does the data come from a specific distribution? For example, is a die fair? Do genotype proportions conform to Mendel's laws of heredity? This is the first step from parametric testing toward nonparametric thinking.</p>
                     </div>
                 </div>
 
-                <h3>Pearson \\(\\chi^2\\) Goodness-of-Fit Test (Pearson \\(\\chi^2\\) 拟合优度检验)</h3>
+ <h3>Pearson \\(\\chi^2\\) Goodness-of-Fit Test (Pearson \\(\\chi^2\\))</h3>
 
-                <p>Suppose there are \\(k\\) categories with observed frequencies (观测频数) \\(O_1, \\ldots, O_k\\) (\\(\\sum O_i = n\\)). The null hypothesis specifies the probability of each category as \\(p_1, \\ldots, p_k\\), with expected frequencies (期望频数) \\(E_i = np_i\\).</p>
+ <p>Suppose there are \\(k\\) categories with observed frequencies \\(O_1, \\ldots, O_k\\) (\\(\\sum O_i = n\\)). The null hypothesis specifies the probability of each category as \\(p_1, \\ldots, p_k\\), with expected frequencies \\(E_i = np_i\\).</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 11.13 (Pearson \\(\\chi^2\\) Statistic)</div>
@@ -529,7 +529,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Degrees of Freedom Correction When Estimating Parameters (估计参数时的自由度修正)</h3>
+ <h3>Degrees of Freedom Correction When Estimating Parameters </h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 11.15 (Degrees of Freedom with Parameter Estimation)</div>
@@ -554,12 +554,12 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Introduction to the Kolmogorov-Smirnov Test (Kolmogorov-Smirnov 检验简介)</h3>
+ <h3>Introduction to the Kolmogorov-Smirnov Test (Kolmogorov-Smirnov)</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 11.17 (KS Statistic)</div>
                     <div class="env-body">
-                        <p>The Kolmogorov-Smirnov test does not require grouping. Let the empirical distribution function (经验分布函数) be \\(F_n(x) = \\frac{1}{n}\\sum_{i=1}^n \\mathbf{1}(X_i \\leq x)\\), and the null hypothesis specifies the CDF as \\(F_0\\). The KS statistic is</p>
+ <p>The Kolmogorov-Smirnov test does not require grouping. Let the empirical distribution function be \\(F_n(x) = \\frac{1}{n}\\sum_{i=1}^n \\mathbf{1}(X_i \\leq x)\\), and the null hypothesis specifies the CDF as \\(F_0\\). The KS statistic is</p>
                         \\[D_n = \\sup_x |F_n(x) - F_0(x)|\\]
                         <p>The Glivenko-Cantelli theorem guarantees \\(D_n \\to 0\\) a.s.; under \\(H_0\\), \\(\\sqrt{n} D_n\\) converges to the Kolmogorov distribution.</p>
                     </div>
@@ -577,7 +577,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'chi2-gof-viz',
-                    title: 'Interactive: Chi-Squared Goodness-of-Fit Test (卡方拟合优度检验)',
+ title:'Interactive: Chi-Squared Goodness-of-Fit Test',
                     description: 'Adjust observed frequencies, compute the test statistic, and display it on the chi-squared distribution',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -779,16 +779,16 @@ window.CHAPTERS.push({
             id: 'ch11-sec04',
             title: 'Test of Independence',
             content: `
-                <h2>Test of Independence (独立性检验)</h2>
+ <h2>Test of Independence </h2>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>Goodness-of-fit tests focus on whether the distribution of a single variable matches expectations. Tests of independence (独立性检验) address whether there is an association between two categorical variables. For example: is smoking related to lung cancer? Is gender independent of career choice? The core tools are the contingency table (列联表) and the \\(\\chi^2\\) test of independence.</p>
+ <p>Goodness-of-fit tests focus on whether the distribution of a single variable matches expectations. Tests of independence address whether there is an association between two categorical variables. For example: is smoking related to lung cancer? Is gender independent of career choice? The core tools are the contingency table and the \\(\\chi^2\\) test of independence.</p>
                     </div>
                 </div>
 
-                <h3>Contingency Tables and Independence (列联表与独立性)</h3>
+ <h3>Contingency Tables and Independence </h3>
 
                 <p>Suppose variable \\(A\\) has \\(r\\) levels and variable \\(B\\) has \\(c\\) levels. From a population of \\(n\\) individuals, the observed frequency falling into cell \\((i,j)\\) is \\(O_{ij}\\).</p>
 
@@ -834,12 +834,12 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Fisher's Exact Test (Fisher精确检验)</h3>
+ <h3>Fisher's Exact Test (Fisher)</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 11.21 (Fisher's Exact Test)</div>
                     <div class="env-body">
-                        <p>For a \\(2 \\times 2\\) contingency table, when the sample size is small (expected frequencies < 5), the \\(\\chi^2\\) approximation is inaccurate. Fisher's exact test computes the exact p-value under the condition that the row and column marginals are fixed, using the hypergeometric distribution (超几何分布).</p>
+ <p>For a \\(2 \\times 2\\) contingency table, when the sample size is small (expected frequencies < 5), the \\(\\chi^2\\) approximation is inaccurate. Fisher's exact test computes the exact p-value under the condition that the row and column marginals are fixed, using the hypergeometric distribution.</p>
                         <p>Let the \\(2 \\times 2\\) table be</p>
                         <table style="margin: 10px auto; border-collapse: collapse;">
                             <tr><td style="padding: 4px 12px; border: 1px solid #30363d;">a</td><td style="padding: 4px 12px; border: 1px solid #30363d;">b</td></tr>
@@ -862,7 +862,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'contingency-table-viz',
-                    title: 'Interactive: Contingency Table Independence Test (列联表独立性检验)',
+ title:'Interactive: Contingency Table Independence Test',
                     description: 'Adjust the values in the contingency table and observe changes in the chi-squared statistic and p-value',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -1084,21 +1084,21 @@ window.CHAPTERS.push({
             id: 'ch11-sec05',
             title: 'One-Way Analysis of Variance',
             content: `
-                <h2>One-Way Analysis of Variance (单因素方差分析, One-Way ANOVA)</h2>
+ <h2>One-Way Analysis of Variance (One-Way ANOVA)</h2>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>The two-sample t-test compares the means of two groups. When there are \\(k \\geq 3\\) groups, we need to simultaneously compare whether all group means are equal. Performing pairwise t-tests leads to the multiple comparisons problem (多重比较问题), where the overall Type I error rate is inflated. Analysis of Variance (ANOVA, 方差分析) decomposes the total variability in the data into between-group and within-group components and uses a single F-test to simultaneously compare all group means.</p>
+ <p>The two-sample t-test compares the means of two groups. When there are \\(k \\geq 3\\) groups, we need to simultaneously compare whether all group means are equal. Performing pairwise t-tests leads to the multiple comparisons problem, where the overall Type I error rate is inflated. Analysis of Variance (ANOVA) decomposes the total variability in the data into between-group and within-group components and uses a single F-test to simultaneously compare all group means.</p>
                     </div>
                 </div>
 
-                <h3>Model Specification (模型设定)</h3>
+ <h3>Model Specification </h3>
 
                 <p>Suppose there are \\(k\\) groups, with the \\(i\\)-th group having \\(n_i\\) observations:</p>
                 \\[X_{ij} = \\mu_i + \\varepsilon_{ij}, \\quad \\varepsilon_{ij} \\overset{\\text{iid}}{\\sim} N(0, \\sigma^2), \\quad j = 1,\\ldots,n_i, \\; i = 1,\\ldots,k\\]
 
-                <p>Equivalently, we write \\(X_{ij} = \\mu + \\alpha_i + \\varepsilon_{ij}\\), where \\(\\mu\\) is the grand mean (总均值) and \\(\\alpha_i = \\mu_i - \\mu\\) is the effect of group \\(i\\) (第\\(i\\)组的效应).</p>
+ <p>Equivalently, we write \\(X_{ij} = \\mu + \\alpha_i + \\varepsilon_{ij}\\), where \\(\\mu\\) is the grand mean and \\(\\alpha_i = \\mu_i - \\mu\\) is the effect of group \\(i\\) (\\(i\\)).</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 11.22 (ANOVA Hypothesis Test)</div>
@@ -1108,14 +1108,14 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Sum of Squares Decomposition (平方和分解)</h3>
+ <h3>Sum of Squares Decomposition </h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 11.23 (Sum of Squares Decomposition)</div>
                     <div class="env-body">
                         <p>Let \\(\\bar{X}_{i\\cdot} = \\frac{1}{n_i}\\sum_j X_{ij}\\) be the group \\(i\\) mean, and \\(\\bar{X}_{\\cdot\\cdot} = \\frac{1}{N}\\sum_i\\sum_j X_{ij}\\) be the grand mean (\\(N = \\sum n_i\\)). The total sum of squares decomposes as</p>
                         \\[\\underbrace{\\sum_{i=1}^{k}\\sum_{j=1}^{n_i}(X_{ij} - \\bar{X}_{\\cdot\\cdot})^2}_{\\text{SST}} = \\underbrace{\\sum_{i=1}^{k} n_i(\\bar{X}_{i\\cdot} - \\bar{X}_{\\cdot\\cdot})^2}_{\\text{SSB}} + \\underbrace{\\sum_{i=1}^{k}\\sum_{j=1}^{n_i}(X_{ij} - \\bar{X}_{i\\cdot})^2}_{\\text{SSW}}\\]
-                        <p>where SST = Total Sum of Squares (总平方和), SSB = Between-group Sum of Squares (组间平方和), SSW = Within-group Sum of Squares (组内平方和).</p>
+ <p>where SST = Total Sum of Squares, SSB = Between-group Sum of Squares, SSW = Within-group Sum of Squares.</p>
                     </div>
                 </div>
 
@@ -1129,12 +1129,12 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>F-Statistic and the ANOVA Table (F统计量与ANOVA表)</h3>
+ <h3>F-Statistic and the ANOVA Table (FANOVA)</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 11.24 (Mean Squares and F-Statistic)</div>
                     <div class="env-body">
-                        <p>The between-group mean square (组间均方) and within-group mean square (组内均方) are</p>
+ <p>The between-group mean square and within-group mean square are</p>
                         \\[\\text{MSB} = \\frac{\\text{SSB}}{k-1}, \\qquad \\text{MSW} = \\frac{\\text{SSW}}{N-k}\\]
                         <p>The F-statistic is</p>
                         \\[F = \\frac{\\text{MSB}}{\\text{MSW}}\\]
@@ -1144,7 +1144,7 @@ window.CHAPTERS.push({
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 11.25 (ANOVA F-Test)</div>
                     <div class="env-body">
-                        <p>Under the normality and equal variance assumptions (正态性和等方差假设):</p>
+ <p>Under the normality and equal variance assumptions:</p>
                         <ol>
                             <li>\\(\\text{SSW}/\\sigma^2 \\sim \\chi^2(N-k)\\), independent of \\(\\text{SSB}\\)</li>
                             <li>Under \\(H_0\\), \\(\\text{SSB}/\\sigma^2 \\sim \\chi^2(k-1)\\)</li>
@@ -1172,14 +1172,14 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Post Hoc Multiple Comparisons (事后多重比较)</h3>
+ <h3>Post Hoc Multiple Comparisons </h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 11.27 (Post Hoc Tests)</div>
                     <div class="env-body">
                         <p>After ANOVA rejects \\(H_0\\), one needs to further determine which groups differ. Common methods include:</p>
                         <ul>
-                            <li><strong>Tukey HSD</strong>: Based on the studentized range distribution, it controls the familywise error rate (FWER, 族错误率) for all pairwise comparisons. The comparison statistic for groups \\(i\\) and \\(j\\) is \\(q = \\frac{\\bar{X}_{i\\cdot} - \\bar{X}_{j\\cdot}}{\\sqrt{\\text{MSW}/n}}\\) (for equal group sizes).</li>
+ <li><strong>Tukey HSD</strong>: Based on the studentized range distribution, it controls the familywise error rate (FWER) for all pairwise comparisons. The comparison statistic for groups \\(i\\) and \\(j\\) is \\(q = \\frac{\\bar{X}_{i\\cdot} - \\bar{X}_{j\\cdot}}{\\sqrt{\\text{MSW}/n}}\\) (for equal group sizes).</li>
                             <li><strong>Bonferroni correction</strong>: Uses \\(\\alpha/\\binom{k}{2}\\) as the significance level for each pairwise comparison. Simple but conservative.</li>
                         </ul>
                     </div>
@@ -1188,7 +1188,7 @@ window.CHAPTERS.push({
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>The three key assumptions of ANOVA: (1) independence across groups, (2) normality, (3) homoscedasticity (方差齐性, equal variances). In practice, one should first check the equal variance assumption using Bartlett's or Levene's test. When equal variances do not hold, Welch's ANOVA (a corrected method that does not assume equal variances) can be used.</p>
+ <p>The three key assumptions of ANOVA: (1) independence across groups, (2) normality, (3) homoscedasticity (equal variances). In practice, one should first check the equal variance assumption using Bartlett's or Levene's test. When equal variances do not hold, Welch's ANOVA (a corrected method that does not assume equal variances) can be used.</p>
                     </div>
                 </div>
 
@@ -1204,8 +1204,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'anova-viz',
-                    title: 'Interactive: One-Way ANOVA Visualization (单因素ANOVA可视化)',
-                    description: 'Drag group means to observe how the F-statistic and SSB/SSW decomposition change',
+ title:'Interactive: One-Way ANOVA Visualization (ANOVA)',
+                    description: 'Drag group means to observe how the F-statistic and SSB',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 420, scale: 30,
@@ -1336,9 +1336,9 @@ window.CHAPTERS.push({
                             // Statistics panel
                             viz.screenText('ANOVA Results', viz.width / 2, 15, viz.colors.white, 14, 'center');
                             var panelY = 32;
-                            viz.screenText('SSB = ' + ssb.toFixed(2) + '  (df=' + (nGroups - 1) + ')', 20, panelY, viz.colors.yellow, 11, 'left');
-                            viz.screenText('SSW = ' + ssw.toFixed(2) + '  (df=' + (N - nGroups) + ')', 20, panelY + 16, viz.colors.teal, 11, 'left');
-                            viz.screenText('SST = ' + sst.toFixed(2) + '  (df=' + (N - 1) + ')', 20, panelY + 32, viz.colors.text, 11, 'left');
+                            viz.screenText('SSB = ' + ssb.toFixed(2) + ' (df=' + (nGroups - 1) + ')', 20, panelY, viz.colors.yellow, 11, 'left');
+                            viz.screenText('SSW = ' + ssw.toFixed(2) + ' (df=' + (N - nGroups) + ')', 20, panelY + 16, viz.colors.teal, 11, 'left');
+                            viz.screenText('SST = ' + sst.toFixed(2) + ' (df=' + (N - 1) + ')', 20, panelY + 32, viz.colors.text, 11, 'left');
 
                             viz.screenText('MSB = ' + msb.toFixed(2), 300, panelY, viz.colors.yellow, 11, 'left');
                             viz.screenText('MSW = ' + msw.toFixed(2), 300, panelY + 16, viz.colors.teal, 11, 'left');

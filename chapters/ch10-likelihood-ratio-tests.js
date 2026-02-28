@@ -12,21 +12,21 @@ window.CHAPTERS.push({
             id: 'ch10-sec01',
             title: 'The Neyman-Pearson Lemma',
             content: `
-                <h2>The Neyman-Pearson Lemma<span class="subtitle-zh"> / Neyman-Pearson 引理</span></h2>
+ <h2>The Neyman-Pearson Lemma</h2>
 
-                <p>The central question of hypothesis testing is: given that we control the probability of Type I error (rejecting a true null hypothesis), how can we maximize the power (probability of detection) of a test? The Neyman-Pearson lemma provides the optimal solution for testing a simple hypothesis against a simple hypothesis. This result is not only the cornerstone of hypothesis testing theory but also provides fundamental insight for the likelihood ratio tests (似然比检验) developed subsequently.</p>
+ <p>The central question of hypothesis testing is: given that we control the probability of Type I error (rejecting a true null hypothesis), how can we maximize the power (probability of detection) of a test? The Neyman-Pearson lemma provides the optimal solution for testing a simple hypothesis against a simple hypothesis. This result is not only the cornerstone of hypothesis testing theory but also provides fundamental insight for the likelihood ratio tests developed subsequently.</p>
 
-                <h3>Problem Setup<span class="subtitle-zh"> / 问题设定</span></h3>
+ <h3>Problem Setup</h3>
 
                 <p>Consider a testing problem where the parameter space \\(\\Theta = \\{\\theta_0, \\theta_1\\}\\) has only two elements:</p>
                 \\[H_0: \\theta = \\theta_0 \\quad \\text{vs} \\quad H_1: \\theta = \\theta_1\\]
 
-                <p>Here both \\(H_0\\) and \\(H_1\\) are <strong>simple hypotheses</strong> (简单假设), meaning the parameter values are fully specified. Let the joint density (or probability mass function) of the observed data \\(X = (X_1, \\ldots, X_n)\\) under \\(\\theta_0\\) be \\(f(\\mathbf{x} \\mid \\theta_0)\\) and under \\(\\theta_1\\) be \\(f(\\mathbf{x} \\mid \\theta_1)\\).</p>
+ <p>Here both \\(H_0\\) and \\(H_1\\) are <strong>simple hypotheses</strong>, meaning the parameter values are fully specified. Let the joint density (or probability mass function) of the observed data \\(X = (X_1, \\ldots, X_n)\\) under \\(\\theta_0\\) be \\(f(\\mathbf{x} \\mid \\theta_0)\\) and under \\(\\theta_1\\) be \\(f(\\mathbf{x} \\mid \\theta_1)\\).</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 10.1 (Likelihood Ratio)</div>
                     <div class="env-body">
-                        <p>Given observation \\(\\mathbf{x}\\), the <strong>likelihood ratio</strong> (似然比) is defined as</p>
+ <p>Given observation \\(\\mathbf{x}\\), the <strong>likelihood ratio</strong> is defined as</p>
                         \\[\\Lambda(\\mathbf{x}) = \\frac{L(\\theta_1 \\mid \\mathbf{x})}{L(\\theta_0 \\mid \\mathbf{x})} = \\frac{f(\\mathbf{x} \\mid \\theta_1)}{f(\\mathbf{x} \\mid \\theta_0)}\\]
                         <p>When \\(\\Lambda(\\mathbf{x})\\) is large, the data are more likely under \\(\\theta_1\\) than under \\(\\theta_0\\), so we are inclined to reject \\(H_0\\).</p>
                     </div>
@@ -35,13 +35,13 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 10.2 (Most Powerful Test)</div>
                     <div class="env-body">
-                        <p>Let \\(\\mathcal{C}\\) be the collection of all tests at significance level \\(\\alpha\\). A test \\(\\varphi^*\\) is called the <strong>most powerful test</strong> (最大功效检验, MP test) at level \\(\\alpha\\) if</p>
+ <p>Let \\(\\mathcal{C}\\) be the collection of all tests at significance level \\(\\alpha\\). A test \\(\\varphi^*\\) is called the <strong>most powerful test</strong> (MP test) at level \\(\\alpha\\) if</p>
                         \\[E_{\\theta_0}[\\varphi^*] \\le \\alpha \\quad \\text{and} \\quad E_{\\theta_1}[\\varphi^*] \\ge E_{\\theta_1}[\\varphi] \\quad \\forall \\varphi \\in \\mathcal{C}\\]
                         <p>where \\(\\varphi(\\mathbf{x}) \\in [0,1]\\) is a randomized test function representing the probability of rejecting \\(H_0\\).</p>
                     </div>
                 </div>
 
-                <h3>The Neyman-Pearson Lemma<span class="subtitle-zh"> / Neyman-Pearson 引理</span></h3>
+ <h3>The Neyman-Pearson Lemma</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 10.1 (Neyman-Pearson Lemma)</div>
@@ -94,8 +94,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'np-lemma-viz',
-                    title: 'Interactive: The Neyman-Pearson Lemma / Neyman-Pearson 引理',
-                    description: 'Visualize the likelihood ratio test under two normal distributions. Drag the threshold to observe changes in the rejection region and power. / 可视化两个正态分布下的似然比检验。拖动阈值观察拒绝域和功效的变化。',
+ title:'Interactive: The Neyman-Pearson Lemma',
+ description:'Visualize the likelihood ratio test under two normal distributions. Drag the threshold to observe changes in the rejection region and power.',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -206,14 +206,14 @@ window.CHAPTERS.push({
             id: 'ch10-sec02',
             title: 'Uniformly Most Powerful Tests',
             content: `
-                <h2>Uniformly Most Powerful Tests<span class="subtitle-zh"> / 一致最大功效检验</span></h2>
+ <h2>Uniformly Most Powerful Tests</h2>
 
-                <p>The Neyman-Pearson lemma deals with testing simple vs simple hypotheses. In practice, the alternative hypothesis is usually composite, such as \\(H_1: \\theta > \\theta_0\\). A natural question arises: does there exist a test that is most powerful for all values of the alternative? This leads to the concept of the <strong>uniformly most powerful test</strong> (一致最大功效检验, UMP test).</p>
+ <p>The Neyman-Pearson lemma deals with testing simple vs simple hypotheses. In practice, the alternative hypothesis is usually composite, such as \\(H_1: \\theta> \\theta_0\\). A natural question arises: does there exist a test that is most powerful for all values of the alternative? This leads to the concept of the <strong>uniformly most powerful test</strong> (UMP test).</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 10.3 (UMP Test)</div>
                     <div class="env-body">
-                        <p>Consider the testing problem \\(H_0: \\theta \\in \\Theta_0\\) vs \\(H_1: \\theta \\in \\Theta_1\\). A test \\(\\varphi^*\\) is called a <strong>uniformly most powerful test</strong> (一致最大功效检验, UMP test) at level \\(\\alpha\\) if:</p>
+ <p>Consider the testing problem \\(H_0: \\theta \\in \\Theta_0\\) vs \\(H_1: \\theta \\in \\Theta_1\\). A test \\(\\varphi^*\\) is called a <strong>uniformly most powerful test</strong> (UMP test) at level \\(\\alpha\\) if:</p>
                         <ol>
                             <li>\\(\\sup_{\\theta \\in \\Theta_0} E_\\theta[\\varphi^*] \\le \\alpha\\) (controls error probability)</li>
                             <li>For all \\(\\theta \\in \\Theta_1\\) and all tests \\(\\varphi\\) satisfying (1), \\(E_\\theta[\\varphi^*] \\ge E_\\theta[\\varphi]\\) (maximizes power at every alternative parameter value)</li>
@@ -221,16 +221,16 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Monotone Likelihood Ratio and the Karlin-Rubin Theorem<span class="subtitle-zh"> / 单调似然比与 Karlin-Rubin 定理</span></h3>
+ <h3>Monotone Likelihood Ratio and the Karlin-Rubin Theorem</h3>
 
-                <p>The existence of UMP tests is closely related to the <strong>monotone likelihood ratio</strong> (单调似然比, MLR) property of the distribution family.</p>
+ <p>The existence of UMP tests is closely related to the <strong>monotone likelihood ratio</strong> (MLR) property of the distribution family.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 10.4 (Monotone Likelihood Ratio)</div>
                     <div class="env-body">
                         <p>Let \\(\\{f(\\mathbf{x} | \\theta): \\theta \\in \\Theta\\}\\) be a parametric family and \\(T(\\mathbf{x})\\) a real-valued statistic. If for all \\(\\theta_1 > \\theta_0\\), the likelihood ratio</p>
                         \\[\\frac{f(\\mathbf{x} | \\theta_1)}{f(\\mathbf{x} | \\theta_0)}\\]
-                        <p>is a <strong>nondecreasing function</strong> of \\(T(\\mathbf{x})\\) (on the set where \\(f(\\mathbf{x}|\\theta_0) > 0\\)), then the family is said to have the <strong>monotone likelihood ratio</strong> (单调似然比) property with respect to \\(T\\).</p>
+ <p>is a <strong>nondecreasing function</strong> of \\(T(\\mathbf{x})\\) (on the set where \\(f(\\mathbf{x}|\\theta_0)> 0\\)), then the family is said to have the <strong>monotone likelihood ratio</strong> property with respect to \\(T\\).</p>
                     </div>
                 </div>
 
@@ -266,7 +266,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Non-Existence of UMP for Two-Sided Tests<span class="subtitle-zh"> / 双侧检验中 UMP 不存在</span></h3>
+ <h3>Non-Existence of UMP for Two-Sided Tests</h3>
 
                 <div class="env-block warning">
                     <div class="env-title">Warning: UMP Tests Do Not Exist for Two-Sided Alternatives</div>
@@ -274,8 +274,8 @@ window.CHAPTERS.push({
                         <p>Consider \\(H_0: \\theta = \\theta_0\\) vs \\(H_1: \\theta \\ne \\theta_0\\). For \\(\\theta_1 > \\theta_0\\), the NP test rejects for large \\(T\\); but for \\(\\theta_1 < \\theta_0\\), the NP test rejects for small \\(T\\). These two directions contradict each other, so it is impossible to achieve maximum power in both directions simultaneously.</p>
                         <p>For two-sided alternatives, common alternatives include:</p>
                         <ul>
-                            <li><strong>Uniformly most powerful unbiased test</strong> (一致最大功效无偏检验, UMPU test)</li>
-                            <li><strong>Generalized likelihood ratio test</strong> (广义似然比检验, GLRT, see the next section)</li>
+ <li><strong>Uniformly most powerful unbiased test</strong> (UMPU test)</li>
+ <li><strong>Generalized likelihood ratio test</strong> (GLRT, see the next section)</li>
                         </ul>
                     </div>
                 </div>
@@ -285,8 +285,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'mlr-viz',
-                    title: 'Interactive: Monotone Likelihood Ratio and UMP Tests / 单调似然比与 UMP 检验',
-                    description: 'Observe how the likelihood ratio of an exponential family changes monotonically with the statistic T, and how the rejection region remains unchanged for different theta_1 values. / 观察指数族的似然比如何随统计量 T 单调变化，以及不同 theta_1 值下拒绝域不变。',
+ title:'Interactive: Monotone Likelihood Ratio and UMP TestsUMP',
+ description:'Observe how the likelihood ratio of an exponential family changes monotonically with the statistic T, and how the rejection region remains unchanged for different theta_1 values.Ttheta_1',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -439,14 +439,14 @@ window.CHAPTERS.push({
             id: 'ch10-sec03',
             title: 'Generalized Likelihood Ratio Tests',
             content: `
-                <h2>Generalized Likelihood Ratio Tests<span class="subtitle-zh"> / 广义似然比检验</span></h2>
+ <h2>Generalized Likelihood Ratio Tests</h2>
 
-                <p>When a UMP test does not exist (e.g., for two-sided tests or multi-parameter settings), we need a general method for constructing tests. The <strong>generalized likelihood ratio test</strong> (广义似然比检验, GLRT) is one of the most widely used approaches. Its basic idea is to compare the maximum likelihood values under the constraint (\\(H_0\\)) and without constraint.</p>
+ <p>When a UMP test does not exist (e.g., for two-sided tests or multi-parameter settings), we need a general method for constructing tests. The <strong>generalized likelihood ratio test</strong> (GLRT) is one of the most widely used approaches. Its basic idea is to compare the maximum likelihood values under the constraint (\\(H_0\\)) and without constraint.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 10.5 (GLRT Statistic)</div>
                     <div class="env-body">
-                        <p>Let the parameter space be \\(\\Theta\\) and the parameter subspace corresponding to the null hypothesis be \\(\\Theta_0 \\subset \\Theta\\). The <strong>generalized likelihood ratio statistic</strong> (广义似然比统计量) is defined as</p>
+ <p>Let the parameter space be \\(\\Theta\\) and the parameter subspace corresponding to the null hypothesis be \\(\\Theta_0 \\subset \\Theta\\). The <strong>generalized likelihood ratio statistic</strong> is defined as</p>
                         \\[\\Lambda(\\mathbf{x}) = \\frac{\\sup_{\\theta \\in \\Theta_0} L(\\theta | \\mathbf{x})}{\\sup_{\\theta \\in \\Theta} L(\\theta | \\mathbf{x})}\\]
                         <p>Clearly \\(0 \\le \\Lambda(\\mathbf{x}) \\le 1\\). When \\(\\Lambda\\) is close to 0, the best fit under the constrained model (\\(H_0\\)) is far inferior to the unconstrained model, providing reason to reject \\(H_0\\).</p>
                         <p>The GLRT rejection region is \\(\\Lambda(\\mathbf{x}) < c\\), or equivalently \\(-2 \\log \\Lambda(\\mathbf{x}) > c'\\).</p>
@@ -460,7 +460,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Example: GLRT for the Normal Mean<span class="subtitle-zh"> / 正态均值的 GLRT</span></h3>
+ <h3>Example: GLRT for the Normal Mean</h3>
 
                 <div class="env-block example">
                     <div class="env-title">Example 10.3 (Single Normal Mean Test)</div>
@@ -499,8 +499,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'glrt-viz',
-                    title: 'Interactive: Generalized Likelihood Ratio Test / 广义似然比检验',
-                    description: 'Compare the likelihood values under the constrained MLE and unrestricted MLE, and observe the GLRT statistic. / 观察约束 MLE 与无约束 MLE 下似然值的比较，以及 GLRT 统计量的变化。',
+ title:'Interactive: Generalized Likelihood Ratio Test',
+ description:'Compare the likelihood values under the constrained MLE and unrestricted MLE, and observe the GLRT statistic.MLE MLE GLRT',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -637,9 +637,9 @@ window.CHAPTERS.push({
             id: 'ch10-sec04',
             title: "Wilks' Theorem",
             content: `
-                <h2>Wilks' Theorem<span class="subtitle-zh"> / Wilks 定理</span></h2>
+ <h2>Wilks' Theorem</h2>
 
-                <p>An important practical issue with the GLRT is: how do we determine the critical value for the rejection region? In finite samples, the exact distribution of \\(-2\\log\\Lambda\\) is usually difficult to obtain. <strong>Wilks' theorem</strong> (Wilks 定理) provides an elegant asymptotic solution: under regularity conditions, the asymptotic distribution of \\(-2\\log\\Lambda\\) is a chi-squared distribution with degrees of freedom equal to the number of constraints.</p>
+ <p>An important practical issue with the GLRT is: how do we determine the critical value for the rejection region? In finite samples, the exact distribution of \\(-2\\log\\Lambda\\) is usually difficult to obtain. <strong>Wilks' theorem</strong> (Wilks) provides an elegant asymptotic solution: under regularity conditions, the asymptotic distribution of \\(-2\\log\\Lambda\\) is a chi-squared distribution with degrees of freedom equal to the number of constraints.</p>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 10.3 (Wilks' Theorem)</div>
@@ -681,7 +681,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Three Asymptotically Equivalent Tests<span class="subtitle-zh"> / 三大渐近等价检验</span></h3>
+ <h3>Three Asymptotically Equivalent Tests</h3>
 
                 <p>Under regularity conditions, there are three important test statistics that are asymptotically equivalent, all converging to \\(\\chi^2(r)\\):</p>
 
@@ -690,9 +690,9 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>Under regularity conditions, the following three statistics converge in distribution to \\(\\chi^2(r)\\) under \\(H_0\\), and are asymptotically equivalent under local alternatives:</p>
                         <ol>
-                            <li><strong>Likelihood ratio test</strong> (似然比检验, LRT): \\(W_{\\text{LR}} = -2\\log\\Lambda = 2(\\ell(\\hat{\\theta}) - \\ell(\\tilde{\\theta}))\\)</li>
-                            <li><strong>Wald test</strong> (Wald 检验): \\(W_{\\text{Wald}} = (\\hat{\\theta} - \\theta_0)^T [\\widehat{\\operatorname{Var}}(\\hat{\\theta})]^{-1} (\\hat{\\theta} - \\theta_0)\\)</li>
-                            <li><strong>Score (Rao / LM) test</strong> (Score 检验): \\(W_{\\text{Score}} = U(\\tilde{\\theta})^T I(\\tilde{\\theta})^{-1} U(\\tilde{\\theta})\\), where \\(U(\\theta) = \\nabla \\ell(\\theta)\\) is the score function</li>
+ <li><strong>Likelihood ratio test</strong> (LRT): \\(W_{\\text{LR}} = -2\\log\\Lambda = 2(\\ell(\\hat{\\theta}) - \\ell(\\tilde{\\theta}))\\)</li>
+ <li><strong>Wald test</strong> (Wald): \\(W_{\\text{Wald}} = (\\hat{\\theta} - \\theta_0)^T [\\widehat{\\operatorname{Var}}(\\hat{\\theta})]^{-1} (\\hat{\\theta} - \\theta_0)\\)</li>
+ <li><strong>Score (Rao / LM) test</strong> (Score): \\(W_{\\text{Score}} = U(\\tilde{\\theta})^T I(\\tilde{\\theta})^{-1} U(\\tilde{\\theta})\\), where \\(U(\\theta) = \\nabla \\ell(\\theta)\\) is the score function</li>
                         </ol>
                         <p>When \\(H_0\\) holds, \\(W_{\\text{LR}}, W_{\\text{Wald}}, W_{\\text{Score}} \\xrightarrow{d} \\chi^2(r)\\).</p>
                     </div>
@@ -729,8 +729,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'wilks-sim-viz',
-                    title: "Interactive: Wilks' Theorem Simulation / Wilks 定理模拟验证",
-                    description: "Simulate the distribution of -2 log Lambda under H0 and compare with the chi-squared PDF. Observe convergence as n increases. / 模拟 -2 log Lambda 在 H0 下的分布，与卡方 PDF 对比，观察随 n 增大的收敛。",
+ title:"Interactive: Wilks' Theorem Simulation",
+ description:"Simulate the distribution of -2 log Lambda under H0 and compare with the chi-squared PDF. Observe convergence as n increases.-2 log Lambda H0 PDFn",
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -857,8 +857,8 @@ window.CHAPTERS.push({
                 },
                 {
                     id: 'three-tests-viz',
-                    title: 'Interactive: Comparison of Three Test Statistics / 三大检验统计量对比',
-                    description: 'Compare the behavior of LRT, Wald, and Score test statistics in the normal mean test. / 对比 LRT, Wald, Score 检验统计量在正态均值检验中的行为。',
+ title:'Interactive: Comparison of Three Test Statistics',
+ description:'Compare the behavior of LRT, Wald, and Score test statistics in the normal mean test.LRT, Wald, Score',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -1032,7 +1032,7 @@ window.CHAPTERS.push({
 
                             var label = muTrue === 0 ? 'Type I Error (alpha=0.05)' : 'Power (alpha=0.05)';
                             viz.screenText(label, 200, 15, viz.colors.white, 13);
-                            viz.screenText('LRT: ' + lrtReject.toFixed(3) + '  Wald: ' + waldReject.toFixed(3) + '  Score: ' + scoreReject.toFixed(3), 250, 360, viz.colors.yellow, 11);
+                            viz.screenText('LRT: ' + lrtReject.toFixed(3) + ' Wald: ' + waldReject.toFixed(3) + ' Score: ' + scoreReject.toFixed(3), 250, 360, viz.colors.yellow, 11);
                         }
 
                         simulate();

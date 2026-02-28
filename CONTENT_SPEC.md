@@ -5,9 +5,9 @@
 ```javascript
 window.CHAPTERS = window.CHAPTERS || [];
 window.CHAPTERS.push({
-    id: 'ch00',       // match CHAPTER_MANIFEST exactly
+    id: 'ch00', // match CHAPTER_MANIFEST exactly
     number: 0,
-    title: '概率空间与随机变量',
+    title: 'Probability Spaces & Random Variables',
     subtitle: 'Probability Spaces & Random Variables',
     sections: [
         {
@@ -179,7 +179,7 @@ Use with transparency: `viz.colors.blue + '44'` for 27% opacity.
 
 - **Graduate-level rigor**: Precise definitions, proper theorem statements, proofs for all key results
 - **Intuition blocks**: Use metaphors and geometric insight to build understanding, but NEVER sacrifice mathematical accuracy for simplicity
-- **Bilingual**: Chinese explanations with English mathematical terminology where appropriate
+- **Clear exposition**: English explanations with precise mathematical terminology
 - **Each section**: Should contain 2-3 exercises with hints and solutions
 - **Substantial content**: Each section is a real lesson (not a stub). Aim for rich explanations.
 - **Visualizations**: Make them genuinely interactive (draggable points, sliders, animations). Return the VizEngine instance from setup().

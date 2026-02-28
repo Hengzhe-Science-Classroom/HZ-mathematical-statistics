@@ -11,13 +11,13 @@ window.CHAPTERS.push({
             id: 'ch04-sec01',
             title: 'Random Samples',
             content: `
-                <h2>Random Samples &#8201;|&#8201; 随机样本</h2>
-                <p>The core of statistical inference lies in drawing a <strong>sample</strong> (样本) from a <strong>population</strong> (总体) and using the sample to infer properties of the population. This section rigorously defines the concept of a random sample and clarifies the mathematical meaning of the independent and identically distributed (iid) assumption.</p>
+ <h2>Random Samples &#8201;|&#8201;</h2>
+ <p>The core of statistical inference lies in drawing a <strong>sample</strong> from a <strong>population</strong> and using the sample to infer properties of the population. This section rigorously defines the concept of a random sample and clarifies the mathematical meaning of the independent and identically distributed (iid) assumption.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 4.1 (Population and Individual)</div>
                     <div class="env-body">
-                        <p>Let \\(X\\) be a random variable with distribution function \\(F(x; \\theta)\\), where \\(\\theta \\in \\Theta\\) is an unknown parameter. We call the probability distribution represented by \\(F\\) the <strong>population</strong> (总体), and each independent observation of \\(X\\) is called an <strong>individual</strong> (个体).</p>
+ <p>Let \\(X\\) be a random variable with distribution function \\(F(x; \\theta)\\), where \\(\\theta \\in \\Theta\\) is an unknown parameter. We call the probability distribution represented by \\(F\\) the <strong>population</strong>, and each independent observation of \\(X\\) is called an <strong>individual</strong>.</p>
                     </div>
                 </div>
 
@@ -29,7 +29,7 @@ window.CHAPTERS.push({
                             <li><strong>Independence</strong>: \\(X_1, X_2, \\ldots, X_n\\) are mutually independent;</li>
                             <li><strong>Identical distribution</strong>: each \\(X_i\\) has the same distribution as \\(X\\), i.e., \\(X_i \\sim F\\), \\(i = 1, 2, \\ldots, n\\).</li>
                         </ol>
-                        <p>then \\(X_1, X_2, \\ldots, X_n\\) is called a <strong>random sample</strong> (随机样本) of size \\(n\\) from the population \\(F\\), or simply a sample. We write</p>
+ <p>then \\(X_1, X_2, \\ldots, X_n\\) is called a <strong>random sample</strong> of size \\(n\\) from the population \\(F\\), or simply a sample. We write</p>
                         \\[X_1, X_2, \\ldots, X_n \\overset{\\text{iid}}{\\sim} F.\\]
                         <p>In this case, the joint distribution function of the sample is</p>
                         \\[F_{X_1, \\ldots, X_n}(x_1, \\ldots, x_n) = \\prod_{i=1}^{n} F(x_i).\\]
@@ -48,7 +48,7 @@ window.CHAPTERS.push({
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>It is important to distinguish between the <strong>sample</strong> (the random variables \\(X_1, \\ldots, X_n\\)) and the <strong>sample observation</strong> (样本观测值, the realized values \\(x_1, \\ldots, x_n\\)). A statistic is a function of the sample and is itself a random variable; once specific data are observed, the statistic takes on a definite value.</p>
+ <p>It is important to distinguish between the <strong>sample</strong> (the random variables \\(X_1, \\ldots, X_n\\)) and the <strong>sample observation</strong> (, the realized values \\(x_1, \\ldots, x_n\\)). A statistic is a function of the sample and is itself a random variable; once specific data are observed, the statistic takes on a definite value.</p>
                     </div>
                 </div>
 
@@ -64,7 +64,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 4.3 (Empirical Distribution Function)</div>
                     <div class="env-body">
-                        <p>Let \\(X_1, \\ldots, X_n\\) be a random sample from population \\(F\\). The <strong>empirical distribution function</strong> (经验分布函数, EDF) is defined as</p>
+ <p>Let \\(X_1, \\ldots, X_n\\) be a random sample from population \\(F\\). The <strong>empirical distribution function</strong> (EDF) is defined as</p>
                         \\[\\hat{F}_n(x) = \\frac{1}{n}\\sum_{i=1}^{n} \\mathbf{1}(X_i \\le x),\\]
                         <p>where \\(\\mathbf{1}(\\cdot)\\) is the indicator function. By the Glivenko-Cantelli theorem, \\(\\hat{F}_n(x) \\to F(x)\\) uniformly almost surely.</p>
                     </div>
@@ -82,7 +82,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'population-sampling-sim',
-                    title: 'Interactive: Sampling from a Population (从总体中抽样)',
+ title:'Interactive: Sampling from a Population',
                     description: 'Choose a population distribution and observe how the empirical distribution converges to the true distribution (visual demonstration of the Glivenko-Cantelli theorem)',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -274,13 +274,13 @@ window.CHAPTERS.push({
             id: 'ch04-sec02',
             title: 'Statistics and Sampling Distributions',
             content: `
-                <h2>Statistics and Sampling Distributions &#8201;|&#8201; 统计量与抽样分布</h2>
-                <p>With the concept of a random sample in hand, we now define a <strong>statistic</strong> (统计量): a computable function of the sample. Statistics serve as the bridge for inferring population parameters.</p>
+ <h2>Statistics and Sampling Distributions &#8201;|&#8201;</h2>
+ <p>With the concept of a random sample in hand, we now define a <strong>statistic</strong> : a computable function of the sample. Statistics serve as the bridge for inferring population parameters.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 4.4 (Statistic)</div>
                     <div class="env-body">
-                        <p>Let \\(X_1, \\ldots, X_n\\) be a random sample. If a function \\(T = T(X_1, \\ldots, X_n)\\) <strong>does not depend on any unknown parameters</strong>, then \\(T\\) is called a <strong>statistic</strong> (统计量). The distribution of a statistic is called a <strong>sampling distribution</strong> (抽样分布).</p>
+ <p>Let \\(X_1, \\ldots, X_n\\) be a random sample. If a function \\(T = T(X_1, \\ldots, X_n)\\) <strong>does not depend on any unknown parameters</strong>, then \\(T\\) is called a <strong>statistic</strong>. The distribution of a statistic is called a <strong>sampling distribution</strong>.</p>
                     </div>
                 </div>
 
@@ -296,11 +296,11 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>Let \\(X_1, \\ldots, X_n\\) be a random sample. The following statistics are defined:</p>
                         <ol>
-                            <li><strong>Sample mean</strong> (样本均值): \\(\\bar{X} = \\frac{1}{n}\\sum_{i=1}^{n} X_i\\)</li>
-                            <li><strong>Sample variance</strong> (样本方差): \\(S^2 = \\frac{1}{n-1}\\sum_{i=1}^{n} (X_i - \\bar{X})^2\\)</li>
-                            <li><strong>Sample standard deviation</strong> (样本标准差): \\(S = \\sqrt{S^2}\\)</li>
-                            <li><strong>Sample \\(k\\)-th moment</strong> (样本 \\(k\\) 阶矩): \\(M_k = \\frac{1}{n}\\sum_{i=1}^{n} X_i^k\\)</li>
-                            <li><strong>Sample \\(k\\)-th central moment</strong> (样本 \\(k\\) 阶中心矩): \\(M_k^* = \\frac{1}{n}\\sum_{i=1}^{n} (X_i - \\bar{X})^k\\)</li>
+ <li><strong>Sample mean</strong> : \\(\\bar{X} = \\frac{1}{n}\\sum_{i=1}^{n} X_i\\)</li>
+ <li><strong>Sample variance</strong> : \\(S^2 = \\frac{1}{n-1}\\sum_{i=1}^{n} (X_i - \\bar{X})^2\\)</li>
+ <li><strong>Sample standard deviation</strong> : \\(S = \\sqrt{S^2}\\)</li>
+ <li><strong>Sample \\(k\\)-th moment</strong> (\\(k\\)): \\(M_k = \\frac{1}{n}\\sum_{i=1}^{n} X_i^k\\)</li>
+ <li><strong>Sample \\(k\\)-th central moment</strong> (\\(k\\)): \\(M_k^* = \\frac{1}{n}\\sum_{i=1}^{n} (X_i - \\bar{X})^k\\)</li>
                         </ol>
                     </div>
                 </div>
@@ -334,7 +334,7 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>The reason for dividing by \\(n-1\\) instead of \\(n\\) in the sample variance is the "loss of degrees of freedom" (自由度损失): the \\(n\\) deviations \\(X_i - \\bar{X}\\) always sum to zero, so only \\(n-1\\) of them are free. Using \\(n\\) as the divisor would <strong>systematically underestimate</strong> the population variance. The visualization below demonstrates this point intuitively.</p>
+ <p>The reason for dividing by \\(n-1\\) instead of \\(n\\) in the sample variance is the "loss of degrees of freedom" : the \\(n\\) deviations \\(X_i - \\bar{X}\\) always sum to zero, so only \\(n-1\\) of them are free. Using \\(n\\) as the divisor would <strong>systematically underestimate</strong> the population variance. The visualization below demonstrates this point intuitively.</p>
                     </div>
                 </div>
 
@@ -356,7 +356,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'sampling-dist-xbar',
-                    title: 'Interactive: Sampling Distribution of the Sample Mean (样本均值的抽样分布)',
+ title:'Interactive: Sampling Distribution of the Sample Mean',
                     description: 'Repeatedly draw samples from the population and observe how the distribution of the sample mean concentrates around the population mean as n increases',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -522,7 +522,7 @@ window.CHAPTERS.push({
             id: 'ch04-sec03',
             title: 'Sampling Distributions from Normal Populations',
             content: `
-                <h2>Sampling Distributions from Normal Populations &#8201;|&#8201; 正态总体的抽样分布</h2>
+ <h2>Sampling Distributions from Normal Populations &#8201;|&#8201;</h2>
                 <p>The normal population is the most central model in statistical theory. This section systematically derives the three major sampling distributions &mdash; the \\(\\chi^2\\) distribution, the \\(t\\) distribution, and the \\(F\\) distribution &mdash; and shows how they arise naturally from normal samples.</p>
 
                 <div class="env-block definition">
@@ -530,7 +530,7 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>Let \\(Z_1, \\ldots, Z_k \\overset{\\text{iid}}{\\sim} N(0, 1)\\). Then</p>
                         \\[Q = \\sum_{i=1}^{k} Z_i^2 \\sim \\chi^2(k),\\]
-                        <p>and we say \\(Q\\) follows a <strong>chi-squared distribution</strong> (卡方分布) with \\(k\\) degrees of freedom. Its density is</p>
+ <p>and we say \\(Q\\) follows a <strong>chi-squared distribution</strong> with \\(k\\) degrees of freedom. Its density is</p>
                         \\[f_Q(x) = \\frac{1}{2^{k/2}\\Gamma(k/2)} x^{k/2 - 1} e^{-x/2}, \\quad x > 0.\\]
                         <p>Basic properties: \\(\\mathbb{E}[Q] = k\\), \\(\\operatorname{Var}(Q) = 2k\\).</p>
                     </div>
@@ -559,7 +559,7 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>Let \\(Z \\sim N(0,1)\\), \\(V \\sim \\chi^2(\\nu)\\), and \\(Z \\perp V\\). Define</p>
                         \\[T = \\frac{Z}{\\sqrt{V/\\nu}} \\sim t(\\nu),\\]
-                        <p>and we say \\(T\\) follows a <strong>Student's \\(t\\) distribution</strong> (\\(t\\) 分布) with \\(\\nu\\) degrees of freedom. Its density is</p>
+ <p>and we say \\(T\\) follows a <strong>Student's \\(t\\) distribution</strong> (\\(t\\)) with \\(\\nu\\) degrees of freedom. Its density is</p>
                         \\[f_T(x) = \\frac{\\Gamma\\!\\left(\\frac{\\nu+1}{2}\\right)}{\\sqrt{\\nu\\pi}\\;\\Gamma\\!\\left(\\frac{\\nu}{2}\\right)} \\left(1 + \\frac{x^2}{\\nu}\\right)^{\\!-(\\nu+1)/2}.\\]
                     </div>
                 </div>
@@ -576,7 +576,7 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>Let \\(U \\sim \\chi^2(d_1)\\), \\(V \\sim \\chi^2(d_2)\\), and \\(U \\perp V\\). Define</p>
                         \\[W = \\frac{U/d_1}{V/d_2} \\sim F(d_1, d_2),\\]
-                        <p>and we say \\(W\\) follows an <strong>\\(F\\) distribution</strong> (\\(F\\) 分布) with degrees of freedom \\((d_1, d_2)\\). Note that \\(T \\sim t(\\nu)\\) implies \\(T^2 \\sim F(1, \\nu)\\).</p>
+ <p>and we say \\(W\\) follows an <strong>\\(F\\) distribution</strong> (\\(F\\)) with degrees of freedom \\((d_1, d_2)\\). Note that \\(T \\sim t(\\nu)\\) implies \\(T^2 \\sim F(1, \\nu)\\).</p>
                     </div>
                 </div>
 
@@ -619,7 +619,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 't-distribution-emergence',
-                    title: 'Interactive: Birth of the t Distribution (t 分布的诞生)',
+ title:'Interactive: Birth of the t Distribution (t)',
                     description: 'Visualize how the chi-squared, t, and F distributions arise from normal samples, and how the t distribution approaches the normal as degrees of freedom increase',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -936,19 +936,19 @@ window.CHAPTERS.push({
             id: 'ch04-sec04',
             title: 'Order Statistics',
             content: `
-                <h2>Order Statistics &#8201;|&#8201; 顺序统计量</h2>
-                <p>The statistics obtained by sorting a sample in increasing order are called <strong>order statistics</strong> (顺序统计量). They form the foundation of nonparametric statistics and provide key tools for quantile estimation, extreme value analysis, and more.</p>
+ <h2>Order Statistics &#8201;|&#8201;</h2>
+ <p>The statistics obtained by sorting a sample in increasing order are called <strong>order statistics</strong>. They form the foundation of nonparametric statistics and provide key tools for quantile estimation, extreme value analysis, and more.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 4.9 (Order Statistics)</div>
                     <div class="env-body">
                         <p>Let \\(X_1, \\ldots, X_n\\) be a random sample from a continuous distribution \\(F\\). Arrange the sample values in increasing order:</p>
                         \\[X_{(1)} \\le X_{(2)} \\le \\cdots \\le X_{(n)},\\]
-                        <p>then \\(X_{(k)}\\) is called the \\(k\\)-th <strong>order statistic</strong> (第 \\(k\\) 个顺序统计量). In particular:</p>
+ <p>then \\(X_{(k)}\\) is called the \\(k\\)-th <strong>order statistic</strong> (\\(k\\)). In particular:</p>
                         <ul>
                             <li>\\(X_{(1)} = \\min_i X_i\\): the minimum order statistic</li>
                             <li>\\(X_{(n)} = \\max_i X_i\\): the maximum order statistic</li>
-                            <li>\\(R = X_{(n)} - X_{(1)}\\): the sample range (样本极差)</li>
+ <li>\\(R = X_{(n)} - X_{(1)}\\): the sample range </li>
                         </ul>
                     </div>
                 </div>
@@ -1030,7 +1030,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'order-stats-pdf',
-                    title: 'Interactive: Density of Order Statistics (顺序统计量的密度)',
+ title:'Interactive: Density of Order Statistics',
                     description: 'Choose the sample size and order k to observe the theoretical density of X_(k) and compare with a simulation histogram',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {

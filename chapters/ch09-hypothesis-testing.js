@@ -13,18 +13,18 @@ window.CHAPTERS.push({
             id: 'ch09-sec01',
             title: 'Basic Framework of Hypothesis Testing',
             content: `
-                <h2>Basic Framework of Hypothesis Testing 检验的基本框架</h2>
+ <h2>Basic Framework of Hypothesis Testing</h2>
 
-                <p>In statistical inference, we often need to choose between two opposing hypotheses. Hypothesis testing (假设检验) provides a systematic decision framework: given observed data, we determine whether the data is compatible with a specific hypothesis.</p>
+ <p>In statistical inference, we often need to choose between two opposing hypotheses. Hypothesis testing provides a systematic decision framework: given observed data, we determine whether the data is compatible with a specific hypothesis.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 9.1 (Statistical Hypothesis)</div>
                     <div class="env-body">
-                        <p>Let the sample \\(X_1, \\ldots, X_n\\) come from a parametric family \\(\\{f(x; \\theta) : \\theta \\in \\Theta\\}\\). A <strong>statistical hypothesis</strong> (统计假设) is a statement about the parameter \\(\\theta\\), i.e., a subset of \\(\\Theta\\).</p>
+ <p>Let the sample \\(X_1, \\ldots, X_n\\) come from a parametric family \\(\\{f(x; \\theta) : \\theta \\in \\Theta\\}\\). A <strong>statistical hypothesis</strong> is a statement about the parameter \\(\\theta\\), i.e., a subset of \\(\\Theta\\).</p>
                         <p>A hypothesis testing problem consists of a pair of hypotheses:</p>
                         <ul>
-                            <li><strong>Null hypothesis</strong> (原假设): \\(H_0: \\theta \\in \\Theta_0\\)</li>
-                            <li><strong>Alternative hypothesis</strong> (备择假设): \\(H_1: \\theta \\in \\Theta_1\\)</li>
+ <li><strong>Null hypothesis</strong> : \\(H_0: \\theta \\in \\Theta_0\\)</li>
+ <li><strong>Alternative hypothesis</strong> : \\(H_1: \\theta \\in \\Theta_1\\)</li>
                         </ul>
                         <p>where \\(\\Theta_0 \\cap \\Theta_1 = \\emptyset\\), and usually \\(\\Theta_0 \\cup \\Theta_1 = \\Theta\\).</p>
                     </div>
@@ -33,7 +33,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 9.2 (Simple and Composite Hypotheses)</div>
                     <div class="env-body">
-                        <p>If \\(\\Theta_0\\) contains only a single point (i.e., \\(\\Theta_0 = \\{\\theta_0\\}\\)), then \\(H_0\\) is called a <strong>simple hypothesis</strong> (简单假设); if \\(\\Theta_0\\) contains more than one point, it is called a <strong>composite hypothesis</strong> (复合假设). The same applies to \\(H_1\\).</p>
+ <p>If \\(\\Theta_0\\) contains only a single point (i.e., \\(\\Theta_0 = \\{\\theta_0\\}\\)), then \\(H_0\\) is called a <strong>simple hypothesis</strong>; if \\(\\Theta_0\\) contains more than one point, it is called a <strong>composite hypothesis</strong>. The same applies to \\(H_1\\).</p>
                     </div>
                 </div>
 
@@ -52,11 +52,11 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 9.4 (Test Statistic and Rejection Region)</div>
                     <div class="env-body">
-                        <p>A <strong>hypothesis test</strong> (假设检验) consists of three components:</p>
+ <p>A <strong>hypothesis test</strong> consists of three components:</p>
                         <ol>
-                            <li><strong>Test statistic</strong> (检验统计量): A statistic \\(T(X_1, \\ldots, X_n)\\) that summarizes the information in the data relevant to the hypotheses.</li>
-                            <li><strong>Rejection region</strong> (拒绝域, also called critical region): A subset \\(R\\) of the range of \\(T\\).</li>
-                            <li><strong>Decision rule</strong> (决策规则): If \\(T \\in R\\), reject \\(H_0\\); otherwise, do not reject \\(H_0\\).</li>
+ <li><strong>Test statistic</strong> : A statistic \\(T(X_1, \\ldots, X_n)\\) that summarizes the information in the data relevant to the hypotheses.</li>
+ <li><strong>Rejection region</strong> (also called critical region): A subset \\(R\\) of the range of \\(T\\).</li>
+ <li><strong>Decision rule</strong> : If \\(T \\in R\\), reject \\(H_0\\); otherwise, do not reject \\(H_0\\).</li>
                         </ol>
                     </div>
                 </div>
@@ -74,7 +74,7 @@ window.CHAPTERS.push({
                         <p>Let \\(X_1, \\ldots, X_n \\stackrel{iid}{\\sim} N(\\mu, \\sigma^2)\\) with \\(\\sigma^2\\) known. Test \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu \\neq \\mu_0\\).</p>
                         <p>Test statistic:</p>
                         \\[Z = \\frac{\\bar{X} - \\mu_0}{\\sigma / \\sqrt{n}}\\]
-                        <p>Under \\(H_0\\), \\(Z \\sim N(0,1)\\). For significance level (显著性水平) \\(\\alpha\\), the rejection region is:</p>
+ <p>Under \\(H_0\\), \\(Z \\sim N(0,1)\\). For significance level \\(\\alpha\\), the rejection region is:</p>
                         \\[R = \\{z : |z| > z_{\\alpha/2}\\}\\]
                         <p>where \\(z_{\\alpha/2}\\) is the upper \\(\\alpha/2\\) quantile of the standard normal distribution.</p>
                     </div>
@@ -92,8 +92,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'rejection-region-viz',
-                    title: 'Interactive: Rejection Region and Test Decision 拒绝域与检验决策',
-                    description: 'Rejection region under the standard normal distribution; drag the observed value to see the test decision 标准正态分布下的拒绝域，拖动观测值查看检验决策',
+ title:'Interactive: Rejection Region and Test Decision',
+ description:'Rejection region under the standard normal distribution; drag the observed value to see the test decision',
                     setup: function(container, controls) {
                         const viz = new VizEngine(container, {
                             width: 560, height: 380,
@@ -202,7 +202,7 @@ window.CHAPTERS.push({
             id: 'ch09-sec02',
             title: 'Type I/II Errors and Significance Level',
             content: `
-                <h2>Type I/II Errors and Significance Level 两类错误与显著性水平</h2>
+ <h2>Type I/II Errors and Significance Level</h2>
 
                 <p>Any hypothesis test can commit two types of errors. Understanding and controlling these errors is at the core of hypothesis testing theory.</p>
 
@@ -211,9 +211,9 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>Given a test of \\(H_0\\) vs \\(H_1\\):</p>
                         <ul>
-                            <li><strong>Type I error</strong> (第一类错误): Rejecting \\(H_0\\) when \\(H_0\\) is true ("false positive"). Its probability is
+ <li><strong>Type I error</strong> : Rejecting \\(H_0\\) when \\(H_0\\) is true ("false positive"). Its probability is
                             \\[\\alpha(\\theta) = P_{\\theta}(\\text{Reject } H_0), \\quad \\theta \\in \\Theta_0\\]</li>
-                            <li><strong>Type II error</strong> (第二类错误): Failing to reject \\(H_0\\) when \\(H_1\\) is true ("false negative"). Its probability is
+ <li><strong>Type II error</strong> : Failing to reject \\(H_0\\) when \\(H_1\\) is true ("false negative"). Its probability is
                             \\[\\beta(\\theta) = P_{\\theta}(\\text{Fail to reject } H_0), \\quad \\theta \\in \\Theta_1\\]</li>
                         </ul>
                     </div>
@@ -222,9 +222,9 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 9.7 (Size and Level of a Test)</div>
                     <div class="env-body">
-                        <p>The <strong>size</strong> (大小) of a test is defined as:</p>
+ <p>The <strong>size</strong> of a test is defined as:</p>
                         \\[\\alpha^* = \\sup_{\\theta \\in \\Theta_0} \\alpha(\\theta) = \\sup_{\\theta \\in \\Theta_0} P_{\\theta}(\\text{Reject } H_0)\\]
-                        <p>If \\(\\alpha^* \\leq \\alpha\\), the test is called a <strong>level</strong> (水平) \\(\\alpha\\) <strong>test</strong>. When \\(H_0\\) is a simple hypothesis, the size equals the Type I error probability: \\(\\alpha^* = P_{\\theta_0}(\\text{Reject } H_0)\\).</p>
+ <p>If \\(\\alpha^* \\leq \\alpha\\), the test is called a <strong>level</strong> \\(\\alpha\\) <strong>test</strong>. When \\(H_0\\) is a simple hypothesis, the size equals the Type I error probability: \\(\\alpha^* = P_{\\theta_0}(\\text{Reject } H_0)\\).</p>
                     </div>
                 </div>
 
@@ -275,8 +275,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'alpha-beta-tradeoff-viz',
-                    title: 'Interactive: Type I/II Error Trade-off 两类错误的权衡',
-                    description: 'Drag the threshold to observe how alpha and beta change inversely 拖动阈值观察 alpha 和 beta 如何反向变化',
+ title:'Interactive: Type I/II Error Trade-off',
+ description:'Drag the threshold to observe how alpha and beta change inverselyalphabeta',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -373,9 +373,9 @@ window.CHAPTERS.push({
             id: 'ch09-sec03',
             title: 'The p-Value',
             content: `
-                <h2>The p-Value p值</h2>
+ <h2>The p-Value p</h2>
 
-                <p>The p-value (p值) is one of the most commonly used — and most commonly misunderstood — concepts in hypothesis testing. It converts the observed value of the test statistic into a probability measure, avoiding the need to fix the significance level in advance.</p>
+ <p>The p-value (p) is one of the most commonly used — and most commonly misunderstood — concepts in hypothesis testing. It converts the observed value of the test statistic into a probability measure, avoiding the need to fix the significance level in advance.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 9.10 (p-Value)</div>
@@ -454,8 +454,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'pvalue-histogram-viz',
-                    title: 'Interactive: p-Value Distribution — Histogram under H\u2080 vs H\u2081 p值分布',
-                    description: 'Simulate many tests to observe that p-values are uniform under H\u2080 and skewed left under H\u2081 模拟多次检验，观察p值在H\u2080下均匀分布、在H\u2081下偏左',
+ title:'Interactive: p-Value Distribution — Histogram under H\u2080 vs H\u2081 p',
+ description:'Simulate many tests to observe that p-values are uniform under H\u2080 and skewed left under H\u2081pH\u2080H\u2081',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -627,14 +627,14 @@ window.CHAPTERS.push({
             id: 'ch09-sec04',
             title: 'Power of a Test',
             content: `
-                <h2>Power of a Test 检验功效</h2>
+ <h2>Power of a Test</h2>
 
-                <p>Power (功效) measures the ability of a test to correctly reject the null hypothesis when the alternative hypothesis is true. High power means that if an effect truly exists, the test has a high probability of detecting it.</p>
+ <p>Power measures the ability of a test to correctly reject the null hypothesis when the alternative hypothesis is true. High power means that if an effect truly exists, the test has a high probability of detecting it.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 9.14 (Power Function)</div>
                     <div class="env-body">
-                        <p>The <strong>power function</strong> (功效函数) of a test is defined as:</p>
+ <p>The <strong>power function</strong> of a test is defined as:</p>
                         \\[\\pi(\\theta) = P_{\\theta}(\\text{Reject } H_0), \\quad \\theta \\in \\Theta\\]
                         <p>The power function completely characterizes the test's performance across all parameter values:</p>
                         <ul>
@@ -669,7 +669,7 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>For the Z-test of \\(H_0: \\mu = \\mu_0\\) vs \\(H_1: \\mu \\neq \\mu_0\\), the power \\(\\pi(\\mu)\\) increases when:</p>
                         <ol>
-                            <li><strong>Effect size</strong> (效应量) \\(|\\mu - \\mu_0|\\) increases: the farther the true parameter is from \\(H_0\\), the easier it is to detect.</li>
+ <li><strong>Effect size</strong> \\(|\\mu - \\mu_0|\\) increases: the farther the true parameter is from \\(H_0\\), the easier it is to detect.</li>
                             <li><strong>Sample size \\(n\\)</strong> increases: more data provides more information.</li>
                             <li><strong>Significance level \\(\\alpha\\)</strong> increases: the rejection region expands, making it easier to reject \\(H_0\\).</li>
                             <li><strong>Variance \\(\\sigma^2\\)</strong> decreases: less noise makes the signal clearer.</li>
@@ -695,7 +695,7 @@ window.CHAPTERS.push({
                 <div class="env-block proof">
                     <div class="env-title">Proof (Sketch)</div>
                     <div class="env-body">
-                        <p>Exponential families possess the <strong>monotone likelihood ratio</strong> (MLR, 单调似然比) property: for \\(\\theta_2 > \\theta_1\\), the likelihood ratio \\(f(x|\\theta_2)/f(x|\\theta_1)\\) is an increasing function of \\(T(x)\\). This means the larger \\(T\\) is, the more it "supports" a larger \\(\\theta\\).</p>
+ <p>Exponential families possess the <strong>monotone likelihood ratio</strong> (MLR) property: for \\(\\theta_2> \\theta_1\\), the likelihood ratio \\(f(x|\\theta_2)/f(x|\\theta_1)\\) is an increasing function of \\(T(x)\\). This means the larger \\(T\\) is, the more it "supports" a larger \\(\\theta\\).</p>
                         <p>Formally, using the Neyman-Pearson lemma (detailed in Chapter 10), when \\(\\eta(\\theta)\\) is increasing, for any \\(\\theta_2 > \\theta_1\\) we have \\(P_{\\theta_2}(T > c) > P_{\\theta_1}(T > c)\\), i.e., \\(\\pi(\\theta_2) > \\pi(\\theta_1)\\).</p>
                         <div class="qed">∎</div>
                     </div>
@@ -704,7 +704,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 9.19 (Unbiased Test)</div>
                     <div class="env-body">
-                        <p>A test \\(\\delta\\) is called <strong>unbiased</strong> (无偏的) if for all \\(\\theta \\in \\Theta_1\\):</p>
+ <p>A test \\(\\delta\\) is called <strong>unbiased</strong> if for all \\(\\theta \\in \\Theta_1\\):</p>
                         \\[\\pi(\\theta) \\geq \\sup_{\\theta' \\in \\Theta_0} \\pi(\\theta') = \\alpha^*\\]
                         <p>That is, the probability of rejection under the alternative is no less than the maximum probability of rejection under the null. An unbiased test guarantees that "the test is at least as good as random guessing."</p>
                     </div>
@@ -724,8 +724,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'power-function-viz',
-                    title: 'Interactive: Power Function pi(mu) 功效函数',
-                    description: 'Observe how the power function changes with sample size and significance level 观察功效函数如何随样本量和显著性水平变化',
+ title:'Interactive: Power Function pi(mu)',
+ description:'Observe how the power function changes with sample size and significance level',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 380,
@@ -805,8 +805,8 @@ window.CHAPTERS.push({
                 },
                 {
                     id: 'power-factors-viz',
-                    title: 'Interactive: Four Factors Affecting Power 功效的四大影响因素',
-                    description: 'Adjust n, alpha, effect size, and sigma to observe how power changes 调节n, alpha, 效应量, sigma观察功效的变化',
+ title:'Interactive: Four Factors Affecting Power',
+ description:'Adjust n, alpha, effect size, and sigma to observe how power changesn, alpha,, sigma',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 380,
@@ -923,9 +923,9 @@ window.CHAPTERS.push({
             id: 'ch09-sec05',
             title: 'Sample Size Determination',
             content: `
-                <h2>Sample Size Determination 样本量确定</h2>
+ <h2>Sample Size Determination</h2>
 
-                <p>At the experimental design stage, a key question is: how many samples are needed to detect an effect of interest with sufficient power? Power analysis (功效分析) answers this question by linking \\(\\alpha\\), power \\(1 - \\beta\\), effect size (效应量), and sample size.</p>
+ <p>At the experimental design stage, a key question is: how many samples are needed to detect an effect of interest with sufficient power? Power analysis answers this question by linking \\(\\alpha\\), power \\(1 - \\beta\\), effect size, and sample size.</p>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 9.20 (Sample Size Formula for the Z-test)</div>
@@ -956,7 +956,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 9.21 (Cohen's d — Standardized Effect Size)</div>
                     <div class="env-body">
-                        <p>The standardized effect size (标准化效应量) is defined as:</p>
+ <p>The standardized effect size is defined as:</p>
                         \\[d = \\frac{|\\mu_1 - \\mu_0|}{\\sigma}\\]
                         <p>Cohen's benchmarks: \\(d = 0.2\\) is a small effect, \\(d = 0.5\\) is a medium effect, \\(d = 0.8\\) is a large effect.</p>
                         <p>The sample size formula in terms of \\(d\\):</p>
@@ -977,7 +977,7 @@ window.CHAPTERS.push({
                 <div class="env-block remark">
                     <div class="env-title">Remark (Power Analysis for the t-test)</div>
                     <div class="env-body">
-                        <p>When \\(\\sigma\\) is unknown and the t-test is used, power analysis becomes more complex: the test statistic follows a noncentral t-distribution (非中心t分布) under \\(H_1\\). Exact computation requires numerical methods. In practice, the Z-test formula is often used as an approximation, which is quite accurate for large samples (\\(n > 30\\)).</p>
+ <p>When \\(\\sigma\\) is unknown and the t-test is used, power analysis becomes more complex: the test statistic follows a noncentral t-distribution (t) under \\(H_1\\). Exact computation requires numerical methods. In practice, the Z-test formula is often used as an approximation, which is quite accurate for large samples (\\(n> 30\\)).</p>
                         <p>The noncentrality parameter is \\(\\lambda = \\frac{\\mu_1 - \\mu_0}{\\sigma/\\sqrt{n}} = d\\sqrt{n}\\), and the t-statistic approximately follows \\(t_{n-1}(\\lambda)\\) under \\(H_1\\).</p>
                     </div>
                 </div>
@@ -994,8 +994,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'sample-size-calc-viz',
-                    title: 'Interactive: Sample Size Calculator 样本量计算器',
-                    description: 'Enter alpha, target power, and effect size to compute the required sample size and display the power curve 输入alpha、目标功效、效应量，计算所需样本量并显示功效曲线',
+ title:'Interactive: Sample Size Calculator',
+ description:'Enter alpha, target power, and effect size to compute the required sample size and display the power curvealpha',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,

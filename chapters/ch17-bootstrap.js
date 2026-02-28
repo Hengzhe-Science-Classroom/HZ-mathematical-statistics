@@ -10,14 +10,14 @@ window.CHAPTERS.push({
             id: 'ch17-sec01',
             title: 'The Bootstrap Principle',
             content: `
-                <h2>The Bootstrap Principle / Bootstrap 原理</h2>
+ <h2>The Bootstrap Principle</h2>
 
-                <p>The bootstrap is one of the most important computational methods in modern statistics, introduced by Bradley Efron in 1979. Its core idea is remarkably simple: <strong>replace the unknown population distribution \\(F\\) with the empirical distribution \\(\\hat{F}_n\\)</strong>, and approximate the sampling distribution of a statistic through resampling (重抽样).</p>
+ <p>The bootstrap is one of the most important computational methods in modern statistics, introduced by Bradley Efron in 1979. Its core idea is remarkably simple: <strong>replace the unknown population distribution \\(F\\) with the empirical distribution \\(\\hat{F}_n\\)</strong>, and approximate the sampling distribution of a statistic through resampling.</p>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition (Bootstrap World vs. Real World)</div>
                     <div class="env-body">
-                        <p>In the <strong>real world</strong>, we draw a sample \\(X_1, \\ldots, X_n\\) from an unknown distribution \\(F\\), then compute the statistic \\(\\hat{\\theta}_n = g(X_1, \\ldots, X_n)\\). We wish to know the sampling distribution (抽样分布) of \\(\\hat{\\theta}_n\\), but \\(F\\) is unknown.</p>
+ <p>In the <strong>real world</strong>, we draw a sample \\(X_1, \\ldots, X_n\\) from an unknown distribution \\(F\\), then compute the statistic \\(\\hat{\\theta}_n = g(X_1, \\ldots, X_n)\\). We wish to know the sampling distribution of \\(\\hat{\\theta}_n\\), but \\(F\\) is unknown.</p>
                         <p>In the <strong>bootstrap world</strong>, the empirical distribution \\(\\hat{F}_n\\) plays the role of \\(F\\). We repeatedly resample from \\(\\hat{F}_n\\) (i.e., sample <strong>with replacement</strong> from the original data), obtaining bootstrap samples \\(X_1^*, \\ldots, X_n^*\\), and compute \\(\\hat{\\theta}_n^* = g(X_1^*, \\ldots, X_n^*)\\). Repeating \\(B\\) times, the distribution of the bootstrap statistics approximates the sampling distribution of \\(\\hat{\\theta}_n\\).</p>
                     </div>
                 </div>
@@ -25,7 +25,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.1 (Empirical Distribution Function)</div>
                     <div class="env-body">
-                        <p>Let \\(X_1, \\ldots, X_n\\) be a random sample from distribution \\(F\\). The <strong>empirical distribution function</strong> (经验分布函数) is defined as</p>
+ <p>Let \\(X_1, \\ldots, X_n\\) be a random sample from distribution \\(F\\). The <strong>empirical distribution function</strong> is defined as</p>
                         \\[\\hat{F}_n(x) = \\frac{1}{n} \\sum_{i=1}^{n} \\mathbf{1}(X_i \\le x).\\]
                         <p>By the Glivenko–Cantelli theorem, \\(\\sup_x |\\hat{F}_n(x) - F(x)| \\xrightarrow{\\text{a.s.}} 0\\), i.e., \\(\\hat{F}_n\\) converges uniformly to \\(F\\).</p>
                     </div>
@@ -34,7 +34,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.2 (Nonparametric Bootstrap)</div>
                     <div class="env-body">
-                        <p>Let \\(\\mathbf{X} = (X_1, \\ldots, X_n)\\) be the observed data and \\(\\hat{\\theta}_n = T(\\mathbf{X})\\) the statistic of interest. The <strong>nonparametric bootstrap</strong> (非参数 Bootstrap) proceeds as follows:</p>
+ <p>Let \\(\\mathbf{X} = (X_1, \\ldots, X_n)\\) be the observed data and \\(\\hat{\\theta}_n = T(\\mathbf{X})\\) the statistic of interest. The <strong>nonparametric bootstrap</strong> (Bootstrap) proceeds as follows:</p>
                         <p><strong>Step 1.</strong> Draw \\(n\\) observations <strong>with replacement</strong> from \\(\\{X_1, \\ldots, X_n\\}\\) to obtain the bootstrap sample \\(\\mathbf{X}^* = (X_1^*, \\ldots, X_n^*)\\).</p>
                         <p><strong>Step 2.</strong> Compute the bootstrap statistic \\(\\hat{\\theta}_n^* = T(\\mathbf{X}^*)\\).</p>
                         <p><strong>Step 3.</strong> Repeat Steps 1–2 a total of \\(B\\) times to obtain \\(\\hat{\\theta}_n^{*(1)}, \\ldots, \\hat{\\theta}_n^{*(B)}\\).</p>
@@ -49,7 +49,7 @@ window.CHAPTERS.push({
                         <p><strong>Step 1.</strong> Generate \\(X_1^*, \\ldots, X_n^* \\sim F_{\\hat{\\theta}}\\) from the fitted model \\(F_{\\hat{\\theta}}\\).</p>
                         <p><strong>Step 2.</strong> Compute \\(\\hat{\\theta}^* = T(X_1^*, \\ldots, X_n^*)\\).</p>
                         <p><strong>Step 3.</strong> Repeat \\(B\\) times.</p>
-                        <p>The parametric bootstrap (参数 Bootstrap) is more efficient when the model is correctly specified, but may introduce bias when the model is misspecified.</p>
+ <p>The parametric bootstrap (Bootstrap) is more efficient when the model is correctly specified, but may introduce bias when the model is misspecified.</p>
                     </div>
                 </div>
 
@@ -58,7 +58,7 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>Let the distribution of \\(T_n = \\sqrt{n}(\\hat{\\theta}_n - \\theta)\\) converge to some continuous distribution. Under suitable regularity conditions, the bootstrap distribution</p>
                         \\[T_n^* = \\sqrt{n}(\\hat{\\theta}_n^* - \\hat{\\theta}_n)\\]
-                        <p>conditional on the data converges almost surely to the limiting distribution of \\(T_n\\). That is, the bootstrap is <strong>consistent</strong> (一致的).</p>
+ <p>conditional on the data converges almost surely to the limiting distribution of \\(T_n\\). That is, the bootstrap is <strong>consistent</strong>.</p>
                     </div>
                 </div>
 
@@ -76,7 +76,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'bootstrap-resample-viz',
-                    title: 'Interactive: Bootstrap Resampling Animation / Bootstrap 重抽样动画',
+ title:'Interactive: Bootstrap Resampling Animation',
                     description: 'Observe the process of sampling with replacement from the original sample and build the bootstrap distribution of the statistic',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 420, scale: 1, originX: 60, originY: 210});
@@ -89,8 +89,8 @@ window.CHAPTERS.push({
                         var running = false;
                         var speed = 50;
 
-                        var bSlider = VizEngine.createSlider(controls, 'Bootstrap Replicates B / 次数 B', 50, 500, B, 50, function(v) { B = Math.round(v); });
-                        var speedSlider = VizEngine.createSlider(controls, 'Speed / 速度', 1, 100, speed, 1, function(v) { speed = Math.round(v); });
+ var bSlider = VizEngine.createSlider(controls,'Bootstrap Replicates BB', 50, 500, B, 50, function(v) { B = Math.round(v); });
+ var speedSlider = VizEngine.createSlider(controls,'Speed', 1, 100, speed, 1, function(v) { speed = Math.round(v); });
 
                         VizEngine.createButton(controls, 'Start Bootstrap', function() {
                             bootMeans = [];
@@ -279,14 +279,14 @@ window.CHAPTERS.push({
             id: 'ch17-sec02',
             title: 'Bootstrap Confidence Intervals',
             content: `
-                <h2>Bootstrap Confidence Intervals / Bootstrap 置信区间</h2>
+ <h2>Bootstrap Confidence Intervals</h2>
 
-                <p>One of the most common applications of the bootstrap is constructing confidence intervals (置信区间). We introduce three main methods: the percentile method, the basic bootstrap method, and the BCa method.</p>
+ <p>One of the most common applications of the bootstrap is constructing confidence intervals. We introduce three main methods: the percentile method, the basic bootstrap method, and the BCa method.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.6 (Percentile Confidence Interval)</div>
                     <div class="env-body">
-                        <p>Let \\(\\hat{\\theta}^{*(1)}, \\ldots, \\hat{\\theta}^{*(B)}\\) be the \\(B\\) bootstrap statistics. The <strong>percentile method</strong> (百分位法) \\(1 - \\alpha\\) confidence interval is</p>
+ <p>Let \\(\\hat{\\theta}^{*(1)}, \\ldots, \\hat{\\theta}^{*(B)}\\) be the \\(B\\) bootstrap statistics. The <strong>percentile method</strong> \\(1 - \\alpha\\) confidence interval is</p>
                         \\[C_{\\text{perc}} = \\left[\\hat{\\theta}^*_{(\\alpha/2)}, \\; \\hat{\\theta}^*_{(1-\\alpha/2)}\\right],\\]
                         <p>where \\(\\hat{\\theta}^*_{(q)}\\) denotes the \\(q\\)-quantile of the bootstrap statistics.</p>
                     </div>
@@ -302,7 +302,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.7 (Basic Bootstrap Confidence Interval)</div>
                     <div class="env-body">
-                        <p>The <strong>basic bootstrap method</strong> (基本 Bootstrap 法, also called the pivotal bootstrap) approximates the distribution of \\(\\hat{\\theta} - \\theta\\) using the bootstrap pivot \\(\\hat{\\theta}^* - \\hat{\\theta}\\), yielding</p>
+ <p>The <strong>basic bootstrap method</strong> (Bootstrap, also called the pivotal bootstrap) approximates the distribution of \\(\\hat{\\theta} - \\theta\\) using the bootstrap pivot \\(\\hat{\\theta}^* - \\hat{\\theta}\\), yielding</p>
                         \\[C_{\\text{basic}} = \\left[2\\hat{\\theta} - \\hat{\\theta}^*_{(1-\\alpha/2)}, \\; 2\\hat{\\theta} - \\hat{\\theta}^*_{(\\alpha/2)}\\right].\\]
                     </div>
                 </div>
@@ -317,7 +317,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.9 (BCa Confidence Interval)</div>
                     <div class="env-body">
-                        <p>The <strong>BCa method</strong> (bias-corrected and accelerated, 偏差校正加速法) applies bias and acceleration corrections to the percentile method. The \\(1 - \\alpha\\) BCa confidence interval is</p>
+ <p>The <strong>BCa method</strong> (bias-corrected and accelerated) applies bias and acceleration corrections to the percentile method. The \\(1 - \\alpha\\) BCa confidence interval is</p>
                         \\[C_{\\text{BCa}} = \\left[\\hat{\\theta}^*_{(\\alpha_1)}, \\; \\hat{\\theta}^*_{(\\alpha_2)}\\right],\\]
                         <p>where</p>
                         \\[\\alpha_1 = \\Phi\\!\\left(\\hat{z}_0 + \\frac{\\hat{z}_0 + z_{\\alpha/2}}{1 - \\hat{a}(\\hat{z}_0 + z_{\\alpha/2})}\\right), \\quad \\alpha_2 = \\Phi\\!\\left(\\hat{z}_0 + \\frac{\\hat{z}_0 + z_{1-\\alpha/2}}{1 - \\hat{a}(\\hat{z}_0 + z_{1-\\alpha/2})}\\right),\\]
@@ -349,7 +349,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'bootstrap-ci-viz',
-                    title: 'Interactive: Bootstrap Confidence Interval Comparison / Bootstrap 置信区间比较',
+ title:'Interactive: Bootstrap Confidence Interval Comparison',
                     description: 'Compare confidence intervals constructed by the percentile, basic bootstrap, and BCa methods',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 420, scale: 1, originX: 60, originY: 210});
@@ -357,8 +357,8 @@ window.CHAPTERS.push({
                         var B = 1000;
                         var alpha = 0.05;
 
-                        VizEngine.createSlider(controls, 'Sample Size n / 样本量 n', 10, 50, n, 5, function(v) { n = Math.round(v); runBootstrap(); });
-                        VizEngine.createSlider(controls, 'Confidence Level 1-a / 置信水平', 0.80, 0.99, 1 - alpha, 0.01, function(v) { alpha = +(1 - v).toFixed(2); runBootstrap(); });
+ VizEngine.createSlider(controls,'Sample Size nn', 10, 50, n, 5, function(v) { n = Math.round(v); runBootstrap; });
+ VizEngine.createSlider(controls,'Confidence Level 1-a', 0.80, 0.99, 1 - alpha, 0.01, function(v) { alpha = +(1 - v).toFixed(2); runBootstrap; });
                         VizEngine.createButton(controls, 'Resample', function() { runBootstrap(); });
 
                         var data, bootMeans, percCI, basicCI, bcaCI, thetaHat;
@@ -589,9 +589,9 @@ window.CHAPTERS.push({
             id: 'ch17-sec03',
             title: 'Bootstrap Hypothesis Testing',
             content: `
-                <h2>Bootstrap Hypothesis Testing / Bootstrap 假设检验</h2>
+ <h2>Bootstrap Hypothesis Testing</h2>
 
-                <p>The bootstrap is useful not only for estimation and confidence intervals, but also for hypothesis testing (假设检验). The core idea is to construct the null distribution of the test statistic via resampling.</p>
+ <p>The bootstrap is useful not only for estimation and confidence intervals, but also for hypothesis testing. The core idea is to construct the null distribution of the test statistic via resampling.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.11 (Bootstrap p-value)</div>
@@ -613,7 +613,7 @@ window.CHAPTERS.push({
                     <div class="env-title">Definition 17.12 (Permutation Test)</div>
                     <div class="env-body">
                         <p>Consider the two-sample problem: \\(X_1, \\ldots, X_m \\sim F\\), \\(Y_1, \\ldots, Y_n \\sim G\\), testing \\(H_0: F = G\\).</p>
-                        <p>The <strong>permutation test</strong> (置换检验) proceeds as follows:</p>
+ <p>The <strong>permutation test</strong> proceeds as follows:</p>
                         <p><strong>Step 1.</strong> Compute the observed statistic \\(T_{\\text{obs}}\\) (e.g., the difference of group means \\(\\bar{X} - \\bar{Y}\\)).</p>
                         <p><strong>Step 2.</strong> Pool all \\(m + n\\) observations and randomly split them into groups of size \\(m\\) and \\(n\\).</p>
                         <p><strong>Step 3.</strong> Compute the statistic \\(T^{*(b)}\\) for each permutation.</p>
@@ -648,7 +648,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'bootstrap-test-viz',
-                    title: 'Interactive: Bootstrap / Permutation Test / Bootstrap / 置换检验',
+ title:'Interactive: Bootstrap / Permutation Test',
                     description: 'Construct the null distribution of the test statistic via resampling and compute the p-value',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 420, scale: 1, originX: 60, originY: 210});
@@ -854,9 +854,9 @@ window.CHAPTERS.push({
             id: 'ch17-sec04',
             title: 'Jackknife and Cross-Validation',
             content: `
-                <h2>Jackknife and Cross-Validation / Jackknife 与交叉验证</h2>
+ <h2>Jackknife and Cross-Validation</h2>
 
-                <p>The jackknife (刀切法) is a precursor to the bootstrap, developed by Quenouille (1949) and Tukey (1958). It estimates bias and variance by systematically deleting one observation at a time. Cross-validation (交叉验证) is the standard tool for evaluating model performance in predictive modeling.</p>
+ <p>The jackknife is a precursor to the bootstrap, developed by Quenouille (1949) and Tukey (1958). It estimates bias and variance by systematically deleting one observation at a time. Cross-validation is the standard tool for evaluating model performance in predictive modeling.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.15 (Jackknife Estimator)</div>
@@ -895,22 +895,22 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.17 (Jackknife Pseudovalues and Influence)</div>
                     <div class="env-body">
-                        <p>The <strong>jackknife pseudovalue</strong> (伪值) for the \\(i\\)-th observation is defined as</p>
+ <p>The <strong>jackknife pseudovalue</strong> for the \\(i\\)-th observation is defined as</p>
                         \\[\\tilde{\\theta}_i = n\\hat{\\theta} - (n-1)\\hat{\\theta}_{(i)}.\\]
-                        <p>Note that \\(\\tilde{\\theta}_{\\text{jack}} = \\frac{1}{n}\\sum_{i=1}^{n} \\tilde{\\theta}_i\\). The pseudovalue measures the <strong>influence</strong> (影响) of the \\(i\\)-th observation on the overall estimate.</p>
+ <p>Note that \\(\\tilde{\\theta}_{\\text{jack}} = \\frac{1}{n}\\sum_{i=1}^{n} \\tilde{\\theta}_i\\). The pseudovalue measures the <strong>influence</strong> of the \\(i\\)-th observation on the overall estimate.</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 17.18 (Cross-Validation)</div>
                     <div class="env-body">
-                        <p>Given data \\(\\mathcal{D} = \\{(x_i, y_i)\\}_{i=1}^{n}\\) and a model \\(\\hat{f}\\), <strong>\\(K\\)-fold cross-validation</strong> (K 折交叉验证) proceeds as follows:</p>
+ <p>Given data \\(\\mathcal{D} = \\{(x_i, y_i)\\}_{i=1}^{n}\\) and a model \\(\\hat{f}\\), <strong>\\(K\\)-fold cross-validation</strong> (K) proceeds as follows:</p>
                         <p><strong>Step 1.</strong> Randomly partition the data into \\(K\\) roughly equal subsets \\(\\mathcal{D}_1, \\ldots, \\mathcal{D}_K\\).</p>
                         <p><strong>Step 2.</strong> For \\(k = 1, \\ldots, K\\): train the model \\(\\hat{f}^{(-k)}\\) on \\(\\mathcal{D} \\setminus \\mathcal{D}_k\\) and compute the prediction error on \\(\\mathcal{D}_k\\).</p>
                         <p><strong>Step 3.</strong> The cross-validation error is</p>
                         \\[\\text{CV}(K) = \\frac{1}{n} \\sum_{k=1}^{K} \\sum_{i \\in \\mathcal{D}_k} L(y_i, \\hat{f}^{(-k)}(x_i)),\\]
                         <p>where \\(L\\) is the loss function (e.g., squared error \\(L(y, \\hat{y}) = (y - \\hat{y})^2\\)).</p>
-                        <p>When \\(K = n\\), this is <strong>leave-one-out cross-validation</strong> (LOOCV, 留一交叉验证).</p>
+ <p>When \\(K = n\\), this is <strong>leave-one-out cross-validation</strong> (LOOCV).</p>
                     </div>
                 </div>
 
@@ -937,7 +937,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'jackknife-influence-viz',
-                    title: 'Interactive: Jackknife Influence Analysis / Jackknife 影响分析',
+ title:'Interactive: Jackknife Influence Analysis',
                     description: 'Delete observations one at a time and observe how the estimate changes; identify influential observations',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 400, scale: 1, originX: 60, originY: 200});
@@ -952,7 +952,7 @@ window.CHAPTERS.push({
                             data.sort(function(a, b) { return a - b; });
                         }
 
-                        VizEngine.createSlider(controls, 'Sample Size n / 样本量 n', 8, 25, n, 1, function(v) { n = Math.round(v); generateData(); highlightIdx = -1; draw(); });
+ VizEngine.createSlider(controls,'Sample Size nn', 8, 25, n, 1, function(v) { n = Math.round(v); generateData; highlightIdx = -1; draw; });
                         VizEngine.createButton(controls, 'Regenerate', function() { generateData(); highlightIdx = -1; draw(); });
 
                         generateData();
@@ -1111,7 +1111,7 @@ window.CHAPTERS.push({
                 },
                 {
                     id: 'cv-viz',
-                    title: 'Interactive: K-Fold Cross-Validation / K 折交叉验证',
+ title:'Interactive: K-Fold Cross-Validation',
                     description: 'Visualize K-fold CV data partitioning and prediction errors',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {width: 560, height: 380, scale: 1, originX: 60, originY: 190});
@@ -1131,7 +1131,7 @@ window.CHAPTERS.push({
                         }
                         generateRegData();
 
-                        VizEngine.createSlider(controls, 'K (Folds / 折数)', 2, n, K, 1, function(v) { K = Math.round(v); currentFold = -1; draw(); });
+ VizEngine.createSlider(controls,'K (Folds /)', 2, n, K, 1, function(v) { K = Math.round(v); currentFold = -1; draw; });
                         VizEngine.createButton(controls, 'Regenerate Data', function() { generateRegData(); currentFold = -1; draw(); });
                         VizEngine.createButton(controls, 'Next Fold', function() { currentFold = (currentFold + 1) % K; draw(); });
                         VizEngine.createButton(controls, 'Show All', function() { currentFold = -1; draw(); });

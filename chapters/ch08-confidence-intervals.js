@@ -13,23 +13,23 @@ window.CHAPTERS.push({
             id: 'ch08-sec01',
             title: 'The Concept of Confidence Intervals',
             content: `
-                <h2>The Concept of Confidence Intervals 置信区间的概念</h2>
+ <h2>The Concept of Confidence Intervals</h2>
 
-                <p>A point estimate provides a single "best guess" for a parameter, but it cannot tell us how accurate that guess is. A <strong>confidence interval</strong> (置信区间) quantifies estimation uncertainty by providing a random interval that covers the true parameter value with a specified probability.</p>
+ <p>A point estimate provides a single "best guess" for a parameter, but it cannot tell us how accurate that guess is. A <strong>confidence interval</strong> quantifies estimation uncertainty by providing a random interval that covers the true parameter value with a specified probability.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 8.1 (Confidence Interval)</div>
                     <div class="env-body">
                         <p>Let \\(X_1, \\ldots, X_n\\) be a random sample from a population with parameter \\(\\theta \\in \\Theta\\). If statistics \\(L = L(X_1,\\ldots,X_n)\\) and \\(U = U(X_1,\\ldots,X_n)\\) satisfy</p>
                         \\[P_{\\theta}(L \\leq \\theta \\leq U) \\geq 1 - \\alpha, \\quad \\forall \\theta \\in \\Theta,\\]
-                        <p>then the random interval \\([L, U]\\) is called a <strong>\\(1-\\alpha\\) confidence interval</strong> (置信区间) for \\(\\theta\\), and \\(1-\\alpha\\) is called the <strong>confidence level</strong> (置信水平).</p>
+ <p>then the random interval \\([L, U]\\) is called a <strong>\\(1-\\alpha\\) confidence interval</strong> for \\(\\theta\\), and \\(1-\\alpha\\) is called the <strong>confidence level</strong>.</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition: Frequentist Interpretation</div>
                     <div class="env-body">
-                        <p>The correct interpretation of a confidence interval is <strong>frequentist</strong> (频率学派): if we repeatedly draw samples infinitely many times and construct a 95% confidence interval each time, then 95% of these intervals will contain the true parameter \\(\\theta\\).</p>
+ <p>The correct interpretation of a confidence interval is <strong>frequentist</strong> : if we repeatedly draw samples infinitely many times and construct a 95% confidence interval each time, then 95% of these intervals will contain the true parameter \\(\\theta\\).</p>
                         <p>Note: for a <strong>specific computed</strong> interval \\([l, u]\\), one cannot say "\\(\\theta\\) falls in \\([l, u]\\) with 95% probability," because \\(\\theta\\) is a fixed constant and \\([l, u]\\) is a determined numerical value -- there is no randomness. The correct statement is: "we are 95% confident that this interval covers \\(\\theta\\)," where the "confidence" derives from the long-run performance of the method.</p>
                     </div>
                 </div>
@@ -37,7 +37,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 8.2 (Pivotal Quantity)</div>
                     <div class="env-body">
-                        <p>Let \\(Q = Q(X_1,\\ldots,X_n; \\theta)\\) be a function of the sample and the parameter. If the distribution of \\(Q\\) does not depend on any unknown parameter, then \\(Q\\) is called a <strong>pivotal quantity</strong> (枢轴量).</p>
+ <p>Let \\(Q = Q(X_1,\\ldots,X_n; \\theta)\\) be a function of the sample and the parameter. If the distribution of \\(Q\\) does not depend on any unknown parameter, then \\(Q\\) is called a <strong>pivotal quantity</strong>.</p>
                     </div>
                 </div>
 
@@ -89,9 +89,9 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 8.6 (Coverage Probability)</div>
                     <div class="env-body">
-                        <p>The <strong>coverage probability</strong> (覆盖概率) of a confidence interval \\([L, U]\\) is defined as</p>
+ <p>The <strong>coverage probability</strong> of a confidence interval \\([L, U]\\) is defined as</p>
                         \\[C(\\theta) = P_{\\theta}(L \\leq \\theta \\leq U).\\]
-                        <p>If \\(C(\\theta) \\geq 1-\\alpha\\) for all \\(\\theta\\), then \\([L,U]\\) is a valid \\(1-\\alpha\\) confidence interval. If \\(C(\\theta) = 1-\\alpha\\) holds for all \\(\\theta\\), the interval is called <strong>exact</strong> (精确的).</p>
+ <p>If \\(C(\\theta) \\geq 1-\\alpha\\) for all \\(\\theta\\), then \\([L,U]\\) is a valid \\(1-\\alpha\\) confidence interval. If \\(C(\\theta) = 1-\\alpha\\) holds for all \\(\\theta\\), the interval is called <strong>exact</strong>.</p>
                     </div>
                 </div>
 
@@ -107,7 +107,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'coverage-demo',
-                    title: 'Interactive Demo: Confidence Interval Coverage 置信区间覆盖率',
+ title:'Interactive Demo: Confidence Interval Coverage',
                     description: 'Generate 100 confidence intervals and observe which ones contain the true mean, tracking coverage rate',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -244,11 +244,11 @@ window.CHAPTERS.push({
             id: 'ch08-sec02',
             title: 'CIs for Normal Mean',
             content: `
-                <h2>CIs for Normal Mean 正态均值的区间估计</h2>
+ <h2>CIs for Normal Mean</h2>
 
                 <p>This section discusses interval estimation for the mean \\(\\mu\\) of a normal population, one of the most classical problems in statistical inference. Depending on whether the variance \\(\\sigma^2\\) is known, different pivotal quantities are required.</p>
 
-                <h3>Known Variance: The Z Interval 方差已知：Z 区间</h3>
+ <h3>Known Variance: The Z IntervalZ</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 8.7 (Z Confidence Interval)</div>
@@ -273,11 +273,11 @@ window.CHAPTERS.push({
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
                     <div class="env-body">
-                        <p>The half-width of the Z interval, \\(z_{\\alpha/2} \\cdot \\sigma/\\sqrt{n}\\), is also called the <strong>margin of error</strong> (误差界). Common values: when \\(\\alpha = 0.05\\), \\(z_{0.025} = 1.96\\); when \\(\\alpha = 0.01\\), \\(z_{0.005} = 2.576\\).</p>
+ <p>The half-width of the Z interval, \\(z_{\\alpha/2} \\cdot \\sigma/\\sqrt{n}\\), is also called the <strong>margin of error</strong>. Common values: when \\(\\alpha = 0.05\\), \\(z_{0.025} = 1.96\\); when \\(\\alpha = 0.01\\), \\(z_{0.005} = 2.576\\).</p>
                     </div>
                 </div>
 
-                <h3>Unknown Variance: The t Interval 方差未知：t 区间</h3>
+ <h3>Unknown Variance: The t Intervalt</h3>
 
                 <p>In practice, the variance \\(\\sigma^2\\) is usually unknown and must be replaced by the sample variance \\(S^2 = \\frac{1}{n-1}\\sum_{i=1}^n (X_i - \\bar{X})^2\\). In this case, the distribution of the pivotal quantity changes from the standard normal to Student's t distribution.</p>
 
@@ -321,7 +321,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'z-vs-t-intervals',
-                    title: 'Interactive Demo: Z Interval vs t Interval Z 区间 vs t 区间',
+ title:'Interactive Demo: Z Interval vs t Interval Zvs t',
                     description: 'Compare confidence interval widths when variance is known vs unknown; observe convergence as sample size grows',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -404,12 +404,12 @@ window.CHAPTERS.push({
                             viz.drawText('t interval', -4.2, yT, viz.colors.orange, 12, 'left');
 
                             // Info text
-                            viz.screenText('n = ' + n + '    df = ' + (n - 1), viz.width / 2, 18, viz.colors.white, 13);
-                            viz.screenText('Z half-width: ' + zHalf.toFixed(3) + '    t half-width: ' + tHalf.toFixed(3), viz.width / 2, 36, viz.colors.text, 11);
-                            viz.screenText('z_0.025 = ' + zCrit.toFixed(3) + '    t_0.025,' + (n - 1) + ' = ' + tCrit.toFixed(3), viz.width / 2, 52, viz.colors.text, 11);
+                            viz.screenText('n = ' + n + ' df = ' + (n - 1), viz.width / 2, 18, viz.colors.white, 13);
+                            viz.screenText('Z half-width: ' + zHalf.toFixed(3) + ' t half-width: ' + tHalf.toFixed(3), viz.width / 2, 36, viz.colors.text, 11);
+                            viz.screenText('z_0.025 = ' + zCrit.toFixed(3) + ' t_0.025,' + (n - 1) + ' = ' + tCrit.toFixed(3), viz.width / 2, 52, viz.colors.text, 11);
 
                             // Legend
-                            viz.screenText('Blue: N(0,1) density    Orange: t(' + (n - 1) + ') density', viz.width / 2, viz.height - 10, viz.colors.text, 10);
+                            viz.screenText('Blue: N(0,1) density Orange: t(' + (n - 1) + ') density', viz.width / 2, viz.height - 10, viz.colors.text, 10);
                         }
 
                         draw();
@@ -453,7 +453,7 @@ window.CHAPTERS.push({
             id: 'ch08-sec03',
             title: 'CIs for Normal Variance',
             content: `
-                <h2>CIs for Normal Variance 正态方差的区间估计</h2>
+ <h2>CIs for Normal Variance</h2>
 
                 <p>Beyond the mean \\(\\mu\\), the variance \\(\\sigma^2\\) is also of great importance in areas such as quality control and risk assessment. Constructing a confidence interval for \\(\\sigma^2\\) requires the \\(\\chi^2\\) distribution.</p>
 
@@ -518,7 +518,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'chi2-ci-viz',
-                    title: 'Interactive Demo: Chi-Squared Confidence Interval 卡方置信区间',
+ title:'Interactive Demo: Chi-Squared Confidence Interval',
                     description: 'Visualize the asymmetric confidence interval for variance on the chi-squared distribution',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -647,18 +647,18 @@ window.CHAPTERS.push({
             id: 'ch08-sec04',
             title: 'Two-Sample CIs',
             content: `
-                <h2>Two-Sample CIs 两样本区间估计</h2>
+ <h2>Two-Sample CIs</h2>
 
                 <p>Many practical problems require comparing parameters of two populations, such as comparing the efficacy of two drugs or the precision of two production lines. This section discusses interval estimation for differences of parameters from two normal populations.</p>
 
-                <h3>Difference of Means: Equal Variances (Pooled t Interval) 均值之差：方差相等</h3>
+ <h3>Difference of Means: Equal Variances (Pooled t Interval)</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 8.12 (Pooled t Interval)</div>
                     <div class="env-body">
                         <p>Let \\(X_1,\\ldots,X_{n_1} \\overset{\\text{iid}}{\\sim} N(\\mu_1, \\sigma^2)\\) and \\(Y_1,\\ldots,Y_{n_2} \\overset{\\text{iid}}{\\sim} N(\\mu_2, \\sigma^2)\\) be independent, with common but unknown variance \\(\\sigma^2\\). The \\(1-\\alpha\\) confidence interval for \\(\\mu_1 - \\mu_2\\) is</p>
                         \\[(\\bar{X} - \\bar{Y}) \\pm t_{\\alpha/2,\\, n_1+n_2-2} \\cdot S_p \\sqrt{\\frac{1}{n_1} + \\frac{1}{n_2}},\\]
-                        <p>where the <strong>pooled standard deviation</strong> (合并样本标准差) is</p>
+ <p>where the <strong>pooled standard deviation</strong> is</p>
                         \\[S_p = \\sqrt{\\frac{(n_1-1)S_1^2 + (n_2-1)S_2^2}{n_1 + n_2 - 2}}.\\]
                     </div>
                 </div>
@@ -675,7 +675,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Difference of Means: Unequal Variances (Welch's t Interval) 均值之差：方差不等</h3>
+ <h3>Difference of Means: Unequal Variances (Welch's t Interval)</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 8.13 (Welch's t Interval)</div>
@@ -694,7 +694,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Variance Ratio: The F Interval 方差之比：F 区间</h3>
+ <h3>Variance Ratio: The F IntervalF</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 8.14 (F Confidence Interval)</div>
@@ -715,7 +715,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Paired Samples 配对样本</h3>
+ <h3>Paired Samples</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 8.15 (Paired t Interval)</div>
@@ -738,7 +738,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'two-sample-ci-viz',
-                    title: 'Interactive Demo: Two-Sample CI Comparison 两样本置信区间比较',
+ title:'Interactive Demo: Two-Sample CI Comparison',
                     description: 'Compare coverage rates of Pooled t and Welch t methods under different variance ratios',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -897,11 +897,11 @@ window.CHAPTERS.push({
             id: 'ch08-sec05',
             title: 'Large-Sample Approximate CIs',
             content: `
-                <h2>Large-Sample Approximate CIs 大样本近似区间</h2>
+ <h2>Large-Sample Approximate CIs</h2>
 
                 <p>The exact confidence intervals discussed in previous sections rely on the normality assumption. When the population distribution is unknown or non-normal, we can use the asymptotic normality of maximum likelihood estimators to construct large-sample approximate confidence intervals.</p>
 
-                <h3>The Wald Interval Wald 区间</h3>
+ <h3>The Wald Interval Wald</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 8.16 (Wald Confidence Interval)</div>
@@ -922,7 +922,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Confidence Interval for a Proportion 比例的置信区间</h3>
+ <h3>Confidence Interval for a Proportion</h3>
 
                 <div class="env-block example">
                     <div class="env-title">Example 8.17 (Wald Interval for a Proportion)</div>
@@ -944,7 +944,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>The Wilson Score Interval Wilson Score 区间</h3>
+ <h3>The Wilson Score Interval Wilson Score</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 8.18 (Wilson Score Interval)</div>
@@ -983,7 +983,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Confidence Level vs Interval Width Trade-off 置信水平与区间宽度的权衡</h3>
+ <h3>Confidence Level vs Interval Width Trade-off</h3>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark: Confidence Level-Precision Trade-off</div>
@@ -1005,7 +1005,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'confidence-level-slider',
-                    title: 'Interactive Demo: Confidence Level and Interval Width 置信水平与区间宽度',
+ title:'Interactive Demo: Confidence Level and Interval Width',
                     description: 'Drag the confidence level slider to see how the interval width changes in real time',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -1071,8 +1071,8 @@ window.CHAPTERS.push({
 
                             // Info
                             viz.screenText('Confidence level: ' + (confLevel * 100).toFixed(1) + '%', viz.width / 2, 16, viz.colors.white, 14);
-                            viz.screenText('z = ' + zCrit.toFixed(3) + '    Half-width = ' + halfWidth.toFixed(3), viz.width / 2, 36, viz.colors.text, 12);
-                            viz.screenText('CI width = ' + (2 * halfWidth).toFixed(3) + '    (n=' + n + ', ' + String.fromCharCode(963) + '=' + sigma.toFixed(1) + ')', viz.width / 2, 54, viz.colors.text, 11);
+                            viz.screenText('z = ' + zCrit.toFixed(3) + ' Half-width = ' + halfWidth.toFixed(3), viz.width / 2, 36, viz.colors.text, 12);
+                            viz.screenText('CI width = ' + (2 * halfWidth).toFixed(3) + ' (n=' + n + ', ' + String.fromCharCode(963) + '=' + sigma.toFixed(1) + ')', viz.width / 2, 54, viz.colors.text, 11);
 
                             // Tail annotation
                             viz.screenText(String.fromCharCode(945) + '/2 = ' + (alpha / 2).toFixed(4), 50, viz.height - 70, viz.colors.red, 10, 'left');
@@ -1097,7 +1097,7 @@ window.CHAPTERS.push({
                 },
                 {
                     id: 'wald-vs-wilson',
-                    title: 'Interactive Demo: Wald vs Wilson Score Interval Wald vs Wilson Score 区间',
+ title:'Interactive Demo: Wald vs Wilson Score Interval Wald vs Wilson Score',
                     description: 'Compare two confidence intervals for proportions; observe the Wald interval degeneracy at extreme p',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -1171,7 +1171,7 @@ window.CHAPTERS.push({
 
                             // Header
                             viz.screenText('Wald vs Wilson Score CI for proportion (95%)', viz.width / 2, 16, viz.colors.white, 14);
-                            viz.screenText('n = ' + n + '    X = ' + x + '    p-hat = ' + phat.toFixed(3), viz.width / 2, 36, viz.colors.text, 11);
+                            viz.screenText('n = ' + n + ' X = ' + x + ' p-hat = ' + phat.toFixed(3), viz.width / 2, 36, viz.colors.text, 11);
                         }
 
                         draw();

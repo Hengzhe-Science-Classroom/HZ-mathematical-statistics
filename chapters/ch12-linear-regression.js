@@ -12,19 +12,19 @@ window.CHAPTERS.push({
             id: 'ch12-sec01',
             title: 'Simple Linear Regression Model',
             content: `
-                <h2>Simple Linear Regression Model 简单线性回归模型</h2>
+ <h2>Simple Linear Regression Model</h2>
 
-                <p>Regression analysis (回归分析) is one of the most fundamental and important methods in statistics. Given a response variable (响应变量) \\(Y\\) and an explanatory variable (解释变量) \\(X\\), we wish to build a model that quantitatively describes how \\(Y\\) varies with \\(X\\). Simple linear regression assumes this relationship is linear in the parameters.</p>
+ <p>Regression analysis is one of the most fundamental and important methods in statistics. Given a response variable \\(Y\\) and an explanatory variable \\(X\\), we wish to build a model that quantitatively describes how \\(Y\\) varies with \\(X\\). Simple linear regression assumes this relationship is linear in the parameters.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 12.1 (Simple Linear Regression Model)</div>
                     <div class="env-body">
-                        <p>Let \\((X_1, Y_1), \\ldots, (X_n, Y_n)\\) be \\(n\\) observations. The <strong>simple linear regression model</strong> (简单线性回归模型) assumes:</p>
+ <p>Let \\((X_1, Y_1), \\ldots, (X_n, Y_n)\\) be \\(n\\) observations. The <strong>simple linear regression model</strong> assumes:</p>
                         \\[Y_i = \\beta_0 + \\beta_1 X_i + \\varepsilon_i, \\quad i = 1, \\ldots, n\\]
-                        <p>where \\(\\beta_0\\) is the intercept (截距), \\(\\beta_1\\) is the slope (斜率), and \\(\\varepsilon_i\\) are random error terms satisfying:</p>
+ <p>where \\(\\beta_0\\) is the intercept, \\(\\beta_1\\) is the slope, and \\(\\varepsilon_i\\) are random error terms satisfying:</p>
                         <ol>
                             <li>\\(\\mathbb{E}[\\varepsilon_i] = 0\\) (zero mean)</li>
-                            <li>\\(\\operatorname{Var}(\\varepsilon_i) = \\sigma^2\\) (homoscedasticity, 同方差性)</li>
+ <li>\\(\\operatorname{Var}(\\varepsilon_i) = \\sigma^2\\) (homoscedasticity)</li>
                             <li>\\(\\operatorname{Cov}(\\varepsilon_i, \\varepsilon_j) = 0\\) for \\(i \\neq j\\) (uncorrelated errors)</li>
                         </ol>
                         <p>Under the normality assumption, we further require \\(\\varepsilon_i \\sim N(0, \\sigma^2)\\) i.i.d.</p>
@@ -38,9 +38,9 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Ordinary Least Squares 最小二乘法</h3>
+ <h3>Ordinary Least Squares</h3>
 
-                <p>We estimate the parameters by minimizing the Residual Sum of Squares (残差平方和, RSS):</p>
+ <p>We estimate the parameters by minimizing the Residual Sum of Squares (RSS):</p>
                 \\[Q(\\beta_0, \\beta_1) = \\sum_{i=1}^{n} (Y_i - \\beta_0 - \\beta_1 X_i)^2\\]
 
                 <div class="env-block theorem">
@@ -88,7 +88,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'scatter-regression-viz',
-                    title: 'Interactive: Drag Data Points to See Regression Line Changes 拖动数据点观察回归线变化',
+ title:'Interactive: Drag Data Points to See Regression Line Changes',
                     description: 'Drag scatter points to see how the OLS regression line updates in real time; residuals shown as dashed lines',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -203,18 +203,18 @@ window.CHAPTERS.push({
             id: 'ch12-sec02',
             title: 'Properties of OLS Estimators',
             content: `
-                <h2>Properties of OLS Estimators 最小二乘估计的性质</h2>
+ <h2>Properties of OLS Estimators</h2>
 
-                <p>The OLS estimators \\(\\hat{\\beta}_0, \\hat{\\beta}_1\\) not only provide natural estimates of the parameters but also possess optimality among the broad class of linear unbiased estimators (线性无偏估计量). This is characterized by the classical Gauss-Markov theorem.</p>
+ <p>The OLS estimators \\(\\hat{\\beta}_0, \\hat{\\beta}_1\\) not only provide natural estimates of the parameters but also possess optimality among the broad class of linear unbiased estimators. This is characterized by the classical Gauss-Markov theorem.</p>
 
-                <h3>Expectation and Variance of OLS Estimators OLS 估计量的期望与方差</h3>
+ <h3>Expectation and Variance of OLS Estimators OLS</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 12.4 (Distribution of OLS Estimators)</div>
                     <div class="env-body">
                         <p>In the simple linear regression model (assuming the \\(X_i\\) are fixed, non-random design points), the OLS estimators satisfy:</p>
                         <ol>
-                            <li>\\(\\mathbb{E}[\\hat{\\beta}_1] = \\beta_1\\), \\(\\mathbb{E}[\\hat{\\beta}_0] = \\beta_0\\) (unbiasedness, 无偏性)</li>
+ <li>\\(\\mathbb{E}[\\hat{\\beta}_1] = \\beta_1\\), \\(\\mathbb{E}[\\hat{\\beta}_0] = \\beta_0\\) (unbiasedness)</li>
                             <li>\\(\\operatorname{Var}(\\hat{\\beta}_1) = \\dfrac{\\sigma^2}{S_{xx}}\\)</li>
                             <li>\\(\\operatorname{Var}(\\hat{\\beta}_0) = \\sigma^2\\left(\\dfrac{1}{n} + \\dfrac{\\bar{X}^2}{S_{xx}}\\right)\\)</li>
                             <li>\\(\\operatorname{Cov}(\\hat{\\beta}_0, \\hat{\\beta}_1) = -\\dfrac{\\sigma^2 \\bar{X}}{S_{xx}}\\)</li>
@@ -233,12 +233,12 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Gauss-Markov Theorem Gauss-Markov 定理</h3>
+ <h3>Gauss-Markov Theorem Gauss-Markov</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 12.5 (Gauss-Markov)</div>
                     <div class="env-body">
-                        <p>Under the three basic assumptions of the simple linear regression model (zero mean, homoscedasticity, uncorrelated errors), the OLS estimators \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\) are the <strong>Best Linear Unbiased Estimators</strong> (BLUE, 最优线性无偏估计量). That is, for any linear unbiased estimator of the form \\(\\tilde{\\beta}_1 = \\sum a_i Y_i\\), we have:</p>
+ <p>Under the three basic assumptions of the simple linear regression model (zero mean, homoscedasticity, uncorrelated errors), the OLS estimators \\(\\hat{\\beta}_0\\) and \\(\\hat{\\beta}_1\\) are the <strong>Best Linear Unbiased Estimators</strong> (BLUE). That is, for any linear unbiased estimator of the form \\(\\tilde{\\beta}_1 = \\sum a_i Y_i\\), we have:</p>
                         \\[\\operatorname{Var}(\\hat{\\beta}_1) \\leq \\operatorname{Var}(\\tilde{\\beta}_1)\\]
                     </div>
                 </div>
@@ -263,14 +263,14 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Unbiased Estimation of Variance 方差的无偏估计</h3>
+ <h3>Unbiased Estimation of Variance</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 12.6</div>
                     <div class="env-body">
                         <p>Let \\(\\hat{Y}_i = \\hat{\\beta}_0 + \\hat{\\beta}_1 X_i\\) be the fitted values and \\(e_i = Y_i - \\hat{Y}_i\\) be the residuals. Then</p>
                         \\[s^2 = \\frac{\\text{RSS}}{n-2} = \\frac{\\sum_{i=1}^{n} e_i^2}{n-2}\\]
-                        <p>is an unbiased estimator of \\(\\sigma^2\\), i.e., \\(\\mathbb{E}[s^2] = \\sigma^2\\). The \\(n-2\\) in the denominator reflects the degrees of freedom (自由度) consumed by estimating the two parameters \\(\\beta_0, \\beta_1\\).</p>
+ <p>is an unbiased estimator of \\(\\sigma^2\\), i.e., \\(\\mathbb{E}[s^2] = \\sigma^2\\). The \\(n-2\\) in the denominator reflects the degrees of freedom consumed by estimating the two parameters \\(\\beta_0, \\beta_1\\).</p>
                     </div>
                 </div>
 
@@ -279,7 +279,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'ols-comparison-viz',
-                    title: 'Interactive: OLS vs Other Linear Estimators OLS 与其他线性估计量比较',
+ title:'Interactive: OLS vs Other Linear Estimators OLS',
                     description: 'Monte Carlo simulation comparing variance of OLS vs another linear unbiased estimator, verifying the Gauss-Markov theorem',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -434,11 +434,11 @@ window.CHAPTERS.push({
             id: 'ch12-sec03',
             title: 'Inference and Hypothesis Testing',
             content: `
-                <h2>Inference and Hypothesis Testing 推断与假设检验</h2>
+ <h2>Inference and Hypothesis Testing</h2>
 
-                <p>Under the normal error assumption, the OLS estimators have exact sampling distributions, enabling rigorous statistical inference (统计推断) on the regression coefficients.</p>
+ <p>Under the normal error assumption, the OLS estimators have exact sampling distributions, enabling rigorous statistical inference on the regression coefficients.</p>
 
-                <h3>Exact Distributions Under Normality 正态假设下的精确分布</h3>
+ <h3>Exact Distributions Under Normality</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 12.7</div>
@@ -452,7 +452,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>t-Test for the Slope 斜率的 t 检验</h3>
+ <h3>t-Test for the Slopet</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 12.8 (t-Statistic for the Slope)</div>
@@ -472,7 +472,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Confidence Interval for the Slope 斜率的置信区间</h3>
+ <h3>Confidence Interval for the Slope</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 12.10 (Confidence Interval for \\(\\beta_1\\))</div>
@@ -483,7 +483,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Overall F-Test for Regression 整体回归的 F 检验</h3>
+ <h3>Overall F-Test for Regression F</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 12.11 (ANOVA Decomposition and F-Test)</div>
@@ -508,7 +508,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 't-test-viz',
-                    title: 'Interactive: Sampling Distribution of the Slope t-Statistic 斜率 t 统计量的抽样分布',
+ title:'Interactive: Sampling Distribution of the Slope t-Statistict',
                     description: 'Simulate the t-statistic under H0 and H1; adjust beta1 to observe changes in test power',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -672,20 +672,20 @@ window.CHAPTERS.push({
             id: 'ch12-sec04',
             title: 'Residual Analysis and Model Diagnostics',
             content: `
-                <h2>Residual Analysis and Model Diagnostics 残差分析与模型诊断</h2>
+ <h2>Residual Analysis and Model Diagnostics</h2>
 
-                <p>The validity of a regression model depends on whether its assumptions are reasonable. Residual analysis (残差分析) is the primary tool for checking model assumptions. By examining graphical patterns in the residuals, we can detect nonlinearity, heteroscedasticity (异方差性), correlation, and outliers (离群值).</p>
+ <p>The validity of a regression model depends on whether its assumptions are reasonable. Residual analysis is the primary tool for checking model assumptions. By examining graphical patterns in the residuals, we can detect nonlinearity, heteroscedasticity, correlation, and outliers.</p>
 
-                <h3>Residuals and Standardized Residuals 残差与标准化残差</h3>
+ <h3>Residuals and Standardized Residuals</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 12.12 (Types of Residuals)</div>
                     <div class="env-body">
-                        <p>Let the hat matrix be \\(H = X(X^TX)^{-1}X^T\\) with diagonal elements \\(h_{ii}\\) (leverage values, 杠杆值).</p>
+ <p>Let the hat matrix be \\(H = X(X^TX)^{-1}X^T\\) with diagonal elements \\(h_{ii}\\) (leverage values).</p>
                         <ul>
-                            <li><strong>Ordinary residuals</strong> (普通残差): \\(e_i = Y_i - \\hat{Y}_i\\)</li>
-                            <li><strong>Standardized residuals</strong> (标准化残差): \\(r_i = \\dfrac{e_i}{s\\sqrt{1-h_{ii}}}\\), where \\(\\operatorname{Var}(e_i) = \\sigma^2(1-h_{ii})\\)</li>
-                            <li><strong>Studentized deleted residuals</strong> (学生化残差): \\(t_i = \\dfrac{e_i}{s_{(i)}\\sqrt{1-h_{ii}}}\\), where \\(s_{(i)}\\) is the standard error estimate with the \\(i\\)-th observation deleted. Under \\(H_0\\), \\(t_i \\sim t(n-3)\\)</li>
+ <li><strong>Ordinary residuals</strong> : \\(e_i = Y_i - \\hat{Y}_i\\)</li>
+ <li><strong>Standardized residuals</strong> : \\(r_i = \\dfrac{e_i}{s\\sqrt{1-h_{ii}}}\\), where \\(\\operatorname{Var}(e_i) = \\sigma^2(1-h_{ii})\\)</li>
+ <li><strong>Studentized deleted residuals</strong> : \\(t_i = \\dfrac{e_i}{s_{(i)}\\sqrt{1-h_{ii}}}\\), where \\(s_{(i)}\\) is the standard error estimate with the \\(i\\)-th observation deleted. Under \\(H_0\\), \\(t_i \\sim t(n-3)\\)</li>
                         </ul>
                     </div>
                 </div>
@@ -699,12 +699,12 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Coefficient of Determination \\(R^2\\) 决定系数</h3>
+ <h3>Coefficient of Determination \\(R^2\\)</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 12.14 (Coefficient of Determination)</div>
                     <div class="env-body">
-                        <p>The <strong>coefficient of determination</strong> (决定系数) is defined as:</p>
+ <p>The <strong>coefficient of determination</strong> is defined as:</p>
                         \\[R^2 = \\frac{\\text{SSR}}{\\text{SST}} = 1 - \\frac{\\text{RSS}}{\\text{SST}} = 1 - \\frac{\\sum e_i^2}{\\sum(Y_i - \\bar{Y})^2}\\]
                         <p>\\(R^2 \\in [0, 1]\\) measures the proportion of total variation explained by the model. In simple linear regression, \\(R^2 = r_{XY}^2\\), the square of the sample correlation coefficient.</p>
                     </div>
@@ -717,7 +717,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Diagnostic Plots 诊断图</h3>
+ <h3>Diagnostic Plots</h3>
 
                 <p>A typical four-panel residual diagnostic display includes:</p>
                 <ol>
@@ -741,7 +741,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'residual-diagnostics-viz',
-                    title: 'Interactive: Four-Panel Residual Diagnostics 四面板残差诊断图',
+ title:'Interactive: Four-Panel Residual Diagnostics',
                     description: 'Generate random regression data and view four diagnostic plots; select different data patterns to observe violations',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -1018,11 +1018,11 @@ window.CHAPTERS.push({
             id: 'ch12-sec05',
             title: 'Prediction and Confidence Bands',
             content: `
-                <h2>Prediction and Confidence Bands 预测与置信带</h2>
+ <h2>Prediction and Confidence Bands</h2>
 
                 <p>One of the key applications of regression analysis is prediction. Given a new \\(X\\) value \\(x_0\\), we need interval estimates for \\(\\mathbb{E}[Y|X=x_0]\\) or for a new observation \\(Y_0\\). The sources of uncertainty differ between these two, leading to fundamentally different interval widths.</p>
 
-                <h3>Confidence Interval for Mean Response 均值响应的置信区间</h3>
+ <h3>Confidence Interval for Mean Response</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 12.16 (CI for Mean Response)</div>
@@ -1041,7 +1041,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Prediction Interval for a New Observation 单个新观测的预测区间</h3>
+ <h3>Prediction Interval for a New Observation</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 12.17 (Prediction Interval)</div>
@@ -1096,7 +1096,7 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'confidence-prediction-bands-viz',
-                    title: 'Interactive: Confidence Band and Prediction Band 置信带与预测带',
+ title:'Interactive: Confidence Band and Prediction Band',
                     description: 'View the confidence band (narrow) and prediction band (wide) for the regression line; adjust sample size and noise level',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
@@ -1225,7 +1225,7 @@ window.CHAPTERS.push({
                             viz.screenText('95% CI band', 400, 50, viz.colors.blue, 11, 'left');
                             viz.screenText('95% PI band', 400, 66, viz.colors.purple, 11, 'left');
 
-                            viz.screenText('n=' + nObs + '  s=' + m.s.toFixed(2) + '  df=' + m.df, 200, 18, viz.colors.text, 11, 'center');
+                            viz.screenText('n=' + nObs + ' s=' + m.s.toFixed(2) + ' df=' + m.df, 200, 18, viz.colors.text, 11, 'center');
                         }
 
                         draw();

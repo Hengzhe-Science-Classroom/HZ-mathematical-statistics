@@ -10,9 +10,9 @@ window.CHAPTERS.push({
             id: 'ch01-sec01',
             title: 'Discrete Distributions',
             content: `
-                <h2>Discrete Distributions 离散分布</h2>
+ <h2>Discrete Distributions</h2>
 
-                <p>This section systematically introduces the most commonly used discrete distribution families (离散分布族) in statistics. For each distribution, we present its probability mass function (PMF, 概率质量函数), expectation, variance, and moment generating function (MGF, 矩母函数).</p>
+ <p>This section systematically introduces the most commonly used discrete distribution families in statistics. For each distribution, we present its probability mass function (PMF), expectation, variance, and moment generating function (MGF).</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 1.1 (Bernoulli Distribution)</div>
@@ -26,7 +26,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 1.2 (Binomial Distribution)</div>
                     <div class="env-body">
-                        <p>If \\(X_1, \\ldots, X_n\\) are independent and identically distributed \\(\\operatorname{Bernoulli}(p)\\) random variables, then \\(S_n = \\sum_{i=1}^{n} X_i\\) follows a <strong>binomial distribution</strong> (二项分布), denoted \\(S_n \\sim \\operatorname{Bin}(n, p)\\), with PMF</p>
+ <p>If \\(X_1, \\ldots, X_n\\) are independent and identically distributed \\(\\operatorname{Bernoulli}(p)\\) random variables, then \\(S_n = \\sum_{i=1}^{n} X_i\\) follows a <strong>binomial distribution</strong>, denoted \\(S_n \\sim \\operatorname{Bin}(n, p)\\), with PMF</p>
                         \\[P(S_n = k) = \\binom{n}{k} p^k (1-p)^{n-k}, \quad k = 0, 1, \\ldots, n\\]
                         <p>Expectation \\(\\mathbb{E}[S_n] = np\\), variance \\(\\operatorname{Var}(S_n) = np(1-p)\\), MGF \\(M_{S_n}(t) = (1-p+pe^t)^n\\).</p>
                     </div>
@@ -44,23 +44,23 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>The Poisson distribution can be viewed as the limit of the binomial distribution under \\(n \\to \\infty\\), \\(p \\to 0\\), \\(np \\to \\lambda\\). This makes the Poisson distribution especially suitable for describing "rare events" (稀有事件) — in a large number of independent trials, each with a very small success probability, the total number of successes remains finite.</p>
+ <p>The Poisson distribution can be viewed as the limit of the binomial distribution under \\(n \\to \\infty\\), \\(p \\to 0\\), \\(np \\to \\lambda\\). This makes the Poisson distribution especially suitable for describing "rare events" — in a large number of independent trials, each with a very small success probability, the total number of successes remains finite.</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 1.4 (Geometric Distribution)</div>
                     <div class="env-body">
-                        <p>A random variable \\(X\\) follows a <strong>geometric distribution</strong> (几何分布), denoted \\(X \\sim \\operatorname{Geom}(p)\\), if \\(X\\) represents the number of trials needed until the first success:</p>
+ <p>A random variable \\(X\\) follows a <strong>geometric distribution</strong>, denoted \\(X \\sim \\operatorname{Geom}(p)\\), if \\(X\\) represents the number of trials needed until the first success:</p>
                         \\[P(X = k) = (1-p)^{k-1} p, \quad k = 1, 2, 3, \\ldots\\]
-                        <p>Expectation \\(\\mathbb{E}[X] = 1/p\\), variance \\(\\operatorname{Var}(X) = (1-p)/p^2\\). The geometric distribution is the only discrete distribution possessing the <strong>memoryless property</strong> (无记忆性): \\(P(X > s + t \\mid X > s) = P(X > t)\\).</p>
+ <p>Expectation \\(\\mathbb{E}[X] = 1/p\\), variance \\(\\operatorname{Var}(X) = (1-p)/p^2\\). The geometric distribution is the only discrete distribution possessing the <strong>memoryless property</strong> : \\(P(X> s + t \\mid X> s) = P(X> t)\\).</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 1.5 (Negative Binomial Distribution)</div>
                     <div class="env-body">
-                        <p>A random variable \\(X\\) follows a <strong>negative binomial distribution</strong> (负二项分布), denoted \\(X \\sim \\operatorname{NegBin}(r, p)\\), if \\(X\\) represents the total number of trials needed to achieve the \\(r\\)-th success:</p>
+ <p>A random variable \\(X\\) follows a <strong>negative binomial distribution</strong>, denoted \\(X \\sim \\operatorname{NegBin}(r, p)\\), if \\(X\\) represents the total number of trials needed to achieve the \\(r\\)-th success:</p>
                         \\[P(X = k) = \\binom{k-1}{r-1} p^r (1-p)^{k-r}, \quad k = r, r+1, r+2, \\ldots\\]
                         <p>Expectation \\(\\mathbb{E}[X] = r/p\\), variance \\(\\operatorname{Var}(X) = r(1-p)/p^2\\). When \\(r=1\\), it reduces to the geometric distribution.</p>
                     </div>
@@ -69,7 +69,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 1.6 (Hypergeometric Distribution)</div>
                     <div class="env-body">
-                        <p>From a population of \\(N\\) elements (of which \\(K\\) are "successes"), <strong>sampling without replacement</strong> (不放回抽样) \\(n\\) items, the number of successes \\(X\\) follows a <strong>hypergeometric distribution</strong> (超几何分布):</p>
+ <p>From a population of \\(N\\) elements (of which \\(K\\) are "successes"), <strong>sampling without replacement</strong> \\(n\\) items, the number of successes \\(X\\) follows a <strong>hypergeometric distribution</strong>:</p>
                         \\[P(X = k) = \\frac{\\binom{K}{k}\\binom{N-K}{n-k}}{\\binom{N}{n}}, \quad k = \\max(0, n+K-N), \\ldots, \\min(n, K)\\]
                         <p>Expectation \\(\\mathbb{E}[X] = nK/N\\), variance \\(\\operatorname{Var}(X) = n \\frac{K}{N} \\frac{N-K}{N} \\frac{N-n}{N-1}\\). When \\(N \\to \\infty\\) and \\(K/N \\to p\\), the hypergeometric distribution converges to \\(\\operatorname{Bin}(n, p)\\).</p>
                     </div>
@@ -237,7 +237,7 @@ window.CHAPTERS.push({
 
                             ctx.fillStyle = viz.colors.orange;
                             ctx.font = '12px -apple-system,sans-serif';
-                            ctx.fillText('E[X] = ' + meanVal.toFixed(2) + '  (dashed)', 65, 30);
+                            ctx.fillText('E[X] = ' + meanVal.toFixed(2) + ' (dashed)', 65, 30);
 
                             ctx.fillStyle = viz.colors.teal;
                             ctx.fillText('Var(X) = ' + varVal.toFixed(2), 65, 46);
@@ -272,14 +272,14 @@ window.CHAPTERS.push({
             id: 'ch01-sec02',
             title: 'Continuous Distributions',
             content: `
-                <h2>Continuous Distributions 连续分布</h2>
+ <h2>Continuous Distributions</h2>
 
-                <p>Continuous random variables are characterized by their probability density function (PDF, 概率密度函数). This section introduces three fundamental continuous distribution families: the uniform, exponential, and normal distributions.</p>
+ <p>Continuous random variables are characterized by their probability density function (PDF). This section introduces three fundamental continuous distribution families: the uniform, exponential, and normal distributions.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 1.7 (Uniform Distribution)</div>
                     <div class="env-body">
-                        <p>A random variable \\(X\\) follows a <strong>uniform distribution</strong> (均匀分布) on \\([a, b]\\), denoted \\(X \\sim \\operatorname{Uniform}(a, b)\\), if</p>
+ <p>A random variable \\(X\\) follows a <strong>uniform distribution</strong> on \\([a, b]\\), denoted \\(X \\sim \\operatorname{Uniform}(a, b)\\), if</p>
                         \\[f(x) = \\frac{1}{b-a}, \quad a \\le x \\le b\\]
                         <p>CDF: \\(F(x) = \\frac{x-a}{b-a}\\) for \\(x \\in [a, b]\\). Expectation \\(\\mathbb{E}[X] = \\frac{a+b}{2}\\), variance \\(\\operatorname{Var}(X) = \\frac{(b-a)^2}{12}\\).</p>
                     </div>
@@ -288,7 +288,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 1.8 (Exponential Distribution)</div>
                     <div class="env-body">
-                        <p>A random variable \\(X\\) follows an <strong>exponential distribution</strong> (指数分布), denoted \\(X \\sim \\operatorname{Exp}(\\lambda)\\) (\\(\\lambda > 0\\)), if</p>
+ <p>A random variable \\(X\\) follows an <strong>exponential distribution</strong>, denoted \\(X \\sim \\operatorname{Exp}(\\lambda)\\) (\\(\\lambda> 0\\)), if</p>
                         \\[f(x) = \\lambda e^{-\\lambda x}, \quad x \\ge 0\\]
                         <p>CDF: \\(F(x) = 1 - e^{-\\lambda x}\\). Expectation \\(\\mathbb{E}[X] = 1/\\lambda\\), variance \\(\\operatorname{Var}(X) = 1/\\lambda^2\\), MGF \\(M_X(t) = \\frac{\\lambda}{\\lambda - t}\\) for \\(t < \\lambda\\).</p>
                     </div>
@@ -315,17 +315,17 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 1.10 (Normal / Gaussian Distribution)</div>
                     <div class="env-body">
-                        <p>A random variable \\(X\\) follows a <strong>normal distribution</strong> (正态分布), denoted \\(X \\sim N(\\mu, \\sigma^2)\\), if its PDF is</p>
+ <p>A random variable \\(X\\) follows a <strong>normal distribution</strong>, denoted \\(X \\sim N(\\mu, \\sigma^2)\\), if its PDF is</p>
                         \\[f(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}} \\exp\\left\\{-\\frac{(x-\\mu)^2}{2\\sigma^2}\\right\\}, \quad x \\in \\mathbb{R}\\]
                         <p>Expectation \\(\\mathbb{E}[X] = \\mu\\), variance \\(\\operatorname{Var}(X) = \\sigma^2\\), MGF \\(M_X(t) = \\exp\\{\\mu t + \\sigma^2 t^2/2\\}\\).</p>
-                        <p>When \\(\\mu = 0, \\sigma = 1\\), it is called the <strong>standard normal distribution</strong> (标准正态分布), whose PDF and CDF are denoted \\(\\varphi(x)\\) and \\(\\Phi(x)\\), respectively.</p>
+ <p>When \\(\\mu = 0, \\sigma = 1\\), it is called the <strong>standard normal distribution</strong>, whose PDF and CDF are denoted \\(\\varphi(x)\\) and \\(\\Phi(x)\\), respectively.</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>The normal distribution occupies a central position in statistics for at least three reasons: (1) The Central Limit Theorem (中心极限定理) guarantees that the sum of independent random variables (suitably standardized) converges to the normal distribution; (2) The normal distribution has maximum entropy among all distributions with a given mean and variance (i.e., it is the "most uncertain" distribution); (3) The normal family is closed under affine transformations: \\(aX + b \\sim N(a\\mu + b, a^2\\sigma^2)\\).</p>
+ <p>The normal distribution occupies a central position in statistics for at least three reasons: (1) The Central Limit Theorem guarantees that the sum of independent random variables (suitably standardized) converges to the normal distribution; (2) The normal distribution has maximum entropy among all distributions with a given mean and variance (i.e., it is the "most uncertain" distribution); (3) The normal family is closed under affine transformations: \\(aX + b \\sim N(a\\mu + b, a^2\\sigma^2)\\).</p>
                     </div>
                 </div>
 
@@ -456,7 +456,7 @@ window.CHAPTERS.push({
             id: 'ch01-sec03',
             title: 'Gamma and Beta Families',
             content: `
-                <h2>Gamma and Beta Families Gamma 族与 Beta 族</h2>
+ <h2>Gamma and Beta Families Gamma Beta</h2>
 
                 <p>The Gamma distribution and Beta distribution are two important parametric families in statistics. The Gamma family encompasses the exponential distribution and the chi-squared distribution as special cases, while the Beta family is naturally defined on \\([0,1]\\), making it well-suited for modeling probabilities and proportions.</p>
 
@@ -522,7 +522,7 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>The Beta distribution is a "distribution over distributions" — when you are uncertain about the value of a probability parameter, you can use the Beta distribution to describe your uncertainty. In Bayesian statistics, the Beta distribution is the <strong>conjugate prior</strong> (共轭先验) for the Bernoulli/Binomial likelihood: if the prior is \\(p \\sim \\operatorname{Beta}(a, b)\\), then after observing \\(k\\) successes and \\(n-k\\) failures, the posterior is \\(p \\mid \\text{data} \\sim \\operatorname{Beta}(a+k, b+n-k)\\).</p>
+ <p>The Beta distribution is a "distribution over distributions" — when you are uncertain about the value of a probability parameter, you can use the Beta distribution to describe your uncertainty. In Bayesian statistics, the Beta distribution is the <strong>conjugate prior</strong> for the Bernoulli/Binomial likelihood: if the prior is \\(p \\sim \\operatorname{Beta}(a, b)\\), then after observing \\(k\\) successes and \\(n-k\\) failures, the posterior is \\(p \\mid \\text{data} \\sim \\operatorname{Beta}(a+k, b+n-k)\\).</p>
                     </div>
                 </div>
 
@@ -757,16 +757,16 @@ window.CHAPTERS.push({
             id: 'ch01-sec04',
             title: 'Sampling Distributions',
             content: `
-                <h2>Sampling Distributions 抽样分布</h2>
+ <h2>Sampling Distributions</h2>
 
-                <p>This section introduces three sampling distributions (抽样分布) that are crucial for statistical inference: the chi-squared distribution, the \\(t\\) distribution, and the \\(F\\) distribution. These distributions arise from transformations of standard normal random variables and form the theoretical foundation for confidence intervals and hypothesis testing.</p>
+ <p>This section introduces three sampling distributions that are crucial for statistical inference: the chi-squared distribution, the \\(t\\) distribution, and the \\(F\\) distribution. These distributions arise from transformations of standard normal random variables and form the theoretical foundation for confidence intervals and hypothesis testing.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 1.18 (Chi-Squared Distribution)</div>
                     <div class="env-body">
                         <p>Let \\(Z_1, \\ldots, Z_k\\) be i.i.d. \\(N(0,1)\\) random variables. Then</p>
                         \\[Q = \\sum_{i=1}^k Z_i^2 \\sim \\chi^2(k)\\]
-                        <p>We say \\(Q\\) follows a <strong>chi-squared distribution</strong> (卡方分布) with \\(k\\) degrees of freedom. Its PDF is</p>
+ <p>We say \\(Q\\) follows a <strong>chi-squared distribution</strong> with \\(k\\) degrees of freedom. Its PDF is</p>
                         \\[f(x) = \\frac{1}{2^{k/2} \\Gamma(k/2)} x^{k/2-1} e^{-x/2}, \quad x > 0\\]
                         <p>That is, \\(\\chi^2(k) = \\operatorname{Gamma}(k/2, 1/2)\\). Expectation \\(\\mathbb{E}[Q] = k\\), variance \\(\\operatorname{Var}(Q) = 2k\\).</p>
                     </div>
@@ -973,7 +973,7 @@ window.CHAPTERS.push({
             id: 'ch01-sec05',
             title: 'Relationships Between Distributions',
             content: `
-                <h2>Relationships Between Distributions 分布间关系</h2>
+ <h2>Relationships Between Distributions</h2>
 
                 <p>Statistical distributions do not exist in isolation — they are intimately connected through limits, transformations, and special-case relationships. Understanding these connections is key to mastering statistical inference.</p>
 
@@ -1068,20 +1068,20 @@ window.CHAPTERS.push({
 
                         // Node positions (px coords)
                         var nodes = [
-                            { name: 'Bernoulli', x: 80,  y: 60,  color: viz.colors.blue },
-                            { name: 'Binomial',  x: 200, y: 60,  color: viz.colors.blue },
-                            { name: 'Poisson',   x: 350, y: 60,  color: viz.colors.blue },
-                            { name: 'Geometric',  x: 80, y: 150, color: viz.colors.blue },
-                            { name: 'NegBin',    x: 200, y: 150, color: viz.colors.blue },
-                            { name: 'Normal',    x: 350, y: 180, color: viz.colors.orange },
-                            { name: 'Exp',       x: 80,  y: 260, color: viz.colors.teal },
-                            { name: 'Gamma',     x: 200, y: 260, color: viz.colors.teal },
-                            { name: 'Chi-sq',    x: 350, y: 280, color: viz.colors.purple },
-                            { name: 'Beta',      x: 80,  y: 370, color: viz.colors.green },
-                            { name: 'Uniform',   x: 200, y: 370, color: viz.colors.green },
-                            { name: 't',         x: 430, y: 180, color: viz.colors.purple },
-                            { name: 'F',         x: 480, y: 280, color: viz.colors.purple },
-                            { name: 'Cauchy',    x: 500, y: 120, color: viz.colors.red }
+                            { name: 'Bernoulli', x: 80, y: 60, color: viz.colors.blue },
+                            { name: 'Binomial', x: 200, y: 60, color: viz.colors.blue },
+                            { name: 'Poisson', x: 350, y: 60, color: viz.colors.blue },
+                            { name: 'Geometric', x: 80, y: 150, color: viz.colors.blue },
+                            { name: 'NegBin', x: 200, y: 150, color: viz.colors.blue },
+                            { name: 'Normal', x: 350, y: 180, color: viz.colors.orange },
+                            { name: 'Exp', x: 80, y: 260, color: viz.colors.teal },
+                            { name: 'Gamma', x: 200, y: 260, color: viz.colors.teal },
+                            { name: 'Chi-sq', x: 350, y: 280, color: viz.colors.purple },
+                            { name: 'Beta', x: 80, y: 370, color: viz.colors.green },
+                            { name: 'Uniform', x: 200, y: 370, color: viz.colors.green },
+                            { name: 't', x: 430, y: 180, color: viz.colors.purple },
+                            { name: 'F', x: 480, y: 280, color: viz.colors.purple },
+                            { name: 'Cauchy', x: 500, y: 120, color: viz.colors.red }
                         ];
 
                         // Edges: [from, to, label, type]
@@ -1247,7 +1247,7 @@ window.CHAPTERS.push({
                                 ctx.fillStyle = viz.colors.white;
                                 ctx.font = 'bold 14px -apple-system,sans-serif';
                                 ctx.textAlign = 'center';
-                                ctx.fillText('Bin(' + n + ', ' + p.toFixed(4) + ')  vs  Poisson(' + lambda + ')', 280, 25);
+                                ctx.fillText('Bin(' + n + ', ' + p.toFixed(4) + ') vs Poisson(' + lambda + ')', 280, 25);
 
                                 var maxK = Math.min(15, n);
                                 var barW = Math.min(30, 460 / (maxK + 1));
@@ -1350,7 +1350,7 @@ window.CHAPTERS.push({
                                 ctx.fillStyle = viz.colors.white;
                                 ctx.font = 'bold 14px -apple-system,sans-serif';
                                 ctx.textAlign = 'center';
-                                ctx.fillText('t(' + nu + ')  vs  N(0,1)', 280, 25);
+                                ctx.fillText('t(' + nu + ') vs N(0,1)', 280, 25);
 
                                 ctx.fillStyle = viz.colors.blue;
                                 ctx.font = '12px -apple-system,sans-serif';

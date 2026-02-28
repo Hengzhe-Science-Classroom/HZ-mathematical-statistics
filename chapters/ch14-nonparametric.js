@@ -10,11 +10,11 @@ window.CHAPTERS.push({
             id: 'ch14-sec01',
             title: 'Rank-Based Tests',
             content: `
-                <h2>Rank-Based Tests 秩检验</h2>
+ <h2>Rank-Based Tests</h2>
 
                 <p>Parametric tests (such as the \\(t\\)-test and \\(F\\)-test) rely on assumptions about the population distribution, typically requiring normality.
-                When these assumptions do not hold, <strong>nonparametric methods (非参数方法)</strong> provide alternatives that do not depend on the form of the distribution.
-                The core idea of nonparametric tests is to replace raw observations with their <strong>ranks (秩)</strong>, thereby eliminating distributional assumptions.</p>
+ When these assumptions do not hold, <strong>nonparametric methods </strong> provide alternatives that do not depend on the form of the distribution.
+ The core idea of nonparametric tests is to replace raw observations with their <strong>ranks </strong>, thereby eliminating distributional assumptions.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 14.1 (Rank)</div>
@@ -23,21 +23,21 @@ window.CHAPTERS.push({
                         \\(X_{(1)} \\leq X_{(2)} \\leq \\cdots \\leq X_{(n)}\\).
                         The <strong>rank</strong> \\(R_i\\) of sample \\(X_i\\) is defined as the position of \\(X_i\\) in the ordered arrangement:</p>
                         \\[R_i = \\#\\{j : X_j \\leq X_i\\}\\]
-                        <p>When there are <strong>ties (结)</strong> (i.e., equal values), one typically uses <strong>average ranks</strong>.</p>
+ <p>When there are <strong>ties </strong> (i.e., equal values), one typically uses <strong>average ranks</strong>.</p>
                     </div>
                 </div>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>Ranks preserve the order information in the data but discard the actual numerical values. This gives rank-based statistics a natural <strong>robustness (稳健性)</strong> against outliers and distributional skewness.
+ <p>Ranks preserve the order information in the data but discard the actual numerical values. This gives rank-based statistics a natural <strong>robustness </strong> against outliers and distributional skewness.
                         Just as "placement" is more informative about relative position than "raw score," ranks reflect the relative magnitude among observations.</p>
                     </div>
                 </div>
 
-                <h3>Sign Test 符号检验</h3>
+ <h3>Sign Test</h3>
 
-                <p>The sign test (符号检验) is the simplest nonparametric test, used to test the population median.</p>
+ <p>The sign test is the simplest nonparametric test, used to test the population median.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 14.2 (Sign Test)</div>
@@ -60,7 +60,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Wilcoxon Signed-Rank Test Wilcoxon 符号秩检验</h3>
+ <h3>Wilcoxon Signed-Rank Test Wilcoxon</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 14.4 (Wilcoxon Signed-Rank Test)</div>
@@ -96,7 +96,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Wilcoxon Rank-Sum Test (Mann-Whitney U) Wilcoxon 秩和检验</h3>
+ <h3>Wilcoxon Rank-Sum Test (Mann-Whitney U) Wilcoxon</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 14.6 (Wilcoxon Rank-Sum Test)</div>
@@ -136,8 +136,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'rank-assignment-viz',
-                    title: 'Interactive: Rank Assignment & Wilcoxon Rank-Sum Test 秩分配与 Wilcoxon 秩和检验',
-                    description: 'Observe how two groups are combined and ranked, and how the rank-sum statistic is computed 观察两组数据如何合并排秩以及秩和统计量的计算过程',
+ title:'Interactive: Rank Assignment & Wilcoxon Rank-Sum Test Wilcoxon',
+ description:'Observe how two groups are combined and ranked, and how the rank-sum statistic is computed',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 420,
@@ -225,8 +225,8 @@ window.CHAPTERS.push({
 
                             viz.screenText('Rank Sum Statistics', viz.width / 2, 245, viz.colors.white, 14);
 
-                            viz.screenText('W_A = ' + rankSumA + '  (Group A rank sum)', viz.width / 2, 270, viz.colors.blue, 13);
-                            viz.screenText('W_B = ' + rankSumB + '  (Group B rank sum)', viz.width / 2, 290, viz.colors.orange, 13);
+                            viz.screenText('W_A = ' + rankSumA + ' (Group A rank sum)', viz.width / 2, 270, viz.colors.blue, 13);
+                            viz.screenText('W_B = ' + rankSumB + ' (Group B rank sum)', viz.width / 2, 290, viz.colors.orange, 13);
                             viz.screenText('E[W_A] = m(N+1)/2 = ' + EW.toFixed(1), viz.width / 2, 315, viz.colors.text, 12);
                             viz.screenText('Var(W_A) = mn(N+1)/12 = ' + VW.toFixed(1), viz.width / 2, 335, viz.colors.text, 12);
                             viz.screenText('Z = (W_A - E[W_A]) / sqrt(Var) = ' + Z.toFixed(3), viz.width / 2, 360, viz.colors.green, 13);
@@ -288,12 +288,12 @@ window.CHAPTERS.push({
             id: 'ch14-sec02',
             title: 'Multi-Sample Nonparametric Tests',
             content: `
-                <h2>Multi-Sample Nonparametric Tests 多样本非参数检验</h2>
+ <h2>Multi-Sample Nonparametric Tests</h2>
 
                 <p>When comparing more than two groups, the parametric approach uses one-way ANOVA (assuming normality and equal variances).
                 The nonparametric alternatives are the <strong>Kruskal-Wallis test</strong> (for independent samples) and the <strong>Friedman test</strong> (for paired/repeated measures).</p>
 
-                <h3>Kruskal-Wallis Test Kruskal-Wallis 检验</h3>
+ <h3>Kruskal-Wallis Test Kruskal-Wallis</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 14.7 (Kruskal-Wallis Test)</div>
@@ -340,7 +340,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Friedman Test Friedman 检验</h3>
+ <h3>Friedman Test Friedman</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 14.10 (Friedman Test)</div>
@@ -368,8 +368,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'kruskal-wallis-viz',
-                    title: 'Interactive: Kruskal-Wallis Test Kruskal-Wallis 检验',
-                    description: 'Observe the rank distribution across multiple groups and the H statistic 观察多组数据的秩分布和 H 统计量',
+ title:'Interactive: Kruskal-Wallis Test Kruskal-Wallis',
+ description:'Observe the rank distribution across multiple groups and the H statistic H',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 440,
@@ -556,7 +556,7 @@ window.CHAPTERS.push({
                             // Approximate p-value using chi-squared
                             var pval = 1 - VizEngine.normalCDF(Math.sqrt(2 * result.H) - Math.sqrt(2 * df - 1));
                             if (result.H <= 0) pval = 1;
-                            viz.screenText('df = ' + df + ',  approx p-value = ' + pval.toFixed(4), viz.width / 2, 415, viz.colors.text, 12);
+                            viz.screenText('df = ' + df + ', approx p-value = ' + pval.toFixed(4), viz.width / 2, 415, viz.colors.text, 12);
                             if (pval < 0.05) {
                                 viz.screenText('Reject H0 at alpha=0.05', viz.width / 2, 433, viz.colors.red, 12);
                             } else {
@@ -610,12 +610,12 @@ window.CHAPTERS.push({
             id: 'ch14-sec03',
             title: 'Kernel Density Estimation',
             content: `
-                <h2>Kernel Density Estimation 核密度估计</h2>
+ <h2>Kernel Density Estimation</h2>
 
-                <p>Nonparametric methods are used not only for testing but also for <strong>density estimation (密度估计)</strong>.
-                Kernel density estimation (KDE, 核密度估计) is a nonparametric method for estimating an unknown probability density function from data.</p>
+ <p>Nonparametric methods are used not only for testing but also for <strong>density estimation </strong>.
+ Kernel density estimation (KDE) is a nonparametric method for estimating an unknown probability density function from data.</p>
 
-                <h3>From Histograms to KDE 从直方图到 KDE</h3>
+ <h3>From Histograms to KDE KDE</h3>
 
                 <p>The histogram is the simplest density estimate, but it has obvious drawbacks: it is discontinuous and depends on the bin origin and width.
                 KDE constructs a smooth density estimate by placing a kernel function at each data point.</p>
@@ -626,8 +626,8 @@ window.CHAPTERS.push({
                         <p>Let \\(X_1, \\ldots, X_n\\) be an i.i.d. sample from an unknown density \\(f\\).
                         The <strong>kernel density estimator</strong> is defined as:</p>
                         \\[\\hat{f}_h(x) = \\frac{1}{nh} \\sum_{i=1}^{n} K\\left(\\frac{x - X_i}{h}\\right)\\]
-                        <p>where \\(K\\) is a <strong>kernel function (核函数)</strong> satisfying \\(\\int K(u)\\,du = 1\\) and \\(K(u) \\geq 0\\),
-                        and \\(h > 0\\) is the <strong>bandwidth (带宽)</strong>.</p>
+ <p>where \\(K\\) is a <strong>kernel function </strong> satisfying \\(\\int K(u)\\,du = 1\\) and \\(K(u) \\geq 0\\),
+ and \\(h> 0\\) is the <strong>bandwidth </strong>.</p>
                     </div>
                 </div>
 
@@ -650,7 +650,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Bias-Variance Tradeoff 偏差-方差权衡</h3>
+ <h3>Bias-Variance Tradeoff-</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 14.13 (MSE Decomposition of KDE)</div>
@@ -674,7 +674,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Optimal Bandwidth Selection 最优带宽选择</h3>
+ <h3>Optimal Bandwidth Selection</h3>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 14.14 (MISE-Optimal Bandwidth)</div>
@@ -721,8 +721,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'kde-bandwidth-viz',
-                    title: 'Interactive: KDE Bandwidth Explorer KDE 带宽探索器',
-                    description: 'Adjust the bandwidth h to observe the effects of undersmoothing and oversmoothing 调节带宽 h，观察欠平滑与过平滑的效果',
+ title:'Interactive: KDE Bandwidth Explorer KDE',
+ description:'Adjust the bandwidth h to observe the effects of undersmoothing and oversmoothingh',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -902,8 +902,8 @@ window.CHAPTERS.push({
 
                             // Info
                             var silv = silvermanBW();
-                            viz.screenText('h = ' + bandwidth.toFixed(3) + '   (Silverman: ' + silv.toFixed(3) + ')', viz.width / 2, 16, viz.colors.white, 13);
-                            viz.screenText('n = ' + data.length + ',  Kernel: ' + kernelType, viz.width / 2, 365, viz.colors.text, 11);
+                            viz.screenText('h = ' + bandwidth.toFixed(3) + ' (Silverman: ' + silv.toFixed(3) + ')', viz.width / 2, 16, viz.colors.white, 13);
+                            viz.screenText('n = ' + data.length + ', Kernel: ' + kernelType, viz.width / 2, 365, viz.colors.text, 11);
                         }
 
                         VizEngine.createSlider(controls, 'Bandwidth h', 0.05, 2.0, 0.4, 0.01, function(v) {
@@ -967,12 +967,12 @@ window.CHAPTERS.push({
             id: 'ch14-sec04',
             title: 'Permutation Tests & Bootstrap Preview',
             content: `
-                <h2>Permutation Tests & Bootstrap Preview 排列检验与 Bootstrap 预览</h2>
+ <h2>Permutation Tests & Bootstrap Preview Bootstrap</h2>
 
-                <p>Permutation tests (排列检验, also called permutation tests) are another powerful class of nonparametric methods. They obtain the distribution of the test statistic under the null hypothesis by direct enumeration or simulation,
+ <p>Permutation tests (also called permutation tests) are another powerful class of nonparametric methods. They obtain the distribution of the test statistic under the null hypothesis by direct enumeration or simulation,
                 requiring no distributional assumptions.</p>
 
-                <h3>Principle of Permutation Tests 排列检验的原理</h3>
+ <h3>Principle of Permutation Tests</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 14.16 (Permutation Test)</div>
@@ -1010,7 +1010,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Exact Permutation vs. Monte Carlo Permutation 精确排列与 Monte Carlo 排列</h3>
+ <h3>Exact Permutation vs. Monte Carlo Permutation Monte Carlo</h3>
 
                 <div class="env-block remark">
                     <div class="env-title">Remark</div>
@@ -1037,7 +1037,7 @@ window.CHAPTERS.push({
                     </div>
                 </div>
 
-                <h3>Connection to Bootstrap 与 Bootstrap 的联系</h3>
+ <h3>Connection to Bootstrap Bootstrap</h3>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 14.19 (Bootstrap Preview)</div>
@@ -1077,8 +1077,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'permutation-test-viz',
-                    title: 'Interactive: Permutation Test Simulator 排列检验模拟器',
-                    description: 'Dynamically generate the permutation null distribution and observe how the p-value is computed 动态生成排列零分布，观察 p 值的计算过程',
+ title:'Interactive: Permutation Test Simulator',
+ description:'Dynamically generate the permutation null distribution and observe how the p-value is computedp',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 420,
@@ -1213,7 +1213,7 @@ window.CHAPTERS.push({
                             // Info
                             var pval = (extremeCount + 1) / (totalPerms + 1);
                             viz.screenText('Permutations: ' + totalPerms, viz.width / 2, 342, viz.colors.text, 12);
-                            viz.screenText('|T| >= |T_obs|: ' + extremeCount + '    p-value = ' + pval.toFixed(4), viz.width / 2, 360, viz.colors.yellow, 13);
+                            viz.screenText('|T| >= |T_obs|: ' + extremeCount + ' p-value = ' + pval.toFixed(4), viz.width / 2, 360, viz.colors.yellow, 13);
                             if (pval < 0.05) {
                                 viz.screenText('Reject H0 (p < 0.05)', viz.width / 2, 380, viz.colors.red, 12);
                             } else {
@@ -1263,8 +1263,8 @@ window.CHAPTERS.push({
                 },
                 {
                     id: 'kde-vs-histogram-viz',
-                    title: 'Interactive: Nonparametric Overview — Histogram vs KDE 非参数方法总览 — 直方图 vs KDE',
-                    description: 'Compare histogram and KDE density estimates for the same data 比较直方图和 KDE 对同一组数据的密度估计',
+ title:'Interactive: Nonparametric Overview — Histogram vs KDEvs KDE',
+ description:'Compare histogram and KDE density estimates for the same data KDE',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 380,

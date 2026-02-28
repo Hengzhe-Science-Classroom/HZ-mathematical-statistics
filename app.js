@@ -1,4 +1,4 @@
-// === 数理统计 · Interactive - Core Application ===
+// === Mathematical Statistics · Interactive - Core Application ===
 window.CHAPTERS = window.CHAPTERS || [];
 window.EXTRA_VIZ = window.EXTRA_VIZ || {};
 

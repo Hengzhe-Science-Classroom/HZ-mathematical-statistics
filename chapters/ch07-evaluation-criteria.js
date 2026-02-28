@@ -10,17 +10,17 @@ window.CHAPTERS.push({
             id: 'ch07-sec01',
             title: 'Unbiasedness',
             content: `
-                <h2>Unbiasedness / 无偏性</h2>
+ <h2>Unbiasedness</h2>
 
-                <p>In the previous chapter, we learned how to construct point estimators (method of moments, maximum likelihood estimation, etc.). A natural question arises: how do we evaluate the quality of different estimators? This chapter introduces several core evaluation criteria in statistics, starting with the most fundamental one — unbiasedness (无偏性).</p>
+ <p>In the previous chapter, we learned how to construct point estimators (method of moments, maximum likelihood estimation, etc.). A natural question arises: how do we evaluate the quality of different estimators? This chapter introduces several core evaluation criteria in statistics, starting with the most fundamental one — unbiasedness.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 7.1 (Bias and Unbiased Estimator)</div>
                     <div class="env-body">
                         <p>Let \\(X_1, \\ldots, X_n\\) be a random sample from the population \\(f(x; \\theta)\\), and let \\(W = W(X_1, \\ldots, X_n)\\) be an estimator of the parameter \\(\\tau(\\theta)\\).</p>
-                        <p>The <strong>bias (偏差)</strong> is defined as</p>
+ <p>The <strong>bias </strong> is defined as</p>
                         \\[\\operatorname{Bias}_{\\theta}(W) = \\mathbb{E}_{\\theta}[W] - \\tau(\\theta).\\]
-                        <p>If \\(\\operatorname{Bias}_{\\theta}(W) = 0\\) for all \\(\\theta \\in \\Theta\\), i.e., \\(\\mathbb{E}_{\\theta}[W] = \\tau(\\theta)\\), then \\(W\\) is called an <strong>unbiased estimator (无偏估计量)</strong> of \\(\\tau(\\theta)\\).</p>
+ <p>If \\(\\operatorname{Bias}_{\\theta}(W) = 0\\) for all \\(\\theta \\in \\Theta\\), i.e., \\(\\mathbb{E}_{\\theta}[W] = \\tau(\\theta)\\), then \\(W\\) is called an <strong>unbiased estimator </strong> of \\(\\tau(\\theta)\\).</p>
                     </div>
                 </div>
 
@@ -82,8 +82,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'bias-repeated-samples',
-                    title: 'Interactive: Bias Visualization — Repeated Sampling / 偏差可视化 — 重复抽样',
-                    description: 'Observe the difference in performance between biased and unbiased estimators under repeated sampling / 观察有偏和无偏估计量在重复抽样下的表现差异',
+ title:'Interactive: Bias Visualization — Repeated Sampling',
+ description:'Observe the difference in performance between biased and unbiased estimators under repeated sampling',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 420,
@@ -244,14 +244,14 @@ window.CHAPTERS.push({
             id: 'ch07-sec02',
             title: 'Mean Squared Error',
             content: `
-                <h2>Mean Squared Error / 均方误差</h2>
+ <h2>Mean Squared Error</h2>
 
-                <p>Unbiasedness only concerns the "center" of an estimator, ignoring its variability. The mean squared error (MSE, 均方误差) jointly accounts for bias and variance, making it the most commonly used criterion for evaluating estimators.</p>
+ <p>Unbiasedness only concerns the "center" of an estimator, ignoring its variability. The mean squared error (MSE) jointly accounts for bias and variance, making it the most commonly used criterion for evaluating estimators.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 7.5 (Mean Squared Error)</div>
                     <div class="env-body">
-                        <p>The <strong>mean squared error (MSE, 均方误差)</strong> of an estimator \\(W\\) for the parameter \\(\\tau(\\theta)\\) is defined as</p>
+ <p>The <strong>mean squared error (MSE)</strong> of an estimator \\(W\\) for the parameter \\(\\tau(\\theta)\\) is defined as</p>
                         \\[\\operatorname{MSE}_{\\theta}(W) = \\mathbb{E}_{\\theta}\\left[(W - \\tau(\\theta))^2\\right].\\]
                     </div>
                 </div>
@@ -309,8 +309,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'mse-decomposition',
-                    title: 'Interactive: MSE = Bias\u00B2 + Variance Decomposition / MSE 分解',
-                    description: 'Adjust bias and variance to observe how MSE changes / 调节偏差和方差，观察MSE如何变化',
+ title:'Interactive: MSE = Bias\u00B2 + Variance Decomposition',
+ description:'Adjust bias and variance to observe how MSE changesMSE',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -480,14 +480,14 @@ window.CHAPTERS.push({
             id: 'ch07-sec03',
             title: 'Cramer-Rao Lower Bound',
             content: `
-                <h2>Cramer-Rao Lower Bound / Cramer-Rao 下界</h2>
+ <h2>Cramer-Rao Lower Bound</h2>
 
                 <p>In the previous section, we saw that among unbiased estimators, smaller variance is better. A natural question is: how small can the variance of an unbiased estimator be? The Cramer-Rao inequality provides an elegant lower bound.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 7.8 (Fisher Information)</div>
                     <div class="env-body">
-                        <p>Let \\(X \\sim f(x; \\theta)\\) satisfy regularity conditions (the support does not depend on \\(\\theta\\), and differentiation under the integral sign is permitted). The <strong>Fisher information (Fisher 信息量)</strong> is defined as</p>
+ <p>Let \\(X \\sim f(x; \\theta)\\) satisfy regularity conditions (the support does not depend on \\(\\theta\\), and differentiation under the integral sign is permitted). The <strong>Fisher information (Fisher)</strong> is defined as</p>
                         \\[I(\\theta) = \\mathbb{E}_{\\theta}\\left[\\left(\\frac{\\partial}{\\partial\\theta} \\log f(X; \\theta)\\right)^2\\right] = \\operatorname{Var}_{\\theta}\\left(\\frac{\\partial}{\\partial\\theta} \\log f(X; \\theta)\\right).\\]
                         <p>Equivalently, under further regularity conditions,</p>
                         \\[I(\\theta) = -\\mathbb{E}_{\\theta}\\left[\\frac{\\partial^2}{\\partial\\theta^2} \\log f(X; \\theta)\\right].\\]
@@ -540,8 +540,8 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 7.11 (Efficient Estimator and Efficiency)</div>
                     <div class="env-body">
-                        <p>If an unbiased estimator \\(W\\) has variance exactly equal to the CRLB, i.e., \\(\\operatorname{Var}_{\\theta}(W) = \\frac{1}{nI(\\theta)}\\) for all \\(\\theta\\), then \\(W\\) is called an <strong>efficient estimator (有效估计量)</strong>.</p>
-                        <p>The <strong>efficiency (效率)</strong> of an estimator is defined as \\(e(W) = \\frac{1/(nI(\\theta))}{\\operatorname{Var}(W)}\\), satisfying \\(0 < e(W) \\leq 1\\).</p>
+ <p>If an unbiased estimator \\(W\\) has variance exactly equal to the CRLB, i.e., \\(\\operatorname{Var}_{\\theta}(W) = \\frac{1}{nI(\\theta)}\\) for all \\(\\theta\\), then \\(W\\) is called an <strong>efficient estimator </strong>.</p>
+ <p>The <strong>efficiency </strong> of an estimator is defined as \\(e(W) = \\frac{1/(nI(\\theta))}{\\operatorname{Var}(W)}\\), satisfying \\(0 < e(W) \\leq 1\\).</p>
                     </div>
                 </div>
 
@@ -557,8 +557,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'crlb-variance-plot',
-                    title: 'Interactive: CRLB vs Actual Variance / CRLB vs 实际方差',
-                    description: 'Compare the variance of different estimators with the Cramer-Rao lower bound / 比较不同估计量的方差与Cramer-Rao下界',
+ title:'Interactive: CRLB vs Actual Variance',
+ description:'Compare the variance of different estimators with the Cramer-Rao lower boundCramer-Rao',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -846,9 +846,9 @@ window.CHAPTERS.push({
             id: 'ch07-sec04',
             title: 'Rao-Blackwell Theorem',
             content: `
-                <h2>Rao-Blackwell Theorem / Rao-Blackwell 定理</h2>
+ <h2>Rao-Blackwell Theorem</h2>
 
-                <p>The Rao-Blackwell theorem provides a systematic method for improving estimators: for any unbiased estimator, by conditioning on a sufficient statistic (充分统计量), one obtains an unbiased estimator with no greater variance.</p>
+ <p>The Rao-Blackwell theorem provides a systematic method for improving estimators: for any unbiased estimator, by conditioning on a sufficient statistic, one obtains an unbiased estimator with no greater variance.</p>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 7.12 (Rao-Blackwell)</div>
@@ -905,8 +905,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'rao-blackwell-demo',
-                    title: 'Interactive: Rao-Blackwellization Effect Comparison / Rao-Blackwellization 效果对比',
-                    description: 'Compare the variance reduction before and after Rao-Blackwellization / 比较Rao-Blackwell前后估计量的方差缩减',
+ title:'Interactive: Rao-Blackwellization Effect Comparison',
+ description:'Compare the variance reduction before and after Rao-BlackwellizationRao-Blackwell',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 420,
@@ -1095,14 +1095,14 @@ window.CHAPTERS.push({
             id: 'ch07-sec05',
             title: 'UMVUE',
             content: `
-                <h2>Uniformly Minimum Variance Unbiased Estimator (UMVUE) / 一致最小方差无偏估计量</h2>
+ <h2>Uniformly Minimum Variance Unbiased Estimator (UMVUE)</h2>
 
-                <p>The Rao-Blackwell theorem tells us how to improve estimators, but can we ultimately achieve "optimality"? The Lehmann-Scheffe theorem provides a definitive answer: when the sufficient statistic is complete (完备的), Rao-Blackwellization directly yields the UMVUE.</p>
+ <p>The Rao-Blackwell theorem tells us how to improve estimators, but can we ultimately achieve "optimality"? The Lehmann-Scheffe theorem provides a definitive answer: when the sufficient statistic is complete, Rao-Blackwellization directly yields the UMVUE.</p>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 7.14 (UMVUE)</div>
                     <div class="env-body">
-                        <p>An estimator \\(W^*\\) is called the <strong>uniformly minimum variance unbiased estimator (UMVUE, 一致最小方差无偏估计量)</strong> of \\(\\tau(\\theta)\\) if</p>
+ <p>An estimator \\(W^*\\) is called the <strong>uniformly minimum variance unbiased estimator (UMVUE)</strong> of \\(\\tau(\\theta)\\) if</p>
                         <p>(a) \\(\\mathbb{E}_{\\theta}[W^*] = \\tau(\\theta)\\) for all \\(\\theta \\in \\Theta\\);</p>
                         <p>(b) For any other unbiased estimator \\(W\\), \\(\\operatorname{Var}_{\\theta}(W^*) \\leq \\operatorname{Var}_{\\theta}(W)\\) for all \\(\\theta \\in \\Theta\\).</p>
                     </div>
@@ -1111,7 +1111,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 7.15 (Complete Statistic)</div>
                     <div class="env-body">
-                        <p>A statistic \\(T\\) is called a <strong>complete statistic (完备统计量)</strong> if for any function \\(g\\),</p>
+ <p>A statistic \\(T\\) is called a <strong>complete statistic </strong> if for any function \\(g\\),</p>
                         \\[\\mathbb{E}_{\\theta}[g(T)] = 0 \\quad \\forall \\theta \\in \\Theta \\implies g(T) = 0 \\text{ a.s. for all } \\theta.\\]
                     </div>
                 </div>
@@ -1119,14 +1119,14 @@ window.CHAPTERS.push({
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>Completeness (完备性) is the key. It guarantees that "an unbiased estimator based on the sufficient statistic is unique." If the sufficient statistic is not complete, different initial estimators \\(W\\) may yield different Rao-Blackwell results \\(\\phi(T)\\), and optimality cannot be guaranteed. Completeness eliminates this ambiguity.</p>
+ <p>Completeness is the key. It guarantees that "an unbiased estimator based on the sufficient statistic is unique." If the sufficient statistic is not complete, different initial estimators \\(W\\) may yield different Rao-Blackwell results \\(\\phi(T)\\), and optimality cannot be guaranteed. Completeness eliminates this ambiguity.</p>
                     </div>
                 </div>
 
                 <div class="env-block theorem">
                     <div class="env-title">Theorem 7.16 (Lehmann-Scheffe)</div>
                     <div class="env-body">
-                        <p>Let \\(T\\) be a <strong>complete sufficient statistic (完备充分统计量)</strong> for \\(\\theta\\).</p>
+ <p>Let \\(T\\) be a <strong>complete sufficient statistic </strong> for \\(\\theta\\).</p>
                         <p>(a) If \\(\\phi(T)\\) is any unbiased estimator of \\(\\tau(\\theta)\\) that is a function of \\(T\\), then \\(\\phi(T)\\) is the UMVUE of \\(\\tau(\\theta)\\).</p>
                         <p>(b) Equivalently, if \\(W\\) is any unbiased estimator of \\(\\tau(\\theta)\\), then \\(\\phi(T) = \\mathbb{E}[W|T]\\) is the UMVUE of \\(\\tau(\\theta)\\).</p>
                     </div>
@@ -1189,7 +1189,7 @@ window.CHAPTERS.push({
                 <div class="env-block warning">
                     <div class="env-title">Warning</div>
                     <div class="env-body">
-                        <p>The UMVUE is not a panacea. (1) It is optimal only within the class of unbiased estimators — biased estimators (such as the James-Stein estimator) can have smaller MSE. (2) Not every parameter has a UMVUE. (3) The UMVUE may not be admissible (可容许的), especially in high-dimensional problems.</p>
+ <p>The UMVUE is not a panacea. (1) It is optimal only within the class of unbiased estimators — biased estimators (such as the James-Stein estimator) can have smaller MSE. (2) Not every parameter has a UMVUE. (3) The UMVUE may not be admissible, especially in high-dimensional problems.</p>
                     </div>
                 </div>
 
@@ -1198,8 +1198,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'umvue-flowchart',
-                    title: 'Interactive: UMVUE Decision Flowchart / UMVUE 寻找决策流程',
-                    description: 'Visualize the logical flow for finding the UMVUE with example demonstrations / 可视化寻找UMVUE的逻辑流程与实例演示',
+ title:'Interactive: UMVUE Decision Flowchart',
+ description:'Visualize the logical flow for finding the UMVUE with example demonstrationsUMVUE',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 450,

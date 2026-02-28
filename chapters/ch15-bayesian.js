@@ -10,12 +10,12 @@ window.CHAPTERS.push({
             id: 'ch15-sec01',
             title: 'Bayesian Inference Framework',
             content: `
-                <h2>Bayesian Inference Framework / Bayes 推断框架</h2>
+ <h2>Bayesian Inference Framework</h2>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>The frequentist school treats the parameter \\(\\theta\\) as a fixed unknown constant and infers its value through repeated sampling. The Bayesian school, by contrast, assigns a <strong>probability distribution</strong> (概率分布) to the parameter: we first express a prior belief about \\(\\theta\\) based on existing knowledge (the prior, 先验), then update that belief using observed data to obtain the posterior distribution (后验分布). This process of "updating from belief to knowledge" lies at the heart of Bayesian inference.</p>
+ <p>The frequentist school treats the parameter \\(\\theta\\) as a fixed unknown constant and infers its value through repeated sampling. The Bayesian school, by contrast, assigns a <strong>probability distribution</strong> to the parameter: we first express a prior belief about \\(\\theta\\) based on existing knowledge (the prior), then update that belief using observed data to obtain the posterior distribution. This process of "updating from belief to knowledge" lies at the heart of Bayesian inference.</p>
                     </div>
                 </div>
 
@@ -24,9 +24,9 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>The Bayesian inference framework consists of three core components:</p>
                         <ul>
-                            <li><strong>Prior distribution</strong> (先验分布) \\(\\pi(\\theta)\\): a probabilistic description of the parameter \\(\\theta\\) before observing data.</li>
-                            <li><strong>Likelihood function</strong> (似然函数) \\(L(\\theta | \\mathbf{x}) = f(\\mathbf{x} | \\theta)\\): the probability (density) of observing data \\(\\mathbf{x}\\) given parameter \\(\\theta\\).</li>
-                            <li><strong>Posterior distribution</strong> (后验分布) \\(\\pi(\\theta | \\mathbf{x})\\): the updated belief about \\(\\theta\\) after combining the prior with data.</li>
+ <li><strong>Prior distribution</strong> \\(\\pi(\\theta)\\): a probabilistic description of the parameter \\(\\theta\\) before observing data.</li>
+ <li><strong>Likelihood function</strong> \\(L(\\theta | \\mathbf{x}) = f(\\mathbf{x} | \\theta)\\): the probability (density) of observing data \\(\\mathbf{x}\\) given parameter \\(\\theta\\).</li>
+ <li><strong>Posterior distribution</strong> \\(\\pi(\\theta | \\mathbf{x})\\): the updated belief about \\(\\theta\\) after combining the prior with data.</li>
                         </ul>
                     </div>
                 </div>
@@ -36,7 +36,7 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>Let \\(\\theta \\in \\Theta\\) be the parameter and \\(\\mathbf{x} = (x_1, \\ldots, x_n)\\) the observed data. If the prior density \\(\\pi(\\theta)\\) and likelihood function \\(L(\\theta | \\mathbf{x})\\) are known, the posterior density is</p>
                         \\[\\pi(\\theta | \\mathbf{x}) = \\frac{L(\\theta | \\mathbf{x}) \\, \\pi(\\theta)}{m(\\mathbf{x})}\\]
-                        <p>where \\(m(\\mathbf{x}) = \\int_{\\Theta} L(\\theta | \\mathbf{x}) \\, \\pi(\\theta) \\, d\\theta\\) is the <strong>marginal likelihood</strong> (边际似然), also called the <strong>evidence</strong>.</p>
+ <p>where \\(m(\\mathbf{x}) = \\int_{\\Theta} L(\\theta | \\mathbf{x}) \\, \\pi(\\theta) \\, d\\theta\\) is the <strong>marginal likelihood</strong>, also called the <strong>evidence</strong>.</p>
                         <p>In shorthand:</p>
                         \\[\\text{posterior} \\propto \\text{likelihood} \\times \\text{prior}\\]
                     </div>
@@ -80,12 +80,12 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 15.4 (Subjective and Objective Priors)</div>
                     <div class="env-body">
-                        <p><strong>Subjective prior</strong> (主观先验): set based on the researcher's domain knowledge and experience. For example, a physician who believes a drug's efficacy rate is about 60% may choose \\(\\text{Beta}(6, 4)\\).</p>
-                        <p><strong>Objective / Non-informative prior</strong> (客观先验): aims to minimize the prior's influence on the posterior, "letting the data speak for themselves." Common choices include:</p>
+ <p><strong>Subjective prior</strong> : set based on the researcher's domain knowledge and experience. For example, a physician who believes a drug's efficacy rate is about 60% may choose \\(\\text{Beta}(6, 4)\\).</p>
+ <p><strong>Objective / Non-informative prior</strong> : aims to minimize the prior's influence on the posterior,"letting the data speak for themselves." Common choices include:</p>
                         <ul>
-                            <li>Uniform / Flat prior (均匀先验)</li>
+ <li>Uniform / Flat prior </li>
                             <li>Jeffreys prior (based on Fisher information)</li>
-                            <li>Reference prior (参考先验)</li>
+ <li>Reference prior </li>
                         </ul>
                     </div>
                 </div>
@@ -95,8 +95,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'prior-to-posterior-viz',
-                    title: 'Interactive: Prior to Posterior Update / 先验到后验更新动画',
-                    description: 'Adjust prior parameters and observed data to see how the posterior compromises between prior and likelihood / 调整先验参数和观测数据，观察后验分布如何在先验与似然之间折中',
+ title:'Interactive: Prior to Posterior Update',
+ description:'Adjust prior parameters and observed data to see how the posterior compromises between prior and likelihood',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 380,
@@ -265,7 +265,7 @@ window.CHAPTERS.push({
                             ctx.fillStyle = viz.colors.green;
                             ctx.fillText('--- Posterior: Beta(' + postA.toFixed(1) + ', ' + postB.toFixed(1) + ')', 80, ly + 36);
                             ctx.fillStyle = viz.colors.text;
-                            ctx.fillText('Post. mean = ' + postMean.toFixed(3) + (nTrials > 0 ? '  |  MLE = ' + (nSuccess / nTrials).toFixed(3) : ''), 80, ly + 54);
+                            ctx.fillText('Post. mean = ' + postMean.toFixed(3) + (nTrials > 0 ? ' | MLE = ' + (nSuccess / nTrials).toFixed(3) : ''), 80, ly + 54);
                         }
 
                         draw();
@@ -297,19 +297,19 @@ window.CHAPTERS.push({
             id: 'ch15-sec02',
             title: 'Conjugate Priors',
             content: `
-                <h2>Conjugate Priors / 共轭先验</h2>
+ <h2>Conjugate Priors</h2>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>If the prior and posterior belong to the same distributional family, then Bayesian updating reduces to simply updating the hyperparameters (超参数) — this is the beauty of conjugacy (共轭性). The hyperparameters of the prior can be interpreted as "virtual data," and the actual data simply adds information on top of them.</p>
+ <p>If the prior and posterior belong to the same distributional family, then Bayesian updating reduces to simply updating the hyperparameters — this is the beauty of conjugacy. The hyperparameters of the prior can be interpreted as "virtual data," and the actual data simply adds information on top of them.</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 15.5 (Conjugate Prior Family)</div>
                     <div class="env-body">
-                        <p>Let \\(\\mathcal{F} = \\{f(\\mathbf{x}|\\theta) : \\theta \\in \\Theta\\}\\) be a family of likelihood functions. If a family of prior distributions \\(\\mathcal{P}\\) satisfies: for every \\(\\pi(\\theta) \\in \\mathcal{P}\\) and every observation \\(\\mathbf{x}\\), the posterior \\(\\pi(\\theta|\\mathbf{x}) \\in \\mathcal{P}\\), then \\(\\mathcal{P}\\) is called a <strong>conjugate prior family</strong> (共轭先验族) for \\(\\mathcal{F}\\).</p>
+ <p>Let \\(\\mathcal{F} = \\{f(\\mathbf{x}|\\theta) : \\theta \\in \\Theta\\}\\) be a family of likelihood functions. If a family of prior distributions \\(\\mathcal{P}\\) satisfies: for every \\(\\pi(\\theta) \\in \\mathcal{P}\\) and every observation \\(\\mathbf{x}\\), the posterior \\(\\pi(\\theta|\\mathbf{x}) \\in \\mathcal{P}\\), then \\(\\mathcal{P}\\) is called a <strong>conjugate prior family</strong> for \\(\\mathcal{F}\\).</p>
                     </div>
                 </div>
 
@@ -406,8 +406,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'beta-binomial-viz',
-                    title: 'Interactive: Beta-Binomial Sequential Update / Beta-Binomial 序贯更新',
-                    description: 'Click "Flip" to simulate coin tosses and watch the Beta posterior update step by step / 每次点击"Flip"模拟一次抛硬币，观察 Beta 后验如何逐步更新',
+                    title: 'Interactive: Beta-Binomial Sequential Update',
+                    description: 'Click "Flip" to simulate coin tosses and watch the Beta posterior update step by step',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 380,
@@ -546,7 +546,7 @@ window.CHAPTERS.push({
                             ctx.fillText('True p = ' + trueP.toFixed(2), 80, 71);
                             ctx.fillStyle = viz.colors.text;
                             var total = heads + tails;
-                            ctx.fillText('Flips: ' + total + '  |  H: ' + heads + '  T: ' + tails + '  |  Post. mean: ' + (postA / (postA + postB)).toFixed(3), 80, 89);
+                            ctx.fillText('Flips: ' + total + ' | H: ' + heads + ' T: ' + tails + ' | Post. mean: ' + (postA / (postA + postB)).toFixed(3), 80, 89);
 
                             // Coin flip history (last 30)
                             var showHist = history.slice(-30);
@@ -589,7 +589,7 @@ window.CHAPTERS.push({
             id: 'ch15-sec03',
             title: 'Posterior Inference',
             content: `
-                <h2>Posterior Inference / 后验推断</h2>
+ <h2>Posterior Inference</h2>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
@@ -603,9 +603,9 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>Common Bayes point estimators include:</p>
                         <ul>
-                            <li><strong>Posterior mean</strong> (后验均值): \\(\\hat{\\theta}_{\\text{PM}} = E[\\theta | \\mathbf{x}] = \\int \\theta \\, \\pi(\\theta | \\mathbf{x}) \\, d\\theta\\). It minimizes the posterior expected squared loss.</li>
-                            <li><strong>Posterior median</strong> (后验中位数): \\(\\hat{\\theta}_{\\text{Med}}\\) satisfying \\(P(\\theta \\le \\hat{\\theta}_{\\text{Med}} | \\mathbf{x}) = 0.5\\). It minimizes the posterior expected absolute loss.</li>
-                            <li><strong>Maximum a posteriori (MAP)</strong> (最大后验估计): \\(\\hat{\\theta}_{\\text{MAP}} = \\arg\\max_{\\theta} \\pi(\\theta | \\mathbf{x})\\). It minimizes the posterior 0-1 loss.</li>
+ <li><strong>Posterior mean</strong> : \\(\\hat{\\theta}_{\\text{PM}} = E[\\theta | \\mathbf{x}] = \\int \\theta \\, \\pi(\\theta | \\mathbf{x}) \\, d\\theta\\). It minimizes the posterior expected squared loss.</li>
+ <li><strong>Posterior median</strong> : \\(\\hat{\\theta}_{\\text{Med}}\\) satisfying \\(P(\\theta \\le \\hat{\\theta}_{\\text{Med}} | \\mathbf{x}) = 0.5\\). It minimizes the posterior expected absolute loss.</li>
+ <li><strong>Maximum a posteriori (MAP)</strong> : \\(\\hat{\\theta}_{\\text{MAP}} = \\arg\\max_{\\theta} \\pi(\\theta | \\mathbf{x})\\). It minimizes the posterior 0-1 loss.</li>
                         </ul>
                     </div>
                 </div>
@@ -627,12 +627,12 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 15.11 (Credible Interval)</div>
                     <div class="env-body">
-                        <p>Given the posterior distribution \\(\\pi(\\theta | \\mathbf{x})\\), a \\(100(1-\\alpha)\\%\\) <strong>credible interval</strong> (可信区间) \\(C\\) satisfies</p>
+ <p>Given the posterior distribution \\(\\pi(\\theta | \\mathbf{x})\\), a \\(100(1-\\alpha)\\%\\) <strong>credible interval</strong> \\(C\\) satisfies</p>
                         \\[P(\\theta \\in C | \\mathbf{x}) = \\int_C \\pi(\\theta | \\mathbf{x}) \\, d\\theta = 1 - \\alpha\\]
                         <p>Two common constructions:</p>
                         <ul>
-                            <li><strong>Equal-tail credible interval</strong> (等尾可信区间): \\(C = [q_{\\alpha/2}, \\, q_{1-\\alpha/2}]\\), where \\(q_p\\) is the \\(p\\)-th posterior quantile.</li>
-                            <li><strong>Highest posterior density (HPD) interval</strong> (最高后验密度区间): \\(C = \\{\\theta : \\pi(\\theta | \\mathbf{x}) \\ge c\\}\\), where \\(c\\) is chosen so that \\(P(\\theta \\in C | \\mathbf{x}) = 1 - \\alpha\\). The HPD interval is the shortest interval at the same credibility level.</li>
+ <li><strong>Equal-tail credible interval</strong> : \\(C = [q_{\\alpha/2}, \\, q_{1-\\alpha/2}]\\), where \\(q_p\\) is the \\(p\\)-th posterior quantile.</li>
+ <li><strong>Highest posterior density (HPD) interval</strong> : \\(C = \\{\\theta : \\pi(\\theta | \\mathbf{x}) \\ge c\\}\\), where \\(c\\) is chosen so that \\(P(\\theta \\in C | \\mathbf{x}) = 1 - \\alpha\\). The HPD interval is the shortest interval at the same credibility level.</li>
                         </ul>
                     </div>
                 </div>
@@ -642,8 +642,8 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>A Bayesian credible interval and a frequentist confidence interval have different meanings:</p>
                         <ul>
-                            <li><strong>Credible interval</strong> (可信区间): given the data, the parameter \\(\\theta\\) falls in this interval with probability \\(1-\\alpha\\). This is a <strong>posterior probability statement</strong> about the parameter.</li>
-                            <li><strong>Confidence interval</strong> (置信区间): in repeated sampling, approximately \\(100(1-\\alpha)\\%\\) of such intervals will cover the true value. This is a statement about the <strong>sampling procedure</strong>.</li>
+ <li><strong>Credible interval</strong> : given the data, the parameter \\(\\theta\\) falls in this interval with probability \\(1-\\alpha\\). This is a <strong>posterior probability statement</strong> about the parameter.</li>
+ <li><strong>Confidence interval</strong> : in repeated sampling, approximately \\(100(1-\\alpha)\\%\\) of such intervals will cover the true value. This is a statement about the <strong>sampling procedure</strong>.</li>
                         </ul>
                         <p>In certain special cases (e.g., Normal mean with a uniform prior), the two coincide numerically; but in general they are different.</p>
                     </div>
@@ -652,7 +652,7 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 15.12 (Posterior Predictive Distribution)</div>
                     <div class="env-body">
-                        <p>Given observed data \\(\\mathbf{x}\\), the <strong>posterior predictive distribution</strong> (后验预测分布) for a new observation \\(X_{n+1}\\) is</p>
+ <p>Given observed data \\(\\mathbf{x}\\), the <strong>posterior predictive distribution</strong> for a new observation \\(X_{n+1}\\) is</p>
                         \\[f(x_{n+1} | \\mathbf{x}) = \\int f(x_{n+1} | \\theta) \\, \\pi(\\theta | \\mathbf{x}) \\, d\\theta\\]
                         <p>It integrates parameter uncertainty (via the posterior) into the prediction and is typically more conservative (larger variance) than plugging in a point estimate \\(\\hat{\\theta}\\).</p>
                     </div>
@@ -672,8 +672,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'credible-interval-viz',
-                    title: 'Interactive: Credible Interval vs Confidence Interval / 可信区间 vs 置信区间',
-                    description: 'Compare the Bayesian credible interval with the frequentist confidence interval / 对比 Bayes 可信区间与频率学派置信区间的含义差异',
+ title:'Interactive: Credible Interval vs Confidence Intervalvs',
+ description:'Compare the Bayesian credible interval with the frequentist confidence intervalBayes',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -832,7 +832,7 @@ window.CHAPTERS.push({
                             var intType = showHPD ? 'HPD' : 'Equal-tail';
                             ctx.fillText((100 * (1 - alpha)).toFixed(0) + '% ' + intType + ' CI: [' + lo.toFixed(3) + ', ' + hi.toFixed(3) + ']', 80, 53);
                             ctx.fillStyle = viz.colors.text;
-                            ctx.fillText('Width: ' + (hi - lo).toFixed(4) + '  |  Post. mean: ' + postMean.toFixed(3), 80, 71);
+                            ctx.fillText('Width: ' + (hi - lo).toFixed(4) + ' | Post. mean: ' + postMean.toFixed(3), 80, 71);
                             ctx.fillStyle = viz.colors.teal;
                             ctx.fillText('-- Post. mean', 400, 35);
                         }
@@ -866,22 +866,22 @@ window.CHAPTERS.push({
             id: 'ch15-sec04',
             title: 'Prior Selection',
             content: `
-                <h2>Prior Selection / 先验选择</h2>
+ <h2>Prior Selection</h2>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>"Prior selection" (先验选择) is the most debated and most artful aspect of Bayesian statistics. An informative prior that incorporates domain knowledge can improve inference efficiency, but a poor choice may mislead conclusions. Non-informative priors aim to "let the data speak," but they are not entirely objective either. Understanding prior sensitivity is crucial for responsible use of Bayesian methods.</p>
+ <p>"Prior selection" is the most debated and most artful aspect of Bayesian statistics. An informative prior that incorporates domain knowledge can improve inference efficiency, but a poor choice may mislead conclusions. Non-informative priors aim to "let the data speak," but they are not entirely objective either. Understanding prior sensitivity is crucial for responsible use of Bayesian methods.</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 15.14 (Informative and Non-informative Priors)</div>
                     <div class="env-body">
-                        <p><strong>Informative prior</strong> (信息先验): incorporates substantive prior knowledge about the parameter. For example, if \\(\\theta \\in [0.3, 0.7]\\) is believed to be highly probable, one might choose \\(\\text{Beta}(10, 10)\\).</p>
-                        <p><strong>Non-informative prior</strong> (无信息先验): aims to express no preference over parameter values, so that the posterior is mainly driven by the data. Common choices include:</p>
+ <p><strong>Informative prior</strong> : incorporates substantive prior knowledge about the parameter. For example, if \\(\\theta \\in [0.3, 0.7]\\) is believed to be highly probable, one might choose \\(\\text{Beta}(10, 10)\\).</p>
+ <p><strong>Non-informative prior</strong> : aims to express no preference over parameter values, so that the posterior is mainly driven by the data. Common choices include:</p>
                         <ul>
-                            <li>Uniform prior (均匀先验): \\(\\pi(\\theta) \\propto 1\\)</li>
+ <li>Uniform prior : \\(\\pi(\\theta) \\propto 1\\)</li>
                             <li>Jeffreys prior: \\(\\pi(\\theta) \\propto \\sqrt{I(\\theta)}\\), where \\(I(\\theta)\\) is the Fisher information</li>
                         </ul>
                     </div>
@@ -892,7 +892,7 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>The Jeffreys prior is defined as</p>
                         \\[\\pi_J(\\theta) \\propto \\sqrt{\\det I(\\theta)}\\]
-                        <p>where \\(I(\\theta)\\) is the Fisher information matrix. The Jeffreys prior possesses <strong>parameterization invariance</strong> (参数化不变性): if \\(\\phi = h(\\theta)\\) is a one-to-one transformation, then the Jeffreys prior under the \\(\\phi\\) parameterization is exactly the change-of-variables transform of \\(\\pi_J(\\theta)\\).</p>
+ <p>where \\(I(\\theta)\\) is the Fisher information matrix. The Jeffreys prior possesses <strong>parameterization invariance</strong> : if \\(\\phi = h(\\theta)\\) is a one-to-one transformation, then the Jeffreys prior under the \\(\\phi\\) parameterization is exactly the change-of-variables transform of \\(\\pi_J(\\theta)\\).</p>
                     </div>
                 </div>
 
@@ -923,17 +923,17 @@ window.CHAPTERS.push({
                 <div class="env-block warning">
                     <div class="env-title">Warning (Improper Priors)</div>
                     <div class="env-body">
-                        <p>Many non-informative priors are <strong>improper</strong> (非正常先验), meaning \\(\\int \\pi(\\theta) d\\theta = \\infty\\). For example, \\(\\pi(\\mu) \\propto 1\\) is not integrable over \\(\\mu \\in \\mathbb{R}\\). When using an improper prior, one must verify that the posterior is a proper distribution (i.e., integrable); otherwise the inference is meaningless.</p>
+ <p>Many non-informative priors are <strong>improper</strong>, meaning \\(\\int \\pi(\\theta) d\\theta = \\infty\\). For example, \\(\\pi(\\mu) \\propto 1\\) is not integrable over \\(\\mu \\in \\mathbb{R}\\). When using an improper prior, one must verify that the posterior is a proper distribution (i.e., integrable); otherwise the inference is meaningless.</p>
                     </div>
                 </div>
 
                 <div class="env-block definition">
                     <div class="env-title">Definition 15.17 (Prior Sensitivity Analysis)</div>
                     <div class="env-body">
-                        <p><strong>Prior sensitivity analysis</strong> (先验敏感性分析) examines how much the posterior inference changes under various reasonable prior choices. In practice:</p>
+ <p><strong>Prior sensitivity analysis</strong> examines how much the posterior inference changes under various reasonable prior choices. In practice:</p>
                         <ul>
                             <li>Select a range of representative priors (e.g., different hyperparameter values) and compare the resulting posteriors.</li>
-                            <li>If the posterior is insensitive to the choice of prior (i.e., different priors yield similar posteriors), the conclusions are <strong>robust</strong> (稳健的).</li>
+ <li>If the posterior is insensitive to the choice of prior (i.e., different priors yield similar posteriors), the conclusions are <strong>robust</strong>.</li>
                             <li>If the posterior is highly sensitive to the prior, the data is insufficient to overcome prior influence, and one should carefully report the prior assumptions.</li>
                         </ul>
                     </div>
@@ -956,8 +956,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'prior-sensitivity-viz',
-                    title: 'Interactive: Prior Sensitivity Analysis / 先验敏感性分析',
-                    description: 'Compare posteriors under different priors and observe how prior choice affects inference / 比较不同先验下的后验分布，观察先验选择如何影响推断结论',
+ title:'Interactive: Prior Sensitivity Analysis',
+ description:'Compare posteriors under different priors and observe how prior choice affects inference',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 400,
@@ -1063,10 +1063,10 @@ window.CHAPTERS.push({
                                 var pb = priors[p].b + (nObs - xObs);
                                 var pm = pa / (pa + pb);
                                 ctx.fillStyle = priors[p].color;
-                                ctx.fillText(priors[p].label + ' -> Post(' + pa.toFixed(1) + ',' + pb.toFixed(1) + ')  mean=' + pm.toFixed(3), 80, 30 + p * 16);
+                                ctx.fillText(priors[p].label + ' -> Post(' + pa.toFixed(1) + ',' + pb.toFixed(1) + ') mean=' + pm.toFixed(3), 80, 30 + p * 16);
                             }
                             ctx.fillStyle = viz.colors.red;
-                            ctx.fillText('MLE = ' + (nObs > 0 ? (xObs / nObs).toFixed(3) : 'N/A') + '  |  n = ' + nObs + ', x = ' + xObs, 80, 30 + 3 * 16);
+                            ctx.fillText('MLE = ' + (nObs > 0 ? (xObs / nObs).toFixed(3) : 'N/A') + ' | n = ' + nObs + ', x = ' + xObs, 80, 30 + 3 * 16);
 
                             // Spread measure
                             var means = priors.map(function(pr) { return (pr.a + xObs) / (pr.a + pr.b + nObs); });
@@ -1104,12 +1104,12 @@ window.CHAPTERS.push({
             id: 'ch15-sec05',
             title: 'Introduction to MCMC',
             content: `
-                <h2>Introduction to MCMC / MCMC 初步</h2>
+ <h2>Introduction to MCMC</h2>
 
                 <div class="env-block intuition">
                     <div class="env-title">Intuition</div>
                     <div class="env-body">
-                        <p>Conjugate priors yield posteriors in closed form, but in practice many models have posteriors that cannot be solved analytically: the integral \\(m(\\mathbf{x}) = \\int L(\\theta|\\mathbf{x})\\pi(\\theta)d\\theta\\) may be intractable. <strong>Markov chain Monte Carlo</strong> (MCMC, 马尔可夫链蒙特卡罗) methods construct a Markov chain whose stationary distribution is the posterior, thereby generating samples from the posterior to approximate any inferential quantity.</p>
+ <p>Conjugate priors yield posteriors in closed form, but in practice many models have posteriors that cannot be solved analytically: the integral \\(m(\\mathbf{x}) = \\int L(\\theta|\\mathbf{x})\\pi(\\theta)d\\theta\\) may be intractable. <strong>Markov chain Monte Carlo</strong> (MCMC) methods construct a Markov chain whose stationary distribution is the posterior, thereby generating samples from the posterior to approximate any inferential quantity.</p>
                     </div>
                 </div>
 
@@ -1118,8 +1118,8 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>Given a target distribution \\(\\pi(\\theta | \\mathbf{x})\\) (for which we only need to know the unnormalized kernel \\(q(\\theta) \\propto L(\\theta|\\mathbf{x})\\pi(\\theta)\\)), MCMC constructs a Markov chain \\(\\theta^{(0)}, \\theta^{(1)}, \\theta^{(2)}, \\ldots\\) such that:</p>
                         <ul>
-                            <li>The stationary distribution (平稳分布) of the chain is \\(\\pi(\\theta | \\mathbf{x})\\).</li>
-                            <li>The chain is ergodic (遍历的): after a sufficiently long run, the distribution of \\(\\theta^{(t)}\\) converges to \\(\\pi(\\theta | \\mathbf{x})\\).</li>
+ <li>The stationary distribution of the chain is \\(\\pi(\\theta | \\mathbf{x})\\).</li>
+ <li>The chain is ergodic : after a sufficiently long run, the distribution of \\(\\theta^{(t)}\\) converges to \\(\\pi(\\theta | \\mathbf{x})\\).</li>
                         </ul>
                         <p>Collecting samples from the chain (after discarding an initial burn-in period) allows us to approximate any posterior expectation:</p>
                         \\[E[g(\\theta) | \\mathbf{x}] \\approx \\frac{1}{T - T_0} \\sum_{t=T_0+1}^{T} g(\\theta^{(t)})\\]
@@ -1170,11 +1170,11 @@ window.CHAPTERS.push({
                 <div class="env-block definition">
                     <div class="env-title">Definition 15.21 (Convergence Diagnostics)</div>
                     <div class="env-body">
-                        <p>MCMC convergence diagnostics (收敛诊断) include:</p>
+ <p>MCMC convergence diagnostics include:</p>
                         <ul>
                             <li><strong>Trace plot</strong>: plot \\(\\theta^{(t)}\\) against \\(t\\). A converged chain should look like "noise oscillating around a stable value" (caterpillar plot), without trends or stagnation.</li>
-                            <li><strong>Autocorrelation function (ACF)</strong> (自相关函数): ideally the ACF decays rapidly. High autocorrelation indicates poor mixing.</li>
-                            <li><strong>Effective sample size (ESS)</strong> (有效样本量): \\(\\text{ESS} = T / (1 + 2\\sum_{k=1}^{\\infty} \\rho_k)\\), where \\(\\rho_k\\) is the lag-\\(k\\) autocorrelation. ESS measures the equivalent number of independent samples.</li>
+ <li><strong>Autocorrelation function (ACF)</strong> : ideally the ACF decays rapidly. High autocorrelation indicates poor mixing.</li>
+ <li><strong>Effective sample size (ESS)</strong> : \\(\\text{ESS} = T / (1 + 2\\sum_{k=1}^{\\infty} \\rho_k)\\), where \\(\\rho_k\\) is the lag-\\(k\\) autocorrelation. ESS measures the equivalent number of independent samples.</li>
                             <li><strong>Gelman-Rubin \\(\\hat{R}\\)</strong>: run multiple chains and compare between-chain variance to within-chain variance. \\(\\hat{R} \\approx 1\\) indicates convergence.</li>
                         </ul>
                     </div>
@@ -1195,9 +1195,9 @@ window.CHAPTERS.push({
                     <div class="env-body">
                         <p>The modern Bayesian computational toolkit extends far beyond MH:</p>
                         <ul>
-                            <li><strong>Gibbs sampling</strong> (Gibbs 抽样): in multi-parameter models, sequentially sample from each conditional posterior. It is a special case of MH (with acceptance probability always 1).</li>
+ <li><strong>Gibbs sampling</strong> (Gibbs): in multi-parameter models, sequentially sample from each conditional posterior. It is a special case of MH (with acceptance probability always 1).</li>
                             <li><strong>Hamiltonian Monte Carlo (HMC)</strong>: uses gradient information to guide proposals, dramatically improving sampling efficiency in high-dimensional spaces. It is the core algorithm of the Stan software.</li>
-                            <li><strong>Variational Inference</strong> (变分推断): converts the posterior approximation problem into an optimization problem — fast but potentially biased.</li>
+ <li><strong>Variational Inference</strong> : converts the posterior approximation problem into an optimization problem — fast but potentially biased.</li>
                         </ul>
                     </div>
                 </div>
@@ -1205,8 +1205,8 @@ window.CHAPTERS.push({
             visualizations: [
                 {
                     id: 'mh-viz',
-                    title: 'Interactive: Metropolis-Hastings Random Walk / Metropolis-Hastings 随机游走',
-                    description: 'Observe how the MH algorithm explores the target distribution and understand the effect of proposal step size on mixing efficiency / 观察 MH 算法如何在目标分布上游走，理解提议步长对混合效率的影响',
+ title:'Interactive: Metropolis-Hastings Random Walk',
+ description:'Observe how the MH algorithm explores the target distribution and understand the effect of proposal step size on mixing efficiencyMH',
                     setup: function(container, controls) {
                         var viz = new VizEngine(container, {
                             width: 560, height: 500,
@@ -1390,15 +1390,15 @@ window.CHAPTERS.push({
                             ctx.textAlign = 'left';
                             ctx.textBaseline = 'top';
                             ctx.fillStyle = viz.colors.teal;
-                            ctx.fillText('Target: Beta(' + targetA + ', ' + targetB + ')  mean=' + postMean.toFixed(3), 80, 10);
+                            ctx.fillText('Target: Beta(' + targetA + ', ' + targetB + ') mean=' + postMean.toFixed(3), 80, 10);
                             ctx.fillStyle = viz.colors.purple;
                             ctx.fillText('Histogram of MCMC samples (after burn-in)', 80, 26);
                             ctx.fillStyle = viz.colors.text;
-                            ctx.fillText('Chain length: ' + chain.length + '  |  Accept rate: ' + (accRate * 100).toFixed(1) + '%  |  σ_p = ' + proposalSD.toFixed(3), 80, 242);
+                            ctx.fillText('Chain length: ' + chain.length + ' | Accept rate: ' + (accRate * 100).toFixed(1) + '% | σ_p = ' + proposalSD.toFixed(3), 80, 242);
 
                             if (samples.length > 1) {
                                 var sampleMean = VizEngine.mean(samples);
-                                ctx.fillText('Sample mean: ' + sampleMean.toFixed(3) + '  |  True mean: ' + postMean.toFixed(3), 300, 242);
+                                ctx.fillText('Sample mean: ' + sampleMean.toFixed(3) + ' | True mean: ' + postMean.toFixed(3), 300, 242);
                             }
                         }
 
